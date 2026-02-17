@@ -1,0 +1,450 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Surfaced Extraction Target v0.1 (OCTO-aligned)",
+  "description": "Schema for structured tour/experience data extracted from operator websites. Core fields align to OCTO (Open Connectivity for Tours, Activities & Attractions) naming conventions. Surfaced extensions handle escape rooms, combo products, and promotional data.",
+  "type": "object",
+  "required": ["operator", "products"],
+  "properties": {
+    "operator": {
+      "type": "object",
+      "description": "Operator-level metadata extracted from site-wide elements (header, footer, about page, contact page).",
+      "required": ["name", "url"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Business name as displayed on the website."
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Operator's primary website URL."
+        },
+        "location": {
+          "type": "string",
+          "description": "Business address, typically found in footer or contact page."
+        },
+        "phone": {
+          "type": "string",
+          "description": "Primary phone number, typically found in footer or contact page."
+        },
+        "email": {
+          "type": "string",
+          "description": "Primary contact email, typically found in footer or contact page."
+        },
+        "bookingSystem": {
+          "type": "object",
+          "description": "Identified booking/reservation platform.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Platform name (e.g., FareHarbor, Peek Pro, Bookeo, RocketRez, Gatemaster)."
+            },
+            "embedUrl": {
+              "type": "string",
+              "format": "uri",
+              "description": "Base URL of the booking embed if found (e.g., fareharbor.com/embeds/book/operatorname/)."
+            }
+          }
+        },
+        "operatorType": {
+          "type": "string",
+          "description": "Brief characterization of the operator (e.g., 'Family-owned walking tour company', 'Large cruise operator')."
+        },
+        "otaPresence": {
+          "type": "array",
+          "description": "OTA/review platforms identified on the site (TripAdvisor badges, Viator links, Expedia references, Yelp, etc.).",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "products": {
+      "type": "array",
+      "description": "All bookable products/experiences identified on the site.",
+      "items": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "OCTO Product.title. Public product/experience name exactly as displayed."
+          },
+          "shortDescription": {
+            "type": "string",
+            "description": "OCTO Product.shortDescription. 1-2 sentence summary. May be AI-generated from page content if not explicitly present."
+          },
+          "description": {
+            "type": "string",
+            "description": "OCTO Product.description. Full narrative description of the experience."
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the product's detail page, if it has a dedicated page."
+          },
+          "pricingModel": {
+            "type": "string",
+            "enum": ["PER_UNIT", "PER_BOOKING"],
+            "description": "OCTO Product.pricingPer. PER_UNIT = per person pricing. PER_BOOKING = per group/flat rate pricing."
+          },
+          "currency": {
+            "type": "string",
+            "default": "USD",
+            "description": "OCTO Product.defaultCurrency. ISO 4217 currency code."
+          },
+          "priceByUnit": {
+            "type": "array",
+            "description": "OCTO Unit.pricing. Price per unit type. Amounts in cents (e.g., $179.00 = 17900).",
+            "items": {
+              "type": "object",
+              "required": ["unitType", "amount"],
+              "properties": {
+                "unitType": {
+                  "type": "string",
+                  "description": "Unit category: adult, child, infant, senior, group, student, military, etc."
+                },
+                "label": {
+                  "type": ["string", "null"],
+                  "description": "Age range or qualifier as displayed (e.g., 'Ages 13+', 'Ages 5-12', 'Up to 5 guests')."
+                },
+                "amount": {
+                  "type": "integer",
+                  "description": "Price in cents. $179.00 = 17900."
+                }
+              }
+            }
+          },
+          "pricingNotes": {
+            "type": "string",
+            "description": "Free-text notes about pricing when full details aren't available (e.g., 'From $89. Child pricing not visible on listing page.')."
+          },
+          "priceTiers": {
+            "type": "array",
+            "description": "Surfaced extension. Group-size pricing tiers for operators with tiered models.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "tierName": {
+                  "type": "string",
+                  "description": "Tier label if named (e.g., 'Silver', 'Gold', 'Platinum')."
+                },
+                "minUnits": {
+                  "type": "integer"
+                },
+                "maxUnits": {
+                  "type": "integer"
+                },
+                "pricePerUnit": {
+                  "type": "integer",
+                  "description": "Price per unit in cents for this tier."
+                },
+                "pricePerBooking": {
+                  "type": "integer",
+                  "description": "Flat price in cents for this tier (if per-booking model)."
+                },
+                "notes": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Experience duration in minutes."
+          },
+          "durationDisplay": {
+            "type": "string",
+            "description": "Human-readable duration as stated on the site (e.g., '10-11 hours', '2.5 hours', '60 minutes')."
+          },
+          "restrictions": {
+            "type": "object",
+            "description": "OCTO Option.restrictions.",
+            "properties": {
+              "minUnits": {
+                "type": "integer",
+                "description": "Minimum group/player count."
+              },
+              "maxUnits": {
+                "type": "integer",
+                "description": "Maximum group/player count."
+              }
+            }
+          },
+          "ageRestrictions": {
+            "type": "object",
+            "description": "Surfaced extension. Age requirements.",
+            "properties": {
+              "minAge": {
+                "type": "integer"
+              },
+              "maxAge": {
+                "type": "integer"
+              },
+              "label": {
+                "type": "string",
+                "description": "Age restriction as stated (e.g., 'Ages 5+', 'All ages', '14+ or accompanied by adult')."
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          },
+          "schedule": {
+            "type": "array",
+            "description": "OCTO Option.availabilityLocalStartTimes. Known departure/start times if stated on the site.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "seasonality": {
+            "type": "object",
+            "description": "Surfaced extension. Operating season if stated.",
+            "properties": {
+              "startDate": {
+                "type": "string",
+                "description": "Season start (e.g., 'May 15', 'January 1')."
+              },
+              "endDate": {
+                "type": "string",
+                "description": "Season end (e.g., 'September 14', 'December 31')."
+              },
+              "notes": {
+                "type": "string",
+                "description": "Additional seasonality detail (e.g., 'Summer and winter tours differ in route')."
+              }
+            }
+          },
+          "features": {
+            "type": "array",
+            "description": "OCTO Product.features[]. Typed list of product features.",
+            "items": {
+              "type": "object",
+              "required": ["type", "value"],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "INCLUSION",
+                    "EXCLUSION",
+                    "HIGHLIGHT",
+                    "ACCESSIBILITY_INFORMATION",
+                    "CANCELLATION_TERM",
+                    "ADDITIONAL_INFORMATION"
+                  ],
+                  "description": "OCTO feature type."
+                },
+                "value": {
+                  "type": "string",
+                  "description": "Feature description."
+                }
+              }
+            }
+          },
+          "locations": {
+            "type": "array",
+            "description": "OCTO Product.locations[]. Meeting points, drop-offs, and points of interest.",
+            "items": {
+              "type": "object",
+              "required": ["type"],
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["START", "END", "POINT_OF_INTEREST"],
+                  "description": "OCTO location type. START = meeting/pickup point. END = drop-off. POINT_OF_INTEREST = destination visited."
+                },
+                "name": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                },
+                "pickupTime": {
+                  "type": "string",
+                  "description": "Pickup/departure time at this location if specified."
+                },
+                "notes": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "media": {
+            "type": "array",
+            "description": "OCTO Product.media[]. Images associated with the product.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": ["IMAGE", "VIDEO"]
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "alt": {
+                  "type": "string",
+                  "description": "Alt text or caption."
+                }
+              }
+            }
+          },
+          "faqs": {
+            "type": "array",
+            "description": "OCTO Product.faqs[]. Question/answer pairs from the page.",
+            "items": {
+              "type": "object",
+              "required": ["question", "answer"],
+              "properties": {
+                "question": {
+                  "type": "string"
+                },
+                "answer": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "cancellationPolicy": {
+            "type": ["string", "null"],
+            "description": "Free-text cancellation policy as stated on site. Null if not found."
+          },
+          "isPrivate": {
+            "type": "boolean",
+            "description": "Surfaced extension. Whether the experience is private (your group only, no strangers)."
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": ["NOVICE", "INTERMEDIATE", "ADVANCED", "EXPERT"],
+            "description": "Surfaced extension. Difficulty rating (primarily for escape rooms)."
+          },
+          "successRate": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Surfaced extension. Completion/success rate as decimal (primarily for escape rooms)."
+          },
+          "roomType": {
+            "type": "string",
+            "enum": ["SINGLE_ROOM", "MULTI_ROOM"],
+            "description": "Surfaced extension. Physical room configuration (escape rooms)."
+          },
+          "themeGenre": {
+            "type": "array",
+            "description": "Surfaced extension. Theme/genre tags (e.g., mystery, horror, adventure, photography, nature).",
+            "items": {
+              "type": "string"
+            }
+          },
+          "upgradeModifiers": {
+            "type": "array",
+            "description": "Surfaced extension. Upsell/upgrade options (e.g., Argosy 'First to Board', premium tiers).",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "priceByUnit": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "unitType": { "type": "string" },
+                      "amount": { "type": "integer" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "crossOperatorBundles": {
+            "type": "array",
+            "description": "Surfaced extension. Combo products bundling this operator with another operator's product.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "partnerOperator": {
+                  "type": "string",
+                  "description": "Name of the partner operator."
+                },
+                "partnerProduct": {
+                  "type": "string",
+                  "description": "Name of the partner's product included in the bundle."
+                },
+                "partnerDuration": {
+                  "type": "integer",
+                  "description": "Duration of the partner's portion in minutes."
+                }
+              }
+            }
+          },
+          "activePromotions": {
+            "type": "array",
+            "description": "Surfaced extension. Current promo codes, discounts, or deals visible on the site.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "description": "Promo code if applicable."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "What the promotion offers."
+                },
+                "displayLocation": {
+                  "type": "string",
+                  "description": "Where on the site this promotion appears (e.g., 'Site-wide banner', 'Product page', 'Deals page')."
+                }
+              }
+            }
+          },
+          "bookingSystem": {
+            "type": "object",
+            "description": "Surfaced extension. Booking platform identified for this specific product.",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "bookingUrl": {
+                "type": "string",
+                "format": "uri",
+                "description": "Direct booking URL for this product if found."
+              }
+            }
+          }
+        }
+      }
+    },
+    "extractionMetadata": {
+      "type": "object",
+      "description": "Metadata about the extraction process itself.",
+      "properties": {
+        "extractedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "method": {
+          "type": "string",
+          "description": "Extraction method used (e.g., 'Firecrawl /scrape + Claude API', 'Firecrawl /extract', 'Manual')."
+        },
+        "pagesUsed": {
+          "type": "array",
+          "description": "URLs of pages that were fed into the extraction.",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "string",
+          "description": "Any extraction notes — missing products, known gaps, issues encountered."
+        }
+      }
+    }
+  }
+}
