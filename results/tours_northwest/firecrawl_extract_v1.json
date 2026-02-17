@@ -1,0 +1,811 @@
+{
+  "firecrawl_response": {
+    "success": true,
+    "id": null,
+    "status": "completed",
+    "data": {
+      "operator": {
+        "name": "Tours Northwest",
+        "url": "https://www.toursnorthwest.com",
+        "address": "Seattle, WA",
+        "phone": "206-768-1234",
+        "email": "",
+        "booking_system": "FareHarbor",
+        "operator_type": "Private tours of Seattle and surrounding areas"
+      },
+      "products": [
+        {
+          "title": "Private Snoqualmie Falls Tour",
+          "short_description": "Discover a taste of the Cascade Mountains on this private and professionally-guided Snoqualmie Falls tour from Seattle.",
+          "description": "The tour begins from your hotel, where your personal local expert will pick your party up in a Pearl Chevrolet Suburban LTZ.",
+          "url": "https://www.toursnorthwest.com/private-suv-tour-snoqualmie-falls/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 40000
+            }
+          ],
+          "duration_minutes": 150,
+          "min_age": 0,
+          "age_restriction_label": "All ages",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "HIGHLIGHT",
+              "value": "This world-famous waterfall plunges over 270 ft down into the Snoqualmie River."
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Upper and lower observation decks for best possible viewing."
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Options available to hike or drive to the bottom of the falls."
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Gift shop available, including the famous pancake mix!"
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Plenty of photo opportunities!"
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Seattle",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup from your hotel."
+            }
+          ],
+          "faqs": [],
+          "active_promotions": [],
+          "is_private": true,
+          "max_group_size": 5,
+          "cancellation_policy": "",
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/344467/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        },
+        {
+          "title": "Private Boeing Factory Tour",
+          "short_description": "Experience a flight enthusiasts heaven inside the world’s largest building at the Boeing Factory.",
+          "description": "The service begins from your hotel, where your personal local expert will pick your party up in a Pearl Chevrolet Suburban LTZ to provide private transportation to the Future of Flight.",
+          "url": "https://www.toursnorthwest.com/tours/private-suv-tour-boeing-factory/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 81900
+            }
+          ],
+          "duration_minutes": 270,
+          "min_age": 4,
+          "age_restriction_label": "Adults, Children 4ft and taller",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "HIGHLIGHT",
+              "value": "Enjoy round-trip transportation from Seattle to the Boeing Factory."
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Join Boeing’s 80-minute factory tour and learn about plane production."
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Explore the world’s largest building by volume."
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Seattle",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup from your hotel."
+            }
+          ],
+          "faqs": [],
+          "active_promotions": [],
+          "is_private": true,
+          "max_group_size": 5,
+          "cancellation_policy": "",
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/274174/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        },
+        {
+          "title": "Private SUV Tour: Museum of Glass Tacoma",
+          "short_description": "Experience a glass enthusiasts heaven inside the West Coast’s largest and most active museum glass studio.",
+          "description": "The service begins from your hotel, where your personal local expert will pick your party up in a Pearl Chevrolet Suburban LTZ to provide private transportation to the Museum of Glass in Tacoma.",
+          "url": "https://www.toursnorthwest.com/museum-of-glass-tacoma/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 74900
+            }
+          ],
+          "duration_minutes": 270,
+          "min_age": 0,
+          "age_restriction_label": "All ages",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "HIGHLIGHT",
+              "value": "Experience the West Coast’s largest and most active museum glass studio."
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Seattle",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup from your hotel."
+            }
+          ],
+          "faqs": [],
+          "active_promotions": [],
+          "is_private": true,
+          "max_group_size": 5,
+          "cancellation_policy": "",
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/680802/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        },
+        {
+          "title": "Private Mt. Rainier Tour",
+          "short_description": "Experience the beauty of Mt. Rainier National Park in the comfort of your own private tour.",
+          "description": "The adventure begins from your hotel, where your personal local expert will pick your party up in a Pearl Chevrolet Suburban LTZ.",
+          "url": "https://www.toursnorthwest.com/private-rainier-tour/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 139900
+            }
+          ],
+          "duration_minutes": 600,
+          "min_age": 0,
+          "age_restriction_label": "All ages",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "HIGHLIGHT",
+              "value": "Explore the beauty of Mt. Rainier National Park."
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Pickup from your hotel."
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Seattle",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup from your hotel."
+            }
+          ],
+          "faqs": [],
+          "active_promotions": [],
+          "is_private": true,
+          "max_group_size": 5,
+          "cancellation_policy": "",
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/404701/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        },
+        {
+          "title": "Private SUV Seattle Tour",
+          "short_description": "Explore Seattle at your own pace on this private and professionally-guided city tour.",
+          "description": "The tour begins from your hotel, where your personal local expert will pick your party up in a Pearl Chevrolet Suburban LTZ.",
+          "url": "https://www.toursnorthwest.com/tours/private-seattle-tour/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 40000
+            }
+          ],
+          "duration_minutes": 150,
+          "min_age": 0,
+          "age_restriction_label": "All ages",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "HIGHLIGHT",
+              "value": "Explore Seattle at your own pace."
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Pickup from your hotel."
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Seattle",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup from your hotel."
+            }
+          ],
+          "faqs": [],
+          "active_promotions": [],
+          "is_private": true,
+          "max_group_size": 5,
+          "cancellation_policy": "",
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/274171/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        },
+        {
+          "title": "Private SUV Tour – Seattle in One Day",
+          "short_description": "Make the most of your short time in Seattle by squeezing all of Seattle’s “must see’s” into a 6-hour whirlwind day.",
+          "description": "The tour begins from your hotel, where your personal local expert will pick your party up in a Pearl Chevrolet Suburban LTZ.",
+          "url": "https://www.toursnorthwest.com/private-suv-tour-seattle-in-one-day/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 104900
+            }
+          ],
+          "duration_minutes": 360,
+          "min_age": 0,
+          "age_restriction_label": "All ages",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "HIGHLIGHT",
+              "value": "Squeeze all of Seattle’s “must see’s” into a 6-hour whirlwind day."
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Pickup from your hotel."
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Seattle",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup from your hotel."
+            }
+          ],
+          "faqs": [],
+          "active_promotions": [],
+          "is_private": true,
+          "max_group_size": 5,
+          "cancellation_policy": "",
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/523487/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        },
+        {
+          "title": "MT RAINIER TOUR FROM SEATTLE",
+          "short_description": "Experience a Mt. Rainier day tour during summer or winter.",
+          "description": "Visit Mt. Rainier from Seattle with our professional, enthusiastic, and informative guides. Travel in our clean, comfortable 24-passenger mini-coaches with large windows, high-back seats, and air-conditioning. The time of year will determine the route and accessibility of tours. In peak months, experience old-growth forests, wildflower-filled meadows, and thundering waterfalls on this tour of glacier-clad Mt. Rainier. Hike and walk a little, or not at all: there are options for all abilities. Enjoy lunch at a Mt. Rainier cafe (when open) or buy a picnic lunch along the way when we stop at a grocery store. Visit the interpretive center at Paradise or Sunrise to learn even more about the mountain’s glaciers, plants, and animals on this exciting day trip to Mt. Rainier from Seattle.",
+          "url": "https://www.toursnorthwest.com/tours/mt-rainier/",
+          "pricing_model": "PER_UNIT",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "adult",
+              "amount_cents": 17900,
+              "label": "Ages 13+"
+            },
+            {
+              "unit_type": "child",
+              "amount_cents": 14900,
+              "label": "Ages 5-12"
+            }
+          ],
+          "duration_minutes": 660,
+          "duration_display": "10-11 hours",
+          "min_age": 5,
+          "age_restriction_label": "Ages 5+",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "INCLUSION",
+              "value": "Admission/Park fees included."
+            },
+            {
+              "type": "EXCLUSION",
+              "value": "Lunch is not provided."
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Pickup available from SeaTac!"
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "No minimum required number of guests – we run all scheduled tours!"
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Seattle Public Library",
+              "address": "1000 4th Ave Seattle, WA",
+              "pickup_time": "6:35am"
+            },
+            {
+              "type": "START",
+              "name": "Urban Coffeehouse",
+              "address": "1900 4th Ave Seattle, WA",
+              "pickup_time": "6:45am"
+            },
+            {
+              "type": "START",
+              "name": "MoPop Pickup",
+              "address": "325 5th Ave N Seattle, WA",
+              "pickup_time": "6:55am"
+            },
+            {
+              "type": "START",
+              "name": "SeaTac Matt Griffin YMCA",
+              "address": "3595 S. 188th St, SeaTac, WA",
+              "pickup_time": "7:25am"
+            }
+          ],
+          "faqs": [
+            {
+              "question": "What is your cancellation policy?",
+              "answer": "We offer full refunds on all tours canceled at least 24 hours in advance of the tour’s start time. There are no refunds in the 24 hours leading up to the tour."
+            },
+            {
+              "question": "Do I need to bring food?",
+              "answer": "Food options in the park are extremely limited, but we stop at a grocery store on our way out there."
+            },
+            {
+              "question": "What should I wear to Mount Rainier National Park?",
+              "answer": "Please dress for comfort and the weather. Comfortable shoes (ideally hiking boots with good traction and water resistance) will make a huge difference in your enjoyment of the tour."
+            }
+          ],
+          "active_promotions": [
+            {
+              "code": "",
+              "description": "Now offering winter Mt. Rainier tours from Seattle",
+              "display_location": "Site-wide banner"
+            }
+          ],
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/274116/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com",
+          "is_private": false,
+          "max_group_size": 24,
+          "cancellation_policy": "Full refunds on all tours canceled at least 24 hours in advance."
+        },
+        {
+          "title": "Seattle Highlights: Seattle City Tour Bus",
+          "short_description": "Explore the most iconic landmarks and attractions in Seattle, Washington.",
+          "description": "",
+          "url": "https://www.toursnorthwest.com/tours/seattle-city-tour/",
+          "pricing_model": "PER_UNIT",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "adult",
+              "amount_cents": 8900,
+              "label": "Ages 3+"
+            }
+          ],
+          "duration_minutes": 180,
+          "duration_display": "3 hours",
+          "min_age": 3,
+          "age_restriction_label": "Ages 3+",
+          "seasonality": "January 1 - December 31",
+          "features": [],
+          "locations": [],
+          "faqs": [],
+          "active_promotions": [],
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/274116/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com",
+          "is_private": false,
+          "max_group_size": null,
+          "cancellation_policy": ""
+        },
+        {
+          "title": "2-Day Olympic National Park Tour",
+          "short_description": "Explore the stunning natural beauty of Olympic National Park on this 2-day tour.",
+          "description": "",
+          "url": "https://www.toursnorthwest.com/tours/olympic-national-park-multi-day/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 81500,
+              "label": "Ages 5+"
+            }
+          ],
+          "duration_minutes": 2880,
+          "duration_display": "2 Days",
+          "min_age": 5,
+          "age_restriction_label": "Ages 5+",
+          "seasonality": "June 4 - September 24",
+          "features": [],
+          "locations": [],
+          "faqs": [],
+          "active_promotions": [],
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/449457/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com",
+          "is_private": false,
+          "max_group_size": null,
+          "cancellation_policy": ""
+        },
+        {
+          "title": "Private Mt. Rainier Tour",
+          "short_description": "Experience the beauty of Mt. Rainier National Park in the comfort of your own private tour.",
+          "description": "The adventure begins from your hotel, where your personal local expert will pick your party up in a Pearl Chevrolet Suburban LTZ. Work with your Mt. Rainier guide to create the best itinerary and stops for your group. See and experience places within the National Park that our public tour cannot reach. Expect professional, courteous service and an entertaining Mt. Rainier day tour. We operate clean, well-maintained vehicles, featuring leather interior and comfortable seating. Our Suburban seats 5 comfortably (6 max) with 1 front passenger seat, 2 captain’s chairs in the middle row, and bench seating for 3 (2 comfortably) in the rear. Includes heat & A/C, radio/CD, Auxiliary, USB port & limited rear luggage space.",
+          "url": "https://www.toursnorthwest.com/private-rainier-tour",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 139900,
+              "label": "Up to 6 guests"
+            }
+          ],
+          "pricing_notes": "",
+          "duration_minutes": 600,
+          "duration_display": "10 hours",
+          "min_age": 0,
+          "age_restriction_label": "All ages",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "HIGHLIGHT",
+              "value": "See snow-capped mountains, old-growth forests, and waterfalls"
+            },
+            {
+              "type": "INCLUSION",
+              "value": "No need for a park permit or timed entry!"
+            },
+            {
+              "type": "INCLUSION",
+              "value": "Option to hike"
+            },
+            {
+              "type": "INCLUSION",
+              "value": "Snowshoes available for free during winter"
+            },
+            {
+              "type": "INCLUSION",
+              "value": "Comfortable Chevrolet Suburban LTZ"
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Seattle",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup at most hotels in the general Seattle area, including SeaTac, Tukwila, Bellevue, Renton & Lynnwood."
+            }
+          ],
+          "faqs": [
+            {
+              "question": "What hotels do you pick up at?",
+              "answer": "We pick up at most hotels in the general Seattle area, including SeaTac, Tukwila, Bellevue, Renton & Lynnwood."
+            },
+            {
+              "question": "Do you pick up from hotels in the SeaTac Airport area?",
+              "answer": "Our private tours can pick up in the SeaTac Airport area! Unfortunately we cannot pick up from the airport itself, but we are happy to arrange a nearby pickup for guests arriving at SeaTac."
+            },
+            {
+              "question": "What is your cancellation policy?",
+              "answer": "We offer full refunds on all tours canceled at least 24 hours in advance of the tour’s start time. There are no refunds in the 24 hours leading up to the tour."
+            }
+          ],
+          "active_promotions": [],
+          "cross_operator_bundles": [],
+          "is_private": true,
+          "max_group_size": 6,
+          "cancellation_policy": "Full refunds on all tours canceled at least 24 hours in advance of the tour’s start time.",
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/274149/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        },
+        {
+          "title": "Private SUV Seattle Tour",
+          "short_description": "Explore Seattle at your own pace on this private and professionally-guided city tour.",
+          "description": "",
+          "url": "https://www.toursnorthwest.com/tours/private-seattle-tour/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 40000,
+              "label": "All ages"
+            }
+          ],
+          "pricing_notes": "Price Varies Depending on Tour Type, Capacity, and People. Please call us to inquire!",
+          "duration_minutes": 150,
+          "duration_display": "2.5 hours",
+          "min_age": 0,
+          "age_restriction_label": "All ages",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "INCLUSION",
+              "value": "Private and professionally-guided city tour."
+            },
+            {
+              "type": "ACCESSIBILITY_INFORMATION",
+              "value": "ADA compliant."
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Pickup Location",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup from your hotel."
+            }
+          ],
+          "faqs": [],
+          "is_private": true,
+          "max_group_size": 24,
+          "cancellation_policy": "",
+          "active_promotions": [],
+          "cross_operator_bundles": [],
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/274171/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        },
+        {
+          "title": "Private Snoqualmie Falls Tour",
+          "short_description": "Discover a taste of the Cascade Mountains on this private and professionally-guided Snoqualmie Falls tour from Seattle.",
+          "description": "",
+          "url": "https://www.toursnorthwest.com/private-suv-tour-snoqualmie-falls/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 40000,
+              "label": "All ages"
+            }
+          ],
+          "pricing_notes": "Price Varies Depending on Tour Type, Capacity, and People. Please call us to inquire!",
+          "duration_minutes": 150,
+          "duration_display": "2.5 hours",
+          "min_age": 0,
+          "age_restriction_label": "All ages",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "INCLUSION",
+              "value": "Private and professionally-guided tour."
+            },
+            {
+              "type": "ACCESSIBILITY_INFORMATION",
+              "value": "ADA compliant."
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Pickup Location",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup from your hotel."
+            }
+          ],
+          "faqs": [],
+          "is_private": true,
+          "max_group_size": 24,
+          "cancellation_policy": "",
+          "active_promotions": [],
+          "cross_operator_bundles": [],
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/344467/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        },
+        {
+          "title": "Seattle City Tour Package PLUS Hotel Pickup",
+          "short_description": "Combine our 3-hour Seattle City Tour with luxury hotel pickup and drop off!",
+          "description": "",
+          "url": "https://www.toursnorthwest.com/tours/seattle-city-tour-plus-hotel-pickup/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 11400,
+              "label": "All ages"
+            }
+          ],
+          "pricing_notes": "Price Varies Depending on Tour Type, Capacity, and People. Please call us to inquire!",
+          "duration_minutes": 180,
+          "duration_display": "3 hours",
+          "min_age": 0,
+          "age_restriction_label": "All ages",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "INCLUSION",
+              "value": "Luxury hotel pickup and drop off."
+            },
+            {
+              "type": "ACCESSIBILITY_INFORMATION",
+              "value": "ADA compliant."
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Pickup Location",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup from your hotel."
+            }
+          ],
+          "faqs": [],
+          "is_private": true,
+          "max_group_size": 24,
+          "cancellation_policy": "",
+          "active_promotions": [],
+          "cross_operator_bundles": [],
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/371579/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        },
+        {
+          "title": "Private SUV Seattle Tour",
+          "short_description": "Explore Seattle at your own pace on this private and professionally-guided city tour.",
+          "description": "The tour begins from your hotel, where your personal local expert will pick your party up in a Pearl Chevrolet Suburban LTZ. Enjoy the tour from a comfy Chevrolet Suburban LTZ, with hotel pickup included from most hotels in Seattle. Visit the famous 18 foot tall Fremont Troll, explore the bustling and exciting Pike Place Market, and experience the maritime activity of the Fisherman’s Terminal and Ballard Locks.",
+          "url": "https://www.toursnorthwest.com/tours/private-seattle-tour/",
+          "pricing_model": "PER_BOOKING",
+          "currency": "USD",
+          "price_by_unit": [
+            {
+              "unit_type": "group",
+              "amount_cents": 34514
+            }
+          ],
+          "pricing_notes": "",
+          "duration_minutes": 150,
+          "duration_display": "2.5 hours",
+          "min_age": 0,
+          "age_restriction_label": "All ages",
+          "seasonality": "January 1 - December 31",
+          "features": [
+            {
+              "type": "HIGHLIGHT",
+              "value": "Hotel pickup included from most hotels in Seattle"
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Visit the famous 18 foot tall Fremont Troll"
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Explore the bustling and exciting Pike Place Market"
+            },
+            {
+              "type": "HIGHLIGHT",
+              "value": "Experience the maritime activity of the Fisherman’s Terminal and Ballard Locks"
+            }
+          ],
+          "locations": [
+            {
+              "type": "START",
+              "name": "Hotel Pickup",
+              "address": "",
+              "pickup_time": "",
+              "notes": "Pickup from most hotels in Seattle."
+            }
+          ],
+          "faqs": [
+            {
+              "question": "What hotels do you pick up at?",
+              "answer": "We pick up at most hotels in the general Seattle area, including SeaTac, Tukwila, Bellevue, Renton & Lynnwood."
+            },
+            {
+              "question": "Do you pick up from hotels in the SeaTac Airport area?",
+              "answer": "Our private tours can pick up in the SeaTac Airport area! Unfortunately we cannot pick up from the airport itself, but we are happy to arrange a nearby pickup for guests arriving at SeaTac."
+            },
+            {
+              "question": "What is your cancellation policy?",
+              "answer": "We offer full refunds on all tours canceled at least 24 hours in advance of the tour’s start time. There are no refunds in the 24 hours leading up to the tour."
+            }
+          ],
+          "active_promotions": [],
+          "cross_operator_bundles": [],
+          "is_private": true,
+          "max_group_size": 6,
+          "booking_system": "FareHarbor",
+          "booking_url": "https://fareharbor.com/embeds/book/toursnorthwest/items/274155/calendar/?ref=https%3A%2F%2Fwww.toursnorthwest.com"
+        }
+      ],
+      "ota_presence": [
+        "TripAdvisor",
+        "Yelp"
+      ]
+    },
+    "error": null,
+    "warning": null,
+    "sources": {
+      "products[0]": [
+        "https://www.toursnorthwest.com/private-tours/"
+      ],
+      "products[1]": [
+        "https://www.toursnorthwest.com/private-tours/"
+      ],
+      "products[2]": [
+        "https://www.toursnorthwest.com/private-tours/"
+      ],
+      "products[3]": [
+        "https://www.toursnorthwest.com/private-tours/"
+      ],
+      "products[4]": [
+        "https://www.toursnorthwest.com/private-tours/"
+      ],
+      "products[5]": [
+        "https://www.toursnorthwest.com/private-tours/"
+      ],
+      "products[6]": [
+        "https://www.toursnorthwest.com/tours/mt-rainier/"
+      ],
+      "products[7]": [
+        "https://www.toursnorthwest.com/tours/mt-rainier/"
+      ],
+      "products[8]": [
+        "https://www.toursnorthwest.com/tours/mt-rainier/"
+      ],
+      "products[9]": [
+        "https://www.toursnorthwest.com/private-rainier-tour/"
+      ],
+      "products[10]": [
+        "https://www.toursnorthwest.com/tours/group-tour-bus-rental/"
+      ],
+      "products[11]": [
+        "https://www.toursnorthwest.com/tours/group-tour-bus-rental/"
+      ],
+      "products[12]": [
+        "https://www.toursnorthwest.com/tours/group-tour-bus-rental/"
+      ],
+      "products[13]": [
+        "https://www.toursnorthwest.com/tours/private-seattle-tour/"
+      ],
+      "operator": [
+        "https://www.toursnorthwest.com/private-tours/",
+        "https://www.toursnorthwest.com/tours/mt-rainier/",
+        "https://www.toursnorthwest.com/private-rainier-tour/",
+        "https://www.toursnorthwest.com/tours/group-tour-bus-rental/",
+        "https://www.toursnorthwest.com/tours/private-seattle-tour/",
+        "https://www.toursnorthwest.com/tours/"
+      ],
+      "ota_presence": [
+        "https://www.toursnorthwest.com/private-tours/",
+        "https://www.toursnorthwest.com/tours/mt-rainier/",
+        "https://www.toursnorthwest.com/private-rainier-tour/",
+        "https://www.toursnorthwest.com/tours/group-tour-bus-rental/",
+        "https://www.toursnorthwest.com/tours/private-seattle-tour/",
+        "https://www.toursnorthwest.com/tours/"
+      ]
+    },
+    "expires_at": "2026-02-18T01:32:18Z",
+    "credits_used": 369,
+    "tokens_used": 5524
+  },
+  "extractionMetadata": {
+    "extractedAt": "2026-02-17T19:32:19.664370+00:00",
+    "method": "Firecrawl /extract with OCTO-aligned Pydantic schema",
+    "url": "https://www.toursnorthwest.com/*",
+    "operator": "tours_northwest",
+    "schemaVersion": "octo_extraction_v01 (Pydantic)",
+    "creditsUsed": 369,
+    "tokensUsed": 5524
+  }
+}
