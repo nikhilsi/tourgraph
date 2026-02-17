@@ -1,0 +1,268 @@
+{
+  "operator": {
+    "name": "Tours Northwest",
+    "url": "https://www.toursnorthwest.com",
+    "location": "8219 7th Avenue South, Seattle, WA 98108",
+    "phone": "(206) 768-1234",
+    "email": "reservations@toursnw.com",
+    "bookingSystem": {
+      "name": "FareHarbor",
+      "embedUrl": "https://fareharbor.com/embeds/book/toursnorthwest/"
+    },
+    "operatorType": "Mid-size family operator, 30+ years in business",
+    "vehicles": "14-32 passenger mini-coaches with large oversized windows"
+  },
+  "products": [
+    {
+      "title": "Mt Rainier Tour from Seattle",
+      "shortDescription": "Full-day guided tour from Seattle to Mt. Rainier National Park featuring old-growth forests, wildflower meadows, and waterfalls with professional guides in comfortable mini-coaches.",
+      "description": "Visit Mt. Rainier from Seattle with professional, enthusiastic, and informative guides. Travel in clean, comfortable 24-passenger mini-coaches with large windows, high-back seats, and air-conditioning. Experience old-growth forests, wildflower-filled meadows, and thundering waterfalls. Options for all hiking abilities. Summer and winter tours available with different routes and experiences.",
+      "url": "https://www.toursnorthwest.com/tours/mt-rainier/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {"unitType": "adult", "label": "Ages 13+", "amount": 17900},
+        {"unitType": "child", "label": "Ages 5-12", "amount": 14900}
+      ],
+      "duration": 660,
+      "durationDisplay": "10-11 hours",
+      "ageRestrictions": {"minAge": 5, "notes": "Children under 5 are not permitted on this tour"},
+      "seasonality": {"startDate": "January 1", "endDate": "December 31", "notes": "Year-round. Summer and winter tours differ in route and accessibility. Winter tours have limited availability."},
+      "features": [
+        {"type": "INCLUSION", "value": "Professional licensed guide"},
+        {"type": "INCLUSION", "value": "Comfortable 24-passenger mini-coach with A/C and large windows"},
+        {"type": "INCLUSION", "value": "Park admission/park fees"},
+        {"type": "INCLUSION", "value": "Complimentary snowshoe rentals (winter only)"},
+        {"type": "EXCLUSION", "value": "Lunch not provided"},
+        {"type": "EXCLUSION", "value": "Gratuities not included"},
+        {"type": "HIGHLIGHT", "value": "Wildflower meadows, old-growth forests, and waterfalls (summer)"},
+        {"type": "HIGHLIGHT", "value": "Snow-covered scenery and snowshoeing (winter)"},
+        {"type": "HIGHLIGHT", "value": "No minimum required number of guests — all scheduled tours run"},
+        {"type": "HIGHLIGHT", "value": "4.8 stars and 750+ reviews on Google"},
+        {"type": "ACCESSIBILITY_INFORMATION", "value": "Options to hike a lot, a little, or not at all — all abilities welcome"},
+        {"type": "ADDITIONAL_INFORMATION", "value": "Bring camera, comfortable walking shoes, layered clothing. Sunscreen encouraged."}
+      ],
+      "locations": [
+        {"type": "START", "name": "Seattle Public Library 4th", "address": "1000 4th Ave Seattle, WA", "pickupTime": "6:35am"},
+        {"type": "START", "name": "Urban Coffeehouse (Midtown)", "address": "1900 4th Ave Seattle, WA", "pickupTime": "6:45am"},
+        {"type": "START", "name": "MoPop Pickup", "address": "325 5th Ave N Seattle, WA", "pickupTime": "6:55am", "notes": "Best option for parking downtown Seattle"},
+        {"type": "START", "name": "SeaTac Matt Griffin YMCA", "address": "3595 S. 188th St, SeaTac, WA", "pickupTime": "7:25am", "notes": "Best option for parking in SeaTac. NEW!"},
+        {"type": "POINT_OF_INTEREST", "name": "Mt. Rainier National Park"}
+      ],
+      "faqs": [
+        {"question": "What hotels do you pick up at?", "answer": "No direct hotel pickups. 3 convenient downtown pickup locations within walking distance of most hotels, plus SeaTac location."},
+        {"question": "Where can I park?", "answer": "MoPOP pickup location recommended. Republic Parking Memorial Stadium Lot at 401 5th Ave N offers $10 all-day rate before 9am."}
+      ],
+      "cancellationPolicy": null,
+      "activePromotions": [
+        {"code": "RAINIER10", "description": "10% off Mt. Rainier Tour", "displayLocation": "Site-wide banner"}
+      ],
+      "bookingSystem": {"name": "FareHarbor", "bookingUrl": "https://fareharbor.com/embeds/book/toursnorthwest/items/274149/calendar/"}
+    },
+    {
+      "title": "Seattle Highlights: Seattle City Tour Bus",
+      "shortDescription": "3-hour guided bus tour covering nearly 50 miles of Seattle's most iconic landmarks and neighborhoods.",
+      "description": "Ride in comfort in a specialized sightseeing bus through steep downtown hills. Covers nearly 50 miles including Pike Place Market, Pioneer Square underground city, Fremont Troll, Seattle Waterfront, and unique neighborhoods. 4 convenient meeting locations.",
+      "url": "https://www.toursnorthwest.com/tours/seattle-city-tour/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {"unitType": "adult", "label": null, "amount": 8900}
+      ],
+      "pricingNotes": "From $89.00. Child pricing not visible on listing page.",
+      "duration": 180,
+      "durationDisplay": "3 hours",
+      "ageRestrictions": {"minAge": 3, "label": "Ages 3+"},
+      "seasonality": {"startDate": "January 1", "endDate": "December 31", "notes": "Year-round"},
+      "features": [
+        {"type": "HIGHLIGHT", "value": "Most Popular tour"},
+        {"type": "HIGHLIGHT", "value": "Nearly 50-mile route through Seattle"},
+        {"type": "ADDITIONAL_INFORMATION", "value": "No hotel pickup — see Seattle City Tour PLUS Hotel Pickup for that option"}
+      ],
+      "locations": [
+        {"type": "START", "name": "Seattle Public Library", "address": "1000 4th Ave, Seattle, WA", "pickupTime": "25 minutes before tour start"},
+        {"type": "START", "name": "Midtown", "address": "1900 4th Ave, Seattle, WA", "pickupTime": "15 minutes before tour start"},
+        {"type": "START", "name": "MoPop Pickup", "address": "325 5th Ave N Seattle, WA", "pickupTime": "5 minutes before tour start"}
+      ],
+      "cancellationPolicy": null,
+      "bookingSystem": {"name": "FareHarbor", "bookingUrl": "https://fareharbor.com/embeds/book/toursnorthwest/items/274116/calendar/"}
+    },
+    {
+      "title": "Seattle City Tour Package PLUS Hotel Pickup",
+      "shortDescription": "3-hour Seattle city tour with luxury hotel pickup and drop-off from most downtown Seattle hotels.",
+      "description": "Enjoy hotel pickup and drop-off combined with an informative small-group tour covering almost 50 miles including three main stops: Pioneer Square, Ballard Locks, and a city skyline viewpoint. Knowledgeable licensed guides with 11 years of TripAdvisor Certificate of Excellence.",
+      "url": "https://www.toursnorthwest.com/tours/seattle-city-tour-plus-hotel-pickup/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {"unitType": "adult", "label": null, "amount": 11400}
+      ],
+      "pricingNotes": "From $114.00. Child pricing not visible on listing page.",
+      "duration": 180,
+      "durationDisplay": "3 hours",
+      "ageRestrictions": {"label": "All ages"},
+      "seasonality": {"startDate": "January 1", "endDate": "December 31", "notes": "Year-round"},
+      "features": [
+        {"type": "INCLUSION", "value": "Hotel pickup and drop-off from most downtown Seattle hotels"},
+        {"type": "HIGHLIGHT", "value": "Three main stops: Pioneer Square, Ballard Locks, city skyline viewpoint"},
+        {"type": "HIGHLIGHT", "value": "Pike Place Market exploration"}
+      ],
+      "locations": [
+        {"type": "START", "name": "Hotel pickup", "notes": "Most downtown Seattle hotels. Handful of hotels cannot be picked up from due to loading zones."},
+        {"type": "POINT_OF_INTEREST", "name": "Pioneer Square"},
+        {"type": "POINT_OF_INTEREST", "name": "Ballard Locks"},
+        {"type": "POINT_OF_INTEREST", "name": "Pike Place Market"}
+      ],
+      "cancellationPolicy": null,
+      "bookingSystem": {"name": "FareHarbor", "bookingUrl": "https://fareharbor.com/embeds/book/toursnorthwest/items/371579/calendar/"}
+    },
+    {
+      "title": "Pre-Alaska Cruise Transportation and City Tour",
+      "shortDescription": "3-hour Seattle city tour combined with cruise port shuttle service, including luggage handling and guaranteed on-time cruise terminal delivery.",
+      "description": "Combines Alaska Cruise transportation with Seattle city tour. Hotel pickup, luggage handling, sightseeing tour, and guaranteed cruise port drop-off. Works as a Seattle cruise transfer with sightseeing included.",
+      "url": "https://www.toursnorthwest.com/tours/city-cruise-tour/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {"unitType": "adult", "label": null, "amount": 11400}
+      ],
+      "pricingNotes": "From $114. Child pricing not visible on listing page.",
+      "duration": 180,
+      "durationDisplay": "3 hours",
+      "ageRestrictions": {"minAge": 3, "label": "Ages 3+"},
+      "seasonality": {"startDate": "April 1", "endDate": "October 31", "notes": "Seasonal — Alaska cruise season"},
+      "features": [
+        {"type": "INCLUSION", "value": "Hotel pickup"},
+        {"type": "INCLUSION", "value": "Luggage handling"},
+        {"type": "INCLUSION", "value": "Guaranteed on-time cruise terminal drop-off"},
+        {"type": "INCLUSION", "value": "3-hour Seattle city tour"},
+        {"type": "HIGHLIGHT", "value": "Cruise port shuttle + sightseeing combined"},
+        {"type": "ADDITIONAL_INFORMATION", "value": "Post-cruise tour available as private group option"}
+      ],
+      "locations": [
+        {"type": "START", "name": "Hotel pickup", "notes": "Downtown Seattle hotels. Some hotels may require meeting at nearby hotel."},
+        {"type": "END", "name": "Cruise Terminal", "notes": "Alaska cruise port"}
+      ],
+      "cancellationPolicy": null,
+      "bookingSystem": {"name": "FareHarbor", "bookingUrl": "https://fareharbor.com/embeds/book/toursnorthwest/items/274155/calendar/"}
+    },
+    {
+      "title": "Ultimate Seattle Experience: City Tour, Pike Place Market & Argosy Harbor Cruise Combo",
+      "shortDescription": "7-hour combo experience combining city tour, Pike Place Market, 1-hour Argosy Harbor Cruise, and optional Space Needle visit.",
+      "description": "Experience Seattle by land and sea. Combines city tour with 1-hour Harbor Cruise with Argosy Cruises, lunch on the Seattle Waterfront, 1 hour at Pike Place Market, and option to end with Space Needle visit.",
+      "url": "https://www.toursnorthwest.com/ultimate-seattle-experience/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {"unitType": "adult", "label": null, "amount": 15900}
+      ],
+      "pricingNotes": "From $159. Child pricing ($139) and infant (0-3 free) mentioned in recon but not visible on tours listing page.",
+      "duration": 420,
+      "durationDisplay": "7 hours",
+      "ageRestrictions": {"label": "All ages"},
+      "seasonality": {"startDate": "May 15", "endDate": "September 14", "notes": "Seasonal — summer only"},
+      "features": [
+        {"type": "INCLUSION", "value": "City tour"},
+        {"type": "INCLUSION", "value": "1-hour Argosy Harbor Cruise"},
+        {"type": "INCLUSION", "value": "1 hour at Pike Place Market"},
+        {"type": "INCLUSION", "value": "Lunch on Seattle Waterfront (time, not meal provided)"},
+        {"type": "HIGHLIGHT", "value": "NEW! Featured tour package"},
+        {"type": "HIGHLIGHT", "value": "Optional Space Needle visit"},
+        {"type": "ADDITIONAL_INFORMATION", "value": "Land and sea experience with option for sky (Space Needle)"}
+      ],
+      "crossOperatorBundles": [
+        {"partnerOperator": "Argosy Cruises", "partnerProduct": "Harbor Cruise", "partnerDuration": 60}
+      ],
+      "locations": [],
+      "cancellationPolicy": null,
+      "bookingSystem": {"name": "FareHarbor", "bookingUrl": "https://fareharbor.com/embeds/book/toursnorthwest/items/274123/calendar/"}
+    },
+    {
+      "title": "Private Mt. Rainier Tour",
+      "shortDescription": "Private Mt. Rainier National Park tour in a luxury Chevrolet Suburban LTZ with personal expert guide, hotel pickup included.",
+      "url": "https://www.toursnorthwest.com/private-rainier-tour/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "priceByUnit": [
+        {"unitType": "group", "label": "Up to 5 guests", "amount": 139900}
+      ],
+      "pricingNotes": "From $1,399 per group (not per person). SUV for groups of 1-5.",
+      "duration": 600,
+      "durationDisplay": "10 hours",
+      "ageRestrictions": {"label": "All ages"},
+      "seasonality": {"startDate": "January 1", "endDate": "December 31", "notes": "Year-round"},
+      "features": [
+        {"type": "INCLUSION", "value": "Hotel pickup in Pearl Chevrolet Suburban LTZ"},
+        {"type": "INCLUSION", "value": "Personal local expert guide"},
+        {"type": "HIGHLIGHT", "value": "Private tour — your group only"}
+      ],
+      "isPrivate": true,
+      "restrictions": {"maxUnits": 5},
+      "bookingSystem": {"name": "FareHarbor", "bookingUrl": "https://fareharbor.com/embeds/book/toursnorthwest/items/404701/calendar/"}
+    },
+    {
+      "title": "Private Snoqualmie Falls Tour",
+      "shortDescription": "Private guided tour to Snoqualmie Falls in a luxury Chevrolet Suburban LTZ with hotel pickup.",
+      "url": "https://www.toursnorthwest.com/private-suv-tour-snoqualmie-falls/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "priceByUnit": [
+        {"unitType": "group", "label": "Up to 5 guests", "amount": 40000}
+      ],
+      "pricingNotes": "From $400 per group. SUV for groups of 1-5.",
+      "duration": 150,
+      "durationDisplay": "2.5 hours",
+      "ageRestrictions": {"label": "All ages"},
+      "seasonality": {"startDate": "January 1", "endDate": "December 31", "notes": "Year-round"},
+      "features": [
+        {"type": "INCLUSION", "value": "Hotel pickup in Pearl Chevrolet Suburban LTZ"},
+        {"type": "INCLUSION", "value": "Personal local expert guide"}
+      ],
+      "isPrivate": true,
+      "restrictions": {"maxUnits": 5},
+      "bookingSystem": {"name": "FareHarbor", "bookingUrl": "https://fareharbor.com/embeds/book/toursnorthwest/items/344467/calendar/"}
+    },
+    {
+      "title": "Private SUV Tour – Seattle in One Day",
+      "shortDescription": "6-hour private Seattle tour covering 50 miles and 7 neighborhoods in a luxury Chevrolet Suburban LTZ with hotel pickup and optional airport drop-off.",
+      "url": "https://www.toursnorthwest.com/private-suv-tour-seattle-in-one-day/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "priceByUnit": [
+        {"unitType": "group", "label": "Up to 5 guests", "amount": 104900}
+      ],
+      "pricingNotes": "From $1,049 per group. SUV for groups of 1-5.",
+      "duration": 360,
+      "durationDisplay": "6 hours",
+      "ageRestrictions": {"label": "All ages"},
+      "seasonality": {"startDate": "January 1", "endDate": "December 31", "notes": "Year-round"},
+      "features": [
+        {"type": "INCLUSION", "value": "Hotel pickup in Pearl Chevrolet Suburban LTZ"},
+        {"type": "INCLUSION", "value": "Personal local expert guide"},
+        {"type": "INCLUSION", "value": "50 miles, 7 Seattle neighborhoods"},
+        {"type": "HIGHLIGHT", "value": "Pike Place Market stop with lunch time"},
+        {"type": "HIGHLIGHT", "value": "Space Needle stop — tickets available for purchase"},
+        {"type": "HIGHLIGHT", "value": "Custom tour requests encouraged"},
+        {"type": "ADDITIONAL_INFORMATION", "value": "Airport drop-off available. Cruise terminal pickup available with special arrangements."}
+      ],
+      "isPrivate": true,
+      "restrictions": {"maxUnits": 5},
+      "bookingSystem": {"name": "FareHarbor", "bookingUrl": "https://fareharbor.com/embeds/book/toursnorthwest/items/523487/calendar/"}
+    }
+  ],
+  "extractionMetadata": {
+    "extractedAt": "2026-02-17T03:00:00Z",
+    "method": "Manual — Claude extraction from web_fetch + web_search content",
+    "pagesUsed": [
+      "https://www.toursnorthwest.com/tours/ (listing page)",
+      "https://www.toursnorthwest.com/tours/mt-rainier/ (detail page)",
+      "https://www.toursnorthwest.com/tours/seattle-city-tour/ (search snippet)",
+      "https://www.toursnorthwest.com/tours/seattle-city-tour-plus-hotel-pickup/ (search snippet)",
+      "https://www.toursnorthwest.com/tours/city-cruise-tour/ (search snippet)",
+      "https://www.toursnorthwest.com/private-suv-tour-seattle-in-one-day/ (search snippet)",
+      "https://www.toursnorthwest.com/faq/ (search snippet)",
+      "https://www.toursnorthwest.com/private-tours/ (search snippet)"
+    ],
+    "notes": "Extracted 8 of ~15 products. Missing: Seattle Photo Safari, Snoqualmie Falls public tour, Private SUV Seattle Tour, Private Boeing Factory Tour, Private Museum of Glass Tour, Private Small Group Seattle Tour (Transit), Olympic National Park 2-day Tour, Group/Charter/Team Building (quote-based). Most missing products had no pricing or detail visible in fetched content."
+  }
+}

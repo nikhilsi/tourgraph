@@ -1,2 +1,152 @@
-# surfaced
-AI-Powered Supplier Onboarding for the Agentic Travel Era
+# Surfaced
+
+AI-powered supplier onboarding for the tours & experiences industry. Extracts structured inventory data from operator websites and makes it queryable by AI agents — bridging the gap between the $250-400B experiences market and the emerging agentic travel booking channel.
+
+## The Problem
+
+Two converging industry problems:
+
+1. **Supplier onboarding is broken.** Tour operators manually list inventory on every platform (Viator, GetYourGuide, Expedia) separately. It's slow, error-prone, and excludes the long tail of small operators. Only 30% of the tours & experiences market is sold online.
+
+2. **AI agents can't find tour inventory.** 42% of travelers used AI for trip planning in 2025. Google, Amazon, and Microsoft are building agentic booking. But most tour inventory lives on operator websites as unstructured HTML — invisible to AI agents.
+
+Surfaced solves both: extract structured data from operator websites using AI, normalize it to industry standards (OCTO), and distribute it through an MCP server that AI agents can query directly.
+
+## Current Status
+
+**Phase 0: Feasibility Spike** — Testing whether AI can reliably extract structured tour data from real operator websites.
+
+- 7 Seattle-area operators selected as test set (city tours, cruises, escape rooms, nature tours)
+- OCTO-aligned extraction schema defined (v0.1)
+- First operator (Tours Northwest) extracted: **89% field accuracy** on detail pages
+- Firecrawl integration tested — hybrid approach identified (Firecrawl for fetching, Claude for domain-specific extraction)
+- Build-vs-use analysis complete for extraction tooling
+
+See [CURRENT_STATE.md](CURRENT_STATE.md) for detailed status.
+
+## Architecture
+
+```
+┌─────────────────────┐
+│  Operator Website    │  (HTML, JS-rendered booking widgets)
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│  Firecrawl /scrape   │  (JS rendering, anti-bot, clean markdown)
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│  Claude API          │  (OCTO schema + tourism domain prompts)
+│  Extraction Engine   │
+└──────────┬──────────┘
+           │
+           ▼
+┌─────────────────────┐
+│  Structured JSON     │  (OCTO-aligned product data)
+│  + Scoring Pipeline  │
+└──────────┬──────────┘
+           │
+     ┌─────┴──────┐
+     ▼            ▼
+┌──────────┐ ┌──────────┐
+│ Path A   │ │ Path C   │
+│ Website  │ │ OTA APIs │  (Viator, GetYourGuide)
+│ Extract  │ │ Enrich   │
+└──────────┘ └──────────┘
+```
+
+## Phased Build Plan
+
+| Phase | Duration | Goal | Status |
+|-------|----------|------|--------|
+| **Phase 0: Spike** | 1 week | Can AI extract structured tour data reliably? | **In Progress** |
+| Phase 1: Engine | 2 weeks | Productionize extraction + operator review UI | Planned |
+| Phase 2: MCP Server | 2 weeks | AI-agent-queryable inventory via MCP | Planned |
+| Phase 3: Dashboard | 2-3 weeks | End-to-end product demo | Planned |
+| Phase 4: Validation | 1-2 weeks | Real operator feedback, go/no-go | Planned |
+
+## Tech Stack
+
+| Layer | Technology | Notes |
+|-------|-----------|-------|
+| **Extraction** | Python 3.12+ | Scripts for Phase 0, FastAPI for Phase 1 |
+| **AI** | Claude API + Firecrawl | Firecrawl fetches, Claude extracts |
+| **Schema** | OCTO-aligned JSON | Industry standard for tours/experiences |
+| **Data Enrichment** | Viator Partner API | Path C structured data comparison |
+| **Distribution** | MCP Server (Phase 2) | AI agent query interface |
+
+## Project Structure
+
+```
+surfaced/
+├── CLAUDE.md              # Claude Code development guide
+├── README.md              # This file
+├── CURRENT_STATE.md       # Build status
+├── NOW.md                 # Current priorities
+├── CHANGELOG.md           # Version history
+├── .env.example           # API key template
+├── requirements.txt       # Python dependencies
+│
+├── docs/                  # Strategic & research documentation
+│   ├── project_proposal.md
+│   ├── phase0_spike.md
+│   ├── tooling_landscape.md
+│   ├── api_landscape.md
+│   └── glossary.md
+│
+├── schemas/               # Extraction schemas
+│   └── octo_extraction_v01.json
+│
+├── scripts/               # Extraction & scoring scripts
+│   ├── extract_operator.py
+│   ├── firecrawl_extract.py
+│   ├── score_extraction.py
+│   └── viator_compare.py
+│
+├── results/               # Extraction outputs & scorecards
+│   └── tours_northwest/
+│
+└── prompts/               # Domain-specific extraction prompts
+    └── extraction_prompt_v01.md
+```
+
+## Getting Started
+
+```bash
+# 1. Clone and setup
+git clone https://github.com/nikhilsi/surfaced.git
+cd surfaced
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# 2. Set API keys
+cp .env.example .env
+# Edit .env with your keys
+
+# 3. Run extraction test
+python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/
+```
+
+## Documentation
+
+- **[CLAUDE.md](CLAUDE.md)** — Development guide for Claude Code sessions
+- **[CURRENT_STATE.md](CURRENT_STATE.md)** — Current build status
+- **[docs/project_proposal.md](docs/project_proposal.md)** — Full strategic rationale and build plan
+- **[docs/phase0_spike.md](docs/phase0_spike.md)** — Phase 0 methodology, operators, schema
+- **[docs/tooling_landscape.md](docs/tooling_landscape.md)** — Extraction tooling analysis
+- **[docs/api_landscape.md](docs/api_landscape.md)** — OTA API research
+
+## Key Concepts
+
+- **OCTO** — Open Connectivity for Tours, Activities & Attractions. Industry standard adopted by 114+ trading partners.
+- **MCP** — Model Context Protocol. How AI agents discover and query structured data.
+- **Path A** — AI extraction from operator websites (what Phase 0 tests)
+- **Path C** — OTA API aggregation (Viator, GetYourGuide structured data)
+- **FareHarbor Wall** — Pricing locked in JS booking widgets, inaccessible to scraping
+
+## License
+
+Private project. Not for distribution.
