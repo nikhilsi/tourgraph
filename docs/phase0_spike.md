@@ -502,10 +502,6 @@ Test extraction quality manually across all 7 operators. We have detailed recon 
 
 **Target: All 7 operators tested manually by end of Day 3.**
 
-**Progress:**
-- ✅ **Tours Northwest (Operator 1):** Complete. Manual extraction: 8/15 products, 89% field accuracy on detail pages, 75% on listing pages. Firecrawl `/scrape` test: content quality comparable but strips nav/banner/footer (RAINIER10 promo code missed). Firecrawl `/extract` test: 10 unique products but critical failures — pricing hallucination ($345.14), missed promo codes and cross-operator bundles, systematic pricing model misclassification, 4 duplicates. See `results/tours_northwest/` for all scorecards.
-- ⏳ Operators 2-7: Not started. Next up: Shutter Tours.
-
 ### Step 3: Viator API Comparison (Day 3-4)
 
 Sign up as a Viator affiliate (free, immediate) and query their Partner API for the same operators we just extracted from. Compare Path A (our extraction) against Path C (Viator's structured data).
