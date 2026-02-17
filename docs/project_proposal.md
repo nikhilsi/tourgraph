@@ -474,7 +474,7 @@ Either outcome is a win. If it's a product — you might have a company. If it's
 
 - **MCP basics** — Python SDK, tool definition, server implementation. Estimated: 2-3 days of learning.
 - **Agentic AI patterns** — How AI agents use tools, context management, multi-step reasoning. Estimated: 1-2 days of reading/experimentation.
-- **Firecrawl API** — Extract endpoint, schema-based extraction, credit management. Estimated: 0.5 day (well-documented, Python SDK).
+- ~~**Firecrawl API** — Extract endpoint, schema-based extraction, credit management. Estimated: 0.5 day.~~ ✅ Done (Phase 0). Learned `/scrape`, `/extract`, `/map` endpoints. Key finding: `/extract` requires Pydantic-generated schemas, not hand-written JSON Schema.
 - **GetYourGuide/Expedia Supplier APIs** — Public documentation available. Estimated: 1-2 days to understand the schemas.
 
 ### What You Already Know
@@ -517,9 +517,9 @@ For reference, these ideas were also explored during the brainstorming process:
 
 ## Open Questions
 
-1. **Schema definition:** What fields are essential for the MVP extraction schema? Start minimal and expand, or try to be comprehensive from day one?
+1. ~~**Schema definition:** What fields are essential for the MVP extraction schema? Start minimal and expand, or try to be comprehensive from day one?~~ ✅ Answered. Went comprehensive with OCTO-aligned v0.1 (29 product fields + Surfaced extensions). Schema defined in `schemas/octo_extraction_v01.json` and domain prompt in `prompts/extraction_prompt_v01.md`. Will refine to v0.2 after testing all 7 operators.
 
-2. **Which OTA APIs to target first?** GetYourGuide has a public Supplier API. Expedia's Rapid API is B2B-focused. Which is more demonstrable?
+2. **Which OTA APIs to target first?** GetYourGuide has a public Supplier API. Expedia's Rapid API is B2B-focused. Which is more demonstrable? *(Viator identified as primary Path C source — free affiliate access, no traffic minimums. See `api_landscape.md`.)*
 
 3. **MCP vs. simpler approach:** Should the AI agent layer use MCP specifically, or would a standard API with good documentation serve the same demo purpose? (Current thinking: MCP — the learning value alone justifies it.)
 
@@ -533,7 +533,7 @@ For reference, these ideas were also explored during the brainstorming process:
 
 ## Personal Growth Dimensions
 
-This project develops specific skills and capabilities (see separate document: Personal_Growth_Roadmap_Nikhil.md):
+This project develops specific skills and capabilities:
 
 - **New skills:** MCP/Agentic AI architecture, AI-powered data extraction, web scraping pipelines, two-sided platform product thinking, published thought leadership
 - **Sharpened skills:** Claude API integration, FastAPI/React full-stack, AWS architecture
@@ -543,11 +543,19 @@ This project develops specific skills and capabilities (see separate document: P
 
 ## Next Steps
 
-1. **Immediate:** Spend 2-3 hours reading MCP basics (Anthropic docs, tutorials)
-2. **This week:** Identify 5-10 Seattle tour operator websites for the feasibility spike
-3. **Phase 0 kickoff:** Build extraction script, test against selected sites, document results
-4. **Decision gate:** Review spike results and confirm go/no-go for Phase 1
+*Updated February 17, 2026 — Phase 0 is in progress.*
+
+1. ~~**Identify test operators**~~ ✅ Done. 7 Seattle operators selected (see `phase0_spike.md`).
+2. ~~**Define extraction schema**~~ ✅ Done. OCTO-aligned v0.1 with 29 product fields + extensions.
+3. ~~**Test Firecrawl `/extract`**~~ ✅ Done. Rejected — too expensive, hallucinated prices, missed domain-critical data.
+4. ~~**Build-vs-use decision**~~ ✅ Done. BUILD: Firecrawl `/scrape` + Claude API with our domain prompt.
+5. **Build Path 2 extraction script** — `scripts/extract_operator.py` (Firecrawl `/scrape` + Claude API). In progress.
+6. **Complete Step 2** — Test extraction on remaining 6 operators, score against ground truth.
+7. **Viator API comparison** — Sign up as affiliate, compare Path A vs. Path C for overlapping operators.
+8. **Phase 0 go/no-go decision** — Based on cross-operator scoring matrix.
+
+See **NOW.md** for current priorities.
 
 ---
 
-*This document is a living draft (v2). It will be refined as the project progresses through phases and decisions are made.*
+*This document is a living draft (v3). It will be refined as the project progresses through phases and decisions are made.*

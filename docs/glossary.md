@@ -224,7 +224,7 @@ The state of having inventory structured, accessible, and queryable by AI agents
 YC-backed (W24) web data API for AI. Turns websites into LLM-ready markdown or structured JSON. Handles JS rendering, proxy rotation, anti-bot. Key endpoints: `/scrape` (single page), `/crawl` (whole site), `/extract` (structured data via schema), `/agent` (autonomous extraction). Open source (AGPL-3.0) but self-hosted version significantly limited vs. cloud. 83K+ GitHub stars. Used in Phase 0 as extraction infrastructure. See `tooling_landscape.md` for full analysis.
 
 ### Firecrawl Extract
-Firecrawl's `/extract` endpoint. Accepts URLs + JSON schema + natural language prompt, returns structured JSON. Uses LLM to understand page content semantically (not CSS selectors). Beta status, being superseded by `/agent`. Key Phase 0 tool for evaluating "use vs. build" on extraction.
+Firecrawl's `/extract` endpoint. Accepts URLs + JSON schema + natural language prompt, returns structured JSON. Uses LLM to understand page content semantically (not CSS selectors). Beta status, being superseded by `/agent`. **Tested in Phase 0 on Tours Northwest and rejected** — 369 credits for one operator, hallucinated prices, missed promo codes and cross-operator bundles, systematic pricing model misclassification. Verdict: use Firecrawl `/scrape` for fetching + Claude API with our own domain prompt for extraction. See `results/tours_northwest/firecrawl_extract_comparison_v1.md`.
 
 ### Spark Models (Firecrawl)
 Firecrawl's purpose-built extraction models (launched Jan 2026). Spark 1 Fast (instant retrieval), Spark 1 Mini (default, 60% cheaper), Spark 1 Pro (maximum accuracy). Self-reported recall: ~40% (Mini) to ~50% (Pro) — meaning roughly half of expected fields may be missed, validating the need for domain-specific prompts and ground truth validation.
@@ -239,7 +239,7 @@ Open-source (MIT) Python library using directed graph logic + LLMs for web scrap
 Using an LLM to understand page content by meaning (not HTML structure) and extract structured data. Contrasts with CSS-selector-based extraction which breaks when websites redesign. Firecrawl's `/extract` and our own Claude-based extraction both use this approach.
 
 ### Build vs. Use (Extraction)
-The principle that general-purpose extraction infrastructure (fetching, rendering, anti-bot) is commoditized and should be used, not built. Tourism-specific intelligence (OCTO schema, domain prompts, validation, MCP distribution) is differentiated and should be built. "Firecrawl is the screwdriver; our schema and MCP layer are the furniture."
+The principle that general-purpose extraction infrastructure (fetching, rendering, anti-bot) is commoditized and should be used, not built. Tourism-specific intelligence (OCTO schema, domain prompts, validation, MCP distribution) is differentiated and should be built. "Firecrawl is the screwdriver; our schema and MCP layer are the furniture." **Decision confirmed in Phase 0:** Firecrawl `/extract` (the "use" option for structured extraction) was tested and rejected. Final approach: USE Firecrawl `/scrape` for fetching, BUILD our own extraction with Claude API + domain-specific prompt.
 
 ---
 

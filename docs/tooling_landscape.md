@@ -237,7 +237,7 @@ result = app.extract(
 | **Web page fetching + JS rendering** | Playwright + custom infrastructure | Firecrawl `/scrape` | **USE** — commodity infrastructure, not our differentiation |
 | **HTML → clean text** | BeautifulSoup + custom cleaning | Firecrawl markdown output or Jina Reader | **USE** — solved problem |
 | **Anti-bot / proxy rotation** | Rotating proxy services + fingerprint management | Firecrawl cloud (included) | **USE** — don't want to manage this |
-| **Structured extraction (URL → JSON)** | Claude API + custom prompt + JSON parsing | Firecrawl `/extract` | **EVALUATE in Phase 0** — test Firecrawl Extract vs. our own Claude prompt to see which produces better results for tourism data |
+| **Structured extraction (URL → JSON)** | Claude API + custom prompt + JSON parsing | Firecrawl `/extract` | **BUILD** — tested Firecrawl Extract in Phase 0; rejected due to cost (369 credits/operator), pricing hallucination, missing promo codes, no cross-page merge. Our domain prompt + Claude API is more accurate and ~90% cheaper. |
 | **Tourism-specific extraction schema** | Our OCTO-aligned schema with extensions | Nothing exists | **BUILD** — this is our IP |
 | **Domain-specific extraction prompts** | Our tourism expertise encoded in prompts | Nothing exists | **BUILD** — this is our IP |
 | **Operator ground truth validation** | Our recon data + scoring pipeline | Nothing exists | **BUILD** — this is our IP |
@@ -262,13 +262,61 @@ Firecrawl is the screwdriver. Our schema, prompts, validation pipeline, and MCP 
 
 ---
 
+## Phase 0 Test Results: Firecrawl `/extract` (2026-02-17)
+
+The Firecrawl `/extract` endpoint was tested against Tours Northwest with our full OCTO-aligned schema and domain-specific prompt. This was the critical build-vs-use evaluation for structured extraction.
+
+### What Worked
+- Found 3 products that manual extraction missed (Boeing Factory, Museum of Glass, Olympic 2-day)
+- Cancellation policy extracted from FAQ content (manual returned null)
+- Richer FAQ data from detail pages
+- Booking URLs consistently captured with correct FareHarbor item IDs
+- OTA presence (TripAdvisor, Yelp) detected from footer badges
+- Fast execution (~2 minutes for full site)
+
+### What Failed
+- **369 credits** for one operator (73% of free tier) — projected ~2,583 for 7 operators
+- **Promo code (RAINIER10) not captured** — Firecrawl strips banners before LLM extraction
+- **Cross-operator bundle (Argosy combo) missed entirely** — highest-value differentiated product
+- **Pricing hallucination** — fabricated $345.14 for Private SUV Seattle (correct: $400)
+- **Pricing model misclassification** — systematic PER_UNIT → PER_BOOKING errors
+- **4 duplicate products** across 14 total (no cross-page merge logic)
+- **Pre-Cruise Tour and 2 other products not found** despite wildcard crawl
+
+### Verdict
+
+**Firecrawl `/extract` is not viable for production extraction.** Cost, accuracy, and domain nuance all fail.
+
+**Decision: BUILD Path 2** — Use Firecrawl `/scrape` (1 credit/page, clean markdown) + Claude API with our domain-specific prompt. This gives us:
+- ~90% lower cost (~7 credits + ~$0.10 Claude API per operator vs. 369 credits)
+- Full control over extraction LLM and prompt
+- Promo code capture via supplementary raw HTML fetch
+- Domain-aware pricing model classification
+- Cross-operator bundle detection
+- No hallucination risk from opaque third-party pipeline
+
+Full analysis: `results/tours_northwest/firecrawl_extract_comparison_v1.md`
+
+### Firecrawl API Technical Notes
+
+Discovered during testing:
+- **Schema format**: Firecrawl rejects hand-written JSON Schema (draft-07 with `$schema`, `title`, `description` fields). Requires Pydantic-generated schemas using `$ref`/`$defs` pattern. Use `Model.model_json_schema()` to generate compatible schemas.
+- **Response type**: Returns Pydantic `ExtractResponse` object, not dict. Use `result.model_dump(mode="json")` for serialization.
+- **Credit consumption**: `/extract` with wildcard URLs is token-based (15 tokens = 1 credit). Actual consumption is unpredictable — our 369-credit run was well above the documented estimate of "5-20 credits" per extraction.
+- **Page selection**: Wildcard `/*` does NOT crawl all pages. Firecrawl appears to limit crawl depth for cost management — crawled only 6 of 15+ pages on Tours Northwest.
+
+---
+
 ## Action Items
 
 - [x] Deep research on Firecrawl product surface, pricing, capabilities, limitations
 - [x] Identify and assess competitors (Crawl4AI, ScrapeGraphAI, Jina Reader, Apify)
-- [ ] Sign up for Firecrawl free tier (Day 1 of spike)
-- [ ] Test `/scrape` against 2-3 operators to evaluate markdown quality
-- [ ] Test `/extract` with our OCTO-aligned schema against same operators
-- [ ] Compare Firecrawl Extract results vs. manual Claude API extraction (our own prompt)
-- [ ] Update Phase 0 spike methodology to incorporate Firecrawl
+- [x] Sign up for Firecrawl free tier
+- [x] Test `/scrape` against Tours Northwest — markdown quality good, but strips nav/banner/footer
+- [x] Test `/extract` with OCTO-aligned schema — rejected (cost, accuracy, domain nuance failures)
+- [x] Compare Firecrawl Extract results vs. manual extraction — manual wins on quality, Firecrawl wins on breadth
+- [x] Build-vs-use decision made: **BUILD** (Firecrawl `/scrape` + Claude API + our domain prompt)
+- [ ] Build Path 2 script (`extract_operator.py`) — Firecrawl `/scrape` + Claude API
+- [ ] Test Path 2 against Tours Northwest and score vs. ground truth
+- [ ] Resolve Firecrawl credit situation (free tier exhausted at 538/500)
 - [ ] Evaluate Crawl4AI as self-hosted alternative in Phase 1 planning

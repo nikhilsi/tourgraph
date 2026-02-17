@@ -3,7 +3,7 @@
 **Project:** Surfaced — AI-Powered Supplier Onboarding for the Agentic Travel Era
 **Phase:** 0 — Feasibility Spike
 **Duration:** ~1 week
-**Status:** Not Started
+**Status:** In Progress (Step 2 of 5)
 
 ---
 
@@ -502,6 +502,10 @@ Test extraction quality manually across all 7 operators. We have detailed recon 
 
 **Target: All 7 operators tested manually by end of Day 3.**
 
+**Progress:**
+- ✅ **Tours Northwest (Operator 1):** Complete. Manual extraction: 8/15 products, 89% field accuracy on detail pages, 75% on listing pages. Firecrawl `/scrape` test: content quality comparable but strips nav/banner/footer (RAINIER10 promo code missed). Firecrawl `/extract` test: 10 unique products but critical failures — pricing hallucination ($345.14), missed promo codes and cross-operator bundles, systematic pricing model misclassification, 4 duplicates. See `results/tours_northwest/` for all scorecards.
+- ⏳ Operators 2-7: Not started. Next up: Shutter Tours.
+
 ### Step 3: Viator API Comparison (Day 3-4)
 
 Sign up as a Viator affiliate (free, immediate) and query their Partner API for the same operators we just extracted from. Compare Path A (our extraction) against Path C (Viator's structured data).
@@ -535,64 +539,45 @@ Sign up as a Viator affiliate (free, immediate) and query their Partner API for 
 
 ### Step 4: Systematic Extraction — All 7 Operators (Day 4-6)
 
-After refining the prompt and schema from Steps 2-3, run a clean extraction pass across all 7 operators using Firecrawl's API (free tier) and compare against direct Claude API extraction.
+After refining the prompt and schema from Steps 2-3, run a clean extraction pass across all 7 operators.
 
-**Process — Two parallel extraction paths:**
+> **UPDATE (2026-02-17):** The two-path comparison originally planned here has been resolved early. Firecrawl `/extract` (Path 1) was tested on Tours Northwest during Step 2 and **rejected** — 369 credits for one operator, pricing hallucination, missed domain-critical data, systematic errors. The build-vs-use decision is made: **BUILD Path 2** (Firecrawl `/scrape` + Claude API with our domain prompt). See `results/tours_northwest/firecrawl_extract_comparison_v1.md` for the full analysis.
+>
+> Step 4 will now run Path 2 only across all 7 operators.
 
-**Path 1: Firecrawl Extract (test the "use" option)**
-1. For each operator, use Firecrawl `/map` to discover all page URLs
-2. Use Firecrawl `/extract` with our OCTO-aligned schema and tourism-specific prompt
-3. Parse structured JSON response
-4. Score against ground truth from recon
-
-```python
-from firecrawl import Firecrawl
-
-app = Firecrawl(api_key="fc-YOUR_API_KEY")
-
-# Discover all pages
-urls = app.map("https://www.toursnorthwest.com")
-
-# Extract with our schema
-result = app.extract(
-    urls=["https://www.toursnorthwest.com/*"],
-    prompt=tourism_extraction_prompt,  # Our domain-specific prompt
-    schema=octo_aligned_schema          # Our OCTO-aligned JSON schema
-)
-```
-
-**Path 2: Manual Claude API (test the "build" option for comparison)**
-1. Use Firecrawl `/scrape` to get clean markdown (still use Firecrawl for fetching — no reason to rebuild this)
-2. Feed markdown to Claude API (claude-sonnet-4-20250514) with our refined extraction prompt and schema
-3. Parse JSON response
-4. Score against same ground truth
+**Process — Path 2 (BUILD):**
+1. Use Firecrawl `/scrape` to get clean markdown for each operator's key pages (1 credit/page)
+2. Supplement with raw HTML fetch for nav menus, banners, and footers (Firecrawl strips these)
+3. Feed markdown + raw HTML to Claude API with our domain-specific extraction prompt (`prompts/extraction_prompt_v01.md`) and OCTO-aligned schema
+4. Parse JSON response, validate against schema
+5. Score against ground truth from recon
 
 ```python
-from firecrawl import Firecrawl
+from firecrawl import FirecrawlApp
 import anthropic
 
-app = Firecrawl(api_key="fc-YOUR_API_KEY")
+app = FirecrawlApp(api_key="fc-YOUR_API_KEY")
 claude = anthropic.Anthropic()
 
-# Get clean markdown via Firecrawl
-page = app.scrape("https://www.toursnorthwest.com/seattle-tours", formats=["markdown"])
+# Get clean markdown via Firecrawl /scrape
+page = app.scrape_url("https://www.toursnorthwest.com/tours/mt-rainier/", params={"formats": ["markdown"]})
 
-# Extract with our own Claude prompt
+# Extract with our domain-specific prompt
 response = claude.messages.create(
-    model="claude-sonnet-4-20250514",
-    messages=[{"role": "user", "content": f"{tourism_extraction_prompt}\n\n{page.markdown}"}]
+    model="claude-sonnet-4-5-20250929",
+    messages=[{"role": "user", "content": f"{extraction_prompt}\n\n{page['markdown']}"}]
 )
 ```
 
-**Why two paths:** This is the core build-vs-use test. If Firecrawl Extract (Path 1) produces results as good as our custom Claude prompt (Path 2), we should use Firecrawl and save development time. If our prompt significantly outperforms, that validates our domain expertise as differentiation and we keep our own extraction pipeline with Firecrawl just handling the fetching/rendering layer.
+**Why Path 2 only (build-vs-use resolved):** Firecrawl `/extract` failed on cost (369 credits/operator vs. ~7 for `/scrape` + Claude), quality (hallucinated $345.14 price, missed RAINIER10 promo, missed Argosy combo), and control (black-box LLM pipeline strips domain-critical content before extraction). Our domain prompt + Claude API is more accurate and ~90% cheaper. This validates the tooling landscape thesis: general-purpose extraction misses domain nuance.
 
-**JS-rendered content:** Firecrawl handles this automatically — no need for separate Playwright strategy. FareHarbor widgets, Bookeo embeds, and Gatemaster JS content should all be rendered by Firecrawl's headless browser.
+**JS-rendered content:** Firecrawl `/scrape` handles this automatically — no need for separate Playwright strategy. FareHarbor widgets, Bookeo embeds, and Gatemaster JS content should all be rendered by Firecrawl's headless browser.
 
 **Estimated credit usage:**
-- `/map` for 7 operators: ~7 credits
-- `/extract` for 7 operators: ~105 credits (15 credits avg per operator)
-- `/scrape` for comparison path: ~35 credits (5 pages avg per operator)
-- **Total: ~147 credits out of 500 free**
+- `/scrape` for 7 operators: ~35-50 credits (5-7 pages per operator)
+- Claude API: ~$0.10/operator (~$0.70 total)
+- **Total: ~35-50 Firecrawl credits + ~$0.70 Claude API**
+- **Note:** Free tier is currently exhausted (538/500 used). Need new API key or Hobby tier ($16/mo, 3,000 credits) before running.
 
 **Run against all 7 operators. Target: complete by end of Day 6.**
 
@@ -665,12 +650,13 @@ At the end of Phase 0, we make a go/no-go decision:
 - A simple way to capture and compare results (JSON files + spreadsheet for scoring)
 - The recon ground truth from this document (known products, prices, features for all 7 operators)
 
-**Extraction approach (updated after build-vs-use analysis):**
-- Use Firecrawl `/scrape` for web page fetching + JS rendering + clean markdown output (replaces BeautifulSoup/Playwright plumbing)
-- Use Firecrawl `/extract` with our OCTO-aligned schema for structured extraction (replaces custom Claude API extraction pipeline)
-- Also test direct Claude API extraction (paste markdown + our prompt) as a comparison — if our prompt beats Firecrawl's generic extraction, that validates our domain expertise as differentiation
-- Use Firecrawl `/map` to discover operator page URLs before scraping
-- Estimated credit usage: ~140 of 500 free credits (7 operators × ~20 credits each)
+**Extraction approach (updated after Firecrawl `/extract` test — 2026-02-17):**
+- Use Firecrawl `/scrape` for web page fetching + JS rendering + clean markdown output (1 credit/page)
+- Use Claude API with our domain-specific extraction prompt (`prompts/extraction_prompt_v01.md`) for structured extraction
+- Supplement Firecrawl markdown with raw HTML fetch for nav menus, banners, footers (Firecrawl strips these — missed RAINIER10 promo code)
+- Firecrawl `/extract` tested and **rejected** — too expensive (369 credits/operator), hallucinated prices, missed domain-critical data. See `results/tours_northwest/firecrawl_extract_comparison_v1.md`.
+- Estimated credit usage for remaining work: ~35-50 Firecrawl credits + ~$0.70 Claude API
+- **Note:** Free tier exhausted (538/500 used). Need new API key or Hobby tier upgrade before proceeding.
 
 **What you DON'T need:**
 - BeautifulSoup / Playwright / custom scraping infrastructure (Firecrawl handles this)
