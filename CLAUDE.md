@@ -93,9 +93,9 @@ Operator Website (HTML)
   Scoring vs. Ground Truth (accuracy measurement)
 ```
 
-**Two extraction paths being tested (build-vs-use):**
-- **Path 1:** Firecrawl `/extract` with our OCTO schema (use their LLM extraction)
-- **Path 2:** Firecrawl `/scrape` → Claude API with our domain prompt (build our own extraction)
+**Extraction approach (build-vs-use resolved):**
+- **Path 2 selected:** Firecrawl `/scrape` → Claude Opus 4.6 with our domain prompt
+- Path 1 (Firecrawl `/extract`) tested and rejected — too expensive, hallucinated prices, missed domain-critical data
 
 **Three data paths in the product vision:**
 - **Path A:** AI extraction from operator websites (what Phase 0 tests)
@@ -122,13 +122,19 @@ pip install firecrawl-py anthropic requests python-dotenv
 - `FIRECRAWL_API_KEY` - https://firecrawl.dev (free tier: 500 credits)
 - `ANTHROPIC_API_KEY` - https://console.anthropic.com
 
-**Running extraction tests:**
+**Running extraction:**
 ```bash
-# Single operator test
+# Single operator (auto-derives operator slug from URL)
 python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/
 
-# Score against ground truth
-python scripts/score_extraction.py --operator tours_northwest
+# Multiple pages + explicit operator name
+python scripts/extract_operator.py \
+  --url https://www.toursnorthwest.com/tours/ \
+  --url https://www.toursnorthwest.com/tours/mt-rainier/ \
+  --operator tours_northwest
+
+# Dry run (no API calls)
+python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/ --dry-run
 ```
 
 ---
@@ -150,12 +156,12 @@ python scripts/score_extraction.py --operator tours_northwest
 - **docs/glossary.md** - Shared vocabulary
 
 **Results (Phase 0):**
-- **results/** - Extraction outputs, scorecards, comparison data
-- **results/tours_northwest/** - First operator test results
-- **results/comparisons/** - Firecrawl vs. manual, Path A vs. Path C
+- **results/<operator>/** - Per-operator extraction JSON + scorecard (all 7 complete)
+- **results/phase0_summary/** - Cross-operator scoring matrix + go/no-go report
 
 **Scripts:**
-- **scripts/** - Extraction, scoring, and comparison scripts
+- **scripts/extract_operator.py** - Path 2 extraction pipeline (the main tool)
+- **scripts/firecrawl_extract.py** - Firecrawl `/extract` test (rejected, kept for reference)
 
 ---
 
@@ -183,24 +189,23 @@ surfaced/
 │   └── octo_extraction_v01.json    (OCTO-aligned extraction schema)
 │
 ├── scripts/
-│   ├── extract_operator.py         (Firecrawl scrape → Claude extract)
-│   ├── firecrawl_extract.py        (Firecrawl /extract endpoint test)
-│   ├── score_extraction.py         (Score results vs. ground truth)
-│   └── viator_compare.py           (Path A vs. Path C comparison)
+│   ├── extract_operator.py         (Path 2: Firecrawl /scrape → Claude Opus 4.6)
+│   └── firecrawl_extract.py        (Firecrawl /extract test — rejected)
 │
 ├── results/
-│   ├── tours_northwest/
-│   │   ├── extraction_v1.json      (Manual extraction output)
-│   │   ├── scorecard_v1.md         (Accuracy scoring)
-│   │   └── firecrawl_comparison.md (Firecrawl vs. manual)
-│   ├── shutter_tours/
-│   ├── totally_seattle/
-│   ├── conundroom/
-│   ├── bill_speidels/
-│   ├── evergreen_escapes/
-│   ├── argosy_cruises/
-│   └── comparisons/
-│       └── path_a_vs_path_c.md     (Viator comparison)
+│   ├── tours_northwest/            (17 products, $0.87)
+│   │   ├── extract_operator_v1.json
+│   │   ├── scorecard_v1.md
+│   │   └── firecrawl_extract_comparison_v1.md
+│   ├── shutter_tours/              (7 products, $1.37)
+│   ├── totally_seattle/            (13 products, $1.18)
+│   ├── conundroom/                 (12 products, $0.92)
+│   ├── bill_speidels/              (2 products, $0.40)
+│   ├── evergreen_escapes/          (19 products, $1.71)
+│   ├── argosy_cruises/             (13 products, $1.83)
+│   └── phase0_summary/
+│       ├── scoring_matrix.md       (Cross-operator accuracy analysis)
+│       └── phase0_report.md        (Go/no-go report — GO recommended)
 │
 └── prompts/
     └── extraction_prompt_v01.md    (Domain-specific extraction prompt)

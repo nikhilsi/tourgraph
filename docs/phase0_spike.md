@@ -3,7 +3,7 @@
 **Project:** Surfaced — AI-Powered Supplier Onboarding for the Agentic Travel Era
 **Phase:** 0 — Feasibility Spike
 **Duration:** ~1 week
-**Status:** In Progress (Step 2 of 5)
+**Status:** Complete — GO recommended (pending review)
 
 ---
 
@@ -504,6 +504,8 @@ Test extraction quality manually across all 7 operators. We have detailed recon 
 
 ### Step 3: Viator API Comparison (Day 3-4)
 
+> **STATUS (2026-02-17):** Deferred to Phase 1. Viator affiliate signup requires a website URL — will revisit once Surfaced has a landing page.
+
 Sign up as a Viator affiliate (free, immediate) and query their Partner API for the same operators we just extracted from. Compare Path A (our extraction) against Path C (Viator's structured data).
 
 **Process:**
@@ -578,6 +580,8 @@ response = claude.messages.create(
 **Run against all 7 operators. Target: complete by end of Day 6.**
 
 ### Step 5: Analysis & Decision (Day 6-7)
+
+> **STATUS (2026-02-17):** Complete. Scoring matrix and summary report written. **GO recommended** — all 6 decision gate criteria met. See `results/phase0_summary/phase0_report.md`.
 
 **Per-operator scoring matrix:**
 

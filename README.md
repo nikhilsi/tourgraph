@@ -14,13 +14,14 @@ Surfaced solves both: extract structured data from operator websites using AI, n
 
 ## Current Status
 
-**Phase 0: Feasibility Spike** — Testing whether AI can reliably extract structured tour data from real operator websites.
+**Phase 0: Feasibility Spike** — Complete. **GO recommended** for Phase 1.
 
-- 7 Seattle-area operators selected as test set (city tours, cruises, escape rooms, nature tours)
-- OCTO-aligned extraction schema defined (v0.1)
-- First operator (Tours Northwest) extracted: **89% field accuracy** on detail pages
-- Firecrawl integration tested — hybrid approach identified (Firecrawl for fetching, Claude for domain-specific extraction)
-- Build-vs-use analysis complete for extraction tooling
+- All 7 Seattle-area operators extracted: **83 products**, **~95% core field accuracy**, **zero pricing hallucinations**
+- Extraction pipeline built: Firecrawl `/scrape` + Claude Opus 4.6 with domain-specific prompts
+- Total cost: 37 Firecrawl credits + $8.28 Claude API (~$1.18/operator average)
+- 5 booking platforms detected (FareHarbor, Peek Pro, Bookeo, Gatemaster, RocketRez)
+- Schema flexibility proven — same pipeline handles tours, cruises, and escape rooms
+- Full summary report with go/no-go analysis: [results/phase0_summary/phase0_report.md](results/phase0_summary/phase0_report.md)
 
 See [CURRENT_STATE.md](CURRENT_STATE.md) for detailed status.
 
@@ -61,7 +62,7 @@ See [CURRENT_STATE.md](CURRENT_STATE.md) for detailed status.
 
 | Phase | Duration | Goal | Status |
 |-------|----------|------|--------|
-| **Phase 0: Spike** | 1 week | Can AI extract structured tour data reliably? | **In Progress** |
+| **Phase 0: Spike** | 1 week | Can AI extract structured tour data reliably? | **Complete — GO** |
 | Phase 1: Engine | 2 weeks | Productionize extraction + operator review UI | Planned |
 | Phase 2: MCP Server | 2 weeks | AI-agent-queryable inventory via MCP | Planned |
 | Phase 3: Dashboard | 2-3 weeks | End-to-end product demo | Planned |
@@ -99,14 +100,19 @@ surfaced/
 ├── schemas/               # Extraction schemas
 │   └── octo_extraction_v01.json
 │
-├── scripts/               # Extraction & scoring scripts
-│   ├── extract_operator.py
-│   ├── firecrawl_extract.py
-│   ├── score_extraction.py
-│   └── viator_compare.py
+├── scripts/               # Extraction scripts
+│   ├── extract_operator.py   # Path 2 pipeline (Firecrawl /scrape + Claude)
+│   └── firecrawl_extract.py  # Firecrawl /extract test (rejected)
 │
 ├── results/               # Extraction outputs & scorecards
-│   └── tours_northwest/
+│   ├── tours_northwest/
+│   ├── shutter_tours/
+│   ├── totally_seattle/
+│   ├── conundroom/
+│   ├── bill_speidels/
+│   ├── evergreen_escapes/
+│   ├── argosy_cruises/
+│   └── phase0_summary/      # Cross-operator scoring matrix & report
 │
 └── prompts/               # Domain-specific extraction prompts
     └── extraction_prompt_v01.md
