@@ -2,7 +2,7 @@
 
 **Prepared for:** Nikhil Singhal
 **Date:** February 15, 2026
-**Status:** Discussion Draft v2
+**Status:** Active — Phase 0 Complete (GO), Phase 1 Planning
 
 ---
 
@@ -267,22 +267,29 @@ The most valuable outcome isn't the tool itself — it's the insights you gain f
 
 Each phase delivers something independently valuable. If you stop after any phase, you still have something to show.
 
-### Phase 0: Feasibility Spike (1 week)
+### Phase 0: Feasibility Spike (1 week) — COMPLETE
 
 **The gate question:** Can AI reliably extract structured tour data from real websites?
 
-If this doesn't work well enough, we pivot before investing further. If it does, everything else is plumbing.
+**Answer: YES.** All 6 decision gate criteria met. See `results/phase0_summary/phase0_report.md`.
 
-**Activities:**
-- Select 5-10 real tour operator websites from the Seattle area (varying quality — slick professional sites, basic WordPress, janky one-pagers)
-- Define target extraction schema (tour name, description, pricing, duration, location, group size, inclusions, policies)
-- Use Claude API to extract structured data from each site
-- Measure accuracy, consistency, and failure modes
-- Document where extraction works, where it breaks, and why
+**What was done:**
+- 7 Seattle operators selected (city tours, cruises, escape rooms, nature tours, attractions)
+- OCTO-aligned extraction schema v0.1 defined (29 product fields + Surfaced extensions)
+- Firecrawl `/extract` tested and rejected (hallucinated prices, 369 credits/operator)
+- Path 2 extraction pipeline built: Firecrawl `/scrape` + Claude Opus 4.6 with domain prompt
+- All 7 operators extracted, scored against manual ground truth
 
-**Deliverable:** A working script + results spreadsheet showing "here's what I fed it, here's what came out, here's where it broke"
+**Results:**
+- **83 products** extracted across 7 operators
+- **~95% core field accuracy** (title, pricing, duration, description)
+- **Zero pricing hallucinations** — when data wasn't on the page, the AI said so
+- **Schema flexibility proven** — same pipeline handles tours, cruises, and escape rooms
+- **Total cost: 37 Firecrawl credits + $8.28 Claude API** ($1.18/operator average)
+- **5 booking platforms detected**, 6 cross-operator bundles discovered
+- All failure patterns are systematic and addressable (input coverage, JS widgets — not AI comprehension)
 
-**Decision gate:** Is extraction reliable enough (>70% accuracy on key fields) to justify building a proper engine?
+**Decision: GO — proceed to Phase 1.**
 
 ### Phase 1: The Extraction Engine (2 weeks)
 
@@ -290,9 +297,17 @@ If this doesn't work well enough, we pivot before investing further. If it does,
 
 **Activities:**
 - Build FastAPI backend: input a URL → scrape → Claude extraction → structured JSON output
-- Handle edge cases discovered in Phase 0
+- Handle edge cases discovered in Phase 0 (see below)
 - Build simple operator review UI: "Here's what we extracted — is this right? Edit anything that's wrong."
 - Store extracted inventory in PostgreSQL
+
+**Phase 0 learnings that inform Phase 1:**
+- **Auto-discovery needed**: Phase 0 required manually selecting URLs per operator. Phase 1 should parse sitemaps and classify URLs (product vs. info vs. fleet pages) automatically.
+- **Schema v0.2**: Add `productStatus` enum (AI already detects active/cancelled/seasonal/coming-soon), `departureCity` (for multi-city operators), `operatorDiscounts[]` (distinct from product-level promos). Consider dropping `successRate` (never populated) and `priceTiers[]` (better as `upgradeModifiers`).
+- **Prompt v0.2**: Enhance extraction of discount programs and tier-specific pricing. Current prompt handles core extraction well but misses operator-level discount structures.
+- **Path C integration**: Viator API for pricing gap fill where JS widgets block extraction. Requires affiliate signup (needs a website/landing page).
+- **Scoring automation**: Build structured ground truth for automated accuracy measurement instead of manual scorecards.
+- **Batch processing**: Error recovery, result aggregation, multi-operator runs.
 
 **Deliverable:** Working tool where you paste a URL and get structured tour inventory back, with a review/edit interface.
 
@@ -340,13 +355,13 @@ If this doesn't work well enough, we pivot before investing further. If it does,
 
 ### Timeline Overview
 
-| Phase | Duration | Key Output | Article |
-|-------|----------|-----------|---------|
-| Phase 0: Spike | Week 1 | Extraction feasibility results | — |
-| Phase 1: Engine | Weeks 2-3 | Working extraction tool + review UI | Article 1 |
-| Phase 2: MCP | Weeks 4-5 | AI-agent-queryable inventory demo | Article 2 |
-| Phase 3: Dashboard | Weeks 6-8 | End-to-end product demo | Article 3 |
-| Phase 4: Validation | Weeks 8-9 | Go/no-go decision | Article 4 |
+| Phase | Duration | Key Output | Status | Article |
+|-------|----------|-----------|--------|---------|
+| Phase 0: Spike | Week 1 | Extraction feasibility results | **Complete — GO** | — |
+| Phase 1: Engine | Weeks 2-3 | Working extraction tool + review UI | Planning | Article 1 |
+| Phase 2: MCP | Weeks 4-5 | AI-agent-queryable inventory demo | Planned | Article 2 |
+| Phase 3: Dashboard | Weeks 6-8 | End-to-end product demo | Planned | Article 3 |
+| Phase 4: Validation | Weeks 8-9 | Go/no-go decision | Planned | Article 4 |
 
 ### Parallel Tracks (Throughout)
 
@@ -474,7 +489,7 @@ Either outcome is a win. If it's a product — you might have a company. If it's
 
 - **MCP basics** — Python SDK, tool definition, server implementation. Estimated: 2-3 days of learning.
 - **Agentic AI patterns** — How AI agents use tools, context management, multi-step reasoning. Estimated: 1-2 days of reading/experimentation.
-- ~~**Firecrawl API** — Extract endpoint, schema-based extraction, credit management. Estimated: 0.5 day.~~ ✅ Done (Phase 0). Learned `/scrape`, `/extract`, `/map` endpoints. Key finding: `/extract` requires Pydantic-generated schemas, not hand-written JSON Schema.
+- ~~**Firecrawl API** — Extract endpoint, schema-based extraction, credit management. Estimated: 0.5 day.~~ ✅ Done (Phase 0). Learned `/scrape`, `/extract`, `/map` endpoints. Key findings: `/extract` requires Pydantic-generated schemas and is too expensive/inaccurate for production; `/scrape` at 1 credit/page is the right approach paired with our own Claude extraction.
 - **GetYourGuide/Expedia Supplier APIs** — Public documentation available. Estimated: 1-2 days to understand the schemas.
 
 ### What You Already Know
@@ -517,13 +532,13 @@ For reference, these ideas were also explored during the brainstorming process:
 
 ## Open Questions
 
-1. ~~**Schema definition:** What fields are essential for the MVP extraction schema? Start minimal and expand, or try to be comprehensive from day one?~~ ✅ Answered. Went comprehensive with OCTO-aligned v0.1 (29 product fields + Surfaced extensions). Schema defined in `schemas/octo_extraction_v01.json` and domain prompt in `prompts/extraction_prompt_v01.md`. Will refine to v0.2 after testing all 7 operators.
+1. ~~**Schema definition:** What fields are essential for the MVP extraction schema? Start minimal and expand, or try to be comprehensive from day one?~~ ✅ Answered. Went comprehensive with OCTO-aligned v0.1 (29 product fields + Surfaced extensions). Tested across 7 operators — schema v0.2 recommendations documented in `results/phase0_summary/phase0_report.md`.
 
-2. **Which OTA APIs to target first?** GetYourGuide has a public Supplier API. Expedia's Rapid API is B2B-focused. Which is more demonstrable? *(Viator identified as primary Path C source — free affiliate access, no traffic minimums. See `api_landscape.md`.)*
+2. ~~**Which OTA APIs to target first?**~~ ✅ Answered. Viator Partner API is the primary Path C source — free affiliate access, no traffic minimums, structured data for 300K+ experiences. Signup deferred to Phase 1 (requires website URL). See `api_landscape.md`.
 
 3. **MCP vs. simpler approach:** Should the AI agent layer use MCP specifically, or would a standard API with good documentation serve the same demo purpose? (Current thinking: MCP — the learning value alone justifies it.)
 
-4. **Publishing cadence:** Start writing before building is complete (build in public), or wait until there are concrete results to share? (Current thinking: start during Phase 1.)
+4. **Publishing cadence:** Start writing before building is complete (build in public), or wait until there are concrete results to share? (Current thinking: start during Phase 1. Phase 0 results provide strong material for Article 1.)
 
 5. **Operator outreach timing:** When to approach Seattle operators — after Phase 0 spike (early signal), or after Phase 3 when there's a polished demo? (Current thinking: Phase 4, with complete demo in hand.)
 
@@ -543,19 +558,28 @@ This project develops specific skills and capabilities:
 
 ## Next Steps
 
-*Updated February 17, 2026 — Phase 0 is in progress.*
+*Updated February 17, 2026 — Phase 0 complete. GO decision pending review.*
 
-1. ~~**Identify test operators**~~ ✅ Done. 7 Seattle operators selected (see `phase0_spike.md`).
+### Phase 0 (Complete)
+1. ~~**Identify test operators**~~ ✅ Done. 7 Seattle operators selected.
 2. ~~**Define extraction schema**~~ ✅ Done. OCTO-aligned v0.1 with 29 product fields + extensions.
 3. ~~**Test Firecrawl `/extract`**~~ ✅ Done. Rejected — too expensive, hallucinated prices, missed domain-critical data.
 4. ~~**Build-vs-use decision**~~ ✅ Done. BUILD: Firecrawl `/scrape` + Claude API with our domain prompt.
-5. **Build Path 2 extraction script** — `scripts/extract_operator.py` (Firecrawl `/scrape` + Claude API). In progress.
-6. **Complete Step 2** — Test extraction on remaining 6 operators, score against ground truth.
-7. **Viator API comparison** — Sign up as affiliate, compare Path A vs. Path C for overlapping operators.
-8. **Phase 0 go/no-go decision** — Based on cross-operator scoring matrix.
+5. ~~**Build Path 2 extraction script**~~ ✅ Done. `scripts/extract_operator.py` — Firecrawl `/scrape` + Claude Opus 4.6.
+6. ~~**Extract all 7 operators**~~ ✅ Done. 83 products, 7 scorecards, zero pricing hallucinations.
+7. ~~**Cross-operator scoring & summary report**~~ ✅ Done. GO recommended — all 6 criteria met.
+8. **Viator API comparison** — Deferred to Phase 1 (affiliate signup requires website URL).
+
+### Phase 1 (Up Next)
+9. **Review Phase 0 go/no-go report** — Read `results/phase0_summary/phase0_report.md`, confirm GO.
+10. **Schema v0.2** — Add `productStatus`, `departureCity`, `operatorDiscounts[]`.
+11. **Auto-discovery** — Sitemap parsing + URL classification to replace manual URL selection.
+12. **FastAPI backend** — Production extraction endpoint.
+13. **Operator review UI** — Simple interface for operators to verify extracted data.
+14. **Viator API integration** — Path C for pricing gap fill and coverage comparison.
 
 See **NOW.md** for current priorities.
 
 ---
 
-*This document is a living draft (v3). It will be refined as the project progresses through phases and decisions are made.*
+*This document is a living record of the Surfaced project. Updated as the project progresses through phases.*
