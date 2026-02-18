@@ -6,7 +6,7 @@
 **What's Next**: See NOW.md
 ---
 
-**Phase**: 0 — Feasibility Spike | **Status**: In Progress (Step 2 of 5)
+**Phase**: 0 — Feasibility Spike | **Status**: Extraction Complete — Pending Go/No-Go Review
 
 ---
 
@@ -15,52 +15,57 @@
 | Step | Description | Status |
 |------|-------------|--------|
 | Step 1 | Define OCTO-aligned extraction schema (v0.1) | ✅ Complete |
-| Step 2 | Extraction tests — 7 operators | 🔄 1 of 7 complete (Tours Northwest) |
-| Step 3 | Viator API comparison (Path A vs. Path C) | Not started |
-| Step 4 | Systematic extraction — all 7 operators | Not started |
-| Step 5 | Analysis & go/no-go decision | Not started |
+| Step 2 | Extraction tests — 7 operators | ✅ Complete — 83 products, 7 scorecards |
+| Step 3 | Viator API comparison (Path A vs. Path C) | ⏸️ Deferred — need Viator affiliate signup |
+| Step 4 | Systematic extraction — all 7 operators | ✅ Merged with Step 2 — all 7 run with Path 2 |
+| Step 5 | Analysis & go/no-go decision | ✅ Report written — **GO recommended** |
 
 ---
 
 ## What's Built
 
-### Documentation
-- ✅ Project proposal, Phase 0 spike methodology, tooling landscape, API landscape, glossary
-- ✅ Ground truth data for all 7 test operators (in `docs/phase0_spike.md`)
+### Scripts
+- ✅ `scripts/extract_operator.py` — Path 2 extraction pipeline (Firecrawl `/scrape` + Claude Opus 4.6 + domain prompt)
+- ✅ `scripts/firecrawl_extract.py` — Firecrawl `/extract` test script (tested and rejected)
 
 ### Schema & Prompt
 - ✅ OCTO-aligned JSON Schema v0.1 (`schemas/octo_extraction_v01.json`)
 - ✅ Domain-specific extraction prompt v0.1 (`prompts/extraction_prompt_v01.md`)
 
-### Scripts
-- ✅ `scripts/firecrawl_extract.py` — Firecrawl `/extract` test script (Pydantic schema, CLI args, dry-run mode)
-- ⏳ `scripts/extract_operator.py` — Path 2 extraction script — not yet built
+### Operator Results — All 7 Complete
 
-### Operator Results
-- ✅ Tours Northwest — manual extraction (89% field accuracy), Firecrawl `/scrape` test, Firecrawl `/extract` test
-- Results in `results/tours_northwest/`
+| Operator | Products | Pricing | Key Test | Score |
+|----------|----------|---------|----------|-------|
+| Tours Northwest | 17 | ✅ Exact | Promo code, cross-operator bundle | Excellent |
+| Shutter Tours | 7 | ✅ Exact | Cancelled tour detection | Excellent |
+| Totally Seattle | 13 | ⚠️ Partial | PER_BOOKING vs PER_UNIT, add-ons | Strong |
+| Conundroom | 12 | ✅ Exact | Escape room schema extensions | Outstanding |
+| Bill Speidel's | 2 | ❌ JS widget | Website-as-product extraction | Clean |
+| Evergreen Escapes | 19 | ✅ Exact | All-inclusive, dual booking system | Excellent |
+| Argosy Cruises | 13 | ⚠️ Tax rounding | Upgrade modifiers, 4 cross-operator bundles | Strong |
+
+### Phase 0 Summary
+- ✅ Cross-operator scoring matrix (`results/phase0_summary/scoring_matrix.md`)
+- ✅ Phase 0 summary report with go/no-go (`results/phase0_summary/phase0_report.md`)
 
 ### Tooling Decisions (Complete)
-- ✅ Firecrawl `/scrape` for fetching (1 credit/page, clean markdown, JS rendering)
-- ✅ Firecrawl `/extract` tested and **rejected** (369 credits/operator, hallucinated prices, missed domain-critical data)
-- ✅ Build-vs-use decided: **BUILD** domain extraction (Firecrawl `/scrape` + Claude API + our prompt)
-- Full comparison: `results/tours_northwest/firecrawl_extract_comparison_v1.md`
-
-### Dev Environment
-- Python 3.11 venv with firecrawl-py, anthropic, requests, python-dotenv, pydantic
-- `.env` with Firecrawl API key (Anthropic key still needed)
-- GitHub repo, all docs and results committed
+- ✅ Firecrawl `/scrape` for fetching (1 credit/page)
+- ✅ Firecrawl `/extract` tested and **rejected**
+- ✅ Claude Opus 4.6 selected (quality > cost, validated vs Sonnet)
+- ✅ Build-vs-use decided: **BUILD** domain extraction
 
 ---
 
 ## Key Findings
 
-1. **Core field extraction works** — title, pricing, duration extract at ~100% from clean sites
-2. **OCTO schema fits naturally** — field mapping is straightforward
-3. **Domain-specific prompts are essential** — generic LLM extraction (Firecrawl `/extract`) hallucinated prices, missed promos, misclassified pricing models
-4. **Firecrawl strips nav/banner/footer** — promo codes (RAINIER10) lost by both `/scrape` and `/extract`
-5. **FareHarbor is the wall** — tiered pricing locked in JS widget regardless of method
-6. **Path A + Path C are complementary** — extraction gets operator-specific data, Viator gets standardized pricing
+1. **Zero pricing hallucinations** across 83 products and 7 operators
+2. **~95% core field accuracy** (title, pricing, duration, description)
+3. **Schema flexibility proven** — same pipeline handles tours, cruises, and escape rooms
+4. **6 cross-operator bundles discovered** across 3 operators
+5. **5 booking platforms detected** — FareHarbor, Peek Pro, Bookeo, Gatemaster, RocketRez
+6. **JS widget pricing is the wall** — real but manageable via Path C (Viator API)
+7. **Domain prompting is essential** — generic extraction (Firecrawl /extract) fails
+8. **Total cost**: 37 credits + $8.28 for all 7 operators
 
 ---
 
@@ -68,9 +73,7 @@
 
 | Used | Remaining | Tier |
 |------|-----------|------|
-| 538 | **-38** (exhausted) | Free (500 total) |
-
-Need new API key or Hobby tier ($16/mo) before further API calls. Path 2 needs ~30 credits for remaining operators.
+| ~282 | ~218 | Free (500 monthly) |
 
 ---
 
@@ -78,15 +81,14 @@ Need new API key or Hobby tier ($16/mo) before further API calls. Path 2 needs ~
 
 | Purpose | File |
 |---------|------|
-| Extraction schema | `schemas/octo_extraction_v01.json` |
+| **Phase 0 report** | `results/phase0_summary/phase0_report.md` |
+| **Scoring matrix** | `results/phase0_summary/scoring_matrix.md` |
+| Extraction script | `scripts/extract_operator.py` |
 | Extraction prompt | `prompts/extraction_prompt_v01.md` |
-| Firecrawl /extract script | `scripts/firecrawl_extract.py` |
-| Tours NW manual extraction | `results/tours_northwest/tours_northwest_extraction_v1.json` |
-| Tours NW /extract results | `results/tours_northwest/firecrawl_extract_v1.json` |
-| Tours NW /extract scorecard | `results/tours_northwest/firecrawl_extract_comparison_v1.md` |
-| Tours NW /scrape comparison | `results/tours_northwest/firecrawl_comparison_v1.md` |
-| Tours NW manual scorecard | `results/tours_northwest/tours_northwest_scorecard_v1.md` |
-| Ground truth data | `docs/phase0_spike.md` (operator recon sections) |
+| Extraction schema | `schemas/octo_extraction_v01.json` |
+| Ground truth data | `docs/phase0_spike.md` |
+| Per-operator results | `results/<operator>/extract_operator_v1.json` |
+| Per-operator scorecards | `results/<operator>/scorecard_v1.md` |
 
 ---
 

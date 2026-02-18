@@ -556,11 +556,11 @@ app = FirecrawlApp(api_key="fc-YOUR_API_KEY")
 claude = anthropic.Anthropic()
 
 # Get clean markdown via Firecrawl /scrape
-page = app.scrape_url("https://www.toursnorthwest.com/tours/mt-rainier/", params={"formats": ["markdown"]})
+page = app.scrape("https://www.toursnorthwest.com/tours/mt-rainier/", formats=["markdown"])
 
 # Extract with our domain-specific prompt
 response = claude.messages.create(
-    model="claude-sonnet-4-5-20250929",
+    model="claude-opus-4-6",
     messages=[{"role": "user", "content": f"{extraction_prompt}\n\n{page['markdown']}"}]
 )
 ```
@@ -573,7 +573,7 @@ response = claude.messages.create(
 - `/scrape` for 7 operators: ~35-50 credits (5-7 pages per operator)
 - Claude API: ~$0.10/operator (~$0.70 total)
 - **Total: ~35-50 Firecrawl credits + ~$0.70 Claude API**
-- **Note:** Free tier is currently exhausted (538/500 used). Need new API key or Hobby tier ($16/mo, 3,000 credits) before running.
+- **Note:** Free tier has ~255 credits remaining (500 monthly). Sufficient for remaining operators.
 
 **Run against all 7 operators. Target: complete by end of Day 6.**
 
@@ -652,7 +652,7 @@ At the end of Phase 0, we make a go/no-go decision:
 - Supplement Firecrawl markdown with raw HTML fetch for nav menus, banners, footers (Firecrawl strips these — missed RAINIER10 promo code)
 - Firecrawl `/extract` tested and **rejected** — too expensive (369 credits/operator), hallucinated prices, missed domain-critical data. See `results/tours_northwest/firecrawl_extract_comparison_v1.md`.
 - Estimated credit usage for remaining work: ~35-50 Firecrawl credits + ~$0.70 Claude API
-- **Note:** Free tier exhausted (538/500 used). Need new API key or Hobby tier upgrade before proceeding.
+- **Note:** Free tier has ~255 credits remaining (500 monthly). Sufficient for remaining operators.
 
 **What you DON'T need:**
 - BeautifulSoup / Playwright / custom scraping infrastructure (Firecrawl handles this)
