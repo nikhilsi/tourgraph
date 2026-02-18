@@ -201,5 +201,5 @@ Based on what we learned:
 
 ---
 
-*Phase 0 Feasibility Spike — Surfaced Project*
+*Phase 0 Feasibility Spike — TourGraph Project*
 *Method: Firecrawl `/scrape` + Claude Opus 4.6 + OCTO-aligned domain prompt*

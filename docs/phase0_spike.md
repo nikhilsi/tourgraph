@@ -1,6 +1,6 @@
-# Surfaced — Phase 0: Feasibility Spike
+# TourGraph — Phase 0: Feasibility Spike
 
-**Project:** Surfaced — AI-Powered Supplier Onboarding for the Agentic Travel Era
+**Project:** TourGraph — AI-Powered Supplier Onboarding for the Agentic Travel Era
 **Phase:** 0 — Feasibility Spike
 **Duration:** ~1 week
 **Status:** Complete — GO recommended (pending review)
@@ -32,7 +32,7 @@ This is the gate. If extraction doesn't work well enough, we pivot before sinkin
 
 ## Greater Seattle Experience Provider Landscape
 
-The Seattle metro area has a rich and diverse set of tour operators and experience providers. These represent the types of businesses that Surfaced would serve. Understanding the full landscape helps us select a representative test set.
+The Seattle metro area has a rich and diverse set of tour operators and experience providers. These represent the types of businesses that TourGraph would serve. Understanding the full landscape helps us select a representative test set.
 
 ### Category 1: City Walking / Sightseeing Tours
 
@@ -416,7 +416,7 @@ Before extracting anything, define what we're trying to extract. The schema is i
 
 **OCTO alignment rationale:** OCTO is adopted by 114+ trading partners including Peek Pro, Xola, Zaui, Ventrata, and connected to Viator, GetYourGuide, Expedia, Klook, and Tiqets. Aligning our extraction schema to OCTO's field naming and structure means our output is already industry-compatible. In Phase 1, we can map directly to full OCTO for booking system integration (Path B).
 
-**Schema: Surfaced Extraction Target v0.1 (OCTO-aligned + extensions)**
+**Schema: TourGraph Extraction Target v0.1 (OCTO-aligned + extensions)**
 
 *Core Fields (OCTO Content Capability aligned — high extraction confidence):*
 
@@ -437,7 +437,7 @@ Before extracting anything, define what we're trying to extract. The schema is i
 | `pricingModel` | `Product.pricingPer` | enum | PER_UNIT (per person) or PER_BOOKING (per group) | High |
 | `currency` | `Product.defaultCurrency` | string | ISO currency code (USD for all test set) | Very High (inferred) |
 | `priceByUnit` | `Unit.pricing` | array | Price per unit type: [{unitType: "adult", amount: 4000}, {unitType: "child", amount: 2500}] — amounts in cents | Medium (visible on some sites, in booking widget on others) |
-| `priceTiers` | — (Surfaced extension) | array | Group-size pricing tiers: [{minUnits: 1, maxUnits: 2, pricePerUnit: 4500}, ...] | Low-Medium (Puzzle Break, FLEE have this; most don't) |
+| `priceTiers` | — (TourGraph extension) | array | Group-size pricing tiers: [{minUnits: 1, maxUnits: 2, pricePerUnit: 4500}, ...] | Low-Medium (Puzzle Break, FLEE have this; most don't) |
 
 *Operational Fields (partially extractable — track what we get):*
 
@@ -446,12 +446,12 @@ Before extracting anything, define what we're trying to extract. The schema is i
 | `duration` | — (not in OCTO core, in Content) | integer (minutes) | Experience duration | High |
 | `restrictions.minUnits` | `Option.restrictions.minUnits` | integer | Minimum group/player count | Medium |
 | `restrictions.maxUnits` | `Option.restrictions.maxUnits` | integer | Maximum group/player count | Medium-High |
-| `ageRestrictions` | — (Surfaced extension) | object | Min age, accompanied-by-adult rules | Medium |
+| `ageRestrictions` | — (TourGraph extension) | object | Min age, accompanied-by-adult rules | Medium |
 | `schedule` | `Option.availabilityLocalStartTimes` | array | Known departure/start times | Low (usually in booking widget) |
-| `seasonality` | — (Surfaced extension) | object | Operating months/seasons if stated | Low-Medium |
+| `seasonality` | — (TourGraph extension) | object | Operating months/seasons if stated | Low-Medium |
 | `cancellationPolicy` | `features[type=CANCELLATION_TERM]` | string | Free-text policy as stated on site | Medium |
 
-*Surfaced Extensions (not in OCTO — for escape rooms and edge cases):*
+*TourGraph Extensions (not in OCTO — for escape rooms and edge cases):*
 
 | Field | Type | Description | Applies To |
 |-------|------|-------------|-----------|
@@ -504,7 +504,7 @@ Test extraction quality manually across all 7 operators. We have detailed recon 
 
 ### Step 3: Viator API Comparison (Day 3-4)
 
-> **STATUS (2026-02-17):** Deferred to Phase 1. Viator affiliate signup requires a website URL — will revisit once Surfaced has a landing page.
+> **STATUS (2026-02-17):** Deferred to Phase 1. Viator affiliate signup requires a website URL — will revisit once TourGraph has a landing page.
 
 Sign up as a Viator affiliate (free, immediate) and query their Partner API for the same operators we just extracted from. Compare Path A (our extraction) against Path C (Viator's structured data).
 
@@ -531,7 +531,7 @@ Sign up as a Viator affiliate (free, immediate) and query their Partner API for 
 - **Is Viator's data sufficient to power an MCP server?** Or does it need enrichment from Path A?
 - **Which operators are NOT on Viator?** That's Path A's exclusive territory.
 
-**This comparison is the most strategically valuable output of Phase 0.** It answers: "Should Surfaced lead with extraction or lead with API aggregation?"
+**This comparison is the most strategically valuable output of Phase 0.** It answers: "Should TourGraph lead with extraction or lead with API aggregation?"
 
 **Target: Viator comparison for 3-4 operators by end of Day 4.**
 
@@ -694,13 +694,13 @@ This spike runs entirely local with cloud API calls. No infrastructure, no hosti
 | Tours Northwest | FareHarbor | ✓ (2025 Certificate of Excellence) | Yelp, Visit Seattle |
 | Conundroom | Bookeo | TBD (likely TripAdvisor listing) | TBD |
 
-**What this means for Surfaced:**
+**What this means for TourGraph:**
 1. **The existing distribution pipeline is: Operator → Booking System → Viator → TripAdvisor + OTA network.** This is well-established and works.
-2. **The MISSING pipeline is: Operator → ??? → AI Agents.** No equivalent of Viator exists for AI distribution. That's the gap Surfaced fills.
-3. **Viator charges 20-25% commission on bookings.** This is the going rate for OTA distribution. Surfaced's pricing model should be informed by this benchmark.
+2. **The MISSING pipeline is: Operator → ??? → AI Agents.** No equivalent of Viator exists for AI distribution. That's the gap TourGraph fills.
+3. **Viator charges 20-25% commission on bookings.** This is the going rate for OTA distribution. TourGraph's pricing model should be informed by this benchmark.
 4. **Viator already has structured data for these operators** (because the booking systems feed it). But Viator doesn't expose this data via MCP or any agentic protocol. Same pattern as the booking systems themselves — structured data exists, but not for AI agents.
 5. **TripAdvisor reviews are essentially universal.** Any schema we build should consider linking to or referencing TripAdvisor review data, as it's the de facto trust signal for tours/experiences.
-6. **The competitive framing is clear:** Viator is the dominant distributor for the human-browsing era. Surfaced aims to be the equivalent for the AI-agent era. We don't compete with Viator — we extend distribution into a channel Viator doesn't serve.
+6. **The competitive framing is clear:** Viator is the dominant distributor for the human-browsing era. TourGraph aims to be the equivalent for the AI-agent era. We don't compete with Viator — we extend distribution into a channel Viator doesn't serve.
 
 ### Recon Finding: OTA APIs as Structured Data Sources (Path C)
 
@@ -743,7 +743,7 @@ This doesn't eliminate the need for AI extraction testing (Path A), but it refra
 
 3. **The "Two Paths" framework in the Project Proposal has been updated to "Three Paths"** — see project_proposal.md for the full strategic analysis.
 
-4. **Viator's affiliate terms are the key constraint.** Data from Path C is meant to drive bookings TO Viator. Surfaced as a "Viator affiliate that distributes via MCP" is a valid business model but makes us dependent on Viator's terms. Path A (extraction) + Path B (channel manager) provide independence.
+4. **Viator's affiliate terms are the key constraint.** Data from Path C is meant to drive bookings TO Viator. TourGraph as a "Viator affiliate that distributes via MCP" is a valid business model but makes us dependent on Viator's terms. Path A (extraction) + Path B (channel manager) provide independence.
 
 5. **The strongest position combines all three:** Path C for fast bootstrap (80% coverage), Path A for differentiation (long-tail operators), Path B for premium direct integration. The MCP layer is the unique value on top of all of them.
 
@@ -751,4 +751,4 @@ See also: `api_landscape.md` for the detailed API comparison and strategic analy
 
 ---
 
-*This document is part of the Surfaced project. See also: project_proposal.md, tooling_landscape.md, api_landscape.md, glossary.md*
+*This document is part of the TourGraph project. See also: project_proposal.md, tooling_landscape.md, api_landscape.md, glossary.md*

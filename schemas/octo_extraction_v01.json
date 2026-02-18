@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Surfaced Extraction Target v0.1 (OCTO-aligned)",
-  "description": "Schema for structured tour/experience data extracted from operator websites. Core fields align to OCTO (Open Connectivity for Tours, Activities & Attractions) naming conventions. Surfaced extensions handle escape rooms, combo products, and promotional data.",
+  "title": "TourGraph Extraction Target v0.1 (OCTO-aligned)",
+  "description": "Schema for structured tour/experience data extracted from operator websites. Core fields align to OCTO (Open Connectivity for Tours, Activities & Attractions) naming conventions. TourGraph extensions handle escape rooms, combo products, and promotional data.",
   "type": "object",
   "required": ["operator", "products"],
   "properties": {
@@ -121,7 +121,7 @@
           },
           "priceTiers": {
             "type": "array",
-            "description": "Surfaced extension. Group-size pricing tiers for operators with tiered models.",
+            "description": "TourGraph extension. Group-size pricing tiers for operators with tiered models.",
             "items": {
               "type": "object",
               "properties": {
@@ -173,7 +173,7 @@
           },
           "ageRestrictions": {
             "type": "object",
-            "description": "Surfaced extension. Age requirements.",
+            "description": "TourGraph extension. Age requirements.",
             "properties": {
               "minAge": {
                 "type": "integer"
@@ -199,7 +199,7 @@
           },
           "seasonality": {
             "type": "object",
-            "description": "Surfaced extension. Operating season if stated.",
+            "description": "TourGraph extension. Operating season if stated.",
             "properties": {
               "startDate": {
                 "type": "string",
@@ -312,34 +312,34 @@
           },
           "isPrivate": {
             "type": "boolean",
-            "description": "Surfaced extension. Whether the experience is private (your group only, no strangers)."
+            "description": "TourGraph extension. Whether the experience is private (your group only, no strangers)."
           },
           "difficulty": {
             "type": "string",
             "enum": ["NOVICE", "INTERMEDIATE", "ADVANCED", "EXPERT"],
-            "description": "Surfaced extension. Difficulty rating (primarily for escape rooms)."
+            "description": "TourGraph extension. Difficulty rating (primarily for escape rooms)."
           },
           "successRate": {
             "type": "number",
             "minimum": 0,
             "maximum": 1,
-            "description": "Surfaced extension. Completion/success rate as decimal (primarily for escape rooms)."
+            "description": "TourGraph extension. Completion/success rate as decimal (primarily for escape rooms)."
           },
           "roomType": {
             "type": "string",
             "enum": ["SINGLE_ROOM", "MULTI_ROOM"],
-            "description": "Surfaced extension. Physical room configuration (escape rooms)."
+            "description": "TourGraph extension. Physical room configuration (escape rooms)."
           },
           "themeGenre": {
             "type": "array",
-            "description": "Surfaced extension. Theme/genre tags (e.g., mystery, horror, adventure, photography, nature).",
+            "description": "TourGraph extension. Theme/genre tags (e.g., mystery, horror, adventure, photography, nature).",
             "items": {
               "type": "string"
             }
           },
           "upgradeModifiers": {
             "type": "array",
-            "description": "Surfaced extension. Upsell/upgrade options (e.g., Argosy 'First to Board', premium tiers).",
+            "description": "TourGraph extension. Upsell/upgrade options (e.g., Argosy 'First to Board', premium tiers).",
             "items": {
               "type": "object",
               "properties": {
@@ -364,7 +364,7 @@
           },
           "crossOperatorBundles": {
             "type": "array",
-            "description": "Surfaced extension. Combo products bundling this operator with another operator's product.",
+            "description": "TourGraph extension. Combo products bundling this operator with another operator's product.",
             "items": {
               "type": "object",
               "properties": {
@@ -385,7 +385,7 @@
           },
           "activePromotions": {
             "type": "array",
-            "description": "Surfaced extension. Current promo codes, discounts, or deals visible on the site.",
+            "description": "TourGraph extension. Current promo codes, discounts, or deals visible on the site.",
             "items": {
               "type": "object",
               "properties": {
@@ -406,7 +406,7 @@
           },
           "bookingSystem": {
             "type": "object",
-            "description": "Surfaced extension. Booking platform identified for this specific product.",
+            "description": "TourGraph extension. Booking platform identified for this specific product.",
             "properties": {
               "name": {
                 "type": "string"

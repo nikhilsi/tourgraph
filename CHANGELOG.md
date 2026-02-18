@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.3.1] - 2026-02-17
+
+### Changed
+- Renamed project from "Surfaced" to "TourGraph" (domain: tourgraph.ai, repo: github.com/nikhilsi/tourgraph)
+- Global find-and-replace across all documentation, schema, prompts, and config files
+- Updated git clone URL, project structure references, and all project name mentions
+- Added `docs/pitch.md` — project pitch document
+
+---
+
 ## [0.3.0] - 2026-02-17
 
 ### Added
@@ -52,7 +62,7 @@ All notable changes to this project will be documented in this file.
 - `.env` configuration with Firecrawl API key
 
 ### Changed
-- Renamed all docs to match CLAUDE.md conventions (e.g., `Surfaced_Phase0_Spike.md` → `phase0_spike.md`)
+- Renamed all docs to match CLAUDE.md conventions (e.g., `TourGraph_Phase0_Spike.md` → `phase0_spike.md`)
 - Updated 7 cross-references across docs to use new filenames
 
 ### Key Findings
@@ -72,7 +82,7 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Project documentation suite: proposal, Phase 0 spike methodology, tooling landscape, API landscape, glossary
-- OCTO-aligned extraction schema v0.1 (core fields + Surfaced extensions)
+- OCTO-aligned extraction schema v0.1 (core fields + TourGraph extensions)
 - Manual extraction test: Tours Northwest — 89% field accuracy on detail pages
 - Firecrawl `/scrape` integration test — content quality comparison with manual extraction
 - Firecrawl comparison report: identified banner/nav stripping issue, hybrid approach recommended

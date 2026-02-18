@@ -72,7 +72,7 @@ There have been efforts to standardize tour/experience data — but they've solv
 - **Schema.org Tourism Types** — W3C community group extensions (since 2015) for TouristAttraction, TouristDestination, and TouristTrip. Useful for SEO markup but thin — no pricing, availability, or booking details.
 - **OpenTravel Alliance** — Comprehensive travel data standard since 2001 covering airlines, hotels, car rental, and tours. Enterprise-focused, XML-heavy. No small operator will ever implement it directly.
 
-**The insight:** Standards exist for how systems talk to each other. Nobody has solved how to get operator data *into* those systems in the first place. OCTO defines what a well-structured tour listing should look like — but the walking tour company in Pioneer Square has a WordPress site and a phone number, not an OCTO-compatible API. The gap isn't the standard. The gap is getting unstructured, real-world data into any standard at all. That's exactly what Surfaced does.
+**The insight:** Standards exist for how systems talk to each other. Nobody has solved how to get operator data *into* those systems in the first place. OCTO defines what a well-structured tour listing should look like — but the walking tour company in Pioneer Square has a WordPress site and a phone number, not an OCTO-compatible API. The gap isn't the standard. The gap is getting unstructured, real-world data into any standard at all. That's exactly what TourGraph does.
 
 **Strategic implication:** Our normalization layer should target OCTO-compatible output where possible. "We extract your data and normalize it to the industry standard" is a stronger pitch than a proprietary format — and it shows deep ecosystem understanding.
 
@@ -102,7 +102,7 @@ Every major booking platform in the tours/experiences space has an API — but t
 
 ### Three Paths to Structured Inventory
 
-Research reveals three complementary paths for Surfaced to acquire structured tour/experience data:
+Research reveals three complementary paths for TourGraph to acquire structured tour/experience data:
 
 **Path A — AI Extraction (our core innovation):** Scrape public operator website → AI extracts → structured data. Works for ANY operator regardless of their booking system. This is the novel technology and the Phase 0 test. Handles the long tail of operators who aren't on any OTA.
 
@@ -112,7 +112,7 @@ Research reveals three complementary paths for Surfaced to acquire structured to
 
 **What Path C changes strategically:**
 
-Path C means Surfaced doesn't have to extract data from websites OR negotiate channel manager access to cover ~80% of commercial operators. The data already exists in a queryable API. This could dramatically accelerate time-to-value:
+Path C means TourGraph doesn't have to extract data from websites OR negotiate channel manager access to cover ~80% of commercial operators. The data already exists in a queryable API. This could dramatically accelerate time-to-value:
 
 | Path | Coverage | Access | Speed | Unique Value |
 |------|----------|--------|-------|-------------|
@@ -122,8 +122,8 @@ Path C means Surfaced doesn't have to extract data from websites OR negotiate ch
 
 **The critical limitation of Path C:** Viator's affiliate terms require that bookings redirect to Viator or occur through their transactional API. You can't simply take their data and build a competing distribution channel. The data is meant for merchandising on your platform → driving traffic/bookings to Viator.
 
-**How the three paths work together in a mature Surfaced product:**
-- **Path C (Viator API)** as the bootstrap layer — immediately populate the MCP server with structured inventory for operators already on Viator. Bookings flow through Viator. This gets Surfaced live and demonstrable fast.
+**How the three paths work together in a mature TourGraph product:**
+- **Path C (Viator API)** as the bootstrap layer — immediately populate the MCP server with structured inventory for operators already on Viator. Bookings flow through Viator. This gets TourGraph live and demonstrable fast.
 - **Path A (AI Extraction)** as the differentiation layer — handle operators NOT on Viator: the small walking tour company, the new escape room, the local food tour that only has a WordPress site. This is the long-tail inventory that AI agents would uniquely surface. Path A becomes the competitive moat, not the entire product.
 - **Path B (Channel Manager APIs)** as the premium layer — for operators who want direct booking without Viator's commission, integrate with their booking system directly. Higher value, but requires operator participation and API access.
 - **MCP distribution layer** on top of ALL three — regardless of how data arrives (extracted, pulled from a channel manager, or ingested from Viator), the AI-agent interface is the same.
@@ -141,7 +141,7 @@ Operator → Booking System → Viator → TripAdvisor "Things to Do" + Booking.
                          → [MISSING] AI Agents (Claude, ChatGPT, Gemini, etc.)
 ```
 
-Every operator in our test set follows this pipeline. The booking systems (FareHarbor, Peek, RocketRez, Gatemaster) all integrate with Viator. Viator distributes to TripAdvisor + OTA network. Google GTTD is a newer channel (~25% adoption). **The AI agent channel does not exist.** That's Surfaced.
+Every operator in our test set follows this pipeline. The booking systems (FareHarbor, Peek, RocketRez, Gatemaster) all integrate with Viator. Viator distributes to TripAdvisor + OTA network. Google GTTD is a newer channel (~25% adoption). **The AI agent channel does not exist.** That's TourGraph.
 
 ### Real-World Validation: Shutter Tours
 
@@ -275,7 +275,7 @@ Each phase delivers something independently valuable. If you stop after any phas
 
 **What was done:**
 - 7 Seattle operators selected (city tours, cruises, escape rooms, nature tours, attractions)
-- OCTO-aligned extraction schema v0.1 defined (29 product fields + Surfaced extensions)
+- OCTO-aligned extraction schema v0.1 defined (29 product fields + TourGraph extensions)
 - Firecrawl `/extract` tested and rejected (hallucinated prices, 369 credits/operator)
 - Path 2 extraction pipeline built: Firecrawl `/scrape` + Claude Opus 4.6 with domain prompt
 - All 7 operators extracted, scored against manual ground truth
@@ -532,7 +532,7 @@ For reference, these ideas were also explored during the brainstorming process:
 
 ## Open Questions
 
-1. ~~**Schema definition:** What fields are essential for the MVP extraction schema? Start minimal and expand, or try to be comprehensive from day one?~~ ✅ Answered. Went comprehensive with OCTO-aligned v0.1 (29 product fields + Surfaced extensions). Tested across 7 operators — schema v0.2 recommendations documented in `results/phase0_summary/phase0_report.md`.
+1. ~~**Schema definition:** What fields are essential for the MVP extraction schema? Start minimal and expand, or try to be comprehensive from day one?~~ ✅ Answered. Went comprehensive with OCTO-aligned v0.1 (29 product fields + TourGraph extensions). Tested across 7 operators — schema v0.2 recommendations documented in `results/phase0_summary/phase0_report.md`.
 
 2. ~~**Which OTA APIs to target first?**~~ ✅ Answered. Viator Partner API is the primary Path C source — free affiliate access, no traffic minimums, structured data for 300K+ experiences. Signup deferred to Phase 1 (requires website URL). See `api_landscape.md`.
 
@@ -582,4 +582,4 @@ See **NOW.md** for current priorities.
 
 ---
 
-*This document is a living record of the Surfaced project. Updated as the project progresses through phases.*
+*This document is a living record of the TourGraph project. Updated as the project progresses through phases.*

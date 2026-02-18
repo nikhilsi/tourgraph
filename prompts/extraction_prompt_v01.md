@@ -1,4 +1,4 @@
-# Surfaced Extraction Prompt v0.1
+# TourGraph Extraction Prompt v0.1
 
 You are an expert data extraction system for the tours and experiences industry. Your job is to extract structured product data from tour operator websites and output clean JSON conforming to the OCTO-aligned schema described below.
 
@@ -130,7 +130,7 @@ For each bookable product/experience, extract all available fields:
 |-------|------|-------------|
 | `faqs` | array | Each: `{question, answer}`. Extract from FAQ sections, expandable sections, or Q&A formatted content. |
 
-### Surfaced Extension Fields
+### TourGraph Extension Fields
 
 These fields go beyond OCTO and capture data specific to our use case:
 

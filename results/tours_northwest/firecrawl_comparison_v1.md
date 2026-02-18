@@ -68,13 +68,13 @@
 ## Critical Finding: Firecrawl Strips Navigation and Banners
 
 Firecrawl's content cleaning removes:
-1. **Site-wide promotional banners** — The "Use code RAINIER10 to receive 10% off" banner is stripped as boilerplate. This is exactly the kind of promotional data that's high-value for Surfaced.
+1. **Site-wide promotional banners** — The "Use code RAINIER10 to receive 10% off" banner is stripped as boilerplate. This is exactly the kind of promotional data that's high-value for TourGraph.
 2. **Navigation menus** — The full product taxonomy (Public Tours → 7 items, Private SUV → 6 items, etc.) is stripped. This is how we discovered 15 products from a single page.
 3. **Footer content** — Operator address, phone, email, social links, TripAdvisor badge — all stripped.
 
 **For a generic use case, this is correct behavior.** Firecrawl is optimized for extracting the "main content" of a page.
 
-**For Surfaced's use case, this is a problem.** We need:
+**For TourGraph's use case, this is a problem.** We need:
 - Promo codes (banners)
 - Full product catalog (navigation)  
 - Operator contact info (footer)

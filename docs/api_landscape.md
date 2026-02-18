@@ -1,6 +1,6 @@
-# Surfaced — API Landscape & Data Source Strategy
+# TourGraph — API Landscape & Data Source Strategy
 
-**Project:** Surfaced — AI-Powered Supplier Onboarding for the Agentic Travel Era
+**Project:** TourGraph — AI-Powered Supplier Onboarding for the Agentic Travel Era
 **Created:** February 16, 2026
 **Status:** Research complete, strategic analysis in progress
 **Trigger:** Recon observation that every test operator has TripAdvisor presence led to discovery of OTA APIs as structured data sources
@@ -127,7 +127,7 @@ This introduces a "Path C" to the project strategy: using OTA affiliate APIs as 
 
 **Industry AI Quote (Arival, Dec 2024):** "With Generative AI search, the live, structured product data is exactly what the LLM struggles with. If Google Things to do follows a similar path as Google Hotels, we should expect Google's generative AI search results to expand to include tickets and tours products."
 
-**Our Use:** Future distribution target, not a data source. Surfaced could eventually become a Connectivity Partner that feeds structured operator data TO Google GTTD (alongside MCP distribution to AI agents). This would make Surfaced a multi-channel distribution hub: AI agents via MCP + Google via GTTD + OTAs via existing connectors.
+**Our Use:** Future distribution target, not a data source. TourGraph could eventually become a Connectivity Partner that feeds structured operator data TO Google GTTD (alongside MCP distribution to AI agents). This would make TourGraph a multi-channel distribution hub: AI agents via MCP + Google via GTTD + OTAs via existing connectors.
 
 ---
 
@@ -157,11 +157,11 @@ This introduces a "Path C" to the project strategy: using OTA affiliate APIs as 
 
 ### The Viator Dependency Question
 
-**The risk:** If Surfaced bootstraps entirely on Viator's API, we're effectively a Viator affiliate with an MCP interface. Viator could change terms, add their own MCP support, or restrict data access.
+**The risk:** If TourGraph bootstraps entirely on Viator's API, we're effectively a Viator affiliate with an MCP interface. Viator could change terms, add their own MCP support, or restrict data access.
 
-**The mitigation:** Path A is the key. AI extraction capability ensures we're never fully dependent on any single data source. The operators NOT on Viator are our exclusive inventory — the differentiation that makes Surfaced more than a Viator wrapper.
+**The mitigation:** Path A is the key. AI extraction capability ensures we're never fully dependent on any single data source. The operators NOT on Viator are our exclusive inventory — the differentiation that makes TourGraph more than a Viator wrapper.
 
-**The long-term play:** Surfaced becomes the operator's AI-agent distribution dashboard. They connect their booking system (Path B), we extract and structure any missing data (Path A), and we supplement with OTA data for market context (Path C). The MCP layer serves all AI agents. The operator controls their listing. Viator becomes one of many data inputs, not the foundation.
+**The long-term play:** TourGraph becomes the operator's AI-agent distribution dashboard. They connect their booking system (Path B), we extract and structure any missing data (Path A), and we supplement with OTA data for market context (Path C). The MCP layer serves all AI agents. The operator controls their listing. Viator becomes one of many data inputs, not the foundation.
 
 ---
 
@@ -186,14 +186,14 @@ The discovery of Path C does NOT change what Phase 0 tests, but adds a valuable 
 
 1. **Structured tour data already exists at scale** — in Viator's API, queryable for free. We don't have to build it from scratch for most commercial operators.
 
-2. **AI extraction (Path A) is the differentiator, not the foundation.** The long-tail operators not on Viator are our unique inventory. The extraction engine is what makes Surfaced more than a Viator wrapper.
+2. **AI extraction (Path A) is the differentiator, not the foundation.** The long-tail operators not on Viator are our unique inventory. The extraction engine is what makes TourGraph more than a Viator wrapper.
 
-3. **The MCP layer is the unique value regardless of data source.** Viator, FareHarbor, Peek, and Google GTTD all have structured data. None of them distribute to AI agents. The MCP interface is what Surfaced uniquely provides.
+3. **The MCP layer is the unique value regardless of data source.** Viator, FareHarbor, Peek, and Google GTTD all have structured data. None of them distribute to AI agents. The MCP interface is what TourGraph uniquely provides.
 
-4. **The business model options expand.** Surfaced could be: (a) a Viator affiliate with MCP distribution, (b) an independent AI-extraction platform, (c) a multi-source aggregator, or (d) all of the above at different tiers.
+4. **The business model options expand.** TourGraph could be: (a) a Viator affiliate with MCP distribution, (b) an independent AI-extraction platform, (c) a multi-source aggregator, or (d) all of the above at different tiers.
 
 5. **Google GTTD validates the thesis from the industry's own direction.** The move toward structured data feeds for tours/activities is an industry trend, not just our idea. The AI-agent distribution channel is the next step after Google.
 
 ---
 
-*This document is part of the Surfaced project. See also: project_proposal.md, phase0_spike.md, tooling_landscape.md, glossary.md*
+*This document is part of the TourGraph project. See also: project_proposal.md, phase0_spike.md, tooling_landscape.md, glossary.md*

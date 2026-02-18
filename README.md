@@ -1,4 +1,4 @@
-# Surfaced
+# TourGraph
 
 AI-powered supplier onboarding for the tours & experiences industry. Extracts structured inventory data from operator websites and makes it queryable by AI agents — bridging the gap between the $250-400B experiences market and the emerging agentic travel booking channel.
 
@@ -10,7 +10,7 @@ Two converging industry problems:
 
 2. **AI agents can't find tour inventory.** 42% of travelers used AI for trip planning in 2025. Google, Amazon, and Microsoft are building agentic booking. But most tour inventory lives on operator websites as unstructured HTML — invisible to AI agents.
 
-Surfaced solves both: extract structured data from operator websites using AI, normalize it to industry standards (OCTO), and distribute it through an MCP server that AI agents can query directly.
+TourGraph solves both: extract structured data from operator websites using AI, normalize it to industry standards (OCTO), and distribute it through an MCP server that AI agents can query directly.
 
 ## Current Status
 
@@ -81,7 +81,7 @@ See [CURRENT_STATE.md](CURRENT_STATE.md) for detailed status.
 ## Project Structure
 
 ```
-surfaced/
+tourgraph/
 ├── CLAUDE.md              # Claude Code development guide
 ├── README.md              # This file
 ├── CURRENT_STATE.md       # Build status
@@ -122,8 +122,8 @@ surfaced/
 
 ```bash
 # 1. Clone and setup
-git clone https://github.com/nikhilsi/surfaced.git
-cd surfaced
+git clone https://github.com/nikhilsi/tourgraph.git
+cd tourgraph
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt

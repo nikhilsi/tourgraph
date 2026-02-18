@@ -1,4 +1,4 @@
-# Surfaced — Tooling Landscape: Extraction Infrastructure & Connectors
+# TourGraph — Tooling Landscape: Extraction Infrastructure & Connectors
 
 **Last updated:** February 16, 2026
 **Purpose:** Evaluate build-vs-use decisions for extraction infrastructure. Separate from the API Landscape doc (which covers *data sources* like Viator, GYG, TripAdvisor). This doc covers *tools and infrastructure* for getting data out of websites and into structured form.
@@ -85,13 +85,13 @@ These are Firecrawl's own models purpose-built for web extraction:
 
 #### Integration Points
 
-- **MCP Server:** Official Firecrawl MCP server available. Tools: `firecrawl_scrape`, `firecrawl_crawl`, `firecrawl_map`, `firecrawl_search`, `firecrawl_agent`. Useful for future Surfaced MCP → Firecrawl MCP chaining.
+- **MCP Server:** Official Firecrawl MCP server available. Tools: `firecrawl_scrape`, `firecrawl_crawl`, `firecrawl_map`, `firecrawl_search`, `firecrawl_agent`. Useful for future TourGraph MCP → Firecrawl MCP chaining.
 - **Claude Plugin:** Official Claude plugin launched Feb 2026. `/firecrawl:scrape`, `/firecrawl:search`, `/firecrawl:map`, `/firecrawl:agent` available directly in Claude conversations.
 - **SDKs:** Python (`firecrawl-py`), Node.js (`@mendable/firecrawl-js`), CLI (`firecrawl-cli`), plus community SDKs in Go, Rust, Java.
 - **Skill for AI Agents:** `npx skills add firecrawl/cli` — enables Claude Code, Codex, OpenCode to use Firecrawl autonomously.
 - **Workflow Platforms:** n8n, Zapier, Make, LangChain, LlamaIndex, CrewAI integrations.
 
-#### Strengths for Surfaced
+#### Strengths for TourGraph
 
 1. `/extract` with JSON schema is exactly our use case — point it at a tour operator URL, give it our OCTO-aligned schema, get structured data back
 2. Handles the hard infrastructure problems we don't want to solve: JS rendering, anti-bot, proxy rotation, waiting for dynamic content
@@ -106,7 +106,7 @@ These are Firecrawl's own models purpose-built for web extraction:
 3. **Third-party LLM dependency** — FIRE-1 uses Gemini 2.5 Pro; Extract/Agent likely use OpenAI or Anthropic models internally. We don't control extraction model quality.
 4. **Credit consumption for Extract is opaque** — "dynamic, token-based" means hard to predict costs at scale
 5. **Self-hosted version significantly limited** — if we ever need full control, we'd be rebuilding substantial infrastructure
-6. **AGPL-3.0 license** — if we modify and deploy Firecrawl as part of Surfaced's service, we'd need to open-source modifications. Cloud API usage has no license obligations.
+6. **AGPL-3.0 license** — if we modify and deploy Firecrawl as part of TourGraph's service, we'd need to open-source modifications. Cloud API usage has no license obligations.
 
 #### Phase 0 Usage Plan
 
@@ -147,7 +147,7 @@ result = app.extract(
 
 **Pricing:** Free. Open source (Apache 2.0 — permissive, no copyleft).
 
-**Relevance to Surfaced:**
+**Relevance to TourGraph:**
 - **Best self-hosted alternative** if we need to eliminate third-party dependency
 - No built-in anti-bot or proxy rotation — you bring your own
 - Extraction quality depends on whichever LLM you connect (could use Claude directly)
@@ -170,7 +170,7 @@ result = app.extract(
 
 **Pricing:** Free. Open source (MIT license — most permissive).
 
-**Relevance to Surfaced:**
+**Relevance to TourGraph:**
 - Interesting for Phase 1+ if we want to eliminate per-page API costs entirely
 - Local model support (Ollama + Llama 3.2) means zero marginal cost per extraction
 - Less mature than Firecrawl, smaller community
@@ -189,7 +189,7 @@ result = app.extract(
 - Handles JS rendering
 - Very simple — no schema extraction, just clean content
 
-**Relevance to Surfaced:**
+**Relevance to TourGraph:**
 - Could replace the `/scrape` step (getting clean markdown) at zero cost
 - Would still need a separate LLM call for structured extraction from the markdown
 - Useful as a fallback if Firecrawl's free tier runs out
@@ -208,7 +208,7 @@ result = app.extract(
 - Managed infrastructure with proxy rotation
 - Complex pricing based on compute units + actor usage + proxy bandwidth
 
-**Relevance to Surfaced:**
+**Relevance to TourGraph:**
 - TripAdvisor Actor could be useful for extracting operator reviews/ratings (Path C enrichment)
 - More complex and expensive than Firecrawl for our use case
 - Marketplace model means dependency on community-maintained scrapers
@@ -249,9 +249,9 @@ result = app.extract(
 
 ---
 
-## Key Insight: Where Surfaced's Value Lives
+## Key Insight: Where TourGraph's Value Lives
 
-The extraction tools landscape confirms Surfaced's positioning. Nobody lacks the ability to scrape a webpage — that's infrastructure. What's missing is:
+The extraction tools landscape confirms TourGraph's positioning. Nobody lacks the ability to scrape a webpage — that's infrastructure. What's missing is:
 
 1. **A tourism-specific schema** that captures what matters for tour/experience products (OCTO-aligned with extensions for escape rooms, combo products, upgrade modifiers, etc.)
 2. **Domain expertise encoded in prompts** that knows a "$45 for groups of 2" price is a *reverse group discount*, not a standard rate

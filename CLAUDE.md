@@ -73,7 +73,7 @@
 
 ## 🏗️ Architecture Summary
 
-**Surfaced is an AI-powered supplier onboarding tool for the tours & experiences industry.**
+**TourGraph is an AI-powered supplier onboarding tool for the tours & experiences industry.**
 
 Phase 0 (current) is a feasibility spike answering: "Can AI reliably extract structured tour data from real websites?"
 
@@ -168,7 +168,7 @@ python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/ -
 ## 📂 Project Structure
 
 ```
-surfaced/
+tourgraph/
 ├── CLAUDE.md                       (Development rules & workflow)
 ├── README.md                       (Project overview)
 ├── CURRENT_STATE.md                (What's built & status)
@@ -216,7 +216,7 @@ surfaced/
 ## 🔑 Key Concepts
 
 - **OCTO** - Open Connectivity for Tours, Activities & Attractions. Industry standard for experience data exchange. 114+ trading partners. Our extraction schema aligns to OCTO field naming.
-- **MCP** - Model Context Protocol. How AI agents discover and query data sources. Surfaced's Phase 2 goal.
+- **MCP** - Model Context Protocol. How AI agents discover and query data sources. TourGraph's Phase 2 goal.
 - **Path A/B/C** - Three data acquisition strategies: A=extraction, B=booking system APIs, C=OTA aggregation.
 - **Ground Truth** - Known-correct operator data from manual recon (in phase0_spike.md). Used to score extraction accuracy.
 - **FareHarbor Wall** - Pricing data locked inside JS booking widgets that static scraping can't access. Key gap that Path C fills.

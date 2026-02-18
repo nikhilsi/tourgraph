@@ -1,4 +1,4 @@
-# Surfaced - Phase 0 Dependencies
+# TourGraph - Phase 0 Dependencies
 
 # Extraction infrastructure
 firecrawl-py>=1.0.0

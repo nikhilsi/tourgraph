@@ -50,7 +50,7 @@ Software that helps operators distribute their inventory across multiple OTAs si
 - Key characteristic: They sit *between* the operator and the aggregators — middleware for distribution
 - **All major channel managers have APIs** — but they are gated behind partner/affiliate approval, not open access
 - **Ownership matters:** FareHarbor is owned by Booking.com (since 2018). Bókun is owned by Tripadvisor (since 2018). Peek and Rezdy/Checkfront remain independent. The two biggest OTAs in experiences each own a channel manager — they bought the supply pipeline.
-- Our relationship: **Potential integration partner or eventual competitor** on the AI-agent distribution piece. A mature Surfaced product could pull structured data directly from these APIs (Path B) rather than extracting from websites (Path A). Either way, the MCP distribution layer on top is the unique value none of them currently offer.
+- Our relationship: **Potential integration partner or eventual competitor** on the AI-agent distribution piece. A mature TourGraph product could pull structured data directly from these APIs (Path B) rather than extracting from websites (Path A). Either way, the MCP distribution layer on top is the unique value none of them currently offer.
 
 ### Destination Management Company (DMC)
 B2B operators that package experiences for travel agencies, corporate groups, incentive travel, and events. They typically don't sell direct to consumers.
@@ -136,7 +136,7 @@ The oldest and broadest travel data standard, operating since 2001. Covers airli
 - Our relationship: Reference only — useful to understand how the broader travel industry thinks about data standards, but not our normalization target.
 
 ### The Standards Gap (Key Project Insight)
-Standards exist for how travel systems *talk to each other*. Nobody has solved how to get operator data *into* those systems in the first place. OCTO defines what a well-structured tour listing should look like. But the walking tour company in Pioneer Square doesn't have a system that speaks OCTO — they have a WordPress site and a phone number. The gap isn't "we need a standard." The gap is "we need a way to get unstructured, real-world operator data into any standard at all." That's exactly what Surfaced does.
+Standards exist for how travel systems *talk to each other*. Nobody has solved how to get operator data *into* those systems in the first place. OCTO defines what a well-structured tour listing should look like. But the walking tour company in Pioneer Square doesn't have a system that speaks OCTO — they have a WordPress site and a phone number. The gap isn't "we need a standard." The gap is "we need a way to get unstructured, real-world operator data into any standard at all." That's exactly what TourGraph does.
 
 ---
 
@@ -152,7 +152,7 @@ The most significant structured data source discovered during recon. Viator (own
 
 **Data available:** Descriptive text, structured metadata, pricing by age band, product options/variants, inclusions/exclusions, photos, reviews, cancellation policies, locations/meeting points, itineraries, attraction associations.
 
-- Our relationship: **Potential "Path C" data source.** Could bootstrap Surfaced's structured inventory for ~80% of commercial operators without any AI extraction needed. The limitation is Viator's affiliate terms — data is meant to drive bookings to Viator, not build a competing distribution channel. The strategic question is whether Surfaced can operate within these terms (as an MCP-based affiliate driving bookings to Viator) or needs to eventually build an independent data layer.
+- Our relationship: **Potential "Path C" data source.** Could bootstrap TourGraph's structured inventory for ~80% of commercial operators without any AI extraction needed. The limitation is Viator's affiliate terms — data is meant to drive bookings to Viator, not build a competing distribution channel. The strategic question is whether TourGraph can operate within these terms (as an MCP-based affiliate driving bookings to Viator) or needs to eventually build an independent data layer.
 - Integrates with: FareHarbor, Peek, Bókun, Rezdy, RocketRez, and 100+ other booking systems
 - Distribution network: Viator → TripAdvisor "Things to Do" + Booking.com + Expedia + 4,000+ affiliates + 240,000 travel agents
 
@@ -181,8 +181,8 @@ Google's tours/activities vertical within Google Travel. Launched 2021. Displays
 - **NOT a read API** — it's a **write/ingest pipeline.** Partners upload structured product data to Google via SFTP (JSON format).
 - **Access:** Operators cannot upload directly. Must go through an approved Connectivity Partner (FareHarbor, Peek, RocketRez, etc.) or integrate directly (requires approval for 100+ operators).
 - **Adoption gap:** Only ~25% of operators are connected. Over half are unaware it exists.
-- **AI relevance (key quote from Arival research):** "With Generative AI search, the live, structured product data is exactly what the LLM struggles with." — Industry analysts see the same gap Surfaced targets.
-- Our relationship: **Validates our thesis from Google's own direction.** GTTD proves that the industry is moving toward structured data feeds. Also a potential future distribution channel — Surfaced could become a Connectivity Partner that feeds operator data TO Google GTTD (and to AI agents via MCP).
+- **AI relevance (key quote from Arival research):** "With Generative AI search, the live, structured product data is exactly what the LLM struggles with." — Industry analysts see the same gap TourGraph targets.
+- Our relationship: **Validates our thesis from Google's own direction.** GTTD proves that the industry is moving toward structured data feeds. Also a potential future distribution channel — TourGraph could become a Connectivity Partner that feeds operator data TO Google GTTD (and to AI agents via MCP).
 
 ---
 
