@@ -1,0 +1,996 @@
+{
+  "operator": {
+    "name": "Conundroom",
+    "url": "https://conundroom.us/",
+    "location": "Multiple locations in Redmond, WA: 14824 NE 95TH ST, Redmond, WA 98052; 16261 Redmond Way, #150, Redmond, WA 98052; 16088 NE 85TH ST, Redmond, WA 98052",
+    "phone": "(425) 552-1430",
+    "email": "info@conundroom.us",
+    "bookingSystem": {
+      "name": "Bookeo",
+      "embedUrl": "https://bookeo.com/conundroom"
+    },
+    "operatorType": "Local and family-owned escape room operator with multiple themed rooms across three locations in Redmond, WA",
+    "otaPresence": [
+      "Instagram",
+      "Facebook"
+    ]
+  },
+  "products": [
+    {
+      "title": "The Vault 67.Okie-Dokie",
+      "shortDescription": "Post-apocalyptic vault escape room inspired by Fallout. Awaken from cryosleep and restore failing systems before the vault collapses.",
+      "description": "After decades in cryosleep, you awaken in an underground vault on the verge of collapse. Power is failing. Life support systems are critical. Automated protocols demand urgent repairs. Guiding you through the darkness are the vault's AIs — designed to protect, maintain, and command. But after years of isolation, their priorities… and personalities… may not be what they once were. You'll need to navigate sealed corridors, restore vital systems, and decide how far you're willing to go to survive. The vault is waiting. Choose carefully. The Vault depends on it. Redesigned \"Time Travel\" escape room.",
+      "url": "https://conundroom.us/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Per dweller",
+          "amount": 4600
+        }
+      ],
+      "pricingNotes": "Kids ages 6 and younger are free of charge (up to 2 kids free). Price is $46 per person plus tax.",
+      "duration": 60,
+      "durationDisplay": "60 minutes",
+      "restrictions": {
+        "minUnits": 3,
+        "maxUnits": 8
+      },
+      "ageRestrictions": {
+        "minAge": 14,
+        "notes": "Suitable for dwellers aged 14 and up. Dwellers under 14 can only participate with a team of adults where the number of adults is the same or greater than the number of kids."
+      },
+      "isPrivate": true,
+      "difficulty": "ADVANCED",
+      "roomType": "MULTI_ROOM",
+      "themeGenre": [
+        "sci-fi",
+        "post-apocalyptic",
+        "adventure"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Best choice for experienced players and Fallout fans"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Redesigned \"Time Travel\" escape room"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Challenging difficulty"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Private game — no strangers"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Wheelchair accessible"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Has rapidly changing LED strips across the rooms (flashing/strobing lights)"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Players should arrive 5-10 minutes before the reserved time"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Waiver signing required before the game"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Up to 2 extra players above booking maximum allowed"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Private game experience"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Game master guidance"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and alcohol not permitted inside escape rooms"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Conundroom Downtown Redmond",
+          "address": "16261 Redmond Way, #150, Redmond, WA 98052",
+          "notes": "13 parking spots in front of the building, 2 disability reserved spots"
+        }
+      ],
+      "cancellationPolicy": "Full refund if cancelled more than 48 hours before game start via email. Less than 48 hours: full credit or gift card for future use. No refund or credit for no-show. Rescheduling available with 24+ hours notice (credit only, no refund).",
+      "bookingSystem": {
+        "name": "Bookeo",
+        "bookingUrl": "https://bookeo.com/conundroomdowntown?type=41550W4RMM61775B64B09D"
+      },
+      "faqs": [
+        {
+          "question": "Will we be playing with strangers?",
+          "answer": "No! We only do private experiences, other customers can't add themselves to your booking."
+        },
+        {
+          "question": "Do we actually get locked in?",
+          "answer": "No, we do not lock players in for fire safety reasons. You can leave the escape room at any point for any reason if needed."
+        },
+        {
+          "question": "Does this room have flashing/strobing lights?",
+          "answer": "Yes, The Vault has rapidly changing LED strips across the rooms."
+        }
+      ]
+    },
+    {
+      "title": "Dr. Frankenstein: The Final Experiment",
+      "shortDescription": "Spooky escape room where you step into the shoes of Professor Frankenstein's students to complete his most ambitious experiment.",
+      "description": "Step into the shoes of Professor Frankenstein's last remaining students and complete his most ambitious experiment. His work was condemned, his lab nearly destroyed, but the future of science lies in your hands. Reanimate the creature by solving intricate puzzles, restoring vital organs, and harnessing the power of electricity before time runs out. Will you defy ignorance and bring the professor's vision to life, or will his masterpiece be lost forever?",
+      "url": "https://conundroom.us/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Per player",
+          "amount": 4600
+        }
+      ],
+      "pricingNotes": "Kids ages 6 and younger are free of charge (up to 2 kids free). Price is $46 per person plus tax.",
+      "duration": 60,
+      "durationDisplay": "60 minutes",
+      "restrictions": {
+        "minUnits": 3,
+        "maxUnits": 6
+      },
+      "ageRestrictions": {
+        "minAge": 14,
+        "notes": "Suitable for Professor's Students aged 14 and up. Students under 14 can only participate with a team of adults where the number of adults is the same or greater than the number of kids."
+      },
+      "isPrivate": true,
+      "difficulty": "INTERMEDIATE",
+      "roomType": "MULTI_ROOM",
+      "themeGenre": [
+        "horror",
+        "sci-fi",
+        "spooky"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Looking for Scary Escape Room? You've Found it!"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Medium difficulty"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Private game — no strangers"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Wheelchair accessible"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Frankenstein is the only escape room designed to be spooky, creepy, and even a bit revolting"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Players should arrive 5-10 minutes before the reserved time"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Waiver signing required before the game"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Up to 2 extra players above booking maximum allowed"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Private game experience"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Game master guidance"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and alcohol not permitted inside escape rooms"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Conundroom Downtown Redmond",
+          "address": "16261 Redmond Way, #150, Redmond, WA 98052",
+          "notes": "13 parking spots in front of the building, 2 disability reserved spots"
+        }
+      ],
+      "cancellationPolicy": "Full refund if cancelled more than 48 hours before game start via email. Less than 48 hours: full credit or gift card for future use. No refund or credit for no-show. Rescheduling available with 24+ hours notice (credit only, no refund).",
+      "bookingSystem": {
+        "name": "Bookeo",
+        "bookingUrl": "https://bookeo.com/conundroomdowntown?type=41550FT9RAM191ECD7B272"
+      }
+    },
+    {
+      "title": "Luck and Key: The Heist",
+      "shortDescription": "Speakeasy bar-themed heist escape room. Infiltrate a raided bar, uncover what the owners were really running, and finish the job.",
+      "description": "The Luck & Key bar was raided last night. The owners are gone. The police are delaying the search. And the family is still waiting. You get a call. Short. Direct. This is your test. Your way in. Somewhere inside the bar is what everyone came for — hidden in plain sight, behind doors no one notices. Follow the trail, uncover what the owners were really running, and finish the job they couldn't. Do the job right, and you're in.",
+      "url": "https://conundroom.us/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Per patron",
+          "amount": 4600
+        }
+      ],
+      "pricingNotes": "Kids ages 6 and younger are free of charge (up to 2 kids free). Price is $46 per person plus tax.",
+      "duration": 60,
+      "durationDisplay": "60 minutes",
+      "restrictions": {
+        "minUnits": 3,
+        "maxUnits": 8
+      },
+      "ageRestrictions": {
+        "minAge": 16,
+        "notes": "Suitable for patrons ages 16 and up. Patrons under 16 can only participate with a team of adults where the number of adults is the same or greater than the number of kids."
+      },
+      "isPrivate": true,
+      "difficulty": "INTERMEDIATE",
+      "roomType": "MULTI_ROOM",
+      "themeGenre": [
+        "mystery",
+        "heist",
+        "speakeasy",
+        "crime"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Best 'No Kids' Escape Room!"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Medium difficulty"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Private game — no strangers"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Wheelchair accessible"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Players should arrive 5-10 minutes before the reserved time"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Waiver signing required before the game"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Up to 2 extra players above booking maximum allowed"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Private game experience"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Game master guidance"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and alcohol not permitted inside escape rooms"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Conundroom Downtown Redmond",
+          "address": "16261 Redmond Way, #150, Redmond, WA 98052",
+          "notes": "13 parking spots in front of the building, 2 disability reserved spots"
+        }
+      ],
+      "cancellationPolicy": "Full refund if cancelled more than 48 hours before game start via email. Less than 48 hours: full credit or gift card for future use. No refund or credit for no-show. Rescheduling available with 24+ hours notice (credit only, no refund).",
+      "bookingSystem": {
+        "name": "Bookeo",
+        "bookingUrl": "https://bookeo.com/conundroomdowntown?type=41550RYA6M718863BFC81C"
+      }
+    },
+    {
+      "title": "Alice: Reimagined — Save the Wonderland",
+      "shortDescription": "Alice in Wonderland-themed escape room reimagined in 2024 with vibrant artistry. Restart the stopped clock and save Wonderland!",
+      "description": "Dive into our Alice in Wonderland escape room, reimagined in 2024 with vibrant artistry. Time has stopped in Wonderland, and it's your quest to restart the clock! Solve puzzles, meet beloved characters, and bring motion back to this magical world. Ideal for all ages, this adventure blends classic wonder with a fresh twist. Are you ready to save time in Wonderland?",
+      "url": "https://conundroom.us/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Per Alice",
+          "amount": 4600
+        }
+      ],
+      "pricingNotes": "Kids ages 6 and younger are free of charge (up to 2 kids free). Price is $46 per person plus tax.",
+      "duration": 60,
+      "durationDisplay": "60 minutes",
+      "restrictions": {
+        "minUnits": 3,
+        "maxUnits": 8
+      },
+      "ageRestrictions": {
+        "minAge": 12,
+        "notes": "Suitable for Alices ages 12 and up. Alices under 14 should be accompanied by an adult."
+      },
+      "isPrivate": true,
+      "difficulty": "INTERMEDIATE",
+      "roomType": "MULTI_ROOM",
+      "themeGenre": [
+        "fantasy",
+        "adventure",
+        "family-friendly",
+        "Alice in Wonderland"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Built in collaboration with Seattle local artists"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Reimagined in 2024 with vibrant artistry"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Medium difficulty"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Private game — no strangers"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Wheelchair accessible"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Players should arrive 5-10 minutes before the reserved time"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Waiver signing required before the game"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Up to 2 extra players above booking maximum allowed"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Private game experience"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Game master guidance"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and alcohol not permitted inside escape rooms"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Conundroom Avalon Parcsquare",
+          "address": "16088 NE 85th ST, Redmond, WA 98052",
+          "notes": "Customer parking in front of garage with 1 disability reserved spot. Street parking around the building. Redmond Park & Ride garage about 5 min walk away."
+        }
+      ],
+      "cancellationPolicy": "Full refund if cancelled more than 48 hours before game start via email. Less than 48 hours: full credit or gift card for future use. No refund or credit for no-show. Rescheduling available with 24+ hours notice (credit only, no refund).",
+      "bookingSystem": {
+        "name": "Bookeo",
+        "bookingUrl": "https://bookeo.com/conundroom?type=41550C3U9R7173CA195219"
+      }
+    },
+    {
+      "title": "Zeppelin — Time to Fly!",
+      "shortDescription": "Small-team airship adventure escape room. Take control of a zeppelin caught in a terrifying storm.",
+      "description": "You are a team of treasure hunters who have been invited to work with the most influential organization in the industry. After a long journey, you have finally boarded the airship that is supposed to take you to their headquarters, but a terrifying storm has crossed your path, and now you will have to take control of the airship yourselves! Play our free game \"Imaginarium\" before visiting the escape room and face the challenges that awaited your team on the way to the airship!",
+      "url": "https://conundroom.us/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Per treasure hunter",
+          "amount": 4600
+        }
+      ],
+      "pricingNotes": "Kids ages 6 and younger are free of charge (up to 2 kids free). Price is $46 per person plus tax.",
+      "duration": 60,
+      "durationDisplay": "60 minutes",
+      "restrictions": {
+        "minUnits": 2,
+        "maxUnits": 4
+      },
+      "ageRestrictions": {
+        "minAge": 14,
+        "notes": "Suitable for treasure hunters aged 14 and up. Treasure hunters under 14 should be accompanied by an adult."
+      },
+      "isPrivate": true,
+      "difficulty": "INTERMEDIATE",
+      "roomType": "MULTI_ROOM",
+      "themeGenre": [
+        "adventure",
+        "steampunk",
+        "airship"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Big adventure for small teams!"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Works perfectly for 2-player teams"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Medium difficulty"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Private game — no strangers"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Wheelchair accessible"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Has some red \"danger\" strobing lights"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Play the free online game \"Imaginarium\" before visiting for a prequel experience"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Players should arrive 5-10 minutes before the reserved time"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Waiver signing required before the game"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Up to 2 extra players above booking maximum allowed"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Private game experience"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Game master guidance"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and alcohol not permitted inside escape rooms"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Conundroom Avalon Parcsquare",
+          "address": "16088 NE 85th St, Redmond, WA 98052",
+          "notes": "Customer parking in front of garage with 1 disability reserved spot. Street parking around the building. Redmond Park & Ride garage about 5 min walk away."
+        }
+      ],
+      "cancellationPolicy": "Full refund if cancelled more than 48 hours before game start via email. Less than 48 hours: full credit or gift card for future use. No refund or credit for no-show. Rescheduling available with 24+ hours notice (credit only, no refund).",
+      "bookingSystem": {
+        "name": "Bookeo",
+        "bookingUrl": "https://bookeo.com/conundroom?type=41550RXE3RE150F9927A02"
+      }
+    },
+    {
+      "title": "The Ghost Ship — Mystery of the Cursed Galleon!",
+      "shortDescription": "Family-friendly pirate escape room. Break a curse and escape a mysterious pirate galleon filled with mysteries.",
+      "description": "During a treasure hunt, your team of adventurers receives a curse that transports you to a pirate galleon filled with mysteries! The mysterious captain wants to keep you on the ship forever, but there is always a way out…",
+      "url": "https://conundroom.us/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Per pirate",
+          "amount": 4600
+        }
+      ],
+      "pricingNotes": "Kids ages 6 and younger are free of charge (up to 2 kids free). Price is $46 per person plus tax.",
+      "duration": 60,
+      "durationDisplay": "60 minutes",
+      "restrictions": {
+        "minUnits": 3,
+        "maxUnits": 6
+      },
+      "ageRestrictions": {
+        "minAge": 10,
+        "notes": "Suitable for pirates aged 10 and up. Pirates under 14 should be accompanied by an adult."
+      },
+      "isPrivate": true,
+      "difficulty": "INTERMEDIATE",
+      "roomType": "MULTI_ROOM",
+      "themeGenre": [
+        "pirate",
+        "adventure",
+        "mystery",
+        "family-friendly"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Best Family Choice!"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Medium difficulty"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Private game — no strangers"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Wheelchair accessible"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Players should arrive 5-10 minutes before the reserved time"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Waiver signing required before the game"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Up to 2 extra players above booking maximum allowed"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Private game experience"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Game master guidance"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and alcohol not permitted inside escape rooms"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Conundroom Avalon Parcsquare",
+          "address": "16088 NE 85th St, Redmond, WA 98052",
+          "notes": "Customer parking in front of garage with 1 disability reserved spot. Street parking around the building. Redmond Park & Ride garage about 5 min walk away."
+        }
+      ],
+      "cancellationPolicy": "Full refund if cancelled more than 48 hours before game start via email. Less than 48 hours: full credit or gift card for future use. No refund or credit for no-show. Rescheduling available with 24+ hours notice (credit only, no refund).",
+      "bookingSystem": {
+        "name": "Bookeo",
+        "bookingUrl": "https://bookeo.com/conundroom?type=41550N6NW7X18DA52EE6F0"
+      }
+    },
+    {
+      "title": "School of Magic — Make Your Wish Come True!",
+      "shortDescription": "Harry Potter-inspired kids' escape room. Learn magic and add your wish to the Grand Book of Wishes!",
+      "description": "Visit the School of Magic with your team of aspiring wizards! During your sneaky class in the Head Wizard's office, you will learn magic, how to think outside the box, solve puzzles, and work as a team to achieve your goal and add your own wish to the Grand Book of Wishes!",
+      "url": "https://conundroom.us/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Per wizard",
+          "amount": 4600
+        }
+      ],
+      "pricingNotes": "Kids ages 6 and younger are free of charge (up to 2 kids free). Price is $46 per person plus tax. One adult supervisor required for kids 13 and under — adult does not need a ticket if not playing.",
+      "duration": 60,
+      "durationDisplay": "60 minutes",
+      "restrictions": {
+        "minUnits": 2,
+        "maxUnits": 6
+      },
+      "ageRestrictions": {
+        "minAge": 8,
+        "notes": "Suitable for wizards aged 8 and up. Wizards 13 and under should be accompanied by an adult."
+      },
+      "isPrivate": true,
+      "difficulty": "NOVICE",
+      "roomType": "MULTI_ROOM",
+      "themeGenre": [
+        "magic",
+        "fantasy",
+        "kids",
+        "Harry Potter"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Updated in Oct '24 — New Puzzles!"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Perfect for kids and Harry Potter fans!"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Easy difficulty"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Works perfectly for 2-player teams"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Private game — no strangers"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Wheelchair accessible"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Players should arrive 5-10 minutes before the reserved time"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Waiver signing required before the game"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Adult supervisor does not count as a player and does not need a ticket as long as they are not playing"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Up to 2 extra players above booking maximum allowed"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Private game experience"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Game master guidance"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and alcohol not permitted inside escape rooms"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Conundroom Willows BP",
+          "address": "14824 NE 95TH ST, Redmond, WA 98052",
+          "notes": "Parking in front of the building. Ample space in the business park."
+        }
+      ],
+      "cancellationPolicy": "Full refund if cancelled more than 48 hours before game start via email. Less than 48 hours: full credit or gift card for future use. No refund or credit for no-show. Rescheduling available with 24+ hours notice (credit only, no refund).",
+      "bookingSystem": {
+        "name": "Bookeo",
+        "bookingUrl": "https://bookeo.com/schoolofmagic?type=41550EM77JM166981F7A16"
+      }
+    },
+    {
+      "title": "Crafted — Mine and Craft in Real Life!",
+      "shortDescription": "Minecraft-inspired kids' escape room. Mine resources, build tools, and craft your way out of the game!",
+      "description": "Everyone dreams of video games coming to life! Ask any kid what game they want to be in, and they'll say Minecraft, to bring mining and crafting to life. Take a part in an adventure in the workshop of Professor Cube. During your adventure, you will learn the basics of game design, collect resources to build your own tools, solve puzzles, and learn how to work together and use teamwork to achieve your goal - mine and craft your way out of the game into the real life!",
+      "url": "https://conundroom.us/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Per crafter",
+          "amount": 4600
+        }
+      ],
+      "pricingNotes": "Kids ages 6 and younger are free of charge (up to 2 kids free). Price is $46 per person plus tax. One adult supervisor required for kids 13 and under — adult does not need a ticket if not playing.",
+      "duration": 60,
+      "durationDisplay": "60 minutes",
+      "restrictions": {
+        "minUnits": 3,
+        "maxUnits": 8
+      },
+      "ageRestrictions": {
+        "minAge": 8,
+        "notes": "Suitable for crafters aged 8 and up. Crafters 13 and under should be accompanied by an adult."
+      },
+      "isPrivate": true,
+      "difficulty": "NOVICE",
+      "roomType": "MULTI_ROOM",
+      "themeGenre": [
+        "gaming",
+        "Minecraft",
+        "kids",
+        "adventure"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Escape Room for Kids!"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Kids difficulty"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Private game — no strangers"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Wheelchair accessible"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Players should arrive 5-10 minutes before the reserved time"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Waiver signing required before the game"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Adult supervisor does not count as a player and does not need a ticket as long as they are not playing"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Up to 2 extra players above booking maximum allowed"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Private game experience"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Game master guidance"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and alcohol not permitted inside escape rooms"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Conundroom Willows BP",
+          "address": "14824 NE 95TH ST, Redmond, WA 98052",
+          "notes": "Parking in front of the building. Ample space in the business park."
+        }
+      ],
+      "cancellationPolicy": "Full refund if cancelled more than 48 hours before game start via email. Less than 48 hours: full credit or gift card for future use. No refund or credit for no-show. Rescheduling available with 24+ hours notice (credit only, no refund).",
+      "bookingSystem": {
+        "name": "Bookeo",
+        "bookingUrl": "https://bookeo.com/schoolofmagic?type=41550HKHEE616D1E01DA5B"
+      }
+    },
+    {
+      "title": "Tesla's Laboratory",
+      "shortDescription": "Upcoming escape room set in Nikola Tesla's laboratory on the night before a mysterious fire. Discover what really happened.",
+      "description": "The newspapers say it was an accident. A fire destroyed Nikola Tesla's laboratory, and all evidence was lost. But that's not the whole story. On the night before the fire, secret experiments were still running. Documents vanished. No witnesses remained. And some believe Nikola Tesla knew the fire was coming… or caused it himself. You arrive at the laboratory just hour before it burns. Discover what really happened inside Tesla's lab before the truth disappears in flames.",
+      "url": "https://conundroom.us/",
+      "pricingModel": null,
+      "currency": "USD",
+      "priceByUnit": null,
+      "pricingNotes": "Coming April 2026. No pricing available yet.",
+      "isPrivate": true,
+      "themeGenre": [
+        "history",
+        "mystery",
+        "science"
+      ],
+      "features": [
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Coming April 2026"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Wheelchair accessible"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Conundroom Downtown Redmond",
+          "address": "16261 Redmond Way, #150, Redmond, WA 98052"
+        }
+      ],
+      "seasonality": {
+        "startDate": "April 2026",
+        "notes": "Coming soon — April 2026 launch"
+      }
+    },
+    {
+      "title": "Pacific Axes — Axe Throwing",
+      "shortDescription": "60-minute axe throwing experience in Redmond. Learn to throw axes and other sharp objects with expert axe masters.",
+      "description": "Want to try something new? Come to our axe throwing venue in Redmond, \"Pacific Axes,\" and experience the thrill of axe throwing. It's like darts, but way more fun! Our axe masters will teach you how to throw not only axes but also other sharp objects. Don't worry, it looks as cool as it is safe.",
+      "url": "https://pacificaxes.com/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Per thrower (with promo code CONUNDROOM)",
+          "amount": 2800
+        }
+      ],
+      "pricingNotes": "$28 for an hour with promo code CONUNDROOM. Regular price not stated on this page. 15% off promotion available.",
+      "duration": 60,
+      "durationDisplay": "60 minutes",
+      "restrictions": {
+        "maxUnits": 45
+      },
+      "ageRestrictions": {
+        "minAge": 13,
+        "notes": "Suitable for throwers aged 13 and up. Throwers under 18 should be accompanied by an adult."
+      },
+      "isPrivate": false,
+      "themeGenre": [
+        "axe throwing",
+        "activity",
+        "entertainment"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Learn a new skill together!"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Axe master instruction"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Throwers under 18 should be accompanied by an adult"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Pacific Axes",
+          "address": "16425 NE 80TH ST, Redmond, WA 98052"
+        }
+      ],
+      "activePromotions": [
+        {
+          "code": "CONUNDROOM",
+          "description": "15% off axe throwing — $28 for an hour",
+          "displayLocation": "Product listing on conundroom.us main page"
+        }
+      ],
+      "bookingSystem": {
+        "name": "Bookeo",
+        "bookingUrl": "https://bookeo.com/pacificaxes/?promotion=conundroom"
+      }
+    },
+    {
+      "title": "Imaginarium — Online Adventure",
+      "shortDescription": "Free online puzzle adventure. Gather your family or co-workers and solve puzzles from the comfort of your home.",
+      "description": "Gather your family or call your co-workers and share your screen! Our online experience Imaginarium will challenge your puzzle-solving skills in a new and immersive way. Play as part of a team of adventurers & treasure hunters. Receive a mysterious invitation, begin your journey into the unknown!",
+      "url": "https://conundroom.com/imaginarium/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "priceByUnit": null,
+      "pricingNotes": "Free to play.",
+      "duration": 60,
+      "durationDisplay": "60 minutes approx. play time",
+      "restrictions": {
+        "minUnits": 1
+      },
+      "ageRestrictions": {
+        "notes": "Suitable for any ages!"
+      },
+      "isPrivate": false,
+      "difficulty": "INTERMEDIATE",
+      "themeGenre": [
+        "adventure",
+        "puzzle",
+        "online"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Best for enjoying puzzles in the comfort of your home!"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Free to play"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Medium difficulty"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Unlimited participants"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Book online and follow the link in the confirmation email"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Can be played solo, though it will be a challenge"
+        }
+      ]
+    },
+    {
+      "title": "Party Room Rental",
+      "shortDescription": "Private party room at Willows BP location for up to 20 people at $60 per hour. Bring your own food, drinks, and decorations.",
+      "url": "https://conundroom-partyroom.my.canva.site/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per hour, up to 20 people",
+          "amount": 6000
+        }
+      ],
+      "pricingNotes": "$60 per hour. Book via custom quote request at party.conundroom.us or email info@conundroom.us.",
+      "restrictions": {
+        "maxUnits": 20
+      },
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Space with table and chairs provided"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food, drinks, tableware, and decorations not included — bring your own"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Conundroom Willows BP",
+          "address": "14824 NE 95TH ST, Redmond, WA 98052"
+        }
+      ]
+    }
+  ],
+  "extractionMetadata": {
+    "extractedAt": "2026-02-17T23:50:11.116864+00:00",
+    "method": "firecrawl_scrape_claude_api",
+    "claudeModel": "claude-opus-4-6",
+    "claudeTokensIn": 12306,
+    "claudeTokensOut": 9750,
+    "claudeCostEstimate": "$0.92",
+    "firecrawlCreditsUsed": 1,
+    "pagesUsed": [
+      "https://conundroom.us/"
+    ],
+    "totalMarkdownChars": 30491,
+    "rawHtmlIncluded": false,
+    "scriptVersion": "extract_operator_v1"
+  }
+}

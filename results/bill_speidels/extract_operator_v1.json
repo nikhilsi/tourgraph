@@ -1,0 +1,267 @@
+{
+  "operator": {
+    "name": "Bill Speidel's Underground Tour",
+    "url": "https://undergroundtour.com/",
+    "location": "614 1st Avenue, Pioneer Square, Seattle, WA",
+    "phone": "206-682-4646",
+    "email": null,
+    "bookingSystem": {
+      "name": "Gatemaster",
+      "embedUrl": "https://www.gatemastertickets.com/store/SearchEventDaySpan.aspx?selected=1&CompanyID=GM180"
+    },
+    "operatorType": "Historical underground walking tour operator in Seattle's Pioneer Square",
+    "otaPresence": [
+      "TripAdvisor"
+    ]
+  },
+  "products": [
+    {
+      "title": "Bill Speidel's Underground Tour",
+      "shortDescription": "A humorous 75-minute guided walking tour through the subterranean storefronts and sidewalks buried when Seattle rebuilt on top of itself after the Great Fire of 1889.",
+      "description": "The only way to tour the interconnecting tunnels of the world-famous Seattle Underground! A humorous stroll through subterranean storefronts and sidewalks entombed when the city rebuilt on top of itself after the Great Fire of 1889. The 75-minute guided walking tour begins beneath Doc Maynard's Public House, then spills into historic Pioneer Square — Seattle's birthplace — before plunging underground for an exclusive, time-capsule view of the buried city!",
+      "url": "https://undergroundtour.com/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": null,
+      "pricingNotes": "Tickets available online, by phone, or at the ticket counter. Specific pricing not listed on the website pages provided. Children 6 years and under are admitted free.",
+      "duration": 75,
+      "durationDisplay": "Approximately 75 minutes",
+      "restrictions": {
+        "minUnits": null,
+        "maxUnits": null
+      },
+      "ageRestrictions": {
+        "minAge": null,
+        "maxAge": null,
+        "label": "Children 6 and under free",
+        "notes": "Children 6 years and under are admitted free, but may find the tour challenging."
+      },
+      "schedule": [
+        "Tours start on the hour, every day"
+      ],
+      "seasonality": {
+        "startDate": "January 1",
+        "endDate": "December 31",
+        "notes": "Year-round. April-September: 9 am-7 pm (extra tours every half hour June-August, 9:30 am-4:30 pm, sold at Box Office only). October-March: 10 am-6 pm. December 24 (Christmas Eve): 10 am-1 pm. December 26-31: 9 am-6 pm. Closed Thanksgiving Day and Christmas Day."
+      },
+      "cancellationPolicy": null,
+      "isPrivate": false,
+      "themeGenre": [
+        "history",
+        "adventure",
+        "humor"
+      ],
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Professional guided walking tour"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Access to interconnecting underground tunnels"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "The only way to tour the world-famous Seattle Underground"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "TripAdvisor Travelers' Choice Award 2025"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Humorous, entertaining guides"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Moderately rugged terrain with flights of stairs, uneven terrain, and spotty lighting. High heels not recommended."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Dress for the weather and wear comfortable walking shoes"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Tickets available in advance online, by phone at 206-682-4646, or at the ticket counter at 614 First Avenue"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "First come, first served — arrive early"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Public transit recommended; take the bus or light rail. Street and garage parking available in the neighborhood."
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Doc Maynard's Public House / Underground Tour Ticket Booth",
+          "address": "614 1st Avenue, Pioneer Square, Seattle, WA",
+          "pickupTime": null,
+          "notes": "In Pioneer Place Park, Pioneer Square, between Cherry and James Street. Take the James Street Exit from Interstate 5."
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Historic Pioneer Square",
+          "address": null,
+          "pickupTime": null,
+          "notes": "Seattle's birthplace — the tour spills into the historic neighborhood above ground"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Seattle Underground (subterranean storefronts and sidewalks)",
+          "address": null,
+          "pickupTime": null,
+          "notes": "Interconnecting tunnels created when the city rebuilt one story higher after the Great Fire of 1889"
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "http://undergroundtour.com/wp-content/uploads/2026/01/home_underground_fallback.jpg",
+          "alt": "Underground Tour"
+        },
+        {
+          "type": "IMAGE",
+          "url": "http://undergroundtour.com/wp-content/uploads/2025/08/home_underground_fallback-2.jpg",
+          "alt": "Underground Tour"
+        },
+        {
+          "type": "IMAGE",
+          "url": "http://undergroundtour.com/wp-content/uploads/2025/02/marquee_utour_expect.jpg",
+          "alt": "What to Expect"
+        },
+        {
+          "type": "IMAGE",
+          "url": "http://undergroundtour.com/wp-content/uploads/2025/08/Barbers-300x142.jpg",
+          "alt": "Lady Barbers"
+        },
+        {
+          "type": "VIDEO",
+          "url": "http://undergroundtour.com/wp-content/uploads/2026/01/tut_open_compressed2.mp4",
+          "alt": "Underground Tour video"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Can I wear high heels?",
+          "answer": "Be prepared for the Underground to be moderately rugged. You'll encounter flights of stairs, uneven terrain and spotty lighting. So dress for the weather and leave those high heels at home."
+        },
+        {
+          "question": "Can I reserve a spot on the Underground Tour?",
+          "answer": "You can buy your ticket in advance — online or by phone — up to two hours before the start of a tour. Call 206-682-4646. You also may purchase tickets in person at the ticket booth before your tour. It's first come, first served, so we suggest you arrive early."
+        },
+        {
+          "question": "When are you open?",
+          "answer": "Tours start on the hour, every day. April-September: 9 am-7 pm (extra tours every half hour June-August, 9:30 am-4:30 pm, sold at Box Office only). October-March: 10 am-6 pm. December 24 (Christmas Eve): 10 am-1 pm. December 26-31: 9 am-6 pm. Tours daily, year round, except closed Thanksgiving Day and Christmas Day. Tours last approximately 75 minutes. Children 6 years and under are admitted free, but may find the tour challenging."
+        },
+        {
+          "question": "Where do I park?",
+          "answer": "Don't! Please take the bus or light rail (metro.kingcounty.gov). But if you really want to drive, there is parking available throughout the neighborhood both on the street and in parking garages."
+        },
+        {
+          "question": "How many tickets can I buy?",
+          "answer": "As many as you want, depending on availability. If your group is larger than 10 adults, or has a significant number of children or students, you can have the Underground all to yourself on a private tour. Please contact us at 206-682-4646, ext. 118, to speak with a sales representative."
+        }
+      ],
+      "bookingSystem": {
+        "name": "Gatemaster",
+        "bookingUrl": "https://www.gatemastertickets.com/store/SearchEventDaySpan.aspx?selected=1&CompanyID=GM180&clear=true"
+      }
+    },
+    {
+      "title": "Private Underground Tour (Groups)",
+      "shortDescription": "Private guided underground tour for groups of 10+ adults, corporate events, birthday parties, educational groups, and special events.",
+      "description": "If your group is larger than 10 adults, or has a significant number of children or students, you can have the Underground all to yourself on a private tour. Available for corporate groups, birthday parties, private tours, catering, special events, and educational groups.",
+      "url": "https://undergroundtour.com/groups/",
+      "pricingModel": null,
+      "currency": "USD",
+      "priceByUnit": null,
+      "pricingNotes": "Quote-based, no online pricing. Contact 206-682-4646, ext. 118, to speak with a sales representative.",
+      "duration": 75,
+      "durationDisplay": "Approximately 75 minutes",
+      "restrictions": {
+        "minUnits": 10,
+        "maxUnits": null
+      },
+      "ageRestrictions": null,
+      "schedule": null,
+      "seasonality": {
+        "startDate": "January 1",
+        "endDate": "December 31",
+        "notes": "Year-round, by arrangement. Closed Thanksgiving Day and Christmas Day."
+      },
+      "cancellationPolicy": null,
+      "isPrivate": true,
+      "themeGenre": [
+        "history",
+        "adventure",
+        "humor",
+        "corporate",
+        "education"
+      ],
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Private guided walking tour — your group only"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Access to interconnecting underground tunnels"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Available for corporate groups, birthday parties, special events, educational groups, and catering"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Minimum 10 adults or groups with a significant number of children or students"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Contact 206-682-4646, ext. 118 to book"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Underground Tour",
+          "address": "614 1st Avenue, Pioneer Square, Seattle, WA",
+          "pickupTime": null,
+          "notes": "Between Cherry and James Street"
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "http://undergroundtour.com/wp-content/uploads/2025/05/marquee_utour_groups.jpg",
+          "alt": "Groups"
+        }
+      ],
+      "faqs": [],
+      "bookingSystem": {
+        "name": "Phone booking",
+        "bookingUrl": null
+      }
+    }
+  ],
+  "extractionMetadata": {
+    "extractedAt": "2026-02-17T23:55:40.654642+00:00",
+    "method": "firecrawl_scrape_claude_api",
+    "claudeModel": "claude-opus-4-6",
+    "claudeTokensIn": 11530,
+    "claudeTokensOut": 3051,
+    "claudeCostEstimate": "$0.40",
+    "firecrawlCreditsUsed": 4,
+    "pagesUsed": [
+      "https://undergroundtour.com/",
+      "https://undergroundtour.com/what-to-expect/",
+      "https://undergroundtour.com/groups/",
+      "https://undergroundtour.com/history/"
+    ],
+    "totalMarkdownChars": 27720,
+    "rawHtmlIncluded": false,
+    "scriptVersion": "extract_operator_v1"
+  }
+}

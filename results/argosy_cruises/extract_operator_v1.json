@@ -1,0 +1,1032 @@
+{
+  "operator": {
+    "name": "Argosy Cruises",
+    "url": "https://argosycruises.com/",
+    "location": "Pier 55, 1101 Alaskan Way, Seattle, WA 98101",
+    "phone": "(888) 623-1445",
+    "email": "cruises@argosycruises.com",
+    "bookingSystem": {
+      "name": "RocketRez",
+      "embedUrl": "https://secure.rocket-rez.com/RocketWeb2/7245ac7192dff84/"
+    },
+    "operatorType": "Sightseeing cruise and private charter operator on Seattle waterways, operating for over 75 years",
+    "otaPresence": [
+      "CityPASS",
+      "Viator",
+      "Groupon"
+    ]
+  },
+  "products": [
+    {
+      "title": "Seattle Harbor Cruise",
+      "shortDescription": "1-hour narrated sightseeing cruise around Elliott Bay with views of the Seattle skyline, shipping port, and mountain ranges.",
+      "description": "During this 1-hour cruise around Elliott Bay, experience all the beauty and history Seattle has to offer. Spend time with a local guide, learning about Seattle's historic waterfront and getting an up-close look at one of the west coast's largest shipping terminals. Take in the view of the city's skyline with a spectacular panoramic background of the Cascade and Olympic mountain ranges, including majestic Mount Rainier, making for the perfect photo op.",
+      "url": "https://argosycruises.com/argosy-cruises/harbor-cruise/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Adult (13+)",
+          "amount": 4545
+        },
+        {
+          "unitType": "child",
+          "label": "Youth (4-12)",
+          "amount": 2564
+        },
+        {
+          "unitType": "infant",
+          "label": "Kid (3 and under)",
+          "amount": 0
+        }
+      ],
+      "pricingNotes": "Price includes taxes and online ticketing fee. Prices are in USD.",
+      "duration": 60,
+      "durationDisplay": "1 hour",
+      "ageRestrictions": {
+        "minAge": 0,
+        "notes": "Kids 3 and under are free"
+      },
+      "seasonality": {
+        "startDate": "January 1",
+        "endDate": "December 31",
+        "notes": "Year-round operation"
+      },
+      "cancellationPolicy": null,
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Live local guide narration on Seattle's history and waterfront"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Panoramic and up-close views of the Seattle skyline and shipping port"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Sweeping views of the Olympic Mountains and Puget Sound"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Full-service bar on board with cocktails, local wine and beer, non-alcoholic beverages and snacks available for purchase"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Indoor seating and outdoor space"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Restrooms on board"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and beverages (available for purchase on board)"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "No outside food or drink allowed onboard"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Seattle's Original Harbor Cruise™"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Available via Seattle CityPASS® — save up to 50%"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "ADA accessible — crew trained to help guests with wheelchairs, strollers, scooters. Call 206.623.1445 for specific ADA questions."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Boarding begins about 20 minutes prior to departure. Seating is first-come, first-served."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Cruise route is approximate and can change based on weather, vessel traffic, and captain's discretion."
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Pier 55, Seattle Waterfront",
+          "address": "1101 Alaskan Way, Seattle, WA 98101"
+        },
+        {
+          "type": "END",
+          "name": "Pier 55, Seattle Waterfront",
+          "address": "1101 Alaskan Way, Seattle, WA 98101"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Elliott Bay"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Seattle Skyline"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Container Shipping Terminal"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Olympic Mountains"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Mount Rainier (weather permitting)"
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2016/05/May-22_44-500x500.jpg",
+          "alt": "Seattle Great Wheel: an enormous ferris wheel as seen from Argosy Cruise, with Seattle sky scrapers behind it"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2016/05/cruise-ships-argosy-cruises-500x500.jpg",
+          "alt": "Cruise Ships"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2016/05/smith-tower-argosy-cruises-500x500.jpg",
+          "alt": "Smith Tower & Washington State Ferry"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2016/05/icebreakers-argosy-cruises-500x500.jpg",
+          "alt": "Icebreakers, U.S. Coast Guard"
+        }
+      ],
+      "isPrivate": false,
+      "themeGenre": [
+        "sightseeing",
+        "history",
+        "nature"
+      ],
+      "upgradeModifiers": [
+        {
+          "name": "First to Board",
+          "description": "Skip the line and be first to board, first to the bar, and first to pick the perfect seat. Plus, receive 15% off drinks your entire ride.",
+          "priceByUnit": [
+            {
+              "unitType": "adult",
+              "label": "Adult (13+) with First to Board",
+              "amount": 6294
+            },
+            {
+              "unitType": "child",
+              "label": "Youth (4-12) with First to Board",
+              "amount": 2564
+            }
+          ]
+        }
+      ],
+      "bookingSystem": {
+        "name": "RocketRez",
+        "bookingUrl": "https://secure.rocket-rez.com/RocketWeb2/7245ac7192dff84/items/2/4"
+      }
+    },
+    {
+      "title": "Seattle Locks Cruise",
+      "shortDescription": "2-hour one-way narrated cruise through the Hiram M. Chittenden (Ballard) Locks, connecting Puget Sound and Lake Washington Ship Canal.",
+      "description": "Discover the best of Seattle on a scenic one-way cruise through the heart of the city and experience the iconic Hiram M. Chittenden (Ballard) Locks, a 'boat elevator' connecting Puget Sound and Lake Washington Ship Canal. On the saltwater of Puget Sound, take in breathtaking views of the city skyline and majestic mountain ranges. Then, glide through the freshwater canal for a closer look at historic neighborhoods, commercial fishing vessels, floating homes, seaplanes, and more. Along the way, enjoy captivating stories of Seattle's past and present from a live, local guide.",
+      "url": "https://argosycruises.com/argosy-cruises/locks-cruise/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Adult",
+          "amount": 6294
+        },
+        {
+          "unitType": "child",
+          "label": "Youth (4-12)",
+          "amount": 2913
+        },
+        {
+          "unitType": "infant",
+          "label": "Kid (3 and under)",
+          "amount": 0
+        }
+      ],
+      "pricingNotes": "Price includes taxes and online ticketing fee. Prices are in USD.",
+      "duration": 120,
+      "durationDisplay": "2 hours",
+      "ageRestrictions": {
+        "minAge": 0,
+        "notes": "Kids 3 and under are free"
+      },
+      "seasonality": {
+        "startDate": "January 1",
+        "endDate": "December 31",
+        "notes": "Year-round operation. In-person/walk up ticket sales available at AGC boarding location Fridays and Sundays."
+      },
+      "cancellationPolicy": null,
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Transit through the Hiram M. Chittenden (Ballard) Locks"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Live local guide narration on Seattle's history"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Up-close views of fishing vessels, seaplanes, and floating homes"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Views of the Space Needle and Seattle skyline from both Lake Union and Elliott Bay"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Full-service bar on board with cocktails, local wine and beer, non-alcoholic beverages and snacks available for purchase"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Indoor and outdoor seating"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Restrooms on board"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and beverages (available for purchase on board)"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "No outside food or drink allowed onboard"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Return transportation (one-way cruise)"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Most-loved tour — experience the 'boat elevator'"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Available via Seattle CityPASS® — save up to 50%"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "ADA accessible — crew trained to help guests with wheelchairs, strollers, scooters. If you or someone in your party needs assistance with boarding/disembarking, please call ahead at 206.623.1445."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "This cruise is a one-way journey, ending at a different location than where you boarded."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Boarding begins 20 minutes prior to departure. Seating is first-come, first-served."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Return Bus available to purchase for sailings starting April 17."
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Pier 54, Seattle Waterfront",
+          "address": "1101 Alaskan Way, Seattle, WA 98101",
+          "notes": "Or AGC Marina in South Lake Union, depending on sailing. Check confirmation email for location."
+        },
+        {
+          "type": "START",
+          "name": "AGC Marina, South Lake Union",
+          "notes": "Alternative departure point depending on sailing direction"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Hiram M. Chittenden (Ballard) Locks"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Seattle Skyline and Space Needle"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Gas Works Park"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Floating Homes & Houseboats (including Sleepless in Seattle house)"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Fremont Bridge"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Ballard Bridge"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Kenmore Sea Planes"
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2016/05/floating-home-communities-argosy-cruises-500x500-1-500x500.jpeg",
+          "alt": "Floating home communities"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2016/05/fremont-bridge-argosy-cruises-500x500-1-500x500.jpeg",
+          "alt": "Fremont Bridge"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2016/05/gas-works-park-argosy-cruises-500x500-1-500x500.jpeg",
+          "alt": "Gas Works Park"
+        }
+      ],
+      "isPrivate": false,
+      "themeGenre": [
+        "sightseeing",
+        "history",
+        "nature",
+        "engineering"
+      ],
+      "bookingSystem": {
+        "name": "RocketRez",
+        "bookingUrl": "https://secure.rocket-rez.com/RocketWeb2/7245ac7192dff84/items/2/5"
+      }
+    },
+    {
+      "title": "Summer Views Cruise",
+      "shortDescription": "1.5-hour golden hour cruise around Elliott Bay, Alki Point, and into Puget Sound with minimal narration — perfect for socializing and sunset views.",
+      "description": "Looking to have a drink with a view? Hop on our Summer Views Cruise! This 1.5-hour cruise is the perfect place to bask in golden hour as the sun begins to set. Head up to the top deck to take in that summer breeze and enjoy locally sourced beverages and bites while the captain takes you on a surprise route around Puget Sound and shares their favorite landmarks. This cruise is unique in that narration will be minimal so that you can socialize and take in the sights — like breathtaking views of the Seattle skyline and the Olympic Mountains.",
+      "url": "https://argosycruises.com/argosy-cruises/summer-cruise/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Adult (13+)",
+          "amount": 4895
+        },
+        {
+          "unitType": "child",
+          "label": "Youth (4-12)",
+          "amount": 2913
+        },
+        {
+          "unitType": "infant",
+          "label": "Kid (3 and under)",
+          "amount": 0
+        }
+      ],
+      "pricingNotes": "Price includes taxes and online ticketing fee. Prices are in USD. 2025 season has wrapped up; 2026 sailings available.",
+      "duration": 90,
+      "durationDisplay": "1.5 hours",
+      "ageRestrictions": {
+        "minAge": 0,
+        "notes": "Kids 3 and under are free"
+      },
+      "seasonality": {
+        "startDate": "May 1",
+        "endDate": "September 30",
+        "notes": "Seasonal — summer only. 2025 season wrapped; 2026 sailings on sale."
+      },
+      "cancellationPolicy": "Full refund until 48 hours before departure when Trip Protection is added.",
+      "schedule": [
+        "6:30 pm"
+      ],
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "1.5-hour cruise around Elliott Bay, Alki Point, and into Puget Sound during golden hour"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Full-service bar on board with cocktails, local wine and beer, non-alcoholic beverages and snacks available for purchase"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Panoramic and up-close views of the Seattle skyline and shipping port"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Sweeping views of the Olympic Mountains and Puget Sound"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Indoor seating and outdoor space"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Restrooms on board"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "No outside food or drink allowed onboard"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Golden hour sunset cruise with minimal narration — perfect for socializing"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "ADA accessible — crew trained to help guests with wheelchairs, strollers, scooters. Call 206.623.1445 for specific ADA questions."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Boarding begins about 20 minutes prior to departure. Seating is first-come, first-served."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Arrive 30 minutes before departure."
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Pier 54, Seattle Waterfront",
+          "address": "1001 Alaskan Way, Seattle, WA 98104"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Where can I buy tickets?",
+          "answer": "You can buy tickets online or in person at the Argosy Cruises Reservations Center located at 1101 Alaskan Way Pier 55, Seattle, WA 98101."
+        },
+        {
+          "question": "Where do I board?",
+          "answer": "You will board at Pier 54, 1001 Alaskan Way Seattle, WA 98104. Pier 54 is one pier south of the Argosy Cruises Reservation Center along the Seattle waterfront."
+        },
+        {
+          "question": "What time should I arrive?",
+          "answer": "We recommend arriving 30 minutes before departure. Boarding begins about 20 minutes before departure, and seating is first come, first served."
+        },
+        {
+          "question": "What is the difference between Argosy's Harbor Cruise and the Summer Views Cruise?",
+          "answer": "The Harbor Cruise is a 1-hour tour offering live narration. The Summer Views Cruise is a 1.5-hour cruise of Alki Point, Elliott Bay, and into Puget Sound at the perfect time in the evening to enjoy golden hour. There is no tour narration on the Summer Views Cruise — except a handful of must-mention moments from the captain."
+        },
+        {
+          "question": "What will I see on the Summer Views Cruise?",
+          "answer": "Aside from the start of the beautiful Seattle sunset, you'll cruise out into Elliott Bay, passing the Seattle waterfront, Harbor Island, Alki Point, and into Puget Sound. You'll take in views of the Olympic Mountains and the city skyline, including an incredible look back at the Space Needle."
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2024/04/ESP_4244-500x500.jpg",
+          "alt": null
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2024/04/Harbor_three_women_skyline-500x500.jpg",
+          "alt": null
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2024/04/Argosy_Views-Cruise-e1757354886754-500x500.jpg",
+          "alt": "Argosy Views Cruise"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2024/04/Argosy_Summer-Views-Cruise_May-2024_DSC_6272-500x500.jpg",
+          "alt": null
+        }
+      ],
+      "isPrivate": false,
+      "themeGenre": [
+        "sightseeing",
+        "sunset",
+        "social"
+      ],
+      "bookingSystem": {
+        "name": "RocketRez",
+        "bookingUrl": null
+      }
+    },
+    {
+      "title": "Private Views Cruise",
+      "shortDescription": "1.5-hour private group cruise with Sip & Savor food and beverage package included, designed for hassle-free corporate and social events for 25-130 guests.",
+      "description": "Enjoy a 1.5-hour Private Views Cruise designed for simplicity and ease. This hassle-free, budget-friendly option offers stunning views and a relaxing atmosphere for groups who want to focus on fun without the stress of planning. Great for casual gatherings, small celebrations, and team events for 25-130 guests. Pricing is per person for added flexibility and includes our Sip & Savor food and beverage package. Available from the Seattle Waterfront select evenings April-September.",
+      "url": "https://argosycruises.com/argosy-cruises/private-views-cruise/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceTiers": [
+        {
+          "tierName": "25-39 guests",
+          "minUnits": 25,
+          "maxUnits": 39,
+          "pricePerUnit": 13400,
+          "notes": "Includes tax and service charge. Includes Sip & Savor package."
+        },
+        {
+          "tierName": "40-64 guests",
+          "minUnits": 40,
+          "maxUnits": 64,
+          "pricePerUnit": 11400,
+          "notes": "Includes tax and service charge. Includes Sip & Savor package."
+        },
+        {
+          "tierName": "65-89 guests",
+          "minUnits": 65,
+          "maxUnits": 89,
+          "pricePerUnit": 10400,
+          "notes": "Includes tax and service charge. Includes Sip & Savor package."
+        },
+        {
+          "tierName": "90-130 guests",
+          "minUnits": 90,
+          "maxUnits": 130,
+          "pricePerUnit": 9900,
+          "notes": "Includes tax and service charge. Includes Sip & Savor package."
+        }
+      ],
+      "pricingNotes": "Per person pricing includes tax and service charge. Includes Sip & Savor food and beverage package. Save $5 per person on Mondays.",
+      "duration": 90,
+      "durationDisplay": "1.5 hours",
+      "restrictions": {
+        "minUnits": 25,
+        "maxUnits": 130
+      },
+      "seasonality": {
+        "startDate": "April 1",
+        "endDate": "September 30",
+        "notes": "Select dates April through September, weekdays only (Monday-Friday)"
+      },
+      "schedule": [
+        "4:30 pm",
+        "6:30 pm"
+      ],
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Sip & Savor food and beverage package included"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Seasonal hors d'oeuvres by Gourmondo Catering"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Complimentary fountain soda, coffee, and tea"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Two drink tickets per guest for local beer, cider, hard seltzer, wine, non-alcoholic beer and mocktails"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Hassle-free, budget-friendly private group cruise"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "No planning stress — everything is included"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Vessel: Goodtime III"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "6:30 pm departure available Monday-Wednesday only"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Cocktail upgrade available for $7 per guest"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Pier 54, Seattle Waterfront",
+          "address": "Seattle Waterfront"
+        }
+      ],
+      "isPrivate": true,
+      "themeGenre": [
+        "corporate",
+        "social",
+        "sightseeing"
+      ],
+      "upgradeModifiers": [
+        {
+          "name": "Cocktail Upgrade",
+          "description": "Upgrade drink tickets to include cocktails",
+          "priceByUnit": [
+            {
+              "unitType": "adult",
+              "label": "Per guest",
+              "amount": 700
+            }
+          ]
+        }
+      ],
+      "activePromotions": [
+        {
+          "code": null,
+          "description": "Save $5 per person on Mondays",
+          "displayLocation": "Private Views Cruise pricing section"
+        }
+      ]
+    },
+    {
+      "title": "Christmas Ship™ Festival",
+      "shortDescription": "1.5-hour holiday cruise aboard the Spirit of Seattle™ with live choir performance, Santa, and festive atmosphere — a Pacific Northwest tradition since 1949.",
+      "description": "The Argosy Cruises Christmas Ship™ Festival is a beloved Pacific Northwest tradition that has been lighting up the holidays since 1949. Each season, the Spirit of Seattle™—our Official Christmas Ship™—is adorned with hundreds of sparkling white lights and sails to nearly 40 waterfront communities across Puget Sound. On board, the choir fills the night air with festive music, serenading guests on the ship, passengers aboard follow boats, and joyful crowds gathered on shore.",
+      "url": "https://argosycruises.com/argosy-cruises/christmas-ship-festival/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "pricingNotes": "Pricing for 2026 not yet published. Adult (13+), Youth (4-12), and Kid (3 and under, free) tiers exist. Regular sailings and Special Events (Opening Night, Parade of Boats, Grand Finale) have different pricing. Check back for 2026 details.",
+      "priceByUnit": [
+        {
+          "unitType": "infant",
+          "label": "Kid (3 and under)",
+          "amount": 0
+        }
+      ],
+      "duration": 90,
+      "durationDisplay": "1.5 hours",
+      "ageRestrictions": {
+        "minAge": 0,
+        "notes": "Kids 3 and under are free. 21+ Follow Boat is adults only (21+)."
+      },
+      "seasonality": {
+        "startDate": "November 1",
+        "endDate": "December 31",
+        "notes": "Holiday season only. Check back for 2026 details."
+      },
+      "cancellationPolicy": "Guests who cancel 10 days or more in advance of their departure date and time will be offered a 50% refund on the total amount paid (excluding non-refundable Ticketing Fee). Cancellations less than 10 days in advance will not be refunded. Future open credits will not be offered. Trip Protection is not available for Special Events.",
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "1.5-hour cruise to a waterfront community"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Onboard performance by a community choir"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Santa reading of 'Twas the Night Before Christmas"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Full-service bar with specialty cocktails, local wine & beer, and non-alcoholic beverages"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "No outside food or beverages allowed onboard"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Food and drinks available for purchase on board"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "A Northwest tradition for over 75 years, since 1949"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Spirit of Seattle™ adorned with hundreds of sparkling white lights"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Multiple departure locations: Seattle, Kirkland, Renton, Ballard, Edmonds, and Tacoma"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Max 15 tickets per online purchase. Groups larger than 15 should email cruises@argosycruises.com"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Pre-order food during checkout; last day to pre-order is 10 days before departure"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Only cancelled if mayor or governor declares state of emergency"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Various Puget Sound locations",
+          "notes": "Departure locations across Seattle, Kirkland, Renton, Ballard, Edmonds, and Tacoma"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "What is the Christmas Ship™?",
+          "answer": "The official Christmas Ship™, the Spirit of Seattle, is a family-friendly holiday experience on the water. When the Christmas Ship™ arrives at the designated parks, the choir on board sings a 20-minute concert which is broadcast to the surrounding boats and people onshore. Santa rides along to entertain, and a cruise director will guide you through the evening. Snacks, pre-wrapped food, and beverages are available for purchase."
+        },
+        {
+          "question": "What is the 21+ Follow Boat?",
+          "answer": "The 21+ Follow Boat is another fully decorated Argosy Cruises boat that follows the Christmas Ship™ along the night's cruise route. This boat is adults-only and has select availability. It provides a fun holiday celebration for those 21+ with themed dress, light trivia, etc."
+        },
+        {
+          "question": "What is the Christmas Ship™ cancellation policy?",
+          "answer": "Guests who cancel 10 days or more in advance of their departure date and time will be offered a 50% refund on the total amount paid (excluding non-refundable Ticketing Fee). Cancellations less than 10 days in advance will not be refunded. Future open credits will not be offered for any cancellations. Trip Protection is not available for Special Events."
+        },
+        {
+          "question": "Can I bring my peppermint mocha onboard?",
+          "answer": "No outside food or beverages allowed onboard. The bar will have festive, specialty cocktails, local beer & wine, plus non-alcoholic beverages. Snacks, bites, and chowder will also be available to purchase on board."
+        },
+        {
+          "question": "Does the cruise ever get cancelled?",
+          "answer": "We only cancel sailings if the mayor or governor declare a state of emergency due to weather or other causes."
+        },
+        {
+          "question": "How should I dress?",
+          "answer": "Wear warm, comfortable clothing and flat shoes that are not smooth-soled. Stilettos are strongly discouraged. Most guests enjoy both indoor heated decks and outdoor spaces. Festive holiday attire is always encouraged!"
+        },
+        {
+          "question": "Can I make a large group ticket reservation?",
+          "answer": "When booking online, a MAX of 15 tickets is allowed. For group ticket interest, email cruises@argosycruises.com with group size, reason, company if applicable, and other details. For private holiday parties, reach out to the private charter department."
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2017/07/Medina-08-019edit-500x500.jpg",
+          "alt": null
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2017/07/Andrew-Christmas-Ship-image-BIG-500x500.jpg",
+          "alt": null
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2017/07/Goodtime-2-Christmas-snowedit2-500x500.jpg",
+          "alt": null
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://argosycruises.com/wp-content/uploads/2017/07/ESP_5946-Edit-500x500.jpg",
+          "alt": null
+        }
+      ],
+      "isPrivate": false,
+      "themeGenre": [
+        "holiday",
+        "music",
+        "family",
+        "seasonal"
+      ]
+    },
+    {
+      "title": "Christmas Ship™ 21+ Follow Boat",
+      "shortDescription": "Adults-only 1.5-hour festive holiday cruise that follows the Spirit of Seattle™ Christmas Ship to a waterfront community, with themed party, trivia, and giveaways.",
+      "description": "A festive and themed adults-only party! Hop on the 21+ boat and follow the Spirit of Seattle to a waterfront community. This experience includes a 1.5-hour cruise, light trivia & chances to win giveaways, selfie station & photo-op opportunities, and a full-service bar with specialty cocktails, local wine & beer, and non-alcoholic beverages.",
+      "url": "https://argosycruises.com/christmas-ship-21-follow-boat/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "pricingNotes": "Pricing for 2026 not yet published. Adults only (21+).",
+      "duration": 90,
+      "durationDisplay": "1.5 hours",
+      "ageRestrictions": {
+        "minAge": 21,
+        "notes": "Adults only, 21+"
+      },
+      "seasonality": {
+        "startDate": "November 1",
+        "endDate": "December 31",
+        "notes": "Holiday season only. Select availability."
+      },
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "1.5-hour cruise following the Christmas Ship™ to a waterfront community"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Light trivia & chances to win giveaways"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Selfie Station & Photo-op opportunities"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Full-service bar with specialty cocktails, local wine & beer, and non-alcoholic beverages"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Adults-only themed holiday party on the water"
+        }
+      ],
+      "isPrivate": false,
+      "themeGenre": [
+        "holiday",
+        "party",
+        "adults-only"
+      ]
+    },
+    {
+      "title": "Private Charters (Custom)",
+      "shortDescription": "Fully customized private boat charters for corporate events, weddings, celebrations, and more on Seattle's waterways.",
+      "description": "The best boat charters in Seattle start with Argosy Cruises. As Seattle's premier private charter provider for over 75 years, your options for parties, celebrations, corporate events, weddings, private tours, team building activities and entertaining are endless. Our skilled charter planning team is ready to help make your next private charter or corporate event a success. A fully customized experience, from the catering of your choice to the music, there is no shortage of fun when you charter a boat with us!",
+      "url": "https://argosycruises.com/boat-charters/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "Quote-based, no online pricing. Request a quote via the website.",
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Fully customized experience — catering, music, entertainment"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Dedicated charter planning team"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Seattle's premier private charter provider for over 75 years"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Available for corporate events, weddings, school events, celebrations, team building, and more"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Various cruise lengths and departure points available"
+        }
+      ],
+      "media": [
+        {
+          "type": "VIDEO",
+          "url": "https://www.youtube.com/watch?v=0bQN5LnMX5w",
+          "alt": "Private Charter with Argosy Cruises"
+        }
+      ],
+      "isPrivate": true,
+      "themeGenre": [
+        "corporate",
+        "wedding",
+        "celebration",
+        "private"
+      ]
+    },
+    {
+      "title": "Harbor Cruise & Seattle City Tour (Combo)",
+      "shortDescription": "Combo ticket bundling the Argosy Harbor Cruise with a Seattle City Tour operated by Tours Northwest.",
+      "url": "https://argosycruises.com/harbor-cruise-seattle-city-tour/",
+      "pricingNotes": "Combo pricing not visible on pages provided. See detail page for pricing.",
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "A day in Seattle by land and sea — the ultimate tour experience"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "City tour operated by Tours Northwest"
+        }
+      ],
+      "crossOperatorBundles": [
+        {
+          "partnerOperator": "Tours Northwest",
+          "partnerProduct": "Seattle City Tour",
+          "partnerDuration": null
+        }
+      ],
+      "themeGenre": [
+        "sightseeing",
+        "combo"
+      ]
+    },
+    {
+      "title": "Harbor Cruise & Hop-On, Hop-Off (Combo)",
+      "shortDescription": "Combo ticket with discounted admission to the Argosy Harbor Cruise and CitySightseeing double decker red bus hop-on, hop-off tour.",
+      "url": "https://argosycruises.com/deals-and-combos/hop-on-hop-off-combo/",
+      "pricingNotes": "Discounted combo pricing not visible on pages provided. See detail page.",
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Discounted admission to cruise Elliott Bay and ride around town on the double decker red bus"
+        }
+      ],
+      "crossOperatorBundles": [
+        {
+          "partnerOperator": "CitySightseeing",
+          "partnerProduct": "Hop-On, Hop-Off Bus Tour",
+          "partnerDuration": null
+        }
+      ],
+      "themeGenre": [
+        "sightseeing",
+        "combo"
+      ]
+    },
+    {
+      "title": "Locks Cruise & Hop-On, Hop-Off (Combo)",
+      "shortDescription": "Combo ticket with discounted admission to the Argosy Locks Cruise and CitySightseeing hop-on, hop-off bus tour.",
+      "url": "https://argosycruises.com/locks-hop-on-hop-off-combo/",
+      "pricingNotes": "Discounted combo pricing not visible on pages provided. See detail page.",
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Discounted admission to cruise Lake Union and ride around town with CitySightseeing"
+        }
+      ],
+      "crossOperatorBundles": [
+        {
+          "partnerOperator": "CitySightseeing",
+          "partnerProduct": "Hop-On, Hop-Off Bus Tour",
+          "partnerDuration": null
+        }
+      ],
+      "themeGenre": [
+        "sightseeing",
+        "combo"
+      ]
+    },
+    {
+      "title": "Harbor Cruise & Sky View Observatory (Combo)",
+      "shortDescription": "Combo ticket providing discounted admission to the Argosy Harbor Cruise and Sky View Observatory — see Seattle from the sea and sky.",
+      "url": "https://argosycruises.com/deals-and-combos/harbor-and-sky-views/",
+      "pricingNotes": "Discounted combo pricing not visible on pages provided. See detail page.",
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "See Seattle from the sea and sky with discounted admission to both attractions"
+        }
+      ],
+      "crossOperatorBundles": [
+        {
+          "partnerOperator": "Sky View Observatory",
+          "partnerProduct": "Sky View Observatory Admission",
+          "partnerDuration": null
+        }
+      ],
+      "themeGenre": [
+        "sightseeing",
+        "combo"
+      ]
+    },
+    {
+      "title": "Husky Sailgating: 2026 Season",
+      "shortDescription": "Special event cruise for University of Washington Husky football game days.",
+      "url": "https://argosycruises.com/argosy-cruises/husky-football-sailgating/",
+      "pricingNotes": "Pricing not visible on pages provided. See detail page for 2026 season details.",
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Husky football sailgating experience on the water"
+        }
+      ],
+      "themeGenre": [
+        "sports",
+        "tailgating",
+        "special event"
+      ]
+    },
+    {
+      "title": "Group Tickets (Harbor & Locks Cruises)",
+      "shortDescription": "Discounted group tickets for groups of 20 or more on the Harbor Cruise and Locks Cruise.",
+      "url": "https://argosycruises.com/argosy-cruises/group-tours/",
+      "pricingNotes": "Group discount pricing not visible on pages provided. Minimum 20 guests required.",
+      "restrictions": {
+        "minUnits": 20
+      },
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Save on Harbor Cruise and Locks Cruise with groups of 20 or more"
+        }
+      ],
+      "themeGenre": [
+        "sightseeing",
+        "group"
+      ]
+    }
+  ],
+  "extractionMetadata": {
+    "extractedAt": "2026-02-18T00:08:39.116052+00:00",
+    "method": "firecrawl_scrape_claude_api",
+    "claudeModel": "claude-opus-4-6",
+    "claudeTokensIn": 69033,
+    "claudeTokensOut": 10542,
+    "claudeCostEstimate": "$1.83",
+    "firecrawlCreditsUsed": 8,
+    "pagesUsed": [
+      "https://argosycruises.com/",
+      "https://argosycruises.com/argosy-cruises/harbor-cruise/",
+      "https://argosycruises.com/argosy-cruises/locks-cruise/",
+      "https://argosycruises.com/argosy-cruises/summer-cruise/",
+      "https://argosycruises.com/argosy-cruises/private-views-cruise/",
+      "https://argosycruises.com/deals-and-combos/",
+      "https://argosycruises.com/argosy-cruises/christmas-ship-festival/",
+      "https://argosycruises.com/boat-charters/"
+    ],
+    "totalMarkdownChars": 166600,
+    "rawHtmlIncluded": false,
+    "scriptVersion": "extract_operator_v1"
+  }
+}

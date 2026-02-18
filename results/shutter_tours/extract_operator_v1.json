@@ -1,0 +1,1158 @@
+{
+  "operator": {
+    "name": "Shutter Tours",
+    "url": "https://www.shuttertours.com/",
+    "location": null,
+    "phone": "425-516-8838",
+    "email": null,
+    "bookingSystem": {
+      "name": "FareHarbor",
+      "embedUrl": "https://fareharbor.com/embeds/book/shuttertours/items/"
+    },
+    "operatorType": "Family-owned Seattle-based sightseeing and photography tour company offering day tours in the Pacific Northwest and international safaris",
+    "otaPresence": [
+      "TripAdvisor",
+      "Viator",
+      "Expedia"
+    ]
+  },
+  "products": [
+    {
+      "title": "Snoqualmie Falls & Seattle City Tour",
+      "shortDescription": "A 4-hour picturesque tour of downtown Seattle highlights and the stunning 268-foot Snoqualmie Falls waterfall.",
+      "description": "Our Seattle tour begins at the Pike Place Market. After everyone is aboard the shuttle, we will set off on our experience of Seattle. As we navigate the city's streets, your professional guide will provide an engaging and informative narration of major events in Seattle's history. You'll hear fascinating stories about the Great Seattle Fire of 1889, the history of \"Underground\" Seattle, and how the Klondike Gold Rush helped turn the city into the most important port in the Pacific Northwest. After leaving the city behind, we'll journey through the scenic town of Snoqualmie, nestled in the Cascade foothills. The 268-foot waterfall is one of the most breathtaking natural wonders in the Pacific Northwest. Our next stop is the iconic Fremont Troll, nestled beneath a bridge. Just around the corner, you'll encounter a 16-foot-tall statue of Vladimir Lenin. Next, we'll visit the Ballard Locks where you'll have about 30 minutes to explore the grounds, view the fish ladder, and snap some memorable photos. The final stop is Kerry Park, the #1 rated location for photos of the city skyline. Between 2-2:15 PM, your tour will end and we will drop you back off at Pike Place Market.",
+      "url": "https://www.shuttertours.com/snoqualmie-falls-tour.php",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Adult",
+          "amount": 8500
+        },
+        {
+          "unitType": "senior",
+          "label": "Senior",
+          "amount": 8000
+        },
+        {
+          "unitType": "child",
+          "label": "Child",
+          "amount": 6900
+        }
+      ],
+      "duration": 240,
+      "durationDisplay": "4 hours",
+      "schedule": [
+        "9:45 AM"
+      ],
+      "seasonality": {
+        "startDate": null,
+        "endDate": null,
+        "notes": "Runs daily except April (Tulip Festival season). Closed from the third week of October through early December."
+      },
+      "cancellationPolicy": "Full refund up to 24 hours before tour date. Tickets booked through resellers such as Viator and Expedia must be refunded through the reseller directly.",
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Professional guide with engaging narration"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Umbrellas"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "First aid kit"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Free 30-page e-book \"Self-Guided Walking Tour of Seattle\" when booking through website"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Lunch not included"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Hotel pickups not offered"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Best Seattle Tour Value"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "#1 of 216 Outdoor Activities in Seattle on TripAdvisor"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Over 1,400 five star reviews"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Foldable wheelchairs and walkers accommodated for ambulatory guests who can board with minimal assistance. Motorized wheelchairs cannot be accommodated (no ramp)."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Children welcome but must have their own seat (no sitting on laps). Car seats not provided but buses have seat belts to accommodate your own."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Coffee and snacks available for purchase at Snoqualmie Falls gift shop"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "During Fall and Winter, Ballard Locks stop is replaced with Fisherman's Terminal"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Cruise terminal pickups/drop-offs no longer available for public tours due to Port of Seattle changes at Pier 91"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Pike Place Market Information Booth",
+          "address": "1st and Pike Street, Seattle, WA",
+          "pickupTime": "9:45 AM",
+          "notes": "Near the 'Public Market Center' sign with the large clock and brass pig (Rachel). Follow brass hoof prints to the information booth facing 1st Avenue. Be there no later than 10 AM."
+        },
+        {
+          "type": "END",
+          "name": "Pike Place Market",
+          "address": "1st and Pike Street, Seattle, WA",
+          "notes": "Drop-off between 2:00-2:15 PM"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Snoqualmie Falls",
+          "notes": "268-foot waterfall, extra time allowed for photos and exploration"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Kerry Park",
+          "notes": "#1 rated location for Seattle skyline photos"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Fremont Troll"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Ballard Locks",
+          "notes": "30 minutes to explore grounds and fish ladder (Fall/Winter: Fisherman's Terminal instead)"
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/homepage/tours/falls-tour.jpg",
+          "alt": "Snoqualmie Falls Tour"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/images/backgrounds/snoqualmie-tour.jpg",
+          "alt": "Snoqualmie Falls Tour"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/falls-tour-pionier.jpg",
+          "alt": "Pioneer Square Seattle"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/falls-tour-snoqualmie.jpg",
+          "alt": "Snoqualmie Falls Tours Seattle WA"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/falls-tour-fremont-troll.jpg",
+          "alt": "Fremont Troll tour"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/falls-tour-ballard-locks.jpg",
+          "alt": "Ballard Locks"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/falls-tour-kerry-park.jpg",
+          "alt": "Kerry Park The Best Seattle View"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/falls-tour-ebook.jpg",
+          "alt": "Free Seattle Tour Ebook"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Where is the tour meeting point?",
+          "answer": "Meet your tour guide at the Pike Place Market Information booth located on 1st and Pike Street. Be there no later than 10 AM or 2:30 PM for afternoon tour. This is close to the sign that says 'Public Market Center' with the large clock. You will see a large brass pig (Rachel) beneath this clock. Follow the brass hoof prints to the information booth facing 1st Avenue."
+        },
+        {
+          "question": "When does the tour run?",
+          "answer": "We run our Snoqualmie Falls & Seattle tours daily, except for April when we run our Tulip Festival tours. We are closed starting the third week in October through Early December."
+        },
+        {
+          "question": "How much does this Seattle tour cost?",
+          "answer": "The cost is $85.00 per person with discounts for seniors and children."
+        },
+        {
+          "question": "Do you offer hotel pickups?",
+          "answer": "We do not offer hotel pickups. Our pickup point is within a 10-minute Uber ride of over 80 downtown hotels."
+        },
+        {
+          "question": "Do you offer pre and post-cruise pickups and drop-offs?",
+          "answer": "Due to changes at the Port of Seattle facility at Pier 91, we will no longer be booking Cruise Terminal pickups and drop-offs for our public tours. We can do Cruise Terminal pickups and drop-offs for private tours and our partner companies."
+        },
+        {
+          "question": "Will children enjoy this tour?",
+          "answer": "Children are welcome on our tours and we have several attractions that are especially popular with kids, such as the Fremont Troll and the Ballard Locks. We do not provide car seats for infants on our buses, but all buses are equipped with seat belts that can accommodate your own car seat. Children are not allowed to sit on a parent's lap during the tour, for safety reasons."
+        },
+        {
+          "question": "Are the tours refundable?",
+          "answer": "Yes, you can get a full refund up to 24 hours before your tour date. Tickets booked through ticket resellers such as Viator and Expedia to be refunded with the ticket reseller directly and not through Shutter Tours."
+        },
+        {
+          "question": "Do you offer any group discounts on this tour?",
+          "answer": "Please contact Terry at 425-516-8838 for group discount information."
+        },
+        {
+          "question": "Do you provide lunch?",
+          "answer": "Lunch is not included in the tour price, so we recommend that you bring a snack or eat a hearty breakfast before joining us. Coffee and snacks are available for purchase at the gift shop at Snoqualmie Falls, our first stop on the tour."
+        },
+        {
+          "question": "What is the duration of the tour?",
+          "answer": "The tour is 4 hours long."
+        },
+        {
+          "question": "What about wheelchairs and walkers?",
+          "answer": "Our buses are equipped to accommodate foldable wheelchairs and walkers for those who are ambulatory and can board the bus with minimal assistance. We are unable to accommodate motorized wheelchairs as our buses are not equipped with ramps. Please call 425-516-8838 if you need clarification."
+        }
+      ],
+      "isPrivate": false,
+      "themeGenre": [
+        "sightseeing",
+        "nature",
+        "history",
+        "photography"
+      ],
+      "bookingSystem": {
+        "name": "FareHarbor",
+        "bookingUrl": "https://fareharbor.com/embeds/book/shuttertours/items/?full-items=yes"
+      }
+    },
+    {
+      "title": "Boeing Factory Tour From Seattle",
+      "shortDescription": "A half-day guided tour from Seattle to the Boeing Factory in Everett, including the Future of Flight center and a 1.5-hour factory tour.",
+      "description": "Boeing started in Seattle in 1916 and became the dominant global giant at the dawn of the Jet Age. Today you can visit the Boeing factory, with the tours being one of the most popular tours in Washington State. The Boeing Factory located in Everett, Washington is the home for the production of the historic 747, the 787 Dreamliner as well as the 767 and 777. The hour and a half factory tour presented by The Boeing Company will give you an opportunity to see a production facility that is so big that all of Disneyland can fit into the building with room to spare. The 45 minute drive with your guide will include historic background on the Boeing Company as well as additional information and history of Seattle. Upon arrival, your guide will help you with tour tickets and use of lockers for cameras and bags. You'll have time to enjoy the Future of Flight interactive displays before the factory tour begins. After the tour, you'll have additional time to browse the Boeing gift shop and visit the Strato Deck overlooking the Paine Field runway. The 45-minute drive back to Seattle offers three drop-off locations: Space Needle, Westin Hotel, and Pike Place Market.",
+      "url": "https://www.shuttertours.com/Boeing-Factory-Tour.php",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Adult",
+          "amount": 7900
+        }
+      ],
+      "pricingNotes": "Price is $79.00 per person including the $25.00 Boeing factory tour ticket fee. Discounts available for seniors and children but specific amounts not listed.",
+      "duration": 270,
+      "durationDisplay": "10:00 AM - 2:30 PM (approx 4.5 hours)",
+      "restrictions": {
+        "maxUnits": 12
+      },
+      "ageRestrictions": {
+        "minAge": null,
+        "notes": "Children must be 48 inches or taller to take the Boeing factory tour. No babies or small children allowed on the factory tour. No childcare facility available. Strollers not allowed."
+      },
+      "schedule": [
+        "10:00 AM"
+      ],
+      "seasonality": {
+        "startDate": "January 1",
+        "endDate": "December 31",
+        "notes": "Year-round Monday-Friday except April (Tulip Festival). CURRENTLY CANCELLED until further notice."
+      },
+      "cancellationPolicy": "Full refund up to 24 hours before tour date. Tickets booked through resellers such as Viator and Expedia must be refunded through the reseller directly.",
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Professional guide with narration about Boeing history and Seattle"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "$25.00 per person Boeing factory tour ticket fee included"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Hand sanitizer provided"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Three drop-off locations: Space Needle, Westin Hotel, Pike Place Market"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Lunch not provided (small cafeteria available at Future of Flight)"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Hotel pickups not offered (Westin Hotel pickup only)"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "No cameras or phones allowed on the Boeing factory tour"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Small comfortable buses with up to 12 guests"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Visit the largest airplane manufacturing facility in the world"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Walking is approximately 1/3 of a mile with up to 21 steps at a time. Wheelchairs and walkers not allowed on the tour time. Contact Boeing Company for accessible 10:30 AM or 2:00 PM tours."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Tour is currently cancelled until further notice"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Weekdays are best to see actual assembly work activity"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "No personal items allowed on factory tour including purses, backpacks, cell phones. Free lockers available onsite."
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Westin Hotel",
+          "address": "1900 5th Ave, Seattle, WA",
+          "pickupTime": "10:00 AM",
+          "notes": "Charter bus loading zone on Westlake Avenue. Guides arrive between 9:45-9:50 AM."
+        },
+        {
+          "type": "END",
+          "name": "Space Needle / Westin Hotel / Pike Place Market",
+          "notes": "Three drop-off options. Approximate arrival back 2:30 PM depending on traffic."
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Future of Flight Aviation Center",
+          "notes": "Interactive displays including Airplane Design, Materials, Flight Systems, Propulsion/Engines, Family Interactive Zone, International Space Station Mockup"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Boeing Factory",
+          "address": "Everett, Washington",
+          "notes": "1.5 hour factory tour seeing assembly lines for 747-8, 767, 777, and 787 Dreamliner"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Strato Deck",
+          "notes": "Overlooks Paine Field runway with live air traffic control feed"
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/falls-tour-kerry-park.jpg",
+          "alt": "Seattle Skyline at Kerry Park"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/Boeing/futureofflight.jpg",
+          "alt": "Future of Flight Boeing Tour"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/Boeing/flight.jpg",
+          "alt": "Flight Museum Tours Seattle"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/Boeing/stratodeck.jpg",
+          "alt": "Boeing Future of Flight Strato Deck"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/Boeing/B17.jpg",
+          "alt": "Boeing B17"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/Boeing/spaceneedle.jpg",
+          "alt": "Space Needle and Monorail"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/Boeing/747.jpg",
+          "alt": "Boeing 747 evening takeoff"
+        },
+        {
+          "type": "VIDEO",
+          "url": "https://vimeo.com/20117060",
+          "alt": "Boeing 787 video"
+        },
+        {
+          "type": "VIDEO",
+          "url": "https://vimeo.com/37841140",
+          "alt": "Boeing Craftsmen Documentary Short"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Departure Location",
+          "answer": "Our tour guides arrive at the Westin Hotel (1900 5th Ave) charter bus loading zone on Westlake Avenue between 9:45-9:50 for an on-time departure of 10:00 AM."
+        },
+        {
+          "question": "Dates and times for the tours and how long does it run?",
+          "answer": "Tour runs year round except for the month of April during our Tulip Festival Tour. Starting time is 10:00 AM Mon-Fri with approximate time back to Seattle is 2:30 PM depending on traffic. The actual Boeing factory tour provided by the Boeing Company is 1.5 hours."
+        },
+        {
+          "question": "What are the costs?",
+          "answer": "The cost is $79.00 per person with discounts for seniors and children. This includes the $25.00 per person Boeing factory tour ticket fee charged by the Boeing Company for their 1.5 hour tour of the Boeing facility."
+        },
+        {
+          "question": "Can I take my camera on the Boeing Factory tour?",
+          "answer": "No, for safety reasons you are unable to bring cameras or phones in during the factory tour. You may take photos in the Future of Flight Gallery and on the Strato Deck. No personal items allowed on the tour. Free lockers are available onsite."
+        },
+        {
+          "question": "Is there assembly work going on the weekends?",
+          "answer": "Weekdays are the best to see the actual activity of the workers. Like most employers, there are fewer people working on the weekends."
+        },
+        {
+          "question": "Do you offer other hotel pickups?",
+          "answer": "Due to construction and unpredictability of Seattle traffic, we are unable to offer other hotel pickups at this time. Our pickup point at the Westin Hotel is within 10 minutes via Uber and Cab of over 80 downtown hotels."
+        },
+        {
+          "question": "Can I take the Boeing Factory tour on my own if I have a car or Uber?",
+          "answer": "Yes, the Boeing Factory Tour is operated by the Boeing Company."
+        },
+        {
+          "question": "Will children enjoy this tour?",
+          "answer": "Children are welcome but all children must be 48\" or taller to take the tour. You cannot carry babies or small children on the tour, and there is no childcare facility available. Strollers are not allowed."
+        },
+        {
+          "question": "Are the tours refundable?",
+          "answer": "Yes, you can get a full refund up to 24 hours before your tour date. Tickets booked through resellers to be refunded with the reseller directly."
+        },
+        {
+          "question": "Do you offer any group discounts on this tour?",
+          "answer": "Please contact Terry at 425-516-8838 for group discount information for 10 or more."
+        },
+        {
+          "question": "Do you provide lunch?",
+          "answer": "Lunch is not provided by us, but the Future of Flight has a small cafeteria."
+        },
+        {
+          "question": "How long is the tour?",
+          "answer": "The tour runs from 10:00 AM - 2:30 PM, depending on traffic."
+        },
+        {
+          "question": "How much walking is there? What about wheelchairs and walkers?",
+          "answer": "The amount of walking is approximately 1/3 of a mile with up to 21 steps at a time. Wheelchairs and walkers are not allowed on the tour time. Contact the Boeing Company for accessible 10:30 AM or 2:00 PM tours."
+        }
+      ],
+      "isPrivate": false,
+      "themeGenre": [
+        "aviation",
+        "history",
+        "technology"
+      ],
+      "bookingSystem": {
+        "name": "FareHarbor",
+        "bookingUrl": "https://fareharbor.com/shuttertours/items/107728/"
+      }
+    },
+    {
+      "title": "Mt. Rainier Tour",
+      "shortDescription": "A full-day guided tour from Seattle to Mt. Rainier National Park featuring Paradise Lodge, waterfalls, Reflection Lake, and stunning mountain scenery.",
+      "description": "Meeting at the Hyatt Regency Seattle at 808 Howell Street, our tour begins in our brand new 14 passenger mini coach as we get an early morning start. Your knowledgeable guide will share information throughout the trip. After a restroom stop, your first nature stop will be at Longmire where you can hike the Trail of the Shadows, a leisurely 0.7-mile loop through old growth forest and meadows. Paradise is famous for its glorious views and wildflower meadows. Here you will have adequate time to enjoy lunch and spend time hiking at a leisurely pace. You'll also have the opportunity to see and stop at waterfalls including Christine Falls. One of the most beautiful lakes to photograph in the United States is Reflection Lake, where Mt. Rainier sits directly behind the lake. After leaving Mt. Rainier National Park, we'll have one last stop to replenish your energy at a pre-chosen stop such as Scaleburgers or the Copper Creek Inn.",
+      "url": "https://www.shuttertours.com/Mt-Rainier-Tours.php",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Adult",
+          "amount": 14900
+        }
+      ],
+      "pricingNotes": "Price is $149.00 per person with discounts for seniors and children. Specific senior and child prices not listed.",
+      "duration": 630,
+      "durationDisplay": "7:00 AM - 5:00/5:30 PM (approx 10-10.5 hours)",
+      "restrictions": {
+        "maxUnits": 14
+      },
+      "schedule": [
+        "7:00 AM"
+      ],
+      "seasonality": {
+        "startDate": "June 1",
+        "endDate": "September 30",
+        "notes": "June through September, six days a week (closed Wednesdays). Tours have ended for the season — not operating this year."
+      },
+      "cancellationPolicy": "Refundable up to 24 hours before tour starting time. Once a tour is booked, Shutter Tours will fulfill the obligation regardless of the number of tickets sold. Tickets booked through resellers must be refunded through the reseller directly.",
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Professional knowledgeable guide"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "14 passenger mini coach with custom AC/Heating system"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Hand sanitizer provided"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Lunch not provided (available for purchase at Paradise Lodge)"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Hotel pickups not offered"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Brand new 14 passenger custom-ordered mini coach"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "All scheduled tours run — no minimum guests required"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Foldable wheelchairs and walkers accommodated for ambulatory guests with minimal assistance. Motorized wheelchairs cannot be accommodated (no ramp)."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Tours have ended for the season — not operating this year"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Wear multiple layers and good walking shoes/boots. Check Mt. Rainier weather forecast the day before."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "For infants, car seats not available and higher elevations may cause ear pressure."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Bring binoculars — you might see climbers hiking towards Muir base camp"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Hyatt Regency Seattle",
+          "address": "808 Howell Street, Seattle, WA",
+          "pickupTime": "7:00 AM",
+          "notes": "Bus pickup on the west side (8th Avenue) at the charter bus loading zone. Be there no later than 7:00 AM."
+        },
+        {
+          "type": "END",
+          "name": "Seattle",
+          "notes": "Arrive back between 5:00-5:30 PM"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Longmire",
+          "notes": "First nature stop. Optional 0.7-mile Trail of the Shadows loop through old growth forest and meadows."
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Paradise Lodge",
+          "notes": "Famous for glorious views and wildflower meadows. Ample time for lunch and hiking."
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Christine Falls",
+          "notes": "Magnificent stone bridge framing cascading water. Guide provides photo tips."
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Reflection Lake",
+          "notes": "One of the most beautiful lakes to photograph in the US with Mt. Rainier directly behind."
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/rainier/seattle.jpg",
+          "alt": "Shutter Tours Bus"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/rainier/paradise.jpg",
+          "alt": "Paradise Lodge Mt. Rainier"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/rainier/christinefalls_2.jpg",
+          "alt": "Mt. Rainier Christine Falls"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/rainier/reflectionlake.jpg",
+          "alt": "Reflection Lake"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/rainier/Scaleburgers.jpg",
+          "alt": "Scaleburgers in Elbe WA"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Departure Location",
+          "answer": "Meet your tour guide at the Hyatt Regency Seattle at 808 Howell Street no later than 7:00 AM. The bus pickup point is on the west side (8th Avenue) of the hotel at the charter bus loading zone."
+        },
+        {
+          "question": "7 AM Departure?",
+          "answer": "Mt Rainier is the most visited natural location in Washington State with over 2 million visitors each year. By getting an early start we can stay ahead of the crowds and other tour buses and have you back in Seattle by dinner time."
+        },
+        {
+          "question": "Dates for the tours",
+          "answer": "We run our Mt. Rainier Tours from June-September six days a week each day except for Wednesdays."
+        },
+        {
+          "question": "What are the costs?",
+          "answer": "The cost is $149.00 per person with discounts for seniors and children."
+        },
+        {
+          "question": "Do you offer hotel pickups?",
+          "answer": "Due to construction and unpredictability of Seattle traffic, we are unable to offer individual hotel pickups at this time. Our pickup point is within 10 minutes via Uber and Cab of over 80 downtown hotels."
+        },
+        {
+          "question": "What will the weather be like at Mt. Rainier?",
+          "answer": "Weather on Mt. Rainier is pretty unpredictable, but generally warm and in the 70's in the summer. As we get closer to fall, the weather gets cooler and some chances of rain, which may obscure viewing of the mountain."
+        },
+        {
+          "question": "What should we wear?",
+          "answer": "Check the Mt. Rainier weather forecast the day before. We suggest multiple layers as it can be chilly in the morning and shorts-like weather in the afternoon during mid summer. Wear good walking shoes or boots."
+        },
+        {
+          "question": "Will children enjoy this tour?",
+          "answer": "This might be one of the highlights of their trips to Seattle. Oftentimes there are still small patches of snow to play in and the opportunity to see wildlife can be a real treat. For infants, car seats are not available and higher elevations may cause pressure in their ears."
+        },
+        {
+          "question": "Are the tours refundable?",
+          "answer": "Yes, you can get a full refund up to 24 hours before your tour date. Tickets booked through resellers to be refunded with the reseller directly."
+        },
+        {
+          "question": "Do you offer any group discounts on this tour?",
+          "answer": "Please contact Terry at 425-516-8838 for group discount information."
+        },
+        {
+          "question": "Do you provide lunch?",
+          "answer": "Lunch is not provided. We suggest you bring along a snack or eat a late breakfast. Coffee and lunches are available to purchase at Paradise Lodge. Hand sanitizer provided as a courtesy."
+        },
+        {
+          "question": "How long is the tour?",
+          "answer": "We depart the Hyatt Regency Seattle at 7:00 AM and arrive back between 5:00-5:30 PM just in time for dinner."
+        },
+        {
+          "question": "What about wheelchairs and walkers?",
+          "answer": "We can accommodate foldable wheelchairs and walkers for those that are ambulatory and can board the bus with minimal assistance. We are unable to accommodate motorized wheelchairs as the bus is not equipped with a ramp."
+        }
+      ],
+      "isPrivate": false,
+      "themeGenre": [
+        "nature",
+        "photography",
+        "hiking",
+        "sightseeing"
+      ]
+    },
+    {
+      "title": "Private Mt. Rainier Group Tour",
+      "shortDescription": "A private 10-11 hour group tour from Seattle to Mt. Rainier National Park with hotel pickup, visiting Paradise Lodge, Christine Falls, and Reflection Lake.",
+      "description": "Our private Mt. Rainier group tour begins in our comfortable 13 passenger mini coach with downtown Seattle hotel pickups at 7:30 AM. Your guide will share many facts as well as a video presentation during the drive. Our first stop will be at Longmire where you'll have your first opportunity to step out into the fresh mountain air. Should you choose, you can hike the Trail of the Shadows, a 0.7-mile loop through forest and meadows. Paradise is famous for its glorious views and wildflower meadows. You'll have time to enjoy lunch and hiking. During your trip, you'll have the opportunity to see and stop at multiple waterfalls including Christine Falls. Reflection Lake offers one of the most beautiful photo opportunities in the Pacific Northwest with Mt. Rainier directly behind the lake. At Shutter Tours we give you ample time to enjoy nature whether it is a simple stroll on nice pathways or a more vigorous hike around Paradise Lodge.",
+      "url": "https://www.shuttertours.com/Mt-Rainier-Customized-Tours.php",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per bus (up to 14 guests)",
+          "amount": 129000
+        }
+      ],
+      "pricingNotes": "$1,290 per bus with capacity of up to 14 guests. Contact for group tour information.",
+      "duration": 660,
+      "durationDisplay": "10-11 hours",
+      "restrictions": {
+        "maxUnits": 14
+      },
+      "schedule": [
+        "7:30 AM"
+      ],
+      "seasonality": {
+        "startDate": "June 1",
+        "endDate": "September 30",
+        "notes": "Private Mt. Rainier Group Tours run June through September."
+      },
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Dedicated 13 passenger mini coach"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Professional guide with narration and video presentation"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Downtown Seattle hotel pickups"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Lunch not provided (available at Paradise Lodge)"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Private group tour — your group only"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Ample time for hiking and photography at Paradise"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Downtown Seattle Hotel Pickup",
+          "pickupTime": "7:30 AM"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Longmire",
+          "notes": "Optional 0.7-mile Trail of the Shadows loop"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Paradise Lodge",
+          "notes": "Glorious views, wildflower meadows, hiking, lunch"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Christine Falls",
+          "notes": "Magnificent stone bridge framing cascading water"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Reflection Lake",
+          "notes": "Mt. Rainier reflected in the lake — iconic photo opportunity"
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tulips/shutterbus.jpg",
+          "alt": "Shutter Tours Bus"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/rainier/paradise.jpg",
+          "alt": "Paradise Lodge Mt. Rainier"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/rainier/christinefalls_2.jpg",
+          "alt": "Mt. Rainier Christine Falls"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/rainier/reflectionlake.jpg",
+          "alt": "Reflection Lake"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/rainier/hike.jpg",
+          "alt": "Hiking Mt. Rainier"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/rainier/christinefalls2.jpg",
+          "alt": "Christine Falls"
+        }
+      ],
+      "isPrivate": true,
+      "themeGenre": [
+        "nature",
+        "photography",
+        "hiking",
+        "sightseeing"
+      ]
+    },
+    {
+      "title": "Skagit Valley Tulip Festival Tour",
+      "shortDescription": "A full-day guided tour from Seattle to the Skagit Valley Tulip Festival featuring Roozengaarde gardens, the charming town of La Conner, and tulip fields in bloom.",
+      "description": "Welcome to Shutter Tours, your premier choice for Tulip Festival Tours in Washington State. With a passion for providing exceptional experiences, we've established strong relationships with local farmers and growers. This exclusive access grants us insider knowledge to ensure your Tulip Festival adventure is unforgettable. As proud sponsors of the Skagit Valley Tulip Festival since 2012, we are thrilled to share this incredible event with you. Our tours go beyond transportation — benefit from photography tips to capture stunning moments amidst the tulip gardens. Engage with insightful tour narration, delving into the Skagit Valley and the fascinating tulip growing process. Experience VIP treatment with exclusive garden entrance privileges, allowing you to skip the lines. The tour visits Roozengaarde where you can photograph over 90 varieties of tulips, the historic waterfront village of La Conner with 2 hours to explore and dine, sprawling tulip fields in full bloom, and potentially witness the awe-inspiring spectacle of Snow Geese during their migration.",
+      "url": "https://www.shuttertours.com/tulip.php",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Per person",
+          "amount": 12596
+        }
+      ],
+      "pricingNotes": "$125.96 per person + taxes and fees. All participants pay the same price including children due to tour popularity.",
+      "duration": 570,
+      "durationDisplay": "7:30 AM - 4:30/5:00 PM (approx 9-9.5 hours)",
+      "schedule": [
+        "7:30 AM"
+      ],
+      "seasonality": {
+        "startDate": "April 8",
+        "endDate": "April 25",
+        "notes": "April 8-25, 2026 booking dates. Additional dates may be added based on tulip blooming timing. Now booking for 2026."
+      },
+      "cancellationPolicy": "Refundable up to 72 hours before tour date. Cancellation requests made with less than 72 hours' notice are non-refundable. Tour operates within a limited 3-week window and often reaches full capacity.",
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Professional guide with narration about Skagit Valley and tulip growing"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Admission fee to Roozengaarde gardens included"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Bottled water"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Umbrellas"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "First aid kit"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Photography tips from guides"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "VIP exclusive garden entrance privileges — skip the lines"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Lunch not provided (2-hour stop in La Conner with many restaurants)"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Only one pickup location offered (Hyatt Regency)"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Proud sponsors of the Skagit Valley Tulip Festival since 2012"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Highest-rated Tulip Festival Tour company in Washington State"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "VIP skip-the-line garden entrance"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Now booking for April 2026"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Foldable wheelchairs and walkers accommodated for ambulatory passengers with minimal assistance. Motorized wheelchairs cannot be accommodated (no ramp). Call 425-516-8838 for clarification."
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Car seats for infants not provided but you can bring your own. Inform in advance for proper seat arrangements."
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Hyatt Regency Seattle",
+          "address": "808 Howell St, Seattle, WA",
+          "pickupTime": "7:30 AM"
+        },
+        {
+          "type": "END",
+          "name": "Downtown Seattle",
+          "notes": "Drop-off between 4:30-5:00 PM depending on traffic"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Roozengaarde",
+          "notes": "Over 90 varieties of tulips plus daffodils, hyacinths, crocus, and specialty flowers. Vast tulip fields behind the garden."
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "La Conner, Washington",
+          "notes": "Historic waterfront village voted 'Most Romantic Getaway' and 'Best town to capture the Northwest spirit.' 2 hours to explore shops and restaurants."
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Tulip Fields",
+          "notes": "Sprawling tulip fields in full bloom (when available, weather dependent)"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Snow Geese viewing",
+          "notes": "Possible sighting of Snow Geese during migration to Wrangel Island, Siberia. Route planned for optimal viewing when possible."
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/homepage/tours/tulip-festival.jpg",
+          "alt": "Skagit Valley Tulip Festival Tour"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/tulip-tour-bus.jpg",
+          "alt": "Shutter Tours Bus"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/tulip-tour-roozen-garde.jpg",
+          "alt": "Roozen Gaarde"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/tulip-tour-la-conner.jpg",
+          "alt": "La Conner, Washington"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/Tulip_Field.jpg",
+          "alt": "Tulip Fields in Mt. Vernon"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/tulip-tour-snow-geese.jpg",
+          "alt": "Snow Geese Mount Vernon WA"
+        },
+        {
+          "type": "VIDEO",
+          "url": "https://www.youtube.com/watch?v=zzSASHOrIjc",
+          "alt": "Tulip Festival Tour With Shutter Tours"
+        },
+        {
+          "type": "VIDEO",
+          "url": "https://www.youtube.com/watch?v=UjYvn4KU5r4",
+          "alt": "Skagit Valley Tulip Festival in Washington - RoozenGaarde"
+        }
+      ],
+      "faqs": [
+        {
+          "question": "Dates for the Tours",
+          "answer": "Our current booking dates are from April 8th to April 25th, 2026. Additional dates will be added based on tulip blooming timing."
+        },
+        {
+          "question": "What Are the Ticket Costs?",
+          "answer": "Ticket cost is $125.96 per person + tax/fees."
+        },
+        {
+          "question": "Departure Location",
+          "answer": "Pickup at Downtown Seattle Hyatt Regency Hotel (808 Howell St, Seattle) at 7:30 AM."
+        },
+        {
+          "question": "Do You Offer Hotel Pickups?",
+          "answer": "We only offer pickup at Seattle Hyatt Regency Hotel, 808 Howell St, Seattle."
+        },
+        {
+          "question": "Will Children Enjoy This Tour?",
+          "answer": "Children are welcome. Due to popularity, all participants pay the same price. Car seats for infants are not provided, but you can bring your own. Please inform us in advance for proper seat arrangements."
+        },
+        {
+          "question": "When Is the Best Time to See the Tulips?",
+          "answer": "The best time varies due to different tulip varieties and blooming periods. We coordinate with growers to optimize our schedule for the best viewing dates."
+        },
+        {
+          "question": "Are the Tours Refundable?",
+          "answer": "Yes, you can get a refund up to 72 hours before your tour date. Cancellation requests made with less than 72 hours' notice are non-refundable."
+        },
+        {
+          "question": "Do You Provide Lunch?",
+          "answer": "Lunch is not provided. Enjoy the 2-hour stop in La Conner with many award-winning restaurants to choose from."
+        },
+        {
+          "question": "How Long Is the Tour?",
+          "answer": "First pickup at Downtown Seattle hotel is at 7:30 AM, and drop-off is between 4:30-5 PM, depending on traffic."
+        },
+        {
+          "question": "You Used to Stop at Two Farms",
+          "answer": "Yes, the other farm will have a small planting this year. We've replaced it with an additional stop at the local larger fields for picturesque images after lunch in LaConner."
+        },
+        {
+          "question": "What About Wheelchairs and Walkers?",
+          "answer": "We can accommodate foldable wheelchairs and walkers for ambulatory passengers with minimal assistance. Motorized wheelchairs cannot be accommodated due to the lack of a bus ramp. Please call 425-516-8838 for clarification."
+        }
+      ],
+      "isPrivate": false,
+      "themeGenre": [
+        "nature",
+        "photography",
+        "flowers",
+        "sightseeing"
+      ],
+      "bookingSystem": {
+        "name": "FareHarbor",
+        "bookingUrl": "https://fareharbor.com/embeds/book/shuttertours/items/682135/calendar/2026/04/?full-items=yes"
+      }
+    },
+    {
+      "title": "Custom Private Tours",
+      "shortDescription": "Fully customizable private group tours in Seattle and the Pacific Northwest with dedicated bus, driver, and local expert guide.",
+      "description": "Custom tours with Shutter Tours allow you to explore Seattle at your own pace and according to your interests. Our experienced guides will work with you to create an itinerary that showcases the best of the city, from its history and culture to its natural beauty and landmarks. Whether you're interested in exploring the city's vibrant neighborhoods, visiting world-renowned attractions like the Space Needle and Pike Place Market, or taking a trip out of town to see the stunning Snoqualmie Falls, our custom tours offer something for everyone. Options include Seattle City Highlights, A Day at Mt. Rainier, Snoqualmie Falls, Wine Tasting, Flight Museums and Boeing Factory, Whale Watching, Coffee of Seattle, Brewery and Distillery Tours, Art and Book Tours, Garden Clubs, Family Reunions, and Two and Three Day Getaways. Buses range from comfortable mini buses with leather seating for up to 14 people to large 54 passenger coaches. Prices are quoted per bus to offer greater savings over a per person price.",
+      "url": "https://www.shuttertours.com/Seattle-Custom-Tours.php",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "Quote-based, custom pricing per bus. Contact for a custom quote. Mt. Rainier custom tours are $1,290 per bus (up to 14 guests).",
+      "restrictions": {
+        "maxUnits": 54
+      },
+      "features": [
+        {
+          "type": "INCLUSION",
+          "value": "Dedicated bus and driver"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Local expert guide"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Flexible custom itinerary"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Photography tips and assistance"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Fully customizable to your budget and interests"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Small comfortable buses to large 54 passenger coaches available"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Go when you want to go"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Example itinerary options: Seattle City Highlights, Mt. Rainier, Snoqualmie Falls, Wine Tasting, Flight Museums & Boeing Factory, Whale Watching, Coffee of Seattle, Brewery & Distillery Tours, Art & Book Tours, Garden Clubs, Family Reunions, Multi-day Getaways"
+        }
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/Seattle_Group_Tours.jpg",
+          "alt": "Custom Seattle Group Tours"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/falls-tour-kerry-park.jpg",
+          "alt": "Seattle Skyline at Kerry Park"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/custom/reflectionlake.jpg",
+          "alt": "Mt. Rainier Reflection Lake"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/falls-tour-snoqualmie.jpg",
+          "alt": "Snoqualmie Falls"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/custom/winetasting.jpg",
+          "alt": "Wine Tasting Tours in Seattle"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/custom/flight.jpg",
+          "alt": "Flight Museum Tours Seattle"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/custom/whalewatching.jpg",
+          "alt": "Whale Watching Tours in Puget Sound"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/custom/coffee.jpg",
+          "alt": "Coffee tours in Seattle"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://www.shuttertours.com/assets/images/tours/custom/custom-tours-other.jpg",
+          "alt": "Other custom tour ideas"
+        }
+      ],
+      "isPrivate": true,
+      "themeGenre": [
+        "sightseeing",
+        "nature",
+        "photography",
+        "food",
+        "wine",
+        "aviation",
+        "coffee",
+        "history"
+      ]
+    },
+    {
+      "title": "Tanzanian Safari",
+      "shortDescription": "International safari tour to Tanzania offered by Shutter Tours.",
+      "url": "https://www.shuttertours.com/Africa.php",
+      "pricingNotes": "No pricing or detail available from provided pages. Visit product page for details.",
+      "themeGenre": [
+        "safari",
+        "wildlife",
+        "adventure",
+        "photography"
+      ]
+    }
+  ],
+  "extractionMetadata": {
+    "extractedAt": "2026-02-17T23:38:39.817514+00:00",
+    "method": "firecrawl_scrape_claude_api",
+    "claudeModel": "claude-opus-4-6",
+    "claudeTokensIn": 25906,
+    "claudeTokensOut": 13037,
+    "claudeCostEstimate": "$1.37",
+    "firecrawlCreditsUsed": 7,
+    "pagesUsed": [
+      "https://www.shuttertours.com/",
+      "https://www.shuttertours.com/Seattle-Custom-Tours.php",
+      "https://www.shuttertours.com/snoqualmie-falls-tour.php",
+      "https://www.shuttertours.com/Boeing-Factory-Tour.php",
+      "https://www.shuttertours.com/Mt-Rainier-Tours.php",
+      "https://www.shuttertours.com/Mt-Rainier-Customized-Tours.php",
+      "https://www.shuttertours.com/tulip.php"
+    ],
+    "totalMarkdownChars": 76514,
+    "rawHtmlIncluded": false,
+    "scriptVersion": "extract_operator_v1"
+  }
+}

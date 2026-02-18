@@ -1,0 +1,1152 @@
+{
+  "operator": {
+    "name": "Totally Seattle & Beyond",
+    "url": "https://totallyseattle.com/",
+    "location": null,
+    "phone": "206-522-5994",
+    "email": "info@totallyseattle.com",
+    "bookingSystem": {
+      "name": "FareHarbor",
+      "embedUrl": "https://fareharbor.com/embeds/book/totallyseattle/?full-items=yes&flow=604995"
+    },
+    "operatorType": "Private and luxury tour operator specializing in Seattle sightseeing, driving tours, walking tours, and Pacific Northwest day trips",
+    "otaPresence": [
+      "TripAdvisor",
+      "Google",
+      "Facebook"
+    ]
+  },
+  "products": [
+    {
+      "title": "History & Landmarks Seattle City Tour",
+      "shortDescription": "A private 4+ hour driving tour blending Seattle's history, culture, and modern marvels into one seamless journey.",
+      "description": "Enjoy Seattle's past and present with an all-encompassing tour that blends history, culture, and modern marvels into one seamless journey. This private driving tour explores Seattle's landmarks, neighborhoods, and hidden gems with a knowledgeable local guide. Silver and Platinum packages accommodate up to 12 guests, Gold packages up to 6. Customized itinerary, starting time, and pick-up location included.",
+      "url": "https://totallyseattle.com/tour/seattle-history-landmarks-tour/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "From $675 per booking. Silver, Gold, and Platinum packages available. Exact package pricing not visible on pages provided.",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per booking (from)",
+          "amount": 67500
+        }
+      ],
+      "duration": 240,
+      "durationDisplay": "4+ Hours",
+      "isPrivate": true,
+      "restrictions": {
+        "maxUnits": 12
+      },
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "100% private sightseeing tour"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Customized itinerary, starting time & pick-up location"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Professional local guide"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Luxury vehicle transportation"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Silver and Platinum packages accommodate up to 12 guests; Gold packages up to 6"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Half-day driving tours with 4-hour minimums"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Can accommodate physical limitations of group members"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Foreign Language Guides available for additional hourly fees"
+        }
+      ],
+      "themeGenre": [
+        "history",
+        "culture",
+        "sightseeing"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/smush-webp/2023/11/Seattle-at-sunset-700x500.png.webp",
+          "alt": "Seattle skyline at sunset with the Space Needle"
+        }
+      ]
+    },
+    {
+      "title": "Snoqualmie Falls & Cascade Mountain Northwest Nature Tour",
+      "shortDescription": "A private 4+ hour driving tour east of Seattle to see the legendary Snoqualmie Falls and Cascade Mountain scenery.",
+      "description": "The Snoqualmie Falls Tour from Seattle is a 45-minute drive east to see the legendary Snoqualmie Falls. This private driving tour explores the natural beauty of the Cascade Mountains with a knowledgeable local guide. Options to extend or enhance your experience are available.",
+      "url": "https://totallyseattle.com/tour/snoqualmie-falls-salish-lodge-nature-hike/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "From $675 per booking. Silver, Gold, and Platinum packages available.",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per booking (from)",
+          "amount": 67500
+        }
+      ],
+      "duration": 240,
+      "durationDisplay": "4+ Hours",
+      "isPrivate": true,
+      "restrictions": {
+        "maxUnits": 12
+      },
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "100% private sightseeing tour"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Customized itinerary, starting time & pick-up location"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Professional local guide"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Luxury vehicle transportation"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Can accommodate physical limitations of group members"
+        }
+      ],
+      "locations": [
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Snoqualmie Falls"
+        }
+      ],
+      "themeGenre": [
+        "nature",
+        "sightseeing"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/smush-webp/2023/11/Snoqualmie-Falls-at-sunset-in-Washington-State-700x500.jpg.webp",
+          "alt": "Waterfall cascading over a rocky cliff surrounded by forest at sunset"
+        }
+      ]
+    },
+    {
+      "title": "Seattle Art Gallery Tour",
+      "shortDescription": "A private 4+ hour art-focused tour visiting Seattle's architecturally significant buildings, hidden galleries, street art, sculpture, and modern art.",
+      "description": "Visit Seattle's architecturally significant buildings to discover hidden galleries, street art by renowned artists, sculpture and modern art. This private art tour explores the creative side of Seattle with a knowledgeable local guide.",
+      "url": "https://totallyseattle.com/tour/seattle-art-gallery-chihuly-tour/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "From $675 per booking.",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per booking (from)",
+          "amount": 67500
+        }
+      ],
+      "duration": 240,
+      "durationDisplay": "4+ Hours",
+      "isPrivate": true,
+      "restrictions": {
+        "maxUnits": 12
+      },
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "100% private sightseeing tour"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Professional local guide"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Luxury vehicle transportation"
+        }
+      ],
+      "themeGenre": [
+        "art",
+        "culture",
+        "architecture"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/smush-webp/2022/04/20210824_180907459_iOS-2-700x500.jpg.webp",
+          "alt": "A person stands in an art gallery observing paintings displayed on the walls"
+        }
+      ]
+    },
+    {
+      "title": "Pike Place Market Seattle Center Walking Tour",
+      "shortDescription": "A private 3-hour walking tour of Pike Place Market and Seattle Center, including a monorail ride, for up to 12 guests.",
+      "description": "Experience Pike Place Market and Seattle Center in one spectacular tour experience. This delightful three-hour walking tour introduces you to the atmosphere and excitement of the Emerald City and leads you to some overlooked sites that other tours often miss. See Pike Place Market and the Seattle Center on a walking tour of downtown Seattle that promises convenience, comfort, and local expertise. Your tour begins at a private pick-up point near the entrance to Pike Place Market or at your nearby accommodations.",
+      "url": "https://totallyseattle.com/tour/pike-place-market-seattle-center-walking-tour/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "From $545 per booking. This is a private tour priced per group.",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per booking (from)",
+          "amount": 54500
+        }
+      ],
+      "duration": 180,
+      "durationDisplay": "3 Hours",
+      "isPrivate": true,
+      "restrictions": {
+        "maxUnits": 12
+      },
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "100% private walking tour"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Licensed to operate in Pike Place Market Historical District"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "See a fish get thrown by the famous Pike Place Fish Mongers"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Flexible starting times & location"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Pre-curated itinerary based on group needs, interests & mobility levels"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Gum for the Great Seattle Gum Wall"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "One-way monorail tickets for every guest"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Credit card processing fees"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Meals/tasting fees"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Retail purchases"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Admissions fees to venues"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "State sales tax"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Gratuity for excellent service"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Pier 57 / Seattle Waterfront",
+          "notes": "Recommended meeting point; alternatives within walking distance of the Market or Seattle Center can be accommodated"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Pike Place Market"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Original Starbucks"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Gum Wall"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Seattle Monorail"
+        },
+        {
+          "type": "END",
+          "name": "Seattle Center"
+        }
+      ],
+      "upgradeModifiers": [
+        {
+          "name": "5 Tickets w/timed reservations to all Seattle's Major Downtown Attractions",
+          "description": "Reserved Tickets for all tour guests to Seattle Aquarium, Space Needle, Chihuly Garden and Glass, MoPop and more!",
+          "priceByUnit": [
+            {
+              "unitType": "adult",
+              "label": "Per person",
+              "amount": 25000
+            }
+          ]
+        },
+        {
+          "name": "Space Needle & Chihuly Garden & Glass Combo Ticket",
+          "description": "Combo ticket for Space Needle and Chihuly Garden & Glass",
+          "priceByUnit": [
+            {
+              "unitType": "adult",
+              "label": "Per person",
+              "amount": 9000
+            }
+          ]
+        },
+        {
+          "name": "Space Needle Tickets Only",
+          "description": "Entry to the Space Needle",
+          "priceByUnit": [
+            {
+              "unitType": "adult",
+              "label": "Per person",
+              "amount": 6000
+            }
+          ]
+        },
+        {
+          "name": "Chihuly Garden & Glass Tickets Only",
+          "description": "Entry to Chihuly Garden & Glass",
+          "priceByUnit": [
+            {
+              "unitType": "adult",
+              "label": "Per person",
+              "amount": 5500
+            }
+          ]
+        },
+        {
+          "name": "MoPop Museum",
+          "description": "Entry to Museum of Pop Culture",
+          "priceByUnit": [
+            {
+              "unitType": "adult",
+              "label": "Per person",
+              "amount": 4500
+            }
+          ]
+        },
+        {
+          "name": "Pacific Science Center",
+          "description": "Entry to Pacific Science Center",
+          "priceByUnit": [
+            {
+              "unitType": "adult",
+              "label": "Per person",
+              "amount": 3000
+            }
+          ]
+        },
+        {
+          "name": "Foreign Language Speaking Guide",
+          "description": "Add a French, Spanish or German guide. Contact for additional languages.",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Per hour",
+              "amount": 5000
+            }
+          ]
+        }
+      ],
+      "bookingSystem": {
+        "name": "FareHarbor",
+        "bookingUrl": "https://fareharbor.com/embeds/book/totallyseattle/items/325570/?full-items=yes&flow=604995"
+      },
+      "themeGenre": [
+        "history",
+        "culture",
+        "food",
+        "sightseeing"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/smush-webp/2024/08/Original-Starbucks-Exterior-700x500.jpg.webp",
+          "alt": "Street view of the first Starbucks store in Pike Place Market"
+        },
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/smush-webp/2024/08/PXL_20250329_224434631-900x500.jpg.webp",
+          "alt": "A group of five people poses for a photo along a waterfront walkway with Ferris wheel in background"
+        }
+      ]
+    },
+    {
+      "title": "Post Alaskan Cruise Tour of Seattle",
+      "shortDescription": "A private 4-hour driving tour of Seattle with cruise port pickup in a luxury vehicle and customized drop-offs.",
+      "description": "Experience stress-free exploration of Seattle with a private tour after your cruise. Enjoy cruise port pickup in a luxury vehicle with customized drop-offs.",
+      "url": "https://totallyseattle.com/tour/post-alaskan-cruise-tour/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "From $795 per booking.",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per booking (from)",
+          "amount": 79500
+        }
+      ],
+      "duration": 240,
+      "durationDisplay": "4 Hours",
+      "isPrivate": true,
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Cruise port pickup included"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Customized drop-offs"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Luxury vehicle transportation"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Professional local guide"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Cruise Port",
+          "notes": "Cruise port pickup included"
+        }
+      ],
+      "themeGenre": [
+        "sightseeing",
+        "cruise"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/smush-webp/2024/05/Kerry-Park-view-700x500.jpg.webp",
+          "alt": "Seattle skyline with Space Needle and Mount Rainier under a colorful sky"
+        }
+      ]
+    },
+    {
+      "title": "Mount Rainier National Park & Scenic Gondola Ride from Seattle",
+      "shortDescription": "A luxury full-day private driving tour from Seattle to Crystal Mountain gondola and Mount Rainier National Park, available June through September.",
+      "description": "Embrace the serenity of a Crystal Mountain gondola ride ascending to nearly 7,000 feet for lunch as well as exploration of Mount Rainier National Park, all from the comfort of our guide-driven luxury SUV. Designed for discerning nature lovers, photographers, and those yearning for a VIP experience in the wild. This experience starts with a journey South East of the city to the charming historic town of Black Diamond, stopping for coffee, tea, pastries and a bathroom break before arriving at Crystal Mountain Ski Lodge to ride the scenic Gondola with a sit down lunch on a mountaintop, taking in breathtaking vistas of the region's tallest active volcano followed by entrance into the UNESCO National Park. Spend up to 3 hours driving through the park, stopping for quick hikes and photo opportunities at places like Sunrise Visitor Center, Henry M. Jackson Visitor Center, Reflection Lake, Narada Falls, Paradise Valley, and more.",
+      "url": "https://totallyseattle.com/tour/mount-rainier-national-park/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "From $1,675 per booking. Tour unavailable Monday & Tuesday.",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per booking (from)",
+          "amount": 167500
+        }
+      ],
+      "duration": 540,
+      "durationDisplay": "Full day (approx. 9:00 AM - 6:00 PM)",
+      "isPrivate": true,
+      "seasonality": {
+        "startDate": "June 1",
+        "endDate": "September 30",
+        "notes": "Available June - September"
+      },
+      "schedule": [
+        "9:00 AM"
+      ],
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "100% private — never share the vehicle with anyone outside your party"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Luxury SUV transportation"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Dine at the highest restaurant in Washington State"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Pre-curated itinerary based on group needs, interests & mobility levels"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Hotel or residence pick up and drop off within Seattle city limits"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Bottled water & treats"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Fresh floral bouquets from the Pike Place Market"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Credit card processing fees"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Crystal Mountain Gondola tickets"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Lunch at the Summit House"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Park entry fees to Mount Rainier National Park"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Parking & Tolls"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "A Lagniappe (treat or snack unique to Seattle)"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Tour unavailable Monday & Tuesday"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "State sales tax"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Gratuity for excellent service"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Hotel or residence within Seattle city limits",
+          "pickupTime": "9:00 AM"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Black Diamond (historic town)",
+          "notes": "Coffee, tea, pastries and bathroom break"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Crystal Mountain Ski Lodge",
+          "notes": "Gondola ride to nearly 7,000 feet"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Summit House Restaurant",
+          "notes": "Lunch at the highest restaurant in Washington"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Mount Rainier National Park",
+          "notes": "Enter via SR410 North Eastern entrance; visit Sunrise Visitor Center, Reflection Lake, Narada Falls, Paradise Valley, and more"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Longmire Wilderness Information Center",
+          "notes": "Restrooms and gift shop before exiting through Nisqually Arch"
+        },
+        {
+          "type": "END",
+          "name": "Hotel or residence within Seattle city limits"
+        }
+      ],
+      "upgradeModifiers": [
+        {
+          "name": "Extended Hours",
+          "description": "Personalize your journey with additional time to see & do more",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Per hour",
+              "amount": 12500
+            }
+          ]
+        },
+        {
+          "name": "SeaTac Airport Pickup (Curbside)",
+          "description": "Curbside pickup at SeaTac Airport",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Flat fee",
+              "amount": 10000
+            }
+          ]
+        },
+        {
+          "name": "SeaTac Airport Pickup (Baggage Claim Greeter)",
+          "description": "Greeter meets you at baggage claim at SeaTac Airport",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Flat fee",
+              "amount": 20000
+            }
+          ]
+        },
+        {
+          "name": "Cruise Port Pickup",
+          "description": "Pickup at Pier 66 or Pier 91",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Flat fee",
+              "amount": 10000
+            }
+          ]
+        },
+        {
+          "name": "Pickups Outside Seattle City Limits",
+          "description": "Pickup from locations outside Seattle city limits",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Flat fee",
+              "amount": 5000
+            }
+          ]
+        }
+      ],
+      "themeGenre": [
+        "nature",
+        "adventure",
+        "photography",
+        "luxury"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/uploads/2024/09/Brilliant-Mount-Rainier-Photo-from-Airplane-900x500.jpg",
+          "alt": "Aerial view of Mount Rainier peak surrounded by clouds at sunset"
+        }
+      ]
+    },
+    {
+      "title": "Soar, Sip & Sail Seattle",
+      "shortDescription": "A luxury Seattle experience combining a helicopter tour, sailing tour, and city tour all in one premium package.",
+      "description": "Soar, Sip, & Sail Seattle with Totally Seattle. This is a Seattle helicopter tour, sailing tour, and city tour all wrapped into one luxury package.",
+      "url": "https://totallyseattle.com/tour/soar-sip-sail-seattle/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "From $8,250 per booking.",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per booking (from)",
+          "amount": 825000
+        }
+      ],
+      "isPrivate": true,
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Luxury package combining helicopter, sailing, and city tour"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Premium VIP experience"
+        }
+      ],
+      "themeGenre": [
+        "luxury",
+        "adventure",
+        "sightseeing"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/uploads/2022/03/poulsbo-washington-700x500.jpg",
+          "alt": "Aerial view of a coastal landscape with a marina, forested areas, and distant mountains"
+        }
+      ]
+    },
+    {
+      "title": "Olympic National Park & Whale Watching Tour from Seattle",
+      "shortDescription": "A multi-day private tour from Seattle to Olympic National Park with whale watching.",
+      "description": "A multi-day tour from Seattle to Olympic National Park featuring whale watching. Full details available on the tour page.",
+      "url": "https://totallyseattle.com/tour/olympic-national-park-whale-watching-tour/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "From $7,750 per booking. Limited detail available from pages provided.",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per booking (from)",
+          "amount": 775000
+        }
+      ],
+      "isPrivate": true,
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Multi-day tour"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Includes whale watching"
+        }
+      ],
+      "themeGenre": [
+        "nature",
+        "wildlife",
+        "adventure"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/smush-webp/2023/11/Ruby-Beach-Olympic-National-Park-700x430.jpg.webp",
+          "alt": "Coastal scene with sandy beach, driftwood, and rock formations at Olympic National Park"
+        }
+      ]
+    },
+    {
+      "title": "Bainbridge Island and Kitsap Peninsula Day Trip",
+      "shortDescription": "A private driving tour day trip to Bainbridge Island and the Kitsap Peninsula, available Wednesday to Sunday.",
+      "description": "A private driving tour day trip from Seattle to Bainbridge Island and the Kitsap Peninsula. Available Wednesday to Sunday.",
+      "url": "https://totallyseattle.com/tour/bainbridge-island-and-kitsap-peninsula/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "pricingNotes": "From $1,475 per booking. Available Wednesday to Sunday only. Limited detail available from pages provided.",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "Per booking (from)",
+          "amount": 147500
+        }
+      ],
+      "isPrivate": true,
+      "features": [
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Available Wednesday to Sunday only"
+        }
+      ],
+      "locations": [
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Bainbridge Island"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Kitsap Peninsula"
+        }
+      ],
+      "themeGenre": [
+        "nature",
+        "sightseeing"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/uploads/2022/04/Mt.Rainier-Ferry-on-Puget-Sound-700x430.jpg",
+          "alt": "A large ferry sails across Puget Sound with a snow-capped mountain in the background"
+        }
+      ]
+    },
+    {
+      "title": "Step-On Seattle Private Tour Guide Service",
+      "shortDescription": "Hire a local expert guide to join your pre-arranged transportation for a personalized narrated tour of Seattle for groups up to 45.",
+      "description": "Hire a Seattle private tour guide to accompany your group during your pre-arranged transportation. A local guide will join you in your vehicle to navigate the region, creating a personalized route, advising the driver on where to go, where to park, and how to make the most of your Seattle adventure. Each tour is tailored to your group's specific needs, interests, and mobility levels. Guides can lead tours for groups of up to 45 passengers. All rates include gratuity for your guide.",
+      "url": "https://totallyseattle.com/tour/seattle-guide-service/",
+      "pricingModel": "PER_BOOKING",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "group",
+          "label": "4-hour minimum",
+          "amount": 57500
+        }
+      ],
+      "pricingNotes": "$575 for 4-hour minimum (including taxes and gratuity). Additional hours at $75/hour.",
+      "duration": 240,
+      "durationDisplay": "4 Hour Minimum",
+      "isPrivate": true,
+      "restrictions": {
+        "maxUnits": 45
+      },
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Guide joins your own vehicle — no vehicle provided"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Groups up to 45 passengers"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Gratuity for guide included in rate"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Personalized route and narration"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "4-hour minimum required"
+        }
+      ],
+      "upgradeModifiers": [
+        {
+          "name": "Additional Hour",
+          "description": "Extend your step-on guide service",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Per hour",
+              "amount": 7500
+            }
+          ]
+        },
+        {
+          "name": "Foreign Language Guide",
+          "description": "German, French, or Spanish speaking guide",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Per hour",
+              "amount": 5000
+            }
+          ]
+        },
+        {
+          "name": "Airport or Cruise Port Pickup",
+          "description": "Guide meets you at airport or cruise port",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Flat fee",
+              "amount": 7500
+            }
+          ]
+        },
+        {
+          "name": "Start Services Outside City Limits",
+          "description": "Begin tour outside Seattle city limits",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Flat fee",
+              "amount": 5000
+            }
+          ]
+        },
+        {
+          "name": "End at Different Location",
+          "description": "Drop-off at a different location than pickup",
+          "priceByUnit": [
+            {
+              "unitType": "group",
+              "label": "Flat fee",
+              "amount": 7500
+            }
+          ]
+        }
+      ],
+      "themeGenre": [
+        "sightseeing",
+        "culture",
+        "history"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/smush-webp/2022/04/20190814_201656515_iOS-700x500.jpg.webp",
+          "alt": "A crowd of people on a viewing platform overlooks a canal lock on a sunny day"
+        }
+      ]
+    },
+    {
+      "title": "Seattle's Best in a Day: A Waterfront, Market, and Seattle Center Walking Tour",
+      "shortDescription": "A public 3-hour walking tour of downtown Seattle covering the waterfront, Pike Place Market, and Seattle Center with optional attraction ticket upgrades.",
+      "description": "Join us on an expertly curated 3-hour walking tour that blends Seattle's most iconic sights with its best-kept secrets. See the city's famous landmarks and cultural highlights without stepping into a car. From the world-famous Space Needle to the Seattle Aquarium, Pike Place Market, and beyond, this tour is your one-stop pass to everything that makes Seattle magical. Designed for curious travelers and culture seekers, this public tour follows a set itinerary. Includes Pike Place Market tastings, chocolate tasting, monorail ride, and visits to key landmarks.",
+      "url": "https://totallyseattle.com/tour/seattle-best-in-a-day/",
+      "pricingModel": "PER_UNIT",
+      "currency": "USD",
+      "priceByUnit": [
+        {
+          "unitType": "adult",
+          "label": "Adults",
+          "amount": 10900
+        },
+        {
+          "unitType": "child",
+          "label": "Children (under 12)",
+          "amount": 9900
+        }
+      ],
+      "duration": 180,
+      "durationDisplay": "3-hour guided walking tour (with 6-8 hours of included attractions when including the added tickets enhancements)",
+      "isPrivate": false,
+      "schedule": [
+        "11:30 AM"
+      ],
+      "features": [
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "COMING SOON — not yet available for booking"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Public tour — set itinerary"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Small group experience"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Licensed to operate in Pike Place Market Historical District"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Passionate, expert local guide"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "One-way ride on the 1962 Seattle Monorail"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Pike Place Market tastings"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Gourmet chocolate experience"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Gum for the iconic Great Seattle Gum Wall"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Group photos at landmark locations"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Insider recommendations and exclusive local discounts"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Tourist souvenir pin from a family-owned Pike Place Market vendor"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Discounts from various local businesses to be used after the tour"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "A cup of coffee from an independent coffee roaster and cafe"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Guide gratuities"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Sales tax"
+        },
+        {
+          "type": "EXCLUSION",
+          "value": "Booking fees"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Not stroller accessible; some walking on uneven terrain; approximately 2 miles including inclines and stairs"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Not wheelchair accessible"
+        },
+        {
+          "type": "ACCESSIBILITY_INFORMATION",
+          "value": "Moderate walking fitness level required"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Tour runs rain or shine — dress accordingly"
+        },
+        {
+          "type": "ADDITIONAL_INFORMATION",
+          "value": "Please arrive 15 minutes early — late arrivals cannot be accommodated"
+        }
+      ],
+      "locations": [
+        {
+          "type": "START",
+          "name": "Pier 57",
+          "notes": "Across from the Seattle Great Wheel. Arrive 15 minutes early.",
+          "pickupTime": "11:30 AM"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Pike Place Market"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Original Starbucks"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Gum Wall"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Walking Overlook Park"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Climate Pledge Arena"
+        },
+        {
+          "type": "POINT_OF_INTEREST",
+          "name": "Space Needle (viewed from ground)"
+        },
+        {
+          "type": "END",
+          "name": "Seattle Center",
+          "notes": "Tour finishes around 2:30 PM"
+        }
+      ],
+      "upgradeModifiers": [
+        {
+          "name": "Ticket Package (5 Attractions)",
+          "description": "Entry and timed reservations for Seattle Aquarium, Chihuly Garden & Glass, Space Needle, Museum of Pop Culture (MoPop), and Pacific Science Center. QR-coded tickets emailed within 12 hours of tour start. Passes valid for 9 days.",
+          "priceByUnit": [
+            {
+              "unitType": "adult",
+              "label": "Per person",
+              "amount": 25000
+            }
+          ]
+        }
+      ],
+      "themeGenre": [
+        "sightseeing",
+        "culture",
+        "food",
+        "history"
+      ],
+      "media": [
+        {
+          "type": "IMAGE",
+          "url": "https://totallyseattle.com/wp-content/smush-webp/2022/04/20210714_154402570_iOS-900x500.jpg.webp",
+          "alt": "Red abstract sculpture in a park with the Space Needle in the background"
+        }
+      ]
+    },
+    {
+      "title": "Corporate Events",
+      "shortDescription": "Custom corporate outings, client entertainment, and team-building events in Seattle designed by Totally Seattle Tours.",
+      "description": "At Totally Seattle Tours, we have the expertise, resources, and connections to create an unforgettable corporate experience. We use our in-depth knowledge of the Emerald City and its hidden gems to design corporate experiences tailored to your company's unique culture and goals. Activities range from kayaking on South Lake Union to exploring the Skagit Valley's tulip fields or discovering Bainbridge Island's Bloedel Reserve. Past clients include Boeing, Amazon, Netflix, Russell Investments, and Expedia.",
+      "url": "https://totallyseattle.com/corporate-events/",
+      "pricingModel": null,
+      "currency": "USD",
+      "pricingNotes": "Quote-based, no online pricing. Contact for custom corporate event pricing.",
+      "isPrivate": true,
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Clients include Boeing, Amazon, Netflix, Russell Investments, Expedia"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "Fully customized corporate experiences"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Luxury transportation"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "Expert guides"
+        },
+        {
+          "type": "INCLUSION",
+          "value": "VIP access to Seattle's best attractions"
+        }
+      ],
+      "themeGenre": [
+        "corporate",
+        "team-building"
+      ]
+    },
+    {
+      "title": "Custom Experiences / Customized Seattle Tours",
+      "shortDescription": "Fully bespoke, tailor-made Seattle tour experiences designed around your group's specific interests and preferences.",
+      "description": "Totally Seattle offers fully customized tours of Seattle and its surrounding regions. These bespoke travel experiences are designed around your group's specific interests, whether that's local culture, food, photography, nature, or anything else. Contact the team to plan your adventure.",
+      "url": "https://totallyseattle.com/custom-trips/",
+      "pricingModel": null,
+      "currency": "USD",
+      "pricingNotes": "Quote-based, no online pricing. Contact for custom tour pricing.",
+      "isPrivate": true,
+      "features": [
+        {
+          "type": "HIGHLIGHT",
+          "value": "Fully bespoke itinerary"
+        },
+        {
+          "type": "HIGHLIGHT",
+          "value": "See Seattle your way with local guide expertise"
+        }
+      ],
+      "themeGenre": [
+        "sightseeing",
+        "custom"
+      ]
+    }
+  ],
+  "extractionMetadata": {
+    "extractedAt": "2026-02-17T23:45:51.274573+00:00",
+    "method": "firecrawl_scrape_claude_api",
+    "claudeModel": "claude-opus-4-6",
+    "claudeTokensIn": 29809,
+    "claudeTokensOut": 9712,
+    "claudeCostEstimate": "$1.18",
+    "firecrawlCreditsUsed": 8,
+    "pagesUsed": [
+      "https://totallyseattle.com/",
+      "https://totallyseattle.com/private-tours/",
+      "https://totallyseattle.com/tour-enhancers/",
+      "https://totallyseattle.com/step-on-tours/",
+      "https://totallyseattle.com/corporate-events/",
+      "https://totallyseattle.com/tour/seattle-best-in-a-day/",
+      "https://totallyseattle.com/tour/mount-rainier-national-park/",
+      "https://totallyseattle.com/tour/pike-place-market-seattle-center-walking-tour/"
+    ],
+    "totalMarkdownChars": 87197,
+    "rawHtmlIncluded": false,
+    "scriptVersion": "extract_operator_v1"
+  }
+}
