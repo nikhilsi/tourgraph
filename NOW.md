@@ -3,48 +3,55 @@
 ---
 **Last Updated**: February 18, 2026
 **Purpose**: What to work on next
-**Context**: See CLAUDE.md for rules, CURRENT_STATE.md for what's built
+**Context**: See CLAUDE.md for rules, CURRENT_STATE.md for what's built, docs/strategy.md for roadmap rationale
 ---
 
-**Phase**: 0 — Feasibility Spike | **Status**: Complete — All 5 Steps Done
+**Phase**: 0 Complete → Phase 1 Next
 
 ---
 
 ## Recently Completed
 
-- Ran all 7 operators through Path 2 extraction (Firecrawl `/scrape` + Claude Opus 4.6)
-- 83 products extracted, 7 scorecards written, zero pricing hallucinations
-- Cross-operator scoring matrix and Phase 0 summary report produced
-- **Go/no-go recommendation: GO** — all 6 success criteria met
-- Viator Partner API comparison (Step 3) completed:
-  - 3/7 operators found on Viator (Tours NW, Evergreen, Argosy) — 10 products total
-  - 4/7 operators are Path A exclusive (not on Viator)
-  - Path A vs Path C report: `results/comparisons/path_a_vs_path_c.md`
-  - Paths are complementary — extraction has 8x coverage, Viator adds reviews/images/pricing
+- Phase 0 extraction: 83 products across 7 operators, 95% accuracy, zero pricing hallucinations
+- Viator API comparison: 3/7 on Viator (10 products), 4/7 Path A exclusive
+- Strategic direction set: discovery-first approach, MCP pulled forward (see `docs/strategy.md`)
+- Docs restructured: proposal (shareable) / strategy (roadmap + risk) / pitch (interview prep)
 
 ---
 
 ## Next Priority
 
-**Phase 1 Planning & Kickoff**
+**Phase 1: Discovery + Scale + MCP**
 
-Phase 0 is complete. All 5 steps done, GO recommended. Time to plan Phase 1.
+See `docs/strategy.md` for full rationale.
 
-Key Phase 1 workstreams:
-1. **Auto-discovery** — crawl operator sitemaps to find product pages automatically
-2. **Scoring automation** — programmatic accuracy measurement vs. ground truth
-3. **Path C integration** — Viator data as enrichment layer (reviews, images, pricing gap fill)
-4. **FastAPI backend** — productionize extraction behind an API
-5. **Operator review dashboard** — basic UI for reviewing/editing extracted data
+### Phase 1A: Discovery Pipeline (1-2 weeks)
+- Google Places API → find all tour/activity operators in Seattle
+- Viator API destination search → find all Viator-listed operators
+- DMO directories → Visit Seattle operator listings
+- Deduplicate, build master operator list with websites
+- **Goal:** 50-100+ operators discovered programmatically. Cold start answered.
+
+### Phase 1B: Extraction at Scale (1-2 weeks)
+- Run Path A extraction on all discovered operators
+- Run Path C enrichment for Viator overlaps
+- PostgreSQL storage (graduate from JSON files)
+- **Goal:** Comprehensive Seattle tour inventory.
+
+### Phase 1C: MCP Server (1-2 weeks)
+- MCP server on top of the inventory
+- Tools: `search_tours`, `get_details`, `filter_by_type`, `search_by_area`
+- **Goal:** Claude can query real Seattle tours. The demo moment.
 
 ---
 
 ## Backlog
 
-1. **Schema v0.2** — add `productStatus` enum, `departureCity`, `operatorDiscounts[]` (recommendations in Phase 0 report)
+1. **Schema v0.2** — add `productStatus` enum, `departureCity`, `operatorDiscounts[]`
 2. **Prompt v02** — address discount programs, tier pricing extraction
-3. **Expand test set** — more Seattle operators, different cities
-4. **Path B research** — FareHarbor/Peek Pro API access requirements
+3. **Operator dashboard** — claim/review/edit listings (Phase 2)
+4. **Article series** — start writing during/after Phase 1 (see `docs/strategy.md`)
+5. **Path B research** — FareHarbor/Peek Pro API access requirements
 
 ---
 
@@ -52,10 +59,10 @@ Key Phase 1 workstreams:
 
 - Firecrawl credits: ~218 remaining on free tier
 - Claude Opus 4.6 is the extraction model ($1.18/operator average)
-- Viator production API key active (Basic Access) — sandbox key may need 48hrs to activate
-- All extraction JSONs, scorecards, and Viator comparison data are on disk in `results/`
-- Ground truth for all operators is in `docs/phase0_spike.md`
+- Viator production API key active (Basic Access)
+- Google Places API — need to scope request volume and pricing
+- All extraction data on disk in `results/`
 
 ---
 
-**For more details**: See CURRENT_STATE.md | CHANGELOG.md | CLAUDE.md | docs/
+**For more details**: See CURRENT_STATE.md | CHANGELOG.md | docs/strategy.md

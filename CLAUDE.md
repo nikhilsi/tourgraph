@@ -17,10 +17,12 @@
 6. **`git log --oneline -10`** - Recent commits
 
 **Optional** (if relevant to task):
-- **docs/project_proposal.md** - Full strategic rationale, phased build plan, validation strategy
+- **docs/project_proposal.md** - What TourGraph is and why it matters (shareable)
+- **docs/strategy.md** - Roadmap, moat analysis, risk assessment, article series plan
+- **docs/pitch.md** - Interview prep, personal positioning, elevator pitches
 - **docs/phase0_spike.md** - Phase 0 methodology, 7 operator test set, OCTO-aligned schema, ground truth data
 - **docs/tooling_landscape.md** - Firecrawl analysis, competitor comparison, build-vs-use matrix
-- **docs/api_landscape.md** - Viator, GetYourGuide, OCTO standard, data source strategy
+- **docs/api_landscape.md** - Viator, GetYourGuide, OCTO standard, data source strategy, Viator test results
 - **docs/glossary.md** - Shared vocabulary (OCTO, MCP, FareHarbor, extraction terms)
 
 ---
@@ -166,10 +168,12 @@ python scripts/viator_compare.py --sandbox
 - **CHANGELOG.md** - Version history
 
 **Docs:**
-- **docs/project_proposal.md** - Strategic rationale, phased build plan
-- **docs/phase0_spike.md** - Operator test set, OCTO schema, extraction methodology
+- **docs/project_proposal.md** - What TourGraph is and why (shareable)
+- **docs/strategy.md** - Roadmap, moat, risk analysis, article plan
+- **docs/pitch.md** - Interview prep, personal positioning
+- **docs/phase0_spike.md** - Operator test set, OCTO schema, ground truth
 - **docs/tooling_landscape.md** - Firecrawl, Crawl4AI, build-vs-use decisions
-- **docs/api_landscape.md** - Viator, GetYourGuide, OCTO standard
+- **docs/api_landscape.md** - Viator, GetYourGuide, OCTO standard, test results
 - **docs/glossary.md** - Shared vocabulary
 
 **Results (Phase 0):**
@@ -200,10 +204,12 @@ tourgraph/
 ├── requirements.txt
 │
 ├── docs/
-│   ├── project_proposal.md         (Strategic rationale, build plan)
+│   ├── project_proposal.md         (What TourGraph is and why — shareable)
+│   ├── strategy.md                 (Roadmap, moat, risk analysis)
+│   ├── pitch.md                    (Interview prep, personal positioning)
 │   ├── phase0_spike.md             (7 operators, schema, methodology)
 │   ├── tooling_landscape.md        (Firecrawl analysis, build-vs-use)
-│   ├── api_landscape.md            (Viator, GYG, OCTO standard)
+│   ├── api_landscape.md            (Viator, GYG, OCTO standard, test results)
 │   └── glossary.md                 (Shared vocabulary)
 │
 ├── schemas/

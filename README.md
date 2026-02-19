@@ -94,7 +94,9 @@ tourgraph/
 ├── requirements.txt       # Python dependencies
 │
 ├── docs/                  # Strategic & research documentation
-│   ├── project_proposal.md
+│   ├── project_proposal.md  # What TourGraph is and why (shareable)
+│   ├── strategy.md          # Roadmap, moat, risk analysis
+│   ├── pitch.md             # Interview prep, personal positioning
 │   ├── phase0_spike.md
 │   ├── tooling_landscape.md
 │   ├── api_landscape.md
@@ -147,7 +149,9 @@ python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/
 
 - **[CLAUDE.md](CLAUDE.md)** — Development guide for Claude Code sessions
 - **[CURRENT_STATE.md](CURRENT_STATE.md)** — Current build status
-- **[docs/project_proposal.md](docs/project_proposal.md)** — Full strategic rationale and build plan
+- **[docs/project_proposal.md](docs/project_proposal.md)** — What TourGraph is and why it matters
+- **[docs/strategy.md](docs/strategy.md)** — Roadmap, moat analysis, risk assessment
+- **[docs/pitch.md](docs/pitch.md)** — Interview prep and personal positioning
 - **[docs/phase0_spike.md](docs/phase0_spike.md)** — Phase 0 methodology, operators, schema
 - **[docs/tooling_landscape.md](docs/tooling_landscape.md)** — Extraction tooling analysis
 - **[docs/api_landscape.md](docs/api_landscape.md)** — OTA API research & Viator test results

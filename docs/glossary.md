@@ -190,20 +190,51 @@ Google's tours/activities vertical within Google Travel. Launched 2021. Displays
 
 ## Project-Specific Terms
 
-### Extraction Engine (Component 1)
-The AI-powered system that takes an operator's unstructured data (website, PDF, spreadsheet) and converts it into structured inventory. The core technical bet of the project.
+### Discovery Engine (Component 1)
+Programmatic operator discovery — finds tour/activity operators without them submitting anything. Sources: Google Places API, Viator API destination search, DMO directories (e.g., Visit Seattle), Yelp API. Outputs a master operator list with websites. Answers the cold start problem.
 
-### Normalization Layer (Component 2)
-Takes extracted data and maps it to a standardized schema that works across multiple distribution platforms. Handles the fact that GetYourGuide, Expedia, and Viator all want data in different formats.
+### Extraction Engine (Component 2)
+The AI-powered system that takes an operator's unstructured data (website, PDF, spreadsheet) and converts it into structured inventory. Uses Firecrawl `/scrape` for fetching + Claude API with domain-specific OCTO-aligned prompts. The core technical bet of the project, validated in Phase 0.
 
-### Distribution Connectors (Component 3)
-The output layer — adapters that push structured inventory to specific channels: OTA APIs (Expedia Rapid, GetYourGuide Supplier API), MCP endpoints (for AI agents), embeddable widgets (for operator's own site).
+### Aggregation & Normalization Layer (Component 3)
+Combines data from multiple sources (Path A extraction, Path C OTA APIs, Path B booking systems) and maps it to a standardized OCTO-aligned schema. Handles deduplication, conflict resolution, and the fact that different sources provide different slices of data.
 
-### Operator Dashboard (Component 4)
-The human-facing interface where operators review, edit, and manage their structured inventory. Design principle: "If you can use Instagram, you can use this."
+### MCP Distribution Server (Component 4)
+The AI-agent-facing interface. An MCP server that exposes structured tour inventory to AI agents via tools like `search_tours`, `get_details`, `filter_by_type`, `search_by_area`. The distribution channel that doesn't exist yet.
+
+### Operator Dashboard (Component 5)
+The human-facing interface where operators claim, review, edit, and manage their structured inventory. Design principle: "If you can use Instagram, you can use this."
+
+### Distribution Connectors (Component 6)
+The output layer — adapters that push structured inventory to specific channels: OTA APIs (Expedia Rapid, GetYourGuide Supplier API), Google Things to Do feeds, embeddable widgets (for operator's own site).
 
 ### Feasibility Spike (Phase 0)
-The initial 1-week test to determine if AI extraction works well enough on real operator websites to justify building the full system. The go/no-go gate for the project.
+The initial 1-week test to determine if AI extraction works well enough on real operator websites to justify building the full system. The go/no-go gate for the project. Result: GO — 83 products, 95% accuracy, zero pricing hallucinations.
+
+---
+
+## Strategic Concepts
+
+### Cold Start Problem
+The chicken-and-egg challenge: operators won't submit to a platform nobody uses, AI agents won't integrate with a platform that has no inventory. Solved via the Google Maps Model (see below).
+
+### Google Maps Model
+TourGraph's cold start strategy. Instead of waiting for operators to submit their websites, we discover operators programmatically, extract from public websites without permission, build the inventory first, then operators "claim" their listing — exactly how Google Maps built business listings. Inverts the onboarding flow from "submit your data" to "we already have your data — want to make sure it's right?"
+
+### Discovery Pipeline
+The programmatic system for finding tour/activity operators in a target city. Sources include Google Places API, Viator API destination search, DMO directories, and Yelp API. Expected yield for Seattle: 50-150+ operators. See Component 1 (Discovery Engine).
+
+### Long Tail
+Operators not listed on any OTA. Phase 0 found 4/7 test operators (~57%) are not on Viator at all. At scale, estimated 30-40% of operators are on no OTA. These operators are TourGraph-exclusive inventory — the extraction path (Path A) is the only way to structure their data.
+
+### Path A (Website Extraction)
+AI extraction from operator websites. Firecrawl `/scrape` fetches clean markdown, Claude API extracts structured data using OCTO-aligned domain prompts. Proven in Phase 0: 83 products, 95% accuracy, $1.18/operator average. The primary data acquisition path and the only path for long-tail operators.
+
+### Path B (Booking System APIs)
+Direct integration with booking/channel management systems (FareHarbor, Peek Pro, Rezdy) via their APIs. Provides real-time availability and pricing — the data Path A can't capture from JS widgets. Gated behind partner approval. Phase 1+ exploration.
+
+### Path C (OTA API Aggregation)
+Structured data from OTA APIs, primarily Viator Partner API. Provides reviews, professional images, verified pricing, and booking links. Tested in Phase 0: 3/7 operators found on Viator (10 products). Complementary to Path A — neither source is sufficient alone.
 
 ---
 
