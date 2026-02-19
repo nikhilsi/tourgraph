@@ -1,0 +1,300 @@
+{
+  "productCode": "315965P1",
+  "bookableItems": [
+    {
+      "productOptionCode": "TG1",
+      "seasons": [
+        {
+          "startDate": "2026-05-24",
+          "endDate": "2026-10-31",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "SATURDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "16:00"
+                },
+                {
+                  "startTime": "18:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 19.5
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "SENIOR",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 17.5
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "16:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 19.5
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "SENIOR",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 17.5
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-01-01",
+          "endDate": "2026-05-23",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "16:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 19.5
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "SENIOR",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 17.5
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-11-01",
+          "endDate": "2026-12-30",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "16:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 19.5
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "SENIOR",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 17.5
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "currency": "USD",
+  "summary": {
+    "fromPrice": 19.5
+  }
+}

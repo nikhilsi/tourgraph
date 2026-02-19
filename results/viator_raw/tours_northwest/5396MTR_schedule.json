@@ -1,0 +1,746 @@
+{
+  "productCode": "5396MTR",
+  "bookableItems": [
+    {
+      "productOptionCode": "TG14",
+      "seasons": [
+        {
+          "startDate": "2026-05-01",
+          "endDate": "2026-10-31",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "07:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 173.66
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 208.56
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG13",
+      "seasons": [
+        {
+          "startDate": "2026-05-01",
+          "endDate": "2026-10-31",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "07:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 173.66
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 208.56
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG8",
+      "seasons": [
+        {
+          "startDate": "2025-11-01",
+          "endDate": "2026-04-25",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "WEDNESDAY",
+                "THURSDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "08:00",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-04-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-29",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 162.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 173.66
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG7",
+      "seasons": [
+        {
+          "startDate": "2025-11-01",
+          "endDate": "2026-04-25",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "WEDNESDAY",
+                "THURSDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "08:00",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-02-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-29",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 162.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 173.66
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG11",
+      "seasons": [
+        {
+          "startDate": "2026-05-01",
+          "endDate": "2026-10-31",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "07:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 173.66
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 208.56
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG10",
+      "seasons": [
+        {
+          "startDate": "2025-11-25",
+          "endDate": "2026-04-30",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "WEDNESDAY",
+                "THURSDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "08:00",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-04-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-01",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 162.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 173.66
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG9",
+      "seasons": [
+        {
+          "startDate": "2025-11-01",
+          "endDate": "2026-04-25",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "08:00",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-02-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-04",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 162.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 173.66
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG12",
+      "seasons": [
+        {
+          "startDate": "2026-05-01",
+          "endDate": "2026-10-31",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "07:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 173.66
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 208.56
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "currency": "USD",
+  "summary": {
+    "fromPrice": 173.66
+  }
+}

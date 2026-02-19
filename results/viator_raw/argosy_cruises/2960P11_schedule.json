@@ -1,0 +1,1021 @@
+{
+  "productCode": "2960P11",
+  "bookableItems": [
+    {
+      "productOptionCode": "TG7",
+      "seasons": [
+        {
+          "startDate": "2026-04-17",
+          "endDate": "2026-10-11",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "13:30",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-05-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-06-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-27",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 47.12
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 80.86
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG5",
+      "seasons": [
+        {
+          "startDate": "2026-10-29",
+          "endDate": "2026-12-26",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "THURSDAY",
+                "SATURDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "12:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-03-12",
+          "endDate": "2026-05-10",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "10:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-01-01",
+          "endDate": "2026-03-07",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "THURSDAY",
+                "SATURDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "12:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-07-05",
+          "endDate": "2026-10-11",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "10:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-05-26",
+          "endDate": "2026-07-04",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "10:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-10-15",
+          "endDate": "2026-10-25",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "10:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-05-14",
+          "endDate": "2026-05-25",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "10:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG6",
+      "seasons": [
+        {
+          "startDate": "2026-04-17",
+          "endDate": "2026-10-11",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "10:30",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-04-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-06-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-07-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-12",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 47.12
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 80.86
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG4",
+      "seasons": [
+        {
+          "startDate": "2026-03-12",
+          "endDate": "2026-05-10",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "13:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-01-02",
+          "endDate": "2026-03-08",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "FRIDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "12:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-07-05",
+          "endDate": "2026-10-11",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "13:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-12-27",
+          "endDate": "2026-12-27",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "12:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-10-15",
+          "endDate": "2026-10-25",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "13:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-05-26",
+          "endDate": "2026-07-04",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "13:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-05-14",
+          "endDate": "2026-05-25",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "13:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-10-30",
+          "endDate": "2026-12-20",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "FRIDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "12:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 29.3
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 63.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "currency": "USD",
+  "summary": {
+    "fromPrice": 63.28
+  }
+}

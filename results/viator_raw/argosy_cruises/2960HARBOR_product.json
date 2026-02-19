@@ -1,0 +1,918 @@
+{
+  "status": "ACTIVE",
+  "productCode": "2960HARBOR",
+  "language": "en",
+  "createdAt": "2000-06-01T07:00:00Z",
+  "lastUpdatedAt": "2026-02-14T09:14:32Z",
+  "title": "Seattle's Original Guided Harbor Cruise",
+  "ticketInfo": {
+    "ticketTypes": [
+      "MOBILE_ONLY"
+    ],
+    "ticketTypeDescription": "Mobile or paper ticket accepted",
+    "ticketsPerBooking": "ONE_PER_BOOKING",
+    "ticketsPerBookingDescription": "One per booking"
+  },
+  "pricingInfo": {
+    "type": "PER_PERSON",
+    "ageBands": [
+      {
+        "ageBand": "INFANT",
+        "startAge": 0,
+        "endAge": 3,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 15
+      },
+      {
+        "ageBand": "CHILD",
+        "startAge": 4,
+        "endAge": 12,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 15
+      },
+      {
+        "ageBand": "ADULT",
+        "startAge": 13,
+        "endAge": 99,
+        "minTravelersPerBooking": 1,
+        "maxTravelersPerBooking": 15
+      }
+    ]
+  },
+  "images": [
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": true,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/15/20/06/fb.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/15/20/06/fb.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/15/20/06/fb.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/15/20/06/fb.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/15/20/06/fb.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/15/20/06/fb.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/20/06/fb.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/20/06/fb.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/15/20/06/fb.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/15/20/06/fb.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/15/20/06/fd.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/15/20/06/fd.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/15/20/06/fd.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/15/20/06/fd.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/15/20/06/fd.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/15/20/06/fd.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/20/06/fd.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/20/06/fd.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/15/20/06/fd.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/15/20/06/fd.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/15/20/07/3b.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/15/20/07/3b.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/15/20/07/3b.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/15/20/07/3b.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/15/20/07/3b.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/15/20/07/3b.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/20/07/3b.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/20/07/3b.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/15/20/07/3b.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/15/20/07/3b.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/15/20/07/1c.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/15/20/07/1c.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/15/20/07/1c.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/15/20/07/1c.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/15/20/07/1c.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/15/20/07/1c.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/20/07/1c.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/20/07/1c.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/15/20/07/1c.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/15/20/07/1c.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/15/20/06/fc.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/15/20/06/fc.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/15/20/06/fc.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/15/20/06/fc.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/15/20/06/fc.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/15/20/06/fc.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/20/06/fc.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/20/06/fc.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/15/20/06/fc.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/15/20/06/fc.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/15/20/07/4d.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/15/20/07/4d.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/15/20/07/4d.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/15/20/07/4d.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/15/20/07/4d.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/15/20/07/4d.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/20/07/4d.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/20/07/4d.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/15/20/07/4d.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/15/20/07/4d.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/15/20/07/4e.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/15/20/07/4e.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/15/20/07/4e.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/15/20/07/4e.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/15/20/07/4e.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/15/20/07/4e.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/15/20/07/4e.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/20/07/4e.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/15/20/07/4e.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/15/20/07/4e.jpg"
+        }
+      ]
+    }
+  ],
+  "logistics": {
+    "start": [
+      {
+        "location": {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5M+CIo0fUzbxlk9c5mjam4ehLDBR+HO5H2/ccIwp2B8I"
+        },
+        "description": "Argosy Cruises\nMain marina location/reservation center is located at Pier 55 on the Seattle waterfront.\nAddress: 1101 Alaskan Way, Seattle WA 98101"
+      }
+    ],
+    "end": [
+      {
+        "location": {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5M+CIo0fUzbxlk9c5mjam4ehLDBR+HO5H2/ccIwp2B8I"
+        },
+        "description": "Argosy Cruises\nMain marina location/reservation center is located at Pier 55 on the Seattle waterfront.\nAddress: 1101 Alaskan Way, Seattle WA 98101"
+      }
+    ],
+    "redemption": {
+      "redemptionType": "NONE",
+      "specialInstructions": "Check-in 30 minutes prior to the time listed on your ticket. The boarding gate closes promptly 5 minutes before departure and late arrivals cannot be accommodated. \nIf you purchased the First to Board Upgrade, please arrive 30 minutes prior to the time listed on your ticket to take advantage of this perk. \nCheck in at the blue tent and a member of our team will escort you to our exclusive First to Board waiting area. \nQuestions? Call 206 623-1445"
+    },
+    "travelerPickup": {
+      "pickupOptionType": "MEET_EVERYONE_AT_START_POINT",
+      "allowCustomTravelerPickup": false
+    }
+  },
+  "timeZone": "America/Los_Angeles",
+  "description": "During this 1-hour cruise around Elliott Bay, experience all the beauty and history Seattle has to offer. With live narration from a local guide, learn about Seattle’s historic waterfront and get an up-close look at one of the west coast's largest shipping terminals. Take in the view of the city’s skyline with a spectacular panoramic background of the Cascade and Olympic mountain ranges, including majestic Mount Rainier. Enhance your experience with our curated selection of local snacks and signature beverages available for purchase onboard.",
+  "inclusions": [
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Live narration"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "1-hour sightseeing cruise"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Interior and exterior seating areas"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Restrooms available on board"
+    }
+  ],
+  "exclusions": [
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Snacks and beverages (available for purchase)"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Gratuities"
+    }
+  ],
+  "additionalInfo": [
+    {
+      "type": "WHEELCHAIR_ACCESSIBLE",
+      "description": "Wheelchair accessible"
+    },
+    {
+      "type": "STROLLER_ACCESSIBLE",
+      "description": "Infants and small children can ride in a pram or stroller"
+    },
+    {
+      "type": "PETS_WELCOME",
+      "description": "Service animals allowed"
+    },
+    {
+      "type": "PUBLIC_TRANSPORTATION_NEARBY",
+      "description": "Public transportation options are available nearby"
+    },
+    {
+      "type": "TRANSPORTATION_WHEELCHAIR_ACCESSIBLE",
+      "description": "Transportation options are wheelchair accessible"
+    },
+    {
+      "type": "SURFACES_WHEELCHAIR_ACCESSIBLE",
+      "description": "All areas and surfaces are wheelchair accessible"
+    },
+    {
+      "type": "PHYSICAL_EASY",
+      "description": "Suitable for all physical fitness levels"
+    },
+    {
+      "type": "OTHER",
+      "description": "All vessels offer both indoor & outdoor seating"
+    },
+    {
+      "type": "OTHER",
+      "description": "Check-in 30 minutes prior to tour. Boarding gate closes 5 minutes prior to departure"
+    },
+    {
+      "type": "OTHER",
+      "description": "Wheelchair accessible. PLEASE CALL in advance to secure crew/boarding support."
+    },
+    {
+      "type": "OTHER",
+      "description": "Kids (3 and under) ride free but do require a boarding pass"
+    },
+    {
+      "type": "OTHER",
+      "description": "All vessels have bathrooms"
+    }
+  ],
+  "cancellationPolicy": {
+    "type": "STANDARD",
+    "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+    "cancelIfBadWeather": true,
+    "cancelIfInsufficientTravelers": false,
+    "refundEligibility": [
+      {
+        "dayRangeMin": 1,
+        "percentageRefundable": 100
+      },
+      {
+        "dayRangeMin": 0,
+        "dayRangeMax": 1,
+        "percentageRefundable": 0
+      }
+    ]
+  },
+  "bookingConfirmationSettings": {
+    "bookingCutoffType": "START_TIME",
+    "bookingCutoffInMinutes": 60,
+    "confirmationType": "INSTANT"
+  },
+  "bookingRequirements": {
+    "minTravelersPerBooking": 1,
+    "maxTravelersPerBooking": 15,
+    "requiresAdultForBooking": true
+  },
+  "languageGuides": [
+    {
+      "type": "GUIDE",
+      "language": "en",
+      "legacyGuide": "en/SERVICE_GUIDE"
+    }
+  ],
+  "bookingQuestions": [
+    "SPECIAL_REQUIREMENTS"
+  ],
+  "tags": [
+    11885,
+    12074,
+    367653,
+    367652,
+    20255,
+    21469,
+    11903,
+    367659,
+    11938,
+    20217,
+    12075,
+    21470,
+    12056,
+    12067,
+    367654,
+    21630,
+    22143,
+    21972,
+    21729,
+    367661
+  ],
+  "destinations": [
+    {
+      "ref": "704",
+      "primary": true
+    }
+  ],
+  "itinerary": {
+    "itineraryType": "STANDARD",
+    "skipTheLine": false,
+    "privateTour": false,
+    "maxTravelersInSharedTour": 350,
+    "duration": {
+      "fixedDurationInMinutes": 60
+    },
+    "itineraryItems": [
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyHO0lJ6nCgPnZNc88ASJwgo="
+          }
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Begin your cruise from Seattle’s historic and lively central waterfront! Learn about both the past and present from your local tour guide as you cruise by the many piers and landmarks. You’ll see popular sights like the Space Needle, Great Wheel, Overlook Park, etc."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyGIxCH539l+tGuZS9aBvdDA="
+          },
+          "attractionId": 9991
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "See the Seattle Great Wheel in its entirety as you cruise by Pier 57! Another popular location for both water and city views. This attraction opened in 2012, doubling as a fun ride and a great place for expansive views."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyB1czEivEvV1SGCHHtWRLDM="
+          },
+          "attractionId": 1319
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Take in the historic Seattle waterfront as you pass by on our Harbor cruise! You’ll learn about the history and past of each pier, while also seeing how each one functions in the present. As you pass by you’ll see iconic landmarks, buildings, and restaurants."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyHWSgebqSSXzj/g27jHiTiI="
+          },
+          "attractionId": 17069
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "See one of Seattle’s many green spaces, Myrtle Edwards Park. With a 1.25 mile biking and pedestrian path along Elliott Bay, this small but mighty park holds fantastic views of both the water and city. This park is closely connected to downtown Seattle and the neighborhood of Magnolia."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyLbVw/2mab3RC0eCRmUznbs="
+          },
+          "attractionId": 1313
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "The Harbor Cruise makes sure to go by the iconic landmark, the Space Needle. You’ll have both up-close and panoramic views while on the tour. You’ll be able to take photos from our unobstructed view of the famous Space Needle, while also snapping the landmark itself in the skyline as a whole."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5KsUdaBJrj7zTpIqq1gVd7SHVprsrm2q8EusjcdqK2ig"
+          }
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Terminal 91 is one of Seattle’s main cruise terminals. When in port, see one of many gigantic passenger cruise ships. While one tour during cruise season, learn about Seattle’s longstanding ties to Alaska’s inside passage."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyFUSmZlWOo1mREhPVPKXLPA="
+          },
+          "attractionId": 10011
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "On Pier 59 is the popular Seattle Aquarium, where one can learn about the sea life off our shores. Housed right on the Seattle Waterfront and opened in 1977, Seattle’s aquarium is accredited. Newly built in 2024 is the expansion of the Ocean Pavilion."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5NAiV66zJ87Jb6oP3KnBjVyc7/gg7ZOD+fVM60YOziOO"
+          }
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Enjoy sweeping views of this large inland estuary, that lies between the Olympic Peninsula and Seattle metropolitan area. Approximately 95 miles long, see views of popular mountain ranges like the Olympics. If you’re lucky, you might even get a glimpse of some wildlife!"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyDUcVhA10b2ZsuGib0D+ewI="
+          }
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Surrounding Elliott Bay and the Puget Sound is the Olympic Mountain Range. Visible across the water from Seattle, you’ll enjoy the beauty of its rugged terrain and on a clear day see it’s snow capped peaks. Get both city and nature views!"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyCeJuZWpZKPzIA20jyCVJOo="
+          },
+          "attractionId": 19558
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "In the area of West Seattle is Alki Beach, one of Seattle’s most popular areas, partly because of it being featured in the movie Sleepless in Seattle and being a well-known location for beach volleyball. Seen from our boat, the beach is 2.5 miles long and gives West Seattle a beach town feel."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyHfN8NIW/7awEU6AqP+UN7o="
+          },
+          "attractionId": 1307
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Weather permitting, catch a glimpse of the 14,410 ft tall volcano that sits just 60 miles southeast of Seattle. Being one of Seattle’s most iconic natural landmarks, Mount Rainier or also commonly known as Mount Tahoma, is a gem of a view. It is the highest point in the Cascade Range."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyNFYrAyCZAA8jnzfP+abL7U="
+          },
+          "attractionId": 17070
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "In Seattle’s industrial district, see the field that is home to the Seattle Mariners (MLB). Formerly known as Safeco field, T-Mobile Park hosts baseball games, concerts, and large seasonal events. On a rainy day, you may see the closing of the field’s retractable roof."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5FzrppUsklA8HJWWUqeIJUrDukDuOq110hUCLwuM+ZzB"
+          }
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Right next to T Mobile Park is Lumen Field, the stadium that is home to the Seattle Seahawks (NFL) and the Seattle Sounders (MLS). See in the skyline two stadiums next to each other and when seasons overlap, attend a Sounders game and Mariners game in one day. Also, a concert venue, Lumen Field is famous for being loud enough to cause small earthquakes."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5KRiCOuirPg3SVAbWJ4vL0Pxo8FQut0Loo24M0a/h/4U"
+          }
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Get up close views of the large container ships as they are loaded and unloaded into the Port of Seattle. Also known as Harbor Island, this is the largest man-made island in the United States. Built in 1909, this area is used for both commercial and industrial activities."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyNq//4w3Ixl1RwXONrsdcv8="
+          }
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "In the Seattle skyline you’ll get water views of the Smith Tower. This historic building is 35 floors high with an open-air observatory at the top. This is Seattle’s original skyscraper."
+      }
+    ]
+  },
+  "productOptions": [
+    {
+      "productOptionCode": "TG7",
+      "description": "First to Board Upgrade: Skip the line and be first to board, first to the bar, first to pick the perfect seat, and receive 15% off drinks!",
+      "title": "First to Board Tickets",
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en",
+          "legacyGuide": "en/SERVICE_GUIDE"
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG2",
+      "description": "",
+      "title": "General Tickets",
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en",
+          "legacyGuide": "en/SERVICE_GUIDE"
+        }
+      ]
+    }
+  ],
+  "translationInfo": {
+    "containsMachineTranslatedText": false,
+    "translationSource": "ORIGINAL"
+  },
+  "supplier": {
+    "name": "Argosy Cruises",
+    "reference": "SUPPLIER-5Nu+Do6mlY6IPCKikjq3KA=="
+  },
+  "productUrl": "https://www.viator.com/tours/Seattle/Seattle-Harbor-Cruise/d704-2960HARBOR?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+  "reviews": {
+    "sources": [
+      {
+        "provider": "VIATOR",
+        "reviewCounts": [
+          {
+            "rating": 1.0,
+            "count": 31
+          },
+          {
+            "rating": 2.0,
+            "count": 12
+          },
+          {
+            "rating": 3.0,
+            "count": 40
+          },
+          {
+            "rating": 4.0,
+            "count": 139
+          },
+          {
+            "rating": 5.0,
+            "count": 1029
+          }
+        ],
+        "totalCount": 1251,
+        "averageRating": 4.7
+      },
+      {
+        "provider": "TRIPADVISOR",
+        "reviewCounts": [
+          {
+            "rating": 1.0,
+            "count": 5
+          },
+          {
+            "rating": 2.0,
+            "count": 5
+          },
+          {
+            "rating": 3.0,
+            "count": 31
+          },
+          {
+            "rating": 4.0,
+            "count": 145
+          },
+          {
+            "rating": 5.0,
+            "count": 641
+          }
+        ],
+        "totalCount": 827,
+        "averageRating": 4.7
+      }
+    ],
+    "reviewCountTotals": [
+      {
+        "rating": 1.0,
+        "count": 36
+      },
+      {
+        "rating": 2.0,
+        "count": 17
+      },
+      {
+        "rating": 3.0,
+        "count": 71
+      },
+      {
+        "rating": 4.0,
+        "count": 284
+      },
+      {
+        "rating": 5.0,
+        "count": 1670
+      }
+    ],
+    "totalReviews": 2078,
+    "combinedAverageRating": 4.701155
+  }
+}

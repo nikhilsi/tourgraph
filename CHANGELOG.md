@@ -4,6 +4,42 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.4.0] - 2026-02-18
+
+### Added
+- Viator Partner API comparison script (`scripts/viator_compare.py`) — 3-phase pipeline: operator discovery via freetext search, deep product pull with OCTO mapping, field-by-field Path A vs Path C comparison
+- Viator API integration — production key authenticated, `exp-api-key` header, `Accept: application/json;version=2.0`
+- Path A vs Path C comparison report (`results/comparisons/path_a_vs_path_c.md`) — field-by-field analysis for 3 overlapping operators
+- Raw Viator API responses stored in `results/viator_raw/` per operator
+- OCTO-mapped Viator products in `results/viator_mapped/` per operator
+- Machine-readable comparison data (`results/comparisons/path_a_vs_path_c.json`)
+
+### Key Findings
+- **3/7 operators found on Viator** — Tours Northwest, Evergreen Escapes, Argosy Cruises
+- **4/7 operators are Path A exclusive** — Shutter Tours, Totally Seattle, Conundroom, Bill Speidel's (not on Viator at all)
+- **83 products (Path A) vs 10 products (Path C)** — 8x coverage advantage for extraction
+- **Path A captures what Viator can't**: promo codes (RAINIER10), cross-operator bundles, booking system IDs, operator FAQs, long-tail operators
+- **Path C captures what extraction can't**: reviews (up to 2078), professional images (10-31 per product), structured age-band pricing, accessibility data, product options/variants
+- **Viator markup visible**: $179 direct → $208.56 on Viator (Tours NW Mt Rainier), $295 → $344 (Evergreen Mt Rainier)
+- **Complementary, not competing** — both paths needed for strongest MCP server
+
+### Viator API Learnings
+- Sandbox key activation may take up to 48 hours; production key works immediately
+- Freetext search results do NOT include `supplier` field — must call `/products/{code}` for supplier matching
+- Adding `productFiltering.destination` to freetext search silently returns 0 results (API quirk)
+- Two-step discovery pattern required: freetext search → full product pull → match by supplier name
+- Viator product code prefixes: Tours Northwest = `5396*`, Evergreen Escapes = `5412*`, Argosy Cruises = `2960*`
+
+### Changed
+- Updated all project documentation to reflect Viator comparison completion (Phase 0 Step 3)
+- `.env.example` updated with Viator API key entries
+
+### Decided
+- **Path A + Path C are complementary** — extraction handles 8x more products and the long tail; Viator adds reviews, images, and structured pricing
+- Phase 0 Step 3 complete — all 5 Phase 0 steps now finished
+
+---
+
 ## [0.3.1] - 2026-02-17
 
 ### Changed

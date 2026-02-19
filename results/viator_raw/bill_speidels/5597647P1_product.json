@@ -1,0 +1,599 @@
+{
+  "status": "ACTIVE",
+  "productCode": "5597647P1",
+  "language": "en",
+  "createdAt": "2025-08-05T10:58:36.611798Z",
+  "lastUpdatedAt": "2026-02-14T15:22:13Z",
+  "title": "Seattle in a Day Space Needle, Harbor Cruise and Underground Tour",
+  "ticketInfo": {
+    "ticketTypes": [
+      "MOBILE_ONLY"
+    ],
+    "ticketTypeDescription": "Mobile or paper ticket accepted",
+    "ticketsPerBooking": "ONE_PER_BOOKING",
+    "ticketsPerBookingDescription": "One per booking"
+  },
+  "pricingInfo": {
+    "type": "PER_PERSON",
+    "ageBands": [
+      {
+        "ageBand": "INFANT",
+        "startAge": 0,
+        "endAge": 1,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 6
+      },
+      {
+        "ageBand": "CHILD",
+        "startAge": 2,
+        "endAge": 6,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 6
+      },
+      {
+        "ageBand": "YOUTH",
+        "startAge": 7,
+        "endAge": 16,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 0
+      },
+      {
+        "ageBand": "ADULT",
+        "startAge": 17,
+        "endAge": 53,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 6
+      },
+      {
+        "ageBand": "SENIOR",
+        "startAge": 54,
+        "endAge": 100,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 6
+      }
+    ]
+  },
+  "images": [
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "View from Kerry Park, Seattle. ",
+      "isCover": true,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/16/23/ca/f2.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/16/23/ca/f2.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/16/23/ca/f2.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/16/23/ca/f2.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/16/23/ca/f2.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/16/23/ca/f2.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/16/23/ca/f2.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/16/23/ca/f2.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/16/23/ca/f2.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/16/23/ca/f2.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "Pike Place Public Market.",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/16/23/cb/60.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/16/23/cb/60.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/16/23/cb/60.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/16/23/cb/60.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/16/23/cb/60.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/16/23/cb/60.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/16/23/cb/60.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/16/23/cb/60.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/16/23/cb/60.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/16/23/cb/60.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "Seattle Waterfront view Harbor Cruise.",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/16/23/cb/86.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/16/23/cb/86.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/16/23/cb/86.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/16/23/cb/86.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/16/23/cb/86.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/16/23/cb/86.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/16/23/cb/86.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/16/23/cb/86.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/16/23/cb/86.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/16/23/cb/86.jpg"
+        }
+      ]
+    }
+  ],
+  "logistics": {
+    "start": [
+      {
+        "location": {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5IDE8Bz1wiEqMog+BbdPH4bWgsuEIPIAUeDmu2yloiq/"
+        },
+        "description": "This is a parking lot infront of the waterfront. Prefect place to find a mole parking! "
+      }
+    ],
+    "end": [
+      {
+        "location": {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5IDE8Bz1wiEqMog+BbdPH4bWgsuEIPIAUeDmu2yloiq/"
+        },
+        "description": "This is a parking lot infront of the waterfront. Prefect place to find a mole parking! "
+      }
+    ],
+    "redemption": {
+      "redemptionType": "NONE"
+    },
+    "travelerPickup": {
+      "pickupOptionType": "PICKUP_AND_MEET_AT_START_POINT",
+      "allowCustomTravelerPickup": true,
+      "locations": [
+        {
+          "location": {
+            "ref": "MEET_AT_DEPARTURE_POINT"
+          },
+          "pickupType": "OTHER"
+        },
+        {
+          "location": {
+            "ref": "CONTACT_SUPPLIER_LATER"
+          },
+          "pickupType": "OTHER"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyFVMIVC7Bb6563WeVLYCxXw="
+          },
+          "pickupType": "AIRPORT"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyAZusdPk5ef5d0lP+hqA+k4="
+          },
+          "pickupType": "HOTEL"
+        }
+      ],
+      "additionalInfo": "Pick up from your location of choice within the city of Seattle or Airport."
+    }
+  },
+  "timeZone": "America/Los_Angeles",
+  "description": " Discover Seattle Like Never Before\n\nReady to experience the very best of Seattle? Join our intimate small-group tour designed for travelers who want more than just sightseeing — they want an unforgettable journey.\n\n✨ What You’ll Experience:\n\nSoar above the city from the iconic Space Needle, with sweeping views of Mount Rainier and the skyline.\n\nCruise Puget Sound on a scenic harbor boat ride, taking in stunning waterfront and skyline views.\n\nStep back in time on an eye-opening underground tour, uncovering hidden layers of Seattle’s history.\n\nCapture the moment at breathtaking Kerry Park, where postcard-worthy views await.\n\nAlong the way, our expert local guides will share insider stories and highlight landmarks like Pike Place Market and the historic Smith Tower, making every stop come alive.\n\n With a small group for personalized attention and all major attractions included, this tour is the perfect way to truly connect with Seattle.",
+  "inclusions": [
+    {
+      "category": "FEES_AND_TAXES",
+      "categoryDescription": "Fees",
+      "type": "ADMISSION_FEES",
+      "typeDescription": "Admission fees",
+      "description": "Admission fee"
+    },
+    {
+      "category": "FOOD_AND_DRINK",
+      "categoryDescription": "Food and drink",
+      "type": "BOTTLED_WATER",
+      "typeDescription": "Bottled water",
+      "description": "Bottled water"
+    },
+    {
+      "category": "FOOD_AND_DRINK",
+      "categoryDescription": "Food and drink",
+      "type": "SNACKS",
+      "typeDescription": "Snacks",
+      "description": "Snacks"
+    },
+    {
+      "category": "FOOD_AND_DRINK",
+      "categoryDescription": "Food and drink",
+      "type": "COFFEE_AND_TEA",
+      "typeDescription": "Tea and coffee",
+      "description": "Coffee and/or Tea"
+    }
+  ],
+  "additionalInfo": [
+    {
+      "type": "STROLLER_ACCESSIBLE",
+      "description": "Infants and small children can ride in a pram or stroller"
+    },
+    {
+      "type": "PETS_WELCOME",
+      "description": "Service animals allowed"
+    },
+    {
+      "type": "PUBLIC_TRANSPORTATION_NEARBY",
+      "description": "Public transportation options are available nearby"
+    },
+    {
+      "type": "INFANT_SEATS_AVAILABLE",
+      "description": "Specialized infant seats are available"
+    },
+    {
+      "type": "PHYSICAL_EASY",
+      "description": "Suitable for all physical fitness levels"
+    }
+  ],
+  "cancellationPolicy": {
+    "type": "STANDARD",
+    "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+    "cancelIfBadWeather": false,
+    "cancelIfInsufficientTravelers": true,
+    "refundEligibility": [
+      {
+        "dayRangeMin": 1,
+        "percentageRefundable": 100
+      },
+      {
+        "dayRangeMin": 0,
+        "dayRangeMax": 1,
+        "percentageRefundable": 0
+      }
+    ]
+  },
+  "bookingConfirmationSettings": {
+    "bookingCutoffType": "CLOSING_TIME",
+    "bookingCutoffInMinutes": 0,
+    "confirmationType": "INSTANT"
+  },
+  "bookingRequirements": {
+    "minTravelersPerBooking": 1,
+    "maxTravelersPerBooking": 6,
+    "requiresAdultForBooking": false
+  },
+  "languageGuides": [
+    {
+      "type": "AUDIO",
+      "language": "en",
+      "legacyGuide": "en/SERVICE_AUDIO"
+    },
+    {
+      "type": "GUIDE",
+      "language": "en",
+      "legacyGuide": "en/SERVICE_GUIDE"
+    },
+    {
+      "type": "WRITTEN",
+      "language": "en",
+      "legacyGuide": "en/SERVICE_WRITTEN"
+    },
+    {
+      "type": "AUDIO",
+      "language": "fr",
+      "legacyGuide": "fr/SERVICE_AUDIO"
+    },
+    {
+      "type": "GUIDE",
+      "language": "fr",
+      "legacyGuide": "fr/SERVICE_GUIDE"
+    },
+    {
+      "type": "AUDIO",
+      "language": "es",
+      "legacyGuide": "es/SERVICE_AUDIO"
+    },
+    {
+      "type": "GUIDE",
+      "language": "es",
+      "legacyGuide": "es/SERVICE_GUIDE"
+    }
+  ],
+  "bookingQuestions": [
+    "AGEBAND",
+    "FULL_NAMES_FIRST",
+    "FULL_NAMES_LAST",
+    "PICKUP_POINT",
+    "SPECIAL_REQUIREMENTS",
+    "TRANSFER_AIR_ARRIVAL_AIRLINE",
+    "TRANSFER_AIR_ARRIVAL_FLIGHT_NO",
+    "TRANSFER_AIR_DEPARTURE_AIRLINE",
+    "TRANSFER_AIR_DEPARTURE_FLIGHT_NO",
+    "TRANSFER_ARRIVAL_DROP_OFF",
+    "TRANSFER_ARRIVAL_MODE",
+    "TRANSFER_ARRIVAL_TIME",
+    "TRANSFER_DEPARTURE_DATE",
+    "TRANSFER_DEPARTURE_MODE",
+    "TRANSFER_DEPARTURE_PICKUP",
+    "TRANSFER_DEPARTURE_TIME",
+    "TRANSFER_RAIL_ARRIVAL_LINE",
+    "TRANSFER_RAIL_ARRIVAL_STATION",
+    "TRANSFER_RAIL_DEPARTURE_LINE",
+    "TRANSFER_RAIL_DEPARTURE_STATION"
+  ],
+  "tags": [
+    367661,
+    11929,
+    367658,
+    11930,
+    11938,
+    12075,
+    12011,
+    21860,
+    21733
+  ],
+  "destinations": [
+    {
+      "ref": "704",
+      "primary": true
+    }
+  ],
+  "itinerary": {
+    "itineraryType": "STANDARD",
+    "skipTheLine": false,
+    "privateTour": false,
+    "maxTravelersInSharedTour": 6,
+    "duration": {
+      "variableDurationFromMinutes": 180,
+      "variableDurationToMinutes": 240
+    },
+    "itineraryItems": [
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyLbVw/2mab3RC0eCRmUznbs="
+          },
+          "attractionId": 1313
+        },
+        "duration": {
+          "fixedDurationInMinutes": 60
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "YES",
+        "description": "See Seattle from every angle — sky, city, sea, and beneath the streets.\n\nWhat travelers will see and do:\nTravelers will begin with skip-the-line access to the Space Needle, where they’ll enjoy sweeping views of the city skyline, Puget Sound, and Mount Rainier on clear days. After a comfortable city drive past downtown highlights, they’ll board a one-hour narrated Harbor Cruise to see the city from the water. Next, they’ll explore Seattle’s historic underground tunnels on a guided Beneath the Streets tour, learning stories of the city’s early days. The experience concludes at Kerry Park, one of Seattle’s most famous viewpoints, perfect for postcard-worthy photos of the skyline and Space Needle.\n\n"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5C8GQiwHLwsNpCLB9QAHf8jgbCxaru/p8wWTb+iDmDCw"
+          }
+        },
+        "duration": {
+          "fixedDurationInMinutes": 60
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Harbor Cruise – Board a one-hour narrated cruise from Pier 55 and enjoy spectacular views of the city from the water, complete with fresh sea air and stories about the bay."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyIq6viEBBD5pGOAzkXWe3sU="
+          },
+          "attractionId": 25264
+        },
+        "duration": {
+          "fixedDurationInMinutes": 30
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "End your day at this charming hillside park, known for its unbeatable views of the Seattle skyline framed by the Space Needle."
+      }
+    ]
+  },
+  "productOptions": [
+    {
+      "productOptionCode": "TG1",
+      "description": "",
+      "title": "Seattle in a Day Space Needle, Harbor Cruise and Underground Tour",
+      "languageGuides": [
+        {
+          "type": "AUDIO",
+          "language": "es",
+          "legacyGuide": "es/SERVICE_AUDIO"
+        },
+        {
+          "type": "GUIDE",
+          "language": "es",
+          "legacyGuide": "es/SERVICE_GUIDE"
+        },
+        {
+          "type": "AUDIO",
+          "language": "en",
+          "legacyGuide": "en/SERVICE_AUDIO"
+        },
+        {
+          "type": "GUIDE",
+          "language": "en",
+          "legacyGuide": "en/SERVICE_GUIDE"
+        },
+        {
+          "type": "WRITTEN",
+          "language": "en",
+          "legacyGuide": "en/SERVICE_WRITTEN"
+        },
+        {
+          "type": "AUDIO",
+          "language": "fr",
+          "legacyGuide": "fr/SERVICE_AUDIO"
+        },
+        {
+          "type": "GUIDE",
+          "language": "fr",
+          "legacyGuide": "fr/SERVICE_GUIDE"
+        }
+      ]
+    }
+  ],
+  "translationInfo": {
+    "containsMachineTranslatedText": false,
+    "translationSource": "ORIGINAL"
+  },
+  "supplier": {
+    "name": "VoyEdge",
+    "reference": "SUPPLIER-alDeWo8e8ZwfrORhr9g5QA=="
+  },
+  "productUrl": "https://www.viator.com/tours/Seattle/Seattle-in-a-Day-Space-Needle-Harbor-Cruise-and-Underground-Tour/d704-5597647P1?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+  "reviews": {
+    "sources": [
+      {
+        "provider": "VIATOR",
+        "reviewCounts": [
+          {
+            "rating": 1.0,
+            "count": 2
+          },
+          {
+            "rating": 2.0,
+            "count": 0
+          },
+          {
+            "rating": 3.0,
+            "count": 0
+          },
+          {
+            "rating": 4.0,
+            "count": 0
+          },
+          {
+            "rating": 5.0,
+            "count": 0
+          }
+        ],
+        "totalCount": 2,
+        "averageRating": 1.0
+      }
+    ],
+    "reviewCountTotals": [
+      {
+        "rating": 1.0,
+        "count": 2
+      },
+      {
+        "rating": 2.0,
+        "count": 0
+      },
+      {
+        "rating": 3.0,
+        "count": 0
+      },
+      {
+        "rating": 4.0,
+        "count": 0
+      },
+      {
+        "rating": 5.0,
+        "count": 0
+      }
+    ],
+    "totalReviews": 2,
+    "combinedAverageRating": 1.0
+  }
+}

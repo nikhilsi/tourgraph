@@ -1,0 +1,137 @@
+{
+  "productCode": "5597647P1",
+  "bookableItems": [
+    {
+      "productOptionCode": "TG1",
+      "seasons": [
+        {
+          "startDate": "2025-08-04",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "INFANT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 0.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 159.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 249.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "SENIOR",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 229.0
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "operatingHours": [
+            {
+              "dayOfWeek": "MONDAY",
+              "operatingHours": [
+                {
+                  "opensAt": "07:00:00",
+                  "closesAt": "23:30:00"
+                }
+              ]
+            },
+            {
+              "dayOfWeek": "TUESDAY",
+              "operatingHours": [
+                {
+                  "opensAt": "07:00:00",
+                  "closesAt": "23:30:00"
+                }
+              ]
+            },
+            {
+              "dayOfWeek": "WEDNESDAY",
+              "operatingHours": [
+                {
+                  "opensAt": "07:00:00",
+                  "closesAt": "23:30:00"
+                }
+              ]
+            },
+            {
+              "dayOfWeek": "THURSDAY",
+              "operatingHours": [
+                {
+                  "opensAt": "07:00:00",
+                  "closesAt": "23:30:00"
+                }
+              ]
+            },
+            {
+              "dayOfWeek": "FRIDAY",
+              "operatingHours": [
+                {
+                  "opensAt": "07:00:00",
+                  "closesAt": "23:30:00"
+                }
+              ]
+            },
+            {
+              "dayOfWeek": "SATURDAY",
+              "operatingHours": [
+                {
+                  "opensAt": "07:00:00",
+                  "closesAt": "23:30:00"
+                }
+              ]
+            },
+            {
+              "dayOfWeek": "SUNDAY",
+              "operatingHours": [
+                {
+                  "opensAt": "07:00:00",
+                  "closesAt": "23:30:00"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "currency": "USD",
+  "summary": {
+    "fromPrice": 249.0
+  }
+}

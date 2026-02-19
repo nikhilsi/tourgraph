@@ -1,0 +1,1674 @@
+{
+  "status": "ACTIVE",
+  "productCode": "315965P1",
+  "language": "en",
+  "createdAt": "2021-06-29T23:06:38.433722Z",
+  "lastUpdatedAt": "2026-02-17T09:02:13Z",
+  "title": "70-Minute Guided Downtown Eureka Springs Walking Tour",
+  "ticketInfo": {
+    "ticketTypes": [
+      "MOBILE_ONLY"
+    ],
+    "ticketTypeDescription": "Mobile or paper ticket accepted",
+    "ticketsPerBooking": "ONE_PER_BOOKING",
+    "ticketsPerBookingDescription": "One per booking"
+  },
+  "pricingInfo": {
+    "type": "PER_PERSON",
+    "ageBands": [
+      {
+        "ageBand": "INFANT",
+        "startAge": 0,
+        "endAge": 2,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 10
+      },
+      {
+        "ageBand": "CHILD",
+        "startAge": 3,
+        "endAge": 12,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 10
+      },
+      {
+        "ageBand": "YOUTH",
+        "startAge": 13,
+        "endAge": 17,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 10
+      },
+      {
+        "ageBand": "ADULT",
+        "startAge": 18,
+        "endAge": 65,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 10
+      },
+      {
+        "ageBand": "SENIOR",
+        "startAge": 66,
+        "endAge": 100,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 10
+      }
+    ]
+  },
+  "images": [
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "The Downtown Underground Walking Tour in Eureka Springs guide explaining the three different underground systems.",
+      "isCover": true,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/0b/e7/e1/9f.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/0b/e7/e1/9f.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/0b/e7/e1/9f.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/0b/e7/e1/9f.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/0b/e7/e1/9f.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/0b/e7/e1/9f.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0b/e7/e1/9f.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0b/e7/e1/9f.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/0b/e7/e1/9f.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/0b/e7/e1/9f.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "Wild West? Capturing a gang member? Yep! All on the The Downtown Underground Walking Tour in Eureka Springs.",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/0b/e7/e1/9b.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/0b/e7/e1/9b.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/0b/e7/e1/9b.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/0b/e7/e1/9b.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/0b/e7/e1/9b.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/0b/e7/e1/9b.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0b/e7/e1/9b.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0b/e7/e1/9b.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/0b/e7/e1/9b.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/0b/e7/e1/9b.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "Healing Springs? Come learn the history on this award winning cultural history walking tour - The Downtown Underground Walking Tour in Eureka Springs.",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/0b/e7/e1/9c.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/0b/e7/e1/9c.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/0b/e7/e1/9c.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/0b/e7/e1/9c.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/0b/e7/e1/9c.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/0b/e7/e1/9c.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0b/e7/e1/9c.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0b/e7/e1/9c.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/0b/e7/e1/9c.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/0b/e7/e1/9c.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "What - you see an actual underground store front? Only on the The Downtown Underground Walking Tour in Eureka Springs.",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/0b/e7/e1/9d.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/0b/e7/e1/9d.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/0b/e7/e1/9d.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/0b/e7/e1/9d.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/0b/e7/e1/9d.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/0b/e7/e1/9d.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0b/e7/e1/9d.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0b/e7/e1/9d.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/0b/e7/e1/9d.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/0b/e7/e1/9d.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "Learn the stories of who, what and why on The Downtown Underground Walking Tour in Eureka Springs.",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/0b/e7/e1/a2.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/0b/e7/e1/a2.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/0b/e7/e1/a2.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/0b/e7/e1/a2.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/0b/e7/e1/a2.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/0b/e7/e1/a2.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0b/e7/e1/a2.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0b/e7/e1/a2.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/0b/e7/e1/a2.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/0b/e7/e1/a2.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "A peek at one of the underground systems in Downtown Eureka Springs - it's not what you think on the The Downtown Underground Walking Tour in Eureka Springs.",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/0b/e7/e1/a4.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/0b/e7/e1/a4.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/0b/e7/e1/a4.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/0b/e7/e1/a4.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/0b/e7/e1/a4.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/0b/e7/e1/a4.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/0b/e7/e1/a4.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0b/e7/e1/a4.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/0b/e7/e1/a4.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/0b/e7/e1/a4.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "The Tour is led by experienced Tour Interpreters who have lived in Eureka Springs for many years. These locals know what's true and what isn't!",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/12/e7/90/df.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/12/e7/90/df.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/12/e7/90/df.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/12/e7/90/df.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/12/e7/90/df.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/12/e7/90/df.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/e7/90/df.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/12/e7/90/df.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/12/e7/90/df.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/12/e7/90/df.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "You get to step into history on our tour!",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/12/e7/90/e2.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/12/e7/90/e2.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/12/e7/90/e2.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/12/e7/90/e2.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/12/e7/90/e2.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/12/e7/90/e2.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/e7/90/e2.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/12/e7/90/e2.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/12/e7/90/e2.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/12/e7/90/e2.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "Been to Eureka Springs before? Let us tell you why you keep coming back!",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/12/e7/90/f0.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/12/e7/90/f0.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/12/e7/90/f0.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/12/e7/90/f0.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/12/e7/90/f0.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/12/e7/90/f0.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/e7/90/f0.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/12/e7/90/f0.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/12/e7/90/f0.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/12/e7/90/f0.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "Families of all ages find something fun on The Tour.",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/12/e7/90/f6.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/12/e7/90/f6.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/12/e7/90/f6.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/12/e7/90/f6.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/12/e7/90/f6.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/12/e7/90/f6.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/12/e7/90/f6.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/12/e7/90/f6.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/12/e7/90/f6.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/12/e7/90/f6.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/71.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/71.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/71.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/71.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/71.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/71.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/71.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/71.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/71.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/71.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/72.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/72.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/72.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/72.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/72.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/72.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/72.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/72.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/72.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/72.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/73.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/73.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/73.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/73.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/73.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/73.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/73.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/73.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/73.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/73.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/75.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/75.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/75.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/75.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/75.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/75.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/75.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/75.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/75.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/75.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/77.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/77.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/77.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/77.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/77.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/77.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/77.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/77.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/77.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/77.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/78.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/78.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/78.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/78.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/78.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/78.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/78.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/78.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/78.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/78.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/7a.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/7a.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/7a.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/7a.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/7a.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/7a.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/7a.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/7a.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/7a.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/7a.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/7b.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/7b.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/7b.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/7b.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/7b.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/7b.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/7b.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/7b.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/7b.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/7b.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/7c.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/7c.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/7c.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/7c.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/7c.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/7c.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/7c.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/7c.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/7c.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/7c.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/7e.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/7e.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/7e.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/7e.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/7e.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/7e.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/7e.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/7e.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/7e.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/7e.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/81.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/81.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/81.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/81.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/81.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/81.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/81.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/81.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/81.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/81.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/82.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/82.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/82.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/82.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/82.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/82.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/82.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/82.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/82.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/82.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/17/0a/fa/84.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/17/0a/fa/84.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/17/0a/fa/84.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/17/0a/fa/84.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/17/0a/fa/84.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/17/0a/fa/84.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/17/0a/fa/84.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/17/0a/fa/84.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/17/0a/fa/84.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/17/0a/fa/84.jpg"
+        }
+      ]
+    }
+  ],
+  "logistics": {
+    "start": [
+      {
+        "location": {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5PT2mHQGyys/QXmw0jK10RgRryTT0H9B+inOpb2mvsW+"
+        },
+        "description": "Meet in Basin Spring Park next to the Map Kiosk at the base of the stairs that go above the park."
+      }
+    ],
+    "end": [
+      {
+        "location": {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5AXYwNeL/JnVmKIwVIhCiK0P5tdgP65XPtOJf7eC8ZFQ"
+        },
+        "description": "You will end your tour in the Main Street Eureka Springs studio where you will hear the last story and be set to either go to dinner or grab a drink down the street."
+      }
+    ],
+    "redemption": {
+      "redemptionType": "NONE",
+      "specialInstructions": "Just show your guide the ticket confirmation."
+    },
+    "travelerPickup": {
+      "pickupOptionType": "MEET_EVERYONE_AT_START_POINT",
+      "allowCustomTravelerPickup": false
+    }
+  },
+  "timeZone": "America/Chicago",
+  "description": "Hidden Eureka: A Downtown Walking Tour\n\nWalk THE WALK in Eureka Springs—where the entire town is a work of art and every stop tells a story worth hearing. Wander past four iconic springs, dazzling public art, and jaw-dropping Victorian architecture. Slip into the secrets of our hidden underground and watch Eureka’s past burst to life—from Indigenous roots to a wild boomtown of bathhouses, outlaws, healers, and dreamers. Stroll through downtown and into the enchanting “silk stocking” neighborhood, where storybook homes line storybook streets. See murals, mosaics, grand hotels, and the historic Eureka Springs Carnegie Public Library.\n\nCome promenade through our timeless mountain village—soaking up the beauty, culture, and magic that make Downtown Eureka Springs unforgettable.",
+  "inclusions": [
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "A researched historical tour featuring the cultural and geographic information of Downtown"
+    }
+  ],
+  "exclusions": [
+    {
+      "category": "FOOD_AND_DRINK",
+      "categoryDescription": "Food and drink",
+      "type": "BOTTLED_WATER",
+      "typeDescription": "Bottled water",
+      "description": "Bottled water"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Sunscreen & Hat for Sun Protection"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Good walking shoes"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Gratuities for Local guide"
+    }
+  ],
+  "additionalInfo": [
+    {
+      "type": "PETS_WELCOME",
+      "description": "Service animals allowed"
+    },
+    {
+      "type": "PUBLIC_TRANSPORTATION_NEARBY",
+      "description": "Public transportation options are available nearby"
+    },
+    {
+      "type": "PHYSICAL_MEDIUM",
+      "description": "Travelers should have at least a moderate level of physical fitness"
+    },
+    {
+      "type": "OTHER",
+      "description": "Dogs welcome "
+    }
+  ],
+  "cancellationPolicy": {
+    "type": "STANDARD",
+    "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+    "cancelIfBadWeather": true,
+    "cancelIfInsufficientTravelers": false,
+    "refundEligibility": [
+      {
+        "dayRangeMin": 1,
+        "percentageRefundable": 100
+      },
+      {
+        "dayRangeMin": 0,
+        "dayRangeMax": 1,
+        "percentageRefundable": 0
+      }
+    ]
+  },
+  "bookingConfirmationSettings": {
+    "bookingCutoffType": "FIXED_TIME",
+    "bookingCutoffInMinutes": 0,
+    "confirmationType": "INSTANT",
+    "bookingCutoffFixedTime": "18:00:00"
+  },
+  "bookingRequirements": {
+    "minTravelersPerBooking": 1,
+    "maxTravelersPerBooking": 10,
+    "requiresAdultForBooking": false
+  },
+  "languageGuides": [
+    {
+      "type": "GUIDE",
+      "language": "en",
+      "legacyGuide": "en/SERVICE_GUIDE"
+    }
+  ],
+  "bookingQuestions": [
+    "SPECIAL_REQUIREMENTS"
+  ],
+  "tags": [
+    12046,
+    12028,
+    367652,
+    12029,
+    367661,
+    11938
+  ],
+  "destinations": [
+    {
+      "ref": "50757",
+      "primary": true
+    }
+  ],
+  "itinerary": {
+    "itineraryType": "STANDARD",
+    "skipTheLine": false,
+    "privateTour": false,
+    "maxTravelersInSharedTour": 30,
+    "duration": {
+      "fixedDurationInMinutes": 90
+    },
+    "itineraryItems": [
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyCksf3u7RgqKKeq42YlKKjs="
+          }
+        },
+        "duration": {
+          "fixedDurationInMinutes": 60
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Discover the Behind the Scenes Secrets of Eureka Springs! Our underground Eureka Springs Tour will deliver a unique and entertaining view into the history and folklore of the most fascinating city in Arkansas. Dig deep into the origins of the magic healing waters and the sacred Indian springs. Learn about constructing the unique civil engineering miracle and the boomtown that defined us towards the end of the 19th Century. \n\nYou will learn about many of the colorful characters that passed through Eureka Springs, including the famous temperance campaigner Carrie Nation, good and bad doctors like Alva Jackson and Norman Baker, the Starr gang bank robbers, and so on much more. \n\nWear good walking shoes as you travel up and down through history, exploring all the quirky and creative nooks that make Eureka Springs so charming. This is your chance to see Eureka Springs in a way that even local residents haven't noticed and your only opportunity to explore underground at the famous bathhouse."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyKPexp0fl1OqouUOYYorYds="
+          }
+        },
+        "duration": {
+          "fixedDurationInMinutes": 5
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Guests will walk above the Park to see the original location of the Basin Park Spring that was used for healing during the 1880's.\n\nThey will also see where the Spring is now in the basin of the Park."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyCksf3u7RgqKKeq42YlKKjs="
+          }
+        },
+        "duration": {
+          "fixedDurationInMinutes": 10
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Guests will walk up to the Flatiron Building and learn about the history of this iconic (and most photographed) location and the trick about it. \n\nFollowing that they walk up to where the first bank robbery using a vehicle was committed, stories about the three fires, and the history of the Prohibition Era in Downtown Eureka Springs.\n\nVenturing further down a secret set of steps that is also a platted street they learn about Carrie Nation who gave her last temperance speech before passing away in Kansas."
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyD2gT7msDHL4eIMpvDgD3pw="
+          }
+        },
+        "duration": {
+          "fixedDurationInMinutes": 5
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Learn the real history of Lovers Leap and the Palace Hotel at this Tour Stop."
+      }
+    ]
+  },
+  "productOptions": [
+    {
+      "productOptionCode": "TG1",
+      "description": "",
+      "title": "70-Minute Guided Downtown Eureka Springs Walking Tour",
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en",
+          "legacyGuide": "en/SERVICE_GUIDE"
+        }
+      ]
+    }
+  ],
+  "translationInfo": {
+    "containsMachineTranslatedText": false,
+    "translationSource": "ORIGINAL"
+  },
+  "supplier": {
+    "name": "Downtown Underground Tour",
+    "reference": "SUPPLIER-wXY0x4JrZ7X7jm0knRDtXA=="
+  },
+  "productUrl": "https://www.viator.com/tours/Eureka-Springs/Downtown-Eureka-Springs-Underground-Walking-Tour/d50757-315965P1?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+  "reviews": {
+    "sources": [
+      {
+        "provider": "VIATOR",
+        "reviewCounts": [
+          {
+            "rating": 1.0,
+            "count": 0
+          },
+          {
+            "rating": 2.0,
+            "count": 0
+          },
+          {
+            "rating": 3.0,
+            "count": 1
+          },
+          {
+            "rating": 4.0,
+            "count": 4
+          },
+          {
+            "rating": 5.0,
+            "count": 35
+          }
+        ],
+        "totalCount": 40,
+        "averageRating": 4.9
+      },
+      {
+        "provider": "TRIPADVISOR",
+        "reviewCounts": [
+          {
+            "rating": 1.0,
+            "count": 3
+          },
+          {
+            "rating": 2.0,
+            "count": 4
+          },
+          {
+            "rating": 3.0,
+            "count": 1
+          },
+          {
+            "rating": 4.0,
+            "count": 14
+          },
+          {
+            "rating": 5.0,
+            "count": 162
+          }
+        ],
+        "totalCount": 184,
+        "averageRating": 4.8
+      }
+    ],
+    "reviewCountTotals": [
+      {
+        "rating": 1.0,
+        "count": 3
+      },
+      {
+        "rating": 2.0,
+        "count": 4
+      },
+      {
+        "rating": 3.0,
+        "count": 2
+      },
+      {
+        "rating": 4.0,
+        "count": 18
+      },
+      {
+        "rating": 5.0,
+        "count": 197
+      }
+    ],
+    "totalReviews": 224,
+    "combinedAverageRating": 4.794643
+  }
+}

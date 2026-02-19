@@ -50,9 +50,10 @@ I've already proven the extraction layer works — 83 products across 7 real Sea
 - 7 operators tested (tours, cruises, escape rooms) — 83 products extracted
 - ~95% core field accuracy, zero pricing hallucinations
 - 5 booking platforms detected, 6 cross-operator bundles discovered
+- Viator API comparison: 3/7 on Viator (10 products), 4/7 extraction-exclusive — paths are complementary
 - Total cost: $8.28 for all 7 operators
 - Go/no-go decision: GO — all 6 success criteria met
 
 **What's next:**
-- **Phase 1 (Weeks 2-3):** Auto-discovery of operator pages, Viator API integration (Path C) for pricing gap fill, operator review dashboard, FastAPI backend
+- **Phase 1 (Weeks 2-3):** Auto-discovery of operator pages, Path C enrichment layer (Viator reviews/images), operator review dashboard, FastAPI backend
 - **Phase 2 (Weeks 4-5):** MCP server prototype — the first AI-agent-queryable tour inventory

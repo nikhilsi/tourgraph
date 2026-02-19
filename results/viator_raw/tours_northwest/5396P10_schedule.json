@@ -1,0 +1,2538 @@
+{
+  "productCode": "5396P10",
+  "bookableItems": [
+    {
+      "productOptionCode": "TG20",
+      "seasons": [
+        {
+          "startDate": "2025-05-01",
+          "endDate": "2026-04-30",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "13:00",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-02-18",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 83.44
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 94.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-05-01",
+          "endDate": "2026-09-30",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "13:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 92.07
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 103.73
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG18",
+      "seasons": [
+        {
+          "startDate": "2025-05-01",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "13:00",
+                  "unavailableDates": [
+                    {
+                      "date": "2027-01-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-31",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-29",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 83.44
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 94.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG22",
+      "seasons": [
+        {
+          "startDate": "2026-05-01",
+          "endDate": "2026-09-30",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "09:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 92.07
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 103.73
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG11",
+      "seasons": [
+        {
+          "startDate": "2025-05-01",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "09:30",
+                  "unavailableDates": [
+                    {
+                      "date": "2027-01-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-31",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-31",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-31",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-31",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-08",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 77.25
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 88.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG23",
+      "seasons": [
+        {
+          "startDate": "2025-11-03",
+          "endDate": "2026-04-30",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "09:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 83.44
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 94.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-10-01",
+          "endDate": "2027-04-30",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "09:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 83.44
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 94.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG19",
+      "seasons": [
+        {
+          "startDate": "2025-05-01",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "13:00",
+                  "unavailableDates": [
+                    {
+                      "date": "2027-01-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-31",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-12",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 83.44
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 94.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "productOptionCode": "TG10",
+      "seasons": [
+        {
+          "startDate": "2025-05-01",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "09:30",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-12-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-31",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-31",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-31",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-19",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-26",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-08",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-05",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-02",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-25",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-02-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-06",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-18",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-11",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-27",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-04",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-12-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-30",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-23",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-16",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-24",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-11-09",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-31",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-07",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-14",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2027-01-28",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-02-21",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 77.25
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 88.28
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "currency": "USD",
+  "summary": {
+    "fromPrice": 88.28
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "productCode": "5396PRTSEACITY",
+  "bookableItems": [
+    {
+      "productOptionCode": "TG1",
+      "seasons": [
+        {
+          "startDate": "2026-04-15",
+          "endDate": "2026-10-31",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "10:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "CHILD",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 116.28
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 131.31
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "currency": "USD",
+  "summary": {
+    "fromPrice": 131.31
+  }
+}

@@ -3,7 +3,7 @@
 **Project:** TourGraph — AI-Powered Supplier Onboarding for the Agentic Travel Era
 **Phase:** 0 — Feasibility Spike
 **Duration:** ~1 week
-**Status:** Complete — GO recommended (pending review)
+**Status:** Complete — All 5 steps done, GO recommended
 
 ---
 
@@ -504,7 +504,9 @@ Test extraction quality manually across all 7 operators. We have detailed recon 
 
 ### Step 3: Viator API Comparison (Day 3-4)
 
-> **STATUS (2026-02-17):** Deferred to Phase 1. Viator affiliate signup requires a website URL — will revisit once TourGraph has a landing page.
+> **STATUS (2026-02-18):** ✅ Complete. Viator affiliate signup done, production API key active (Basic Access). Comparison script built (`scripts/viator_compare.py`), full Path A vs Path C report produced (`results/comparisons/path_a_vs_path_c.md`).
+>
+> **Results:** 3/7 operators found on Viator (Tours Northwest: 4 products, Evergreen Escapes: 4, Argosy Cruises: 2). 4/7 operators NOT on Viator at all (Shutter Tours, Totally Seattle, Conundroom, Bill Speidel's). Path A has 8x product coverage (83 vs 10). Paths are complementary — extraction captures the long tail, Viator adds reviews/images/pricing.
 
 Sign up as a Viator affiliate (free, immediate) and query their Partner API for the same operators we just extracted from. Compare Path A (our extraction) against Path C (Viator's structured data).
 

@@ -14,14 +14,17 @@ TourGraph solves both: extract structured data from operator websites using AI, 
 
 ## Current Status
 
-**Phase 0: Feasibility Spike** — Complete. **GO recommended** for Phase 1.
+**Phase 0: Feasibility Spike** — Complete. All 5 steps done. **GO recommended** for Phase 1.
 
 - All 7 Seattle-area operators extracted: **83 products**, **~95% core field accuracy**, **zero pricing hallucinations**
 - Extraction pipeline built: Firecrawl `/scrape` + Claude Opus 4.6 with domain-specific prompts
 - Total cost: 37 Firecrawl credits + $8.28 Claude API (~$1.18/operator average)
 - 5 booking platforms detected (FareHarbor, Peek Pro, Bookeo, Gatemaster, RocketRez)
 - Schema flexibility proven — same pipeline handles tours, cruises, and escape rooms
-- Full summary report with go/no-go analysis: [results/phase0_summary/phase0_report.md](results/phase0_summary/phase0_report.md)
+- Viator API comparison complete: 3/7 operators on Viator (10 products), 4/7 are Path A exclusive
+- Path A + Path C are complementary — extraction has 8x coverage, Viator adds reviews/images/pricing
+- Full summary report: [results/phase0_summary/phase0_report.md](results/phase0_summary/phase0_report.md)
+- Path A vs C comparison: [results/comparisons/path_a_vs_path_c.md](results/comparisons/path_a_vs_path_c.md)
 
 See [CURRENT_STATE.md](CURRENT_STATE.md) for detailed status.
 
@@ -100,11 +103,12 @@ tourgraph/
 ├── schemas/               # Extraction schemas
 │   └── octo_extraction_v01.json
 │
-├── scripts/               # Extraction scripts
-│   ├── extract_operator.py   # Path 2 pipeline (Firecrawl /scrape + Claude)
+├── scripts/               # Extraction & comparison scripts
+│   ├── extract_operator.py   # Path A: Firecrawl /scrape + Claude extraction
+│   ├── viator_compare.py     # Path C: Viator API discovery + comparison
 │   └── firecrawl_extract.py  # Firecrawl /extract test (rejected)
 │
-├── results/               # Extraction outputs & scorecards
+├── results/               # Extraction outputs, comparisons & scorecards
 │   ├── tours_northwest/
 │   ├── shutter_tours/
 │   ├── totally_seattle/
@@ -112,7 +116,10 @@ tourgraph/
 │   ├── bill_speidels/
 │   ├── evergreen_escapes/
 │   ├── argosy_cruises/
-│   └── phase0_summary/      # Cross-operator scoring matrix & report
+│   ├── phase0_summary/       # Cross-operator scoring matrix & report
+│   ├── comparisons/          # Path A vs Path C comparison reports
+│   ├── viator_raw/           # Raw Viator API responses per operator
+│   └── viator_mapped/        # Viator data mapped to OCTO schema
 │
 └── prompts/               # Domain-specific extraction prompts
     └── extraction_prompt_v01.md
@@ -143,7 +150,7 @@ python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/
 - **[docs/project_proposal.md](docs/project_proposal.md)** — Full strategic rationale and build plan
 - **[docs/phase0_spike.md](docs/phase0_spike.md)** — Phase 0 methodology, operators, schema
 - **[docs/tooling_landscape.md](docs/tooling_landscape.md)** — Extraction tooling analysis
-- **[docs/api_landscape.md](docs/api_landscape.md)** — OTA API research
+- **[docs/api_landscape.md](docs/api_landscape.md)** — OTA API research & Viator test results
 
 ## Key Concepts
 

@@ -2,7 +2,8 @@
 
 **Project:** TourGraph — AI-Powered Supplier Onboarding for the Agentic Travel Era
 **Created:** February 16, 2026
-**Status:** Research complete, strategic analysis in progress
+**Updated:** February 18, 2026
+**Status:** Research complete, Viator API tested, Path A vs Path C comparison done
 **Trigger:** Recon observation that every test operator has TripAdvisor presence led to discovery of OTA APIs as structured data sources
 
 ---
@@ -182,17 +183,88 @@ The discovery of Path C does NOT change what Phase 0 tests, but adds a valuable 
 
 ---
 
+## Viator API Test Results (2026-02-18)
+
+### Setup & Authentication
+- Signed up as Viator Basic Access affiliate (free, immediate approval)
+- Production API key works immediately; sandbox key may take up to 48 hours to activate
+- Authentication: `exp-api-key` header with API key value
+- Required headers: `Accept: application/json;version=2.0`, `Content-Type: application/json`, `Accept-Language: en-US`
+- Base URL: `https://api.viator.com/partner`
+- Script: `scripts/viator_compare.py`
+
+### API Quirks Discovered
+- **Freetext search (`/search/freetext`)** results do NOT include `supplier` field — must call `/products/{code}` to get the supplier name
+- **Destination filter bug**: Adding `productFiltering.destination` to freetext search silently returns 0 results — removing it works correctly
+- **Two-step discovery required**: Search → pull full product details → match by supplier name (not possible from search results alone)
+- **Product code prefixes**: Each supplier has a consistent prefix (Tours Northwest = `5396*`, Evergreen Escapes = `5412*`, Argosy Cruises = `2960*`)
+
+### Operator Coverage Results
+
+| Operator | On Viator? | Viator Products | Path A Products | Matched |
+|----------|------------|-----------------|-----------------|---------|
+| Tours Northwest | Yes | 4 | 17 | 4 |
+| Evergreen Escapes | Yes | 4 | 19 | 2 |
+| Argosy Cruises | Yes | 2 | 13 | 2 |
+| Shutter Tours | **No** | 0 | 7 | 0 |
+| Totally Seattle | **No** | 0 | 13 | 0 |
+| Conundroom | **No** | 0 | 12 | 0 |
+| Bill Speidel's | **No** | 0 | 2 | 0 |
+| **Total** | **3/7** | **10** | **83** | **8** |
+
+### Path A vs Path C: What Each Uniquely Provides
+
+**Path A exclusive data (extraction captures what Viator doesn't):**
+- Promo codes and active discounts (e.g., RAINIER10 for 10% off)
+- Cross-operator bundles (e.g., Tours NW + Argosy combo)
+- Booking system identification (FareHarbor, Peek Pro, Bookeo, etc.)
+- Operator-authored FAQs with local knowledge
+- Long-tail operators not on any OTA (4/7 in our test set)
+
+**Path C exclusive data (Viator has what extraction can't get):**
+- Reviews and ratings (up to 2,078 reviews per product, structured with averages)
+- CDN-hosted professional images (10-31 per product vs 0-4 from extraction)
+- Standardized pricing with age bands (ADULT, CHILD, INFANT, YOUTH, SENIOR)
+- Product options/variants (up to 9 per product)
+- Structured accessibility data
+- Language guide information
+- Cancellation policies (structured, not free-text)
+
+### Pricing Comparison (Viator markup visible)
+
+| Product | Path A (Direct) | Path C (Viator Retail) | Markup |
+|---------|----------------|----------------------|--------|
+| Tours NW Mt Rainier (Adult) | $179.00 | $208.56 | +17% |
+| Evergreen Mt Rainier (Adult) | $295.00 | $344.00 | +17% |
+| Evergreen Olympic NP (Adult) | $315.00 | $368.00 | +17% |
+| Argosy Harbor Cruise (Adult) | $45.45 | $63.28 | +39%* |
+
+*Argosy match was imperfect (Harbor Cruise matched to Locks Cruise in comparison).
+
+### Strategic Conclusion
+
+**Path A and Path C are complementary, not competing.** The test confirmed the hypothesis from this document's strategic analysis — both are needed:
+- Path A for **coverage** (8x more products) and **unique data** (long tail, promos, bundles)
+- Path C for **enrichment** (reviews, images, structured pricing)
+- Combined: the strongest possible MCP server inventory
+
+Full comparison report: `results/comparisons/path_a_vs_path_c.md`
+
+---
+
 ## Key Takeaways
 
 1. **Structured tour data already exists at scale** — in Viator's API, queryable for free. We don't have to build it from scratch for most commercial operators.
 
-2. **AI extraction (Path A) is the differentiator, not the foundation.** The long-tail operators not on Viator are our unique inventory. The extraction engine is what makes TourGraph more than a Viator wrapper.
+2. **AI extraction (Path A) is the differentiator, not the foundation.** The long-tail operators not on Viator are our unique inventory. The extraction engine is what makes TourGraph more than a Viator wrapper. **Confirmed by test:** 4/7 operators not on Viator, 8x product coverage from extraction.
 
 3. **The MCP layer is the unique value regardless of data source.** Viator, FareHarbor, Peek, and Google GTTD all have structured data. None of them distribute to AI agents. The MCP interface is what TourGraph uniquely provides.
 
 4. **The business model options expand.** TourGraph could be: (a) a Viator affiliate with MCP distribution, (b) an independent AI-extraction platform, (c) a multi-source aggregator, or (d) all of the above at different tiers.
 
 5. **Google GTTD validates the thesis from the industry's own direction.** The move toward structured data feeds for tours/activities is an industry trend, not just our idea. The AI-agent distribution channel is the next step after Google.
+
+6. **Viator pricing reveals the commission opportunity.** Direct prices are 10-39% lower than Viator retail. Operators have a clear incentive to distribute through channels with lower commission — like an AI-agent channel.
 
 ---
 

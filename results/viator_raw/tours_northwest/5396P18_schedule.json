@@ -1,0 +1,125 @@
+{
+  "productCode": "5396P18",
+  "bookableItems": [
+    {
+      "productOptionCode": "TG1",
+      "seasons": [
+        {
+          "startDate": "2025-11-01",
+          "endDate": "2026-04-30",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "08:00",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-03-19",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "UNIT",
+                  "minTravelers": 0,
+                  "maxTravelers": 5,
+                  "ageBand": "TRAVELER",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 1399.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-10-01",
+          "endDate": "2027-04-30",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "08:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "UNIT",
+                  "minTravelers": 0,
+                  "maxTravelers": 5,
+                  "ageBand": "TRAVELER",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 1399.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-05-01",
+          "endDate": "2026-09-30",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "07:00"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "UNIT",
+                  "minTravelers": 0,
+                  "maxTravelers": 5,
+                  "ageBand": "TRAVELER",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 1799.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "currency": "USD",
+  "summary": {
+    "fromPrice": 1399.0
+  }
+}

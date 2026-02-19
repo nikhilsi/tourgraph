@@ -1,0 +1,2240 @@
+{
+  "operator": "argosy_cruises",
+  "source": "viator_partner_api",
+  "pulledAt": "2026-02-18T22:16:03.212101+00:00",
+  "productCount": 2,
+  "products": [
+    {
+      "title": "Seattle's Original Guided Harbor Cruise",
+      "shortDescription": "",
+      "description": "During this 1-hour cruise around Elliott Bay, experience all the beauty and history Seattle has to offer. With live narration from a local guide, learn about Seattle’s historic waterfront and get an up-close look at one of the west coast's largest shipping terminals. Take in the view of the city’s skyline with a spectacular panoramic background of the Cascade and Olympic mountain ranges, including majestic Mount Rainier. Enhance your experience with our curated selection of local snacks and signature beverages available for purchase onboard.",
+      "productCode": "2960HARBOR",
+      "productUrl": "https://www.viator.com/tours/Seattle/Seattle-Harbor-Cruise/d704-2960HARBOR?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Argosy Cruises",
+      "pricingModel": "PER_UNIT",
+      "ageBands": [
+        {
+          "ageBand": "INFANT",
+          "startAge": 0,
+          "endAge": 3,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 15
+        },
+        {
+          "ageBand": "CHILD",
+          "startAge": 4,
+          "endAge": 12,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 15
+        },
+        {
+          "ageBand": "ADULT",
+          "startAge": 13,
+          "endAge": 99,
+          "minTravelersPerBooking": 1,
+          "maxTravelersPerBooking": 15
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 45.7,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 25.78
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 45.7
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-02-17",
+          "endDate": "2026-03-12",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-12-26",
+          "endDate": "2026-12-31",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-11-27",
+          "endDate": "2026-11-29",
+          "daysOfWeek": [
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-11-30",
+          "endDate": "2026-12-24",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-09-01",
+          "endDate": "2026-10-11",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05",
+            "17:25"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-03-13",
+          "endDate": "2026-05-22",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-10-12",
+          "endDate": "2026-11-01",
+          "daysOfWeek": [
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-08-17",
+          "endDate": "2026-08-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05",
+            "17:25",
+            "16:40",
+            "14:00",
+            "18:00",
+            "19:20",
+            "15:20"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-06-12",
+          "endDate": "2026-07-07",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-07-31",
+          "endDate": "2026-08-02",
+          "daysOfWeek": [
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05",
+            "17:25",
+            "18:45"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-11-02",
+          "endDate": "2026-11-26",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-08-03",
+          "endDate": "2026-08-16",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05",
+            "17:25",
+            "16:40",
+            "14:00",
+            "18:00",
+            "19:20",
+            "15:20"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-08-31",
+          "endDate": "2026-08-31",
+          "daysOfWeek": [
+            "MONDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05",
+            "17:25",
+            "16:40",
+            "14:00",
+            "18:00",
+            "19:20",
+            "15:20"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-05-23",
+          "endDate": "2026-05-25",
+          "daysOfWeek": [
+            "MONDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05",
+            "17:25",
+            "16:40",
+            "18:00",
+            "19:20",
+            "15:20"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-07-08",
+          "endDate": "2026-07-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05",
+            "17:25",
+            "16:40",
+            "14:00",
+            "18:00",
+            "19:20",
+            "15:20"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-05-26",
+          "endDate": "2026-06-11",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:45",
+            "13:25",
+            "12:05",
+            "14:45",
+            "16:05",
+            "17:25"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-02-17",
+          "endDate": "2026-03-12",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-12-26",
+          "endDate": "2026-12-31",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-11-27",
+          "endDate": "2026-11-29",
+          "daysOfWeek": [
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-09-01",
+          "endDate": "2026-10-11",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05",
+            "17:25"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-11-30",
+          "endDate": "2026-12-24",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-03-13",
+          "endDate": "2026-05-22",
+          "daysOfWeek": [
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05",
+            "17:25"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-10-12",
+          "endDate": "2026-11-01",
+          "daysOfWeek": [
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-08-17",
+          "endDate": "2026-08-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05",
+            "17:25",
+            "18:00",
+            "19:20",
+            "16:40",
+            "14:00",
+            "15:20"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-06-12",
+          "endDate": "2026-07-07",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-11-02",
+          "endDate": "2026-11-26",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-07-31",
+          "endDate": "2026-08-02",
+          "daysOfWeek": [
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05",
+            "18:45",
+            "17:25"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-08-03",
+          "endDate": "2026-08-16",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05",
+            "17:25",
+            "18:00",
+            "19:20",
+            "16:40",
+            "14:00",
+            "15:20"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-05-23",
+          "endDate": "2026-05-25",
+          "daysOfWeek": [
+            "MONDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05",
+            "17:25",
+            "18:00",
+            "19:20",
+            "16:40",
+            "15:20"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-08-31",
+          "endDate": "2026-08-31",
+          "daysOfWeek": [
+            "MONDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05",
+            "17:25",
+            "18:00",
+            "19:20",
+            "16:40",
+            "14:00",
+            "15:20"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-07-08",
+          "endDate": "2026-07-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05",
+            "17:25",
+            "18:00",
+            "19:20",
+            "16:40",
+            "14:00",
+            "15:20"
+          ]
+        },
+        {
+          "productOptionCode": "TG2",
+          "startDate": "2026-05-26",
+          "endDate": "2026-06-11",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:05",
+            "13:25",
+            "14:45",
+            "10:45",
+            "16:05",
+            "17:25"
+          ]
+        }
+      ],
+      "duration": 60,
+      "itineraryType": "STANDARD",
+      "privateTour": false,
+      "inclusions": [
+        "Live narration",
+        "1-hour sightseeing cruise",
+        "Interior and exterior seating areas",
+        "Restrooms available on board"
+      ],
+      "exclusions": [
+        "Snacks and beverages (available for purchase)",
+        "Gratuities"
+      ],
+      "startLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5M+CIo0fUzbxlk9c5mjam4ehLDBR+HO5H2/ccIwp2B8I",
+          "description": "Argosy Cruises\nMain marina location/reservation center is located at Pier 55 on the Seattle waterfront.\nAddress: 1101 Alaskan Way, Seattle WA 98101"
+        }
+      ],
+      "endLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5M+CIo0fUzbxlk9c5mjam4ehLDBR+HO5H2/ccIwp2B8I",
+          "description": "Argosy Cruises\nMain marina location/reservation center is located at Pier 55 on the Seattle waterfront.\nAddress: 1101 Alaskan Way, Seattle WA 98101"
+        }
+      ],
+      "pickupType": "MEET_EVERYONE_AT_START_POINT",
+      "pickupInfo": "",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 2078,
+        "combinedAverageRating": 4.701155,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 31
+              },
+              {
+                "rating": 2.0,
+                "count": 12
+              },
+              {
+                "rating": 3.0,
+                "count": 40
+              },
+              {
+                "rating": 4.0,
+                "count": 139
+              },
+              {
+                "rating": 5.0,
+                "count": 1029
+              }
+            ],
+            "totalCount": 1251,
+            "averageRating": 4.7
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 5
+              },
+              {
+                "rating": 2.0,
+                "count": 5
+              },
+              {
+                "rating": 3.0,
+                "count": 31
+              },
+              {
+                "rating": 4.0,
+                "count": 145
+              },
+              {
+                "rating": 5.0,
+                "count": 641
+              }
+            ],
+            "totalCount": 827,
+            "averageRating": 4.7
+          }
+        ]
+      },
+      "imageCount": 7,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/20/06/fb.jpg",
+      "productOptions": [
+        {
+          "code": "TG7",
+          "title": "First to Board Tickets",
+          "description": "First to Board Upgrade: Skip the line and be first to board, first to the bar, first to pick the perfect seat, and receive 15% off drinks!"
+        },
+        {
+          "code": "TG2",
+          "title": "General Tickets",
+          "description": ""
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "WHEELCHAIR_ACCESSIBLE",
+          "description": "Wheelchair accessible"
+        },
+        {
+          "type": "STROLLER_ACCESSIBLE",
+          "description": "Infants and small children can ride in a pram or stroller"
+        },
+        {
+          "type": "PETS_WELCOME",
+          "description": "Service animals allowed"
+        },
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "TRANSPORTATION_WHEELCHAIR_ACCESSIBLE",
+          "description": "Transportation options are wheelchair accessible"
+        },
+        {
+          "type": "SURFACES_WHEELCHAIR_ACCESSIBLE",
+          "description": "All areas and surfaces are wheelchair accessible"
+        },
+        {
+          "type": "PHYSICAL_EASY",
+          "description": "Suitable for all physical fitness levels"
+        },
+        {
+          "type": "OTHER",
+          "description": "All vessels offer both indoor & outdoor seating"
+        },
+        {
+          "type": "OTHER",
+          "description": "Check-in 30 minutes prior to tour. Boarding gate closes 5 minutes prior to departure"
+        },
+        {
+          "type": "OTHER",
+          "description": "Wheelchair accessible. PLEASE CALL in advance to secure crew/boarding support."
+        },
+        {
+          "type": "OTHER",
+          "description": "Kids (3 and under) ride free but do require a boarding pass"
+        },
+        {
+          "type": "OTHER",
+          "description": "All vessels have bathrooms"
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        11885,
+        12074,
+        367653,
+        367652,
+        20255,
+        21469,
+        11903,
+        367659,
+        11938,
+        20217,
+        12075,
+        21470,
+        12056,
+        12067,
+        367654,
+        21630,
+        22143,
+        21972,
+        21729,
+        367661
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 15
+      }
+    },
+    {
+      "title": "Seattle Locks Cruise",
+      "shortDescription": "",
+      "description": "Discover the best of Seattle on a scenic cruise through the heart of the city and experience the iconic Hiram M. Chittenden (Ballard) Locks, a ‘boat elevator’ connecting Puget Sound and Lake Washington Ship Canal. On the saltwater of Puget Sound, take in breathtaking views of the city skyline and majestic mountain ranges. Then, glide through the freshwater canal for a closer look at historic neighborhoods, commercial fishing vessels, floating homes, seaplanes, and more. Along the way, enjoy captivating stories of Seattle’s past and present from a live, local guide. ",
+      "productCode": "2960P11",
+      "productUrl": "https://www.viator.com/tours/Seattle/Seattle-Locks-Cruise-One-way-Stay-and-Play/d704-2960P11?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Argosy Cruises",
+      "pricingModel": "PER_UNIT",
+      "ageBands": [
+        {
+          "ageBand": "INFANT",
+          "startAge": 0,
+          "endAge": 3,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 15
+        },
+        {
+          "ageBand": "YOUTH",
+          "startAge": 4,
+          "endAge": 12,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 15
+        },
+        {
+          "ageBand": "ADULT",
+          "startAge": 13,
+          "endAge": 99,
+          "minTravelersPerBooking": 1,
+          "maxTravelersPerBooking": 15
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 63.28,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 47.12
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 80.86
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 47.12
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 80.86
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 29.3
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 63.28
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2026-04-17",
+          "endDate": "2026-10-11",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "13:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG5",
+          "startDate": "2026-10-29",
+          "endDate": "2026-12-26",
+          "daysOfWeek": [
+            "THURSDAY",
+            "SATURDAY"
+          ],
+          "startTimes": [
+            "12:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG5",
+          "startDate": "2026-03-12",
+          "endDate": "2026-05-10",
+          "daysOfWeek": [
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG5",
+          "startDate": "2026-01-01",
+          "endDate": "2026-03-07",
+          "daysOfWeek": [
+            "THURSDAY",
+            "SATURDAY"
+          ],
+          "startTimes": [
+            "12:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG5",
+          "startDate": "2026-07-05",
+          "endDate": "2026-10-11",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG5",
+          "startDate": "2026-05-26",
+          "endDate": "2026-07-04",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG5",
+          "startDate": "2026-10-15",
+          "endDate": "2026-10-25",
+          "daysOfWeek": [
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG5",
+          "startDate": "2026-05-14",
+          "endDate": "2026-05-25",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG6",
+          "startDate": "2026-04-17",
+          "endDate": "2026-10-11",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG4",
+          "startDate": "2026-03-12",
+          "endDate": "2026-05-10",
+          "daysOfWeek": [
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "13:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG4",
+          "startDate": "2026-01-02",
+          "endDate": "2026-03-08",
+          "daysOfWeek": [
+            "FRIDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG4",
+          "startDate": "2026-07-05",
+          "endDate": "2026-10-11",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "13:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG4",
+          "startDate": "2026-12-27",
+          "endDate": "2026-12-27",
+          "daysOfWeek": [
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG4",
+          "startDate": "2026-10-15",
+          "endDate": "2026-10-25",
+          "daysOfWeek": [
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "13:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG4",
+          "startDate": "2026-05-26",
+          "endDate": "2026-07-04",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "13:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG4",
+          "startDate": "2026-05-14",
+          "endDate": "2026-05-25",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "13:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG4",
+          "startDate": "2026-10-30",
+          "endDate": "2026-12-20",
+          "daysOfWeek": [
+            "FRIDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "12:30"
+          ]
+        }
+      ],
+      "duration": 120,
+      "itineraryType": "STANDARD",
+      "privateTour": false,
+      "inclusions": [
+        "Live narration",
+        "2-hour sightseeing cruise",
+        "Interior and exterior seating areas",
+        "Restrooms available on board"
+      ],
+      "exclusions": [
+        "Snacks and beverages (available for purchase)",
+        "Gratuities",
+        "Transportation between start and end location (return bus ticket available for purchase seasonally)"
+      ],
+      "startLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5GPPdxDNsSdRa62AjHHFKT7ufhrex/0zAY44XpQ20hDl",
+          "description": "IMPORTANT DEPARTURE NOTE\nThere are two potential departure locations for the One-way Locks Cruise.\n\n- If your Locks Tour is titled: \"One-Way Cruise from Lake Union / AGC Marina\"\n Then that tour will depart from Argosy Cruises at AGC Marina on Lake Union\n"
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5LhMF2To3odOTYSMbzXGrsnWfnYV3TAQimiv314zYUag",
+          "description": "IMPORTANT DEPARTURE NOTE\nThere are two potential Argosy Cruise departure locations for the Locks Cruise.\n\n- If your Locks Tour is titled: \"One-Way Cruise from Elliott Bay / Pier 54\"\n Then that tour will depart from Argosy Cruises at Pier 54 on the waterfront\n"
+        }
+      ],
+      "endLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5LhMF2To3odOTYSMbzXGrsnWfnYV3TAQimiv314zYUag",
+          "description": "IMPORTANT NOTE: This is a one-way tour \n- If your Locks Tour departs from AGC Marina on Lake Union \n- Then it will end at Elliott Bay / Pier 54 on the waterfront"
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5GPPdxDNsSdRa62AjHHFKT7ufhrex/0zAY44XpQ20hDl",
+          "description": "IMPORTANT NOTE: This is a one-way tour \n- If your Locks Tour departs from Elliott Bay / Pier 54 on the waterfront\n- Then it will end at AGC Marina on Lake Union"
+        }
+      ],
+      "pickupType": "MEET_EVERYONE_AT_START_POINT",
+      "pickupInfo": "",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 381,
+        "combinedAverageRating": 4.7952757,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 9
+              },
+              {
+                "rating": 2.0,
+                "count": 2
+              },
+              {
+                "rating": 3.0,
+                "count": 5
+              },
+              {
+                "rating": 4.0,
+                "count": 16
+              },
+              {
+                "rating": 5.0,
+                "count": 214
+              }
+            ],
+            "totalCount": 246,
+            "averageRating": 4.7
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 0
+              },
+              {
+                "rating": 2.0,
+                "count": 0
+              },
+              {
+                "rating": 3.0,
+                "count": 1
+              },
+              {
+                "rating": 4.0,
+                "count": 8
+              },
+              {
+                "rating": 5.0,
+                "count": 126
+              }
+            ],
+            "totalCount": 135,
+            "averageRating": 4.9
+          }
+        ]
+      },
+      "imageCount": 12,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/20/09/bd.jpg",
+      "productOptions": [
+        {
+          "code": "TG7",
+          "title": "From Lake Union w/ Return Bus",
+          "description": "Roundtrip AGC Marina/Lake Unio: This experience includes both a one-way Locks Cruise and a Return Bus to bring you back to your starting location.<br/>Starting point:<br/>Argosy Cruises - Lake Union, Westlake Ave N, Seattle, WA 98109, USA"
+        },
+        {
+          "code": "TG5",
+          "title": "From Elliott Bay: Cruise Only",
+          "description": "Departs Pier 54/Elliott Bay: This one-way Locks Cruise begins at Pier 54/Elliott Bay on the Seattle waterfront & ends at AGC Marina on South Lake Union. <br/>Starting point:<br/>Argosy Cruises - Seattle Waterfront, 1101 Alaskan Wy Pier 55, #201, Seattle, WA 98101, USA"
+        },
+        {
+          "code": "TG6",
+          "title": "From Elliott Bay w/ Return Bus",
+          "description": "Roundtrip Pier 54/Elliott Bay: This experience includes both a one-way Locks Cruise and a Return Bus to bring you back to your starting location.<br/>Starting point:<br/>Argosy Cruises - Seattle Waterfront, 1101 Alaskan Wy Pier 55, #201, Seattle, WA 98101, USA"
+        },
+        {
+          "code": "TG4",
+          "title": "From Lake Union: Cruise Only",
+          "description": "Duration: 2 hours<br/>Departs from AGC on Lake Union: This one-way Locks Cruise begins at AGC Marina on South Lake Union and ends at Pier 54 on the Seattle Waterfront. <br/>Starting point:<br/>Argosy Cruises - Lake Union, Westlake Ave N, Seattle, WA 98109, USA"
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "WHEELCHAIR_ACCESSIBLE",
+          "description": "Wheelchair accessible"
+        },
+        {
+          "type": "STROLLER_ACCESSIBLE",
+          "description": "Infants and small children can ride in a pram or stroller"
+        },
+        {
+          "type": "PETS_WELCOME",
+          "description": "Service animals allowed"
+        },
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "TRANSPORTATION_WHEELCHAIR_ACCESSIBLE",
+          "description": "Transportation options are wheelchair accessible"
+        },
+        {
+          "type": "SURFACES_WHEELCHAIR_ACCESSIBLE",
+          "description": "All areas and surfaces are wheelchair accessible"
+        },
+        {
+          "type": "PHYSICAL_EASY",
+          "description": "Suitable for all physical fitness levels"
+        },
+        {
+          "type": "OTHER",
+          "description": "TWO DEPARTURE OPTIONS - This is a one-way tour that starts & ends at two different central Seattle marinas. Choose to depart from Pier 54 on the waterfront or from AGC Marina on Lake Union. The departure location is noted in the subtitle of the tour. If unsure - please call Argosy Cruises"
+        },
+        {
+          "type": "OTHER",
+          "description": "Check-in 30 minutes prior to tour - Boarding starting 20 minutes prior to departure"
+        },
+        {
+          "type": "OTHER",
+          "description": "All vessels offer both indoor & outdoor seating"
+        },
+        {
+          "type": "OTHER",
+          "description": "All vessels have bathrooms"
+        },
+        {
+          "type": "OTHER",
+          "description": "Wheelchair accessible. PLEASE CALL in advance to secure crew/boarding support."
+        },
+        {
+          "type": "OTHER",
+          "description": "Kids (3 and under) ride free but do require a boarding pass"
+        },
+        {
+          "type": "OTHER",
+          "description": "Gates close 5 minutes prior to tour departure time for boat preparation and safety checks "
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        11885,
+        367653,
+        367652,
+        20255,
+        21469,
+        11903,
+        11930,
+        367659,
+        11938,
+        20217,
+        12075,
+        21470,
+        11929,
+        12056,
+        12716,
+        367654,
+        21709,
+        21630,
+        21972,
+        21729,
+        367661
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 15
+      }
+    }
+  ]
+}

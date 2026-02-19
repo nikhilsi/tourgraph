@@ -1,0 +1,358 @@
+{
+  "operator": "bill_speidels",
+  "source": "viator_partner_api",
+  "pulledAt": "2026-02-18T22:08:36.194694+00:00",
+  "productCount": 1,
+  "products": [
+    {
+      "title": "70-Minute Guided Downtown Eureka Springs Walking Tour",
+      "shortDescription": "",
+      "description": "Hidden Eureka: A Downtown Walking Tour\n\nWalk THE WALK in Eureka Springs—where the entire town is a work of art and every stop tells a story worth hearing. Wander past four iconic springs, dazzling public art, and jaw-dropping Victorian architecture. Slip into the secrets of our hidden underground and watch Eureka’s past burst to life—from Indigenous roots to a wild boomtown of bathhouses, outlaws, healers, and dreamers. Stroll through downtown and into the enchanting “silk stocking” neighborhood, where storybook homes line storybook streets. See murals, mosaics, grand hotels, and the historic Eureka Springs Carnegie Public Library.\n\nCome promenade through our timeless mountain village—soaking up the beauty, culture, and magic that make Downtown Eureka Springs unforgettable.",
+      "productCode": "315965P1",
+      "productUrl": "https://www.viator.com/tours/Eureka-Springs/Downtown-Eureka-Springs-Underground-Walking-Tour/d50757-315965P1?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Downtown Underground Tour",
+      "pricingModel": "PER_UNIT",
+      "ageBands": [
+        {
+          "ageBand": "INFANT",
+          "startAge": 0,
+          "endAge": 2,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        },
+        {
+          "ageBand": "CHILD",
+          "startAge": 3,
+          "endAge": 12,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        },
+        {
+          "ageBand": "YOUTH",
+          "startAge": 13,
+          "endAge": 17,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        },
+        {
+          "ageBand": "ADULT",
+          "startAge": 18,
+          "endAge": 65,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        },
+        {
+          "ageBand": "SENIOR",
+          "startAge": 66,
+          "endAge": 100,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 19.5,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 19.5
+        },
+        {
+          "ageBand": "SENIOR",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 17.5
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 19.5
+        },
+        {
+          "ageBand": "SENIOR",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 17.5
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 19.5
+        },
+        {
+          "ageBand": "SENIOR",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 17.5
+        },
+        {
+          "ageBand": "INFANT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 0.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 19.5
+        },
+        {
+          "ageBand": "SENIOR",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 17.5
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "TG1",
+          "startDate": "2026-05-24",
+          "endDate": "2026-10-31",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "16:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG1",
+          "startDate": "2026-01-01",
+          "endDate": "2026-05-23",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "16:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG1",
+          "startDate": "2026-11-01",
+          "endDate": "2026-12-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "16:00"
+          ]
+        }
+      ],
+      "duration": 90,
+      "itineraryType": "STANDARD",
+      "privateTour": false,
+      "inclusions": [
+        "A researched historical tour featuring the cultural and geographic information of Downtown"
+      ],
+      "exclusions": [
+        "Bottled water",
+        "Sunscreen & Hat for Sun Protection",
+        "Good walking shoes",
+        "Gratuities for Local guide"
+      ],
+      "startLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5PT2mHQGyys/QXmw0jK10RgRryTT0H9B+inOpb2mvsW+",
+          "description": "Meet in Basin Spring Park next to the Map Kiosk at the base of the stairs that go above the park."
+        }
+      ],
+      "endLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5AXYwNeL/JnVmKIwVIhCiK0P5tdgP65XPtOJf7eC8ZFQ",
+          "description": "You will end your tour in the Main Street Eureka Springs studio where you will hear the last story and be set to either go to dinner or grab a drink down the street."
+        }
+      ],
+      "pickupType": "MEET_EVERYONE_AT_START_POINT",
+      "pickupInfo": "",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 224,
+        "combinedAverageRating": 4.794643,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 0
+              },
+              {
+                "rating": 2.0,
+                "count": 0
+              },
+              {
+                "rating": 3.0,
+                "count": 1
+              },
+              {
+                "rating": 4.0,
+                "count": 4
+              },
+              {
+                "rating": 5.0,
+                "count": 35
+              }
+            ],
+            "totalCount": 40,
+            "averageRating": 4.9
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 3
+              },
+              {
+                "rating": 2.0,
+                "count": 4
+              },
+              {
+                "rating": 3.0,
+                "count": 1
+              },
+              {
+                "rating": 4.0,
+                "count": 14
+              },
+              {
+                "rating": 5.0,
+                "count": 162
+              }
+            ],
+            "totalCount": 184,
+            "averageRating": 4.8
+          }
+        ]
+      },
+      "imageCount": 23,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0b/e7/e1/9f.jpg",
+      "productOptions": [
+        {
+          "code": "TG1",
+          "title": "70-Minute Guided Downtown Eureka Springs Walking Tour",
+          "description": ""
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "PETS_WELCOME",
+          "description": "Service animals allowed"
+        },
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "PHYSICAL_MEDIUM",
+          "description": "Travelers should have at least a moderate level of physical fitness"
+        },
+        {
+          "type": "OTHER",
+          "description": "Dogs welcome "
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        12046,
+        12028,
+        367652,
+        12029,
+        367661,
+        11938
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 10
+      }
+    }
+  ]
+}

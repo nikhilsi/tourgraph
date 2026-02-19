@@ -1,0 +1,67 @@
+{
+  "productCode": "5412HELEN",
+  "bookableItems": [
+    {
+      "productOptionCode": "730AM",
+      "seasons": [
+        {
+          "startDate": "2026-05-15",
+          "endDate": "2026-10-31",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "THURSDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "07:30",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-10-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-06-14",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 344.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 1,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 344.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "currency": "USD",
+  "summary": {
+    "fromPrice": 344.0
+  }
+}

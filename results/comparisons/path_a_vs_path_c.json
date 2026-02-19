@@ -1,0 +1,713 @@
+{
+  "tours_northwest": {
+    "operator": "tours_northwest",
+    "pathA": {
+      "productCount": 17,
+      "source": "website_extraction"
+    },
+    "pathC": {
+      "productCount": 4,
+      "source": "viator_api"
+    },
+    "uniqueToPathA": [
+      "Ultimate Seattle Experience: City Tour, Pike Place Market & Argosy Harbor Cruise Combo",
+      "Pre-Alaska Cruise Transportation and City Tour",
+      "Private Snoqualmie Falls Tour",
+      "Private SUV Tour – Seattle in One Day",
+      "Snoqualmie Falls Tours from Seattle",
+      "Seattle Photo Safari",
+      "Private SUV Seattle Tour",
+      "Private Boeing Factory Tour",
+      "Private SUV Tour: Museum of Glass Tacoma",
+      "Private Small Group Seattle Tour",
+      "2-Day Olympic National Park Tour",
+      "Seattle Team Building Corporate Outing",
+      "Group Tours & Seattle Charter Bus Rentals"
+    ],
+    "uniqueToPathC": [],
+    "productMatches": [
+      {
+        "pathA_title": "Mt Rainier Tour from Seattle",
+        "pathC_title": "Mt. Rainier Day Tour from Seattle",
+        "matchScore": 0.67,
+        "fields": {
+          "title": {
+            "pathA": "Mt Rainier Tour from Seattle",
+            "pathC": "Mt. Rainier Day Tour from Seattle",
+            "match": false
+          },
+          "description": {
+            "pathA_length": 1087,
+            "pathC_length": 991,
+            "winner": "A"
+          },
+          "pricing": {
+            "pathA": "$179.00 Ages 13+, $149.00 Ages 5-12",
+            "pathC": "$173.66 CHILD, $208.56 ADULT, $162.00 CHILD, $173.66 ADULT",
+            "pathA_model": "PER_UNIT",
+            "pathC_model": "PER_UNIT"
+          },
+          "duration": {
+            "pathA": "630 min",
+            "pathC": "480 min",
+            "match": false
+          },
+          "inclusions": {
+            "pathA_count": 5,
+            "pathC_count": 5,
+            "winner": "tie"
+          },
+          "exclusions": {
+            "pathA_count": 2,
+            "pathC_count": 7
+          },
+          "meetingPoints": {
+            "pathA_count": 4,
+            "pathC_count": 4
+          },
+          "reviews": {
+            "pathA": "N/A (not on operator websites)",
+            "pathC": "1829 reviews, 4.860033 avg",
+            "winner": "C"
+          },
+          "cancellationPolicy": {
+            "pathA": "Full refunds on all tours canceled at least 24 hours in advance of the tour's start time. No refunds...",
+            "pathC": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+            "pathA_has": true,
+            "pathC_has": true
+          },
+          "images": {
+            "pathA_count": 2,
+            "pathC_count": 21,
+            "winner": "C"
+          }
+        },
+        "pathA_exclusive": [
+          "Promo codes: ['RAINIER10']",
+          "Booking system: FareHarbor",
+          "FAQs: 10 Q&As"
+        ],
+        "pathC_exclusive": [
+          "Reviews: 1829 reviews",
+          "Language guides: 1 languages",
+          "Product options: 8 variants"
+        ]
+      },
+      {
+        "pathA_title": "Seattle Highlights: Seattle City Tour Bus",
+        "pathC_title": "Seattle City Highlights Tour",
+        "matchScore": 0.6,
+        "fields": {
+          "title": {
+            "pathA": "Seattle Highlights: Seattle City Tour Bus",
+            "pathC": "Seattle City Highlights Tour",
+            "match": false
+          },
+          "description": {
+            "pathA_length": 128,
+            "pathC_length": 310,
+            "winner": "C"
+          },
+          "pricing": {
+            "pathA": "$89.00 Ages 3+",
+            "pathC": "$83.44 CHILD, $94.00 ADULT, $92.07 CHILD, $103.73 ADULT, $77.25 CHILD, $88.28 ADULT",
+            "pathA_model": "PER_UNIT",
+            "pathC_model": "PER_UNIT"
+          },
+          "duration": {
+            "pathA": "180 min",
+            "pathC": "180 min",
+            "match": true
+          },
+          "inclusions": {
+            "pathA_count": 0,
+            "pathC_count": 3,
+            "winner": "C"
+          },
+          "exclusions": {
+            "pathA_count": 0,
+            "pathC_count": 3
+          },
+          "meetingPoints": {
+            "pathA_count": 0,
+            "pathC_count": 3
+          },
+          "reviews": {
+            "pathA": "N/A (not on operator websites)",
+            "pathC": "2000 reviews, 4.7785 avg",
+            "winner": "C"
+          },
+          "cancellationPolicy": {
+            "pathA": "",
+            "pathC": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+            "pathA_has": false,
+            "pathC_has": true
+          },
+          "images": {
+            "pathA_count": 0,
+            "pathC_count": 10,
+            "winner": "C"
+          }
+        },
+        "pathA_exclusive": [
+          "Booking system: FareHarbor"
+        ],
+        "pathC_exclusive": [
+          "Reviews: 2000 reviews",
+          "Language guides: 1 languages",
+          "Product options: 9 variants"
+        ]
+      },
+      {
+        "pathA_title": "Seattle City Tour Package PLUS Hotel Pickup",
+        "pathC_title": "Seattle Pre-Cruise Tour: Transportation & Seattle City Tour",
+        "matchScore": 0.43,
+        "fields": {
+          "title": {
+            "pathA": "Seattle City Tour Package PLUS Hotel Pickup",
+            "pathC": "Seattle Pre-Cruise Tour: Transportation & Seattle City Tour",
+            "match": false
+          },
+          "description": {
+            "pathA_length": 75,
+            "pathC_length": 558,
+            "winner": "C"
+          },
+          "pricing": {
+            "pathA": "$114.00 All ages",
+            "pathC": "$116.28 CHILD, $131.31 ADULT",
+            "pathA_model": "PER_UNIT",
+            "pathC_model": "PER_UNIT"
+          },
+          "duration": {
+            "pathA": "180 min",
+            "pathC": "180 min",
+            "match": true
+          },
+          "inclusions": {
+            "pathA_count": 1,
+            "pathC_count": 5,
+            "winner": "C"
+          },
+          "exclusions": {
+            "pathA_count": 0,
+            "pathC_count": 2
+          },
+          "meetingPoints": {
+            "pathA_count": 0,
+            "pathC_count": 0
+          },
+          "reviews": {
+            "pathA": "N/A (not on operator websites)",
+            "pathC": "64 reviews, 4.46875 avg",
+            "winner": "C"
+          },
+          "cancellationPolicy": {
+            "pathA": "",
+            "pathC": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+            "pathA_has": false,
+            "pathC_has": true
+          },
+          "images": {
+            "pathA_count": 0,
+            "pathC_count": 8,
+            "winner": "C"
+          }
+        },
+        "pathA_exclusive": [
+          "Booking system: FareHarbor"
+        ],
+        "pathC_exclusive": [
+          "Reviews: 64 reviews",
+          "Language guides: 1 languages",
+          "Product options: 1 variants"
+        ]
+      },
+      {
+        "pathA_title": "Private Mt. Rainier Tour",
+        "pathC_title": "From Seattle: Private Tour to Mt. Rainier",
+        "matchScore": 0.57,
+        "fields": {
+          "title": {
+            "pathA": "Private Mt. Rainier Tour",
+            "pathC": "From Seattle: Private Tour to Mt. Rainier",
+            "match": false
+          },
+          "description": {
+            "pathA_length": 221,
+            "pathC_length": 833,
+            "winner": "C"
+          },
+          "pricing": {
+            "pathA": "$1399.00 Private tour (up to 5 guests)",
+            "pathC": "$1399.00 TRAVELER, $1799.00 TRAVELER",
+            "pathA_model": "PER_BOOKING",
+            "pathC_model": "PER_BOOKING"
+          },
+          "duration": {
+            "pathA": "600 min",
+            "pathC": "600 min",
+            "match": true
+          },
+          "inclusions": {
+            "pathA_count": 3,
+            "pathC_count": 3,
+            "winner": "tie"
+          },
+          "exclusions": {
+            "pathA_count": 0,
+            "pathC_count": 2
+          },
+          "meetingPoints": {
+            "pathA_count": 0,
+            "pathC_count": 1
+          },
+          "reviews": {
+            "pathA": "N/A (not on operator websites)",
+            "pathC": "9 reviews, 5.0 avg",
+            "winner": "C"
+          },
+          "cancellationPolicy": {
+            "pathA": "Minimum 48 hours notice for a full refund on private tours.",
+            "pathC": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+            "pathA_has": true,
+            "pathC_has": true
+          },
+          "images": {
+            "pathA_count": 0,
+            "pathC_count": 10,
+            "winner": "C"
+          }
+        },
+        "pathA_exclusive": [
+          "Booking system: FareHarbor"
+        ],
+        "pathC_exclusive": [
+          "Reviews: 9 reviews",
+          "Language guides: 1 languages",
+          "Product options: 1 variants"
+        ]
+      }
+    ]
+  },
+  "shutter_tours": {
+    "operator": "shutter_tours",
+    "pathA": {
+      "productCount": 7,
+      "source": "website_extraction"
+    },
+    "pathC": {
+      "productCount": 0,
+      "source": "viator_api"
+    },
+    "uniqueToPathA": [
+      "Snoqualmie Falls & Seattle City Tour",
+      "Boeing Factory Tour From Seattle",
+      "Mt. Rainier Tour",
+      "Private Mt. Rainier Group Tour",
+      "Skagit Valley Tulip Festival Tour",
+      "Custom Private Tours",
+      "Tanzanian Safari"
+    ],
+    "uniqueToPathC": [],
+    "productMatches": []
+  },
+  "totally_seattle": {
+    "operator": "totally_seattle",
+    "pathA": {
+      "productCount": 13,
+      "source": "website_extraction"
+    },
+    "pathC": {
+      "productCount": 0,
+      "source": "viator_api"
+    },
+    "uniqueToPathA": [
+      "History & Landmarks Seattle City Tour",
+      "Snoqualmie Falls & Cascade Mountain Northwest Nature Tour",
+      "Seattle Art Gallery Tour",
+      "Pike Place Market Seattle Center Walking Tour",
+      "Post Alaskan Cruise Tour of Seattle",
+      "Mount Rainier National Park & Scenic Gondola Ride from Seattle",
+      "Soar, Sip & Sail Seattle",
+      "Olympic National Park & Whale Watching Tour from Seattle",
+      "Bainbridge Island and Kitsap Peninsula Day Trip",
+      "Step-On Seattle Private Tour Guide Service",
+      "Seattle's Best in a Day: A Waterfront, Market, and Seattle Center Walking Tour",
+      "Corporate Events",
+      "Custom Experiences / Customized Seattle Tours"
+    ],
+    "uniqueToPathC": [],
+    "productMatches": []
+  },
+  "conundroom": {
+    "operator": "conundroom",
+    "pathA": {
+      "productCount": 12,
+      "source": "website_extraction"
+    },
+    "pathC": {
+      "productCount": 0,
+      "source": "viator_api"
+    },
+    "uniqueToPathA": [
+      "The Vault 67.Okie-Dokie",
+      "Dr. Frankenstein: The Final Experiment",
+      "Luck and Key: The Heist",
+      "Alice: Reimagined — Save the Wonderland",
+      "Zeppelin — Time to Fly!",
+      "The Ghost Ship — Mystery of the Cursed Galleon!",
+      "School of Magic — Make Your Wish Come True!",
+      "Crafted — Mine and Craft in Real Life!",
+      "Tesla's Laboratory",
+      "Pacific Axes — Axe Throwing",
+      "Imaginarium — Online Adventure",
+      "Party Room Rental"
+    ],
+    "uniqueToPathC": [],
+    "productMatches": []
+  },
+  "bill_speidels": {
+    "operator": "bill_speidels",
+    "pathA": {
+      "productCount": 2,
+      "source": "website_extraction"
+    },
+    "pathC": {
+      "productCount": 0,
+      "source": "viator_api"
+    },
+    "uniqueToPathA": [
+      "Bill Speidel's Underground Tour",
+      "Private Underground Tour (Groups)"
+    ],
+    "uniqueToPathC": [],
+    "productMatches": []
+  },
+  "evergreen_escapes": {
+    "operator": "evergreen_escapes",
+    "pathA": {
+      "productCount": 19,
+      "source": "website_extraction"
+    },
+    "pathC": {
+      "productCount": 4,
+      "source": "viator_api"
+    },
+    "uniqueToPathA": [
+      "2-Day Mt. Rainier National Park Hiking Tour",
+      "Snoqualmie Falls & Washington Wine Tasting Tour",
+      "Best of Portland City Tour",
+      "Full Day Whales + Wildlife Watching Tour",
+      "Longmire in Mt. Rainier National Park Tour",
+      "Mount Rainier & Yakima Valley Wine Tasting Tour",
+      "Mount St. Helens Day Tour (from Seattle)",
+      "North Cascades National Park Tour",
+      "Deception Pass & Whidbey Island Tour",
+      "San Juan Islands Day Tour",
+      "Leavenworth Day Tour",
+      "3-Day Olympic National Park Hiking Tour",
+      "4-Day San Juan Island Hiking & Kayaking Tour",
+      "5-Day Inn-to-Inn Sea Kayaking Tour",
+      "Columbia River Gorge Waterfalls & Wine Tour (from Portland)",
+      "Mount St. Helens & Ape Cave Tour (from Portland)",
+      "Oregon Coast Day Tour (from Portland)"
+    ],
+    "uniqueToPathC": [
+      "Mt. St. Helens National Monument from Seattle: All-Inclusive Small-Group Tour",
+      "Skagit Valley Birding + Deception Pass Day Tour From Seattle "
+    ],
+    "productMatches": [
+      {
+        "pathA_title": "Mt. Rainier National Park Tour",
+        "pathC_title": "Best of Mount Rainier National Park from Seattle: All-Inclusive Small-Group Tour",
+        "matchScore": 0.36,
+        "fields": {
+          "title": {
+            "pathA": "Mt. Rainier National Park Tour",
+            "pathC": "Best of Mount Rainier National Park from Seattle: All-Inclusive Small-Group Tour",
+            "match": false
+          },
+          "description": {
+            "pathA_length": 1431,
+            "pathC_length": 809,
+            "winner": "A"
+          },
+          "pricing": {
+            "pathA": "$295.00 Per person",
+            "pathC": "$344.00 ADULT, $344.00 YOUTH",
+            "pathA_model": "PER_UNIT",
+            "pathC_model": "PER_UNIT"
+          },
+          "duration": {
+            "pathA": "630 min",
+            "pathC": "630 min",
+            "match": true
+          },
+          "inclusions": {
+            "pathA_count": 8,
+            "pathC_count": 8,
+            "winner": "tie"
+          },
+          "exclusions": {
+            "pathA_count": 0,
+            "pathC_count": 3
+          },
+          "meetingPoints": {
+            "pathA_count": 3,
+            "pathC_count": 1
+          },
+          "reviews": {
+            "pathA": "N/A (not on operator websites)",
+            "pathC": "805 reviews, 4.8981366 avg",
+            "winner": "C"
+          },
+          "cancellationPolicy": {
+            "pathA": "None",
+            "pathC": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+            "pathA_has": false,
+            "pathC_has": true
+          },
+          "images": {
+            "pathA_count": 1,
+            "pathC_count": 31,
+            "winner": "C"
+          }
+        },
+        "pathA_exclusive": [
+          "Booking system: Peek Pro"
+        ],
+        "pathC_exclusive": [
+          "Reviews: 805 reviews",
+          "Language guides: 1 languages",
+          "Product options: 1 variants"
+        ]
+      },
+      {
+        "pathA_title": "Olympic National Park Tour",
+        "pathC_title": "Best of Olympic National Park from Seattle: All-Inclusive Small-Group Day Tour",
+        "matchScore": 0.36,
+        "fields": {
+          "title": {
+            "pathA": "Olympic National Park Tour",
+            "pathC": "Best of Olympic National Park from Seattle: All-Inclusive Small-Group Day Tour",
+            "match": false
+          },
+          "description": {
+            "pathA_length": 1061,
+            "pathC_length": 997,
+            "winner": "A"
+          },
+          "pricing": {
+            "pathA": "$315.00 Adult (18+), $295.00 Youth (10-17 years old)",
+            "pathC": "$368.00 YOUTH, $368.00 ADULT",
+            "pathA_model": "PER_UNIT",
+            "pathC_model": "PER_UNIT"
+          },
+          "duration": {
+            "pathA": "720 min",
+            "pathC": "720 min",
+            "match": true
+          },
+          "inclusions": {
+            "pathA_count": 8,
+            "pathC_count": 11,
+            "winner": "C"
+          },
+          "exclusions": {
+            "pathA_count": 0,
+            "pathC_count": 3
+          },
+          "meetingPoints": {
+            "pathA_count": 3,
+            "pathC_count": 3
+          },
+          "reviews": {
+            "pathA": "N/A (not on operator websites)",
+            "pathC": "1006 reviews, 4.88668 avg",
+            "winner": "C"
+          },
+          "cancellationPolicy": {
+            "pathA": "None",
+            "pathC": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+            "pathA_has": false,
+            "pathC_has": true
+          },
+          "images": {
+            "pathA_count": 0,
+            "pathC_count": 23,
+            "winner": "C"
+          }
+        },
+        "pathA_exclusive": [
+          "Booking system: Peek Pro",
+          "FAQs: 4 Q&As"
+        ],
+        "pathC_exclusive": [
+          "Reviews: 1006 reviews",
+          "Language guides: 1 languages",
+          "Product options: 1 variants"
+        ]
+      }
+    ]
+  },
+  "argosy_cruises": {
+    "operator": "argosy_cruises",
+    "pathA": {
+      "productCount": 13,
+      "source": "website_extraction"
+    },
+    "pathC": {
+      "productCount": 2,
+      "source": "viator_api"
+    },
+    "uniqueToPathA": [
+      "Seattle Locks Cruise",
+      "Summer Views Cruise",
+      "Private Views Cruise",
+      "Christmas Ship™ Festival",
+      "Christmas Ship™ 21+ Follow Boat",
+      "Private Charters (Custom)",
+      "Harbor Cruise & Seattle City Tour (Combo)",
+      "Locks Cruise & Hop-On, Hop-Off (Combo)",
+      "Harbor Cruise & Sky View Observatory (Combo)",
+      "Husky Sailgating: 2026 Season",
+      "Group Tickets (Harbor & Locks Cruises)"
+    ],
+    "uniqueToPathC": [],
+    "productMatches": [
+      {
+        "pathA_title": "Seattle Harbor Cruise",
+        "pathC_title": "Seattle Locks Cruise",
+        "matchScore": 0.67,
+        "fields": {
+          "title": {
+            "pathA": "Seattle Harbor Cruise",
+            "pathC": "Seattle Locks Cruise",
+            "match": false
+          },
+          "description": {
+            "pathA_length": 455,
+            "pathC_length": 572,
+            "winner": "C"
+          },
+          "pricing": {
+            "pathA": "$45.45 Adult (13+), $25.64 Youth (4-12), $0.00 Kid (3 and under)",
+            "pathC": "$0.00 INFANT, $47.12 YOUTH, $80.86 ADULT, $29.30 YOUTH, $63.28 ADULT",
+            "pathA_model": "PER_UNIT",
+            "pathC_model": "PER_UNIT"
+          },
+          "duration": {
+            "pathA": "60 min",
+            "pathC": "120 min",
+            "match": false
+          },
+          "inclusions": {
+            "pathA_count": 6,
+            "pathC_count": 4,
+            "winner": "A"
+          },
+          "exclusions": {
+            "pathA_count": 2,
+            "pathC_count": 3
+          },
+          "meetingPoints": {
+            "pathA_count": 1,
+            "pathC_count": 2
+          },
+          "reviews": {
+            "pathA": "N/A (not on operator websites)",
+            "pathC": "381 reviews, 4.7952757 avg",
+            "winner": "C"
+          },
+          "cancellationPolicy": {
+            "pathA": "None",
+            "pathC": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+            "pathA_has": false,
+            "pathC_has": true
+          },
+          "images": {
+            "pathA_count": 4,
+            "pathC_count": 12,
+            "winner": "C"
+          }
+        },
+        "pathA_exclusive": [
+          "Booking system: RocketRez"
+        ],
+        "pathC_exclusive": [
+          "Reviews: 381 reviews",
+          "Language guides: 1 languages",
+          "Product options: 4 variants",
+          "Structured accessibility data"
+        ]
+      },
+      {
+        "pathA_title": "Harbor Cruise & Hop-On, Hop-Off (Combo)",
+        "pathC_title": "Seattle's Original Guided Harbor Cruise",
+        "matchScore": 0.33,
+        "fields": {
+          "title": {
+            "pathA": "Harbor Cruise & Hop-On, Hop-Off (Combo)",
+            "pathC": "Seattle's Original Guided Harbor Cruise",
+            "match": false
+          },
+          "description": {
+            "pathA_length": 0,
+            "pathC_length": 547,
+            "winner": "C"
+          },
+          "pricing": {
+            "pathA": "Discounted combo pricing not visible on pages provided. See detail page.",
+            "pathC": "$0.00 INFANT, $25.78 CHILD, $63.28 ADULT, $45.70 ADULT",
+            "pathA_model": "",
+            "pathC_model": "PER_UNIT"
+          },
+          "duration": {
+            "pathA": "N/A",
+            "pathC": "60 min",
+            "match": null
+          },
+          "inclusions": {
+            "pathA_count": 0,
+            "pathC_count": 4,
+            "winner": "C"
+          },
+          "exclusions": {
+            "pathA_count": 0,
+            "pathC_count": 2
+          },
+          "meetingPoints": {
+            "pathA_count": 0,
+            "pathC_count": 1
+          },
+          "reviews": {
+            "pathA": "N/A (not on operator websites)",
+            "pathC": "2078 reviews, 4.701155 avg",
+            "winner": "C"
+          },
+          "cancellationPolicy": {
+            "pathA": "",
+            "pathC": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+            "pathA_has": false,
+            "pathC_has": true
+          },
+          "images": {
+            "pathA_count": 0,
+            "pathC_count": 7,
+            "winner": "C"
+          }
+        },
+        "pathA_exclusive": [
+          "Cross-operator bundles: ['CitySightseeing']"
+        ],
+        "pathC_exclusive": [
+          "Reviews: 2078 reviews",
+          "Language guides: 1 languages",
+          "Product options: 2 variants",
+          "Structured accessibility data"
+        ]
+      }
+    ]
+  }
+}

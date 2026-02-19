@@ -1,0 +1,1502 @@
+{
+  "operator": "tours_northwest",
+  "source": "viator_partner_api",
+  "pulledAt": "2026-02-18T22:15:57.037537+00:00",
+  "productCount": 4,
+  "products": [
+    {
+      "title": "From Seattle: Private Tour to Mt. Rainier",
+      "shortDescription": "",
+      "description": "Experience the beauty of Mt. Rainier National Park in the comfort of your own private tour. The adventure begins from your hotel, where your personal local expert will pick your party up in a Pearl Chevrolet Suburban LTZ. \n\nWork with your tour guide to create the best itinerary and stops for your group. See and experience places within the National Park that our public tour cannot reach. Set the tone for the day by leaning more towards an adventure, hiking-filled day or sit back and relax while you enjoy a leisurely, scenic day on the mountain. It’s up to you!\n\nFor tours November - April, we can only access the roads in the park which do not require chains. These tours often cannot make it to Paradise, Christine or Narada Falls. We offer snow shoes as a replacement as the majority of the tour will take place at Longmire. ",
+      "productCode": "5396P18",
+      "productUrl": "https://www.viator.com/tours/Seattle/Private-Mt-Rainier-Adventure/d704-5396P18?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Tours Northwest",
+      "pricingModel": "PER_BOOKING",
+      "ageBands": [
+        {
+          "ageBand": "TRAVELER",
+          "startAge": 0,
+          "endAge": 120,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 5
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 1399.0,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "TRAVELER",
+          "pricingPackageType": "UNIT",
+          "recommendedRetailPrice": 1399.0
+        },
+        {
+          "ageBand": "TRAVELER",
+          "pricingPackageType": "UNIT",
+          "recommendedRetailPrice": 1399.0
+        },
+        {
+          "ageBand": "TRAVELER",
+          "pricingPackageType": "UNIT",
+          "recommendedRetailPrice": 1799.0
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "TG1",
+          "startDate": "2025-11-01",
+          "endDate": "2026-04-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "08:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG1",
+          "startDate": "2026-10-01",
+          "endDate": "2027-04-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "08:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG1",
+          "startDate": "2026-05-01",
+          "endDate": "2026-09-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "07:00"
+          ]
+        }
+      ],
+      "duration": 600,
+      "itineraryType": "STANDARD",
+      "privateTour": true,
+      "inclusions": [
+        "Snowshoes when weather permits",
+        "Gratuities",
+        "National Park Entrance Fee"
+      ],
+      "exclusions": [
+        "Lunch",
+        "Luggage"
+      ],
+      "startLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5K4Fb6BZ8WRycqaNK4TYtxBf58UjtNF8wHBlug2Eiijz",
+          "description": "We will arrive in a white SUV in the circle driveway at the museum (MoPop)"
+        }
+      ],
+      "endLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5K4Fb6BZ8WRycqaNK4TYtxBf58UjtNF8wHBlug2Eiijz",
+          "description": "We will arrive in a white SUV in the circle driveway at the museum (MoPop)"
+        }
+      ],
+      "pickupType": "PICKUP_AND_MEET_AT_START_POINT",
+      "pickupInfo": "While we can pick up from most places in the general Seattle area, we cannot pick up from the SeaTac airport.",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 9,
+        "combinedAverageRating": 5.0,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 0
+              },
+              {
+                "rating": 2.0,
+                "count": 0
+              },
+              {
+                "rating": 3.0,
+                "count": 0
+              },
+              {
+                "rating": 4.0,
+                "count": 0
+              },
+              {
+                "rating": 5.0,
+                "count": 1
+              }
+            ],
+            "totalCount": 1,
+            "averageRating": 5.0
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 0
+              },
+              {
+                "rating": 2.0,
+                "count": 0
+              },
+              {
+                "rating": 3.0,
+                "count": 0
+              },
+              {
+                "rating": 4.0,
+                "count": 0
+              },
+              {
+                "rating": 5.0,
+                "count": 8
+              }
+            ],
+            "totalCount": 8,
+            "averageRating": 5.0
+          }
+        ]
+      },
+      "imageCount": 10,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/10/73/00/95.jpg",
+      "productOptions": [
+        {
+          "code": "TG1",
+          "title": "From Seattle: Private Tour to Mt. Rainier",
+          "description": "Pickup included"
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "PETS_WELCOME",
+          "description": "Service animals allowed"
+        },
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "PHYSICAL_EASY",
+          "description": "Suitable for all physical fitness levels"
+        },
+        {
+          "type": "OTHER",
+          "description": "Total duration includes transport time."
+        },
+        {
+          "type": "HEALTH_OTHER",
+          "description": "Not recommended for travelers who experience altitude sickness"
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        11930,
+        11889,
+        11928,
+        21736,
+        22046,
+        11903,
+        367661,
+        11941
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 5
+      }
+    },
+    {
+      "title": "Mt. Rainier Day Tour from Seattle",
+      "shortDescription": "",
+      "description": "No Minimums! \n\nVisit Mt. Rainier with our professional, enthusiastic and informative tour guides. Travel in our clean, comfortable mini-coaches with large windows, high back seats and heat + A/C.\n\nThe season will determine the route and accessibility of your tour! In the summer, experience old-growth forests, wildflower-filled meadows, and thundering waterfalls on this tour of glacier-clad Mt. Rainier. Winter tours spend more time at Longmire with complimentary snow shoes. Hike and walk a little or not at all: there are options for all abilities. Enjoy lunch at a Mt. Rainier cafe or buy a picnic lunch along the way. No two tours are the same! Your guide will provide the best tour available on any given day.\n\nReturn to Seattle through memorable PNW scenery. Bring a camera on this spectacular Mt. Rainier tour as well as comfortable walking shoes. Layer both warm and cool weather clothing as mountain temperatures can vary from rainy and cold to sunny and hot during a single day.\n",
+      "productCode": "5396MTR",
+      "productUrl": "https://www.viator.com/tours/Seattle/Mt-Rainier-Day-Tour-from-Seattle/d704-5396MTR?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Tours Northwest",
+      "pricingModel": "PER_UNIT",
+      "ageBands": [
+        {
+          "ageBand": "CHILD",
+          "startAge": 5,
+          "endAge": 12,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 15
+        },
+        {
+          "ageBand": "ADULT",
+          "startAge": 13,
+          "endAge": 99,
+          "minTravelersPerBooking": 1,
+          "maxTravelersPerBooking": 15
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 173.66,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 173.66
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 208.56
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 173.66
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 208.56
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 162.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 173.66
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 162.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 173.66
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 173.66
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 208.56
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 162.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 173.66
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 162.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 173.66
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 173.66
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 208.56
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "TG14",
+          "startDate": "2026-05-01",
+          "endDate": "2026-10-31",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "07:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG13",
+          "startDate": "2026-05-01",
+          "endDate": "2026-10-31",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "07:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG8",
+          "startDate": "2025-11-01",
+          "endDate": "2026-04-25",
+          "daysOfWeek": [
+            "WEDNESDAY",
+            "THURSDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "08:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG7",
+          "startDate": "2025-11-01",
+          "endDate": "2026-04-25",
+          "daysOfWeek": [
+            "WEDNESDAY",
+            "THURSDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "08:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG11",
+          "startDate": "2026-05-01",
+          "endDate": "2026-10-31",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "07:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG10",
+          "startDate": "2025-11-25",
+          "endDate": "2026-04-30",
+          "daysOfWeek": [
+            "WEDNESDAY",
+            "THURSDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "08:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG9",
+          "startDate": "2025-11-01",
+          "endDate": "2026-04-25",
+          "daysOfWeek": [
+            "MONDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "08:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG12",
+          "startDate": "2026-05-01",
+          "endDate": "2026-10-31",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "07:00"
+          ]
+        }
+      ],
+      "duration": 480,
+      "itineraryType": "STANDARD",
+      "privateTour": false,
+      "inclusions": [
+        "Snowshoes provided complimentary when conditions allow",
+        "Local, professional guide",
+        "All Fees and Taxes",
+        "Transportation by air-conditioned mini coach bus",
+        "Cooler with ice will be be provided inside the bus to keep any perishable items chilled"
+      ],
+      "exclusions": [
+        "Gratuities (optional and not included in the price of this tour)",
+        "Food & drinks (you can purchase lunch at grocery store stop or at the cafe in Visitor Center)",
+        "On-board restrooms",
+        "On-board WiFi",
+        "Hotel pick up",
+        "Children under 5 not allowed",
+        "Itinerary below is a sample; stops are not guaranteed"
+      ],
+      "startLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Jm4/xklrwt9Y4h6RyjU+u0Ov7sO022ukhDmr39w19kA",
+          "description": "Please meet in front of the Matt Griffin YMCA location. There is parking onsite. Our guests should utilize the lot on the left side of the building, at least 1/2 way down the building."
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Lrpr0z1TNi8UhgS5V253jbw2b6ErZhbZ4WvhUndxZiU",
+          "description": "Please meet on 4th Avenue at the cross street of Stewart. You know you're in the right place if you're in front of the Urban Yoga or Urban Coffee signs. Please be on the 4th Avenue side."
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5CMiacaOqf+2BKd1OdZ5g016Jlzzxq/nP7voem2AJ8cw",
+          "description": "Please meet on 4th Avenue in front of the Seattle Public Library located at 1000 4th Ave. "
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5F5kRPfYGZpxuWdpotakeWnWsYlOxiASKVMn1DeX62U4",
+          "description": "This is our MoPop pickup point. Please meet in the Harrison Street turnaround. You know you're in the right place if you're at the circle driveway right next to the Museum of Pop Culture (MoPop)."
+        }
+      ],
+      "endLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Jm4/xklrwt9Y4h6RyjU+u0Ov7sO022ukhDmr39w19kA",
+          "description": "Please meet in front of the Matt Griffin YMCA location. There is parking onsite. Our guests should utilize the lot on the left side of the building, at least 1/2 way down the building."
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Lrpr0z1TNi8UhgS5V253jbw2b6ErZhbZ4WvhUndxZiU",
+          "description": "Please meet on 4th Avenue at the cross street of Stewart. You know you're in the right place if you're in front of the Urban Yoga or Urban Coffee signs. Please be on the 4th Avenue side."
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5CMiacaOqf+2BKd1OdZ5g016Jlzzxq/nP7voem2AJ8cw",
+          "description": "Please meet on 4th Avenue in front of the Seattle Public Library located at 1000 4th Ave. "
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5F5kRPfYGZpxuWdpotakeWnWsYlOxiASKVMn1DeX62U4",
+          "description": "This is our MoPop pickup point. Please meet in the Harrison Street turnaround. You know you're in the right place if you're at the circle driveway right next to the Museum of Pop Culture (MoPop)."
+        }
+      ],
+      "pickupType": "MEET_EVERYONE_AT_START_POINT",
+      "pickupInfo": "",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 1829,
+        "combinedAverageRating": 4.860033,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 7
+              },
+              {
+                "rating": 2.0,
+                "count": 4
+              },
+              {
+                "rating": 3.0,
+                "count": 17
+              },
+              {
+                "rating": 4.0,
+                "count": 102
+              },
+              {
+                "rating": 5.0,
+                "count": 1012
+              }
+            ],
+            "totalCount": 1142,
+            "averageRating": 4.8
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 5
+              },
+              {
+                "rating": 2.0,
+                "count": 3
+              },
+              {
+                "rating": 3.0,
+                "count": 8
+              },
+              {
+                "rating": 4.0,
+                "count": 35
+              },
+              {
+                "rating": 5.0,
+                "count": 636
+              }
+            ],
+            "totalCount": 687,
+            "averageRating": 4.9
+          }
+        ]
+      },
+      "imageCount": 21,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/15/71/35/17.jpg",
+      "productOptions": [
+        {
+          "code": "TG14",
+          "title": "6:35A Seattle Public Library",
+          "description": "Meeting Location: Meet on the 4th Ave side of the Central Branch Library at 1000 4th Ave. <br/>Starting point:<br/>Seattle Public Library - Central Library, 1000 4th Ave, Seattle, WA 98104, USA"
+        },
+        {
+          "code": "TG13",
+          "title": "7:15A SeaTac Matt Griffin YMCA",
+          "description": "Meeting Location: Meet at the Matt Griffin YMCA SeaTac located at 3595 S 188th St. SeaTac. Parking is complimentary for guests on the left side<br/>Starting point:<br/>3595 S 188th St, SeaTac, WA 98188, USA"
+        },
+        {
+          "code": "TG8",
+          "title": "7:45AM Urban Coffeehouse",
+          "description": "This meeting location is our Urban Coffeehouse pickup, located at 1900 4th Avenue. Please wait on the 4th Avenue side.<br/>Starting point:<br/>centennial Building, 1900 4th Ave, Seattle, WA 98101, USA"
+        },
+        {
+          "code": "TG7",
+          "title": "7:35AM Seattle Public Library",
+          "description": "7:35AM: Seattle Public Library: This meeting location is our Seattle Public Library pickup, located at 1000 4th Ave Seattle, WA. Wait on the 4th Avenue side.<br/>Starting point:<br/>Seattle Public Library - Central Library, 1000 4th Ave, Seattle, WA 98104, USA"
+        },
+        {
+          "code": "TG11",
+          "title": "6:55A MoPop Meeting Location",
+          "description": "Meeting Location: This is our MoPop Meeting Location. Please wait at the circle driveway on the north side of the Museum at 325 5th Ave N.<br/>Starting point:<br/>325 5th Ave N, Seattle, WA 98109, USA"
+        },
+        {
+          "code": "TG10",
+          "title": "8:15A Matt Griffin YMCA/SeaTac",
+          "description": "Meeting Location: Please meet at the Matt Griffin YMCA by 8:15am. Parking is complimentary for guests; lease park on the left side in the lot. <br/>Starting point:<br/>3595 S 188th St, SeaTac, WA 98188, USA"
+        },
+        {
+          "code": "TG9",
+          "title": "7:55AM MoPop",
+          "description": "7:55AM MoPop Meeting Location: This meeting location is our MoPop/Seattle Center pickup, located at 325 5th Ave N, Seattle.<br/>Starting point:<br/>325 5th Ave N, Seattle, WA 98109, USA"
+        },
+        {
+          "code": "TG12",
+          "title": "6:45A Urban Coffee House",
+          "description": "Meeting Location: This meeting location is our Urban Coffeehouse pickup, located at 1900 4th Avenue. Please wait on the 4th Ave side. <br/>Starting point:<br/>centennial Building, 1900 4th Ave, Seattle, WA 98101, USA"
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "PETS_WELCOME",
+          "description": "Service animals allowed"
+        },
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "NO_HEART_PROBLEMS",
+          "description": "Not recommended for travelers with poor cardiovascular health"
+        },
+        {
+          "type": "PHYSICAL_EASY",
+          "description": "Suitable for all physical fitness levels"
+        },
+        {
+          "type": "OTHER",
+          "description": "Please contact local service provider to arrange pickup from a nearby location after you have received your confirmation"
+        },
+        {
+          "type": "OTHER",
+          "description": "Tour cannot pickup from hotels or private residences"
+        },
+        {
+          "type": "OTHER",
+          "description": "Enjoy lunch at a Mt. Rainier cafe or buy a picnic lunch at our grocery store stop (own expense)"
+        },
+        {
+          "type": "OTHER",
+          "description": "Layered clothing and comfortable shoes are recommended (temperatures can vary from rainy and cold to sunny and hot in a single day)"
+        },
+        {
+          "type": "OTHER",
+          "description": "Operates in all weather conditions, please dress appropriately"
+        },
+        {
+          "type": "OTHER",
+          "description": "Traffic and road conditions may alter tour route"
+        },
+        {
+          "type": "OTHER",
+          "description": "Please allow up to 11 hours for pickup and drop-off service"
+        },
+        {
+          "type": "OTHER",
+          "description": "We may ask that you walk a couple blocks for pickup or drop off due to traffic or road conditions"
+        },
+        {
+          "type": "OTHER",
+          "description": "This tour does not have storage space for luggage, strollers or wheelchairs without advance arrangements"
+        },
+        {
+          "type": "OTHER",
+          "description": "Ongoing construction at Mt Rainier National Park may cause tour delays"
+        },
+        {
+          "type": "OTHER",
+          "description": "The seasons and weather play a big role in what is available and accessible at Mt Rainier National Park. Tours mid-October through early May will be limited in number of stops & services available."
+        },
+        {
+          "type": "OTHER",
+          "description": "November 12 - Spring 2026: Paradise is only accessible based on road conditions day-of"
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        11928,
+        21972,
+        367652,
+        11938,
+        11889,
+        367653,
+        11930,
+        367659,
+        11903,
+        367654,
+        367661
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 15
+      }
+    },
+    {
+      "title": "Seattle City Highlights Tour",
+      "shortDescription": "",
+      "description": "Get to know the beautiful city of Seattle on a 3-hour, sightseeing tour with the best tour guides in the Northwest. Step into our mini coach buses and enjoy a relaxing ride to the city's most popular attractions, including stops at Pioneer Square, the Ballard Locks, and a great city skyline photo opportunity.",
+      "productCode": "5396P10",
+      "productUrl": "https://www.viator.com/tours/Seattle/Premier-3-Hour-Seattle-City-Tour/d704-5396P10?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Tours Northwest",
+      "pricingModel": "PER_UNIT",
+      "ageBands": [
+        {
+          "ageBand": "CHILD",
+          "startAge": 3,
+          "endAge": 12,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 14
+        },
+        {
+          "ageBand": "ADULT",
+          "startAge": 13,
+          "endAge": 99,
+          "minTravelersPerBooking": 1,
+          "maxTravelersPerBooking": 14
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 88.28,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 83.44
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 94.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 92.07
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 103.73
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 83.44
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 94.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 92.07
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 103.73
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 77.25
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 88.28
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 83.44
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 94.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 83.44
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 94.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 83.44
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 94.0
+        },
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 77.25
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 88.28
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "TG20",
+          "startDate": "2025-05-01",
+          "endDate": "2026-04-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "13:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG20",
+          "startDate": "2026-05-01",
+          "endDate": "2026-09-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "13:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG18",
+          "startDate": "2025-05-01",
+          "endDate": null,
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "13:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG22",
+          "startDate": "2026-05-01",
+          "endDate": "2026-09-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "09:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG11",
+          "startDate": "2025-05-01",
+          "endDate": null,
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "09:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG23",
+          "startDate": "2025-11-03",
+          "endDate": "2026-04-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "09:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG23",
+          "startDate": "2026-10-01",
+          "endDate": "2027-04-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "09:30"
+          ]
+        },
+        {
+          "productOptionCode": "TG19",
+          "startDate": "2025-05-01",
+          "endDate": null,
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "13:00"
+          ]
+        },
+        {
+          "productOptionCode": "TG10",
+          "startDate": "2025-05-01",
+          "endDate": null,
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "09:30"
+          ]
+        }
+      ],
+      "duration": 180,
+      "itineraryType": "STANDARD",
+      "privateTour": false,
+      "inclusions": [
+        "Local, professional guide",
+        "Transportation by air-conditioned mini coach bus",
+        "3 convenient meeting locations throughout downtown Seattle"
+      ],
+      "exclusions": [
+        "Gratuities (optional and not included in the price of this tour)",
+        "Food & drinks",
+        "Hotel Pickup"
+      ],
+      "startLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Apl2XDETqgBY+sqrTs7OqkhL9dPC5apTDHk8+DNbxJA",
+          "description": "Please wait at the circle driveway at the Museum of Pop Culture (MoPop). We will pull into the circle driveway 5 minutes ahead of your tour in a white mini coach that says Tours Northwest. "
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5NRc0DRgu50XgpBFG5zu1G8+IrrGAZsK6K/t9pTZ4U+5",
+          "description": "Please wait on 4th Avenue (4th & Stewart) in front of Urban Coffee House 15 minutes ahead of the tour. We will arrive in a white mini coach that says Tours Northwest. "
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5CMiacaOqf+2BKd1OdZ5g016Jlzzxq/nP7voem2AJ8cw",
+          "description": "Please wait on the 4th Avenue side of the Library, between Spring and Madison Street, 25 minutes ahead of the tour. We will arrive in a white mini coach that says Tours Northwest. "
+        }
+      ],
+      "endLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Apl2XDETqgBY+sqrTs7OqkhL9dPC5apTDHk8+DNbxJA",
+          "description": "Please wait at the circle driveway at the Museum of Pop Culture (MoPop). We will pull into the circle driveway 5 minutes ahead of your tour in a white mini coach that says Tours Northwest. "
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5NRc0DRgu50XgpBFG5zu1G8+IrrGAZsK6K/t9pTZ4U+5",
+          "description": "Please wait on 4th Avenue (4th & Stewart) in front of Urban Coffee House 15 minutes ahead of the tour. We will arrive in a white mini coach that says Tours Northwest. "
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5CMiacaOqf+2BKd1OdZ5g016Jlzzxq/nP7voem2AJ8cw",
+          "description": "Please wait on the 4th Avenue side of the Library, between Spring and Madison Street, 25 minutes ahead of the tour. We will arrive in a white mini coach that says Tours Northwest. "
+        }
+      ],
+      "pickupType": "MEET_EVERYONE_AT_START_POINT",
+      "pickupInfo": "",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 2000,
+        "combinedAverageRating": 4.7785,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 16
+              },
+              {
+                "rating": 2.0,
+                "count": 14
+              },
+              {
+                "rating": 3.0,
+                "count": 35
+              },
+              {
+                "rating": 4.0,
+                "count": 92
+              },
+              {
+                "rating": 5.0,
+                "count": 1115
+              }
+            ],
+            "totalCount": 1272,
+            "averageRating": 4.8
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 13
+              },
+              {
+                "rating": 2.0,
+                "count": 9
+              },
+              {
+                "rating": 3.0,
+                "count": 16
+              },
+              {
+                "rating": 4.0,
+                "count": 64
+              },
+              {
+                "rating": 5.0,
+                "count": 626
+              }
+            ],
+            "totalCount": 728,
+            "averageRating": 4.8
+          }
+        ]
+      },
+      "imageCount": 10,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/16/0a/04/70.jpg",
+      "productOptions": [
+        {
+          "code": "TG20",
+          "title": "12:55pm MoPop Pickup",
+          "description": "Meeting Location: This is our MoPop/Seattle Center pickup for the 1pm tour. You'll wait in the circle driveway for a 12:55pm pickup<br/>Starting point:<br/>Museum of Pop Culture, 325 5th Ave N, Seattle, WA 98109, USA"
+        },
+        {
+          "code": "TG18",
+          "title": "12:35pm Public Library Pickup",
+          "description": "Meeting Location: This is our Seattle Public Library/4th Ave pickup for the 1pm tour. You'll wait on 4th Ave for a 12:35pm pickup.<br/>Starting point:<br/>Seattle Public Library - Central Library, 1000 4th Ave, Seattle, WA 98104, USA"
+        },
+        {
+          "code": "TG22",
+          "title": "9:25AM MOPOP Pickup",
+          "description": "Meeting Location: This is a 9:25am pickup at the Museum of Pop Culture located at 325 5th Ave N. Meet in the circle driveway of the museum. <br/>Starting point:<br/>Museum of Pop Culture, 325 5th Ave N, Seattle, WA 98109, USA"
+        },
+        {
+          "code": "TG15",
+          "title": "1:35pm Public Library Pickup",
+          "description": "Meeting Location: This is our Seattle Public Library/4th pickup for the 2pm tour. You'll wait on 4th Ave for a 1:35pm pickup at library.<br/>Starting point:<br/>Seattle Public Library - Central Library, 1000 4th Ave, Seattle, WA 98104, USA"
+        },
+        {
+          "code": "TG11",
+          "title": "9:15am Midtown Pickup",
+          "description": "Meeting Location: This is our Midtown pickup for the 9:30am tour. You'll wait on 4th under the \"Urban Yoga\" sign for a 9:15am pickup.<br/>Starting point:<br/>Urban Coffee House, 1900 4th Ave, Seattle, WA 98101, USA"
+        },
+        {
+          "code": "TG21",
+          "title": "11:25am MoPop Meeting Location",
+          "description": "Meeting Location: This is our MoPOP/Seattle Center pickup for the 11:30am tour. You'll wait within the turnaround for a 11:25am pickup.<br/>Starting point:<br/>Museum of Pop Culture, 325 5th Ave N, Seattle, WA 98109, USA"
+        },
+        {
+          "code": "TG23",
+          "title": "9:30AM MoPop Pickup",
+          "description": "9:30AM MoPop Meeting Location: This is our MoPop pickup for the 9:30am tour. You'll wait in the circle driveway of MoPop for a 9:30am pickup. <br/>Starting point:<br/>Museum of Pop Culture, 325 5th Ave N, Seattle, WA 98109, USA"
+        },
+        {
+          "code": "TG19",
+          "title": "12:45pm Urban Coffeehouse",
+          "description": "Meeting Location: This is our \"Midtown\" pickup for the 1pm tour. You'll wait outside \"Urban Coffeehouse\" on 4th & Stewart for a 12:45pm pickup.<br/>Starting point:<br/>Urban Coffee House, 1900 4th Ave, Seattle, WA 98101, USA"
+        },
+        {
+          "code": "TG10",
+          "title": "9:05am Public Library Pickup",
+          "description": "Meeting Location: This is our Seattle Public Library/4th pickup for the 9:30am tour. You'll wait on 4th Ave for a 9:05am pickup at library.<br/>Starting point:<br/>Seattle Public Library - Central Library, 1000 4th Ave, Seattle, WA 98104, USA"
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "PETS_WELCOME",
+          "description": "Service animals allowed"
+        },
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "INFANTS_MUST_SIT_ON_LAPS",
+          "description": "Infants are required to sit on an adult’s lap"
+        },
+        {
+          "type": "PHYSICAL_EASY",
+          "description": "Suitable for all physical fitness levels"
+        },
+        {
+          "type": "OTHER",
+          "description": "Please contact local service provider to confirm meeting location after you have received your confirmation"
+        },
+        {
+          "type": "OTHER",
+          "description": "Tour cannot pickup from private residences"
+        },
+        {
+          "type": "OTHER",
+          "description": "Operates in all weather conditions, please dress appropriately"
+        },
+        {
+          "type": "OTHER",
+          "description": "Traffic and road conditions may alter tour route"
+        },
+        {
+          "type": "OTHER",
+          "description": "Please allow up to 4 hours for pickup and drop-off service"
+        },
+        {
+          "type": "OTHER",
+          "description": "Meeting location pickups commence 30 mins prior to tour start time"
+        },
+        {
+          "type": "OTHER",
+          "description": "We may ask you to walk a couple blocks during pickup or drop off due to traffic or road conditions"
+        },
+        {
+          "type": "OTHER",
+          "description": "This tour cannot accommodate for luggage"
+        },
+        {
+          "type": "OTHER",
+          "description": "Tour does not include hotel pickup"
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        367654,
+        367659,
+        367661,
+        11938,
+        11929,
+        367652,
+        12075,
+        367653,
+        11930,
+        21972,
+        12029
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 14
+      }
+    },
+    {
+      "title": "Seattle Pre-Cruise Tour: Transportation & Seattle City Tour",
+      "shortDescription": "",
+      "description": "Making a short stop in Seattle before embarking on a cruise? Take this three-hour pre-cruise tour of Seattle and discover the best of the beautiful Emerald City! You’ll cover 50 miles in a comfortable, small-group mini-coach and enjoy the views of the city’s most iconic attractions, such as Mt Rainier, the Space Needle, Pike Place Market and much more. No need to worry, your guide will pick you up at your Seattle, SeaTac, or Tukwila hotel, take care of your luggage, and drop you off at Seattle’s cruise terminal with plenty of time to board your cruise.",
+      "productCode": "5396PRTSEACITY",
+      "productUrl": "https://www.viator.com/tours/Seattle/Seattle-Shore-Excursion-Pre-Cruise-Sightseeing-City-Tour/d704-5396PRTSEACITY?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Tours Northwest",
+      "pricingModel": "PER_UNIT",
+      "ageBands": [
+        {
+          "ageBand": "CHILD",
+          "startAge": 3,
+          "endAge": 12,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 14
+        },
+        {
+          "ageBand": "ADULT",
+          "startAge": 13,
+          "endAge": 99,
+          "minTravelersPerBooking": 1,
+          "maxTravelersPerBooking": 14
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 131.31,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "CHILD",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 116.28
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 131.31
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "TG1",
+          "startDate": "2026-04-15",
+          "endDate": "2026-10-31",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "10:00"
+          ]
+        }
+      ],
+      "duration": 180,
+      "itineraryType": "STANDARD",
+      "privateTour": false,
+      "inclusions": [
+        "Local, professional guide",
+        "Luggage handling and storage onto the bus for the duration of tour",
+        "Drop-off at your cruise ship at Pier 66 or Pier 91",
+        "Transportation by air-conditioned mini coach bus",
+        "Hotel pickup and return is available for most downtown Seattle hotels"
+      ],
+      "exclusions": [
+        "Gratuities (optional and not included in the price of this tour)",
+        "Food & drinks"
+      ],
+      "startLocations": [],
+      "endLocations": [],
+      "pickupType": "PICKUP_EVERYONE",
+      "pickupInfo": "We pick up from most hotels in the downtown Seattle area. We cannot pick up hotels that are not listed, at cruise ports or at private residences. If you are not staying at a hotel within our pick-up range, the closest meeting location information will be provided to you. Hotel pickups commence prior to departure time. Please call or email us to confirm hotel and exact pickup time. Please note, some hotels are inaccessible for our buses; therefore we may ask you to meet at another hotel for pickup.\n\nMeeting location in downtown Seattle (if you don’t require hotel pickup): Hyatt Regency Seattle (8th Avenue entrance) - 808 Howell St, Seattle, WA 98101.\n\n",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 64,
+        "combinedAverageRating": 4.46875,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 1
+              },
+              {
+                "rating": 2.0,
+                "count": 3
+              },
+              {
+                "rating": 3.0,
+                "count": 3
+              },
+              {
+                "rating": 4.0,
+                "count": 11
+              },
+              {
+                "rating": 5.0,
+                "count": 32
+              }
+            ],
+            "totalCount": 50,
+            "averageRating": 4.4
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 0
+              },
+              {
+                "rating": 2.0,
+                "count": 1
+              },
+              {
+                "rating": 3.0,
+                "count": 0
+              },
+              {
+                "rating": 4.0,
+                "count": 1
+              },
+              {
+                "rating": 5.0,
+                "count": 12
+              }
+            ],
+            "totalCount": 14,
+            "averageRating": 4.7
+          }
+        ]
+      },
+      "imageCount": 8,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/06/6e/f3/1c.jpg",
+      "productOptions": [
+        {
+          "code": "TG1",
+          "title": "Pre-Cruise Tour: Transportation & Seattle City Tour",
+          "description": "Pickup included"
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "PETS_WELCOME",
+          "description": "Service animals allowed"
+        },
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "INFANTS_MUST_SIT_ON_LAPS",
+          "description": "Infants are required to sit on an adult’s lap"
+        },
+        {
+          "type": "PHYSICAL_EASY",
+          "description": "Suitable for all physical fitness levels"
+        },
+        {
+          "type": "OTHER",
+          "description": "Please contact local service provider to arrange pickup from your hotel or a nearby location after you have received your confirmation"
+        },
+        {
+          "type": "OTHER",
+          "description": "Tour cannot pickup from private residences"
+        },
+        {
+          "type": "OTHER",
+          "description": "Hotel pickups are not available from airport area hotels"
+        },
+        {
+          "type": "OTHER",
+          "description": "Hotel pickups commence prior to departure time. Please contact local service provider to receive exact pickup time at hotel"
+        },
+        {
+          "type": "OTHER",
+          "description": "Tour typically gets to cruise ship port between 1:15pm-1:30pm for drop-off"
+        },
+        {
+          "type": "OTHER",
+          "description": "Operates in all weather conditions, please dress appropriately"
+        },
+        {
+          "type": "OTHER",
+          "description": "Traffic and road conditions may alter tour route"
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        11930,
+        11929,
+        367653,
+        11938,
+        12075,
+        367654,
+        21972
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 14
+      }
+    }
+  ]
+}

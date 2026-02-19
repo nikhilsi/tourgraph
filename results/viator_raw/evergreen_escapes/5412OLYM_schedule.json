@@ -1,0 +1,229 @@
+{
+  "productCode": "5412OLYM",
+  "bookableItems": [
+    {
+      "productOptionCode": "730AM",
+      "seasons": [
+        {
+          "startDate": "2026-05-25",
+          "endDate": "2026-10-31",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "07:30",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-10-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-20",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-06-13",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-21",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 368.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 368.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-11-01",
+          "endDate": "2027-04-24",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "FRIDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "07:30",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-12-25",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 368.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 368.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-03-10",
+          "endDate": "2026-05-24",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "WEDNESDAY",
+                "FRIDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "07:30",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-05-01",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-03-15",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-03",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-29",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-10",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-17",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-05-24",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 368.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 368.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-01-15",
+          "endDate": "2026-03-08",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "FRIDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "07:30"
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 368.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 368.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "currency": "USD",
+  "summary": {
+    "fromPrice": 368.0
+  }
+}

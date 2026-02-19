@@ -1,0 +1,1102 @@
+{
+  "operator": "evergreen_escapes",
+  "source": "viator_partner_api",
+  "pulledAt": "2026-02-18T22:16:01.290176+00:00",
+  "productCount": 4,
+  "products": [
+    {
+      "title": "Best of Olympic National Park from Seattle: All-Inclusive Small-Group Day Tour",
+      "shortDescription": "",
+      "description": "No two tours with Evergreen Escapes are the same! Our naturalist guides craft itineraries that reflect the best of what the National Park has to offer that day. Please note that the itinerary outlined is a SAMPLE of potential destinations that could be included in the tour.\n\nJoin our naturalist guides as we dive deep into Olympic National Park’s highlights on this all-inclusive day tour. The park is a UNESCO World Heritage Site remarkable for its ecological diversity. Visit turquoise lakes like Lake Crescent or Quinault and explore the fern-filled forests or trek through the giant trees to hidden waterfalls. Experience Washington's marine ecosystems with a visit the shoreline. We tailor the day based on what's best for the season, weather and group!\n\nOur all-inclusive small-group day trip is limited to 10 travelers. We bring a local, organic lunch to eat outside when it's nice! We also bring coffee, tea, snacks, water, and other cold beverages for the day. Don’t worry about a thing.",
+      "productCode": "5412OLYM",
+      "productUrl": "https://www.viator.com/tours/Seattle/Small-Group-Olympic-National-Park-Tour-from-Seattle/d704-5412OLYM?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Evergreen Escapes Seattle",
+      "pricingModel": "PER_UNIT",
+      "ageBands": [
+        {
+          "ageBand": "YOUTH",
+          "startAge": 10,
+          "endAge": 17,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        },
+        {
+          "ageBand": "ADULT",
+          "startAge": 18,
+          "endAge": 99,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 368.0,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 368.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 368.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 368.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 368.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 368.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 368.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 368.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 368.0
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "730AM",
+          "startDate": "2026-05-25",
+          "endDate": "2026-10-31",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY"
+          ],
+          "startTimes": [
+            "07:30"
+          ]
+        },
+        {
+          "productOptionCode": "730AM",
+          "startDate": "2026-11-01",
+          "endDate": "2027-04-24",
+          "daysOfWeek": [
+            "FRIDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "07:30"
+          ]
+        },
+        {
+          "productOptionCode": "730AM",
+          "startDate": "2026-03-10",
+          "endDate": "2026-05-24",
+          "daysOfWeek": [
+            "WEDNESDAY",
+            "FRIDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "07:30"
+          ]
+        },
+        {
+          "productOptionCode": "730AM",
+          "startDate": "2026-01-15",
+          "endDate": "2026-03-08",
+          "daysOfWeek": [
+            "FRIDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "07:30"
+          ]
+        }
+      ],
+      "duration": 720,
+      "itineraryType": "STANDARD",
+      "privateTour": false,
+      "inclusions": [
+        "Snowshoe gear (during winter months). Additional warm clothing available upon request.",
+        "Olympic National Park entrance fees.",
+        "Lovely guided hikes or snowshoe (winter) treks tailored to your group. Spend lots of time outside.",
+        "Pick-up and drop-off at your downtown Seattle hotel, Airbnb, or rental.",
+        "Lunch",
+        "Groups of 10 or fewer",
+        "Tea and coffee",
+        "Snacks",
+        "TripAdvisor \"Hall of Fame\" professional naturalist guide.",
+        "Transportation in a newer Ford Transit van.",
+        "All-inclusive, full-day tour of Olympic National Park."
+      ],
+      "exclusions": [
+        "Gratuities",
+        "Breakfast",
+        "Dinner"
+      ],
+      "startLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Oq+sO9ChQmhCq5XwhPOkcMooDjrarq8NS5ecwNAcXlk",
+          "description": "Our final pickup location is Olympic Lodge in downtown Port Angeles."
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5IIfy6VVGpT3pboBLSiiC4ZNGS70iMTiDBv9c2xREWrI",
+          "description": "We can meet guests on Bainbridge Island at the Seaside Station right off the ferry landing."
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Lgsc0/Ri5gA6n6zqR4abmTIRe4S7LUyCSb+r9DKYoRV",
+          "description": "Pick-up and drop-off at any downtown Seattle hotel, Airbnb, or rental. Our default hotel for travelers not staying downtown is the Sheraton Grand Hotel in Seattle. Give us a call and we can confirm whether your hotel is included in our pick-up zone!"
+        }
+      ],
+      "endLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Oq+sO9ChQmhCq5XwhPOkcMooDjrarq8NS5ecwNAcXlk",
+          "description": "Our final pickup location is Olympic Lodge in downtown Port Angeles."
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5IIfy6VVGpT3pboBLSiiC4ZNGS70iMTiDBv9c2xREWrI",
+          "description": "We can meet guests on Bainbridge Island at the Seaside Station right off the ferry landing."
+        },
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Lgsc0/Ri5gA6n6zqR4abmTIRe4S7LUyCSb+r9DKYoRV",
+          "description": "Pick-up and drop-off at any downtown Seattle hotel, Airbnb, or rental. Our default hotel for travelers not staying downtown is the Sheraton Grand Hotel in Seattle. Give us a call and we can confirm whether your hotel is included in our pick-up zone!"
+        }
+      ],
+      "pickupType": "PICKUP_AND_MEET_AT_START_POINT",
+      "pickupInfo": "We'll pick you up where you're staying in Downtown Seattle including any hotel, Airbnb, hostels, and the port. If you are staying outside our legal downtown pick-up zone, we are happy to meet you at our default pick up location—The Sheraton Grand Hotel. We also offer pick-up on Bainbridge Island or in Port Angeles upon request.\n\nWe will call/text/email the afternoon of day prior to your tour to confirm your pick-up location and exact pick-up time. No need to check-in before we contact you (unless you have a question, of course!).",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 1006,
+        "combinedAverageRating": 4.88668,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 0
+              },
+              {
+                "rating": 2.0,
+                "count": 4
+              },
+              {
+                "rating": 3.0,
+                "count": 15
+              },
+              {
+                "rating": 4.0,
+                "count": 19
+              },
+              {
+                "rating": 5.0,
+                "count": 420
+              }
+            ],
+            "totalCount": 458,
+            "averageRating": 4.9
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 2
+              },
+              {
+                "rating": 2.0,
+                "count": 1
+              },
+              {
+                "rating": 3.0,
+                "count": 12
+              },
+              {
+                "rating": 4.0,
+                "count": 18
+              },
+              {
+                "rating": 5.0,
+                "count": 515
+              }
+            ],
+            "totalCount": 548,
+            "averageRating": 4.9
+          }
+        ]
+      },
+      "imageCount": 23,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0a/78/b2/ff.jpg",
+      "productOptions": [
+        {
+          "code": "730AM",
+          "title": "7:30am Departure",
+          "description": "Tour departs at 7:30am<br/>Pickup included"
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "NO_BACK_PROBLEMS",
+          "description": "Not recommended for travelers with spinal injuries"
+        },
+        {
+          "type": "NO_HEART_PROBLEMS",
+          "description": "Not recommended for travelers with poor cardiovascular health"
+        },
+        {
+          "type": "PHYSICAL_EASY",
+          "description": "Suitable for all physical fitness levels"
+        },
+        {
+          "type": "OTHER",
+          "description": "Operates in all weather conditions, please dress appropriately."
+        },
+        {
+          "type": "OTHER",
+          "description": "Comfortable walking shoes are recommended."
+        },
+        {
+          "type": "OTHER",
+          "description": "If you have a dietary restriction, please inform us 48 hours before your tour departure"
+        },
+        {
+          "type": "OTHER",
+          "description": "This is a sample itinerary - depending on the season or conditions, your guide may visit an entirely different part of the Park"
+        },
+        {
+          "type": "OTHER",
+          "description": "All travelers must be 10 years or older to join this tour."
+        },
+        {
+          "type": "OTHER",
+          "description": "Water-resistant or waterproof shoes are required on this tour from November through April. Reach out to us for rental options."
+        },
+        {
+          "type": "OTHER",
+          "description": "This is a public small group tour. There may be other travelers on this tour with you, up to a total of 10 guests."
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        367652,
+        11903,
+        21860,
+        21439,
+        11938,
+        20255,
+        11928,
+        11902,
+        367661,
+        11889,
+        21972,
+        12046,
+        11930,
+        367653,
+        367654
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 10
+      }
+    },
+    {
+      "title": "Best of Mount Rainier National Park from Seattle: All-Inclusive Small-Group Tour",
+      "shortDescription": "",
+      "description": "No two tours with Evergreen Escapes are the same! Our guides craft itineraries that reflect the best of what the Park has to offer that day, including group interests and dynamics. Please note that the itinerary outlined is a SAMPLE of potential destinations that could be included in the tour.\n\nExperience Mount Rainier's highlights on a day tailored to you. Our TripAdvisor \"Hall of Fame\" guides run the only day tours permitted to explore more than a mile from the park road as the National Park is ecologically important & delicate. The U.S. Park Service restricts other tour companies - our competitors offer \"road tours.\" We are professional nature educators (not just bus drivers) that have dedicated our lives to artful travel.\n\nOur all-inclusive small-group day trip is limited to just 10 travelers. ",
+      "productCode": "5412MTRAINER",
+      "productUrl": "https://www.viator.com/tours/Seattle/Mt-Rainier-Small-Group-Hiking-or-Snowshoeing-Tour-with-Lunch/d704-5412MTRAINER?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Evergreen Escapes Seattle",
+      "pricingModel": "PER_UNIT",
+      "ageBands": [
+        {
+          "ageBand": "YOUTH",
+          "startAge": 10,
+          "endAge": 17,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        },
+        {
+          "ageBand": "ADULT",
+          "startAge": 18,
+          "endAge": 99,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 344.0,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 344.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 344.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 344.0
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "RAINIER8",
+          "startDate": "2025-03-01",
+          "endDate": "2026-05-02",
+          "daysOfWeek": [
+            "MONDAY",
+            "SATURDAY"
+          ],
+          "startTimes": [
+            "08:00"
+          ]
+        },
+        {
+          "productOptionCode": "RAINIER8",
+          "startDate": "2026-05-03",
+          "endDate": "2026-10-31",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "08:00"
+          ]
+        }
+      ],
+      "duration": 630,
+      "itineraryType": "STANDARD",
+      "privateTour": false,
+      "inclusions": [
+        "National Park Entrance fees.",
+        "Additional warm clothing available upon request.",
+        "Lunch",
+        "Snacks",
+        "Award-winning local naturalist guide!",
+        "Tea and coffee",
+        "Pick-up and drop-off at various downtown Seattle hotels!",
+        "Use of snowshoes and poles (during winter months)."
+      ],
+      "exclusions": [
+        "Gratuities",
+        "Breakfast",
+        "Dinner"
+      ],
+      "startLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Lgsc0/Ri5gA6n6zqR4abmTIRe4S7LUyCSb+r9DKYoRV",
+          "description": "This is our default meeting location for anyone staying outside of our legal pick up area. We'll meet you outside the front entrance!"
+        }
+      ],
+      "endLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Lgsc0/Ri5gA6n6zqR4abmTIRe4S7LUyCSb+r9DKYoRV",
+          "description": "This is our default meeting location for anyone staying outside of our legal pick up area. We'll meet you outside the front entrance!"
+        }
+      ],
+      "pickupType": "PICKUP_AND_MEET_AT_START_POINT",
+      "pickupInfo": "We'll pick you up where you're staying in Downtown Seattle including hotels and airbnbs!. If you are staying outside our legal pick up zone, we are happy to meet you at our default pick up location—Sheraton Grand (1400 6th Ave). If you're unsure whether your hotel or rental is part of the downtown corridor, give us a call and we can confirm whether your hotel is included! \n\nWe also make quick stops near SeaTac Airport or Tacoma when requested.\n\nWe will call/text/email the afternoon of the day prior to your tour to confirm your pick-up location and exact pick-up time. No need to check-in before we contact you (unless you have a question, of course!).",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 805,
+        "combinedAverageRating": 4.8981366,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 3
+              },
+              {
+                "rating": 2.0,
+                "count": 1
+              },
+              {
+                "rating": 3.0,
+                "count": 6
+              },
+              {
+                "rating": 4.0,
+                "count": 14
+              },
+              {
+                "rating": 5.0,
+                "count": 244
+              }
+            ],
+            "totalCount": 268,
+            "averageRating": 4.8
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 0
+              },
+              {
+                "rating": 2.0,
+                "count": 5
+              },
+              {
+                "rating": 3.0,
+                "count": 5
+              },
+              {
+                "rating": 4.0,
+                "count": 16
+              },
+              {
+                "rating": 5.0,
+                "count": 511
+              }
+            ],
+            "totalCount": 537,
+            "averageRating": 4.9
+          }
+        ]
+      },
+      "imageCount": 31,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0a/78/9e/6d.jpg",
+      "productOptions": [
+        {
+          "code": "RAINIER8",
+          "title": "8am Departure",
+          "description": "Tour departs at 8am<br/>Pickup included"
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "PHYSICAL_EASY",
+          "description": "Suitable for all physical fitness levels"
+        },
+        {
+          "type": "OTHER",
+          "description": "Please wear comfortable shoes suitable for walking. Waterproof boots required October-June. Please reach out to us for rental options."
+        },
+        {
+          "type": "OTHER",
+          "description": "Warm clothing is recommended during winter months (jacket, sturdy shoes, hat, gloves, layers)"
+        },
+        {
+          "type": "OTHER",
+          "description": "Note: Severe winter weather (rare) may result in road closures and other unpredictable changes to the itinerary - our talented guides adjust accordingly."
+        },
+        {
+          "type": "OTHER",
+          "description": "If you have dietary restrictions, please inform us at least 48 hours before your tour departure"
+        },
+        {
+          "type": "OTHER",
+          "description": "This is a sample itinerary - depending on the season, we may visit other sections of the Park entirely."
+        },
+        {
+          "type": "OTHER",
+          "description": "Operates in all weather conditions. Please dress appropriately."
+        },
+        {
+          "type": "OTHER",
+          "description": "All travelers must be 10 years or older."
+        },
+        {
+          "type": "OTHER",
+          "description": "This is a public small group tour. There may be other travelers on this tour with you, up to a total of 10 guests."
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        367661,
+        11928,
+        21972,
+        11903,
+        11889,
+        21439,
+        21860,
+        11930,
+        367652,
+        11938,
+        12046,
+        367654,
+        11902,
+        367653,
+        367659
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 10
+      }
+    },
+    {
+      "title": "Mt. St. Helens National Monument from Seattle: All-Inclusive Small-Group Tour",
+      "shortDescription": "",
+      "description": "Explore Mt. St. Helens on a day tour tailored to you. Our local, TripAdvisor 'Hall of Fame' guides have been 'Certified Excellent' every year since 2010! Please note that the itinerary outlined is a SAMPLE of potential destinations that could be included in the tour.\n\nWalk along the blast-swept Eruption Trail with panoramic views of the devastation and the mountain’s crater. You may even glimpse a herd of Roosevelt elk! \n\nNo two tours with Evergreen Escapes are the same! Our guides craft itineraries that reflect the best of what the Park has to offer that day. We’ll offer stops at some of our favorite spots like Coldwater Lake or the Hummocks Trail. This isn’t just another driving tour of a beautiful landscape - we prefer to keep guests outside the vehicle for walks to experience firsthand.\n\nOur all-inclusive small-group day tour is limited to just 10 travelers. We'll bring a local, organic, family-style lunch and eat outside when it's nice! Don’t worry about a thing!",
+      "productCode": "5412HELEN",
+      "productUrl": "https://www.viator.com/tours/Seattle/Small-Group-Full-Day-Tour-of-Mount-St-Helens-Volcano-from-Seattle/d704-5412HELEN?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Evergreen Escapes Seattle",
+      "pricingModel": "PER_UNIT",
+      "ageBands": [
+        {
+          "ageBand": "YOUTH",
+          "startAge": 10,
+          "endAge": 17,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        },
+        {
+          "ageBand": "ADULT",
+          "startAge": 18,
+          "endAge": 99,
+          "minTravelersPerBooking": 1,
+          "maxTravelersPerBooking": 10
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 344.0,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 344.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 344.0
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "730AM",
+          "startDate": "2026-05-15",
+          "endDate": "2026-10-31",
+          "daysOfWeek": [
+            "THURSDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "07:30"
+          ]
+        }
+      ],
+      "duration": 720,
+      "itineraryType": "STANDARD",
+      "privateTour": false,
+      "inclusions": [
+        "Additional warm clothing available upon request.",
+        "Lovely guided hikes and treks tailored to your group's tastes. Spend lots of time outside.",
+        "Tea and coffee",
+        "Pick-up and drop-off at your downtown Seattle hotel, Airbnb, or rental.",
+        "Mt. St. Helens National Monument entrance fees.",
+        "Snacks",
+        "TripAdvisor \"Hall of Fame\" professional naturalist guide.",
+        "Pick-ups near SeaTac Airport or Tacoma upon request.",
+        "Lunch",
+        "Transportation in a newer Ford Transit van"
+      ],
+      "exclusions": [
+        "Gratuities",
+        "Breakfast",
+        "Dinner"
+      ],
+      "startLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Lgsc0/Ri5gA6n6zqR4abmTIRe4S7LUyCSb+r9DKYoRV",
+          "description": "This is our default meeting location for those staying outside of our Downtown Seattle pick up zone."
+        }
+      ],
+      "endLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Lgsc0/Ri5gA6n6zqR4abmTIRe4S7LUyCSb+r9DKYoRV",
+          "description": "This is our default meeting location for those staying outside of our Downtown Seattle pick up zone."
+        }
+      ],
+      "pickupType": "PICKUP_AND_MEET_AT_START_POINT",
+      "pickupInfo": "If you're staying in downtown Seattle (hotel, AirBNB, rental, etc) we'll pick you up! If you're unsure whether your hotel or rental is part of our legal Downtown pick up zone, give us a call and we can confirm whether your hotel is included! We'll call/text/email you the afternoon of the day prior to the trip to arrange a specific time at your accommodation. We can also arrange pickups near SeaTac or Tacoma upon request.",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 129,
+        "combinedAverageRating": 4.868217,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 1
+              },
+              {
+                "rating": 2.0,
+                "count": 1
+              },
+              {
+                "rating": 3.0,
+                "count": 1
+              },
+              {
+                "rating": 4.0,
+                "count": 4
+              },
+              {
+                "rating": 5.0,
+                "count": 65
+              }
+            ],
+            "totalCount": 72,
+            "averageRating": 4.8
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 0
+              },
+              {
+                "rating": 2.0,
+                "count": 0
+              },
+              {
+                "rating": 3.0,
+                "count": 1
+              },
+              {
+                "rating": 4.0,
+                "count": 2
+              },
+              {
+                "rating": 5.0,
+                "count": 54
+              }
+            ],
+            "totalCount": 57,
+            "averageRating": 4.9
+          }
+        ]
+      },
+      "imageCount": 22,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/0a/78/ce/54.jpg",
+      "productOptions": [
+        {
+          "code": "730AM",
+          "title": "7:30am Departure",
+          "description": "Tour departs at 7:30am<br/>Pickup included"
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "PHYSICAL_EASY",
+          "description": "Suitable for all physical fitness levels"
+        },
+        {
+          "type": "OTHER",
+          "description": "Comfortable walking shoes are recommended."
+        },
+        {
+          "type": "OTHER",
+          "description": "If you have dietary restrictions, please notify us 48 hours before tour departure"
+        },
+        {
+          "type": "OTHER",
+          "description": "This is a sample itinerary - depending on the season or Park conditions, your guide may adjust this itinerary"
+        },
+        {
+          "type": "OTHER",
+          "description": "Operates in all weather conditions. Please dress accordingly."
+        },
+        {
+          "type": "OTHER",
+          "description": "Note: Severe winter weather (rare) may result in road closures and other unpredictable changes to the itinerary - our talented guides adjust accordingly."
+        },
+        {
+          "type": "OTHER",
+          "description": "All travelers must be 10 years of age and above."
+        },
+        {
+          "type": "OTHER",
+          "description": "This is a public small group tour. There may be other travelers on this tour with you, up to a total of 10 guests."
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        21439,
+        11938,
+        11903,
+        11902,
+        12046,
+        11889,
+        11928,
+        21860,
+        11930
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 10
+      }
+    },
+    {
+      "title": "Skagit Valley Birding + Deception Pass Day Tour From Seattle ",
+      "shortDescription": "",
+      "description": "No two tours with Evergreen Escapes are the same! Our guides craft itineraries that reflect the best of what the Park has to offer that day, including group interests and dynamics. Please note that the itinerary outlined is a SAMPLE of potential destinations that could be included in the tour.\n\nOur Deception Pass State Park Tour from Seattle is an excellent way to spend a day outside of the city. Located on the northern end of the largest island in the Salish Sea, Deception Pass provides unparalleled opportunities to experience the true Pacific Northwest with miles of rugged coast, massive old growth trees, and adrenaline pumping bridges. \n\nThis small-group day trip limited to 10 people includes French-pressed coffee & tea, pastries, light snacks, a picnic-style lunch and downtown Seattle pick-up and drop-off. Don't worry about a thing.",
+      "productCode": "5412P33",
+      "productUrl": "https://www.viator.com/tours/Seattle/Deception-Pass-Small-Group-Tour-with-Lunch/d704-5412P33?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+      "supplier": "Evergreen Escapes Seattle",
+      "pricingModel": "PER_UNIT",
+      "ageBands": [
+        {
+          "ageBand": "YOUTH",
+          "startAge": 8,
+          "endAge": 15,
+          "minTravelersPerBooking": 0,
+          "maxTravelersPerBooking": 10
+        },
+        {
+          "ageBand": "ADULT",
+          "startAge": 16,
+          "endAge": 99,
+          "minTravelersPerBooking": 1,
+          "maxTravelersPerBooking": 10
+        }
+      ],
+      "currency": "USD",
+      "fromPrice": 262.0,
+      "fromPriceBeforeDiscount": null,
+      "priceDetails": [
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 236.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 262.0
+        },
+        {
+          "ageBand": "YOUTH",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 236.0
+        },
+        {
+          "ageBand": "ADULT",
+          "pricingPackageType": "PER_PERSON",
+          "recommendedRetailPrice": 262.0
+        }
+      ],
+      "scheduleInfo": [
+        {
+          "productOptionCode": "DEFAULT",
+          "startDate": "2025-11-01",
+          "endDate": "2026-04-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "08:00"
+          ]
+        },
+        {
+          "productOptionCode": "DEFAULT",
+          "startDate": "2026-11-01",
+          "endDate": "2027-04-30",
+          "daysOfWeek": [
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "startTimes": [
+            "08:00"
+          ]
+        }
+      ],
+      "duration": 630,
+      "itineraryType": "STANDARD",
+      "privateTour": false,
+      "inclusions": [
+        "Ferry Fees",
+        "Tea and coffee",
+        "Lunch",
+        "Snacks",
+        "Hotel pickup and drop-off (downtown Seattle hotels only)",
+        "Award-winning Professional Naturalist Guide!",
+        "Transportation in a high roof passenger van",
+        "Bottled water"
+      ],
+      "exclusions": [
+        "Gratuities",
+        "Breakfast",
+        "Dinner"
+      ],
+      "startLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Lgsc0/Ri5gA6n6zqR4abmTIRe4S7LUyCSb+r9DKYoRV",
+          "description": "This is our default meeting location for any guests staying outside of our legal Downtown Seattle pick up area."
+        }
+      ],
+      "endLocations": [
+        {
+          "ref": "LOC-o0AXGEKPN4wJ9sIG0RAn5Lgsc0/Ri5gA6n6zqR4abmTIRe4S7LUyCSb+r9DKYoRV",
+          "description": "This is our default meeting location for any guests staying outside of our legal Downtown Seattle pick up area."
+        }
+      ],
+      "pickupType": "PICKUP_AND_MEET_AT_START_POINT",
+      "pickupInfo": "If you are staying outside of downtown Seattle, the best spot to meet in Downtown is the default pickup location, the Sheraton Grand Seattle Hotel.\n\nIf you will be driving and would like a convenient parking option, you can park at our office in Sodo (Seattle) near the stadiums instead.\n\nPlease let our team know if you will be needing one of these options at least 48 hours before your tour.",
+      "cancellationPolicy": {
+        "type": "STANDARD",
+        "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+        "refundEligibility": [
+          {
+            "dayRangeMin": 1,
+            "percentageRefundable": 100
+          },
+          {
+            "dayRangeMin": 0,
+            "dayRangeMax": 1,
+            "percentageRefundable": 0
+          }
+        ]
+      },
+      "reviews": {
+        "totalReviews": 3,
+        "combinedAverageRating": 5.0,
+        "sources": [
+          {
+            "provider": "VIATOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 0
+              },
+              {
+                "rating": 2.0,
+                "count": 0
+              },
+              {
+                "rating": 3.0,
+                "count": 0
+              },
+              {
+                "rating": 4.0,
+                "count": 0
+              },
+              {
+                "rating": 5.0,
+                "count": 1
+              }
+            ],
+            "totalCount": 1,
+            "averageRating": 5.0
+          },
+          {
+            "provider": "TRIPADVISOR",
+            "reviewCounts": [
+              {
+                "rating": 1.0,
+                "count": 0
+              },
+              {
+                "rating": 2.0,
+                "count": 0
+              },
+              {
+                "rating": 3.0,
+                "count": 0
+              },
+              {
+                "rating": 4.0,
+                "count": 0
+              },
+              {
+                "rating": 5.0,
+                "count": 2
+              }
+            ],
+            "totalCount": 2,
+            "averageRating": 5.0
+          }
+        ]
+      },
+      "imageCount": 9,
+      "coverImageUrl": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/11/ef/28/b4.jpg",
+      "productOptions": [
+        {
+          "code": "DEFAULT",
+          "title": "Skagit Valley Birding + Deception Pass Day Tour From Seattle ",
+          "description": "Pickup included"
+        }
+      ],
+      "additionalInfo": [
+        {
+          "type": "PETS_WELCOME",
+          "description": "Service animals allowed"
+        },
+        {
+          "type": "PUBLIC_TRANSPORTATION_NEARBY",
+          "description": "Public transportation options are available nearby"
+        },
+        {
+          "type": "PHYSICAL_EASY",
+          "description": "Suitable for all physical fitness levels"
+        },
+        {
+          "type": "OTHER",
+          "description": "Please wear comfortable shoes suitable for walking. Waterproof shoes recommended October-June"
+        },
+        {
+          "type": "OTHER",
+          "description": "Warm clothing is recommended during winter months (jacket, sturdy shoes, hat, gloves, layers)"
+        },
+        {
+          "type": "OTHER",
+          "description": "If you have dietary restrictions, please inform us at least 48 hours before your tour departure"
+        },
+        {
+          "type": "OTHER",
+          "description": "This is a sample itinerary - depending on the season, we may visit other sections of the Park entirely."
+        },
+        {
+          "type": "OTHER",
+          "description": "Operates in all weather conditions. Please dress appropriately."
+        },
+        {
+          "type": "OTHER",
+          "description": "All travelers must be 10 year of age or older."
+        },
+        {
+          "type": "OTHER",
+          "description": "This is a public small group tour. There may be other travelers on this tour with you, up to a total of 10 guests."
+        }
+      ],
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en"
+        }
+      ],
+      "tags": [
+        20255,
+        11889,
+        11928,
+        11938,
+        11930,
+        21733,
+        11903,
+        21860,
+        22144
+      ],
+      "flags": [],
+      "bookingRequirements": {
+        "minTravelers": 1,
+        "maxTravelers": 10
+      }
+    }
+  ]
+}

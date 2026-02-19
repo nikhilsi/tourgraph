@@ -1,0 +1,1302 @@
+{
+  "status": "ACTIVE",
+  "productCode": "5396PRTSEACITY",
+  "language": "en",
+  "createdAt": "2011-12-20T08:00:00Z",
+  "lastUpdatedAt": "2026-02-04T00:53:16Z",
+  "title": "Seattle Pre-Cruise Tour: Transportation & Seattle City Tour",
+  "ticketInfo": {
+    "ticketTypes": [
+      "MOBILE_ONLY"
+    ],
+    "ticketTypeDescription": "Mobile or paper ticket accepted",
+    "ticketsPerBooking": "ONE_PER_BOOKING",
+    "ticketsPerBookingDescription": "One per booking"
+  },
+  "pricingInfo": {
+    "type": "PER_PERSON",
+    "ageBands": [
+      {
+        "ageBand": "CHILD",
+        "startAge": 3,
+        "endAge": 12,
+        "minTravelersPerBooking": 0,
+        "maxTravelersPerBooking": 14
+      },
+      {
+        "ageBand": "ADULT",
+        "startAge": 13,
+        "endAge": 99,
+        "minTravelersPerBooking": 1,
+        "maxTravelersPerBooking": 14
+      }
+    ]
+  },
+  "images": [
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "Seattle Waterfront",
+      "isCover": true,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/06/6e/f3/1c.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/06/6e/f3/1c.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/06/6e/f3/1c.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/06/6e/f3/1c.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/06/6e/f3/1c.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/06/6e/f3/1c.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/06/6e/f3/1c.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/06/6e/f3/1c.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/06/6e/f3/1c.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/06/6e/f3/1c.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/07/3c/a6/0d.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/07/3c/a6/0d.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/07/3c/a6/0d.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/07/3c/a6/0d.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/07/3c/a6/0d.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/07/3c/a6/0d.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/3c/a6/0d.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/3c/a6/0d.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/07/3c/a6/0d.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/07/3c/a6/0d.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/07/94/28/04.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/07/94/28/04.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/07/94/28/04.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/07/94/28/04.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/07/94/28/04.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/07/94/28/04.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/94/28/04.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/94/28/04.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/07/94/28/04.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/07/94/28/04.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/07/94/29/45.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/07/94/29/45.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/07/94/29/45.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/07/94/29/45.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/07/94/29/45.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/07/94/29/45.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/94/29/45.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/94/29/45.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/07/94/29/45.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/07/94/29/45.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/07/c6/86/35.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/07/c6/86/35.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/07/c6/86/35.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/07/c6/86/35.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/07/c6/86/35.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/07/c6/86/35.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/c6/86/35.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/c6/86/35.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/07/c6/86/35.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/07/c6/86/35.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/07/c6/86/46.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/07/c6/86/46.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/07/c6/86/46.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/07/c6/86/46.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/07/c6/86/46.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/07/c6/86/46.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/c6/86/46.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/c6/86/46.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/07/c6/86/46.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/07/c6/86/46.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/07/c6/86/4b.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/07/c6/86/4b.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/07/c6/86/4b.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/07/c6/86/4b.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/07/c6/86/4b.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/07/c6/86/4b.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/c6/86/4b.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/c6/86/4b.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/07/c6/86/4b.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/07/c6/86/4b.jpg"
+        }
+      ]
+    },
+    {
+      "imageSource": "SUPPLIER_PROVIDED",
+      "caption": "",
+      "isCover": false,
+      "variants": [
+        {
+          "height": 100,
+          "width": 100,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-100x100/07/c6/86/4c.jpg"
+        },
+        {
+          "height": 200,
+          "width": 200,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-200x200/07/c6/86/4c.jpg"
+        },
+        {
+          "height": 400,
+          "width": 400,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-400x400/07/c6/86/4c.jpg"
+        },
+        {
+          "height": 240,
+          "width": 360,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-360x240/07/c6/86/4c.jpg"
+        },
+        {
+          "height": 320,
+          "width": 480,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-480x320/07/c6/86/4c.jpg"
+        },
+        {
+          "height": 360,
+          "width": 540,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/07/c6/86/4c.jpg"
+        },
+        {
+          "height": 446,
+          "width": 674,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-674x446/07/c6/86/4c.jpg"
+        },
+        {
+          "height": 480,
+          "width": 720,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/07/c6/86/4c.jpg"
+        },
+        {
+          "height": 118,
+          "width": 210,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-210x118/07/c6/86/4c.jpg"
+        },
+        {
+          "height": 75,
+          "width": 75,
+          "url": "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-75x75/07/c6/86/4c.jpg"
+        }
+      ]
+    }
+  ],
+  "logistics": {
+    "redemption": {
+      "redemptionType": "NONE",
+      "specialInstructions": "Please note: Hotel pick-up is required for this tour/activity (as specified on the tour/activity description page). Hotel pickups commence prior to tour start time, you must contact the local service provider to verify your exact pickup time. You must contact Tours Northwest at toll free: 1-888-293-1404 at least 48 hours before your tour/activity date to verify your pick-up time and pick-up location. If you are not staying at a hotel within their pick-up range, the closest meeting location information will be provided to you. If you are not arriving within the specified time frame, please make contact prior to your travels, or immediately upon arrival of your destination. "
+    },
+    "travelerPickup": {
+      "pickupOptionType": "PICKUP_EVERYONE",
+      "allowCustomTravelerPickup": false,
+      "locations": [
+        {
+          "location": {
+            "ref": "CONTACT_SUPPLIER_LATER"
+          },
+          "pickupType": "OTHER"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyJSkibr40fzK850AYGpQnAU="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyKHW5nVBWiOTCIPr9Da83v0="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyD34ugHSxU0cBhvawz5t9QQ="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyP3sYd3JKazMyRX44QKHTAY="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyBtAPscj65bt+FN7pSWAgjI="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyGRQHxnO3S+uDIjqu7jSA+Q="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyFB4ymt3vEQ1qK7xtYhzVaU="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyD+UYb0ERrGnp+E3OVetDas="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyIVOR4imZn37Zvw/2iBW4aY="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyMLUlebbf5LVuht4QBVWBn0="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyJ/Zu5w64K4BE4VcIgpnpEc="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyAZusdPk5ef5d0lP+hqA+k4="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyNAlpEltgl69DptFvv1DN3c="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyH2bKM/Mmlixl/kYhdkkrpo="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyDuhV6nh0IiBwUMa8zR4T9o="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyIryjdttpxhFChrBNT9rfQE="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyKVkxTW9gJgMAMoIfFODESc="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyO8EiNoUF/XOG2HF1o8q+LQ="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyMyVsL7uo/H76TMdf4xgKz4="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyLKn3YRJhgFwtDSrIIxx4do="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyHMS5NwGuMGCwRPlgSnxzHI="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyMQkVnhsdNhV8nZJlHFXlVE="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyF9rqfRx7iBNOgnQ9lN5iOA="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyDiQqWKlNPMxqUMwFQWIaxQ="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyHKWPU1VWnWI5MXD93KJs7w="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyB7nxLC0joVftjISDiuQtew="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyOBOaIiD7Jfb37UrFpBgbK8="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyILzZaZEkGRix7gIvsxbvnA="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyMpgQMfHTOszGH83I07IsLw="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyMQHn6CV3xfhdYHMgMNhK54="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyE+gIL+0NAjlCgvTGAUJbSU="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyLI5h0y81DMoXUg6wpXGleU="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyP1hllGoQ2z33gJt1r4Mdrw="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyAEv8Aj4PuQryROuLKxL90Y="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyG1uXpZ6GCNGf+GvOcpKMj4="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyEUXs3w1ceX106eyk/eQuwU="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyLCXzlMLNy3ONKKjIFQ20t4="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyJMJVE7Pv1w8jGlpj1B7aGM="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyGMOce3LYdUmgIlGVZqcZZ0="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyLXpmecQa4hngXznYsJIbLc="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyLuvaOf6+Z8QPTHCT2lZYqg="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyCMBLLfecwCdDyHaY5jWO4A="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyFfbg5Pgs5hPAWwjf5O4iaE="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyHmzUgA9wNhHRVo/g4Uxvew="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyDKbALjePR5jgM2Hbf4V0Wk="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyHon4MmstYbEAYBgTqVGuo8="
+          },
+          "pickupType": "HOTEL"
+        },
+        {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyH07ySH4WM6N0Vf/kLD+nDE="
+          },
+          "pickupType": "HOTEL"
+        }
+      ],
+      "minutesBeforeDepartureTimeForPickup": 60,
+      "additionalInfo": "We pick up from most hotels in the downtown Seattle area. We cannot pick up hotels that are not listed, at cruise ports or at private residences. If you are not staying at a hotel within our pick-up range, the closest meeting location information will be provided to you. Hotel pickups commence prior to departure time. Please call or email us to confirm hotel and exact pickup time. Please note, some hotels are inaccessible for our buses; therefore we may ask you to meet at another hotel for pickup.\n\nMeeting location in downtown Seattle (if you don’t require hotel pickup): Hyatt Regency Seattle (8th Avenue entrance) - 808 Howell St, Seattle, WA 98101.\n\n"
+    }
+  },
+  "timeZone": "America/Los_Angeles",
+  "description": "Making a short stop in Seattle before embarking on a cruise? Take this three-hour pre-cruise tour of Seattle and discover the best of the beautiful Emerald City! You’ll cover 50 miles in a comfortable, small-group mini-coach and enjoy the views of the city’s most iconic attractions, such as Mt Rainier, the Space Needle, Pike Place Market and much more. No need to worry, your guide will pick you up at your Seattle, SeaTac, or Tukwila hotel, take care of your luggage, and drop you off at Seattle’s cruise terminal with plenty of time to board your cruise.",
+  "inclusions": [
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Local, professional guide"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Luggage handling and storage onto the bus for the duration of tour"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Drop-off at your cruise ship at Pier 66 or Pier 91"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Transportation by air-conditioned mini coach bus"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Hotel pickup and return is available for most downtown Seattle hotels"
+    }
+  ],
+  "exclusions": [
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Gratuities (optional and not included in the price of this tour)"
+    },
+    {
+      "category": "OTHER",
+      "categoryDescription": "Other",
+      "type": "OTHER",
+      "typeDescription": "Other",
+      "otherDescription": "Food & drinks"
+    }
+  ],
+  "additionalInfo": [
+    {
+      "type": "PETS_WELCOME",
+      "description": "Service animals allowed"
+    },
+    {
+      "type": "PUBLIC_TRANSPORTATION_NEARBY",
+      "description": "Public transportation options are available nearby"
+    },
+    {
+      "type": "INFANTS_MUST_SIT_ON_LAPS",
+      "description": "Infants are required to sit on an adult’s lap"
+    },
+    {
+      "type": "PHYSICAL_EASY",
+      "description": "Suitable for all physical fitness levels"
+    },
+    {
+      "type": "OTHER",
+      "description": "Please contact local service provider to arrange pickup from your hotel or a nearby location after you have received your confirmation"
+    },
+    {
+      "type": "OTHER",
+      "description": "Tour cannot pickup from private residences"
+    },
+    {
+      "type": "OTHER",
+      "description": "Hotel pickups are not available from airport area hotels"
+    },
+    {
+      "type": "OTHER",
+      "description": "Hotel pickups commence prior to departure time. Please contact local service provider to receive exact pickup time at hotel"
+    },
+    {
+      "type": "OTHER",
+      "description": "Tour typically gets to cruise ship port between 1:15pm-1:30pm for drop-off"
+    },
+    {
+      "type": "OTHER",
+      "description": "Operates in all weather conditions, please dress appropriately"
+    },
+    {
+      "type": "OTHER",
+      "description": "Traffic and road conditions may alter tour route"
+    }
+  ],
+  "cancellationPolicy": {
+    "type": "STANDARD",
+    "description": "For a full refund, cancel at least 24 hours before the scheduled departure time.",
+    "cancelIfBadWeather": false,
+    "cancelIfInsufficientTravelers": false,
+    "refundEligibility": [
+      {
+        "dayRangeMin": 1,
+        "percentageRefundable": 100
+      },
+      {
+        "dayRangeMin": 0,
+        "dayRangeMax": 1,
+        "percentageRefundable": 0
+      }
+    ]
+  },
+  "bookingConfirmationSettings": {
+    "bookingCutoffType": "START_TIME",
+    "bookingCutoffInMinutes": 120,
+    "confirmationType": "INSTANT"
+  },
+  "bookingRequirements": {
+    "minTravelersPerBooking": 1,
+    "maxTravelersPerBooking": 14,
+    "requiresAdultForBooking": true
+  },
+  "languageGuides": [
+    {
+      "type": "GUIDE",
+      "language": "en",
+      "legacyGuide": "en/SERVICE_GUIDE"
+    }
+  ],
+  "bookingQuestions": [
+    "PICKUP_POINT",
+    "SPECIAL_REQUIREMENTS",
+    "TRANSFER_DEPARTURE_DATE",
+    "TRANSFER_DEPARTURE_MODE",
+    "TRANSFER_DEPARTURE_PICKUP",
+    "TRANSFER_PORT_CRUISE_SHIP",
+    "TRANSFER_PORT_DEPARTURE_TIME"
+  ],
+  "tags": [
+    11930,
+    11929,
+    367653,
+    11938,
+    12075,
+    367654,
+    21972
+  ],
+  "destinations": [
+    {
+      "ref": "704",
+      "primary": true
+    }
+  ],
+  "itinerary": {
+    "itineraryType": "STANDARD",
+    "skipTheLine": false,
+    "privateTour": false,
+    "maxTravelersInSharedTour": 20,
+    "duration": {
+      "fixedDurationInMinutes": 180
+    },
+    "itineraryItems": [
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyF9pH5zRZ6fU+bUhKzQe41I="
+          },
+          "attractionId": 1308
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Pike Place Market"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyDUcVhA10b2ZsuGib0D+ewI="
+          }
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Views of Olympic Mountain Range"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyB1czEivEvV1SGCHHtWRLDM="
+          },
+          "attractionId": 1319
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Seattle Waterfront"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyGIxCH539l+tGuZS9aBvdDA="
+          },
+          "attractionId": 9991
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Seattle Great Wheel"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyJEwKPzIWnxDrJlEdpxC9Jw="
+          },
+          "attractionId": 1309
+        },
+        "duration": {
+          "fixedDurationInMinutes": 15
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Pioneer Square"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyKKdURVsLGrnHbUIJWR1aK4="
+          },
+          "attractionId": 17996
+        },
+        "duration": {
+          "fixedDurationInMinutes": 5
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Waterfall Garden Park"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyGKVZaqw8NsoP9A1zyI9MM4="
+          },
+          "attractionId": 17997
+        },
+        "duration": {
+          "fixedDurationInMinutes": 5
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Klondike Gold Rush"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyMj6YKlHT8a/89w5qcFC31k="
+          }
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "CenturyLink Field"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyNFYrAyCZAA8jnzfP+abL7U="
+          },
+          "attractionId": 17070
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Drive past our MLB baseball stadium, home to the Seattle Mariners"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyNocqSmt39EFDgOvbnYG8YA="
+          }
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "You'll have the chance to see the Starbucks Headquarters building"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyHri2iCMN20/EGEmciLjO1g="
+          },
+          "attractionId": 11854
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Lake Union & Ship Canal"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyOQE7d+S9FRIL3OAOD6rkaE="
+          },
+          "attractionId": 9997
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Fremont Neighborhood & Troll"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyEoTHM5pDzZAT3YRg+ug44g="
+          },
+          "attractionId": 17992
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Chinatown International District"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyFGiZiLFDNikcyBCw39GF98="
+          },
+          "attractionId": 9999
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Lake Washington"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyIq6viEBBD5pGOAzkXWe3sU="
+          },
+          "attractionId": 25264
+        },
+        "duration": {
+          "fixedDurationInMinutes": 10
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Great city skyline photo opportunity"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyDnkslsi7QC71fM0GxkfIyA="
+          },
+          "attractionId": 17998
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Fishermen's Terminal"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyAxDVBQuQW91qw3W0NWNR+Q="
+          },
+          "attractionId": 9995
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "MoPOP Museum"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyLbVw/2mab3RC0eCRmUznbs="
+          },
+          "attractionId": 1313
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Space Needle"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyDEtrCs+LYVOtWGaMH4iPpA="
+          },
+          "attractionId": 1320
+        },
+        "duration": {
+          "fixedDurationInMinutes": 15
+        },
+        "passByWithoutStopping": false,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Ballard Locks"
+      },
+      {
+        "pointOfInterestLocation": {
+          "location": {
+            "ref": "LOC-6eKJ+or5y8o99Qw0C8xWyLXPBs52UaRyVf+l1iX0O2U="
+          },
+          "attractionId": 10012
+        },
+        "passByWithoutStopping": true,
+        "admissionIncluded": "NOT_APPLICABLE",
+        "description": "Seattle Center"
+      }
+    ]
+  },
+  "productOptions": [
+    {
+      "productOptionCode": "TG1",
+      "description": "Pickup included",
+      "title": "Pre-Cruise Tour: Transportation & Seattle City Tour",
+      "languageGuides": [
+        {
+          "type": "GUIDE",
+          "language": "en",
+          "legacyGuide": "en/SERVICE_GUIDE"
+        }
+      ]
+    }
+  ],
+  "translationInfo": {
+    "containsMachineTranslatedText": false,
+    "translationSource": "ORIGINAL"
+  },
+  "supplier": {
+    "name": "Tours Northwest",
+    "reference": "SUPPLIER-FJr7XzqkdZa6sfOYYaZDPA=="
+  },
+  "productUrl": "https://www.viator.com/tours/Seattle/Seattle-Shore-Excursion-Pre-Cruise-Sightseeing-City-Tour/d704-5396PRTSEACITY?mcid=42383&pid=P00289313&medium=api&api_version=2.0",
+  "reviews": {
+    "sources": [
+      {
+        "provider": "VIATOR",
+        "reviewCounts": [
+          {
+            "rating": 1.0,
+            "count": 1
+          },
+          {
+            "rating": 2.0,
+            "count": 3
+          },
+          {
+            "rating": 3.0,
+            "count": 3
+          },
+          {
+            "rating": 4.0,
+            "count": 11
+          },
+          {
+            "rating": 5.0,
+            "count": 32
+          }
+        ],
+        "totalCount": 50,
+        "averageRating": 4.4
+      },
+      {
+        "provider": "TRIPADVISOR",
+        "reviewCounts": [
+          {
+            "rating": 1.0,
+            "count": 0
+          },
+          {
+            "rating": 2.0,
+            "count": 1
+          },
+          {
+            "rating": 3.0,
+            "count": 0
+          },
+          {
+            "rating": 4.0,
+            "count": 1
+          },
+          {
+            "rating": 5.0,
+            "count": 12
+          }
+        ],
+        "totalCount": 14,
+        "averageRating": 4.7
+      }
+    ],
+    "reviewCountTotals": [
+      {
+        "rating": 1.0,
+        "count": 1
+      },
+      {
+        "rating": 2.0,
+        "count": 4
+      },
+      {
+        "rating": 3.0,
+        "count": 3
+      },
+      {
+        "rating": 4.0,
+        "count": 12
+      },
+      {
+        "rating": 5.0,
+        "count": 44
+      }
+    ],
+    "totalReviews": 64,
+    "combinedAverageRating": 4.46875
+  }
+}

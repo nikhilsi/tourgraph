@@ -1,0 +1,127 @@
+{
+  "tours_northwest": {
+    "search_terms": [
+      "Tours Northwest Seattle",
+      "Seattle City Highlights Tour",
+      "Seattle Mt Rainier tour Northwest",
+      "Seattle Pre-Cruise Tour"
+    ],
+    "product_codes": [
+      "5396P18",
+      "5396MTR",
+      "5396P10",
+      "5396PRTSEACITY"
+    ],
+    "matched_products": {
+      "5396P18": {
+        "productCode": "5396P18",
+        "title": "From Seattle: Private Tour to Mt. Rainier",
+        "supplier": ""
+      },
+      "5396MTR": {
+        "productCode": "5396MTR",
+        "title": "Mt. Rainier Day Tour from Seattle",
+        "supplier": ""
+      },
+      "5396P10": {
+        "productCode": "5396P10",
+        "title": "Seattle City Highlights Tour",
+        "supplier": ""
+      },
+      "5396PRTSEACITY": {
+        "productCode": "5396PRTSEACITY",
+        "title": "Seattle Pre-Cruise Tour: Transportation & Seattle City Tour",
+        "supplier": ""
+      }
+    }
+  },
+  "shutter_tours": {
+    "search_terms": [
+      "Shutter Tours Seattle",
+      "Seattle photography walking tour"
+    ],
+    "product_codes": [],
+    "matched_products": {}
+  },
+  "totally_seattle": {
+    "search_terms": [
+      "Totally Seattle",
+      "Seattle private custom driving tour"
+    ],
+    "product_codes": [],
+    "matched_products": {}
+  },
+  "conundroom": {
+    "search_terms": [
+      "Conundroom escape room",
+      "Conundroom Redmond"
+    ],
+    "product_codes": [],
+    "matched_products": {}
+  },
+  "bill_speidels": {
+    "search_terms": [
+      "Bill Speidel Underground Tour Seattle",
+      "Seattle Pioneer Square underground tour"
+    ],
+    "product_codes": [],
+    "matched_products": {}
+  },
+  "evergreen_escapes": {
+    "search_terms": [
+      "Evergreen Escapes Seattle",
+      "Evergreen Escapes Olympic Rainier"
+    ],
+    "product_codes": [
+      "5412OLYM",
+      "5412MTRAINER",
+      "5412HELEN",
+      "5412P33"
+    ],
+    "matched_products": {
+      "5412OLYM": {
+        "productCode": "5412OLYM",
+        "title": "Best of Olympic National Park from Seattle: All-Inclusive Small-Group Day Tour",
+        "supplier": ""
+      },
+      "5412MTRAINER": {
+        "productCode": "5412MTRAINER",
+        "title": "Best of Mount Rainier National Park from Seattle: All-Inclusive Small-Group Tour",
+        "supplier": ""
+      },
+      "5412HELEN": {
+        "productCode": "5412HELEN",
+        "title": "Mt. St. Helens National Monument from Seattle: All-Inclusive Small-Group Tour",
+        "supplier": ""
+      },
+      "5412P33": {
+        "productCode": "5412P33",
+        "title": "Skagit Valley Birding + Deception Pass Day Tour From Seattle ",
+        "supplier": ""
+      }
+    }
+  },
+  "argosy_cruises": {
+    "search_terms": [
+      "Argosy Cruises Seattle",
+      "Seattle Harbor Cruise Argosy",
+      "Seattle Locks Cruise Argosy"
+    ],
+    "product_codes": [
+      "2960HARBOR",
+      "2960P11"
+    ],
+    "matched_products": {
+      "2960HARBOR": {
+        "productCode": "2960HARBOR",
+        "title": "Seattle's Original Guided Harbor Cruise",
+        "supplier": ""
+      },
+      "2960P11": {
+        "productCode": "2960P11",
+        "title": "Seattle Locks Cruise",
+        "supplier": ""
+      }
+    }
+  }
+}

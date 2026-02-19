@@ -1,7 +1,7 @@
 # Claude Code Development Guide
 
 ---
-**Last Updated**: February 17, 2026
+**Last Updated**: February 18, 2026
 **Purpose**: Rules and workflow for working with this codebase
 ---
 
@@ -121,6 +121,8 @@ pip install firecrawl-py anthropic requests python-dotenv
 **API Keys** (in `.env`):
 - `FIRECRAWL_API_KEY` - https://firecrawl.dev (free tier: 500 credits)
 - `ANTHROPIC_API_KEY` - https://console.anthropic.com
+- `VIATOR_API_KEY` - https://viator.com/partners (Basic Access, free affiliate signup)
+- `VIATOR_SANDBOX_KEY` - Viator sandbox key (may take 48hrs to activate)
 
 **Running extraction:**
 ```bash
@@ -135,6 +137,21 @@ python scripts/extract_operator.py \
 
 # Dry run (no API calls)
 python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/ --dry-run
+```
+
+**Running Viator comparison:**
+```bash
+# Full run — discovery + deep pull + comparison report
+python scripts/viator_compare.py
+
+# Discovery only (find operators on Viator, no comparison)
+python scripts/viator_compare.py --discover-only
+
+# Dry run (no API calls)
+python scripts/viator_compare.py --dry-run
+
+# Use sandbox API instead of production
+python scripts/viator_compare.py --sandbox
 ```
 
 ---
@@ -158,9 +175,13 @@ python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/ -
 **Results (Phase 0):**
 - **results/<operator>/** - Per-operator extraction JSON + scorecard (all 7 complete)
 - **results/phase0_summary/** - Cross-operator scoring matrix + go/no-go report
+- **results/comparisons/** - Path A vs Path C comparison reports
+- **results/viator_raw/** - Raw Viator API responses per operator
+- **results/viator_mapped/** - Viator data mapped to OCTO schema
 
 **Scripts:**
-- **scripts/extract_operator.py** - Path 2 extraction pipeline (the main tool)
+- **scripts/extract_operator.py** - Path A extraction pipeline (Firecrawl /scrape + Claude)
+- **scripts/viator_compare.py** - Path C comparison pipeline (Viator API + field-by-field comparison)
 - **scripts/firecrawl_extract.py** - Firecrawl `/extract` test (rejected, kept for reference)
 
 ---
@@ -189,7 +210,8 @@ tourgraph/
 │   └── octo_extraction_v01.json    (OCTO-aligned extraction schema)
 │
 ├── scripts/
-│   ├── extract_operator.py         (Path 2: Firecrawl /scrape → Claude Opus 4.6)
+│   ├── extract_operator.py         (Path A: Firecrawl /scrape → Claude Opus 4.6)
+│   ├── viator_compare.py           (Path C: Viator API discovery + comparison)
 │   └── firecrawl_extract.py        (Firecrawl /extract test — rejected)
 │
 ├── results/
@@ -203,9 +225,14 @@ tourgraph/
 │   ├── bill_speidels/              (2 products, $0.40)
 │   ├── evergreen_escapes/          (19 products, $1.71)
 │   ├── argosy_cruises/             (13 products, $1.83)
-│   └── phase0_summary/
-│       ├── scoring_matrix.md       (Cross-operator accuracy analysis)
-│       └── phase0_report.md        (Go/no-go report — GO recommended)
+│   ├── phase0_summary/
+│   │   ├── scoring_matrix.md       (Cross-operator accuracy analysis)
+│   │   └── phase0_report.md        (Go/no-go report — GO recommended)
+│   ├── comparisons/
+│   │   ├── path_a_vs_path_c.md     (Field-by-field Path A vs C comparison)
+│   │   └── path_a_vs_path_c.json   (Machine-readable comparison data)
+│   ├── viator_raw/                 (Raw Viator API responses per operator)
+│   └── viator_mapped/              (Viator data mapped to OCTO schema)
 │
 └── prompts/
     └── extraction_prompt_v01.md    (Domain-specific extraction prompt)

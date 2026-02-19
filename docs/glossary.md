@@ -1,6 +1,6 @@
 # Project Glossary — Tours & Experiences AI Distribution
 
-**Last updated:** February 16, 2026
+**Last updated:** February 18, 2026
 **Purpose:** Shared vocabulary for all project conversations, code, documentation, and articles. Keep this current as definitions evolve.
 
 ---
@@ -152,7 +152,9 @@ The most significant structured data source discovered during recon. Viator (own
 
 **Data available:** Descriptive text, structured metadata, pricing by age band, product options/variants, inclusions/exclusions, photos, reviews, cancellation policies, locations/meeting points, itineraries, attraction associations.
 
-- Our relationship: **Potential "Path C" data source.** Could bootstrap TourGraph's structured inventory for ~80% of commercial operators without any AI extraction needed. The limitation is Viator's affiliate terms — data is meant to drive bookings to Viator, not build a competing distribution channel. The strategic question is whether TourGraph can operate within these terms (as an MCP-based affiliate driving bookings to Viator) or needs to eventually build an independent data layer.
+**Tested (2026-02-18):** Basic Access production key working. Key endpoints used: `/search/freetext` (operator discovery), `/products/{code}` (full product details + supplier matching), `/products/tags` (connectivity test). Authentication via `exp-api-key` header. Found 10 products across 3/7 test operators. See `api_landscape.md` for full test results.
+
+- Our relationship: **Confirmed "Path C" data source.** Tested against our 7 Phase 0 operators — 3/7 found on Viator, providing reviews, images, and structured pricing that extraction can't capture. 4/7 operators NOT on Viator, confirming Path A's value for the long tail. See `results/comparisons/path_a_vs_path_c.md`.
 - Integrates with: FareHarbor, Peek, Bókun, Rezdy, RocketRez, and 100+ other booking systems
 - Distribution network: Viator → TripAdvisor "Things to Do" + Booking.com + Expedia + 4,000+ affiliates + 240,000 travel agents
 

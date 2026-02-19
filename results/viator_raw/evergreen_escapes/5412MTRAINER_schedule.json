@@ -1,0 +1,119 @@
+{
+  "productCode": "5412MTRAINER",
+  "bookableItems": [
+    {
+      "productOptionCode": "RAINIER8",
+      "seasons": [
+        {
+          "startDate": "2025-03-01",
+          "endDate": "2026-05-02",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "SATURDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "08:00",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-02-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-04-27",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 344.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "startDate": "2026-05-03",
+          "endDate": "2026-10-31",
+          "pricingRecords": [
+            {
+              "daysOfWeek": [
+                "MONDAY",
+                "TUESDAY",
+                "WEDNESDAY",
+                "THURSDAY",
+                "FRIDAY",
+                "SATURDAY",
+                "SUNDAY"
+              ],
+              "timedEntries": [
+                {
+                  "startTime": "08:00",
+                  "unavailableDates": [
+                    {
+                      "date": "2026-10-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-22",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-06-12",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-07-21",
+                      "reason": "SOLD_OUT"
+                    },
+                    {
+                      "date": "2026-10-20",
+                      "reason": "SOLD_OUT"
+                    }
+                  ]
+                }
+              ],
+              "pricingDetails": [
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "YOUTH",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 344.0
+                    }
+                  }
+                },
+                {
+                  "pricingPackageType": "PER_PERSON",
+                  "minTravelers": 0,
+                  "ageBand": "ADULT",
+                  "price": {
+                    "original": {
+                      "recommendedRetailPrice": 344.0
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "currency": "USD",
+  "summary": {
+    "fromPrice": 344.0
+  }
+}
