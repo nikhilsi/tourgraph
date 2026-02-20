@@ -12,7 +12,7 @@
 This project serves three outcomes:
 
 1. **Founder credibility** — Demonstrates strategic thinking and execution ability across technology, product, and market analysis
-2. **Published thought leadership** — Fuels a LinkedIn/Medium article series that builds visibility in the travel tech space
+2. **Published thought leadership** — Fuels a LinkedIn article series that builds visibility in the travel tech space
 3. **Potential product** — If validated with real operators, could become a real SaaS business
 
 Either outcome is a win. Product → potential company. Thought leadership → industry visibility and a published article series that demonstrates deep expertise.

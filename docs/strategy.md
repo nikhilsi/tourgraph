@@ -220,7 +220,7 @@ Non-negotiable. The journey, learnings, and observations should be documented re
 - **Angle:** Senior leader perspective — thinking AND building
 
 ### Publishing Plan
-- Platform: LinkedIn first (network sees it), cross-post to Medium
+- Platform: LinkedIn (primary distribution) + tourgraph.ai/blog (canonical home)
 - Cadence: One article per phase completion (roughly every 2-3 weeks)
 - Tone: Opinion-driven with evidence. Builder's perspective, not tutorials.
 - Target audience: CTOs, VPs of Engineering, Product leaders

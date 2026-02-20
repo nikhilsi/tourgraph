@@ -122,7 +122,6 @@
 - ✅ Blog article published: "I Asked AI to Plan My Mediterranean Cruise. It Confidently Made Everything Up"
 - ✅ Repo public under MIT License
 - ⬜ LinkedIn teaser post
-- ⬜ Medium cross-post
 
 ---
 

@@ -51,8 +51,7 @@ See `docs/strategy.md` for full rationale.
 
 ## Publishing Track
 
-- [ ] LinkedIn teaser post for Article 1 (~300-500 words)
-- [ ] Medium cross-post with canonical URL pointing to tourgraph.ai
+- [x] Article 1 published on tourgraph.ai
 - [ ] Article 2 planning (discovery pipeline — what happens when you try to find every tour operator in a city)
 
 ## Backlog
