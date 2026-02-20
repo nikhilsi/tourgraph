@@ -1,0 +1,85 @@
+site_name: TourGraph
+site_url: https://tourgraph.ai
+site_description: AI-powered supplier onboarding for the tours & experiences industry
+site_author: Nikhil Singhal
+repo_url: https://github.com/nikhilsi/tourgraph
+repo_name: nikhilsi/tourgraph
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to light mode
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to dark mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+    - search.suggest
+    - search.highlight
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - blog:
+      blog_dir: blog
+      post_date_format: long
+      post_url_format: "{slug}"
+      archive: false
+      categories: false
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/nikhilsi/tourgraph
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/nikhilsi
+
+copyright: Copyright &copy; 2026 Nikhil Singhal
+
+nav:
+  - Home: index.md
+  - Blog: blog/index.md
+  - Documentation:
+    - Project Proposal: project_proposal.md
+    - Strategy & Roadmap: strategy.md
+    - Phase 0 Spike: phase0_spike.md
+    - Tooling Landscape: tooling_landscape.md
+    - API Landscape: api_landscape.md
+    - Glossary: glossary.md
+  - Pitch & Positioning: pitch.md

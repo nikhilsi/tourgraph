@@ -23,5 +23,8 @@ build/
 .ipynb_checkpoints/
 *.ipynb
 
+# MkDocs build output
+site/
+
 # OS
 Thumbs.db
