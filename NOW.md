@@ -3,7 +3,7 @@
 ---
 **Last Updated**: February 20, 2026
 **Purpose**: What to work on next
-**Context**: See CLAUDE.md for rules, CURRENT_STATE.md for what's built, docs/strategy.md for roadmap rationale
+**Context**: See CLAUDE.md for rules, CURRENT_STATE.md for what's built, docs/roadmap.md for the build plan
 ---
 
 **Phase**: 0 Complete → Phase 1 Next
@@ -25,27 +25,9 @@
 
 ## Next Priority
 
-**Phase 1: Discovery + Scale + MCP**
+**Phase 1A: Data Audit + Normalization**
 
-See `docs/strategy.md` for full rationale.
-
-### Phase 1A: Discovery Pipeline (1-2 weeks)
-- Google Places API → find all tour/activity operators in Seattle
-- Viator API destination search → find all Viator-listed operators
-- DMO directories → Visit Seattle operator listings
-- Deduplicate, build master operator list with websites
-- **Goal:** 50-100+ operators discovered programmatically. Cold start answered.
-
-### Phase 1B: Extraction at Scale (1-2 weeks)
-- Run Path A extraction on all discovered operators
-- Run Path C enrichment for Viator overlaps
-- PostgreSQL storage (graduate from JSON files)
-- **Goal:** Comprehensive Seattle tour inventory.
-
-### Phase 1C: MCP Server (1-2 weeks)
-- MCP server on top of the inventory
-- Tools: `search_tours`, `get_details`, `filter_by_type`, `search_by_area`
-- **Goal:** Claude can query real Seattle tours. The demo moment.
+See [docs/roadmap.md](docs/roadmap.md) for the full phased plan and rationale.
 
 ---
 

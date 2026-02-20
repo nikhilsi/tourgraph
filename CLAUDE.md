@@ -18,7 +18,8 @@
 
 **Optional** (if relevant to task):
 - **docs/project_proposal.md** - What TourGraph is and why it matters (shareable)
-- **docs/strategy.md** - Roadmap, moat analysis, risk assessment, article series plan
+- **docs/roadmap.md** - Phased build plan (single source of truth for what we're building and when)
+- **docs/strategy.md** - Competitive analysis, moat, risk assessment, article series plan
 - **docs/pitch.md** - Product positioning, elevator pitches, founder background
 - **docs/phase0_spike.md** - Phase 0 methodology, 7 operator test set, OCTO-aligned schema, ground truth data
 - **docs/tooling_landscape.md** - Firecrawl analysis, competitor comparison, build-vs-use matrix
@@ -171,7 +172,8 @@ python scripts/viator_compare.py --sandbox
 - **docs/index.md** - Site landing page
 - **docs/CNAME** - Custom domain (tourgraph.ai)
 - **docs/project_proposal.md** - What TourGraph is and why (shareable)
-- **docs/strategy.md** - Roadmap, moat, risk analysis, article plan
+- **docs/roadmap.md** - Phased build plan (single source of truth)
+- **docs/strategy.md** - Competitive analysis, moat, risk assessment, article plan
 - **docs/pitch.md** - Product positioning, elevator pitches
 - **docs/phase0_spike.md** - Operator test set, OCTO schema, ground truth
 - **docs/tooling_landscape.md** - Firecrawl, Crawl4AI, build-vs-use decisions
@@ -218,7 +220,8 @@ tourgraph/
 │   ├── index.md                    (Site landing page)
 │   ├── CNAME                       (Custom domain: tourgraph.ai)
 │   ├── project_proposal.md         (What TourGraph is and why — shareable)
-│   ├── strategy.md                 (Roadmap, moat, risk analysis)
+│   ├── roadmap.md                  (Phased build plan — single source of truth)
+│   ├── strategy.md                 (Competitive analysis, moat, risk assessment)
 │   ├── pitch.md                    (Product positioning, elevator pitches)
 │   ├── phase0_spike.md             (7 operators, schema, methodology)
 │   ├── tooling_landscape.md        (Firecrawl analysis, build-vs-use)

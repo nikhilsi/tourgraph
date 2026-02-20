@@ -66,11 +66,13 @@ See [CURRENT_STATE.md](CURRENT_STATE.md) for detailed status.
 | Phase | Goal | Status |
 |-------|------|--------|
 | **Phase 0: Spike** | Can AI extract structured tour data reliably? | **Complete — GO** |
-| Phase 1A: Discovery | Programmatic operator discovery (Google Places, Viator, DMOs) | Next |
-| Phase 1B: Scale | Run extraction across all discovered operators, PostgreSQL | Planned |
-| Phase 1C: MCP Server | AI-agent-queryable inventory via MCP | Planned |
-| Phase 2: Product | Operator dashboard, landing page, article series | Planned |
+| Phase 1A: Data Audit | Normalize extracted data, load into SQLite | Next |
+| Phase 1B: MCP Server | AI-agent-queryable inventory via MCP | Planned |
+| Phase 1C: Discovery | Programmatic operator discovery + scale extraction | Planned |
+| Phase 2: Product | Operator dashboard, distribution connectors | Planned |
 | Phase 3: Validation | Real operator feedback, go/no-go | Planned |
+
+See [docs/roadmap.md](docs/roadmap.md) for the full plan and rationale.
 
 ## Tech Stack
 
@@ -96,7 +98,8 @@ tourgraph/
 │
 ├── docs/                  # Strategic & research documentation
 │   ├── project_proposal.md  # What TourGraph is and why (shareable)
-│   ├── strategy.md          # Roadmap, moat, risk analysis
+│   ├── roadmap.md             # Phased build plan
+│   ├── strategy.md            # Competitive analysis, moat, risk
 │   ├── pitch.md             # Product positioning, elevator pitches
 │   ├── phase0_spike.md
 │   ├── tooling_landscape.md
@@ -158,7 +161,8 @@ python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/
 - **[CURRENT_STATE.md](CURRENT_STATE.md)** — Current build status
 - **[NOW.md](NOW.md)** — Current priorities and roadmap
 - **[docs/project_proposal.md](docs/project_proposal.md)** — What TourGraph is and why it matters
-- **[docs/strategy.md](docs/strategy.md)** — Roadmap, moat analysis, risk assessment
+- **[docs/roadmap.md](docs/roadmap.md)** — Phased build plan (single source of truth)
+- **[docs/strategy.md](docs/strategy.md)** — Competitive analysis, moat, risk assessment
 - **[docs/pitch.md](docs/pitch.md)** — Product positioning and elevator pitches
 - **[docs/phase0_spike.md](docs/phase0_spike.md)** — Phase 0 methodology, operators, schema
 - **[docs/tooling_landscape.md](docs/tooling_landscape.md)** — Extraction tooling analysis

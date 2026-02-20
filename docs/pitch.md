@@ -132,4 +132,4 @@ Honestly, not deeply — at inception. The technology is reproducible. The moat 
 
 ---
 
-*For the project proposal (shareable), see `project_proposal.md`. For strategic analysis and roadmap, see `strategy.md`.*
+*For the project proposal (shareable), see [project_proposal.md](project_proposal.md). For the build plan, see [roadmap.md](roadmap.md). For strategic analysis, see [strategy.md](strategy.md).*

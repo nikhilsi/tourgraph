@@ -77,7 +77,8 @@ nav:
   - Blog: blog/index.md
   - Documentation:
     - Project Proposal: project_proposal.md
-    - Strategy & Roadmap: strategy.md
+    - Roadmap: roadmap.md
+    - Strategy: strategy.md
     - Phase 0 Spike: phase0_spike.md
     - Tooling Landscape: tooling_landscape.md
     - API Landscape: api_landscape.md

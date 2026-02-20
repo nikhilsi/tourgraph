@@ -311,4 +311,4 @@ For reference, these ideas were explored during the brainstorming process:
 
 ---
 
-*For strategic analysis, roadmap, and risk assessment, see `strategy.md`. For product positioning and elevator pitches, see `pitch.md`. For current build status, see `CURRENT_STATE.md`.*
+*For the build plan, see [roadmap.md](roadmap.md). For strategic analysis and risk assessment, see [strategy.md](strategy.md). For product positioning and elevator pitches, see [pitch.md](pitch.md). For current build status, see [CURRENT_STATE.md](https://github.com/nikhilsi/tourgraph/blob/main/CURRENT_STATE.md).*

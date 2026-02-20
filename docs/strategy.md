@@ -1,8 +1,8 @@
-# TourGraph — Strategy & Roadmap
+# TourGraph — Strategy
 
 **Created:** February 18, 2026
 **Status:** Draft — actively evolving
-**Purpose:** Strategic thinking, roadmap rationale, and risk analysis. Living document for product decisions, due diligence, and article source material.
+**Purpose:** Strategic thinking, competitive analysis, and risk assessment. Living document for product decisions, due diligence, and article source material. For the build plan, see [roadmap.md](roadmap.md).
 
 ---
 
@@ -94,63 +94,9 @@ The AI-agent distribution channel doesn't exist yet. Whoever builds the standard
 
 ## Roadmap
 
-### Guiding Principle
+See **[roadmap.md](roadmap.md)** for the full phased build plan. This is the single source of truth for what we're building and in what order.
 
-Every phase should answer a specific question that an interviewer, investor, or operator would ask. The build demonstrates the thinking; the thinking justifies the build.
-
-### Phase 1: Discovery + Scale + MCP (3-5 weeks)
-
-**Phase 1A: Discovery Pipeline (1-2 weeks)**
-
-Build the programmatic operator discovery pipeline for Seattle.
-
-- Google Places API integration — find all tour/activity businesses
-- Viator API destination search — find all Viator-listed operators (we have the key)
-- DMO directory extraction — Visit Seattle operator listings
-- Deduplication and master operator list with websites
-- Output: 50-100+ operator URLs, discovered without any operator submitting anything
-
-*Answers: "How do you solve cold start?"*
-
-**Phase 1B: Extraction at Scale (1-2 weeks)**
-
-Run the proven extraction pipeline on all discovered operators.
-
-- Path A extraction on all operators (~$1.18/operator, proven pipeline)
-- Path C enrichment for Viator overlaps (reviews, images, pricing)
-- PostgreSQL storage (graduate from JSON files)
-- Output: comprehensive Seattle tour inventory — the most complete structured dataset for Seattle tours that exists anywhere
-
-*Answers: "Does this scale beyond a handful of test cases?"*
-
-**Phase 1C: MCP Server (1-2 weeks)**
-
-Build the distribution channel that doesn't exist yet.
-
-- MCP server on top of the inventory
-- Tools: `search_tours`, `get_details`, `filter_by_type`, `search_by_area`
-- Demo: ask Claude "what tours are available near Mt. Rainier under $200?" — real answers from real operators
-- The before/after: AI trying to answer from a messy website vs. querying TourGraph
-
-*Answers: "Is there a real distribution gap?"*
-
-### Phase 2: Product Shell + Articles (2-3 weeks)
-
-- Simple operator dashboard — claim your listing, review/edit extracted data
-- Landing page at tourgraph.ai
-- Article series (see below)
-- OTA export adapter for at least one platform
-
-*Answers: "Can you build for real users, not just demos?"*
-
-### Phase 3: Validation (1-2 weeks)
-
-- Show to 3-5 real Seattle operators (in-person)
-- Show to 2-3 network contacts at Expedia/Amazon/Google
-- Structured feedback on value prop, willingness to pay, missing features
-- Go/no-go: portfolio piece or product?
-
-*Answers: "Have you validated with real customers?"*
+**Current phase:** 1A — Data Audit + Normalization
 
 ---
 
@@ -199,10 +145,11 @@ These are depth-of-thinking topics for interviews, articles, and eventual produc
 
 Non-negotiable. The journey, learnings, and observations should be documented regardless of product vs. interview outcome.
 
-### Article 1: "I Tried to Make Tour Inventory AI-Agent-Ready. Here's Where It Broke."
-- **Source material:** Phase 0 extraction results
-- **Key insights:** Where AI extraction works (titles, descriptions, durations) vs. where it fails (JS widget pricing, seasonal schedules). Why domain-specific prompting matters. Why generic extraction tools (Firecrawl /extract) fail for tourism.
-- **Angle:** Practical builder's perspective, not theoretical
+### Article 1: "I Asked AI to Plan My Mediterranean Cruise. It Confidently Made Everything Up." — PUBLISHED
+- **Published:** [tourgraph.ai/blog](https://tourgraph.ai/blog/making-tour-inventory-ai-agent-ready/)
+- **Source material:** Phase 0 extraction results, Viator comparison, Mediterranean cruise cold open
+- **Key insights:** Where AI extraction works vs. where it fails, why domain-specific prompting matters, the Viator coverage gap, the long tail
+- **Angle:** Practical builder's perspective — personal frustration → experiment → findings
 
 ### Article 2: "The Cold Start Problem Nobody's Solving in AI Travel"
 - **Source material:** Discovery pipeline, cold start analysis
@@ -233,7 +180,6 @@ Non-negotiable. The journey, learnings, and observations should be documented re
 2. **MCP adoption** — Which AI agents actually support MCP tool use today? Claude does natively. What about ChatGPT, Gemini? Does the demo need to work across multiple agents?
 3. **Operator outreach strategy** — When we reach Phase 3, how do we approach operators? Cold email? In-person? Through the DMO? What's the pitch for claiming their listing?
 4. **Legal review** — At what point does scraping operator websites at scale need a formal legal opinion? Before or after public launch?
-5. **Domain/landing page** — tourgraph.ai is owned. When do we need a landing page? Before operator outreach (Phase 3) or before articles (Phase 2)?
 
 ---
 

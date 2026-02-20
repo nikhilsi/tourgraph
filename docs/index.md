@@ -66,11 +66,13 @@ The pipeline handles diverse experience types — guided tours, harbor cruises, 
 | Phase | Goal | Status |
 |-------|------|--------|
 | **Phase 0: Spike** | Can AI extract structured tour data reliably? | **Complete** |
-| Phase 1A: Discovery | Programmatic operator discovery (Google Places, Viator, DMOs) | Next |
-| Phase 1B: Scale | Extract across all discovered operators, PostgreSQL | Planned |
-| Phase 1C: MCP Server | AI-agent-queryable inventory via MCP | Planned |
-| Phase 2: Product | Operator dashboard, landing page, article series | Planned |
+| Phase 1A: Data Audit | Normalize extracted data, load into SQLite | Next |
+| Phase 1B: MCP Server | AI-agent-queryable inventory via MCP | Planned |
+| Phase 1C: Discovery | Programmatic operator discovery + scale extraction | Planned |
+| Phase 2: Product | Operator dashboard, distribution connectors | Planned |
 | Phase 3: Validation | Real operator feedback, go/no-go | Planned |
+
+[Full roadmap with rationale](roadmap.md){ .md-button }
 
 ---
 
@@ -88,4 +90,5 @@ TourGraph is open source under the MIT License.
 
 - [GitHub Repository](https://github.com/nikhilsi/tourgraph)
 - [Project Proposal](project_proposal.md)
-- [Strategy & Roadmap](strategy.md)
+- [Roadmap](roadmap.md)
+- [Strategy](strategy.md)
