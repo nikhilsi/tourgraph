@@ -128,6 +128,12 @@ tourgraph/
     └── extraction_prompt_v01.md
 ```
 
+## Website
+
+**[tourgraph.ai](https://tourgraph.ai)** — project site with documentation and blog.
+
+- [Blog: I Asked AI to Plan My Mediterranean Cruise. It Confidently Made Everything Up.](https://tourgraph.ai/blog/making-tour-inventory-ai-agent-ready/)
+
 ## Getting Started
 
 ```bash

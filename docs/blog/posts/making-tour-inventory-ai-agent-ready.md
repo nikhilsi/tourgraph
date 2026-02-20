@@ -187,7 +187,9 @@ Here's a real extraction result — the Mt. Rainier tour from Tours Northwest. T
 
 Compare that to what an AI agent gets today when it visits toursnorthwest.com: paragraphs of prose, photos, and a FareHarbor "Book Now" button. The structured version is queryable, comparable, and bookable.
 
-> *Screenshot: [toursnorthwest.com/tours/mt-rainier](https://www.toursnorthwest.com/tours/mt-rainier/) — the same tour as the JSON above. What a human sees: hero photo, paragraphs of description, a "Book Now" widget. What an AI agent needs: the JSON.*
+![Tours Northwest Mt. Rainier tour page — hero image, booking widget, calendar, and promotional banner](images/tours-northwest-mt-rainier.jpg){ width="700" }
+
+*The same Mt. Rainier tour as the JSON above. What a human sees: a hero photo, a promotional banner, a FareHarbor calendar widget, and paragraphs of description. What an AI agent needs: the structured JSON.*
 
 ---
 

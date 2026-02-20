@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.6.0] - 2026-02-20
+
+### Added
+- MkDocs Material site with dark/light theme toggle, blog plugin, and full documentation nav
+- Blog article: "I Asked AI to Plan My Mediterranean Cruise. It Confidently Made Everything Up"
+- GitHub Actions workflow for automated deployment to GitHub Pages
+- Custom domain configuration (tourgraph.ai) with CNAME
+- Site landing page (`docs/index.md`) with Phase 0 results, architecture diagram, and roadmap
+
+### Changed
+- Removed duplicate `articles/` directory — blog version in `docs/blog/posts/` is canonical
+- Updated all tracking docs (CURRENT_STATE, NOW, CHANGELOG, CLAUDE.md) to reflect site launch
+
+---
+
+## [0.5.0] - 2026-02-20
+
+### Added
+- MIT License
+- Article 1 draft (`articles/article1_draft.md`) — Mediterranean cruise cold open, Phase 0 findings, Viator comparison
+
+### Changed
+- Rewrote `docs/pitch.md` — "Pitch & Interview Prep" → "Pitch & Positioning", removed job-search-specific language, reframed interview Q&A as due diligence
+- Cleaned up CLAUDE.md — "What Pisses Me Off" → "Non-Negotiables", updated terminology
+- Updated NOW.md, project_proposal.md, strategy.md references from "interview prep" to "positioning"
+- README.md updated with MIT license, 1A/1B/1C phase structure
+
+---
+
 ## [0.4.0] - 2026-02-18
 
 ### Added

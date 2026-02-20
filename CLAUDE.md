@@ -1,7 +1,7 @@
 # Claude Code Development Guide
 
 ---
-**Last Updated**: February 18, 2026
+**Last Updated**: February 20, 2026
 **Purpose**: Rules and workflow for working with this codebase
 ---
 
@@ -167,7 +167,9 @@ python scripts/viator_compare.py --sandbox
 - **NOW.md** - Current priorities
 - **CHANGELOG.md** - Version history
 
-**Docs:**
+**Docs & Site** (serves tourgraph.ai via MkDocs Material):
+- **docs/index.md** - Site landing page
+- **docs/CNAME** - Custom domain (tourgraph.ai)
 - **docs/project_proposal.md** - What TourGraph is and why (shareable)
 - **docs/strategy.md** - Roadmap, moat, risk analysis, article plan
 - **docs/pitch.md** - Product positioning, elevator pitches
@@ -175,6 +177,9 @@ python scripts/viator_compare.py --sandbox
 - **docs/tooling_landscape.md** - Firecrawl, Crawl4AI, build-vs-use decisions
 - **docs/api_landscape.md** - Viator, GetYourGuide, OCTO standard, test results
 - **docs/glossary.md** - Shared vocabulary
+- **docs/blog/** - Blog posts (canonical article location)
+- **mkdocs.yml** - Site configuration
+- **.github/workflows/deploy-site.yml** - GitHub Pages auto-deployment
 
 **Results (Phase 0):**
 - **results/<operator>/** - Per-operator extraction JSON + scorecard (all 7 complete)
@@ -199,18 +204,32 @@ tourgraph/
 ├── CURRENT_STATE.md                (What's built & status)
 ├── NOW.md                          (Current priorities)
 ├── CHANGELOG.md                    (Version history)
+├── LICENSE                         (MIT License)
 ├── .env.example                    (API key template)
 ├── .gitignore
 ├── requirements.txt
+├── mkdocs.yml                      (MkDocs Material site config)
 │
-├── docs/
+├── .github/
+│   └── workflows/
+│       └── deploy-site.yml         (GitHub Pages deployment)
+│
+├── docs/                           (MkDocs source — serves tourgraph.ai)
+│   ├── index.md                    (Site landing page)
+│   ├── CNAME                       (Custom domain: tourgraph.ai)
 │   ├── project_proposal.md         (What TourGraph is and why — shareable)
 │   ├── strategy.md                 (Roadmap, moat, risk analysis)
 │   ├── pitch.md                    (Product positioning, elevator pitches)
 │   ├── phase0_spike.md             (7 operators, schema, methodology)
 │   ├── tooling_landscape.md        (Firecrawl analysis, build-vs-use)
 │   ├── api_landscape.md            (Viator, GYG, OCTO standard, test results)
-│   └── glossary.md                 (Shared vocabulary)
+│   ├── glossary.md                 (Shared vocabulary)
+│   └── blog/
+│       ├── index.md                (Blog landing page)
+│       ├── .authors.yml            (Blog author profiles)
+│       └── posts/
+│           ├── making-tour-inventory-ai-agent-ready.md
+│           └── images/             (Blog post images)
 │
 ├── schemas/
 │   └── octo_extraction_v01.json    (OCTO-aligned extraction schema)

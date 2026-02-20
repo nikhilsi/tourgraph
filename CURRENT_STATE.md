@@ -1,7 +1,7 @@
 # Current State
 
 ---
-**Last Updated**: February 18, 2026
+**Last Updated**: February 20, 2026
 **Purpose**: Project context for new Claude Code sessions
 **What's Next**: See NOW.md
 ---
@@ -109,6 +109,20 @@
 | Per-operator scorecards | `results/<operator>/scorecard_v1.md` |
 | Viator raw API data | `results/viator_raw/<operator>/` |
 | Viator OCTO-mapped data | `results/viator_mapped/<operator>/` |
+
+---
+
+---
+
+## Website & Publishing
+
+- ✅ MkDocs Material site live at [tourgraph.ai](https://tourgraph.ai)
+- ✅ GitHub Pages deployment via GitHub Actions (auto-deploys on push to main)
+- ✅ Custom domain configured (tourgraph.ai)
+- ✅ Blog article published: "I Asked AI to Plan My Mediterranean Cruise. It Confidently Made Everything Up"
+- ✅ Repo public under MIT License
+- ⬜ LinkedIn teaser post
+- ⬜ Medium cross-post
 
 ---
 
