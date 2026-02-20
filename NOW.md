@@ -15,7 +15,7 @@
 - Phase 0 extraction: 83 products across 7 operators, 95% accuracy, zero pricing hallucinations
 - Viator API comparison: 3/7 on Viator (10 products), 4/7 Path A exclusive
 - Strategic direction set: discovery-first approach, MCP pulled forward (see `docs/strategy.md`)
-- Docs restructured: proposal (shareable) / strategy (roadmap + risk) / pitch (interview prep)
+- Docs restructured: proposal (shareable) / strategy (roadmap + risk) / pitch (positioning)
 
 ---
 

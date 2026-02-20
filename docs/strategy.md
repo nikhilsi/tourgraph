@@ -2,7 +2,7 @@
 
 **Created:** February 18, 2026
 **Status:** Draft — actively evolving
-**Purpose:** Strategic thinking, roadmap rationale, and risk analysis. Living document for interview prep, product decisions, and article source material.
+**Purpose:** Strategic thinking, roadmap rationale, and risk analysis. Living document for product decisions, due diligence, and article source material.
 
 ---
 

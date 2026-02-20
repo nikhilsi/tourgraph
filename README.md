@@ -63,13 +63,14 @@ See [CURRENT_STATE.md](CURRENT_STATE.md) for detailed status.
 
 ## Phased Build Plan
 
-| Phase | Duration | Goal | Status |
-|-------|----------|------|--------|
-| **Phase 0: Spike** | 1 week | Can AI extract structured tour data reliably? | **Complete — GO** |
-| Phase 1: Engine | 2 weeks | Productionize extraction + operator review UI | Planned |
-| Phase 2: MCP Server | 2 weeks | AI-agent-queryable inventory via MCP | Planned |
-| Phase 3: Dashboard | 2-3 weeks | End-to-end product demo | Planned |
-| Phase 4: Validation | 1-2 weeks | Real operator feedback, go/no-go | Planned |
+| Phase | Goal | Status |
+|-------|------|--------|
+| **Phase 0: Spike** | Can AI extract structured tour data reliably? | **Complete — GO** |
+| Phase 1A: Discovery | Programmatic operator discovery (Google Places, Viator, DMOs) | Next |
+| Phase 1B: Scale | Run extraction across all discovered operators, PostgreSQL | Planned |
+| Phase 1C: MCP Server | AI-agent-queryable inventory via MCP | Planned |
+| Phase 2: Product | Operator dashboard, landing page, article series | Planned |
+| Phase 3: Validation | Real operator feedback, go/no-go | Planned |
 
 ## Tech Stack
 
@@ -85,10 +86,10 @@ See [CURRENT_STATE.md](CURRENT_STATE.md) for detailed status.
 
 ```
 tourgraph/
-├── CLAUDE.md              # Claude Code development guide
 ├── README.md              # This file
+├── CLAUDE.md              # AI-assisted development guide
 ├── CURRENT_STATE.md       # Build status
-├── NOW.md                 # Current priorities
+├── NOW.md                 # Current priorities & roadmap
 ├── CHANGELOG.md           # Version history
 ├── .env.example           # API key template
 ├── requirements.txt       # Python dependencies
@@ -96,7 +97,7 @@ tourgraph/
 ├── docs/                  # Strategic & research documentation
 │   ├── project_proposal.md  # What TourGraph is and why (shareable)
 │   ├── strategy.md          # Roadmap, moat, risk analysis
-│   ├── pitch.md             # Interview prep, personal positioning
+│   ├── pitch.md             # Product positioning, elevator pitches
 │   ├── phase0_spike.md
 │   ├── tooling_landscape.md
 │   ├── api_landscape.md
@@ -147,14 +148,16 @@ python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/
 
 ## Documentation
 
-- **[CLAUDE.md](CLAUDE.md)** — Development guide for Claude Code sessions
+- **[CLAUDE.md](CLAUDE.md)** — AI-assisted development guide and project rules
 - **[CURRENT_STATE.md](CURRENT_STATE.md)** — Current build status
+- **[NOW.md](NOW.md)** — Current priorities and roadmap
 - **[docs/project_proposal.md](docs/project_proposal.md)** — What TourGraph is and why it matters
 - **[docs/strategy.md](docs/strategy.md)** — Roadmap, moat analysis, risk assessment
-- **[docs/pitch.md](docs/pitch.md)** — Interview prep and personal positioning
+- **[docs/pitch.md](docs/pitch.md)** — Product positioning and elevator pitches
 - **[docs/phase0_spike.md](docs/phase0_spike.md)** — Phase 0 methodology, operators, schema
 - **[docs/tooling_landscape.md](docs/tooling_landscape.md)** — Extraction tooling analysis
 - **[docs/api_landscape.md](docs/api_landscape.md)** — OTA API research & Viator test results
+- **[docs/glossary.md](docs/glossary.md)** — Shared vocabulary for the tours & experiences industry
 
 ## Key Concepts
 
@@ -166,4 +169,4 @@ python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/
 
 ## License
 
-Private project. Not for distribution.
+MIT License. See [LICENSE](LICENSE) for details.

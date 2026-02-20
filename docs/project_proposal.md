@@ -311,4 +311,4 @@ For reference, these ideas were explored during the brainstorming process:
 
 ---
 
-*For strategic analysis, roadmap, and risk assessment, see `strategy.md`. For interview prep and personal positioning, see `pitch.md`. For current build status, see `CURRENT_STATE.md`.*
+*For strategic analysis, roadmap, and risk assessment, see `strategy.md`. For product positioning and elevator pitches, see `pitch.md`. For current build status, see `CURRENT_STATE.md`.*

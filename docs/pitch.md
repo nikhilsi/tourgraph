@@ -1,21 +1,21 @@
-# TourGraph — Pitch & Interview Prep
+# TourGraph — Pitch & Positioning
 
-**Last Updated**: February 18, 2026
+**Last Updated**: February 20, 2026
 **Domain**: [tourgraph.ai](https://tourgraph.ai)
 **GitHub**: [github.com/nikhilsi/tourgraph](https://github.com/nikhilsi/tourgraph)
-**Purpose**: Personal positioning, elevator pitches, and interview preparation. Not externally shared — this is the "why me" document.
+**Purpose**: Product positioning, elevator pitches, and founder background.
 
 ---
 
 ## Why This Project Exists
 
-This project serves three purposes:
+This project serves three outcomes:
 
-1. **Job search artifact** — Demonstrates CTO-level strategic thinking to target companies
-2. **Published thought leadership** — Fuels a LinkedIn/Medium article series that builds visibility
-3. **Potential product** — If validated, could become a real SaaS business
+1. **Founder credibility** — Demonstrates strategic thinking and execution ability across technology, product, and market analysis
+2. **Published thought leadership** — Fuels a LinkedIn/Medium article series that builds visibility in the travel tech space
+3. **Potential product** — If validated with real operators, could become a real SaaS business
 
-Either outcome is a win. Product → potential company. Portfolio piece → the best CTO interview artifact in the market plus a published article series.
+Either outcome is a win. Product → potential company. Thought leadership → industry visibility and a published article series that demonstrates deep expertise.
 
 ---
 
@@ -25,7 +25,7 @@ Either outcome is a win. Product → potential company. Portfolio piece → the 
 
 TourGraph is AI-powered distribution infrastructure that makes tour operator inventory visible and bookable across AI agents, OTAs, and Google — simultaneously.
 
-### One-Sentence (Interview Version)
+### One-Sentence
 
 *"I built a tool that takes a tour operator's website and makes their inventory discoverable by AI agents — solving the same supplier onboarding problem I tackled at Expedia, but with AI and for the agentic era."*
 
@@ -53,7 +53,7 @@ This project sits at the intersection of:
 
 - **Expedia experience** — Reduced supplier onboarding from 180 to 35 days. Deep understanding of the platform side.
 - **Platform integration at scale** — Built VRBO-Expedia integration saving $45M. Knows how to connect systems.
-- **AI building experience** — Built ScreenTrades.ai (AI-powered trading platform) using the exact tech stack this requires.
+- **AI building experience** — Built ScreenTrades.ai (AI-powered trading analysis platform) using the exact tech stack this requires.
 - **Tours/experiences domain** — Domain knowledge from Expedia's experiences division.
 - **Industry timing** — Agentic AI distribution is the #1 topic in travel tech. Everyone's talking about it. Few are building for the supply side.
 
@@ -77,7 +77,7 @@ This project says: "I identified a structural industry problem (supply-side frag
 
 The difference isn't the code. **The difference is the thinking.** The code is evidence of the thinking.
 
-### What You Learn By Building (Interview Gold)
+### Insights From Building
 
 The most valuable outcome isn't the tool itself — it's the insights you gain from building it. Things like:
 
@@ -91,7 +91,7 @@ The most valuable outcome isn't the tool itself — it's the insights you gain f
 
 ---
 
-## Interview Context
+## Due Diligence
 
 ### What's Built (Phase 0 Results)
 
@@ -103,7 +103,7 @@ The most valuable outcome isn't the tool itself — it's the insights you gain f
 - Total cost: $8.28 for all 7 operators
 - Go/no-go decision: GO — all 6 success criteria met
 
-### Key Strategic Arguments
+### Key Questions & Answers
 
 **"How do you solve cold start?"**
 The Google Maps model — discover operators programmatically (Google Places API, Viator API, DMO directories), extract from public websites without asking permission, build the inventory first, then operators claim their listings. See `strategy.md`.
@@ -119,36 +119,10 @@ TBD — Phase 3 validation. But the distribution gap is real (no AI-agent channe
 
 ---
 
-## Personal Growth Dimensions
-
-This project develops specific skills and capabilities:
-
-- **New skills:** MCP/Agentic AI architecture, AI-powered data extraction, web scraping pipelines, two-sided platform product thinking, published thought leadership
-- **Sharpened skills:** Claude API integration, FastAPI/React full-stack, AWS architecture
-- **Meta-skill:** Confidence in identifying market problems, forming opinions, and executing independently — the muscle that big company roles let atrophy
-
-### Skills Inventory
-
-**What I already know:**
-- FastAPI backend development (ScreenTrades.ai)
-- React frontend development (ScreenTrades.ai, news aggregator)
-- Claude API integration (ScreenTrades.ai)
-- AWS deployment and architecture (certified)
-- Travel domain deeply (Expedia, tours/experiences)
-- Supplier onboarding workflows (Expedia — designed them)
-
-**What I'm learning through this project:**
-- MCP basics — Python SDK, tool definition, server implementation
-- Agentic AI patterns — how AI agents use tools, context management, multi-step reasoning
-- Firecrawl API — ✅ Done. `/scrape`, `/extract`, `/map` endpoints learned. Key finding: `/extract` is too expensive/inaccurate; `/scrape` + our own Claude extraction is the right approach.
-- GetYourGuide/Expedia Supplier APIs — public documentation review (upcoming)
-
----
-
-## Potential Concerns (Interview Q&A)
+## Potential Concerns
 
 **"Will this clash with Expedia?"**
-No — complementary. Expedia wants more structured supply. This helps operators get structured. An Expedia interviewer would see this as understanding their ecosystem.
+No — complementary. Expedia wants more structured supply. This helps operators get structured. Anyone evaluating this from the Expedia side would see it as understanding their ecosystem.
 
 **"Will operators be suspicious?"**
 Some will. That's fine — only need 3-5 who are curious for validation. Local, in-person, offering something free = much higher hit rate than cold outreach.
@@ -158,4 +132,4 @@ Honestly, not deeply — at inception. The technology is reproducible. The moat 
 
 ---
 
-*This document is personal interview prep. For the project proposal (shareable), see `project_proposal.md`. For strategic analysis and roadmap, see `strategy.md`.*
+*For the project proposal (shareable), see `project_proposal.md`. For strategic analysis and roadmap, see `strategy.md`.*
