@@ -82,6 +82,7 @@ nav:
     - Project Proposal: project_proposal.md
     - Roadmap: roadmap.md
     - Strategy: strategy.md
+    - Data Acquisition Strategy: data_acquisition_research.md
     - Phase 0 Spike: phase0_spike.md
     - Tooling Landscape: tooling_landscape.md
     - API Landscape: api_landscape.md
