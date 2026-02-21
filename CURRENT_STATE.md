@@ -121,7 +121,11 @@
 - ✅ Custom domain configured (tourgraph.ai)
 - ✅ Blog article published: "I Asked AI to Plan My Mediterranean Cruise. It Confidently Made Everything Up"
 - ✅ Repo public under MIT License
-- ⬜ LinkedIn teaser post
+- ✅ Logo created (diamond graph icon + horizontal/stacked wordmarks)
+- ✅ Favicon and site logo wired up
+- ✅ Social preview card (OG image) for LinkedIn/Twitter link sharing
+- ✅ GitHub repo social preview set
+- ⬜ LinkedIn teaser post (scheduled for Tue Feb 24)
 
 ---
 

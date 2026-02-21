@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.7.0] - 2026-02-20
+
+### Added
+- TourGraph logo (diamond graph icon with location pin, horizontal + stacked wordmarks)
+- Favicon (`tourgraph-icon.png`) and site header logo (`tourgraph-icon.svg`) wired into MkDocs
+- Social preview card (OG image, 1200x630) for LinkedIn/Twitter link sharing
+- Template override (`docs/overrides/main.html`) for OG meta tags
+- GitHub repo social preview configured
+
+### Changed
+- Consolidated roadmap into single source of truth (`docs/roadmap.md`), all other docs reference it
+- Reordered phases: MCP Server (1B) pulled before Discovery (1C) — validate query layer with existing data first
+- Fixed LinkedIn URL in site footer
+
+---
+
 ## [0.6.0] - 2026-02-20
 
 ### Added

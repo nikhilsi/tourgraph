@@ -20,6 +20,7 @@
 - MkDocs Material site live at [tourgraph.ai](https://tourgraph.ai) with blog, docs, and landing page
 - GitHub Pages deployment via GitHub Actions (auto-deploys on push to main)
 - Repo made public under MIT License
+- Logo, favicon, social preview card, and GitHub repo preview all set up
 
 ---
 
