@@ -7,6 +7,7 @@ repo_name: nikhilsi/tourgraph
 
 theme:
   name: material
+  custom_dir: docs/overrides
   palette:
     - scheme: slate
       primary: indigo
@@ -30,6 +31,8 @@ theme:
     - toc.follow
     - search.suggest
     - search.highlight
+  logo: assets/images/tourgraph-icon.svg
+  favicon: assets/images/tourgraph-icon.png
   icon:
     repo: fontawesome/brands/github
   font:
