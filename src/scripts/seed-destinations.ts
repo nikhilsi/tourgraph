@@ -6,7 +6,8 @@
 // Run: npx tsx src/scripts/seed-destinations.ts
 // ============================================================
 
-import { ViatorClient, loadEnv } from "../lib/viator";
+import { ViatorClient } from "../lib/viator";
+import { loadEnv } from "../lib/env";
 import { upsertDestination, getDb } from "../lib/db";
 import { continentFromLookupId } from "../lib/continents";
 import type { ViatorDestination } from "../lib/types";

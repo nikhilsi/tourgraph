@@ -11,8 +11,8 @@
 
 1. **CLAUDE.md** (this file) — Rules & workflow
 2. **docs/product_brief.md** — Source of truth for what we're building
-3. **NOW.md** — What to work on next
-4. **CHANGELOG.md** — Version history & recent changes
+3. **CURRENT_STATE.md** — What's built and how it fits together
+4. **NOW.md** — What to work on next
 5. **`git log --oneline -10`** — Recent commits
 
 **Optional** (if relevant to task):

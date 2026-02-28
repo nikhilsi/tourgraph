@@ -8,6 +8,13 @@ import type {
 
 const BASE_URL = "https://api.viator.com/partner";
 
+// Rate limiting constants
+const THROTTLE_BATCH_SIZE = 50;
+const THROTTLE_PAUSE_MS = 1000;
+const MAX_RETRIES = 3;
+const LOW_REMAINING_THRESHOLD = 10;
+const LOW_REMAINING_PAUSE_MS = 2000;
+
 // ============================================================
 // Viator API Client
 // Ported from archive/scripts/viator_compare.py
@@ -33,45 +40,71 @@ export class ViatorClient {
     };
   }
 
-  // Rate limiting: pause every 50 requests to stay well under 150/10s
+  // Rate limiting: pause every THROTTLE_BATCH_SIZE requests
   private async throttle(): Promise<void> {
     this.requestCount++;
-    if (this.requestCount % 50 === 0) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+    if (this.requestCount % THROTTLE_BATCH_SIZE === 0) {
+      await new Promise((resolve) => setTimeout(resolve, THROTTLE_PAUSE_MS));
     }
   }
 
+  // H6/H12: Retry with exponential backoff, read rate limit headers
   private async request<T>(
     method: "GET" | "POST",
     endpoint: string,
     body?: unknown
   ): Promise<T> {
-    await this.throttle();
+    for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
+      await this.throttle();
 
-    const url = `${BASE_URL}${endpoint}`;
-    const headers = { ...this.headers };
+      const url = `${BASE_URL}${endpoint}`;
+      const headers = { ...this.headers };
 
-    // GET requests don't need Content-Type (matches Python client pattern)
-    if (method === "GET") {
-      delete headers["Content-Type"];
+      // GET requests don't need Content-Type
+      if (method === "GET") {
+        delete headers["Content-Type"];
+      }
+
+      const options: RequestInit = { method, headers };
+      if (body && method === "POST") {
+        options.body = JSON.stringify(body);
+      }
+
+      const response = await fetch(url, options);
+
+      // Read rate limit headers for proactive throttling
+      const remaining = parseInt(response.headers.get("RateLimit-Remaining") || "100");
+      if (remaining < LOW_REMAINING_THRESHOLD) {
+        await new Promise((resolve) => setTimeout(resolve, LOW_REMAINING_PAUSE_MS));
+      }
+
+      // Retry on transient errors (429, 5xx)
+      if (response.status === 429 || response.status >= 500) {
+        if (attempt < MAX_RETRIES) {
+          const retryAfter = response.headers.get("Retry-After");
+          const delay = retryAfter
+            ? parseInt(retryAfter) * 1000
+            : Math.pow(2, attempt) * 1000; // 1s, 2s, 4s
+          console.warn(
+            `  Viator API ${response.status} on ${endpoint}, retrying in ${delay}ms (attempt ${attempt + 1}/${MAX_RETRIES})...`
+          );
+          await new Promise((resolve) => setTimeout(resolve, delay));
+          continue;
+        }
+      }
+
+      if (!response.ok) {
+        const text = await response.text().catch(() => "");
+        throw new Error(
+          `Viator API ${method} ${endpoint}: ${response.status} ${response.statusText} — ${text.slice(0, 200)}`
+        );
+      }
+
+      return response.json() as Promise<T>;
     }
 
-    const options: RequestInit = { method, headers };
-
-    if (body && method === "POST") {
-      options.body = JSON.stringify(body);
-    }
-
-    const response = await fetch(url, options);
-
-    if (!response.ok) {
-      const text = await response.text().catch(() => "");
-      throw new Error(
-        `Viator API ${method} ${endpoint}: ${response.status} ${response.statusText} — ${text.slice(0, 200)}`
-      );
-    }
-
-    return response.json() as Promise<T>;
+    // Should not reach here, but TypeScript needs a return
+    throw new Error(`Viator API ${method} ${endpoint}: max retries exceeded`);
   }
 
   // ============================================================
@@ -121,7 +154,6 @@ export class ViatorClient {
 
   // ============================================================
   // Tags (GET /products/tags/)
-  // Used for connectivity test and tag lookups
   // ============================================================
 
   async getTags(): Promise<ViatorTag[]> {
@@ -134,7 +166,6 @@ export class ViatorClient {
 
   // ============================================================
   // Destinations (GET /destinations)
-  // Returns all ~3,380 destinations with timezone, geo, hierarchy
   // ============================================================
 
   async getDestinations(): Promise<ViatorDestination[]> {
@@ -157,7 +188,6 @@ export function extractCoverImageUrl(
     product.images.find((img) => img.isCover) || product.images[0];
   if (!coverImage) return null;
 
-  // Prefer 720x480 variant (largest landscape)
   const hero = coverImage.variants.find(
     (v) => v.width === 720 && v.height === 480
   );
@@ -181,8 +211,8 @@ export function extractDurationMinutes(
   const duration = product.itinerary?.duration;
   if (!duration) return null;
   return (
-    duration.fixedDurationInMinutes ||
-    duration.variableDurationFromMinutes ||
+    duration.fixedDurationInMinutes ??
+    duration.variableDurationFromMinutes ??
     null
   );
 }
@@ -191,88 +221,4 @@ export function extractInclusions(product: ViatorProductDetail): string[] {
   return (product.inclusions || [])
     .map((inc) => inc.otherDescription || inc.typeDescription)
     .filter((s): s is string => !!s);
-}
-
-// ============================================================
-// Env loader for standalone scripts
-// ============================================================
-
-export function loadEnv(): void {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const fs = require("fs");
-  const envPath = ".env.local";
-  if (fs.existsSync(envPath)) {
-    const content = fs.readFileSync(envPath, "utf-8") as string;
-    for (const line of content.split("\n")) {
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith("#")) continue;
-      const eqIdx = trimmed.indexOf("=");
-      if (eqIdx > 0) {
-        process.env[trimmed.slice(0, eqIdx)] = trimmed.slice(eqIdx + 1);
-      }
-    }
-  }
-}
-
-// ============================================================
-// Self-test (run with: npx tsx src/lib/viator.ts)
-// ============================================================
-
-if (require.main === module) {
-  (async () => {
-    loadEnv();
-    console.log("Testing Viator API client...\n");
-
-    const client = new ViatorClient();
-
-    // Test 1: Tags (connectivity check)
-    console.log("1. Testing connectivity via /products/tags/...");
-    const tags = await client.getTags();
-    console.log(`   ✓ ${tags.length} tags loaded`);
-
-    // Test 2: Destinations (GET /destinations)
-    console.log("2. Fetching all destinations...");
-    const destinations = await client.getDestinations();
-    console.log(`   ✓ ${destinations.length} destinations loaded`);
-    const seattle = destinations.find((d) => d.destinationId === 704);
-    if (seattle) {
-      console.log(
-        `     Seattle: id=${seattle.destinationId}, type=${seattle.type}, tz=${seattle.timeZone}`
-      );
-      console.log(
-        `     Center: ${seattle.center?.latitude}, ${seattle.center?.longitude}`
-      );
-    }
-
-    // Test 3: Search products in Seattle (dest_id 704)
-    console.log("3. Searching products in Seattle (704)...");
-    const searchResults = await client.searchProducts("704", { count: 5 });
-    console.log(
-      `   ✓ ${searchResults.totalCount} total, showing first ${searchResults.products.length}:`
-    );
-    for (const p of searchResults.products.slice(0, 3)) {
-      const price = p.pricing?.summary?.fromPrice;
-      const rating = p.reviews?.combinedAverageRating;
-      console.log(
-        `     - ${p.productCode}: ${p.title} ($${price}, ${rating}★)`
-      );
-    }
-
-    // Test 4: Product detail for 5396MTR
-    console.log("4. Fetching product detail for 5396MTR...");
-    const product = await client.getProduct("5396MTR");
-    const coverUrl = extractCoverImageUrl(product);
-    const duration = extractDurationMinutes(product);
-    console.log(`   ✓ "${product.title}"`);
-    console.log(
-      `     Rating: ${product.reviews.combinedAverageRating} (${product.reviews.totalReviews} reviews)`
-    );
-    console.log(`     Duration: ${duration} minutes`);
-    console.log(`     Supplier: ${product.supplier.name}`);
-    console.log(`     Cover image: ${coverUrl?.slice(0, 80)}...`);
-    console.log(`     Viator URL: ${product.productUrl.slice(0, 80)}...`);
-    console.log(`     Tags: ${product.tags.join(", ")}`);
-
-    console.log("\nAll Viator API tests passed!");
-  })();
 }

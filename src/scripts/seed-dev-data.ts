@@ -1,34 +1,70 @@
 // ============================================================
 // Seed Development Data
-// Indexes ~37 diverse destinations across all continents
-// to build a 500+ tour dataset for UI development.
+// Indexes 43 diverse destinations across all continents
+// to build a 5,000+ tour dataset for UI development.
 //
 // Run: npx tsx src/scripts/seed-dev-data.ts
 //       npx tsx src/scripts/seed-dev-data.ts --no-ai
 // ============================================================
 
-import { ViatorClient, loadEnv } from "../lib/viator";
+import { ViatorClient } from "../lib/viator";
+import { loadEnv } from "../lib/env";
 import { getActiveTourCount } from "../lib/db";
 import { processDestination } from "./indexer";
 
 loadEnv();
 
-// Curated diverse destinations across all 7 continent codes
+// Curated diverse destinations — all IDs verified against Viator API
 const SEED_DESTINATIONS = [
-  // Europe (code 6)
-  479, 737, 525, 511, 541, 538, 523, 919, 909, 546,
-  // North America (code 8)
-  704, 712, 684, 651, 828, 287,
-  // Asia (code 2)
-  334, 349, 367, 364, 355, 343,
-  // Africa + Middle East (code 1)
-  318, 2363, 786, 661, 232,
-  // South America (code 9)
-  296, 910, 290, 301,
-  // Oceania (code 3)
-  317, 875, 908, 282,
-  // Caribbean (code 4)
-  265, 806, 263,
+  // Europe (12)
+  479,  // Paris
+  737,  // London
+  525,  // Amsterdam
+  511,  // Rome
+  538,  // Lisbon
+  562,  // Barcelona
+  462,  // Prague
+  454,  // Vienna
+  739,  // Edinburgh
+  496,  // Athens
+  904,  // Dubrovnik
+  585,  // Istanbul
+  // North America (7)
+  687,  // New York City
+  704,  // Seattle
+  684,  // Las Vegas
+  651,  // San Francisco
+  645,  // Los Angeles
+  631,  // Cancun
+  628,  // Mexico City
+  // Asia (9)
+  334,  // Tokyo
+  332,  // Kyoto
+  343,  // Bangkok
+  349,  // Phuket
+  98,   // Bali
+  18,   // Singapore
+  973,  // Seoul
+  352,  // Ho Chi Minh City
+  953,  // Mumbai
+  // Africa + Middle East (7)
+  318,  // Cape Town
+  828,  // Dubai
+  782,  // Cairo
+  5408, // Marrakech
+  5280, // Nairobi
+  5590, // Zanzibar
+  24520, // Petra
+  // South America (5)
+  712,  // Rio de Janeiro
+  901,  // Buenos Aires
+  937,  // Cusco
+  928,  // Lima
+  4498, // Cartagena (Colombia)
+  // Oceania (3)
+  357,  // Sydney
+  407,  // Queenstown
+  905,  // Reykjavik (technically Europe but adds diversity)
 ];
 
 async function main() {

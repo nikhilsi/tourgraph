@@ -1,20 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { RouletteTour } from "@/lib/types";
+import { formatDurationShort } from "@/lib/format";
 import ShareButton from "./ShareButton";
 
-function formatDuration(minutes: number): string {
-  if (minutes < 60) return `${minutes}m`;
-  const hours = Math.floor(minutes / 60);
-  const mins = minutes % 60;
-  return mins > 0 ? `${hours}h ${mins}m` : `${hours}h`;
-}
-
-function formatRating(rating: number): string {
-  return rating.toFixed(1);
-}
-
-export default function TourCard({ tour }: { tour: RouletteTour }) {
+export default function TourCard({
+  tour,
+  priority = true,
+}: {
+  tour: RouletteTour;
+  priority?: boolean;
+}) {
   return (
     <div className="w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-surface">
       {/* Photo — tappable to detail page */}
@@ -26,7 +22,7 @@ export default function TourCard({ tour }: { tour: RouletteTour }) {
             fill
             sizes="(max-width: 768px) 100vw, 448px"
             className="object-cover"
-            priority
+            priority={priority}
           />
         ) : (
           <div className="w-full h-full bg-surface-hover flex items-center justify-center">
@@ -62,14 +58,14 @@ export default function TourCard({ tour }: { tour: RouletteTour }) {
           {tour.rating > 0 && (
             <span className="flex items-center gap-1">
               <span className="text-accent">&#9733;</span>
-              {formatRating(tour.rating)}
+              {tour.rating.toFixed(1)}
             </span>
           )}
           {tour.fromPrice > 0 && (
             <span>${Math.round(tour.fromPrice)}</span>
           )}
           {tour.durationMinutes > 0 && (
-            <span>{formatDuration(tour.durationMinutes)}</span>
+            <span>{formatDurationShort(tour.durationMinutes)}</span>
           )}
         </div>
 

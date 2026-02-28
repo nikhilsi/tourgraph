@@ -15,7 +15,8 @@
 // Run: npx tsx src/scripts/indexer.ts --dest 704
 // ============================================================
 
-import { ViatorClient, loadEnv, extractCoverImageUrl, extractAllImageUrls, extractDurationMinutes, extractInclusions } from "../lib/viator";
+import { ViatorClient, extractCoverImageUrl, extractAllImageUrls, extractDurationMinutes, extractInclusions } from "../lib/viator";
+import { loadEnv } from "../lib/env";
 import {
   getDb,
   insertOrUpdateTour,
@@ -29,15 +30,25 @@ import {
 } from "../lib/db";
 import { generateOneLiner } from "../lib/claude";
 import { continentFromLookupId } from "../lib/continents";
-import type { ViatorSearchProduct, ViatorDestination } from "../lib/types";
+import type { ViatorSearchProduct, WeightCategory } from "../lib/types";
 import crypto from "crypto";
 
 loadEnv();
 
 // ============================================================
-// Tag IDs for "unique" weight category
+// Weight category thresholds (M15: named constants)
 // ============================================================
 
+const WEIGHT_THRESHOLDS = {
+  HIGHEST_RATED_MIN_RATING: 4.9,
+  HIGHEST_RATED_MIN_REVIEWS: 50,
+  MOST_REVIEWED_MIN_REVIEWS: 1000,
+  MOST_EXPENSIVE_MIN_PRICE: 500,
+  CHEAPEST_5STAR_MIN_RATING: 4.8,
+  CHEAPEST_5STAR_MAX_PRICE: 30,
+} as const;
+
+// Tag IDs for "unique" weight category
 const UNIQUE_TAG_IDS = new Set([
   21074, // Unique Experiences
   11940, // Once in a Lifetime Experiences
@@ -56,7 +67,7 @@ function computeSummaryHash(p: ViatorSearchProduct): string {
     p.reviews?.combinedAverageRating ?? "",
     p.reviews?.totalReviews ?? "",
   ].join("|");
-  return crypto.createHash("md5").update(data).digest("hex").slice(0, 12);
+  return crypto.createHash("md5").update(data).digest("hex");
 }
 
 // ============================================================
@@ -104,7 +115,7 @@ async function searchDestination(
 
 function classifyProducts(
   searchResults: Map<string, ViatorSearchProduct>,
-  cachedTours: Map<string, string | null> // productCode → summaryHash
+  cachedTours: Map<string, string | null>
 ): {
   newProducts: ViatorSearchProduct[];
   changedProducts: ViatorSearchProduct[];
@@ -118,7 +129,6 @@ function classifyProducts(
   for (const [code, product] of searchResults) {
     const cachedHash = cachedTours.get(code);
     if (cachedHash === undefined) {
-      // Never seen this product
       newProducts.push(product);
     } else {
       const currentHash = computeSummaryHash(product);
@@ -130,7 +140,6 @@ function classifyProducts(
     }
   }
 
-  // Products in cache but not in search results
   const missingCodes: string[] = [];
   for (const code of cachedTours.keys()) {
     if (!searchResults.has(code)) {
@@ -142,7 +151,7 @@ function classifyProducts(
 }
 
 // ============================================================
-// Weight Category Assignment
+// Weight Category Assignment (M15: use named thresholds)
 // ============================================================
 
 function assignWeightCategory(tour: {
@@ -151,20 +160,21 @@ function assignWeightCategory(tour: {
   fromPrice: number | null;
   tags: number[];
   isTopDestination: boolean;
-}): string {
+}): WeightCategory {
   const { rating, reviewCount, fromPrice, tags, isTopDestination } = tour;
 
-  // Priority order (first match wins)
-  if (rating && rating >= 4.9 && reviewCount && reviewCount >= 50) {
+  if (rating && rating >= WEIGHT_THRESHOLDS.HIGHEST_RATED_MIN_RATING &&
+      reviewCount && reviewCount >= WEIGHT_THRESHOLDS.HIGHEST_RATED_MIN_REVIEWS) {
     return "highest_rated";
   }
-  if (reviewCount && reviewCount >= 1000) {
+  if (reviewCount && reviewCount >= WEIGHT_THRESHOLDS.MOST_REVIEWED_MIN_REVIEWS) {
     return "most_reviewed";
   }
-  if (fromPrice && fromPrice >= 500) {
+  if (fromPrice && fromPrice >= WEIGHT_THRESHOLDS.MOST_EXPENSIVE_MIN_PRICE) {
     return "most_expensive";
   }
-  if (rating && rating >= 4.8 && fromPrice && fromPrice <= 30) {
+  if (rating && rating >= WEIGHT_THRESHOLDS.CHEAPEST_5STAR_MIN_RATING &&
+      fromPrice && fromPrice <= WEIGHT_THRESHOLDS.CHEAPEST_5STAR_MAX_PRICE) {
     return "cheapest_5star";
   }
   if (tags.some((t) => UNIQUE_TAG_IDS.has(t))) {
@@ -182,44 +192,13 @@ function assignWeightCategory(tour: {
 
 const TOP_DESTINATION_IDS = new Set([
   // North America
-  "684", // Las Vegas
-  "704", // Seattle
-  "712", // New York
-  "651", // San Francisco
-  "828", // Orlando
-  "662", // Los Angeles
-  "286", // Miami
-  "298", // Washington DC region
-  "287", // Chicago
-  "641", // Honolulu
+  "684", "704", "712", "651", "828", "662", "286", "298", "287", "641",
   // Europe
-  "479", // Paris
-  "737", // London
-  "525", // Barcelona
-  "511", // Rome
-  "541", // Amsterdam
-  "542", // Berlin
-  "523", // Lisbon
-  "538", // Prague
-  "518", // Dublin
-  "919", // Istanbul
+  "479", "737", "525", "511", "541", "542", "523", "538", "518", "919",
   // Asia
-  "334", // Tokyo
-  "349", // Bangkok
-  "367", // Bali
-  "364", // Singapore
-  "351", // Hong Kong
-  "2363", // Dubai
-  "355", // Phuket
-  "343", // Seoul
-  "20044", // Hanoi
-  "317", // Sydney
-  // South America
-  "318", // Cape Town
-  "806", // Cancun
-  "910", // Rio de Janeiro
-  "296", // Cusco
-  "290", // Buenos Aires
+  "334", "349", "367", "364", "351", "2363", "355", "343", "20044", "317",
+  // South America / Africa
+  "318", "806", "910", "296", "290",
 ]);
 
 // ============================================================
@@ -255,30 +234,38 @@ export async function processDestination(
     `    Found ${searchResults.size} products: ${newProducts.length} new, ${changedProducts.length} changed, ${unchangedCodes.length} unchanged, ${missingCodes.length} missing`
   );
 
-  // Step 4: Mark missing products inactive
-  if (missingCodes.length > 0) {
-    markToursInactive(missingCodes);
-  }
+  // M8: Wrap mark-inactive + changed-product updates in a transaction
+  const db = getDb();
+  try {
+    db.transaction(() => {
+      // Step 4: Mark missing products inactive
+      if (missingCodes.length > 0) {
+        markToursInactive(missingCodes);
+      }
 
-  // Step 5: Update changed products (price/rating from search, no detail fetch needed)
-  for (const p of changedProducts) {
-    updateTourFields(p.productCode, {
-      rating: p.reviews?.combinedAverageRating ?? null,
-      review_count: p.reviews?.totalReviews ?? null,
-      from_price: p.pricing?.summary?.fromPrice ?? null,
-      summary_hash: computeSummaryHash(p),
-    });
+      // Step 5: Update changed products
+      for (const p of changedProducts) {
+        updateTourFields(p.productCode, {
+          rating: p.reviews?.combinedAverageRating ?? null,
+          review_count: p.reviews?.totalReviews ?? null,
+          from_price: p.pricing?.summary?.fromPrice ?? null,
+          summary_hash: computeSummaryHash(p),
+        });
+      }
+    })();
+  } catch (error) {
+    // H7: Don't crash the indexer on DB errors
+    console.error(`    ⚠ Failed to update existing tours: ${error}`);
   }
 
   // Step 6: Fetch full details for new products
   const continent = continentFromLookupId(lookupId);
-  // Derive country from lookupId: second segment is country ID
   const countryId = lookupId.split(".")[1];
-  // We need the country name — check if we have destinations loaded
   const allDests = getAllDestinations();
   const countryDest = allDests.find((d) => d.id === countryId);
   const countryName = countryDest?.name || "Unknown";
 
+  let actuallyInserted = 0;
   for (const p of newProducts) {
     try {
       const detail = await client.getProduct(p.productCode);
@@ -297,7 +284,6 @@ export async function processDestination(
         isTopDestination: TOP_DESTINATION_IDS.has(destId),
       });
 
-      // Generate one-liner (if AI enabled)
       let oneLiner: string | null = null;
       if (!options.skipAi) {
         oneLiner = await generateOneLiner({
@@ -322,7 +308,7 @@ export async function processDestination(
         country: countryName,
         continent,
         timezone: detail.timeZone || null,
-        latitude: null, // Could resolve from /locations/bulk if needed
+        latitude: null,
         longitude: null,
         rating: detail.reviews?.combinedAverageRating ?? null,
         review_count: detail.reviews?.totalReviews ?? null,
@@ -331,7 +317,7 @@ export async function processDestination(
         duration_minutes: durationMinutes,
         image_url: coverUrl,
         image_urls_json: JSON.stringify(allImageUrls),
-        highlights_json: null, // Highlights not directly in product detail
+        highlights_json: null,
         inclusions_json: JSON.stringify(inclusions),
         viator_url: detail.productUrl || null,
         supplier_name: detail.supplier?.name || null,
@@ -340,6 +326,8 @@ export async function processDestination(
         status: "active",
         summary_hash: computeSummaryHash(p),
       });
+
+      actuallyInserted++;
 
       if (oneLiner) {
         console.log(`      + ${detail.productCode}: "${detail.title}" [${weightCategory}]`);
@@ -353,7 +341,7 @@ export async function processDestination(
   }
 
   return {
-    newCount: newProducts.length,
+    newCount: actuallyInserted,
     changedCount: changedProducts.length,
     totalSearched: searchResults.size,
   };
@@ -384,7 +372,6 @@ async function main() {
     // Single destination mode
     console.log(`Mode: single destination (${destArg})`);
 
-    // Fetch destination metadata from Viator API
     const viatorDests = await client.getDestinations();
     const dest = viatorDests.find(
       (d) => String(d.destinationId) === destArg
@@ -423,13 +410,14 @@ async function main() {
       viatorDests.map((d) => [String(d.destinationId), d])
     );
 
-    // Resume from last position if --continue
+    // H8: Resume using destination ID, not array index
     let startIdx = 0;
     if (continueMode) {
-      const savedPos = getIndexerState("last_position");
-      if (savedPos) {
-        startIdx = parseInt(savedPos) + 1;
-        console.log(`Resuming from position ${startIdx}`);
+      const savedDestId = getIndexerState("last_destination_id");
+      if (savedDestId) {
+        const foundIdx = allDests.findIndex((d) => d.id === savedDestId);
+        startIdx = foundIdx >= 0 ? foundIdx + 1 : 0;
+        console.log(`Resuming from destination ${savedDestId} (position ${startIdx})`);
       }
     }
 
@@ -470,10 +458,14 @@ async function main() {
       totalChanged += result.changedCount;
       processed++;
 
-      // Save position
-      setIndexerState("last_position", String(i));
+      // H8: Save destination ID (not array index) for resume
+      try {
+        setIndexerState("last_destination_id", dest.id);
+      } catch (error) {
+        console.error(`    ⚠ Failed to save indexer state: ${error}`);
+      }
 
-      // Throttle between destinations (be a good API citizen)
+      // Throttle between destinations
       if (i < endIdx - 1) {
         await new Promise((resolve) => setTimeout(resolve, 500));
       }

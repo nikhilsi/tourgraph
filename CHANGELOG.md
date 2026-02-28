@@ -6,6 +6,46 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [3.1.0] - 2026-02-28
+
+### Security
+- Security headers: CSP, X-Frame-Options, HSTS, X-Content-Type-Options, Permissions-Policy, Referrer-Policy
+- In-memory rate limiting on `/api/roulette/hand` (30 req/10s per IP)
+- SQL column allowlist in `updateTourFields` to prevent injection
+- Input validation on tour detail page (positive integer, max 2^31)
+- Exclude IDs capped at 200 (prevents URL length bomb + SQLite variable limit)
+
+### Fixed
+- SQLite `busy_timeout(5000)` prevents SQLITE_BUSY crashes with concurrent access
+- globalThis singleton for DB/Claude clients survives Next.js HMR
+- Readonly DB mode for web server reads (defense-in-depth)
+- AbortController on fetch prevents race conditions on rapid clicks
+- Proper UPSERT pattern (`ON CONFLICT DO UPDATE`) instead of read-then-write
+- `??` instead of `||` for all numeric defaults (0 is valid)
+- React `cache()` deduplicates `getTourById` in metadata + render
+- Indexer resumes by destination ID instead of array index (reliable across list changes)
+- Viator API retry with exponential backoff on 429/5xx
+- Clean DB shutdown via `process.on("exit")`
+
+### Added
+- `src/lib/env.ts` — Shared dotenv loader (replaces hand-rolled loadEnv)
+- `src/lib/format.ts` — Shared formatting utilities (duration, JSON parse)
+- `src/app/error.tsx` — React error boundary with retry
+- `src/app/api/og/roulette/[id]/route.tsx` — Dynamic OG images (1200x630, branded overlay)
+- `src/scripts/backfill-oneliners.ts` — Batch AI one-liner generation script
+- `eslint.config.mjs` — ESLint 9 flat config with Next.js + TypeScript rules
+- Favicon from existing brand icon
+- Viator attribution footer in layout
+- Campaign tracking (`&campaign=roulette`) on affiliate links
+- Named constants for weight thresholds, hand quotas, contrast scores
+
+### Changed
+- Seed data: 43 verified destinations (was 37 with 14 wrong/missing IDs)
+- `HAND_SELECT_COLUMNS`: only 15 columns instead of `SELECT *`
+- Detail page OG image now uses dynamic `/api/og/roulette/[id]` endpoint
+
+---
+
 ## [3.0.0] - 2026-02-28
 
 ### Added — Data Layer

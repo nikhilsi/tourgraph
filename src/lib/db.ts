@@ -1,16 +1,27 @@
 import Database from "better-sqlite3";
 import path from "path";
 import fs from "fs";
-import type { TourRow, DestinationRow } from "./types";
+import type { TourRow, WeightCategory, DestinationRow } from "./types";
 
 // ============================================================
 // Connection Management
 // ============================================================
 
-let db: Database.Database | null = null;
+// Use globalThis to survive Next.js HMR in development (M4)
+const globalForDb = globalThis as typeof globalThis & {
+  __tourgraphDb?: Database.Database;
+};
 
-export function getDb(): Database.Database {
-  if (db) return db;
+export function getDb(readOnly = false): Database.Database {
+  // Read-only connections are not cached (short-lived)
+  if (readOnly) {
+    const dbPath = process.env.DATABASE_PATH || "./data/tourgraph.db";
+    const conn = new Database(dbPath, { readonly: true });
+    conn.pragma("busy_timeout = 5000");
+    return conn;
+  }
+
+  if (globalForDb.__tourgraphDb) return globalForDb.__tourgraphDb;
 
   const dbPath = process.env.DATABASE_PATH || "./data/tourgraph.db";
   const dir = path.dirname(dbPath);
@@ -18,11 +29,17 @@ export function getDb(): Database.Database {
     fs.mkdirSync(dir, { recursive: true });
   }
 
-  db = new Database(dbPath);
+  const db = new Database(dbPath);
   db.pragma("journal_mode = WAL");
   db.pragma("foreign_keys = ON");
+  db.pragma("busy_timeout = 5000"); // H5: prevent SQLITE_BUSY crashes
 
   initSchema(db);
+  globalForDb.__tourgraphDb = db;
+
+  // Clean close on exit
+  process.on("exit", () => db.close());
+
   return db;
 }
 
@@ -57,7 +74,7 @@ function initSchema(db: Database.Database): void {
       viator_url TEXT,
       supplier_name TEXT,
       tags_json TEXT,
-      weight_category TEXT,
+      weight_category TEXT DEFAULT 'wildcard',
       status TEXT DEFAULT 'active',
       indexed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       last_seen_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -106,7 +123,8 @@ function initSchema(db: Database.Database): void {
 
     CREATE TABLE IF NOT EXISTS indexer_state (
       key TEXT PRIMARY KEY,
-      value TEXT NOT NULL
+      value TEXT NOT NULL,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
   `);
 }
@@ -140,39 +158,70 @@ export function insertTour(
   return Number(result.lastInsertRowid);
 }
 
+// M9: Use proper UPSERT instead of read-then-write
 export function insertOrUpdateTour(
   tour: Omit<TourRow, "id" | "indexed_at" | "last_seen_at">
 ): number {
   const db = getDb();
-  const existing = db
+  db.prepare(`
+    INSERT INTO tours (
+      product_code, title, description, one_liner,
+      destination_id, destination_name, country, continent, timezone,
+      latitude, longitude, rating, review_count, from_price, currency,
+      duration_minutes, image_url, image_urls_json, highlights_json,
+      inclusions_json, viator_url, supplier_name, tags_json,
+      weight_category, status, summary_hash
+    ) VALUES (
+      @product_code, @title, @description, @one_liner,
+      @destination_id, @destination_name, @country, @continent, @timezone,
+      @latitude, @longitude, @rating, @review_count, @from_price, @currency,
+      @duration_minutes, @image_url, @image_urls_json, @highlights_json,
+      @inclusions_json, @viator_url, @supplier_name, @tags_json,
+      @weight_category, @status, @summary_hash
+    )
+    ON CONFLICT(product_code) DO UPDATE SET
+      title = excluded.title,
+      description = excluded.description,
+      one_liner = COALESCE(excluded.one_liner, tours.one_liner),
+      destination_id = excluded.destination_id,
+      destination_name = excluded.destination_name,
+      country = excluded.country,
+      continent = excluded.continent,
+      timezone = excluded.timezone,
+      latitude = excluded.latitude,
+      longitude = excluded.longitude,
+      rating = excluded.rating,
+      review_count = excluded.review_count,
+      from_price = excluded.from_price,
+      currency = excluded.currency,
+      duration_minutes = excluded.duration_minutes,
+      image_url = excluded.image_url,
+      image_urls_json = excluded.image_urls_json,
+      highlights_json = excluded.highlights_json,
+      inclusions_json = excluded.inclusions_json,
+      viator_url = excluded.viator_url,
+      supplier_name = excluded.supplier_name,
+      tags_json = excluded.tags_json,
+      weight_category = excluded.weight_category,
+      status = excluded.status,
+      last_seen_at = CURRENT_TIMESTAMP,
+      summary_hash = excluded.summary_hash
+  `).run(tour);
+
+  const row = db
     .prepare("SELECT id FROM tours WHERE product_code = ?")
-    .get(tour.product_code) as { id: number } | undefined;
-
-  if (existing) {
-    db.prepare(
-      `
-      UPDATE tours SET
-        title = @title, description = @description, one_liner = COALESCE(@one_liner, one_liner),
-        destination_id = @destination_id, destination_name = @destination_name,
-        country = @country, continent = @continent, timezone = @timezone,
-        latitude = @latitude, longitude = @longitude,
-        rating = @rating, review_count = @review_count,
-        from_price = @from_price, currency = @currency,
-        duration_minutes = @duration_minutes,
-        image_url = @image_url, image_urls_json = @image_urls_json,
-        highlights_json = @highlights_json, inclusions_json = @inclusions_json,
-        viator_url = @viator_url, supplier_name = @supplier_name,
-        tags_json = @tags_json, weight_category = @weight_category,
-        status = @status, last_seen_at = CURRENT_TIMESTAMP,
-        summary_hash = @summary_hash
-      WHERE product_code = @product_code
-    `
-    ).run(tour);
-    return existing.id;
-  }
-
-  return insertTour(tour);
+    .get(tour.product_code) as { id: number };
+  return row.id;
 }
+
+// C1: Allowlist column names to prevent SQL injection
+const TOUR_COLUMN_ALLOWLIST = new Set<string>([
+  "title", "description", "one_liner", "destination_id", "destination_name",
+  "country", "continent", "timezone", "latitude", "longitude", "rating",
+  "review_count", "from_price", "currency", "duration_minutes", "image_url",
+  "image_urls_json", "highlights_json", "inclusions_json", "viator_url",
+  "supplier_name", "tags_json", "weight_category", "status", "summary_hash",
+]);
 
 export function updateTourFields(
   productCode: string,
@@ -184,6 +233,9 @@ export function updateTourFields(
 
   for (const [key, value] of Object.entries(fields)) {
     if (key === "id" || key === "product_code") continue;
+    if (!TOUR_COLUMN_ALLOWLIST.has(key)) {
+      throw new Error(`Invalid column name: ${key}`);
+    }
     sets.push(`${key} = @${key}`);
     values[key] = value;
   }
@@ -196,7 +248,7 @@ export function updateTourFields(
 }
 
 export function getTourById(id: number): TourRow | undefined {
-  const db = getDb();
+  const db = getDb(true); // M1: read-only for web
   return db.prepare("SELECT * FROM tours WHERE id = ?").get(id) as
     | TourRow
     | undefined;
@@ -241,40 +293,62 @@ export function markToursInactive(productCodes: string[]): void {
 // Roulette Hand Query
 // ============================================================
 
+// Hand algorithm: draw tours by category quotas then sequence for contrast.
+// Quotas tuned for variety — favors "interesting extremes" over average tours.
+// Total drawn = 20 (sum of all quotas). See sequenceHand() for ordering.
+const ROULETTE_HAND_QUOTAS: Record<WeightCategory, number> = {
+  highest_rated: 4,
+  unique: 3,
+  cheapest_5star: 3,
+  most_expensive: 3,
+  exotic_location: 3,
+  most_reviewed: 2,
+  wildcard: 2,
+};
+
+// Sequencing contrast scores
+const CONTRAST_CATEGORY_BONUS = 2;
+const CONTRAST_CONTINENT_BONUS = 2;
+const CONTRAST_PRICE_BONUS = 1;
+const CONTRAST_PRICE_RATIO_THRESHOLD = 3;
+
+// M3: Only select columns needed for the hand API response
+const HAND_SELECT_COLUMNS = `
+  id, product_code, title, one_liner, destination_name, country, continent,
+  rating, review_count, from_price, currency, duration_minutes,
+  image_url, viator_url, weight_category
+`;
+
+function buildExcludeClause(usedIds: Set<number>): { sql: string; params: number[] } {
+  if (usedIds.size === 0) return { sql: "", params: [] };
+  const ids = [...usedIds];
+  return {
+    sql: `AND id NOT IN (${ids.map(() => "?").join(",")})`,
+    params: ids,
+  };
+}
+
 export function getRouletteHand(
   excludeIds: number[] = [],
   handSize: number = 20
 ): TourRow[] {
-  const db = getDb();
-
-  const quotas: Record<string, number> = {
-    highest_rated: 4,
-    unique: 3,
-    cheapest_5star: 3,
-    most_expensive: 3,
-    exotic_location: 3,
-    most_reviewed: 2,
-    wildcard: 2,
-  };
+  const db = getDb(true); // M1: read-only for web
 
   const hand: TourRow[] = [];
   const usedIds = new Set(excludeIds);
 
-  for (const [category, count] of Object.entries(quotas)) {
-    const excludePlaceholders =
-      usedIds.size > 0
-        ? `AND id NOT IN (${[...usedIds].map(() => "?").join(",")})`
-        : "";
+  for (const [category, count] of Object.entries(ROULETTE_HAND_QUOTAS)) {
+    const exclude = buildExcludeClause(usedIds);
 
     const tours = db
       .prepare(
-        `SELECT * FROM tours
+        `SELECT ${HAND_SELECT_COLUMNS} FROM tours
          WHERE weight_category = ? AND status = 'active'
-         ${excludePlaceholders}
+         ${exclude.sql}
          ORDER BY RANDOM()
          LIMIT ?`
       )
-      .all(category, ...[...usedIds], count) as TourRow[];
+      .all(category, ...exclude.params, count) as TourRow[];
 
     for (const t of tours) {
       hand.push(t);
@@ -282,24 +356,20 @@ export function getRouletteHand(
     }
   }
 
-  // If we didn't fill the hand (not enough tours in some categories),
-  // fill remaining slots with random active tours
+  // Fill remaining slots with random active tours
   if (hand.length < handSize) {
     const remaining = handSize - hand.length;
-    const excludePlaceholders =
-      usedIds.size > 0
-        ? `AND id NOT IN (${[...usedIds].map(() => "?").join(",")})`
-        : "";
+    const exclude = buildExcludeClause(usedIds);
 
     const fillers = db
       .prepare(
-        `SELECT * FROM tours
+        `SELECT ${HAND_SELECT_COLUMNS} FROM tours
          WHERE status = 'active'
-         ${excludePlaceholders}
+         ${exclude.sql}
          ORDER BY RANDOM()
          LIMIT ?`
       )
-      .all(...[...usedIds], remaining) as TourRow[];
+      .all(...exclude.params, remaining) as TourRow[];
 
     hand.push(...fillers);
   }
@@ -307,7 +377,9 @@ export function getRouletteHand(
   return sequenceHand(hand);
 }
 
-// Sequence hand for maximum contrast between consecutive cards
+// Greedy nearest-neighbor sequencing for maximum contrast.
+// Scores each candidate against the last card: different category (+2),
+// different continent (+2), large price difference (+1). Picks highest scorer.
 function sequenceHand(tours: TourRow[]): TourRow[] {
   if (tours.length <= 1) return tours;
 
@@ -327,14 +399,13 @@ function sequenceHand(tours: TourRow[]): TourRow[] {
       let score = 0;
       const candidate = remaining[i];
 
-      // Different category = +2
-      if (candidate.weight_category !== last.weight_category) score += 2;
-      // Different continent = +2
-      if (candidate.continent !== last.continent) score += 2;
-      // Price contrast = +1
+      if (candidate.weight_category !== last.weight_category) score += CONTRAST_CATEGORY_BONUS;
+      if (candidate.continent !== last.continent) score += CONTRAST_CONTINENT_BONUS;
       if (last.from_price && candidate.from_price) {
         const priceRatio = candidate.from_price / last.from_price;
-        if (priceRatio > 3 || priceRatio < 0.33) score += 1;
+        if (priceRatio > CONTRAST_PRICE_RATIO_THRESHOLD || priceRatio < 1 / CONTRAST_PRICE_RATIO_THRESHOLD) {
+          score += CONTRAST_PRICE_BONUS;
+        }
       }
 
       if (score > bestScore) {
@@ -410,78 +481,8 @@ export function getIndexerState(key: string): string | undefined {
 export function setIndexerState(key: string, value: string): void {
   const db = getDb();
   db.prepare(
-    `INSERT INTO indexer_state (key, value)
-     VALUES (?, ?)
-     ON CONFLICT(key) DO UPDATE SET value = ?`
+    `INSERT INTO indexer_state (key, value, updated_at)
+     VALUES (?, ?, CURRENT_TIMESTAMP)
+     ON CONFLICT(key) DO UPDATE SET value = ?, updated_at = CURRENT_TIMESTAMP`
   ).run(key, value, value);
-}
-
-// ============================================================
-// Self-test (run with: npx tsx src/lib/db.ts)
-// ============================================================
-
-if (require.main === module) {
-  console.log("Testing database layer...\n");
-
-  const db = getDb();
-  console.log("✓ Database created/connected");
-
-  // Check tables exist
-  const tables = db
-    .prepare(
-      "SELECT name FROM sqlite_master WHERE type='table' ORDER BY name"
-    )
-    .all() as { name: string }[];
-  console.log(
-    "✓ Tables:",
-    tables.map((t) => t.name).join(", ")
-  );
-
-  // Insert a test tour
-  const testId = insertOrUpdateTour({
-    product_code: "TEST-001",
-    title: "Test Tour",
-    description: "A test tour for validation",
-    one_liner: "Testing is the best adventure.",
-    destination_id: "704",
-    destination_name: "Seattle",
-    country: "United States",
-    continent: "Americas",
-    timezone: "America/Los_Angeles",
-    latitude: 47.6,
-    longitude: -122.3,
-    rating: 4.9,
-    review_count: 100,
-    from_price: 99.99,
-    currency: "USD",
-    duration_minutes: 120,
-    image_url: "https://example.com/photo.jpg",
-    image_urls_json: JSON.stringify(["https://example.com/photo.jpg"]),
-    highlights_json: JSON.stringify(["Great views", "Expert guide"]),
-    inclusions_json: JSON.stringify(["Lunch", "Transport"]),
-    viator_url: "https://www.viator.com/tours/Seattle/Test",
-    supplier_name: "Test Operator",
-    tags_json: JSON.stringify([11928, 21972]),
-    weight_category: "highest_rated",
-    status: "active",
-    summary_hash: "abc123",
-  });
-  console.log(`✓ Inserted test tour (id: ${testId})`);
-
-  // Query it back
-  const tour = getTourById(testId);
-  console.log(`✓ Retrieved tour: "${tour?.title}" (${tour?.destination_name})`);
-
-  // Count
-  const count = getActiveTourCount();
-  console.log(`✓ Active tour count: ${count}`);
-
-  // Clean up
-  db.prepare("DELETE FROM tours WHERE product_code = 'TEST-001'").run();
-  console.log("✓ Cleaned up test tour");
-
-  const finalCount = getActiveTourCount();
-  console.log(`✓ Final count: ${finalCount}`);
-
-  console.log("\nAll database tests passed!");
 }
