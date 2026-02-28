@@ -92,7 +92,7 @@ Each URL is a complete, shareable experience with proper OG tags.
 
 ### Navigation Between Features
 
-**Decision needed** — see Open Questions below. Current best guess: minimal text links or subtle tabs below the main card area. The features should feel like different "moods" of the same experience, not separate apps.
+**Resolved (D1):** Subtle text links below the card for launch. The features should feel like different "moods" of the same experience, not separate apps. See Resolved Decisions below.
 
 ---
 
@@ -193,7 +193,7 @@ The first thing anyone sees. A stranger should understand what to do in under 2 
 **Desktop differences:**
 - Card is centered, not full-bleed (cinematic framing)
 - Feature nav moves to top-right (horizontal, subtle)
-- "Right Now Somewhere" as ambient text at bottom (see Open Question #2)
+- "Right Now Somewhere" as ambient text at bottom (see Decision D2)
 - More breathing room around the card
 
 ### Screen 3: Tour Detail Page (`/roulette/[id]`)
@@ -555,7 +555,7 @@ Rationale: The photo does the emotional work. The branded bar adds context ("Tou
 
 ## What's NOT in This Doc
 
-- **Technical architecture** — How the caching works, API route structure, database schema. See architecture doc (TBD).
+- **Technical architecture** — How the caching works, API route structure, database schema. See `architecture.md`.
 - **Visual design** — Colors, fonts, exact spacing. Needs a design pass once wireframes are validated.
 - **Performance strategy** — Caching, pre-fetching, CDN. Important but separate concern.
 - **iOS app UX** — App-specific patterns (swipe, widgets, haptics). Comes after web launch.

@@ -30,7 +30,7 @@ Every decision passes four tests:
 | Hosting | DigitalOcean |
 | Data | Viator Partner API (300,000+ experiences) |
 | AI | Claude API (witty captions, Six Degrees chains) |
-| Cache | Redis or SQLite |
+| Cache | SQLite |
 | Domain | [tourgraph.ai](https://tourgraph.ai) |
 
 ## Background
@@ -53,6 +53,8 @@ tourgraph/
 │
 ├── docs/
 │   ├── product_brief.md   # Product vision (source of truth)
+│   ├── ux_design.md       # UX design, wireframes, interaction patterns
+│   ├── architecture.md    # Technical architecture, schema, indexer design
 │   └── thesis_validation.md # Why we pivoted
 │
 └── archive/               # Phase 0 work (preserved for reference)

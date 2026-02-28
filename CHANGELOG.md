@@ -6,6 +6,27 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [2.2.0] - 2026-02-28
+
+### Added
+- `docs/architecture.md` — Complete technical architecture: SQLite schema, Drip + Delta indexer, Roulette Hand Algorithm, API integration details, Next.js project structure, deployment plan
+
+### Decided
+- SQLite over Redis for caching (persistence, queryability, zero cold cache)
+- Drip + Delta indexer: spread API calls across 24 hours, delta detection via summary hashes, no burst traffic
+- Roulette Hand Algorithm: curated batches of ~20 tours with category diversity (7 weight categories) and sequencing rules (no same category/continent back-to-back)
+- All 2,500 Viator destinations indexed (no arbitrary limits)
+- Haiku 4.5 for AI one-liners (~$0.003/batch), Sonnet 4.6 for Six Degrees chains
+- Viator affiliate tracking auto-included in productUrl — no manual link creation needed
+- Launch with Basic tier API access, apply for Full Access post-launch
+
+### Researched
+- Viator Partner API capabilities (Basic vs Full tier, endpoints, rate limits, response formats)
+- News aggregator performance lessons (cold cache avoidance, pre-built index pattern)
+- Affiliate link structure (pid=P00289313, mcid=42383 auto-embedded)
+
+---
+
 ## [2.1.0] - 2026-02-28
 
 ### Added

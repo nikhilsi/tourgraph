@@ -136,7 +136,7 @@ Timeframes are estimates, not commitments. This is supposed to be fun.
 | Hosting | DigitalOcean droplet (~$6/mo) | Already have infrastructure there |
 | Data | Viator Partner API (Basic tier, free) | Already integrated, 300K+ experiences |
 | AI Layer | Claude API | Witty captions, Six Degrees chains |
-| Cache | Redis or SQLite | Don't hammer Viator API on every request |
+| Cache | SQLite | Pre-built local index, no API calls at request time |
 | Domain | tourgraph.ai | Already owned and configured |
 
 ### iOS App (Phase 7-8)
@@ -160,11 +160,11 @@ Timeframes are estimates, not commitments. This is supposed to be fun.
               ┌────────────┼────────────┐
               ▼            ▼            ▼
        ┌────────────┐ ┌─────────┐ ┌──────────┐
-       │ Viator API │ │ Claude  │ │ Cache    │
-       │ (tours,    │ │ API     │ │ (Redis/  │
-       │  photos,   │ │ (witty  │ │  SQLite) │
-       │  pricing,  │ │  lines, │ └──────────┘
-       │  ratings)  │ │  chains)│
+       │ Viator API │ │ Claude  │ │ SQLite   │
+       │ (tours,    │ │ API     │ │ (pre-    │
+       │  photos,   │ │ (witty  │ │  built   │
+       │  pricing,  │ │  lines, │ │  index)  │
+       │  ratings)  │ │  chains)│ └──────────┘
        └────────────┘ └─────────┘
 ```
 

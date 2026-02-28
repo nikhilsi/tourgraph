@@ -17,19 +17,29 @@
 - Repo cleaned up: Phase 0 work archived in `archive/`, fresh start for new direction
 - CLAUDE.md rewritten for the four pillars and four features
 - **UX design doc locked** (`docs/ux_design.md`) — wireframes, design principles, interaction flows, all decisions resolved
+- **Architecture doc complete** (`docs/architecture.md`) — all decisions resolved:
+  - SQLite for caching (not Redis) — persistence, queryability, simplicity
+  - Drip + Delta indexer — spread API calls across 24 hours, delta detection via summary hashes
+  - Roulette Hand Algorithm — curated batches of ~20 tours with category diversity and sequencing rules
+  - All 2,500 Viator destinations indexed (no arbitrary limits)
+  - Haiku 4.5 for one-liners, Sonnet 4.6 for Six Degrees chains
+  - Viator affiliate tracking auto-included in productUrl (no manual link creation needed)
+  - Launch with Basic tier, apply for Full Access post-launch
 
 ---
 
 ## Current Priority
 
-**Architecture discussion** — before writing any code, align on:
+**Phase 1 — Tour Roulette on web**
 
-1. Next.js project structure (App Router, RSC strategy for OG generation)
-2. Viator API caching layer (Redis vs SQLite, how to build the "interesting tours" index for weighted Roulette)
-3. Claude API integration (pre-computed one-liners during batch indexing)
-4. Deployment (DigitalOcean droplet setup, DNS cutover from GitHub Pages)
+Architecture and UX are locked. Time to build.
 
-Then: **Phase 1 — Tour Roulette on web** (Week 1)
+1. Initialize Next.js project (App Router, TypeScript strict)
+2. Set up SQLite + Drip indexer (seed the tours database)
+3. Build the Roulette Hand API (`GET /api/roulette/hand`)
+4. Build the Roulette UI (one card, one button, full screen)
+5. Build the detail page (tap card → description + Viator booking link)
+6. OG meta tags for shared roulette links
 
 ---
 

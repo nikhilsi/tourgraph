@@ -6,7 +6,7 @@
 **What's Next**: See NOW.md
 ---
 
-**Phase**: Consumer Web App | **Status**: UX locked, architecture discussion next
+**Phase**: Consumer Web App | **Status**: UX locked, architecture locked, ready to build
 
 ---
 
@@ -41,6 +41,16 @@ Full product vision: `docs/product_brief.md`
 - OG images = template-based composite (tour photo + branded bar)
 - Navigation between features via subtle text links (minimal chrome)
 
+### Architecture (Locked)
+- `docs/architecture.md` — Full technical architecture with all decisions resolved
+- SQLite caching layer (pre-built index, user never waits for Viator API)
+- Drip + Delta indexer (spread API calls over 24 hours, ~60/hour ongoing, delta detection)
+- Roulette Hand Algorithm (curated ~20 tour batches with diversity + sequencing rules)
+- All 2,500 Viator destinations indexed
+- Haiku 4.5 for AI one-liners, Sonnet 4.6 for Six Degrees chains
+- Viator Basic tier sufficient for launch (affiliate tracking auto-included in URLs)
+- Next.js App Router, TypeScript strict, Server Components for OG generation
+
 ### Archived (Phase 0 Work)
 All Phase 0 extraction work preserved in `archive/`:
 - 83 products extracted across 7 Seattle operators (95% accuracy)
@@ -53,10 +63,11 @@ All Phase 0 extraction work preserved in `archive/`:
 
 ## What's Next
 
-1. **Architecture discussion** (Next.js structure, caching strategy, deployment)
-2. **Tour Roulette** — the core loop (Phase 1)
-3. Ship all four features on web
-4. iOS app
+1. **Tour Roulette** — the core loop (Phase 1)
+2. Ship remaining three features on web
+3. Polish, OG cards, sharing
+4. Launch website
+5. iOS app
 
 ---
 

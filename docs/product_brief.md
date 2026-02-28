@@ -131,7 +131,7 @@ The app is the **daily delight machine**. It's what people open when they're bor
 | Hosting | DigitalOcean droplet (~$6/mo) | Already have infrastructure there |
 | Data | Viator Partner API (Basic tier, free) | Already integrated, 300K+ experiences |
 | AI Layer | Claude API | Witty captions, six-degrees chains |
-| Cache | Redis or SQLite | Don't hammer Viator API on every request |
+| Cache | SQLite | Pre-built local index, no API calls at request time |
 | Domain | tourgraph.ai | Already owned and configured |
 
 ### iOS App
@@ -186,17 +186,3 @@ We're not optimizing for revenue or growth hacking. Success looks like:
 - A home screen widget that makes someone smile every time they glance at their phone
 - The developer (Nikhil) having fun building it
 
----
-
-## Context for Claude Code
-
-This document, along with the TourGraph thesis validation research artifact (which explains in detail why the original thesis was invalidated), should be added to the repo so that Claude Code understands:
-
-1. **Why we pivoted** — the original supply-side infrastructure thesis was invalidated by existing competitors and AI search capabilities
-2. **What we're building now** — a fun, zero-friction consumer site AND iOS app
-3. **The four pillars** — every decision filters through these four tests
-4. **What's in scope and what's not** — we have clear boundaries
-5. **Build order** — all four features on web first, then iOS app, launch when complete
-6. **The existing assets** — Viator API key, tourgraph.ai domain, DigitalOcean hosting, SwiftUI experience from GitaVani
-
-The existing TourGraph repo contains Viator API integration code, extraction scripts, and documentation that may be partially reusable. The CLAUDE.md in that repo reflects the OLD thesis and should be updated to reflect this new direction before development begins.
