@@ -1,287 +1,295 @@
 # Claude Code Development Guide
 
 ---
-**Last Updated**: February 20, 2026
+**Last Updated**: February 28, 2026
 **Purpose**: Rules and workflow for working with this codebase
 ---
 
-## 🎯 Starting a New Session
+## Starting a New Session
 
 **Read these docs in order:**
 
-1. **CLAUDE.md** (this file) - Rules & workflow
-2. **README.md** - Project overview
-3. **CURRENT_STATE.md** - What's built & current status
-4. **CHANGELOG.md** - Version history & recent changes
-5. **NOW.md** - What to work on next
-6. **`git log --oneline -10`** - Recent commits
+1. **CLAUDE.md** (this file) — Rules & workflow
+2. **docs/product_brief.md** — Source of truth for what we're building
+3. **NOW.md** — What to work on next
+4. **CHANGELOG.md** — Version history & recent changes
+5. **`git log --oneline -10`** — Recent commits
 
 **Optional** (if relevant to task):
-- **docs/project_proposal.md** - What TourGraph is and why it matters (shareable)
-- **docs/roadmap.md** - Phased build plan (single source of truth for what we're building and when)
-- **docs/strategy.md** - Competitive analysis, moat, risk assessment, article series plan
-- **docs/pitch.md** - Product positioning, elevator pitches, founder background
-- **docs/phase0_spike.md** - Phase 0 methodology, 7 operator test set, OCTO-aligned schema, ground truth data
-- **docs/tooling_landscape.md** - Firecrawl analysis, competitor comparison, build-vs-use matrix
-- **docs/api_landscape.md** - Viator, GetYourGuide, OCTO standard, data source strategy, Viator test results
-- **docs/glossary.md** - Shared vocabulary (OCTO, MCP, FareHarbor, extraction terms)
+- **docs/thesis_validation.md** — Why the original thesis was killed (context only)
+- **archive/docs/api_landscape.md** — Viator API details, test results, response formats
+- **archive/scripts/viator_compare.py** — Working Viator API call patterns
 
 ---
 
-## 🚨 Critical Rules
+## Project Context
+
+TourGraph was originally supply-side infrastructure for tour operators (AI extraction + MCP server). That thesis was invalidated in February 2026 — Peek, TourRadar, Magpie, and Expedia all shipped live MCP servers. Rather than kill the project ($200 invested, Viator API working), we pivoted to something radically different:
+
+**TourGraph.ai is a zero-friction consumer site and iOS app that makes people smile using the world's tour data.**
+
+Not a booking engine. Not a travel planner. Not a recommendation engine. A place you visit because it's fun, surprising, and shareable.
+
+Full product vision: `docs/product_brief.md`
+Why we pivoted: `docs/thesis_validation.md`
+
+---
+
+## The Four Pillars
+
+Every feature, design decision, and code commit must pass all four tests. If it doesn't, it's out of scope.
+
+### 1. Zero Friction
+No signup, no login, no personal data, no cookies beyond essential function. A stranger lands on the site and is delighted within 5 seconds.
+
+**Test:** Can my mom use this without asking me a single question?
+
+### 2. Instant Smile
+Every interaction should brighten someone's day. Warm, witty, wonder-filled — never snarky, cynical, or mean. The goal is "oh wow, I didn't know that existed."
+
+**Test:** Would I text this to a friend just because it made me smile?
+
+### 3. Effortlessly Shareable
+Every piece of content has a unique URL and a beautiful Open Graph preview card. The viral loop is: see something delightful -> share it -> friend clicks -> friend is delighted -> friend shares.
+
+**Test:** Does the link preview on iMessage/WhatsApp/Twitter look good enough to tap?
+
+### 4. Rabbit Hole Energy
+That "one more click" quality through genuine curiosity, not dark patterns. Wikipedia-style: you came for one thing, 20 minutes later you're somewhere unexpected and loving it.
+
+**Test:** Did I just spend 10 minutes when I meant to spend 30 seconds?
+
+---
+
+## What We're Building
+
+Four features, all shipping before launch. Website first, then iOS app.
+
+### Feature 1: Tour Roulette (Core Loop)
+One big button. Press it. Get a random tour from somewhere in the world — weighted toward extremes (highest rated, weirdest, most expensive, cheapest). Photo, title, destination, price, rating, and an AI-generated witty one-liner. Press again.
+
+### Feature 2: Right Now Somewhere...
+Time-zone-aware: shows a tour happening (or about to happen) where it's currently a beautiful time of day. "Right now in Kyoto it's 6:47am and you could be doing forest bathing with a Buddhist monk. 4.9 stars."
+
+### Feature 3: The World's Most ___
+Daily superlatives from the Viator catalog. Most expensive tour. Cheapest 5-star experience. Longest duration. Each one is a shareable card with photo, stat, and witty caption.
+
+### Feature 4: Six Degrees of Anywhere
+Type two cities. The site builds a chain of tours connecting them through surprising thematic links. Visualized as a simple graph (the name finally earns itself).
+
+### What We're NOT Building
+- A booking engine (Viator affiliate links handle bookings)
+- A travel planning tool (no itineraries, no trip builders)
+- A review aggregator
+- A social network (no profiles, no followers)
+- A recommendation engine (no "based on your history" — it's random, serendipitous)
+- Anything that requires user accounts or personal data
+
+---
+
+## Build Order
+
+| Phase | What | Platform | Timeframe |
+|-------|------|----------|-----------|
+| 1 | Tour Roulette | Web | Week 1 |
+| 2 | Right Now Somewhere | Web | Week 1-2 |
+| 3 | The World's Most ___ | Web | Week 2 |
+| 4 | Six Degrees of Anywhere | Web | Week 2-3 |
+| 5 | Polish, OG cards, sharing | Web | Week 3 |
+| 6 | Launch website | Web | Week 3 |
+| 7 | iOS app (all 4 features) | iOS/SwiftUI | Week 4-5 |
+| 8 | App Store submission | iOS | Week 5-6 |
+
+Timeframes are estimates, not commitments. This is supposed to be fun.
+
+---
+
+## Critical Rules
 
 ### Non-Negotiables
-1. **Unauthorized commits** - NEVER commit without explicit approval
-2. **Over-engineering** - KISS principle always. Phase 0 is a spike, not a product.
-3. **Not reading requirements** - Full attention to specs, read the docs thoroughly
-4. **Cutting corners** - Read ALL the docs before starting
-5. **Guessing** - Say "I don't know" if unsure
-6. **Not thinking critically** - Question things that don't make sense
-7. **Skipping analysis** - Don't generate code without understanding the problem first
-8. **Premature abstraction** - Don't build frameworks. Build scripts that work.
+1. **Unauthorized commits** — NEVER commit without explicit approval
+2. **Over-engineering** — KISS always. Ship simple, iterate fast.
+3. **Pillar violations** — Every feature/decision must pass all four pillar tests
+4. **Not reading the product brief** — `docs/product_brief.md` is the source of truth
+5. **Scope creep** — If it's not one of the four features, it's not in scope
+6. **Guessing** — Say "I don't know" if unsure
+7. **Dark patterns** — No engagement tricks, no manipulative UX, no data harvesting
+8. **Premature abstraction** — Don't build frameworks. Build features that work.
 
 ### How to Be a True Partner
-- **Thoughtful design first** - Discuss before coding
-- **One piece at a time** - Complete, review, then proceed
-- **KISS principle** - Simple > clever
-- **Explicit permission** - Get approval before every commit
-- **Challenge bad ideas** - Don't just agree
-- **Ask clarifying questions** - Don't assume
-- **Think consequences** - Maintenance, performance, edge cases
-- **Document insights** - Every extraction test should capture what worked, what failed, and why
+- **Pillar check first** — Does this pass all four tests?
+- **Fun matters** — If the code isn't fun to build, something's wrong
+- **One feature at a time** — Complete, review, then proceed
+- **KISS principle** — Simple > clever
+- **Explicit permission** — Get approval before every commit
+- **Challenge bad ideas** — Don't just agree
+- **Think sharing** — Every piece of content needs a URL and OG card
 
 ---
 
-## 💻 Development Standards
+## Tech Stack
+
+### Website
+| Component | Choice | Rationale |
+|-----------|--------|-----------|
+| Frontend | Next.js (React) | SSR for OG previews, fast, familiar |
+| Hosting | DigitalOcean droplet (~$6/mo) | Already have infrastructure there |
+| Data | Viator Partner API (Basic tier, free) | Already integrated, 300K+ experiences |
+| AI Layer | Claude API | Witty captions, Six Degrees chains |
+| Cache | Redis or SQLite | Don't hammer Viator API on every request |
+| Domain | tourgraph.ai | Already owned and configured |
+
+### iOS App (Phase 7-8)
+| Component | Choice | Rationale |
+|-----------|--------|-----------|
+| Framework | SwiftUI | Already proven with GitaVani |
+| Architecture | Self-contained (no shared backend) | Simplicity, independence |
+| Data | Viator API (direct calls) | Same API, thin caching layer on device |
+| AI Layer | Claude API (direct calls) | Same prompts, called from app |
+| Local Storage | SwiftData or UserDefaults | Cache tours, favorites, recent spins |
+
+---
+
+## Architecture
+
+```
+                    ┌─────────────┐
+                    │  tourgraph.ai│  (Next.js on DigitalOcean)
+                    └──────┬──────┘
+                           │
+              ┌────────────┼────────────┐
+              ▼            ▼            ▼
+       ┌────────────┐ ┌─────────┐ ┌──────────┐
+       │ Viator API │ │ Claude  │ │ Cache    │
+       │ (tours,    │ │ API     │ │ (Redis/  │
+       │  photos,   │ │ (witty  │ │  SQLite) │
+       │  pricing,  │ │  lines, │ └──────────┘
+       │  ratings)  │ │  chains)│
+       └────────────┘ └─────────┘
+```
+
+User flow: Visit site -> See delightful content -> Share link -> Friend visits -> Repeat
+
+No user accounts. No databases of personal data. Just cached Viator responses + AI-generated captions.
+
+---
+
+## Data We Have (Viator Basic Tier)
+
+- Product search by destination & category
+- Product details: title, description, highlights
+- Photos: 10-31 CDN-hosted images per product
+- Pricing: by age band (adult/child/infant/senior)
+- Ratings: star rating + review count (not review text at Basic)
+- Duration, schedule, operating hours
+- Categories and tags
+- Location/meeting points with lat/long
+- Attraction associations
+- 300,000+ experiences across 2,500+ destinations
+
+**Upgrade path (Full tier, also free, requires certification):** Adds review text, real-time availability, and bulk catalog ingestion.
+
+---
+
+## Design Principles
+
+- **Dark mode default** — feels premium, photos pop
+- **Big photos** — tour images do the heavy lifting
+- **Minimal UI** — the content is the interface
+- **Fast** — every interaction feels instant (pre-fetch, cache, skeleton loaders)
+- **Mobile-first** — most sharing happens on phones
+- **Playful typography** — not corporate, not childish, just warm
+
+---
+
+## Environment Setup
+
+**Node.js (Next.js):**
+```bash
+node --version  # 18+ required
+npm install     # or yarn/pnpm
+npm run dev     # local development server
+```
+
+**API Keys** (in `.env.local`):
+- `VIATOR_API_KEY` — https://viator.com/partners (Basic Access, free affiliate signup)
+- `ANTHROPIC_API_KEY` — https://console.anthropic.com
+
+**Existing Viator integration code:**
+The `scripts/viator_compare.py` from Phase 0 has working API call patterns (endpoint URLs, auth headers, response parsing) that can be referenced when building the Next.js API routes. The Viator production API key in `.env` is already tested and working.
+
+---
+
+## Development Standards
 
 ### Code Quality
-- **Python**: Type hints, proper error handling, clear variable names
-- **JSON output**: Always validate against the OCTO-aligned schema
-- **Scripts**: Each script should be runnable independently with clear CLI args
-- **No notebooks in git** - Convert to `.py` scripts before committing
+- **TypeScript** for all Next.js code — strict mode, proper types
+- **React Server Components** where possible — minimize client JS
+- **API routes** for Viator/Claude calls — never expose API keys to the client
+- **OG image generation** — every shareable page needs proper meta tags
 
 ### Git Workflow
-- **Atomic commits** - One logical change per commit
-- **Clear messages** - Descriptive, explain the why
-- **NO attribution** - Never include "Generated with Claude"
-- **Working state** - Every commit leaves code functional
+- **Atomic commits** — One logical change per commit
+- **Clear messages** — Descriptive, explain the why
+- **NO attribution** — Never include "Generated with Claude"
+- **Working state** — Every commit leaves the site functional
 
-### Core Development Principles
-1. **No Shortcuts** - Build properly from ground up
-2. **Work Slowly** - Understand before implementing
-3. **No Assumptions** - Verify against ground truth data
-4. **Spike Mindset** - We're testing feasibility, not building production. Fast learning > perfect code.
-
----
-
-## 🏗️ Architecture Summary
-
-**TourGraph is an AI-powered supplier onboarding tool for the tours & experiences industry.**
-
-Phase 0 (current) is a feasibility spike answering: "Can AI reliably extract structured tour data from real websites?"
-
-```
-Operator Website (HTML)
-        │
-        ▼
-  Firecrawl /scrape (fetch + JS rendering + clean markdown)
-        │
-        ▼
-  Claude API (extraction with OCTO-aligned schema + domain prompts)
-        │
-        ▼
-  Structured JSON (OCTO-aligned product data)
-        │
-        ▼
-  Scoring vs. Ground Truth (accuracy measurement)
-```
-
-**Extraction approach (build-vs-use resolved):**
-- **Path 2 selected:** Firecrawl `/scrape` → Claude Opus 4.6 with our domain prompt
-- Path 1 (Firecrawl `/extract`) tested and rejected — too expensive, hallucinated prices, missed domain-critical data
-
-**Three data paths in the product vision:**
-- **Path A:** AI extraction from operator websites (what Phase 0 tests)
-- **Path B:** Direct booking system integration (Phase 1+, via OCTO/FareHarbor APIs)
-- **Path C:** OTA API aggregation (Viator, GetYourGuide — structured data already exists)
+### Core Principles
+1. **Ship fast, iterate** — Working feature > perfect feature
+2. **Cache aggressively** — Viator API has rate limits; cache everything
+3. **Mobile-first** — Design for phones, enhance for desktop
+4. **Share-first** — OG cards and unique URLs are not afterthoughts
 
 ---
 
-## 🗄️ Environment Setup
-
-**Python Virtual Environment:**
-```bash
-python3 -m venv venv
-source venv/bin/activate
-which python  # Should show ./venv/bin/python
-```
-
-**Dependencies:**
-```bash
-pip install firecrawl-py anthropic requests python-dotenv
-```
-
-**API Keys** (in `.env`):
-- `FIRECRAWL_API_KEY` - https://firecrawl.dev (free tier: 500 credits)
-- `ANTHROPIC_API_KEY` - https://console.anthropic.com
-- `VIATOR_API_KEY` - https://viator.com/partners (Basic Access, free affiliate signup)
-- `VIATOR_SANDBOX_KEY` - Viator sandbox key (may take 48hrs to activate)
-
-**Running extraction:**
-```bash
-# Single operator (auto-derives operator slug from URL)
-python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/
-
-# Multiple pages + explicit operator name
-python scripts/extract_operator.py \
-  --url https://www.toursnorthwest.com/tours/ \
-  --url https://www.toursnorthwest.com/tours/mt-rainier/ \
-  --operator tours_northwest
-
-# Dry run (no API calls)
-python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/ --dry-run
-```
-
-**Running Viator comparison:**
-```bash
-# Full run — discovery + deep pull + comparison report
-python scripts/viator_compare.py
-
-# Discovery only (find operators on Viator, no comparison)
-python scripts/viator_compare.py --discover-only
-
-# Dry run (no API calls)
-python scripts/viator_compare.py --dry-run
-
-# Use sandbox API instead of production
-python scripts/viator_compare.py --sandbox
-```
-
----
-
-## 📚 Documentation Structure
+## Documentation Structure
 
 **Root Level:**
-- **CLAUDE.md** - Rules & workflow (this file)
-- **README.md** - Project overview
-- **CURRENT_STATE.md** - What's built, current status
-- **NOW.md** - Current priorities
-- **CHANGELOG.md** - Version history
+- **CLAUDE.md** — Rules & workflow (this file)
+- **README.md** — Project overview
+- **NOW.md** — Current priorities
+- **CURRENT_STATE.md** — What's built & status
+- **CHANGELOG.md** — Version history
 
-**Docs & Site** (serves tourgraph.ai via MkDocs Material):
-- **docs/index.md** - Site landing page
-- **docs/CNAME** - Custom domain (tourgraph.ai)
-- **docs/project_proposal.md** - What TourGraph is and why (shareable)
-- **docs/roadmap.md** - Phased build plan (single source of truth)
-- **docs/strategy.md** - Competitive analysis, moat, risk assessment, article plan
-- **docs/pitch.md** - Product positioning, elevator pitches
-- **docs/phase0_spike.md** - Operator test set, OCTO schema, ground truth
-- **docs/tooling_landscape.md** - Firecrawl, Crawl4AI, build-vs-use decisions
-- **docs/api_landscape.md** - Viator, GetYourGuide, OCTO standard, test results
-- **docs/glossary.md** - Shared vocabulary
-- **docs/blog/** - Blog posts (canonical article location)
-- **mkdocs.yml** - Site configuration
-- **.github/workflows/deploy-site.yml** - GitHub Pages auto-deployment
+**Docs:**
+- **docs/product_brief.md** — Product vision (source of truth for what we're building)
+- **docs/thesis_validation.md** — Competitive analysis that killed the original thesis
 
-**Results (Phase 0):**
-- **results/<operator>/** - Per-operator extraction JSON + scorecard (all 7 complete)
-- **results/phase0_summary/** - Cross-operator scoring matrix + go/no-go report
-- **results/comparisons/** - Path A vs Path C comparison reports
-- **results/viator_raw/** - Raw Viator API responses per operator
-- **results/viator_mapped/** - Viator data mapped to OCTO schema
-
-**Scripts:**
-- **scripts/extract_operator.py** - Path A extraction pipeline (Firecrawl /scrape + Claude)
-- **scripts/viator_compare.py** - Path C comparison pipeline (Viator API + field-by-field comparison)
-- **scripts/firecrawl_extract.py** - Firecrawl `/extract` test (rejected, kept for reference)
+**Archive (Phase 0 — reference only):**
+- **archive/scripts/** — Extraction & Viator API scripts (API patterns reusable)
+- **archive/results/** — 7 operators, 83 products, scorecards
+- **archive/docs/** — Old strategy docs, MkDocs site content, API landscape
+- **archive/schemas/** — OCTO extraction schema
+- **archive/prompts/** — Domain-specific extraction prompts
+- **archive/CHANGELOG.md** — Phase 0 version history
 
 ---
 
-## 📂 Project Structure
+## Reusable Assets from Phase 0
 
-```
-tourgraph/
-├── CLAUDE.md                       (Development rules & workflow)
-├── README.md                       (Project overview)
-├── CURRENT_STATE.md                (What's built & status)
-├── NOW.md                          (Current priorities)
-├── CHANGELOG.md                    (Version history)
-├── LICENSE                         (MIT License)
-├── .env.example                    (API key template)
-├── .gitignore
-├── requirements.txt
-├── mkdocs.yml                      (MkDocs Material site config)
-│
-├── .github/
-│   └── workflows/
-│       └── deploy-site.yml         (GitHub Pages deployment)
-│
-├── docs/                           (MkDocs source — serves tourgraph.ai)
-│   ├── index.md                    (Site landing page)
-│   ├── CNAME                       (Custom domain: tourgraph.ai)
-│   ├── project_proposal.md         (What TourGraph is and why — shareable)
-│   ├── roadmap.md                  (Phased build plan — single source of truth)
-│   ├── strategy.md                 (Competitive analysis, moat, risk assessment)
-│   ├── pitch.md                    (Product positioning, elevator pitches)
-│   ├── phase0_spike.md             (7 operators, schema, methodology)
-│   ├── tooling_landscape.md        (Firecrawl analysis, build-vs-use)
-│   ├── api_landscape.md            (Viator, GYG, OCTO standard, test results)
-│   ├── glossary.md                 (Shared vocabulary)
-│   └── blog/
-│       ├── index.md                (Blog landing page)
-│       ├── .authors.yml            (Blog author profiles)
-│       └── posts/
-│           ├── making-tour-inventory-ai-agent-ready.md
-│           └── images/             (Blog post images)
-│
-├── schemas/
-│   └── octo_extraction_v01.json    (OCTO-aligned extraction schema)
-│
-├── scripts/
-│   ├── extract_operator.py         (Path A: Firecrawl /scrape → Claude Opus 4.6)
-│   ├── viator_compare.py           (Path C: Viator API discovery + comparison)
-│   └── firecrawl_extract.py        (Firecrawl /extract test — rejected)
-│
-├── results/
-│   ├── tours_northwest/            (17 products, $0.87)
-│   │   ├── extract_operator_v1.json
-│   │   ├── scorecard_v1.md
-│   │   └── firecrawl_extract_comparison_v1.md
-│   ├── shutter_tours/              (7 products, $1.37)
-│   ├── totally_seattle/            (13 products, $1.18)
-│   ├── conundroom/                 (12 products, $0.92)
-│   ├── bill_speidels/              (2 products, $0.40)
-│   ├── evergreen_escapes/          (19 products, $1.71)
-│   ├── argosy_cruises/             (13 products, $1.83)
-│   ├── phase0_summary/
-│   │   ├── scoring_matrix.md       (Cross-operator accuracy analysis)
-│   │   └── phase0_report.md        (Go/no-go report — GO recommended)
-│   ├── comparisons/
-│   │   ├── path_a_vs_path_c.md     (Field-by-field Path A vs C comparison)
-│   │   └── path_a_vs_path_c.json   (Machine-readable comparison data)
-│   ├── viator_raw/                 (Raw Viator API responses per operator)
-│   └── viator_mapped/              (Viator data mapped to OCTO schema)
-│
-└── prompts/
-    └── extraction_prompt_v01.md    (Domain-specific extraction prompt)
-```
+| Asset | Location | What's Reusable |
+|-------|----------|-----------------|
+| Viator API patterns | `archive/scripts/viator_compare.py` | Endpoint URLs, auth headers, response parsing, product search, detail fetching |
+| Working API key | `.env` | `VIATOR_API_KEY` (production, Basic tier) |
+| Domain | tourgraph.ai | DNS currently points to GitHub Pages — needs re-pointing to DigitalOcean |
+| GitHub Actions | `.github/workflows/` | Deployment workflow (needs rewriting for Next.js) |
+| OG image approach | Previous MkDocs setup | Meta tag patterns for social sharing |
 
 ---
 
-## 🔑 Key Concepts
+## Key Concepts
 
-- **OCTO** - Open Connectivity for Tours, Activities & Attractions. Industry standard for experience data exchange. 114+ trading partners. Our extraction schema aligns to OCTO field naming.
-- **MCP** - Model Context Protocol. How AI agents discover and query data sources. TourGraph's Phase 2 goal.
-- **Path A/B/C** - Three data acquisition strategies: A=extraction, B=booking system APIs, C=OTA aggregation.
-- **Ground Truth** - Known-correct operator data from manual recon (in phase0_spike.md). Used to score extraction accuracy.
-- **FareHarbor Wall** - Pricing data locked inside JS booking widgets that static scraping can't access. Key gap that Path C fills.
+- **Viator Partner API** — Our primary data source. 300K+ experiences, free Basic tier. We're affiliates — bookings redirect to Viator and we earn commission.
+- **OG Cards** — Open Graph meta tags that create rich previews when links are shared on social platforms. Critical for Pillar 3 (Effortlessly Shareable).
+- **Tour Roulette** — The core engagement loop. Random tour discovery, weighted toward interesting extremes.
+- **Six Degrees** — The graph feature. AI builds chains of tours connecting any two cities through thematic links. This is where the "graph" in TourGraph earns its name.
 
 ---
 
-## ⚠️ Current Limitations (Phase 0)
+## Success Metrics (Vibes, Not KPIs)
 
-- No database — results stored as JSON files
-- No frontend — extraction runs via CLI scripts
-- No MCP server — that's Phase 2
-- No production scraping infrastructure — Firecrawl free tier (500 credits)
-- No operator-facing anything — this is a feasibility spike
+- Friends texting each other TourGraph links
+- Someone at a dinner party saying "have you seen this site?"
+- A Reddit post titled "I just lost an hour on this weird tour website"
+- The app becoming someone's "bored in line" go-to
+- The developer having fun building it

@@ -1,181 +1,77 @@
 # TourGraph
 
-AI-powered supplier onboarding for the tours & experiences industry. Extracts structured inventory data from operator websites and makes it queryable by AI agents — bridging the gap between the $250-400B experiences market and the emerging agentic travel booking channel.
+A zero-friction site and iOS app that makes people smile using the world's tour data. Discover the weirdest, most wonderful, and most surprising experiences on Earth — one random spin at a time.
 
-## The Problem
+## What Is This?
 
-Two converging industry problems:
+TourGraph surfaces delightful, surprising tours and experiences from around the world. No accounts, no algorithms, no planning tools. Just pure discovery and serendipity.
 
-1. **Supplier onboarding is broken.** Tour operators manually list inventory on every platform (Viator, GetYourGuide, Expedia) separately. It's slow, error-prone, and excludes the long tail of small operators. Only 30% of the tours & experiences market is sold online.
+**Four features:**
 
-2. **AI agents can't find tour inventory.** 42% of travelers used AI for trip planning in 2025. Google, Amazon, and Microsoft are building agentic booking. But most tour inventory lives on operator websites as unstructured HTML — invisible to AI agents.
+- **Tour Roulette** — One button. Random tour. Weighted toward the extremes: highest rated, weirdest, cheapest, most expensive. AI-generated witty one-liner. Press again.
+- **Right Now Somewhere...** — Time-zone-aware. Shows a tour happening right now in a place where it's currently beautiful. "Right now in Kyoto it's 6:47am and you could be doing forest bathing with a Buddhist monk. 4.9 stars."
+- **The World's Most ___** — Daily superlatives from 300,000+ experiences. Most expensive tour. Cheapest 5-star. Longest duration. Each one a shareable card.
+- **Six Degrees of Anywhere** — Type two cities. Get a chain of tours connecting them through surprising thematic links. The graph in TourGraph.
 
-TourGraph solves both: extract structured data from operator websites using AI, normalize it to industry standards (OCTO), and distribute it through an MCP server that AI agents can query directly.
+## Design Philosophy
 
-## Current Status
+Every decision passes four tests:
 
-**Phase 0: Feasibility Spike** — Complete. All 5 steps done. **GO recommended** for Phase 1.
-
-- All 7 Seattle-area operators extracted: **83 products**, **~95% core field accuracy**, **zero pricing hallucinations**
-- Extraction pipeline built: Firecrawl `/scrape` + Claude Opus 4.6 with domain-specific prompts
-- Total cost: 37 Firecrawl credits + $8.28 Claude API (~$1.18/operator average)
-- 5 booking platforms detected (FareHarbor, Peek Pro, Bookeo, Gatemaster, RocketRez)
-- Schema flexibility proven — same pipeline handles tours, cruises, and escape rooms
-- Viator API comparison complete: 3/7 operators on Viator (10 products), 4/7 are Path A exclusive
-- Path A + Path C are complementary — extraction has 8x coverage, Viator adds reviews/images/pricing
-- Full summary report: [results/phase0_summary/phase0_report.md](results/phase0_summary/phase0_report.md)
-- Path A vs C comparison: [results/comparisons/path_a_vs_path_c.md](results/comparisons/path_a_vs_path_c.md)
-
-See [CURRENT_STATE.md](CURRENT_STATE.md) for detailed status.
-
-## Architecture
-
-```
-┌─────────────────────┐
-│  Operator Website    │  (HTML, JS-rendered booking widgets)
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│  Firecrawl /scrape   │  (JS rendering, anti-bot, clean markdown)
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│  Claude API          │  (OCTO schema + tourism domain prompts)
-│  Extraction Engine   │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│  Structured JSON     │  (OCTO-aligned product data)
-│  + Scoring Pipeline  │
-└──────────┬──────────┘
-           │
-     ┌─────┴──────┐
-     ▼            ▼
-┌──────────┐ ┌──────────┐
-│ Path A   │ │ Path C   │
-│ Website  │ │ OTA APIs │  (Viator, GetYourGuide)
-│ Extract  │ │ Enrich   │
-└──────────┘ └──────────┘
-```
-
-## Phased Build Plan
-
-| Phase | Goal | Status |
-|-------|------|--------|
-| **Phase 0: Spike** | Can AI extract structured tour data reliably? | **Complete — GO** |
-| Phase 1A: Data Audit | Normalize extracted data, load into SQLite | Next |
-| Phase 1B: MCP Server | AI-agent-queryable inventory via MCP | Planned |
-| Phase 1C: Discovery | Programmatic operator discovery + scale extraction | Planned |
-| Phase 2: Product | Operator dashboard, distribution connectors | Planned |
-| Phase 3: Validation | Real operator feedback, go/no-go | Planned |
-
-See [docs/roadmap.md](docs/roadmap.md) for the full plan and rationale.
+1. **Zero Friction** — No signup, no login, no personal data. Delighted in 5 seconds.
+2. **Instant Smile** — Warm, witty, wonder-filled. Never snarky or cynical.
+3. **Effortlessly Shareable** — Every piece of content has a unique URL and beautiful link preview.
+4. **Rabbit Hole Energy** — "One more click" through genuine curiosity, not dark patterns.
 
 ## Tech Stack
 
-| Layer | Technology | Notes |
-|-------|-----------|-------|
-| **Extraction** | Python 3.12+ | Scripts for Phase 0, FastAPI for Phase 1 |
-| **AI** | Claude API + Firecrawl | Firecrawl fetches, Claude extracts |
-| **Schema** | OCTO-aligned JSON | Industry standard for tours/experiences |
-| **Data Enrichment** | Viator Partner API | Path C structured data comparison |
-| **Distribution** | MCP Server (Phase 2) | AI agent query interface |
+| Component | Choice |
+|-----------|--------|
+| Frontend | Next.js (React) |
+| Hosting | DigitalOcean |
+| Data | Viator Partner API (300,000+ experiences) |
+| AI | Claude API (witty captions, Six Degrees chains) |
+| Cache | Redis or SQLite |
+| Domain | [tourgraph.ai](https://tourgraph.ai) |
+
+## Background
+
+TourGraph started as AI-powered supply-side infrastructure for the tours & experiences industry. After competitive validation revealed that Peek, TourRadar, Magpie, and Expedia had all shipped live MCP servers, the original thesis was killed and the project pivoted to this consumer experience. The Phase 0 extraction work (83 products, 7 operators, 95% accuracy) is preserved in `archive/` for reference.
+
+Full story: [docs/thesis_validation.md](docs/thesis_validation.md)
 
 ## Project Structure
 
 ```
 tourgraph/
+├── CLAUDE.md              # Development rules & workflow
 ├── README.md              # This file
-├── CLAUDE.md              # AI-assisted development guide
-├── CURRENT_STATE.md       # Build status
-├── NOW.md                 # Current priorities & roadmap
+├── CURRENT_STATE.md       # What's built & status
+├── NOW.md                 # Current priorities
 ├── CHANGELOG.md           # Version history
+├── LICENSE                # MIT License
 ├── .env.example           # API key template
-├── requirements.txt       # Python dependencies
 │
-├── docs/                  # Strategic & research documentation
-│   ├── project_proposal.md  # What TourGraph is and why (shareable)
-│   ├── roadmap.md             # Phased build plan
-│   ├── strategy.md            # Competitive analysis, moat, risk
-│   ├── pitch.md             # Product positioning, elevator pitches
-│   ├── phase0_spike.md
-│   ├── tooling_landscape.md
-│   ├── api_landscape.md
-│   └── glossary.md
+├── docs/
+│   ├── product_brief.md   # Product vision (source of truth)
+│   └── thesis_validation.md # Why we pivoted
 │
-├── schemas/               # Extraction schemas
-│   └── octo_extraction_v01.json
-│
-├── scripts/               # Extraction & comparison scripts
-│   ├── extract_operator.py   # Path A: Firecrawl /scrape + Claude extraction
-│   ├── viator_compare.py     # Path C: Viator API discovery + comparison
-│   └── firecrawl_extract.py  # Firecrawl /extract test (rejected)
-│
-├── results/               # Extraction outputs, comparisons & scorecards
-│   ├── tours_northwest/
-│   ├── shutter_tours/
-│   ├── totally_seattle/
-│   ├── conundroom/
-│   ├── bill_speidels/
-│   ├── evergreen_escapes/
-│   ├── argosy_cruises/
-│   ├── phase0_summary/       # Cross-operator scoring matrix & report
-│   ├── comparisons/          # Path A vs Path C comparison reports
-│   ├── viator_raw/           # Raw Viator API responses per operator
-│   └── viator_mapped/        # Viator data mapped to OCTO schema
-│
-└── prompts/               # Domain-specific extraction prompts
-    └── extraction_prompt_v01.md
+└── archive/               # Phase 0 work (preserved for reference)
+    ├── scripts/           # Extraction & Viator API scripts
+    ├── results/           # 7 operators, 83 products, scorecards
+    ├── schemas/           # OCTO extraction schema
+    ├── prompts/           # Domain-specific extraction prompts
+    ├── docs/              # Old strategy docs, MkDocs site content
+    ├── CHANGELOG.md       # Phase 0 version history
+    ├── NOW.md             # Phase 0 priorities (final state)
+    └── CURRENT_STATE.md   # Phase 0 status (final state)
 ```
-
-## Website
-
-**[tourgraph.ai](https://tourgraph.ai)** — project site with documentation and blog.
-
-- [Blog: I Asked AI to Plan My Mediterranean Cruise. It Confidently Made Everything Up.](https://tourgraph.ai/blog/making-tour-inventory-ai-agent-ready/)
 
 ## Getting Started
 
 ```bash
-# 1. Clone and setup
-git clone https://github.com/nikhilsi/tourgraph.git
-cd tourgraph
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-
-# 2. Set API keys
-cp .env.example .env
-# Edit .env with your keys
-
-# 3. Run extraction test
-python scripts/extract_operator.py --url https://www.toursnorthwest.com/tours/
+# Coming soon — Next.js app not yet scaffolded
+# Architecture discussion in progress
 ```
-
-## Documentation
-
-- **[CLAUDE.md](CLAUDE.md)** — AI-assisted development guide and project rules
-- **[CURRENT_STATE.md](CURRENT_STATE.md)** — Current build status
-- **[NOW.md](NOW.md)** — Current priorities and roadmap
-- **[docs/project_proposal.md](docs/project_proposal.md)** — What TourGraph is and why it matters
-- **[docs/roadmap.md](docs/roadmap.md)** — Phased build plan (single source of truth)
-- **[docs/strategy.md](docs/strategy.md)** — Competitive analysis, moat, risk assessment
-- **[docs/pitch.md](docs/pitch.md)** — Product positioning and elevator pitches
-- **[docs/phase0_spike.md](docs/phase0_spike.md)** — Phase 0 methodology, operators, schema
-- **[docs/tooling_landscape.md](docs/tooling_landscape.md)** — Extraction tooling analysis
-- **[docs/api_landscape.md](docs/api_landscape.md)** — OTA API research & Viator test results
-- **[docs/glossary.md](docs/glossary.md)** — Shared vocabulary for the tours & experiences industry
-
-## Key Concepts
-
-- **OCTO** — Open Connectivity for Tours, Activities & Attractions. Industry standard adopted by 114+ trading partners.
-- **MCP** — Model Context Protocol. How AI agents discover and query structured data.
-- **Path A** — AI extraction from operator websites (what Phase 0 tests)
-- **Path C** — OTA API aggregation (Viator, GetYourGuide structured data)
-- **FareHarbor Wall** — Pricing locked in JS booking widgets, inaccessible to scraping
 
 ## License
 

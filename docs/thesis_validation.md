@@ -1,0 +1,66 @@
+# AI-powered tours distribution: the thesis is half right
+
+**The core market insight is valid — tours and experiences genuinely are the most underserved vertical in AI travel distribution — but the specific thesis that "nobody is building supply-side infrastructure" is factually wrong.** Peek, TourRadar, Magpie, and Expedia have all shipped live MCP servers covering tours and activities. Meanwhile, the major tours-only OTAs (Viator, GetYourGuide, Klook) have zero current AI agent integrations, creating a genuine but rapidly closing window. The honest assessment: this project needs a hard pivot or a kill, not more investment in the current approach.
+
+## The competitive landscape already has players in the field
+
+The most damaging finding for the thesis comes from the MCP server landscape. **Peek launched a live MCP server in January 2026** at mcp.peek.com, exposing **300,000+ experiences** with real-time pricing and availability data. It works with Claude and ChatGPT. TourRadar shipped its own MCP server in late 2025, covering **50,000+ multi-day tours** from 2,500 operators, accessible through ChatGPT, Gemini, and Perplexity. Expedia Group published an official MCP server in February 2026 on GitHub (`ExpediaGroup/expedia-travel-recommendations-mcp`) that explicitly includes activity and tour recommendations alongside hotels, flights, and cars. And Magpie Travel — a content management platform for tour operators, backed by Viator founder Rod Cuthbert — is building MCP infrastructure specifically to make operator content directly accessible to AI agents and Google Things to Do.
+
+The claim "nobody is building" was perhaps true in mid-2025. It is demonstrably false as of February 2026. Four companies are actively shipping, and more are coming: Tripadvisor's head of AI publicly stated they will expand their ChatGPT app to include "full end-to-end travel planning, complete with activity discovery and booking" — which would bring Viator's 350,000+ experiences into the ChatGPT ecosystem.
+
+That said, the competitive picture has important nuances. The **major tours-specific OTAs have a striking gap**: Viator has no MCP server or ChatGPT app despite having a robust Partner API covering 300,000+ products. GetYourGuide built an early ChatGPT plugin in 2023 that was deprecated — and hasn't rebuilt. Klook and Tiqets have nothing. Airbnb Experiences has nothing. This gap is real but temporary. These companies have structured data and engineering teams; shipping an MCP server is weeks of work, not years.
+
+## AI models still struggle with tours, but the gap is narrowing fast
+
+Current AI models produce tour recommendations that are roughly **80% accurate for general itineraries** but fail on the details that matter for booking. Documented failure modes include recommending closed attractions (ChatGPT repeatedly suggested Laurel Falls Trail, closed for 18 months), fabricating venues entirely, providing hallucinated pricing, generating broken booking links, and creating logistically impossible itineraries that ignore travel time between stops.
+
+Web search integration has improved general accuracy substantially — ChatGPT switched from Bing to Google's SERP API after "significant quality issues," and GPT-5 reportedly hallucinates **six times less often** than GPT-4o. But web search does not solve the core tours-specific problem: **real-time pricing and availability data is locked inside booking engines** (FareHarbor, Peek, Bokun, Rezdy) and OTA platforms, not accessible via web scraping. No general-purpose AI model can tell you whether a specific food tour in Seattle has spots available next Tuesday at 2pm, or what it costs today.
+
+The Perplexity-Tripadvisor partnership (January 2025) integrated 1 billion reviews and 300,000+ Viator experiences into Perplexity's search, but booking tours through Perplexity is not confirmed as live — only hotel booking works via the Selfbook integration. A Propellic/Arival study of Google AI Mode found that **operator Google Business listings received 56% of clicks** versus less than 10% for OTAs, suggesting AI may actually shift power toward direct operators — a finding that could reshape distribution dynamics.
+
+Phocuswright data shows only **37% of travelers trust answers from GenAI tools**, though adoption is surging: 39% of U.S. travelers used GenAI for travel in 2024, up from 22% in 2023. There is no formal benchmark measuring AI tour recommendation accuracy — no equivalent of MMLU or SWE-Bench for travel. This is itself a gap worth noting.
+
+## The market fundamentals genuinely support a long-tail opportunity
+
+The underlying market data is strong and supports the general direction of the thesis, even if the specific approach needs rethinking. The global tours, activities, and experiences market reached **$271 billion in 2025** according to Arival/Phocuswright — travel's third-largest sector, growing at **8% CAGR** versus 5% for overall travel.
+
+The digitization gap is enormous. Only **33% of experiences bookings happen online**, compared to 64% for travel overall. That means roughly **$181 billion in annual bookings** still occur offline through walk-ups, hotel concierges, and phone calls. Even by 2029, projections show only 42% online penetration. OTAs collectively capture less than **15% of the total market**; Viator and GetYourGuide combined hold only an estimated 5-6% share. The supply side is extraordinarily fragmented: over **1 million operators worldwide**, with 40% operating without any booking technology at all. Viator lists only 55,000 operators — roughly 5.5% of the estimated total.
+
+Consumer demand for niche and specialized experiences is growing, particularly among younger travelers. Gen Z and Millennials are twice as likely as older travelers to book food tours, adventure experiences, and special interest tours. A 24-month study of 238 operators found that joining GetYourGuide led to a **16% increase in direct booking revenue** and 41% total revenue growth — strong evidence that many quality operators simply lack visibility, not demand. Niche operators enjoy **15-30% higher profit margins** than mass-market counterparts.
+
+However, two counterpoints challenge the long-tail thesis. First, the overall trend is **toward OTA consolidation**: OTA share of operator bookings grew from 24% to 33% in five years, while direct website bookings are declining. Second, much of the offline market may be structurally unsuitable for digital distribution — theme parks with proprietary ticketing, walk-up cultural experiences, local activities that don't need or want online booking.
+
+## Big tech is circling but hasn't landed on tours yet
+
+The competitive dynamics from major AI companies create both threat and opportunity. **Google is the most dangerous player**: it controls the search starting point, has comprehensive Maps and reviews data, already operates "Things to Do" as a structured data feed for tours, and is building end-to-end booking in AI Mode. Restaurant reservations and event tickets are already bookable through Google AI Mode; flights and hotels are announced. Tours and experiences seem an obvious next step, and OTA stocks reportedly declined on Google's November 2025 travel AI announcements.
+
+**OpenAI's ChatGPT Apps platform** (launched October 2025, built on MCP) has Expedia, Booking.com, and Tripadvisor as launch partners — all focused on hotels and flights first. Tours are explicitly on Tripadvisor's roadmap but not yet live. OpenAI's Atlas browser and Operator product can theoretically navigate and book on any website, but this is general-purpose, not tours-specific infrastructure.
+
+**Anthropic has no travel strategy whatsoever.** Their official MCP connector directory contains no travel-specific integrations. The only travel MCP servers in the broader ecosystem are community-built (Kiwi.com for flights, basic trip planners). Anthropic is not pursuing travel as a vertical.
+
+**Perplexity** is the most aggressive AI company in travel, with a dedicated Travel Hub (March 2025), in-platform hotel booking via Selfbook, and the Tripadvisor content partnership. But tours/experiences booking through Perplexity is not confirmed as live.
+
+Among startups, **WeTravel** raised a $92M Series C in September 2025 for its multi-day travel operator platform, making it the best-funded startup in this specific niche — but it's B2B operator software, not AI distribution infrastructure. TripWorks, Autoura, and others are building operator-side tools. The overall travel-tech funding environment is cooling: only $3.5B raised through Q3 2025, on track for a decade low, though ~45% of travel-tech funding now goes to AI (up from ~10% in 2023).
+
+## What actually remains underserved — and what doesn't
+
+The gap analysis reveals a more nuanced picture than the original thesis suggests. Here is what is genuinely underserved versus what is being actively addressed:
+
+- **Being addressed now**: Making existing OTA inventory queryable by AI agents (Peek's 300K experiences, TourRadar's 50K tours, Expedia's MCP server). The "supply-side infrastructure for AI agents" problem as originally framed is being solved by existing players.
+- **Being addressed soon**: Getting Viator's 350K experiences and GetYourGuide's 140K experiences into AI agent ecosystems. Tripadvisor has publicly committed to this; GetYourGuide built a plugin once and will likely rebuild. This is engineering work measured in months.
+- **Genuinely underserved**: The **40% of operators with no booking technology at all**. These operators can't be scraped (many lack websites), can't be listed on OTAs (no digital inventory), and are invisible to any AI system. This is the true "trapped inventory" — but it's a technology adoption problem, not an AI infrastructure problem.
+- **Structurally difficult**: The ~$181B in offline bookings. Much of this is walk-up tourism that works fine without digital distribution. Converting it requires changing fundamental consumer and operator behavior, not just building better technology.
+
+The feasibility spike's approach — scraping 83 products from 7 Seattle operators with 95% accuracy — addresses a narrow middle layer: operators who have websites but aren't on OTAs or AI-accessible platforms. This layer exists, but Peek already covers 300,000 experiences and is rapidly expanding. The question is whether scraping small-operator websites at scale can produce a meaningfully differentiated dataset before existing platforms close the gap.
+
+Adjacent verticals with similar distribution problems include local restaurants (partially addressed by OpenTable, Resy, and Google's live AI Mode booking), local services and wellness (being addressed by Google via Booksy, Fresha, Vagaro partnerships), and live events (Ticketmaster, StubHub already in AI ecosystems). The pattern across all these verticals is the same: large platforms with structured data are building AI integrations first, leaving long-tail providers behind.
+
+## Conclusion: pivot or kill, but don't double down
+
+The verdict is **pivot** — the original thesis as stated should be killed, but the underlying market insight points toward a different, potentially viable opportunity.
+
+**Kill the current thesis** because its core claim ("nobody is building supply-side infrastructure to make tour inventory queryable by AI agents") is factually wrong. Peek, TourRadar, Magpie, and Expedia have all shipped. The window for being "first" has closed. Scraping small-operator websites produces a dataset that will be dwarfed by Peek's 300K experiences and Viator's eventual MCP integration.
+
+**What might be worth pursuing instead** is the operator enablement layer — not aggregating existing web content, but helping the 40% of operators without booking technology become AI-visible in the first place. Magpie is the closest competitor here (small team, $300K raised in 2019, ~19 employees), but they focus on content management for operators who already have digital presence. The deepest gap is getting offline-first operators into structured, bookable, AI-queryable systems. Think of it as "Shopify for tour operators" rather than "a better scraper." WeTravel's $92M raise validates market willingness to pay for operator tools, but they're focused on multi-day travel businesses, not the local day-tour long tail.
+
+A senior technology executive evaluating this should ask three questions: (1) Can you build a defensible position before Viator and GetYourGuide ship their MCP servers (likely within 6-12 months)? The answer is almost certainly no for the scraping approach. (2) Is there an operator-side problem that existing players aren't solving? Possibly — the booking-tech-to-AI-distribution pipeline for micro-operators is genuinely underserved. (3) Is the addressable market for that niche large enough to justify investment? The $271B total market is huge, but the slice you can realistically capture with an operator enablement tool serving the long tail is much smaller, and the go-to-market motion (selling to thousands of small tour operators) is notoriously difficult and capital-intensive. Unless you have a novel distribution strategy for reaching those operators, the honest recommendation is to **kill the project** and redeploy the effort elsewhere.
