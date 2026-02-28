@@ -1,0 +1,37 @@
+{
+  "name": "tourgraph",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A zero-friction site that makes people smile using the world's tour data.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "index": "tsx src/scripts/indexer.ts",
+    "index:full": "tsx src/scripts/indexer.ts --full",
+    "seed:destinations": "tsx src/scripts/seed-destinations.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhilsi/tourgraph.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "@tailwindcss/postcss": "^4.2.1",
+    "better-sqlite3": "^12.6.2",
+    "next": "^16.1.6",
+    "postcss": "^8.5.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.3.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

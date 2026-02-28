@@ -15,7 +15,7 @@ TourGraph is a read-heavy, pre-cached consumer site. The user never triggers an 
 │                    DRIP + DELTA INDEXER                            │
 │               (continuous, spread over 24 hours)                  │
 │                                                                  │
-│   1. Cycle through all 2,500 destinations over ~7 days           │
+│   1. Cycle through all 3,380 destinations over ~7 days           │
 │   2. Search Viator API, compare with cached data (delta detect)  │
 │   3. Fetch full details only for new/changed products            │
 │   4. Generate AI one-liners via Claude Haiku for new tours       │
@@ -32,7 +32,7 @@ TourGraph is a read-heavy, pre-cached consumer site. The user never triggers an 
 │                                                                  │
 │   tours         ~5,000-10,000 share-worthy tours                 │
 │   superlatives  daily "World's Most ___" computed from cache     │
-│   destinations  ~2,500 Viator destinations with timezones        │
+│   destinations  ~3,380 Viator destinations with timezones        │
 │   six_degrees   cached chain results (grows over time)           │
 │                                                                  │
 │   Resilience: stale data is fine. Tours don't change daily.      │
@@ -200,7 +200,7 @@ Full Access upgrade deferred until post-launch — requires certification and we
 | `POST /products/search` | Find interesting tours by destination, sort, tags | Basic |
 | `GET /products/{code}` | Full tour details, images, reviews, description | Basic |
 | `GET /availability/schedules/{code}` | Pricing and schedule data | Basic (single product) |
-| `GET /taxonomy/destinations` | All 2,500+ destinations | Basic |
+| `GET /destinations` | All 3,380+ destinations with timezone, geo, hierarchy | Basic |
 | `GET /products/tags` | Tag definitions for filtering | Basic |
 | `POST /locations/bulk` | Resolve location refs to lat/long | Basic |
 
@@ -214,7 +214,7 @@ Headers:
   Content-Type: application/json
 
 Base URL: https://api.viator.com/partner
-Rate limit: 150 requests per 10 seconds
+Rate limit: Per-endpoint, per-PUID, 10-second rolling window (read RateLimit-Remaining header)
 ```
 
 ### Affiliate Links
@@ -523,7 +523,7 @@ The first time the indexer runs, there's no cached data. This is the slow, full 
 Spread over 24 hours:
   ~100 destinations per hour
   Per destination:
-    4 search queries (by rating, price asc, price desc, unique tags)
+    4 search queries (TRAVELER_RATING desc, PRICE asc, PRICE desc, DATE_ADDED desc)
     → ~200 search calls/hour
     → Fetch full details for all discovered products
     → Generate one-liners for each
@@ -532,7 +532,7 @@ Spread over 24 hours:
   Viator rate: ~200 search + ~500 detail = ~700 calls/hour
     (well under 150 req/10s = 54,000/hour max)
 
-  After 24 hours: full index of all 2,500 destinations built
+  After 24 hours: full index of all 3,380 destinations built
   Total tours indexed: estimated ~5,000-10,000 share-worthy tours
 ```
 
@@ -541,8 +541,8 @@ Spread over 24 hours:
 After the initial build, most data is stable. The indexer uses search results as a delta signal to minimize API calls.
 
 ```
-Cycle: all 2,500 destinations refreshed over ~7 days
-Schedule: ~350 destinations per day, ~15 per hour (every 4 minutes)
+Cycle: all 3,380 destinations refreshed over ~7 days
+Schedule: ~480 destinations per day, ~20 per hour (every 3 minutes)
 
 Per destination refresh:
   1. Run /products/search (4 queries × sort/tag)
@@ -567,11 +567,11 @@ Per destination refresh:
 
 ```
 Daily:
-  Search queries:    ~350 destinations × 4 queries = ~1,400 calls
+  Search queries:    ~480 destinations × 4 queries = ~1,920 calls
   Detail fetches:    ~50 new/changed products = ~50 calls
   Claude one-liners: ~50 new products = ~50 calls
   ──────────────────────────────────────────────────
-  Total Viator:      ~1,450 calls/day (~60/hour)
+  Total Viator:      ~1,970 calls/day (~82/hour)
   Total Claude:      ~50 calls/day
 
 vs. previous plan:   ~4,400 calls in 15 minutes (every night!)
@@ -815,7 +815,7 @@ See "Roulette Hand Algorithm" section above. Server builds a sequenced "hand" of
 ### D3: Avoiding Repeats → Solved by Hand Delivery
 Tours within a hand are unique. Subsequent hand requests can pass previously seen IDs to avoid repeats across hands.
 
-### D4: Destination Count → All 2,500
+### D4: Destination Count → All 3,380
 Index everything. The drip approach spreads the load over 7 days, so there's no burst. The obscure destinations are where the best "wait, THAT exists?" moments come from. More variety = better Roulette.
 
 ---

@@ -6,6 +6,51 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [3.0.0] - 2026-02-28
+
+### Added — Data Layer
+- Next.js 16 scaffold (App Router, TypeScript strict, Tailwind CSS v4)
+- `src/lib/types.ts` — All TypeScript types: TourRow, RouletteTour, TourDetail, WeightCategory, Viator API types
+- `src/lib/db.ts` — SQLite database layer with auto-schema init, typed queries, Roulette Hand Algorithm with sequencing
+- `src/lib/viator.ts` — Viator API client (searchProducts, getProduct, getDestinations, getTags)
+- `src/lib/claude.ts` — Claude Haiku 4.5 integration for AI one-liner generation
+- `src/lib/continents.ts` — Continent derivation from Viator's lookupId hierarchy
+- `src/scripts/seed-destinations.ts` — Seeds 3,380 destinations from Viator API
+- `src/scripts/indexer.ts` — Drip + Delta indexer with 4 sort strategies, delta detection, weight categories, one-liners
+- `src/scripts/seed-dev-data.ts` — Seeds diverse destinations across all continents
+
+### Added — API Layer
+- `GET /api/roulette/hand` — Returns ~20 curated, sequenced tours with category quotas and contrast sequencing
+
+### Added — UI Layer
+- `src/components/TourCard.tsx` — Photo-dominant tour card (dark theme, 3:2 aspect ratio)
+- `src/components/RouletteView.tsx` — Interactive roulette: hand cycling, auto-refetch, skeleton loading
+- `src/components/ShareButton.tsx` — Web Share API (mobile) + clipboard fallback (desktop)
+- `src/components/TourCardSkeleton.tsx` — Shimmer loading skeleton
+- `src/components/FeatureNav.tsx` — Subtle text navigation between features
+- `src/app/page.tsx` — Homepage with Tour Roulette
+- `src/app/roulette/[id]/page.tsx` — Tour detail page (server-rendered, OG meta tags, Viator booking link)
+- `src/app/roulette/[id]/not-found.tsx` — 404 with "Spin a New One" link
+
+### Added — Reference Docs
+- `docs/implementation_plan.md` — 20-step Phase 1 plan with "Done when" criteria
+- `docs/viator-openapi.json` — Full Viator Partner API OpenAPI 3.0 spec
+- `docs/viator-api-reference.md` — Clean summary of 10 Basic-tier endpoints
+
+### Fixed
+- Viator destination endpoint: `/taxonomy/destinations` → `GET /destinations` (correct Basic-tier endpoint)
+- Destination count: 2,500 → 3,380 (actual API response)
+- Rate limiting docs: "150 req/10s" → per-endpoint, per-PUID rolling window
+- Indexer sort strategies: match real Viator API options (TRAVELER_RATING, PRICE, DATE_ADDED)
+- Key destination IDs corrected: Paris=479, London=737 (not 684)
+
+### Researched
+- Full Viator OpenAPI spec analysis: all 33 endpoints, 10 available at Basic tier
+- Destination hierarchy: lookupId first segment encodes continent (1=Africa, 2=Asia, 3=Oceania, 4=Caribbean, 6=Europe, 8=North America, 9=South America)
+- Search capabilities: 5 sort options, 6 filter flags, rating/price/duration/date filters, max 50 per page
+
+---
+
 ## [2.2.0] - 2026-02-28
 
 ### Added
@@ -15,7 +60,7 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 - SQLite over Redis for caching (persistence, queryability, zero cold cache)
 - Drip + Delta indexer: spread API calls across 24 hours, delta detection via summary hashes, no burst traffic
 - Roulette Hand Algorithm: curated batches of ~20 tours with category diversity (7 weight categories) and sequencing rules (no same category/continent back-to-back)
-- All 2,500 Viator destinations indexed (no arbitrary limits)
+- All 3,380 Viator destinations indexed (no arbitrary limits)
 - Haiku 4.5 for AI one-liners (~$0.003/batch), Sonnet 4.6 for Six Degrees chains
 - Viator affiliate tracking auto-included in productUrl — no manual link creation needed
 - Launch with Basic tier API access, apply for Full Access post-launch

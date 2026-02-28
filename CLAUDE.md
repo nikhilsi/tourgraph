@@ -185,7 +185,7 @@ No user accounts. No databases of personal data. Just cached Viator responses + 
 - Categories and tags
 - Location/meeting points with lat/long
 - Attraction associations
-- 300,000+ experiences across 2,500+ destinations
+- 300,000+ experiences across 3,380+ destinations
 
 **Upgrade path (Full tier, also free, requires certification):** Adds review text, real-time availability, and bulk catalog ingestion.
 

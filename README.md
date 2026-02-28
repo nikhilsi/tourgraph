@@ -26,54 +26,91 @@ Every decision passes four tests:
 
 | Component | Choice |
 |-----------|--------|
-| Frontend | Next.js (React) |
+| Frontend | Next.js 16 (App Router, TypeScript strict) |
+| Styling | Tailwind CSS v4 |
+| Database | SQLite (better-sqlite3) |
 | Hosting | DigitalOcean |
 | Data | Viator Partner API (300,000+ experiences) |
-| AI | Claude API (witty captions, Six Degrees chains) |
-| Cache | SQLite |
+| AI | Claude API (Haiku 4.5 for captions, Sonnet 4.6 for chains) |
 | Domain | [tourgraph.ai](https://tourgraph.ai) |
+
+## Getting Started
+
+```bash
+node --version          # 18+ required
+npm install             # Install dependencies
+cp .env.example .env.local  # Add your API keys
+
+# Seed destinations from Viator API
+npx tsx src/scripts/seed-destinations.ts
+
+# Index tours (single destination)
+npx tsx src/scripts/indexer.ts --dest 704
+
+# Or seed a diverse dataset
+npx tsx src/scripts/seed-dev-data.ts --no-ai
+
+# Start dev server
+npm run dev             # http://localhost:3000
+```
+
+## Project Structure
+
+```
+tourgraph/
+├── CLAUDE.md                 # Development rules & workflow
+├── README.md                 # This file
+├── CURRENT_STATE.md          # What's built & status
+├── NOW.md                    # Current priorities
+├── CHANGELOG.md              # Version history
+├── .env.example              # API key template
+│
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx        # Root layout (dark theme)
+│   │   ├── page.tsx          # Homepage — Tour Roulette
+│   │   ├── globals.css       # Tailwind + theme tokens
+│   │   ├── api/roulette/hand/route.ts  # Hand API endpoint
+│   │   └── roulette/[id]/    # Tour detail page
+│   ├── components/
+│   │   ├── TourCard.tsx      # Photo-dominant tour card
+│   │   ├── RouletteView.tsx  # Interactive spin + hand cycling
+│   │   ├── ShareButton.tsx   # Web Share API + clipboard
+│   │   ├── TourCardSkeleton.tsx
+│   │   └── FeatureNav.tsx    # Feature links
+│   ├── lib/
+│   │   ├── types.ts          # All TypeScript types
+│   │   ├── db.ts             # SQLite layer + Hand Algorithm
+│   │   ├── viator.ts         # Viator API client
+│   │   ├── claude.ts         # Claude API (one-liners)
+│   │   └── continents.ts     # Continent lookup from Viator hierarchy
+│   └── scripts/
+│       ├── indexer.ts        # Drip + Delta indexer
+│       ├── seed-destinations.ts
+│       └── seed-dev-data.ts
+│
+├── docs/
+│   ├── product_brief.md      # Product vision (source of truth)
+│   ├── ux_design.md          # UX design, wireframes, interaction patterns
+│   ├── architecture.md       # Technical architecture, schema, indexer design
+│   ├── implementation_plan.md # 20-step Phase 1 build plan
+│   ├── viator-api-reference.md # Basic-tier API endpoint summary
+│   ├── viator-openapi.json   # Full Viator OpenAPI 3.0 spec
+│   └── thesis_validation.md  # Why we pivoted
+│
+├── data/                     # SQLite database (gitignored)
+│
+└── archive/                  # Phase 0 work (preserved for reference)
+    ├── scripts/              # Extraction & Viator API scripts
+    ├── results/              # 7 operators, 83 products, scorecards
+    └── docs/                 # Old strategy docs
+```
 
 ## Background
 
 TourGraph started as AI-powered supply-side infrastructure for the tours & experiences industry. After competitive validation revealed that Peek, TourRadar, Magpie, and Expedia had all shipped live MCP servers, the original thesis was killed and the project pivoted to this consumer experience. The Phase 0 extraction work (83 products, 7 operators, 95% accuracy) is preserved in `archive/` for reference.
 
 Full story: [docs/thesis_validation.md](docs/thesis_validation.md)
-
-## Project Structure
-
-```
-tourgraph/
-├── CLAUDE.md              # Development rules & workflow
-├── README.md              # This file
-├── CURRENT_STATE.md       # What's built & status
-├── NOW.md                 # Current priorities
-├── CHANGELOG.md           # Version history
-├── LICENSE                # MIT License
-├── .env.example           # API key template
-│
-├── docs/
-│   ├── product_brief.md   # Product vision (source of truth)
-│   ├── ux_design.md       # UX design, wireframes, interaction patterns
-│   ├── architecture.md    # Technical architecture, schema, indexer design
-│   └── thesis_validation.md # Why we pivoted
-│
-└── archive/               # Phase 0 work (preserved for reference)
-    ├── scripts/           # Extraction & Viator API scripts
-    ├── results/           # 7 operators, 83 products, scorecards
-    ├── schemas/           # OCTO extraction schema
-    ├── prompts/           # Domain-specific extraction prompts
-    ├── docs/              # Old strategy docs, MkDocs site content
-    ├── CHANGELOG.md       # Phase 0 version history
-    ├── NOW.md             # Phase 0 priorities (final state)
-    └── CURRENT_STATE.md   # Phase 0 status (final state)
-```
-
-## Getting Started
-
-```bash
-# Coming soon — Next.js app not yet scaffolded
-# Architecture discussion in progress
-```
 
 ## License
 
