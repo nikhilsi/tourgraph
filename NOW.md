@@ -16,6 +16,7 @@
 - Product brief finalized for the consumer pivot (see `docs/product_brief.md`)
 - Repo cleaned up: Phase 0 work archived in `archive/`, fresh start for new direction
 - CLAUDE.md rewritten for the four pillars and four features
+- **UX design doc locked** (`docs/ux_design.md`) — wireframes, design principles, interaction flows, all decisions resolved
 
 ---
 
@@ -24,8 +25,8 @@
 **Architecture discussion** — before writing any code, align on:
 
 1. Next.js project structure (App Router, RSC strategy for OG generation)
-2. Viator API caching layer (Redis vs SQLite, how to build the "interesting tours" index)
-3. Claude API integration (on-demand vs pre-computed captions, prompt design)
+2. Viator API caching layer (Redis vs SQLite, how to build the "interesting tours" index for weighted Roulette)
+3. Claude API integration (pre-computed one-liners during batch indexing)
 4. Deployment (DigitalOcean droplet setup, DNS cutover from GitHub Pages)
 
 Then: **Phase 1 — Tour Roulette on web** (Week 1)

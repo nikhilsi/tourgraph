@@ -6,7 +6,7 @@
 **What's Next**: See NOW.md
 ---
 
-**Phase**: Consumer Web App | **Status**: Pre-development (architecture discussion)
+**Phase**: Consumer Web App | **Status**: UX locked, architecture discussion next
 
 ---
 
@@ -31,6 +31,16 @@ Full product vision: `docs/product_brief.md`
 - DigitalOcean hosting (existing droplets at ~$6/mo)
 - CLAUDE.md rewritten for new direction
 
+### UX Design (Locked)
+- `docs/ux_design.md` — Complete UX doc with wireframes and resolved decisions
+- Homepage = Tour Roulette (one card, one button, full screen)
+- Shared links carry feature context (`/roulette/[id]`, `/worlds-most/[slug]`)
+- Tour card is tappable → detail page with full description + Viator booking link
+- Right Now Somewhere = ambient teaser on Roulette + its own full page
+- AI one-liners pre-generated and cached (no loading state)
+- OG images = template-based composite (tour photo + branded bar)
+- Navigation between features via subtle text links (minimal chrome)
+
 ### Archived (Phase 0 Work)
 All Phase 0 extraction work preserved in `archive/`:
 - 83 products extracted across 7 Seattle operators (95% accuracy)
@@ -43,8 +53,8 @@ All Phase 0 extraction work preserved in `archive/`:
 
 ## What's Next
 
-1. Architecture discussion (Next.js structure, caching, deployment)
-2. Tour Roulette — the core loop (Phase 1)
+1. **Architecture discussion** (Next.js structure, caching strategy, deployment)
+2. **Tour Roulette** — the core loop (Phase 1)
 3. Ship all four features on web
 4. iOS app
 

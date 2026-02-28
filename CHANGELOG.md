@@ -6,6 +6,21 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [2.1.0] - 2026-02-28
+
+### Added
+- `docs/ux_design.md` — Complete UX design doc: 8 research-backed principles, 5 ASCII wireframes, interaction flows, OG card specs, tour card anatomy, all decisions resolved
+- UX research covering Atlas Obscura, StumbleUpon, The Useless Web, Bored Button, Product Hunt, Tinder swipe patterns, Wikipedia rabbit holes
+
+### Decided
+- Homepage = Tour Roulette (one card, one button, full screen)
+- Shared links carry feature context (`/roulette/[id]`, `/worlds-most/[slug]`)
+- Tour card tappable → detail page with description + Viator affiliate link
+- Right Now Somewhere = ambient teaser on Roulette + dedicated full page
+- AI one-liners pre-generated and cached during batch indexing
+- OG images = template-based composite (tour photo + branded context bar)
+- Feature navigation via subtle text links (minimal chrome, non-competing)
+
 ## [2.0.0] - 2026-02-28
 
 ### Changed

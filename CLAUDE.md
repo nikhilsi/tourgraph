@@ -253,6 +253,7 @@ The `scripts/viator_compare.py` from Phase 0 has working API call patterns (endp
 
 **Docs:**
 - **docs/product_brief.md** — Product vision (source of truth for what we're building)
+- **docs/ux_design.md** — UX design: wireframes, design principles, interaction flows, resolved decisions
 - **docs/thesis_validation.md** — Competitive analysis that killed the original thesis
 
 **Archive (Phase 0 — reference only):**
