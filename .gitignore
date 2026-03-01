@@ -37,5 +37,11 @@ build/
 # MkDocs (legacy)
 site/
 
+# iOS
+ios/**/Resources/*.db
+ios/**/xcuserdata/
+ios/**/UserInterfaceState.xcuserstate
+ios/**/DerivedData/
+
 # OS
 Thumbs.db
