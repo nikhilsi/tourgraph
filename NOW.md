@@ -35,11 +35,9 @@
 
 ### In Progress
 
-1. **Full indexer running** — `--full --no-ai`, 2,672/2,712 destinations (98.5%), ~134K tours. Almost done.
+1. **One-liner backfill running** — `backfill-oneliners-batch.ts`, 126,498 tours, ~14 hours estimated. Started 3:22 PM PST.
 
 ### Next — In Order
-
-1. **Backfill one-liners for new tours** — Batch script ready (`backfill-oneliners-batch.ts`). ~120K tours need one-liners. Estimated ~12 hours.
 2. **Decide city pairs for Six Degrees** — Review available cities, pick curated pairs.
 3. **Generate curated Six Degrees chains** — Run chain generator. Cost: ~$0.02/chain.
 4. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165`
@@ -71,7 +69,7 @@
 | 1 | Tour Roulette (web) | **Deployed** |
 | 2 | Right Now Somewhere (web) | **Deployed** |
 | 3 | The World's Most ___ (web) | **Deployed** |
-| 4a | Data expansion | **98.5%** — 2,672/2,712 destinations, ~134K tours |
+| 4a | Data expansion | **Complete** — 2,712/2,712 destinations, 136,256 tours, 451MB |
 | 4b | Six Degrees of Anywhere (web) | **UI complete** — needs chain data |
 | 5 | Deploy to production | **Live** — https://tourgraph.ai |
 | 6 | iOS app | **Built** — all 4 features, 4-tab layout, favorites, App Store metadata |

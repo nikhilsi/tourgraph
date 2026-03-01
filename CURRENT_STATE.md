@@ -39,11 +39,11 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 **App Store prep done:** PrivacyInfo.xcprivacy, ExportOptions.plist, metadata draft (`docs/ios-app-store.md`).
 **Not yet built:** DB enrichment service, share card rendering (ImageRenderer), launch screen, App Store screenshots.
 
-## Data Expansion: Running Locally
+## Data: Indexing Complete, One-Liners Backfilling
 
-Full indexer (`--full --no-ai`): 3,380 destinations, ~123K tours. Nearing completion.
+Full indexer complete: 2,712 leaf destinations, 136,256 active tours, 451MB database. One-liner backfill running (~126K tours, ~14 hours).
 
-**After indexer completes:** Backfill one-liners (~113K need them) → Decide city pairs → Generate chains → Redeploy DB.
+**After backfill completes:** Decide city pairs → Generate chains → Redeploy DB.
 
 ## Deployment
 
@@ -111,8 +111,8 @@ data/
 
 ### Data (Expanding)
 
-- **~123,000 tours** indexed across 3,380 destinations (indexer nearing completion)
-- **~10,600 with AI one-liners** (~113K new tours need backfill; batch script ready)
+- **136,256 tours** indexed across 2,712 leaf destinations (indexer complete)
+- **~10,600 with AI one-liners** (~126K backfilling now; batch script running)
 - **3,380 destinations** from Viator API (~2,712 are leaf nodes)
 - **7 weight categories** for roulette variety
 - **6 superlatives** queried live from tours table
@@ -121,7 +121,7 @@ data/
 
 ### Key Technical Choices
 
-- **SQLite** (not Redis/Postgres) — single file, zero cold cache, deploys as-is. ~123K tours at ~400MB.
+- **SQLite** (not Redis/Postgres) — single file, zero cold cache, deploys as-is. 136K tours at 451MB.
 - **Viator Basic tier** — free affiliate API, 300K+ experiences, 16 req/10s per endpoint
 - **Claude Haiku 4.5** — fast/cheap one-liners during indexing (~$0.003/1000 tours)
 - **Claude Sonnet 4.6** — Six Degrees chain generation (~$0.02/chain, 12-14s)
