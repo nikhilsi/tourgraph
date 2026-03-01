@@ -9,22 +9,21 @@
 
 Phases 1-3 are code-complete. Phase 4 (Six Degrees) research is done — prompt validated, strategy decided. Now expanding from 53 dev destinations to all ~2,712 leaf destinations before building Phase 4 UI.
 
-### Immediate — In Order
+### Completed
 
-1. **Wait for one-liner backfill to finish** — ~6,300/9,800 done, ~1 hour remaining. Do NOT run the indexer until this completes (both write to `tours` table — KISS, avoid SQLite contention).
-2. **UI sanity test (Phases 1-3)** — Quick visual check with current 53-city data before expanding:
-   - [ ] `/` shows roulette + "Right now in..." teaser
-   - [ ] `/right-now` shows 6 golden-hour tours
-   - [ ] `/worlds-most` shows 6 superlative cards
-   - [ ] All 6 `/worlds-most/[slug]` pages render with correct stats
-   - [ ] OG images render for all routes
-   - [ ] FeatureNav links work bidirectionally
-   - [ ] Mobile responsive at 375px
-   - [ ] Affiliate URLs open in new tab with campaign tracking
-3. **Run full indexer** — `npx tsx src/scripts/indexer.ts --full --no-ai` (~2,712 leaf destinations, estimated 10-16 hours). Indexer hardened with file logging, timing/ETA, and summary. Explicit user approval required before running.
-4. **Backfill one-liners for new tours** — After indexer completes, run `npm run backfill:oneliners` for all new tours. Cost: ~$0.003 per 1,000 tours (Haiku 4.5).
-5. **Generate curated Six Degrees chains** — Pick city pairs, run chain generation script. Cost: ~$0.02/chain (Sonnet 4.6). Quantity TBD (50-100+ depending on city coverage).
+1. ~~Wait for one-liner backfill to finish~~ — **In progress** (~8,100/9,800 done, ~25 min remaining)
+2. ~~UI sanity test (Phases 1-3)~~ — **Done.** All 14 routes return 200. Data renders correctly. Duration display fixed (96h → 4 days). Share preview won't show OG image on localhost (expected — works once deployed). More in-depth testing (mobile, WCAG, share flow) deferred to post-data-expansion.
+3. ~~Build chain generation script~~ — **Done.** `src/scripts/generate-chains.ts` — production-grade with file logging, retries, validation, dedup, ETA. Reads pairs from `chain-pairs.json`.
+
+### Next — In Order
+
+1. **Wait for one-liner backfill to finish** — Do NOT run the indexer until this completes (both write to `tours` table — KISS, avoid SQLite contention).
+2. **Run full indexer** — `npx tsx src/scripts/indexer.ts --full --no-ai` (~2,712 leaf destinations, estimated 10-16 hours). Indexer hardened with file logging, timing/ETA, and summary. Explicit user approval required before running.
+3. **Backfill one-liners for new tours** — After indexer completes, run `npm run backfill:oneliners` for all new tours. Cost: ~$0.003 per 1,000 tours (Haiku 4.5).
+4. **Decide city pairs for Six Degrees** — After data expansion, review available cities and pick curated pairs. Update `src/scripts/chain-pairs.json`.
+5. **Generate curated Six Degrees chains** — Run `npx tsx src/scripts/generate-chains.ts`. Cost: ~$0.02/chain (Sonnet 4.6). Quantity TBD (50-100+ depending on city coverage).
 6. **Build Six Degrees UI** — Gallery page, detail page, chain visualization, OG images.
+7. **In-depth testing** — Mobile (375px), WCAG AA contrast, share flow end-to-end, OG preview on deployed URL, affiliate link tracking.
 
 ### Phase 4 — Open Decisions
 

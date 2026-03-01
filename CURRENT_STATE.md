@@ -5,9 +5,9 @@
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
-## Phases 1-3: Code Complete
+## Phases 1-3: Code Complete, Basic Testing Done
 
-Three features built, all sharing the same data layer (SQLite + Viator API).
+Three features built, all sharing the same data layer (SQLite + Viator API). Basic route testing passed (14/14 routes return 200, data renders correctly). In-depth testing (mobile, WCAG, share flow on deployed URL) deferred to post-data-expansion.
 
 ### Feature 1: Tour Roulette (Phase 1)
 
@@ -36,6 +36,8 @@ Homepage teaser: "Right now in {city}, it's {time}..."
 Chain generation prototyped and validated. Prompt v2 produces 5-stop chains with unique themes reliably (8/8 test runs). See `docs/phase4-six-degrees.md` for full research findings.
 
 **Blocked on:** Data expansion (need more than 53 cities for interesting chains).
+
+**Chain generation script ready:** `src/scripts/generate-chains.ts` — reads pairs from `chain-pairs.json`, generates via Claude Sonnet 4.6, stores in `six_degrees_chains` table. File logging, retries, validation, dedup.
 
 ## Data Expansion: Ready to Run
 
@@ -82,6 +84,8 @@ src/
 ├── scripts/
 │   ├── indexer.ts                  # Production indexer (logging, leaf filter, ETA, summary)
 │   ├── test-chain.ts               # Six Degrees chain generation testing
+│   ├── generate-chains.ts          # Production chain generator (logging, retries, dedup)
+│   ├── chain-pairs.json            # City pairs config for chain generation
 │   ├── seed-dev-data.ts            # Seeds 43 destinations (dev only)
 │   └── backfill-oneliners.ts       # Batch AI one-liner generation
 logs/
@@ -93,7 +97,7 @@ data/
 ### Data (Current — Dev Seed)
 
 - **~9,800 tours** indexed from 53 destinations
-- **~6,300 with AI one-liners** (backfill in progress)
+- **~8,100 with AI one-liners** (backfill nearly complete)
 - **3,380 destinations** from Viator API (~2,712 are leaf nodes)
 - **7 weight categories** for roulette variety
 - **6 superlatives** queried live from tours table

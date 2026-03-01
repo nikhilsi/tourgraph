@@ -228,7 +228,7 @@ Remember: EXACTLY 5 stops, 4 different themes, 5 different cities. Only return v
       chain: result.chain,
       summary: result.summary,
     };
-  } catch (err) {
+  } catch {
     console.error("Failed to parse JSON response:");
     console.error(text);
     return null;

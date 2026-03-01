@@ -6,6 +6,22 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [4.2.0] - 2026-03-01
+
+### Added
+- `src/scripts/generate-chains.ts` — Production-grade Six Degrees chain generator: file logging, retries with backoff, chain validation (5 stops, unique cities/themes), dedup (skips existing), ETA tracking, final summary
+- `src/scripts/chain-pairs.json` — Config file for curated city pairs (placeholder, to be populated after data expansion)
+
+### Fixed
+- Duration display: "96 hrs" → "4 days", "1h" → "1 hr", "45m" → "45 min". Both `formatDurationShort` and `formatDurationLong` now normalize days/hours/minutes properly.
+
+### Tested
+- Basic UI sanity test: all 14 routes return 200 (homepage, right-now, worlds-most gallery + 6 detail pages, tour detail, hand API, 3 OG image endpoints)
+- Data renders correctly across all features
+- OG images generate on-demand (share preview requires deployed URL — expected)
+
+---
+
 ## [4.1.0] - 2026-03-01
 
 ### Added — Phase 4 Research & Prototyping
