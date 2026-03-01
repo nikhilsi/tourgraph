@@ -19,7 +19,7 @@
 | Price | Free |
 | In-App Purchases | None |
 
-> **Note:** Current bundle ID in Xcode is `com.nikhilsi.TourGraph` — update to `ai.tourgraph.app` before submission.
+
 
 ---
 
@@ -203,7 +203,7 @@ Required: 5 screenshots minimum for each device size.
 |-------|-------|
 | Team ID | F66D7QPY4N |
 | Signing | Automatic (Xcode-managed) |
-| Bundle ID | `ai.tourgraph.app` (register in Apple Developer portal before build) |
+| Bundle ID | `com.nikhilsi.TourGraph` (consistent with GitaVani and ClearNews) |
 
 ### App Store Connect API (for CLI uploads)
 
@@ -250,8 +250,7 @@ Or just use **Xcode → Product → Archive → Distribute App** (simpler for fi
 ## Pre-Submission Checklist
 
 ### Setup (one-time)
-- [ ] Register bundle ID `ai.tourgraph.app` in Apple Developer portal
-- [ ] Update bundle ID in Xcode project (currently `com.nikhilsi.TourGraph`)
+- [ ] Register bundle ID `com.nikhilsi.TourGraph` in Apple Developer portal
 - [ ] Set Team ID to `F66D7QPY4N` in Xcode signing settings
 - [ ] Add PrivacyInfo.xcprivacy to Xcode target
 - [ ] Create app record in App Store Connect (or via API)
@@ -262,8 +261,8 @@ Or just use **Xcode → Product → Archive → Distribute App** (simpler for fi
 - [ ] Add LogoWhite @2x and @3x retina variants
 
 ### Content
-- [ ] Host privacy policy at `https://tourgraph.ai/privacy`
-- [ ] Host support page at `https://tourgraph.ai/support`
+- [x] Host privacy policy at `https://tourgraph.ai/privacy`
+- [x] Host support page at `https://tourgraph.ai/support`
 - [ ] Capture screenshots (5 minimum, iPhone 6.9")
 - [ ] Upload screenshots to App Store Connect
 

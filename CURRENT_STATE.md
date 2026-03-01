@@ -18,6 +18,7 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 | The World's Most ___ | `/worlds-most`, `/worlds-most/[slug]` | Live |
 | Six Degrees of Anywhere | `/six-degrees`, `/six-degrees/[slug]` | UI live, needs chain data |
 | About / Story | `/about`, `/story` | Live |
+| Privacy / Support | `/privacy`, `/support` | Live |
 | OG Images | `/api/og/*` | Live |
 
 ### iOS App (In Development)
@@ -35,6 +36,7 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 | Settings | `SettingsView.swift` | Built — gear icon in nav bar, modal sheet, haptics toggle |
 | App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
 
+**App Store prep done:** PrivacyInfo.xcprivacy, ExportOptions.plist, metadata draft (`docs/ios-app-store.md`).
 **Not yet built:** DB enrichment service, share card rendering (ImageRenderer), launch screen, App Store screenshots.
 
 ## Data Expansion: Running Locally
