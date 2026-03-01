@@ -1,11 +1,10 @@
 import Link from "next/link";
 
-// All features link to "/" until their pages are built (Phase 2-4).
-// Update hrefs as each feature ships: /right-now, /worlds-most, /six-degrees
+// Update hrefs as each feature ships. Six Degrees = Phase 4 (not yet built).
 const features = [
   { name: "roulette", href: "/", label: "roulette" },
-  { name: "right-now", href: "/", label: "right now" },
-  { name: "worlds-most", href: "/", label: "world's most" },
+  { name: "right-now", href: "/right-now", label: "right now" },
+  { name: "worlds-most", href: "/worlds-most", label: "world's most" },
   { name: "six-degrees", href: "/", label: "six degrees" },
 ];
 

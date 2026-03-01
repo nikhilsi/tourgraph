@@ -30,8 +30,11 @@ Viator's destination hierarchy (~3,380 entries). Parent-child tree: Continent â†
 ### `indexer_state`
 Key-value store for indexer resume state (last destination ID processed, timestamp).
 
-### `superlatives` / `six_degrees_chains`
-Future Phase 3 and Phase 4 tables. Schema created but empty.
+### `superlatives`
+Schema exists for pre-computed daily superlatives. Currently unused â€” Phase 3 queries superlatives live from the tours table via `getSuperlative()` / `getAllSuperlatives()` in `db.ts`.
+
+### `six_degrees_chains`
+Future Phase 4 table. Schema created but empty.
 
 ## Rebuilding
 

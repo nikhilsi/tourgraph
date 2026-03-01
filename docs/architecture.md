@@ -45,23 +45,22 @@ TourGraph is a read-heavy, pre-cached consumer site. The user never triggers an 
 │                   (App Router, TypeScript)                        │
 │                                                                  │
 │   Server Components:                                             │
-│     /                      → Tour Roulette (homepage)            │
+│     /                      → Tour Roulette (homepage + teaser)   │
 │     /roulette/[id]         → Tour detail (shared link landing)   │
-│     /right-now             → Right Now Somewhere                 │
-│     /right-now/[id]        → Right Now detail                    │
-│     /worlds-most           → Today's superlatives                │
-│     /worlds-most/[slug]    → Individual superlative              │
-│     /six-degrees           → City pair input                     │
-│     /six-degrees/[c1]/[c2] → Chain result                       │
+│     /right-now             → Right Now Somewhere (6 golden-hour) │
+│     /worlds-most           → Superlatives gallery (6 cards)      │
+│     /worlds-most/[slug]    → Individual superlative detail       │
+│     /six-degrees           → City pair input (Phase 4)           │
+│     /six-degrees/[c1]/[c2] → Chain result (Phase 4)             │
 │                                                                  │
 │   API Routes:                                                    │
 │     /api/roulette/hand     → batch of ~20 sequenced tours       │
-│     /api/right-now         → tour by timezone (< 50ms)          │
-│     /api/worlds-most       → today's superlatives (< 50ms)      │
 │     /api/six-degrees       → Claude API call (~2-5s, cached)    │
 │                                                                  │
 │   OG Image Generation:                                           │
-│     /api/og/[type]/[id]    → dynamic OG images (Next.js ImageResponse)
+│     /api/og/roulette/[id]       → roulette tour OG image        │
+│     /api/og/right-now           → right now feature OG image     │
+│     /api/og/worlds-most/[slug]  → superlative OG images         │
 │                                                                  │
 │   Every response except Six Degrees: < 50ms (local DB read)     │
 └──────────────────────────────────────────────────────────────────┘
@@ -119,7 +118,7 @@ CREATE TABLE tours (
 
     -- Indexer metadata
     weight_category TEXT,                   -- "highest_rated", "most_expensive", "cheapest_5star",
-                                            -- "unique", "best_value", "most_reviewed"
+                                            -- "unique", "exotic_location", "most_reviewed", "wildcard"
     status TEXT DEFAULT 'active',           -- "active" or "inactive" (missing from search results)
     indexed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     last_seen_at DATETIME DEFAULT CURRENT_TIMESTAMP,  -- Last time search results included this tour
@@ -350,54 +349,41 @@ Model: Sonnet 4.6 for reasoning quality. Cache every result in `six_degrees_chai
 src/
 ├── app/
 │   ├── layout.tsx                 # Root layout (dark theme, minimal nav)
-│   ├── page.tsx                   # Homepage = Tour Roulette
-│   ├── roulette/
-│   │   └── [id]/
-│   │       └── page.tsx           # Tour detail page (shared link landing)
-│   ├── right-now/
-│   │   ├── page.tsx               # Right Now Somewhere
-│   │   └── [id]/
-│   │       └── page.tsx           # Right Now detail
-│   ├── worlds-most/
-│   │   ├── page.tsx               # Today's superlatives
-│   │   └── [slug]/
-│   │       └── page.tsx           # Individual superlative
-│   ├── six-degrees/
-│   │   ├── page.tsx               # City pair input
-│   │   └── [city1]/
-│   │       └── [city2]/
-│   │           └── page.tsx       # Chain result
+│   ├── page.tsx                   # Homepage = Tour Roulette + Right Now teaser
+│   ├── roulette/[id]/page.tsx     # Tour detail page (shared link landing)
+│   ├── right-now/page.tsx         # Right Now Somewhere (6 golden-hour tours)
+│   ├── worlds-most/page.tsx       # Superlatives gallery (6 cards)
+│   ├── worlds-most/[slug]/page.tsx # Individual superlative detail
+│   ├── six-degrees/               # Phase 4 (not yet built)
 │   └── api/
-│       ├── roulette/
-│       │   └── route.ts           # GET: random weighted tour from SQLite
-│       ├── right-now/
-│       │   └── route.ts           # GET: tour by current timezone
-│       ├── worlds-most/
-│       │   └── route.ts           # GET: today's superlatives
-│       ├── six-degrees/
-│       │   └── route.ts           # POST: generate/fetch chain
-│       └── og/
-│           └── [type]/
-│               └── [id]/
-│                   └── route.ts   # GET: dynamic OG image generation
+│       ├── roulette/hand/route.ts       # GET: batch of ~20 sequenced tours
+│       ├── og/roulette/[id]/route.tsx   # OG image: roulette tour
+│       ├── og/right-now/route.tsx       # OG image: right now feature
+│       └── og/worlds-most/[slug]/route.tsx  # OG image: superlative
 │
 ├── components/
+│   ├── RouletteView.tsx           # Interactive roulette (client component)
 │   ├── TourCard.tsx               # The atomic tour card (used everywhere)
-│   ├── SpinButton.tsx             # "Show Me Another" (client component)
+│   ├── TourCardSkeleton.tsx       # Shimmer loading placeholder
 │   ├── ShareButton.tsx            # Native share / copy link (client component)
-│   └── FeatureNav.tsx             # Subtle bottom nav links
+│   └── FeatureNav.tsx             # Cross-feature text navigation
 │
 ├── lib/
-│   ├── db.ts                      # SQLite connection + query helpers
+│   ├── db.ts                      # SQLite connection + all queries
+│   ├── timezone.ts                # Timezone helpers (Intl.DateTimeFormat)
+│   ├── format.ts                  # Shared formatting (price, duration)
+│   ├── types.ts                   # Shared TypeScript types
 │   ├── viator.ts                  # Viator API client (used by indexer only)
 │   ├── claude.ts                  # Claude API client (one-liners + chains)
-│   └── types.ts                   # Shared TypeScript types
+│   └── continents.ts              # Continent mapping from Viator lookupId
 │
 ├── scripts/
-│   └── indexer.ts                 # Drip + Delta indexer (continuous background process)
+│   ├── indexer.ts                 # Drip + Delta indexer
+│   ├── seed-dev-data.ts           # Seeds 43 destinations
+│   ├── seed-destinations.ts       # Seeds all 3,380 Viator destinations
+│   └── backfill-oneliners.ts      # Batch AI one-liner generation
 │
-└── public/
-    └── fonts/                     # Playful typography (TBD)
+└── public/                        # Static assets
 ```
 
 ### API Route Design
@@ -435,35 +421,15 @@ src/
 
 See "Roulette Hand Algorithm" section below for how the hand is built and sequenced.
 
-**`GET /api/right-now`**
+**Right Now & World's Most — Server Components (No API Routes)**
 
-```typescript
-// No params needed — server determines current "beautiful" timezones
+Unlike Roulette (which needs a client API for the interactive spin loop), Right Now Somewhere and The World's Most ___ are pure server components that query SQLite directly during render. No separate API routes needed.
 
-// Response: < 50ms
-{
-  tour: { ...same as roulette },
-  localTime: string,      // "6:47am"
-  timeDescription: string // "golden hour" / "sunset" / "morning light"
-}
-```
+- `/right-now` calls `getRightNowTours()` at render time
+- `/worlds-most` calls `getAllSuperlatives()` at render time
+- `/worlds-most/[slug]` calls `getSuperlative(type)` at render time
 
-**`GET /api/worlds-most`**
-
-```typescript
-// Response: array of today's superlatives, < 50ms
-{
-  superlatives: [
-    {
-      type: "most_expensive",
-      label: "Most Expensive Tour on Earth",
-      statValue: "$45,000",
-      tour: { ...same as roulette }
-    },
-    ...
-  ]
-}
-```
+All responses < 50ms (local DB reads). Pages use `force-dynamic` for fresh data.
 
 **`POST /api/six-degrees`**
 
@@ -633,37 +599,41 @@ Manual re-run        → npm run index (or equivalent)
 
 ### Superlatives Computation
 
-Daily "World's Most ___" — computed from existing cached data, no API calls:
+"The World's Most ___" — queried live from the tours table, no pre-computation needed. Data quality filters prevent outliers:
 
 ```sql
--- Most Expensive Tour on Earth
-SELECT * FROM tours WHERE status = 'active'
+-- Most Expensive Tour (cap at $50K to filter $1M outliers)
+SELECT ... FROM tours WHERE status = 'active'
+  AND from_price IS NOT NULL AND from_price <= 50000 AND image_url IS NOT NULL
   ORDER BY from_price DESC LIMIT 1;
 
--- Cheapest 5-Star Experience
-SELECT * FROM tours WHERE status = 'active'
-  AND rating >= 4.8 ORDER BY from_price ASC LIMIT 1;
+-- Cheapest 5-Star Experience (requires reviews to avoid fake ratings)
+SELECT ... FROM tours WHERE status = 'active'
+  AND rating >= 4.5 AND from_price > 0 AND review_count >= 10 AND image_url IS NOT NULL
+  ORDER BY from_price ASC LIMIT 1;
 
--- Longest Duration
-SELECT * FROM tours WHERE status = 'active'
+-- Longest Tour on Earth (cap at 2 weeks / 20160 min)
+SELECT ... FROM tours WHERE status = 'active'
+  AND duration_minutes IS NOT NULL AND duration_minutes <= 20160 AND image_url IS NOT NULL
   ORDER BY duration_minutes DESC LIMIT 1;
 
--- Most Reviewed
-SELECT * FROM tours WHERE status = 'active'
+-- Shortest Tour on Earth (floor at 30 min to filter transfers/tickets)
+SELECT ... FROM tours WHERE status = 'active'
+  AND duration_minutes IS NOT NULL AND duration_minutes >= 30 AND image_url IS NOT NULL
+  ORDER BY duration_minutes ASC LIMIT 1;
+
+-- Most Reviewed Tour
+SELECT ... FROM tours WHERE status = 'active'
+  AND review_count IS NOT NULL AND image_url IS NOT NULL
   ORDER BY review_count DESC LIMIT 1;
 
--- Highest Rated Hidden Gem (amazing but undiscovered)
-SELECT * FROM tours WHERE status = 'active'
-  AND rating >= 4.9 AND review_count < 100
+-- Highest-Rated Hidden Gem (perfect rating, few reviews)
+SELECT ... FROM tours WHERE status = 'active'
+  AND rating >= 4.8 AND review_count >= 10 AND review_count <= 100 AND image_url IS NOT NULL
   ORDER BY rating DESC, review_count ASC LIMIT 1;
-
--- Shortest Duration (quickest experience)
-SELECT * FROM tours WHERE status = 'active'
-  AND duration_minutes > 0
-  ORDER BY duration_minutes ASC LIMIT 1;
 ```
 
-Run once daily (e.g., midnight UTC). Results stored in `superlatives` table.
+All 6 are queried live via `getSuperlative(type)` / `getAllSuperlatives()` in `db.ts`. The `superlatives` table exists in the schema but is not currently used — live queries are fast enough (< 50ms).
 
 ---
 

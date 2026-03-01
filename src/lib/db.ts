@@ -1,7 +1,7 @@
 import Database from "better-sqlite3";
 import path from "path";
 import fs from "fs";
-import type { TourRow, WeightCategory, DestinationRow } from "./types";
+import type { TourRow, RouletteTour, WeightCategory, DestinationRow, SuperlativeType, SuperlativeResult } from "./types";
 
 // ============================================================
 // Connection Management
@@ -418,6 +418,146 @@ function sequenceHand(tours: TourRow[]): TourRow[] {
   }
 
   return sequenced;
+}
+
+// ============================================================
+// Shared Row → API Transformation
+// ============================================================
+
+export function tourRowToRouletteTour(row: TourRow): RouletteTour {
+  return {
+    id: row.id,
+    productCode: row.product_code,
+    title: row.title,
+    oneLiner: row.one_liner ?? "",
+    destinationName: row.destination_name ?? "",
+    country: row.country ?? "",
+    continent: row.continent ?? "",
+    rating: row.rating ?? 0,
+    reviewCount: row.review_count ?? 0,
+    fromPrice: row.from_price ?? 0,
+    durationMinutes: row.duration_minutes ?? 0,
+    imageUrl: row.image_url ?? "",
+    viatorUrl: row.viator_url ?? "",
+    weightCategory: row.weight_category ?? "wildcard",
+  };
+}
+
+// ============================================================
+// Right Now Somewhere Queries
+// ============================================================
+
+export function getDistinctTimezones(): string[] {
+  const db = getDb(true);
+  const rows = db
+    .prepare(
+      `SELECT DISTINCT timezone FROM tours
+       WHERE status = 'active' AND timezone IS NOT NULL`
+    )
+    .all() as { timezone: string }[];
+  return rows.map((r) => r.timezone);
+}
+
+// Returns one quality tour per timezone, randomized
+export function getRightNowTours(
+  timezones: string[],
+  count: number
+): TourRow[] {
+  if (timezones.length === 0) return [];
+  const db = getDb(true);
+
+  const results: TourRow[] = [];
+  const usedTimezones = new Set<string>();
+
+  // Shuffle timezones for variety across refreshes
+  const shuffled = [...timezones].sort(() => Math.random() - 0.5);
+
+  for (const tz of shuffled) {
+    if (usedTimezones.has(tz) || results.length >= count) break;
+
+    const tour = db
+      .prepare(
+        `SELECT ${HAND_SELECT_COLUMNS}, timezone
+         FROM tours
+         WHERE status = 'active'
+           AND timezone = ?
+           AND image_url IS NOT NULL
+           AND rating >= 4.0
+         ORDER BY RANDOM()
+         LIMIT 1`
+      )
+      .get(tz) as TourRow | undefined;
+
+    if (tour) {
+      results.push(tour);
+      usedTimezones.add(tz);
+    }
+  }
+
+  return results;
+}
+
+// ============================================================
+// World's Most Superlative Queries
+// ============================================================
+
+const SUPERLATIVE_QUERIES: Record<SuperlativeType, string> = {
+  "most-expensive": `
+    SELECT ${HAND_SELECT_COLUMNS}
+    FROM tours
+    WHERE status = 'active' AND from_price IS NOT NULL
+      AND from_price <= 50000 AND image_url IS NOT NULL
+    ORDER BY from_price DESC LIMIT 1`,
+  "cheapest-5star": `
+    SELECT ${HAND_SELECT_COLUMNS}
+    FROM tours
+    WHERE status = 'active' AND rating >= 4.5
+      AND from_price IS NOT NULL AND from_price > 0
+      AND review_count >= 10 AND image_url IS NOT NULL
+    ORDER BY from_price ASC LIMIT 1`,
+  "longest": `
+    SELECT ${HAND_SELECT_COLUMNS}
+    FROM tours
+    WHERE status = 'active' AND duration_minutes IS NOT NULL
+      AND duration_minutes <= 20160 AND image_url IS NOT NULL
+    ORDER BY duration_minutes DESC LIMIT 1`,
+  "shortest": `
+    SELECT ${HAND_SELECT_COLUMNS}
+    FROM tours
+    WHERE status = 'active' AND duration_minutes IS NOT NULL
+      AND duration_minutes >= 30 AND image_url IS NOT NULL
+    ORDER BY duration_minutes ASC LIMIT 1`,
+  "most-reviewed": `
+    SELECT ${HAND_SELECT_COLUMNS}
+    FROM tours
+    WHERE status = 'active' AND review_count IS NOT NULL
+      AND image_url IS NOT NULL
+    ORDER BY review_count DESC LIMIT 1`,
+  "hidden-gem": `
+    SELECT ${HAND_SELECT_COLUMNS}
+    FROM tours
+    WHERE status = 'active' AND rating >= 4.8
+      AND review_count >= 10 AND review_count <= 100
+      AND image_url IS NOT NULL
+    ORDER BY rating DESC, review_count ASC LIMIT 1`,
+};
+
+export function getSuperlative(type: SuperlativeType): TourRow | undefined {
+  const db = getDb(true);
+  const sql = SUPERLATIVE_QUERIES[type];
+  if (!sql) return undefined;
+  return db.prepare(sql).get() as TourRow | undefined;
+}
+
+export function getAllSuperlatives(): SuperlativeResult[] {
+  const results: SuperlativeResult[] = [];
+  for (const type of Object.keys(SUPERLATIVE_QUERIES) as SuperlativeType[]) {
+    const tour = getSuperlative(type);
+    if (tour) {
+      results.push({ type, tour });
+    }
+  }
+  return results;
 }
 
 // ============================================================

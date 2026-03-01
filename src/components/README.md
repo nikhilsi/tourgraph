@@ -45,4 +45,4 @@ Shows "Copied!" for 2 seconds after clipboard success. Silent failure on both �
 Animated placeholder matching TourCard's exact layout (3:2 photo, text lines, stats row). Uses Tailwind `animate-pulse`. Dimensions must match TourCard to prevent layout shift during loading.
 
 ### `FeatureNav.tsx`
-Horizontal text navigation: `roulette · right now · world's most · six degrees`. Current feature shown as highlighted text, others as links. All non-roulette links point to `/` as placeholders (Phase 2-4 not built yet).
+Horizontal text navigation: `roulette · right now · world's most · six degrees`. Current feature shown as highlighted text, others as links. Roulette → `/`, Right Now → `/right-now`, World's Most → `/worlds-most`. Six Degrees points to `/` (Phase 4 not built yet).

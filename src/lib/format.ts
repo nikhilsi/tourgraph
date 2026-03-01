@@ -1,5 +1,11 @@
 // Shared formatting utilities
 
+export function formatPrice(price: number): string {
+  if (price >= 1000) return `$${price.toLocaleString("en-US", { maximumFractionDigits: 0 })}`;
+  if (price >= 1) return `$${price.toFixed(price % 1 === 0 ? 0 : 2)}`;
+  return `$${price.toFixed(2)}`;
+}
+
 export function formatDurationShort(minutes: number): string {
   if (minutes < 60) return `${minutes}m`;
   const hours = Math.floor(minutes / 60);

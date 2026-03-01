@@ -4,7 +4,7 @@
 
 TourGraph.ai is a zero-friction consumer site that surfaces delightful tours from Viator's 300K+ catalog. Phase 1 is Tour Roulette — the core loop: one button, one random tour card, press again. All design decisions are locked in `docs/ux_design.md` and `docs/architecture.md`.
 
-**Current state (Feb 28, 2026):** Steps 1-17 and 19 complete. Step 11 (data seeding) in progress. Steps 18 and 20 remaining. See status markers on each step below.
+**Current state (Feb 28, 2026):** Phase 1 Steps 1-19 complete. Step 11 (data seeding) complete (~4,200+ tours from 43 destinations). Step 20 (polish) remaining. Phase 2 (Right Now Somewhere) and Phase 3 (The World's Most ___) are code-complete — see below.
 
 ---
 
@@ -134,7 +134,7 @@ Features: position tracking, configurable interval (`INDEXER_INTERVAL_MINUTES`),
 
 ---
 
-### Step 11: Seed Development Data [IN PROGRESS]
+### Step 11: Seed Development Data [DONE]
 
 Run indexer on ~50 diverse destinations across all continents to build ~500-1000 tour dataset for UI development. This is a run step, not a code step.
 
@@ -221,7 +221,7 @@ Mobile: horizontal text below spin button. Desktop: top-right header. Current fe
 
 ---
 
-### Step 18: OG Image Generation [TODO]
+### Step 18: OG Image Generation [DONE]
 
 Dynamic OG images via Next.js `ImageResponse`. Tour photo composited with branded overlay.
 
@@ -274,11 +274,166 @@ Steps 1-11 = data layer, 12 = API layer, 13-17 = UI layer, 18 = sharing layer, 1
 
 ---
 
+---
+
+# Phase 2: Right Now Somewhere
+
+## Context
+
+Phase 1 (Tour Roulette) functionally complete. Phase 2 is a read-only view over the same `tours` table — no new data pipeline, no new API integrations. Uses `Intl.DateTimeFormat` for timezone math (no external library).
+
+---
+
+### Step 1: Timezone Helpers + Right Now DB Query [DONE]
+
+**Created:** `src/lib/timezone.ts`
+- `getCurrentHour(tz)` — uses `Intl.DateTimeFormat` to get current hour in a timezone
+- `formatLocalTime(tz)` — returns "6:47 AM" style string
+- `getTimeOfDayLabel(hour)` — "sunrise" (6-8), "golden hour" (16-18), "morning" (9-11), "afternoon" (12-15)
+- `getGoldenTimezones(allTimezones)` — returns IANA strings where current local hour is 6-8 or 16-18
+- `getPleasantTimezones(allTimezones)` — fallback: hours 9-15 (daytime)
+
+**Modified:** `src/lib/db.ts`
+- Added `getDistinctTimezones()` — returns distinct IANA timezone strings from active tours
+- Added `getRightNowTours(timezones, count)` — one quality tour per timezone, randomized, requires `image_url IS NOT NULL AND rating >= 4.0`
+- Extracted `tourRowToRouletteTour()` from API route into shared module
+
+**Modified:** `src/lib/types.ts`
+- Added `RightNowMoment` interface
+
+**Done when:** `getGoldenTimezones()` returns correct timezones. `getRightNowTours()` returns quality tours. Build passes.
+
+---
+
+### Step 2: Right Now Dedicated Page [DONE]
+
+**Created:** `src/app/right-now/page.tsx`
+- Pure server component (no client JS — time computed at render)
+- Calls `getGoldenTimezones()` → `getRightNowTours()` → renders 6 moment cards
+- Each card: time badge ("6:47 AM · sunrise"), destination, tour photo + title + stats
+- Links to `/roulette/[id]` for tour detail (reuses existing detail page)
+- `force-dynamic` export for fresh time data on each request
+
+**Modified:** `src/components/FeatureNav.tsx` — updated `right-now` href to `/right-now`
+
+**Done when:** `/right-now` shows 6 time-aware tour cards from golden-hour timezones. FeatureNav works.
+
+---
+
+### Step 3: Right Now OG Image + Homepage Teaser [DONE]
+
+**Created:** `src/app/api/og/right-now/route.tsx`
+- OG image for the feature page (picks first golden-hour tour)
+- Same ImageResponse pattern: photo + gradient + "Right Now Somewhere..." badge + time overlay
+
+**Modified:** `src/app/right-now/page.tsx` — added OG image to metadata
+
+**Modified:** `src/app/page.tsx` — added ambient teaser below RouletteView
+- Server component section: one line "Right now in {city}, it's {time}..." linking to `/right-now`
+
+**Done when:** Sharing `/right-now` shows branded OG preview. Homepage has teaser line.
+
+---
+
+# Phase 3: The World's Most ___
+
+## Context
+
+Six superlatives derived from pure SQL queries over the existing tours table. No AI needed. Data quality filters prevent outliers ($1M tours, 365-day "tours").
+
+---
+
+### Step 4: Superlative DB Queries [DONE]
+
+**Modified:** `src/lib/db.ts`
+- Added `SUPERLATIVE_QUERIES` map with 6 SQL queries (data quality filters baked in)
+- Added `getSuperlative(type)` and `getAllSuperlatives()`
+
+**Modified:** `src/lib/types.ts`
+- Added `SuperlativeType` union, `SuperlativeConfig`, `SuperlativeResult`
+
+**6 superlatives:**
+
+| Slug | Title | Query | Data Filters |
+|------|-------|-------|--------------|
+| `most-expensive` | Most Expensive Tour | `ORDER BY from_price DESC` | price ≤ $50K |
+| `cheapest-5star` | Cheapest 5-Star Experience | `rating >= 4.5, ORDER BY from_price ASC` | reviews ≥ 10 |
+| `longest` | Longest Tour on Earth | `ORDER BY duration_minutes DESC` | duration ≤ 20160 min (2 weeks) |
+| `shortest` | Shortest Tour on Earth | `ORDER BY duration_minutes ASC` | duration ≥ 30 min |
+| `most-reviewed` | Most Reviewed Tour | `ORDER BY review_count DESC` | — |
+| `hidden-gem` | Highest-Rated Hidden Gem | `rating >= 4.8, reviews 10-100` | — |
+
+**Done when:** All 6 queries return interesting, real tours. No outliers.
+
+---
+
+### Step 5: World's Most Gallery Page [DONE]
+
+**Created:** `src/app/worlds-most/page.tsx`
+- Server component. Calls `getAllSuperlatives()`, renders 6 cards
+- Each card: superlative title, stat badge (e.g., "$44,120"), tour photo + title + destination
+- Each links to `/worlds-most/[slug]`
+- Full OG metadata
+
+**Modified:** `src/components/FeatureNav.tsx` — updated `worlds-most` href to `/worlds-most`
+
+**Done when:** `/worlds-most` shows 6 superlative cards. FeatureNav links work.
+
+---
+
+### Step 6: World's Most Detail Page [DONE]
+
+**Created:** `src/app/worlds-most/[slug]/page.tsx`
+- Server component, same pattern as `/roulette/[id]/page.tsx`
+- Validates slug against known 6 types
+- `cache()` for dedup between metadata and render
+- Superlative badge + large stat + full tour detail + "Book on Viator" with `campaign=worlds-most`
+- `generateStaticParams()` for all 6 slugs
+
+**Created:** `src/app/worlds-most/[slug]/not-found.tsx`
+
+**Done when:** All 6 detail pages render. Invalid slugs → 404. Metadata correct.
+
+---
+
+### Step 7: World's Most OG Images [DONE]
+
+**Created:** `src/app/api/og/worlds-most/[slug]/route.tsx`
+- Same ImageResponse pattern but with superlative badge + large stat in overlay
+- e.g., "MOST EXPENSIVE TOUR" badge, "$44,120" in large accent text
+
+**Modified:** `src/app/worlds-most/[slug]/page.tsx` — OG image points to `/api/og/worlds-most/[slug]`
+
+**Done when:** OG images render for all 6 slugs. Sharing shows branded preview.
+
+---
+
+### Step 8: Polish + Shared Utils [DONE]
+
+- Added `formatPrice()` to `src/lib/format.ts`
+- Updated all tracking docs (NOW.md, CURRENT_STATE.md, CHANGELOG.md)
+- Updated implementation plan with Phase 2+3 details
+- Updated folder READMEs with new routes and modules
+
+---
+
+### Step 9: Build Verification [TODO]
+
+- `npm run build` — zero errors
+- `npm run lint` — zero warnings
+- Manual test checklist:
+  - [ ] `/right-now` shows golden-hour tours
+  - [ ] Homepage teaser shows "Right now in..."
+  - [ ] `/worlds-most` shows 6 superlative cards
+  - [ ] All 6 `/worlds-most/[slug]` pages render
+  - [ ] OG images work for all new routes
+  - [ ] FeatureNav links work bidirectionally
+  - [ ] Mobile responsive at 375px
+  - [ ] Share flow works end-to-end
+
+---
+
 ## Future Phases (Reference Only)
-
-**Phase 2: Right Now Somewhere** — Query tours by timezone for "beautiful" time of day, ambient teaser on Roulette homepage, dedicated `/right-now` page + detail page + OG images.
-
-**Phase 3: The World's Most ___** — Daily superlative computation (pure SQL), `/worlds-most` gallery page + `/worlds-most/[slug]` cards, superlative badge styling, OG images.
 
 **Phase 4: Six Degrees of Anywhere** — City pair input, Claude Sonnet 4.6 chain generation, vertical timeline visualization, cache in `six_degrees_chains` table, OG images.
 

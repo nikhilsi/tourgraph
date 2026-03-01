@@ -68,32 +68,41 @@ tourgraph/
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx        # Root layout (dark theme)
-│   │   ├── page.tsx          # Homepage — Tour Roulette
+│   │   ├── page.tsx          # Homepage — Roulette + Right Now teaser
 │   │   ├── globals.css       # Tailwind + theme tokens
-│   │   ├── api/roulette/hand/route.ts  # Hand API endpoint
-│   │   └── roulette/[id]/    # Tour detail page
+│   │   ├── roulette/[id]/    # Tour detail page
+│   │   ├── right-now/        # Right Now Somewhere (Phase 2)
+│   │   ├── worlds-most/      # Superlatives gallery (Phase 3)
+│   │   ├── worlds-most/[slug]/ # Superlative detail (Phase 3)
+│   │   ├── api/roulette/hand/  # Hand API endpoint
+│   │   ├── api/og/roulette/[id]/ # Roulette OG images
+│   │   ├── api/og/right-now/    # Right Now OG image
+│   │   └── api/og/worlds-most/[slug]/ # Superlative OG images
 │   ├── components/
 │   │   ├── TourCard.tsx      # Photo-dominant tour card
 │   │   ├── RouletteView.tsx  # Interactive spin + hand cycling
 │   │   ├── ShareButton.tsx   # Web Share API + clipboard
 │   │   ├── TourCardSkeleton.tsx
-│   │   └── FeatureNav.tsx    # Feature links
+│   │   └── FeatureNav.tsx    # Cross-feature navigation
 │   ├── lib/
 │   │   ├── types.ts          # All TypeScript types
-│   │   ├── db.ts             # SQLite layer + Hand Algorithm
+│   │   ├── db.ts             # SQLite layer + all queries
+│   │   ├── timezone.ts       # Timezone helpers (Phase 2)
+│   │   ├── format.ts         # Shared formatting (price, duration)
 │   │   ├── viator.ts         # Viator API client
 │   │   ├── claude.ts         # Claude API (one-liners)
 │   │   └── continents.ts     # Continent lookup from Viator hierarchy
 │   └── scripts/
 │       ├── indexer.ts        # Drip + Delta indexer
+│       ├── seed-dev-data.ts  # Seeds 43 destinations
 │       ├── seed-destinations.ts
-│       └── seed-dev-data.ts
+│       └── backfill-oneliners.ts # Batch AI one-liner generation
 │
 ├── docs/
 │   ├── product_brief.md      # Product vision (source of truth)
 │   ├── ux_design.md          # UX design, wireframes, interaction patterns
 │   ├── architecture.md       # Technical architecture, schema, indexer design
-│   ├── implementation_plan.md # 20-step Phase 1 build plan
+│   ├── implementation_plan.md # Phase 1-3 build plan
 │   ├── viator-api-reference.md # Basic-tier API endpoint summary
 │   ├── viator-openapi.json   # Full Viator OpenAPI 3.0 spec
 │   └── thesis_validation.md  # Why we pivoted

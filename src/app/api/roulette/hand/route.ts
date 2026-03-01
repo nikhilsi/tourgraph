@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { getRouletteHand } from "@/lib/db";
-import type { TourRow, RouletteTour, RouletteHandResponse } from "@/lib/types";
+import { getRouletteHand, tourRowToRouletteTour } from "@/lib/db";
+import type { RouletteHandResponse } from "@/lib/types";
 
 const MAX_EXCLUDE_IDS = 200; // H3: Cap to prevent URL/SQL bombs
 
@@ -18,25 +18,6 @@ function isRateLimited(ip: string): boolean {
   }
   entry.count++;
   return entry.count > RATE_LIMIT_MAX_REQUESTS;
-}
-
-function tourRowToRouletteTour(row: TourRow): RouletteTour {
-  return {
-    id: row.id,
-    productCode: row.product_code,
-    title: row.title,
-    oneLiner: row.one_liner ?? "",
-    destinationName: row.destination_name ?? "",
-    country: row.country ?? "",
-    continent: row.continent ?? "",
-    rating: row.rating ?? 0,       // M6: ?? instead of ||
-    reviewCount: row.review_count ?? 0,
-    fromPrice: row.from_price ?? 0,
-    durationMinutes: row.duration_minutes ?? 0,
-    imageUrl: row.image_url ?? "",
-    viatorUrl: row.viator_url ?? "",
-    weightCategory: row.weight_category ?? "wildcard",
-  };
 }
 
 export async function GET(request: Request) {

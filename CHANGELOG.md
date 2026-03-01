@@ -6,6 +6,31 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [4.0.0] - 2026-02-28
+
+### Added — Phase 2: Right Now Somewhere
+- `src/lib/timezone.ts` — Timezone helpers using `Intl.DateTimeFormat` (no external deps): golden hour detection, local time formatting, time-of-day labels
+- `src/app/right-now/page.tsx` — Server component showing 6 golden-hour moment cards with local time + destination
+- `src/app/api/og/right-now/route.tsx` — Dynamic OG image for Right Now feature page
+- Homepage teaser: "Right now in {city}, it's {time}..." linking to `/right-now`
+- `RightNowMoment` type, `getDistinctTimezones()`, `getRightNowTours()` queries in db.ts
+
+### Added — Phase 3: The World's Most ___
+- `src/app/worlds-most/page.tsx` — Superlatives gallery (6 cards: most expensive, cheapest 5-star, longest, shortest, most reviewed, hidden gem)
+- `src/app/worlds-most/[slug]/page.tsx` — Superlative detail page with full tour info, stats, Viator booking link
+- `src/app/worlds-most/[slug]/not-found.tsx` — 404 for invalid superlative slugs
+- `src/app/api/og/worlds-most/[slug]/route.tsx` — Dynamic OG images with superlative badge + stat
+- `SUPERLATIVE_QUERIES` map with data quality filters (price ≤ $50K, duration 30min-2wk, reviews ≥ 10 for gems)
+- `SuperlativeType`, `SuperlativeConfig`, `SuperlativeResult` types
+- `formatPrice()` utility in format.ts
+
+### Changed
+- Extracted `tourRowToRouletteTour()` from API route into shared `src/lib/db.ts`
+- Updated `FeatureNav.tsx` hrefs: right-now → `/right-now`, worlds-most → `/worlds-most`
+- Updated implementation plan with Phase 2+3 steps
+
+---
+
 ## [3.1.0] - 2026-02-28
 
 ### Security

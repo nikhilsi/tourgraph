@@ -98,6 +98,40 @@ export interface TourDetail extends RouletteTour {
 }
 
 // ============================================================
+// Right Now Somewhere
+// ============================================================
+
+export interface RightNowMoment {
+  tour: RouletteTour;
+  timezone: string;
+  localTime: string;
+  timeOfDayLabel: string;
+}
+
+// ============================================================
+// World's Most Superlatives
+// ============================================================
+
+export type SuperlativeType =
+  | "most-expensive"
+  | "cheapest-5star"
+  | "longest"
+  | "shortest"
+  | "most-reviewed"
+  | "hidden-gem";
+
+export interface SuperlativeConfig {
+  type: SuperlativeType;
+  title: string;
+  statLabel: string;
+}
+
+export interface SuperlativeResult {
+  type: SuperlativeType;
+  tour: TourRow;
+}
+
+// ============================================================
 // Weight Categories (Roulette Hand Algorithm)
 // ============================================================
 
