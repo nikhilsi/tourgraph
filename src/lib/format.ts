@@ -7,17 +7,29 @@ export function formatPrice(price: number): string {
 }
 
 export function formatDurationShort(minutes: number): string {
-  if (minutes < 60) return `${minutes}m`;
-  const hours = Math.floor(minutes / 60);
+  if (minutes < 60) return `${minutes} min`;
+  const days = Math.floor(minutes / 1440);
+  const hours = Math.floor((minutes % 1440) / 60);
   const mins = minutes % 60;
-  return mins > 0 ? `${hours}h ${mins}m` : `${hours}h`;
+  if (days > 0) {
+    if (hours === 0) return days === 1 ? `1 day` : `${days} days`;
+    return `${days}d ${hours}h`;
+  }
+  if (mins > 0) return `${hours} hr ${mins} min`;
+  return hours === 1 ? `1 hr` : `${hours} hrs`;
 }
 
 export function formatDurationLong(minutes: number): string {
   if (minutes < 60) return `${minutes} minutes`;
-  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(minutes / 1440);
+  const hours = Math.floor((minutes % 1440) / 60);
   const mins = minutes % 60;
-  return mins > 0 ? `${hours}h ${mins}m` : `${hours} hours`;
+  if (days > 0) {
+    const parts = [days === 1 ? "1 day" : `${days} days`];
+    if (hours > 0) parts.push(hours === 1 ? "1 hour" : `${hours} hours`);
+    return parts.join(", ");
+  }
+  return mins > 0 ? `${hours}h ${mins}m` : hours === 1 ? "1 hour" : `${hours} hours`;
 }
 
 export function safeJsonParse<T>(json: string | null, fallback: T): T {
