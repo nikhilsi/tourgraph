@@ -18,7 +18,7 @@ loadEnv();
 
 const BATCH_SIZE = 20;
 const DELAY_BETWEEN_CALLS_MS = 300;
-const MAX_ONE_LINER_LENGTH = 120;
+const MAX_ONE_LINER_LENGTH = 150;
 const CLAUDE_MODEL = process.env.CLAUDE_MODEL || "claude-haiku-4-5-20251001";
 
 const SYSTEM_PROMPT = `You write witty, warm, one-line descriptions of tours and experiences.
@@ -138,9 +138,11 @@ async function generateBatch(
     ) {
       clean = clean.slice(1, -1);
     }
-    // Truncate if too long
+    // Truncate at word boundary if too long
     if (clean.length > MAX_ONE_LINER_LENGTH) {
-      clean = clean.slice(0, MAX_ONE_LINER_LENGTH - 3) + "...";
+      const trimmed = clean.slice(0, MAX_ONE_LINER_LENGTH - 1);
+      const lastSpace = trimmed.lastIndexOf(" ");
+      clean = (lastSpace > 80 ? trimmed.slice(0, lastSpace) : trimmed) + "…";
     }
     result[code] = clean;
   }
