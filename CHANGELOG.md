@@ -6,6 +6,23 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [4.3.0] - 2026-03-01
+
+### Added — Six Degrees UI (Phase 4)
+- `src/app/six-degrees/page.tsx` — Gallery page: chain cards with city pair, summary quote, theme list, stop count, "Surprise Me" random button
+- `src/app/six-degrees/SurpriseMeButton.tsx` — Client component for random chain navigation
+- `src/app/six-degrees/[slug]/page.tsx` — Detail page: vertical timeline/stepper with numbered accent circles, tour cards with photos/stats, theme badge pills, italic connection text between stops
+- `src/app/six-degrees/[slug]/not-found.tsx` — 404 with link back to gallery
+- `src/app/api/og/six-degrees/[slug]/route.tsx` — OG image: dark bg, city pair headline, summary quote, mini chain visualization (numbered circles connected by line), city labels
+- Chain query functions in `db.ts`: `getAllChains()`, `getChainBySlug()`, `chainSlug()`, types `ChainLink`, `ChainData`, `ChainWithMeta`
+- v1 UI spec added to `docs/phase4-six-degrees.md` with ASCII wireframes, design details, routes, data flow
+
+### Status
+- Full indexer running: ~613/2,712 destinations (22.6%), ~40K tours in DB
+- Build + lint: zero errors (17 routes compile clean)
+
+---
+
 ## [4.2.0] - 2026-03-01
 
 ### Added

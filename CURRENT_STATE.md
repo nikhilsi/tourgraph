@@ -31,28 +31,26 @@ Homepage teaser: "Right now in {city}, it's {time}..."
 → Tap → /worlds-most/[slug] detail page → Book on Viator → Share → OG preview
 ```
 
-## Phase 4: Six Degrees — Research Complete
+## Phase 4: Six Degrees — UI Complete, Needs Data
 
-Chain generation prototyped and validated. Prompt v2 produces 5-stop chains with unique themes reliably (8/8 test runs). See `docs/phase4-six-degrees.md` for full research findings.
+UI fully built: gallery page, detail page with vertical timeline visualization, OG image route. Waiting for chain data to populate.
 
-**Blocked on:** Data expansion (need more than 53 cities for interesting chains).
+```
+/six-degrees → Gallery of curated chains (cards with city pair, summary, themes)
+→ "Surprise Me" picks random chain → /six-degrees/[slug] detail
+→ Vertical timeline: numbered circles, tour cards with photos, theme badges
+→ Share → OG preview (dark bg, city pair, mini chain visualization)
+```
 
-**Chain generation script ready:** `src/scripts/generate-chains.ts` — reads pairs from `chain-pairs.json`, generates via Claude Sonnet 4.6, stores in `six_degrees_chains` table. File logging, retries, validation, dedup.
+**Chain generation script ready:** `src/scripts/generate-chains.ts` — reads pairs from `chain-pairs.json`, generates via Claude Sonnet 4.6, stores in `six_degrees_chains` table.
 
-## Data Expansion: Ready to Run
+**Blocked on:** Data expansion (indexer running, ~22% done) → decide city pairs → generate chains.
 
-**Critical discovery:** Only 53 of 3,380 Viator destinations indexed (1.6%). The `seed-dev-data.ts` hardcodes 43 destination IDs — this was a dev seed, not production data.
+## Data Expansion: Running
 
-**Indexer hardened for production run:**
-- File logging to `logs/indexer-<timestamp>.log`
-- Leaf-node filtering (~2,712 destinations, skips countries/states)
-- Per-destination timing + batch ETA
-- Final summary block (duration, counts, errors, API calls, DB size)
-- Smoke-tested with `--dest 704` (Seattle)
+Full indexer running (`--full --no-ai`): ~613/2,712 leaf destinations (22.6%), ~40,004 tours in DB so far. ~15.5 hours remaining.
 
-**Expected result:** ~100K tours, ~400MB SQLite DB, 10-16 hours runtime.
-
-**Sequence:** Wait for one-liner backfill → Run full indexer → Backfill new one-liners → Generate chains → Build UI.
+**After indexer completes:** Backfill one-liners → Decide city pairs → Generate chains.
 
 ### Architecture
 
@@ -64,10 +62,15 @@ src/
 │   ├── right-now/                  # Right Now Somewhere page
 │   ├── worlds-most/                # Superlatives gallery
 │   ├── worlds-most/[slug]/         # Superlative detail page
+│   ├── six-degrees/                # Six Degrees gallery
+│   ├── six-degrees/[slug]/         # Chain detail (vertical timeline)
+│   ├── about/                      # About page
+│   ├── story/                      # Origin story page
 │   ├── api/roulette/hand/          # Hand API (GET, ~20 tours)
 │   ├── api/og/roulette/[id]/       # Roulette OG images
 │   ├── api/og/right-now/           # Right Now OG image
-│   └── api/og/worlds-most/[slug]/  # Superlative OG images
+│   ├── api/og/worlds-most/[slug]/  # Superlative OG images
+│   └── api/og/six-degrees/[slug]/  # Six Degrees OG images
 ├── components/
 │   ├── RouletteView.tsx            # Core game loop (client)
 │   ├── TourCard.tsx                # Tour card display
@@ -94,14 +97,15 @@ data/
 └── tourgraph.db                    # SQLite (gitignored)
 ```
 
-### Data (Current — Dev Seed)
+### Data (Expanding)
 
-- **~9,800 tours** indexed from 53 destinations
-- **~8,100 with AI one-liners** (backfill nearly complete)
+- **~40,000 tours** indexed from ~613 destinations (indexer running, targeting ~2,712)
+- **~9,800 with AI one-liners** (original dev seed; new tours need backfill)
 - **3,380 destinations** from Viator API (~2,712 are leaf nodes)
 - **7 weight categories** for roulette variety
 - **6 superlatives** queried live from tours table
 - **20+ timezones** with global coverage for Right Now
+- **0 chains** generated (waiting for data expansion to complete)
 
 ### Key Technical Choices
 

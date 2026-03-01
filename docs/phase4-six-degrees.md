@@ -1,8 +1,8 @@
 # Phase 4: Six Degrees of Anywhere — Research & Design
 
 ---
-**Last Updated**: February 28, 2026
-**Status**: Research & prototyping — prompt validated, data gap identified
+**Last Updated**: March 1, 2026
+**Status**: v1 UI spec finalized, building
 ---
 
 ## Concept
@@ -93,6 +93,157 @@ Benefits: guaranteed quality, zero latency (< 50ms from SQLite), zero per-reques
 
 ---
 
+## v1 UI Spec (Final)
+
+Two pages. Pure CSS, no new dependencies. Dark theme, mobile-first.
+
+### Gallery Page (`/six-degrees`)
+
+```
+┌──────────────────────────────────┐
+│            TourGraph              │
+│                                   │
+│     Six Degrees of Anywhere       │
+│     "Every city is connected.     │
+│      Find the surprising links."  │
+│                                   │
+│  ┌─────────────────────────────┐  │
+│  │ Tokyo → Rome                │  │
+│  │ "From sushi to pasta,       │  │
+│  │  through ancient temples    │  │
+│  │  and street art"            │  │
+│  │                             │  │
+│  │ Connected by: craftsmanship │  │
+│  │ · nightlife · ancient       │  │
+│  │ history · sacred            │  │
+│  │                             │  │
+│  │ 5 stops · 4 themes          │  │
+│  └─────────────────────────────┘  │
+│                                   │
+│  ┌─────────────────────────────┐  │
+│  │ Buenos Aires → Istanbul     │  │
+│  │ ...                         │  │
+│  └─────────────────────────────┘  │
+│                                   │
+│       [ Surprise Me ]             │
+│                                   │
+│  roulette · right now · ...       │
+└──────────────────────────────────┘
+```
+
+- Each chain = a card showing city pair, summary quote, theme list, stop count
+- Tapping a card → detail page
+- "Surprise Me" button picks a random chain (client-side redirect)
+- Each chain has a unique URL: `/six-degrees/tokyo-rome`
+- Data: query `six_degrees_chains` table, server component
+
+### Detail Page (`/six-degrees/[slug]`)
+
+Vertical timeline/stepper layout. Left-side line with circle nodes at each stop. Tour card at each node. Theme badge + connection text between stops.
+
+```
+┌──────────────────────────────────┐
+│            TourGraph              │
+│                                   │
+│      Tokyo → Rome                 │
+│      "From sushi to pasta..."     │
+│                                   │
+│   ●  1. Tokyo, Japan              │
+│   │  ┌────────────────────────┐   │
+│   │  │ 🖼 [tour photo]        │   │
+│   │  │ "Calligraphy Workshop" │   │
+│   │  │ ★ 4.9  $45  2 hrs     │   │
+│   │  └────────────────────────┘   │
+│   │                               │
+│   │  ┈ craftsmanship ┈            │
+│   │  "From brush strokes in       │
+│   │   Tokyo to silver filigree    │
+│   │   in Singapore..."            │
+│   │                               │
+│   ●  2. Singapore                 │
+│   │  ┌────────────────────────┐   │
+│   │  │ 🖼 [tour photo]        │   │
+│   │  │ "Night Bike Tour"      │   │
+│   │  │ ★ 4.8  $55  3 hrs     │   │
+│   │  └────────────────────────┘   │
+│   │                               │
+│   │  ┈ nightlife ┈                │
+│   │  "Both cities come alive      │
+│   │   after dark..."              │
+│   │                               │
+│   ●  3. Athens, Greece            │
+│   │  ...                          │
+│   │                               │
+│   ●  4. Istanbul, Turkey          │
+│   │  ...                          │
+│   │                               │
+│   ●  5. Rome, Italy               │
+│      ┌────────────────────────┐   │
+│      │ 🖼 [tour photo]        │   │
+│      │ "Sunset at Colosseum"  │   │
+│      │ ★ 5.0  $120  2 hrs    │   │
+│      └────────────────────────┘   │
+│                                   │
+│   [ Share ]  [ Explore Another ]  │
+│                                   │
+│   roulette · right now · ...      │
+└──────────────────────────────────┘
+```
+
+### Design Details
+
+- **Vertical line**: `border-left: 2px solid` in `text-dim` color, offset from left edge
+- **Circle nodes**: Pseudo-element circles at each stop, filled with accent color
+- **Tour cards**: Reuse existing card styling — photo (aspect 3:2), title, stats row. Tappable to `/roulette/[id]` detail page.
+- **Theme badge**: Small pill/tag between stops showing the theme (e.g., "craftsmanship"), styled like a category tag
+- **Connection text**: The witty 1-2 sentence description below the theme badge. Italic, `text-muted`.
+- **Last stop**: No connection text or line below it
+- **Mobile**: Single column, full width. Line on left. Natural vertical scroll.
+- **Desktop**: Max-width container (same `max-w-lg` as other pages), centered.
+
+### Gallery Card Design
+
+- Background: `bg-surface` (same as tour cards)
+- City pair as heading: "Tokyo → Rome" in bold
+- Summary quote in italic below
+- Theme list: "Connected by: craftsmanship, nightlife, ancient history, sacred" in `text-dim`
+- Metadata: "5 stops" in small text
+- Whole card is a link to the detail page
+
+### OG Image (`/api/og/six-degrees/[slug]`)
+
+- 1200x630, dark background
+- City pair as large text: "Tokyo → Rome"
+- Summary quote below
+- 5 small circles connected by a line (mini chain visualization)
+- TourGraph branding
+
+### What's NOT in v1
+
+- No two-city input (v2)
+- No staggered reveal animation (v2 — add Framer Motion later)
+- No SVG path drawing animation (v2)
+- No loading states (v1 is pre-computed, instant)
+- No daily featured chain (decide later)
+
+### Routes
+
+| Route | Type | Purpose |
+|-------|------|---------|
+| `/six-degrees` | Gallery page (server component) | Browse all curated chains |
+| `/six-degrees/[slug]` | Detail page (server component) | View full chain with timeline |
+| `/api/og/six-degrees/[slug]` | OG image route | Social preview for shared chains |
+
+### Data Flow
+
+1. `six_degrees_chains` table has pre-computed chains (from `generate-chains.ts`)
+2. Gallery page queries all chains, renders as cards
+3. Detail page looks up chain by slug (`tokyo-rome`), renders timeline
+4. Each tour in the chain is looked up from `tours` table for photo/stats
+5. OG image generated on-demand from chain data
+
+---
+
 ## Technical Approach
 
 ### Chain Generation (Build-Time Script)
@@ -167,10 +318,10 @@ Original estimate was 20-30. With more cities, could go much higher (50-100+). E
 
 ## Open Questions
 
-- [ ] How many destinations to index? (100? 200? 500?)
-- [ ] How many curated chains for launch?
-- [ ] What does the OG image look like for a chain?
-- [ ] Daily featured chain? Or static gallery?
+- [x] ~~How many destinations to index?~~ → All 2,712 leaf destinations (indexer running now)
+- [ ] How many curated chains for launch? (decide after data expansion)
+- [x] ~~What does the OG image look like for a chain?~~ → Dark bg, city pair text, summary, mini chain dots, branding
+- [ ] Daily featured chain? Or static gallery? (decide later)
 - [x] ~~Should chains be directional or bidirectional?~~ → Bidirectional (store one direction, reverse for display)
 - [x] ~~Do we need intermediate cities?~~ → Yes, validated. 5-stop chains across multiple cities are significantly better than 2-city chains.
 - [x] ~~Prompt quality reliable?~~ → Yes, v2 prompt produces consistent 5-stop, unique-theme chains.

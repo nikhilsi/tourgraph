@@ -619,6 +619,58 @@ export function getDestinationById(id: string): DestinationRow | undefined {
 }
 
 // ============================================================
+// Six Degrees Chains
+// ============================================================
+
+export interface ChainLink {
+  city: string;
+  country: string;
+  tour_title: string;
+  tour_id: number;
+  connection_to_next: string | null;
+  theme: string;
+}
+
+export interface ChainData {
+  city_from: string;
+  city_to: string;
+  chain: ChainLink[];
+  summary: string;
+}
+
+export interface ChainWithMeta extends ChainData {
+  id: number;
+  slug: string;
+  generated_at: string;
+}
+
+function chainSlug(cityFrom: string, cityTo: string): string {
+  return `${cityFrom}-${cityTo}`.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z0-9-]/g, "");
+}
+
+export function getAllChains(): ChainWithMeta[] {
+  const db = getDb(true);
+  const rows = db
+    .prepare("SELECT * FROM six_degrees_chains ORDER BY id")
+    .all() as { id: number; city_from: string; city_to: string; chain_json: string; generated_at: string }[];
+
+  return rows.map((row) => {
+    const data = JSON.parse(row.chain_json) as ChainData;
+    return {
+      ...data,
+      id: row.id,
+      slug: chainSlug(data.city_from, data.city_to),
+      generated_at: row.generated_at,
+    };
+  });
+}
+
+export function getChainBySlug(slug: string): ChainWithMeta | null {
+  const chains = getAllChains();
+  return chains.find((c) => c.slug === slug) ?? null;
+}
+
+// ============================================================
 // Indexer State
 // ============================================================
 
