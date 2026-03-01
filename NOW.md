@@ -39,10 +39,11 @@
 1. **Backfill one-liners for new tours** — After indexer completes. ~100K+ new tours need one-liners.
 2. **Decide city pairs for Six Degrees** — Review available cities, pick curated pairs.
 3. **Generate curated Six Degrees chains** — Run chain generator. Cost: ~$0.02/chain.
-4. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165`
-5. **iOS polish** — Image caching, share card rendering (ImageRenderer), DB enrichment service.
-6. **iOS App Store prep** — Launch screen, screenshots, App Store metadata, real device testing.
-7. **Production testing** — Mobile, OG previews in iMessage/Slack/Twitter, share flow on live URL.
+4. **Deep code review** — Public repo audit: remove secrets/comments/debug code, check for exposed API keys in git history, review security headers, sanitize error messages, audit dependencies, clean up dead code and TODOs.
+5. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165`
+6. **iOS polish** — Image caching, share card rendering (ImageRenderer), DB enrichment service.
+7. **iOS App Store prep** — Launch screen, screenshots, App Store metadata, real device testing.
+8. **Production testing** — Mobile, OG previews in iMessage/Slack/Twitter, share flow on live URL.
 
 ### Open Decisions
 

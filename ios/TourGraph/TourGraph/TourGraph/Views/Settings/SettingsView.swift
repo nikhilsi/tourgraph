@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Environment(\.dismiss) private var dismiss
     let settings: AppSettings
     let favorites: Favorites
     let database: DatabaseService
@@ -51,6 +52,11 @@ struct SettingsView: View {
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") { dismiss() }
+                }
+            }
             .task {
                 tourCount = (try? database.tourCount()) ?? 0
                 destinationCount = (try? database.destinationCount()) ?? 0

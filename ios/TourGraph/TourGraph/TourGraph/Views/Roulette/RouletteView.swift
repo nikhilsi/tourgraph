@@ -7,6 +7,7 @@ struct RouletteView: View {
 
     @State private var dragOffset: CGFloat = 0
     @State private var cardOpacity: Double = 1
+    @State private var showSettings = false
 
     var body: some View {
         NavigationStack {
@@ -23,6 +24,17 @@ struct RouletteView: View {
                     initialView
                 }
             }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { showSettings = true } label: {
+                        Image(systemName: "gearshape")
+                            .foregroundStyle(.white.opacity(0.6))
+                    }
+                }
+            }
+            .sheet(isPresented: $showSettings) {
+                SettingsView(settings: settings, favorites: favorites, database: rouletteState.database)
+            }
             .onAppear {
                 if rouletteState.currentTour == nil {
                     rouletteState.fetchHand()
@@ -36,13 +48,13 @@ struct RouletteView: View {
     @ViewBuilder
     private func cardStack(tour: Tour) -> some View {
         VStack(spacing: 0) {
-            // Tagline
-            Text("The world's most surprising tours")
-                .font(.caption)
-                .foregroundStyle(.white.opacity(0.4))
-                .padding(.top, 8)
-
-            Spacer()
+            // Logo
+            Image("LogoWhite")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 28)
+                .padding(.top, 12)
+                .padding(.bottom, 16)
 
             // Tour card with swipe
             NavigationLink(value: tour.id) {
@@ -58,7 +70,7 @@ struct RouletteView: View {
             )
             .gesture(swipeGesture)
 
-            Spacer()
+            Spacer(minLength: 16)
 
             // Bottom controls
             HStack(spacing: 24) {

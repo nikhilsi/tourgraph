@@ -13,14 +13,19 @@ struct ContentView: View {
                     Label("Roulette", systemImage: "dice")
                 }
 
-            ExploreView(database: database, favorites: favorites)
+            RightNowTab(database: database, favorites: favorites, settings: settings)
                 .tabItem {
-                    Label("Explore", systemImage: "safari")
+                    Label("Right Now", systemImage: "sun.horizon")
                 }
 
-            SettingsView(settings: settings, favorites: favorites, database: database)
+            WorldsMostTab(database: database, favorites: favorites, settings: settings)
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape")
+                    Label("World's Most", systemImage: "trophy")
+                }
+
+            SixDegreesTab(database: database, favorites: favorites, settings: settings)
+                .tabItem {
+                    Label("Six Degrees", systemImage: "point.3.connected.trianglepath.dotted")
                 }
         }
         .tint(.white)

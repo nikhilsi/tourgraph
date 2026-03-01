@@ -1,24 +1,54 @@
 import SwiftUI
 
-/// Section version for embedding in ExploreView (no ScrollView).
+// MARK: - Standalone tab
+
+struct SixDegreesTab: View {
+    let database: DatabaseService
+    let favorites: Favorites
+    let settings: AppSettings
+    @State private var showSettings = false
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                SixDegreesSection(database: database)
+                    .padding(.vertical, 16)
+            }
+            .background(Color.black)
+            .navigationTitle("Six Degrees")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { showSettings = true } label: {
+                        Image(systemName: "gearshape")
+                            .foregroundStyle(.white.opacity(0.6))
+                    }
+                }
+            }
+            .sheet(isPresented: $showSettings) {
+                SettingsView(settings: settings, favorites: favorites, database: database)
+            }
+            .navigationDestination(for: String.self) { slug in
+                ChainDetailView(slug: slug, database: database)
+            }
+        }
+    }
+}
+
+// MARK: - Section (for embedding)
+
 struct SixDegreesSection: View {
     let database: DatabaseService
     @State private var chains: [Chain] = []
     @State private var isLoading = true
-    @State private var surpriseSlug: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             HStack(alignment: .firstTextBaseline) {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Six Degrees of Anywhere")
-                        .font(.title2.bold())
-                        .foregroundStyle(.white)
-
-                    Text("Cities connected through surprising tours")
-                        .font(.subheadline)
-                        .foregroundStyle(.white.opacity(0.5))
-                }
+                Text("Cities connected through surprising tours")
+                    .font(.subheadline)
+                    .foregroundStyle(.white.opacity(0.5))
 
                 Spacer()
 
@@ -68,7 +98,6 @@ struct ChainCardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            // City pair
             HStack {
                 Text(chain.cityFrom)
                     .font(.headline)
@@ -81,7 +110,6 @@ struct ChainCardView: View {
                     .foregroundStyle(.white)
             }
 
-            // Summary
             if !chain.summary.isEmpty {
                 Text(chain.summary)
                     .font(.subheadline)
@@ -90,7 +118,6 @@ struct ChainCardView: View {
                     .lineLimit(2)
             }
 
-            // Stop count + themes
             HStack {
                 Text("\(chain.links.count) stops")
                     .font(.caption)

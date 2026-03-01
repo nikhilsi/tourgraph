@@ -8,7 +8,44 @@ struct RightNowMoment: Identifiable {
     var id: Int { tour.id }
 }
 
-/// Section version for embedding in ExploreView (no ScrollView).
+// MARK: - Standalone tab
+
+struct RightNowTab: View {
+    let database: DatabaseService
+    let favorites: Favorites
+    let settings: AppSettings
+    @State private var showSettings = false
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                RightNowSection(database: database)
+                    .padding(.vertical, 16)
+            }
+            .background(Color.black)
+            .navigationTitle("Right Now")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { showSettings = true } label: {
+                        Image(systemName: "gearshape")
+                            .foregroundStyle(.white.opacity(0.6))
+                    }
+                }
+            }
+            .sheet(isPresented: $showSettings) {
+                SettingsView(settings: settings, favorites: favorites, database: database)
+            }
+            .navigationDestination(for: Int.self) { tourId in
+                TourDetailView(tourId: tourId, database: database, favorites: favorites)
+            }
+        }
+    }
+}
+
+// MARK: - Section (for embedding)
+
 struct RightNowSection: View {
     let database: DatabaseService
     @State private var moments: [RightNowMoment] = []
@@ -16,11 +53,6 @@ struct RightNowSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Right Now Somewhere...")
-                .font(.title2.bold())
-                .foregroundStyle(.white)
-                .padding(.horizontal, 20)
-
             Text("Tours happening where it's golden hour")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.5))
@@ -83,7 +115,6 @@ struct MomentCardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            // Time header
             HStack {
                 Text("Right now in \(moment.tour.destinationName ?? "somewhere")")
                     .font(.caption)

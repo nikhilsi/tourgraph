@@ -1,6 +1,43 @@
 import SwiftUI
 
-/// Section version for embedding in ExploreView (no ScrollView).
+// MARK: - Standalone tab
+
+struct WorldsMostTab: View {
+    let database: DatabaseService
+    let favorites: Favorites
+    let settings: AppSettings
+    @State private var showSettings = false
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                WorldsMostSection(database: database)
+                    .padding(.vertical, 16)
+            }
+            .background(Color.black)
+            .navigationTitle("World's Most")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbarColorScheme(.dark, for: .navigationBar)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button { showSettings = true } label: {
+                        Image(systemName: "gearshape")
+                            .foregroundStyle(.white.opacity(0.6))
+                    }
+                }
+            }
+            .sheet(isPresented: $showSettings) {
+                SettingsView(settings: settings, favorites: favorites, database: database)
+            }
+            .navigationDestination(for: Int.self) { tourId in
+                TourDetailView(tourId: tourId, database: database, favorites: favorites)
+            }
+        }
+    }
+}
+
+// MARK: - Section (for embedding)
+
 struct WorldsMostSection: View {
     let database: DatabaseService
     @State private var superlatives: [SuperlativeResult] = []
@@ -8,11 +45,6 @@ struct WorldsMostSection: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("The World's Most ___")
-                .font(.title2.bold())
-                .foregroundStyle(.white)
-                .padding(.horizontal, 20)
-
             Text("Superlatives from 100,000+ tours")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.5))
@@ -46,7 +78,6 @@ struct SuperlativeCardView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // Badge + stat highlight
             HStack {
                 HStack(spacing: 4) {
                     Text(result.type.emoji)
@@ -58,7 +89,6 @@ struct SuperlativeCardView: View {
 
                 Spacer()
 
-                // The specific "most" stat — the whole point of a superlative
                 Text(superlativeStat)
                     .font(.caption.bold())
                     .foregroundStyle(.yellow)
