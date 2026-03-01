@@ -6,6 +6,8 @@ const features = [
   { name: "right-now", href: "/right-now", label: "right now" },
   { name: "worlds-most", href: "/worlds-most", label: "world's most" },
   { name: "six-degrees", href: "/", label: "six degrees" },
+  { name: "about", href: "/about", label: "about" },
+  { name: "story", href: "/story", label: "story" },
 ];
 
 export default function FeatureNav({ current }: { current: string }) {
