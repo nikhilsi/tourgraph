@@ -197,15 +197,81 @@ Required: 5 screenshots minimum for each device size.
 
 ---
 
+## Apple Developer & Signing
+
+| Field | Value |
+|-------|-------|
+| Team ID | F66D7QPY4N |
+| Signing | Automatic (Xcode-managed) |
+| Bundle ID | `ai.tourgraph.app` (register in Apple Developer portal before build) |
+
+### App Store Connect API (for CLI uploads)
+
+Store these locally — never commit to the repo:
+- API Key ID, Issuer ID, and `.p8` key file are in your Apple Developer account under Users and Access → Keys.
+- Same credentials used for ClearNews uploads.
+
+### Upload via CLI (alternative to Xcode Organizer)
+
+```bash
+# Archive
+xcodebuild archive \
+  -project ios/TourGraph/TourGraph.xcodeproj \
+  -scheme TourGraph \
+  -archivePath build/TourGraph.xcarchive
+
+# Export IPA
+xcodebuild -exportArchive \
+  -archivePath build/TourGraph.xcarchive \
+  -exportPath build/ \
+  -exportOptionsPlist ios/ExportOptions.plist
+
+# Upload to App Store Connect
+xcrun altool --upload-app \
+  -f build/TourGraph.ipa \
+  -t ios \
+  --apiKey <YOUR_KEY_ID> \
+  --apiIssuer <YOUR_ISSUER_ID>
+```
+
+Or just use **Xcode → Product → Archive → Distribute App** (simpler for first submission).
+
+---
+
+## Required Files (Created)
+
+| File | Location | Purpose |
+|------|----------|---------|
+| PrivacyInfo.xcprivacy | `ios/TourGraph/.../PrivacyInfo.xcprivacy` | Declares UserDefaults usage (CA92.1). Required by Apple since 2024. |
+| ExportOptions.plist | `ios/ExportOptions.plist` | CLI archive+upload config: auto signing, Team ID, upload symbols. |
+
+> **Note:** PrivacyInfo.xcprivacy must be added to the Xcode project's target (drag into Xcode, check "Add to target: TourGraph").
+
 ## Pre-Submission Checklist
 
-- [ ] Update bundle ID: `com.nikhilsi.TourGraph` → `ai.tourgraph.app`
+### Setup (one-time)
+- [ ] Register bundle ID `ai.tourgraph.app` in Apple Developer portal
+- [ ] Update bundle ID in Xcode project (currently `com.nikhilsi.TourGraph`)
+- [ ] Set Team ID to `F66D7QPY4N` in Xcode signing settings
+- [ ] Add PrivacyInfo.xcprivacy to Xcode target
+- [ ] Create app record in App Store Connect (or via API)
+
+### Code
 - [ ] Verify app builds with Release configuration
 - [ ] Test on physical device (not just Simulator)
 - [ ] Add LogoWhite @2x and @3x retina variants
+
+### Content
 - [ ] Host privacy policy at `https://tourgraph.ai/privacy`
-- [ ] Create App Store Connect listing
-- [ ] Upload screenshots (5 minimum, 6.9" device)
-- [ ] Set up Viator affiliate account for iOS (if separate tracking needed)
-- [ ] Archive and upload to App Store Connect
+- [ ] Host support page at `https://tourgraph.ai/support`
+- [ ] Capture screenshots (5 minimum, iPhone 6.9")
+- [ ] Upload screenshots to App Store Connect
+
+### Submission
+- [ ] Fill in App Store Connect metadata (copy from sections above)
+- [ ] Archive and upload build
+- [ ] Set encryption declaration (usesNonExemptEncryption: false)
 - [ ] Submit for review with review notes above
+
+### Reference
+- Full submission playbook with API calls: `~/src/gh/news-aggregator/docs/app-store-submission-playbook.md`
