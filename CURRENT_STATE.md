@@ -5,9 +5,9 @@
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
-## Phases 1-4: Code Complete, Polish In Progress
+## Live at https://tourgraph.ai
 
-All four features built, sharing the same data layer (SQLite + Viator API). Basic route testing passed (17 routes compile clean). Homepage redesigned with tagline, context, and feature discovery teasers. Tooltips and viral loop closers ("Spin Your Own") added across all detail pages. In-depth testing (mobile, WCAG, share flow) deferred to post-deploy.
+All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. 46K tours, 17 routes, all verified 200 over HTTPS. Data expansion indexer still running locally (~22% done) — will redeploy DB once complete with one-liners and Six Degrees chains.
 
 ### Feature 1: Tour Roulette (Phase 1)
 
@@ -44,13 +44,31 @@ UI fully built: gallery page, detail page with vertical timeline visualization, 
 
 **Chain generation script ready:** `src/scripts/generate-chains.ts` — reads pairs from `chain-pairs.json`, generates via Claude Sonnet 4.6, stores in `six_degrees_chains` table.
 
-**Blocked on:** Data expansion (indexer running, ~22% done) → decide city pairs → generate chains.
+**Blocked on:** Data expansion (indexer running locally, ~22% done) → decide city pairs → generate chains → redeploy DB.
 
-## Data Expansion: Running
+## Data Expansion: Running Locally
 
-Full indexer running (`--full --no-ai`): ~613/2,712 leaf destinations (22.6%), ~40,004 tours in DB so far. ~15.5 hours remaining.
+Full indexer running (`--full --no-ai`): ~613/2,712 leaf destinations (22.6%), ~46K tours in DB so far.
 
-**After indexer completes:** Backfill one-liners → Decide city pairs → Generate chains.
+**After indexer completes:** Backfill one-liners → Decide city pairs → Generate chains → Redeploy DB (`bash deployment/scripts/deploy-db.sh 143.244.186.165`).
+
+## Deployment
+
+```
+Internet → Nginx (:443 SSL, :80 → redirect)
+              ↓ proxy_pass http://127.0.0.1:3000
+           PM2 → next start (fork mode, single process)
+              ↓
+           /opt/app/data/tourgraph.db (SQLite, WAL mode)
+```
+
+- **Server:** 143.244.186.165 (DigitalOcean, Ubuntu 24.04, $6/mo)
+- **Stack:** Node 20 + PM2 6 + Nginx 1.24 + Let's Encrypt
+- **SSL:** Valid through May 30, 2026, auto-renewal enabled
+- **Firewall:** UFW (SSH + Nginx only) + fail2ban
+- **Deploy code:** `ssh root@143.244.186.165 "cd /opt/app && bash deployment/scripts/deploy.sh"`
+- **Deploy DB:** `bash deployment/scripts/deploy-db.sh 143.244.186.165`
+- **Stream logs:** `bash deployment/scripts/stream-logs.sh 143.244.186.165`
 
 ### Architecture
 

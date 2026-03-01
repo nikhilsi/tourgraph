@@ -7,8 +7,11 @@ echo "============================================"
 echo "  Setting up SSL for $DOMAIN"
 echo "============================================"
 
-# Prompt for email
-read -rp "Email for Let's Encrypt notifications: " EMAIL
+# Email for Let's Encrypt notifications (passed as arg or prompted)
+EMAIL="${1:-}"
+if [ -z "$EMAIL" ]; then
+    read -rp "Email for Let's Encrypt notifications: " EMAIL
+fi
 
 # Install certbot
 apt install -y certbot python3-certbot-nginx
@@ -16,7 +19,7 @@ apt install -y certbot python3-certbot-nginx
 # Obtain certificate (covers apex and www)
 certbot certonly --webroot -w /var/www/certbot \
     -d "$DOMAIN" -d "www.$DOMAIN" \
-    --email "$EMAIL" --agree-tos --no-eff-email
+    --email "$EMAIL" --agree-tos --no-eff-email --non-interactive
 
 # Swap pre-SSL config for full SSL config
 echo "--- Installing full SSL Nginx config ---"

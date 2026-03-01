@@ -6,6 +6,33 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [5.0.0] - 2026-03-01
+
+### Deployed — https://tourgraph.ai is live!
+- DigitalOcean droplet (Ubuntu 24.04, $6/mo, 1GB RAM, 1 vCPU)
+- PM2 fork mode (single Next.js process, 800MB memory limit)
+- Nginx reverse proxy with Let's Encrypt SSL (auto-renewal via certbot timer)
+- HTTP → HTTPS redirect, www → non-www redirect
+- UFW firewall (SSH + Nginx only) + fail2ban (SSH brute-force + nginx rate limit jails)
+- Database deployed via SCP (158MB, 46K tours)
+- All 17 routes verified 200 over HTTPS
+- Server memory: ~300MB Next.js + ~150MB OS = ~450MB used, 500MB+ headroom
+
+### Added — Deployment Infrastructure (11 files)
+- `deployment/README.md` — Full deployment guide with architecture, troubleshooting
+- `deployment/.env.production.example` — Environment variable template
+- `deployment/nginx/tourgraph.conf` — Full SSL nginx config (HSTS, gzip, X-Forwarded-For)
+- `deployment/nginx/tourgraph-pre-ssl.conf` — Temporary HTTP-only config for certbot
+- `deployment/ecosystem.config.cjs` — PM2 config (fork mode, memory limit, logging)
+- `deployment/scripts/setup.sh` — One-time: Node 20, PM2, nginx, build-essential, 1GB swap
+- `deployment/scripts/setup-ssl.sh` — Let's Encrypt + auto-renewal
+- `deployment/scripts/setup-firewall.sh` — UFW + fail2ban
+- `deployment/scripts/deploy.sh` — Recurring: git pull, npm ci, build, pm2 reload
+- `deployment/scripts/deploy-db.sh` — WAL checkpoint, SCP database to server
+- `deployment/scripts/stream-logs.sh` — Stream PM2 logs from server
+
+---
+
 ## [4.4.0] - 2026-03-01
 
 ### Added — Homepage Redesign & UX Polish

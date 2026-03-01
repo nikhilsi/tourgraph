@@ -5,33 +5,34 @@
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 ---
 
-## Current Phase: Data Expansion (Running) + Phase 4 UI Complete
+## Current Phase: Deployed + Data Expansion Running
 
-Phases 1-3 code-complete. Phase 4 (Six Degrees) UI built — gallery, detail page with vertical timeline, OG images. Full indexer running (~613/2,712 destinations, ~40K tours so far). Waiting for indexer to finish before generating chains.
+**Site is live at https://tourgraph.ai.** All four feature UIs built. Deployed on DigitalOcean droplet ($6/mo, 1GB RAM) with PM2 + Nginx + SSL. Full indexer still running locally — once complete, backfill one-liners, generate Six Degrees chains, and redeploy DB.
 
 ### Completed
 
 1. ~~One-liner backfill~~ — **Done** (all ~9,800 tours)
-2. ~~UI sanity test (Phases 1-3)~~ — **Done.** 14/14 routes return 200. Duration display fixed. More in-depth testing deferred to post-deploy.
+2. ~~UI sanity test (Phases 1-3)~~ — **Done.** 14/14 routes return 200. Duration display fixed.
 3. ~~Build chain generation script~~ — **Done.** `src/scripts/generate-chains.ts`
-4. ~~Build Six Degrees UI~~ — **Done.** Gallery page, detail page with vertical timeline/stepper, SurpriseMeButton, not-found page, OG image route. All compile clean (lint + build zero errors). Will populate once chains are generated.
-5. ~~About & Story pages~~ — **Done.** Professional pages for portfolio. Footer with GitHub + LinkedIn.
-6. ~~Favicon fix~~ — **Done.** Removed white background from icon.svg.
-7. ~~Homepage redesign~~ — **Done.** Added tagline, context line for roulette, "More to explore" section with feature teaser cards pulling live data.
-8. ~~Tooltips~~ — **Done.** HTML `title` attributes across all pages: stats (rating, price, duration), buttons (Share, Show Me Another, Book on Viator, Spin Your Own), FeatureNav links.
-9. ~~UX doc cross-check~~ — **Done.** Fixed FeatureNav Six Degrees href (`/` → `/six-degrees`). Added "Spin Your Own" viral loop closer to worlds-most and six-degrees detail pages.
+4. ~~Build Six Degrees UI~~ — **Done.** Gallery, detail page (vertical timeline), OG images.
+5. ~~About & Story pages~~ — **Done.**
+6. ~~Favicon fix~~ — **Done.**
+7. ~~Homepage redesign~~ — **Done.** Tagline, context line, feature teaser cards.
+8. ~~Tooltips~~ — **Done.** HTML `title` attributes across all pages.
+9. ~~UX doc cross-check~~ — **Done.** FeatureNav fix, "Spin Your Own" viral loop closers.
+10. ~~Deploy to DigitalOcean~~ — **Done.** PM2 + Nginx + Let's Encrypt SSL. HTTP→HTTPS redirect, www→non-www redirect. UFW + fail2ban. All routes verified 200 over HTTPS.
 
 ### In Progress
 
-1. **Full indexer running** — `--full --no-ai`, ~613/2,712 destinations (22.6%), ~40K tours, ~15.5h remaining. PID 29290. `caffeinate` preventing sleep. Non-critical `updated_at` error self-resolved after first 10%.
+1. **Full indexer running** — `--full --no-ai`, ~613/2,712 destinations (22.6%), ~40K tours. PID 29290. `caffeinate` preventing sleep.
 
 ### Next — In Order
 
 1. **Backfill one-liners for new tours** — After indexer completes. ~30K+ new tours need one-liners. Cost: ~$0.003 per 1,000 tours (Haiku 4.5).
 2. **Decide city pairs for Six Degrees** — Review available cities from expanded data, pick curated pairs. Update `src/scripts/chain-pairs.json`.
 3. **Generate curated Six Degrees chains** — Run `npx tsx src/scripts/generate-chains.ts`. Cost: ~$0.02/chain (Sonnet 4.6). Quantity TBD.
-4. **In-depth testing** — Mobile (375px), WCAG AA contrast, share flow end-to-end, OG preview on deployed URL.
-5. **Deploy** to DigitalOcean.
+4. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165` after data is complete.
+5. **In-depth testing on production** — Mobile (375px), WCAG AA contrast, share flow end-to-end, OG preview on live URL (iMessage/Slack/Twitter).
 
 ### Phase 4 — Open Decisions
 
@@ -56,5 +57,5 @@ Phases 1-3 code-complete. Phase 4 (Six Degrees) UI built — gallery, detail pag
 | 3 | The World's Most ___ | **Code complete** |
 | 4a | Data expansion (all destinations) | **Running** — 613/2,712 (22.6%) |
 | 4b | Six Degrees of Anywhere | **UI complete** — needs chain data |
-| 5 | Cross-feature polish, deploy | **Polish in progress** |
+| 5 | Cross-feature polish, deploy | **Deployed** — https://tourgraph.ai |
 | 6 | iOS app | Planned |
