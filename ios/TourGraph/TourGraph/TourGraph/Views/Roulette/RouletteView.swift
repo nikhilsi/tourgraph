@@ -3,6 +3,7 @@ import SwiftUI
 struct RouletteView: View {
     let rouletteState: RouletteState
     let settings: AppSettings
+    let favorites: Favorites
 
     @State private var dragOffset: CGFloat = 0
     @State private var cardOpacity: Double = 1
@@ -19,7 +20,6 @@ struct RouletteView: View {
                 } else if let error = rouletteState.error {
                     errorView(error)
                 } else {
-                    // Initial state — prompt first spin
                     initialView
                 }
             }
@@ -46,12 +46,16 @@ struct RouletteView: View {
 
             // Tour card with swipe
             NavigationLink(value: tour.id) {
-                TourCardView(tour: tour)
+                TourCardView(tour: tour, favorites: favorites)
                     .padding(.horizontal, 20)
             }
             .buttonStyle(.plain)
             .offset(x: dragOffset)
             .opacity(cardOpacity)
+            .rotation3DEffect(
+                .degrees(Double(dragOffset) / 20),
+                axis: (x: 0, y: 0, z: 1)
+            )
             .gesture(swipeGesture)
 
             Spacer()
@@ -83,7 +87,7 @@ struct RouletteView: View {
             .padding(.bottom, 16)
         }
         .navigationDestination(for: Int.self) { tourId in
-            TourDetailView(tourId: tourId, database: rouletteState.database)
+            TourDetailView(tourId: tourId, database: rouletteState.database, favorites: favorites)
         }
     }
 
@@ -97,7 +101,6 @@ struct RouletteView: View {
             }
             .onEnded { value in
                 if abs(value.translation.width) > 100 {
-                    // Swipe threshold met — animate off screen then swap
                     let direction: CGFloat = value.translation.width > 0 ? 1 : -1
                     withAnimation(.easeOut(duration: 0.2)) {
                         dragOffset = direction * 400
@@ -105,12 +108,13 @@ struct RouletteView: View {
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                         nextTour()
-                        dragOffset = 0
-                        cardOpacity = 1
+                        withAnimation(.none) {
+                            dragOffset = 0
+                            cardOpacity = 1
+                        }
                     }
                 } else {
-                    // Snap back
-                    withAnimation(.spring()) {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                         dragOffset = 0
                         cardOpacity = 1
                     }

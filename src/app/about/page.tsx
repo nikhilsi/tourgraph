@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getDb } from "@/lib/db";
 import FeatureNav from "@/components/FeatureNav";
+import Logo from "@/components/Logo";
 
 export const metadata: Metadata = {
   title: "About — TourGraph",
@@ -41,12 +42,7 @@ export default function AboutPage() {
 
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
-      <Link
-        href="/"
-        className="text-2xl font-bold tracking-tight mb-8 hover:text-accent transition-colors"
-      >
-        TourGraph
-      </Link>
+      <Logo className="mb-8" />
 
       <div className="w-full max-w-lg space-y-10">
         {/* Intro */}

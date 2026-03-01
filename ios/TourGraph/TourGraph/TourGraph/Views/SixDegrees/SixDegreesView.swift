@@ -1,42 +1,58 @@
 import SwiftUI
 
-struct SixDegreesView: View {
+/// Section version for embedding in ExploreView (no ScrollView).
+struct SixDegreesSection: View {
     let database: DatabaseService
     @State private var chains: [Chain] = []
     @State private var isLoading = true
+    @State private var surpriseSlug: String?
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Six Degrees of Anywhere")
-                    .font(.title2.bold())
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 20)
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(alignment: .firstTextBaseline) {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Six Degrees of Anywhere")
+                        .font(.title2.bold())
+                        .foregroundStyle(.white)
 
-                Text("Cities connected through surprising tours")
-                    .font(.subheadline)
-                    .foregroundStyle(.white.opacity(0.5))
-                    .padding(.horizontal, 20)
-
-                if isLoading {
-                    ProgressView()
-                        .tint(.white)
-                        .frame(maxWidth: .infinity, minHeight: 200)
-                } else if chains.isEmpty {
-                    Text("Chains coming soon!")
+                    Text("Cities connected through surprising tours")
+                        .font(.subheadline)
                         .foregroundStyle(.white.opacity(0.5))
-                        .padding(20)
-                } else {
-                    ForEach(chains) { chain in
-                        NavigationLink(value: chain.slug) {
-                            ChainCardView(chain: chain)
-                        }
-                        .buttonStyle(.plain)
-                        .padding(.horizontal, 20)
+                }
+
+                Spacer()
+
+                if !chains.isEmpty {
+                    NavigationLink(value: chains.randomElement()?.slug ?? "") {
+                        Text("Surprise Me")
+                            .font(.caption.bold())
+                            .foregroundStyle(.black)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 6)
+                            .background(.white)
+                            .clipShape(Capsule())
                     }
                 }
             }
-            .padding(.vertical, 16)
+            .padding(.horizontal, 20)
+
+            if isLoading {
+                ProgressView()
+                    .tint(.white)
+                    .frame(maxWidth: .infinity, minHeight: 120)
+            } else if chains.isEmpty {
+                Text("Chains coming soon!")
+                    .foregroundStyle(.white.opacity(0.5))
+                    .padding(.horizontal, 20)
+            } else {
+                ForEach(chains) { chain in
+                    NavigationLink(value: chain.slug) {
+                        ChainCardView(chain: chain)
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.horizontal, 20)
+                }
+            }
         }
         .task {
             do {
@@ -82,7 +98,6 @@ struct ChainCardView: View {
 
                 Spacer()
 
-                // Theme pills
                 HStack(spacing: 4) {
                     ForEach(chain.links.prefix(3), id: \.city) { link in
                         Text(link.theme)

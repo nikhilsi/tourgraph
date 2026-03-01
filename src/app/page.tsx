@@ -1,6 +1,7 @@
 import Link from "next/link";
 import RouletteView from "@/components/RouletteView";
 import FeatureNav from "@/components/FeatureNav";
+import Logo from "@/components/Logo";
 import {
   getDistinctTimezones,
   getRightNowTours,
@@ -45,7 +46,7 @@ export default function Home() {
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
       {/* Brand + Tagline */}
-      <h1 className="text-2xl font-bold tracking-tight">TourGraph</h1>
+      <Logo className="mb-0" />
       <p className="text-sm text-text-muted mt-1 mb-8 text-center max-w-xs">
         The world&apos;s most surprising tours. One tap at a time.
       </p>

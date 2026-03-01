@@ -2,7 +2,7 @@
 
 ---
 **Last Updated**: March 1, 2026
-**Status**: Design complete, implementation not started
+**Status**: Scaffold built — all 4 features + favorites + app icon. Polish + App Store prep remaining.
 **Reference apps**: GitaVani (all-local pattern), ClearNews (API + caching pattern)
 ---
 
@@ -525,18 +525,18 @@ If the full DB after VACUUM is under ~180MB, skip the seed/enrich split entirely
 
 ## Implementation Order
 
-| Step | What | Estimated Effort |
-|------|------|-----------------|
-| 1 | Xcode project + GRDB + seed DB + DatabaseService | Half day |
-| 2 | Tour model + RouletteService + RouletteView (swipe UI) | 1 day |
-| 3 | TourDetailView + sharing + image loading | Half day |
-| 4 | RightNowService + RightNowView (timezone math port) | Half day |
-| 5 | SuperlativeService + WorldsMostView | Half day |
-| 6 | ChainService + SixDegreesView + ChainDetailView | Half day |
-| 7 | Explore tab (combine features 2-4) | Quarter day |
-| 8 | Settings, about, polish, haptics | Quarter day |
-| 9 | DBEnrichmentService (background download) | Half day |
-| 10 | App Store assets + submission | Half day |
+| Step | What | Status |
+|------|------|--------|
+| 1 | Xcode project + GRDB + seed DB + DatabaseService | Done |
+| 2 | Tour model + RouletteState + RouletteView (swipe UI) | Done |
+| 3 | TourDetailView + sharing + image gallery | Done |
+| 4 | RightNowSection + TimezoneHelper (golden hour) | Done |
+| 5 | WorldsMostSection + superlative stat highlights | Done |
+| 6 | SixDegreesSection + ChainDetailView + Surprise Me | Done |
+| 7 | Explore tab (sections, no nested scrolls) | Done |
+| 8 | Favorites + Settings + App Icon | Done |
+| 9 | DBEnrichmentService (background download) | Not started |
+| 10 | App Store assets + submission | Not started |
 
 **Total: ~5 days** (matches the product brief's Week 4-5 estimate)
 

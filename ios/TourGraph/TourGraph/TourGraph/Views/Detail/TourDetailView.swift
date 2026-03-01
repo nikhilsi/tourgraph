@@ -3,6 +3,7 @@ import SwiftUI
 struct TourDetailView: View {
     let tourId: Int
     let database: DatabaseService
+    let favorites: Favorites
 
     @State private var tour: Tour?
 
@@ -10,26 +11,30 @@ struct TourDetailView: View {
         ScrollView {
             if let tour {
                 VStack(alignment: .leading, spacing: 16) {
-                    // Hero image
-                    AsyncImage(url: tour.imageURL) { phase in
-                        switch phase {
-                        case .success(let image):
-                            image
-                                .resizable()
-                                .aspectRatio(3/2, contentMode: .fill)
-                        default:
-                            Rectangle()
-                                .fill(Color.white.opacity(0.1))
-                                .aspectRatio(3/2, contentMode: .fit)
-                        }
+                    // Image gallery or single hero
+                    if tour.imageURLs.count > 1 {
+                        imageGallery(urls: tour.imageURLs)
+                    } else {
+                        heroImage(url: tour.imageURL)
                     }
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
 
                     VStack(alignment: .leading, spacing: 12) {
-                        // Title
-                        Text(tour.title)
-                            .font(.title2.bold())
-                            .foregroundStyle(.white)
+                        // Title + favorite
+                        HStack(alignment: .top) {
+                            Text(tour.title)
+                                .font(.title2.bold())
+                                .foregroundStyle(.white)
+
+                            Spacer()
+
+                            Button {
+                                favorites.toggle(tour.id)
+                            } label: {
+                                Image(systemName: favorites.contains(tour.id) ? "heart.fill" : "heart")
+                                    .font(.title3)
+                                    .foregroundStyle(favorites.contains(tour.id) ? .red : .white.opacity(0.5))
+                            }
+                        }
 
                         // One-liner
                         if let oneLiner = tour.oneLiner, !oneLiner.isEmpty {
@@ -92,7 +97,7 @@ struct TourDetailView: View {
                             .padding(.top, 8)
                         }
 
-                        // Book on Viator button
+                        // Book on Viator
                         if let url = tour.viatorURL {
                             Link(destination: url) {
                                 HStack {
@@ -140,5 +145,52 @@ struct TourDetailView: View {
         .task {
             tour = try? database.getTourById(tourId)
         }
+    }
+
+    // MARK: - Image gallery
+
+    @ViewBuilder
+    private func imageGallery(urls: [URL]) -> some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHStack(spacing: 8) {
+                ForEach(urls.prefix(10), id: \.absoluteString) { url in
+                    AsyncImage(url: url) { phase in
+                        switch phase {
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(3/2, contentMode: .fill)
+                                .frame(width: 300, height: 200)
+                                .clipped()
+                        default:
+                            Rectangle()
+                                .fill(Color.white.opacity(0.1))
+                                .frame(width: 300, height: 200)
+                        }
+                    }
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+            }
+            .padding(.horizontal, 20)
+        }
+        .frame(height: 200)
+    }
+
+    @ViewBuilder
+    private func heroImage(url: URL?) -> some View {
+        AsyncImage(url: url) { phase in
+            switch phase {
+            case .success(let image):
+                image
+                    .resizable()
+                    .aspectRatio(3/2, contentMode: .fill)
+            default:
+                Rectangle()
+                    .fill(Color.white.opacity(0.1))
+                    .aspectRatio(3/2, contentMode: .fit)
+            }
+        }
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .padding(.horizontal, 20)
     }
 }

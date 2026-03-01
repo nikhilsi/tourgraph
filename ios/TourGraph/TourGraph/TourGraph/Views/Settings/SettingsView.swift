@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     let settings: AppSettings
+    let favorites: Favorites
     let database: DatabaseService
 
     @State private var tourCount: Int = 0
@@ -15,6 +16,15 @@ struct SettingsView: View {
                         get: { settings.hapticsEnabled },
                         set: { settings.hapticsEnabled = $0 }
                     ))
+                }
+
+                Section("Your Data") {
+                    HStack {
+                        Text("Favorites")
+                        Spacer()
+                        Text("\(favorites.count)")
+                            .foregroundStyle(.secondary)
+                    }
                 }
 
                 Section("About") {

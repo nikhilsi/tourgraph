@@ -7,6 +7,7 @@ import { getChainBySlug, getTourById } from "@/lib/db";
 import { formatDurationShort } from "@/lib/format";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
+import Logo from "@/components/Logo";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -52,12 +53,7 @@ export default async function ChainDetailPage({ params }: Props) {
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
       {/* Brand */}
-      <Link
-        href="/"
-        className="text-2xl font-bold tracking-tight mb-2 hover:text-accent transition-colors"
-      >
-        TourGraph
-      </Link>
+      <Logo className="mb-2" />
 
       <Link
         href="/six-degrees"

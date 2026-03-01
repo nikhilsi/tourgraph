@@ -8,6 +8,7 @@ import { formatPrice, formatDurationLong, safeJsonParse } from "@/lib/format";
 import type { SuperlativeType, TourRow } from "@/lib/types";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
+import Logo from "@/components/Logo";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -123,12 +124,7 @@ export default async function SuperlativeDetailPage({ params }: Props) {
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
       {/* Brand */}
-      <Link
-        href="/"
-        className="text-2xl font-bold tracking-tight mb-6 hover:text-accent transition-colors"
-      >
-        TourGraph
-      </Link>
+      <Logo />
 
       {/* Feature badge */}
       <span className="text-xs font-medium tracking-widest uppercase text-accent mb-4">

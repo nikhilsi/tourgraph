@@ -8,6 +8,7 @@ import { formatDurationLong } from "@/lib/format";
 import { safeJsonParse } from "@/lib/format";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
+import Logo from "@/components/Logo";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -75,9 +76,7 @@ export default async function TourDetailPage({ params }: Props) {
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
       {/* Brand */}
-      <Link href="/" className="text-2xl font-bold tracking-tight mb-6 hover:text-accent transition-colors">
-        TourGraph
-      </Link>
+      <Logo />
 
       {/* Feature badge */}
       <span className="text-xs font-medium tracking-widest uppercase text-accent mb-4">

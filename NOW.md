@@ -5,46 +5,59 @@
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 ---
 
-## Current Phase: Deployed + Data Expansion Running
+## Current Phase: iOS App Development + Data Expansion
 
-**Site is live at https://tourgraph.ai.** All four feature UIs built. Deployed on DigitalOcean droplet ($6/mo, 1GB RAM) with PM2 + Nginx + SSL. Full indexer still running locally — once complete, backfill one-liners, generate Six Degrees chains, and redeploy DB.
+**Site is live at https://tourgraph.ai.** iOS app scaffold built with all 4 features. Full indexer running locally (~116K tours, 2,250 destinations so far).
 
-### Completed
+### Web — Completed
 
-1. ~~One-liner backfill~~ — **Done** (all ~9,800 tours)
-2. ~~UI sanity test (Phases 1-3)~~ — **Done.** 14/14 routes return 200. Duration display fixed.
-3. ~~Build chain generation script~~ — **Done.** `src/scripts/generate-chains.ts`
-4. ~~Build Six Degrees UI~~ — **Done.** Gallery, detail page (vertical timeline), OG images.
-5. ~~About & Story pages~~ — **Done.**
-6. ~~Favicon fix~~ — **Done.**
-7. ~~Homepage redesign~~ — **Done.** Tagline, context line, feature teaser cards.
-8. ~~Tooltips~~ — **Done.** HTML `title` attributes across all pages.
-9. ~~UX doc cross-check~~ — **Done.** FeatureNav fix, "Spin Your Own" viral loop closers.
-10. ~~Deploy to DigitalOcean~~ — **Done.** PM2 + Nginx + Let's Encrypt SSL. HTTP→HTTPS redirect, www→non-www redirect. UFW + fail2ban. All routes verified 200 over HTTPS.
+1. ~~Tour Roulette~~ — **Done.** Weighted hand algorithm, contrast sequencing, OG images.
+2. ~~Right Now Somewhere~~ — **Done.** Golden-hour timezone detection, moment cards.
+3. ~~The World's Most ___~~ — **Done.** 6 superlatives, detail pages, OG images.
+4. ~~Six Degrees of Anywhere~~ — **Done.** Gallery, vertical timeline detail, OG images.
+5. ~~Homepage, About, Story~~ — **Done.** Tagline, feature teasers, viral loop closers.
+6. ~~Deploy to DigitalOcean~~ — **Done.** PM2 + Nginx + SSL. All 17 routes verified 200.
+
+### iOS — In Progress
+
+1. ~~Xcode project + GRDB + models~~ — **Done.** All models, DatabaseService, TimezoneHelper.
+2. ~~Tour Roulette (swipe cards)~~ — **Done.** Swipe gesture, haptics, hand cycling, rotation effect.
+3. ~~Right Now Somewhere~~ — **Done.** Golden-hour detection, moment cards.
+4. ~~World's Most ___~~ — **Done.** Superlative cards with stat highlights.
+5. ~~Six Degrees~~ — **Done.** Chain gallery, vertical timeline detail, "Surprise Me" button.
+6. ~~Explore tab~~ — **Done.** Combines Right Now, World's Most, Six Degrees as sections.
+7. ~~Favorites~~ — **Done.** Heart button on cards + detail, persisted to UserDefaults.
+8. ~~App icon~~ — **Done.** Existing 1024x1024 icon from archive assets.
+9. ~~Settings~~ — **Done.** Haptics toggle, favorites count, tour/destination stats.
 
 ### In Progress
 
-1. **Full indexer running** — `--full --no-ai`, ~613/2,712 destinations (22.6%), ~40K tours. PID 29290. `caffeinate` preventing sleep.
+1. **Full indexer running** — `--full --no-ai`, ~2,250/2,712 destinations (83%), ~116K tours. PID 29290.
 
 ### Next — In Order
 
-1. **Backfill one-liners for new tours** — After indexer completes. ~30K+ new tours need one-liners. Cost: ~$0.003 per 1,000 tours (Haiku 4.5).
-2. **Decide city pairs for Six Degrees** — Review available cities from expanded data, pick curated pairs. Update `src/scripts/chain-pairs.json`.
-3. **Generate curated Six Degrees chains** — Run `npx tsx src/scripts/generate-chains.ts`. Cost: ~$0.02/chain (Sonnet 4.6). Quantity TBD.
-4. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165` after data is complete.
-5. **In-depth testing on production** — Mobile (375px), WCAG AA contrast, share flow end-to-end, OG preview on live URL (iMessage/Slack/Twitter).
+1. **Backfill one-liners for new tours** — After indexer completes. ~100K+ new tours need one-liners.
+2. **Decide city pairs for Six Degrees** — Review available cities, pick curated pairs.
+3. **Generate curated Six Degrees chains** — Run chain generator. Cost: ~$0.02/chain.
+4. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165`
+5. **iOS polish** — Image caching, share card rendering (ImageRenderer), DB enrichment service.
+6. **iOS App Store prep** — Launch screen, screenshots, App Store metadata, real device testing.
+7. **Production testing** — Mobile, OG previews in iMessage/Slack/Twitter, share flow on live URL.
 
-### Phase 4 — Open Decisions
+### Open Decisions
 
 - [ ] How many curated chains for launch? (50? 100? 200?)
-- [ ] City pair selection strategy — by continent diversity? by hub city? by surprise factor?
-- [ ] Daily featured chain vs static gallery?
+- [ ] City pair selection strategy
+- [ ] iOS seed DB size — full DB may fit under 200MB after VACUUM
+- [ ] Dark-mode app icon variant (current has white bg — may want dark bg for dark mode)
 
 ### Not Now (V2)
 
-- Weekly data refresh (drip indexer on schedule) — design exists in `docs/architecture.md` but not needed for launch
-- On-demand chain generation (user types two cities, AI generates live)
-- Six Degrees open-ended (any city pair)
+- Weekly data refresh (drip indexer on schedule)
+- On-demand chain generation (user types two cities)
+- iOS widgets (RightNow home screen widget)
+- Push notifications (daily superlative)
+- iPad layout
 
 ---
 
@@ -52,10 +65,11 @@
 
 | Phase | Feature | Status |
 |-------|---------|--------|
-| 1 | Tour Roulette | **Code complete** |
-| 2 | Right Now Somewhere | **Code complete** |
-| 3 | The World's Most ___ | **Code complete** |
-| 4a | Data expansion (all destinations) | **Running** — 613/2,712 (22.6%) |
-| 4b | Six Degrees of Anywhere | **UI complete** — needs chain data |
-| 5 | Cross-feature polish, deploy | **Deployed** — https://tourgraph.ai |
-| 6 | iOS app | Planned |
+| 1 | Tour Roulette (web) | **Deployed** |
+| 2 | Right Now Somewhere (web) | **Deployed** |
+| 3 | The World's Most ___ (web) | **Deployed** |
+| 4a | Data expansion | **Running** — 2,250/2,712 (83%) |
+| 4b | Six Degrees of Anywhere (web) | **UI complete** — needs chain data |
+| 5 | Deploy to production | **Live** — https://tourgraph.ai |
+| 6 | iOS app scaffold | **Built** — all 4 features + favorites |
+| 7 | iOS polish + App Store | **Next** |

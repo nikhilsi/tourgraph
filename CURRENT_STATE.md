@@ -7,50 +7,42 @@
 
 ## Live at https://tourgraph.ai
 
-All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. 46K tours, 17 routes, all verified 200 over HTTPS. Data expansion indexer still running locally (~22% done) — will redeploy DB once complete with one-liners and Six Degrees chains.
+All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. ~116K tours, 17 routes, all verified 200 over HTTPS. Data expansion indexer still running locally (~83% done).
 
-### Feature 1: Tour Roulette (Phase 1)
+### Web Features (All Deployed)
 
-```
-/ → RouletteView fetches /api/roulette/hand → ~20 tours weighted by category
-→ "Show Me Another" cycles → Tap card → /roulette/[id] detail → Share → OG preview
-```
+| Feature | Route | Status |
+|---------|-------|--------|
+| Tour Roulette | `/`, `/roulette/[id]` | Live |
+| Right Now Somewhere | `/right-now` | Live |
+| The World's Most ___ | `/worlds-most`, `/worlds-most/[slug]` | Live |
+| Six Degrees of Anywhere | `/six-degrees`, `/six-degrees/[slug]` | UI live, needs chain data |
+| About / Story | `/about`, `/story` | Live |
+| OG Images | `/api/og/*` | Live |
 
-### Feature 2: Right Now Somewhere (Phase 2)
+### iOS App (In Development)
 
-```
-/right-now → Server component queries tours by golden-hour timezones
-→ 6 moment cards with local time + time-of-day label → Tap → /roulette/[id] detail
-Homepage teaser: "Right now in {city}, it's {time}..."
-```
+SwiftUI app with GRDB.swift reading from bundled SQLite database. All four features implemented. Builds and runs on simulator.
 
-### Feature 3: The World's Most ___ (Phase 3)
+| Feature | File(s) | Status |
+|---------|---------|--------|
+| Tour Roulette (swipe) | `RouletteView.swift`, `RouletteState.swift` | Built — swipe gesture, haptics, rotation effect |
+| Right Now Somewhere | `RightNowView.swift`, `TimezoneHelper.swift` | Built — golden-hour detection |
+| The World's Most ___ | `WorldsMostView.swift`, `Superlative.swift` | Built — stat highlights on cards |
+| Six Degrees | `SixDegreesView.swift`, `ChainDetailView.swift` | Built — "Surprise Me" button, timeline |
+| Explore tab | `ExploreView.swift` | Built — combines all 3 as sections |
+| Tour Detail | `TourDetailView.swift` | Built — image gallery, highlights, Viator link |
+| Favorites | `Favorites.swift`, heart on cards | Built — UserDefaults persistence |
+| App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
+| Settings | `SettingsView.swift` | Built — haptics, favorites count, stats |
 
-```
-/worlds-most → 6 superlative cards (most expensive, cheapest 5-star, longest, etc.)
-→ Tap → /worlds-most/[slug] detail page → Book on Viator → Share → OG preview
-```
-
-## Phase 4: Six Degrees — UI Complete, Needs Data
-
-UI fully built: gallery page, detail page with vertical timeline visualization, OG image route. Waiting for chain data to populate.
-
-```
-/six-degrees → Gallery of curated chains (cards with city pair, summary, themes)
-→ "Surprise Me" picks random chain → /six-degrees/[slug] detail
-→ Vertical timeline: numbered circles, tour cards with photos, theme badges
-→ Share → OG preview (dark bg, city pair, mini chain visualization)
-```
-
-**Chain generation script ready:** `src/scripts/generate-chains.ts` — reads pairs from `chain-pairs.json`, generates via Claude Sonnet 4.6, stores in `six_degrees_chains` table.
-
-**Blocked on:** Data expansion (indexer running locally, ~22% done) → decide city pairs → generate chains → redeploy DB.
+**Not yet built:** DB enrichment service, share card rendering (ImageRenderer), launch screen, App Store assets.
 
 ## Data Expansion: Running Locally
 
-Full indexer running (`--full --no-ai`): ~613/2,712 leaf destinations (22.6%), ~46K tours in DB so far.
+Full indexer (`--full --no-ai`): ~2,250/2,712 destinations (83%), ~116K tours. PID 29290.
 
-**After indexer completes:** Backfill one-liners → Decide city pairs → Generate chains → Redeploy DB (`bash deployment/scripts/deploy-db.sh 143.244.186.165`).
+**After indexer completes:** Backfill one-liners → Decide city pairs → Generate chains → Redeploy DB.
 
 ## Deployment
 

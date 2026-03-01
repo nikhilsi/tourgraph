@@ -8,43 +8,41 @@ struct RightNowMoment: Identifiable {
     var id: Int { tour.id }
 }
 
-struct RightNowView: View {
+/// Section version for embedding in ExploreView (no ScrollView).
+struct RightNowSection: View {
     let database: DatabaseService
     @State private var moments: [RightNowMoment] = []
     @State private var isLoading = true
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                Text("Right Now Somewhere...")
-                    .font(.title2.bold())
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 20)
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Right Now Somewhere...")
+                .font(.title2.bold())
+                .foregroundStyle(.white)
+                .padding(.horizontal, 20)
 
-                Text("Tours happening where it's golden hour")
-                    .font(.subheadline)
+            Text("Tours happening where it's golden hour")
+                .font(.subheadline)
+                .foregroundStyle(.white.opacity(0.5))
+                .padding(.horizontal, 20)
+
+            if isLoading {
+                ProgressView()
+                    .tint(.white)
+                    .frame(maxWidth: .infinity, minHeight: 120)
+            } else if moments.isEmpty {
+                Text("No golden-hour moments right now. Check back soon!")
                     .foregroundStyle(.white.opacity(0.5))
                     .padding(.horizontal, 20)
-
-                if isLoading {
-                    ProgressView()
-                        .tint(.white)
-                        .frame(maxWidth: .infinity, minHeight: 200)
-                } else if moments.isEmpty {
-                    Text("No golden-hour moments right now. Check back soon!")
-                        .foregroundStyle(.white.opacity(0.5))
-                        .padding(20)
-                } else {
-                    ForEach(moments) { moment in
-                        NavigationLink(value: moment.tour.id) {
-                            MomentCardView(moment: moment)
-                        }
-                        .buttonStyle(.plain)
-                        .padding(.horizontal, 20)
+            } else {
+                ForEach(moments) { moment in
+                    NavigationLink(value: moment.tour.id) {
+                        MomentCardView(moment: moment)
                     }
+                    .buttonStyle(.plain)
+                    .padding(.horizontal, 20)
                 }
             }
-            .padding(.vertical, 16)
         }
         .task {
             await loadMoments()
@@ -55,7 +53,6 @@ struct RightNowView: View {
         do {
             let allTimezones = try database.getDistinctTimezones()
 
-            // Golden hour first, then pleasant fallback
             var goldenTZs = TimezoneHelper.getGoldenTimezones(from: allTimezones)
             if goldenTZs.count < 6 {
                 let pleasant = TimezoneHelper.getPleasantTimezones(from: allTimezones)

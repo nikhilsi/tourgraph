@@ -4,6 +4,7 @@ import SwiftUI
 struct TourGraphApp: App {
     @State private var database: DatabaseService?
     @State private var settings = AppSettings()
+    @State private var favorites = Favorites()
     @State private var rouletteState: RouletteState?
     @State private var loadError: String?
 
@@ -14,6 +15,7 @@ struct TourGraphApp: App {
                     ContentView(
                         database: database,
                         settings: settings,
+                        favorites: favorites,
                         rouletteState: rouletteState
                     )
                 } else if let loadError {

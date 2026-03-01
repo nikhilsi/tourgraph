@@ -3,42 +3,66 @@ import SwiftUI
 /// Photo-dominant tour card matching the web's dark theme design.
 struct TourCardView: View {
     let tour: Tour
+    var favorites: Favorites? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            // Photo (3:2 aspect ratio)
-            AsyncImage(url: tour.imageURL) { phase in
-                switch phase {
-                case .success(let image):
-                    image
-                        .resizable()
-                        .aspectRatio(3/2, contentMode: .fill)
-                        .clipped()
-                case .failure:
-                    photoPlaceholder
-                case .empty:
-                    photoPlaceholder
-                        .overlay {
-                            ProgressView()
-                                .tint(.white.opacity(0.6))
-                        }
-                @unknown default:
-                    photoPlaceholder
+            // Photo with gradient overlay + favorite button
+            ZStack(alignment: .topTrailing) {
+                AsyncImage(url: tour.imageURL) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(3/2, contentMode: .fill)
+                            .clipped()
+                    case .failure:
+                        photoPlaceholder
+                    case .empty:
+                        photoPlaceholder
+                            .overlay {
+                                ProgressView()
+                                    .tint(.white.opacity(0.6))
+                            }
+                    @unknown default:
+                        photoPlaceholder
+                    }
+                }
+                .frame(maxWidth: .infinity)
+                .aspectRatio(3/2, contentMode: .fit)
+                .overlay(alignment: .bottom) {
+                    // Gradient for text readability below photo
+                    LinearGradient(
+                        colors: [.clear, .black.opacity(0.3)],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                    .frame(height: 40)
+                }
+                .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
+
+                // Favorite button
+                if let favorites {
+                    Button {
+                        favorites.toggle(tour.id)
+                    } label: {
+                        Image(systemName: favorites.contains(tour.id) ? "heart.fill" : "heart")
+                            .font(.body)
+                            .foregroundStyle(favorites.contains(tour.id) ? .red : .white.opacity(0.8))
+                            .padding(8)
+                            .background(.ultraThinMaterial, in: Circle())
+                    }
+                    .padding(8)
                 }
             }
-            .frame(maxWidth: .infinity)
-            .aspectRatio(3/2, contentMode: .fit)
-            .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
 
             // Content below photo
             VStack(alignment: .leading, spacing: 8) {
-                // Title
                 Text(tour.title)
                     .font(.headline)
                     .foregroundStyle(.white)
                     .lineLimit(2)
 
-                // One-liner
                 if let oneLiner = tour.oneLiner, !oneLiner.isEmpty {
                     Text(oneLiner)
                         .font(.subheadline)
@@ -47,7 +71,6 @@ struct TourCardView: View {
                         .lineLimit(2)
                 }
 
-                // Location
                 if let dest = tour.destinationName, !dest.isEmpty {
                     HStack(spacing: 4) {
                         Image(systemName: "mappin")

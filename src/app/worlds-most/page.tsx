@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logo from "@/components/Logo";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getAllSuperlatives } from "@/lib/db";
@@ -64,12 +65,7 @@ export default function WorldsMostPage() {
 
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
-      <Link
-        href="/"
-        className="text-2xl font-bold tracking-tight mb-6 hover:text-accent transition-colors"
-      >
-        TourGraph
-      </Link>
+      <Logo />
 
       <span className="text-xs font-medium tracking-widest uppercase text-accent mb-2">
         The World&apos;s Most ___

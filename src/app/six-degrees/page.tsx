@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getAllChains } from "@/lib/db";
 import FeatureNav from "@/components/FeatureNav";
+import Logo from "@/components/Logo";
 import SurpriseMeButton from "./SurpriseMeButton";
 
 export const dynamic = "force-dynamic";
@@ -28,12 +29,7 @@ export default function SixDegreesGalleryPage() {
 
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
-      <Link
-        href="/"
-        className="text-2xl font-bold tracking-tight mb-2 hover:text-accent transition-colors"
-      >
-        TourGraph
-      </Link>
+      <Logo className="mb-2" />
 
       <span className="text-xs font-medium tracking-widest uppercase text-accent mb-2">
         Six Degrees of Anywhere
