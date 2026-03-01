@@ -5,9 +5,9 @@
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
-## Phases 1-3: Code Complete, Basic Testing Done
+## Phases 1-4: Code Complete, Polish In Progress
 
-Three features built, all sharing the same data layer (SQLite + Viator API). Basic route testing passed (14/14 routes return 200, data renders correctly). In-depth testing (mobile, WCAG, share flow on deployed URL) deferred to post-data-expansion.
+All four features built, sharing the same data layer (SQLite + Viator API). Basic route testing passed (17 routes compile clean). Homepage redesigned with tagline, context, and feature discovery teasers. Tooltips and viral loop closers ("Spin Your Own") added across all detail pages. In-depth testing (mobile, WCAG, share flow) deferred to post-deploy.
 
 ### Feature 1: Tour Roulette (Phase 1)
 

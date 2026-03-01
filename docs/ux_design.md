@@ -1,8 +1,8 @@
 # TourGraph.ai — UX Design Document
 
 ---
-**Last Updated**: February 28, 2026
-**Status**: Locked — all major decisions resolved
+**Last Updated**: March 1, 2026
+**Status**: Locked — all major decisions resolved and implemented
 **Source of Truth**: This doc governs UX/UI decisions. `product_brief.md` governs product scope.
 ---
 
@@ -53,6 +53,8 @@ The same tour is boring as a Viator listing. It's hilarious/wonderful when frame
 ### Principle 6: The Shared Page Converts Viewers to Spinners
 
 When someone lands on a shared link, they see that specific tour in its full glory. Below or beside it: a clear **"Spin Your Own"** or **"See What's Next"** button. This is how the viral loop closes: see a friend's share → visit the page → get pulled into the roulette → find your own thing to share.
+
+**Implementation status:** "Spin Your Own" button added to all detail pages (roulette, worlds-most, six-degrees).
 
 ### Principle 7: Chrome Kills Delight
 
@@ -520,7 +522,7 @@ Rationale: Minimal chrome, non-competing with the primary action. The features s
 Rationale: The ambient text creates atmosphere and grounds the randomness in reality. The full page is the deeper rabbit hole for anyone who wants more.
 
 ### D3: Spin Animation
-**Deferred to prototyping.** Candidates: card flip, slide out/in, fade, shuffle, slot machine reel. The right answer will be obvious once we see it in a browser.
+**Deferred to prototyping.** Candidates: card flip, slide out/in, fade, shuffle, slot machine reel. The right answer will be obvious once we see it in a browser. Currently: instant swap (no animation).
 
 ### D4: Book on Viator Placement
 **Decision:** The tour card on Roulette is **tappable**. Tapping opens the detail page (`/roulette/[id]`) which has the Viator affiliate link. The Roulette homepage itself has NO booking button — it stays pure play.
@@ -552,6 +554,16 @@ Rationale: Perceived performance is everything for Pillar 1 (Zero Friction). Gen
 Rationale: The photo does the emotional work. The branded bar adds context ("Tour Roulette" / "World's Most Expensive") that makes the share make sense. Pure photo with no context looks like a random travel ad.
 
 ---
+
+## Implementation Notes
+
+All wireframes and decisions in this doc have been implemented as of March 1, 2026:
+- Homepage: tagline, roulette context line, "More to explore" feature teasers (live data)
+- Tour detail pages: feature badge, description, inclusions, Book on Viator, Share, Spin Your Own
+- Tooltips: HTML `title` attributes on stats (rating, price, duration), buttons, and FeatureNav links
+- Six Degrees: vertical timeline/stepper (curated gallery, not open-ended input — that's V2)
+- FeatureNav: subtle text links at bottom of every page with tooltip descriptions
+- Not yet implemented: spin animation (D3), "More tours in [location]" rabbit hole link (needs location filtering)
 
 ## What's NOT in This Doc
 

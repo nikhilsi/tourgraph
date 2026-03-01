@@ -48,6 +48,7 @@ export default function ShareButton({
   return (
     <button
       onClick={handleShare}
+      title="Share this with a friend"
       className="text-sm text-text-muted hover:text-text transition-colors px-3 py-1.5 rounded-lg border border-text-dim/30 hover:border-text-dim/60"
     >
       {copied ? "Copied!" : "Share"}

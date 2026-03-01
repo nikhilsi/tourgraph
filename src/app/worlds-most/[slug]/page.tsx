@@ -182,7 +182,7 @@ export default async function SuperlativeDetailPage({ params }: Props) {
           {/* Stats */}
           <div className="flex items-center gap-4 text-sm text-text-muted">
             {tour.rating != null && tour.rating > 0 && (
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1" title={`${tour.rating.toFixed(1)} out of 5 stars`}>
                 <span className="text-accent">&#9733;</span>
                 {tour.rating.toFixed(1)}
                 {tour.review_count != null && tour.review_count > 0 && (
@@ -193,10 +193,10 @@ export default async function SuperlativeDetailPage({ params }: Props) {
               </span>
             )}
             {tour.from_price != null && tour.from_price > 0 && (
-              <span>{formatPrice(tour.from_price)}</span>
+              <span title={`Starting from ${formatPrice(tour.from_price)}`}>{formatPrice(tour.from_price)}</span>
             )}
             {tour.duration_minutes != null && tour.duration_minutes > 0 && (
-              <span>{formatDurationLong(tour.duration_minutes)}</span>
+              <span title={`Tour duration: ${formatDurationLong(tour.duration_minutes)}`}>{formatDurationLong(tour.duration_minutes)}</span>
             )}
           </div>
 
@@ -233,6 +233,7 @@ export default async function SuperlativeDetailPage({ params }: Props) {
                 href={withCampaign(tour.viator_url, "worlds-most")}
                 target="_blank"
                 rel="noopener noreferrer"
+                title="Book this tour on Viator"
                 className="flex-1 py-3 px-6 rounded-xl bg-accent hover:bg-accent-hover text-black font-bold text-center transition-colors"
               >
                 Book on Viator &rarr;
@@ -267,14 +268,23 @@ export default async function SuperlativeDetailPage({ params }: Props) {
         </div>
       )}
 
-      {/* Back to gallery */}
+      {/* Back to gallery + Spin your own */}
       <div className="mt-8 mb-4 flex flex-col items-center gap-4">
-        <Link
-          href="/worlds-most"
-          className="py-3 px-8 rounded-xl border border-accent text-accent hover:bg-accent hover:text-black font-bold transition-colors"
-        >
-          See All Superlatives
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link
+            href="/worlds-most"
+            className="py-3 px-6 rounded-xl border border-accent text-accent hover:bg-accent hover:text-black font-bold transition-colors"
+          >
+            See All Superlatives
+          </Link>
+          <Link
+            href="/"
+            title="Discover a random tour from anywhere in the world"
+            className="py-3 px-6 rounded-xl border border-text-dim/30 text-text-muted hover:border-accent hover:text-accent font-bold transition-colors"
+          >
+            Spin Your Own
+          </Link>
+        </div>
 
         <FeatureNav current="worlds-most" />
       </div>

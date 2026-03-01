@@ -126,17 +126,17 @@ export default async function ChainDetailPage({ params }: Props) {
                     </h3>
                     <div className="flex items-center gap-3 text-xs text-text-muted mt-1.5">
                       {tour.rating != null && tour.rating > 0 && (
-                        <span className="flex items-center gap-1">
+                        <span className="flex items-center gap-1" title={`${tour.rating.toFixed(1)} out of 5 stars`}>
                           <span className="text-accent">&#9733;</span>
                           {tour.rating.toFixed(1)}
                         </span>
                       )}
                       {tour.from_price != null && tour.from_price > 0 && (
-                        <span>${Math.round(tour.from_price)}</span>
+                        <span title={`Starting from $${Math.round(tour.from_price)}`}>${Math.round(tour.from_price)}</span>
                       )}
                       {tour.duration_minutes != null &&
                         tour.duration_minutes > 0 && (
-                          <span>
+                          <span title={`Tour duration: ${formatDurationShort(tour.duration_minutes)}`}>
                             {formatDurationShort(tour.duration_minutes)}
                           </span>
                         )}
@@ -171,18 +171,27 @@ export default async function ChainDetailPage({ params }: Props) {
       </div>
 
       {/* Actions */}
-      <div className="flex items-center gap-3 mt-8">
+      <div className="flex flex-col items-center gap-3 mt-8">
+        <div className="flex items-center gap-3">
+          <Link
+            href="/six-degrees"
+            className="py-3 px-6 rounded-xl border border-accent text-accent hover:bg-accent hover:text-black font-bold transition-colors"
+          >
+            Explore Another
+          </Link>
+          <ShareButton
+            tourId={chain.id}
+            title={`${chain.city_from} to ${chain.city_to}`}
+            oneLiner={chain.summary}
+          />
+        </div>
         <Link
-          href="/six-degrees"
-          className="py-3 px-6 rounded-xl border border-accent text-accent hover:bg-accent hover:text-black font-bold transition-colors"
+          href="/"
+          title="Discover a random tour from anywhere in the world"
+          className="text-sm text-text-muted hover:text-accent transition-colors"
         >
-          Explore Another
+          Spin Your Own &rarr;
         </Link>
-        <ShareButton
-          tourId={chain.id}
-          title={`${chain.city_from} to ${chain.city_to}`}
-          oneLiner={chain.summary}
-        />
       </div>
 
       <div className="mt-8">

@@ -6,6 +6,20 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [4.4.0] - 2026-03-01
+
+### Added — Homepage Redesign & UX Polish
+- Homepage tagline: "The world's most surprising tours. One tap at a time."
+- Context line above roulette: "Press the button. Get a random tour from somewhere in the world."
+- "More to explore" section with feature teaser cards (Right Now, World's Most, Six Degrees) pulling live data
+- Tooltips (`title` attributes) across all pages: stats, buttons, FeatureNav links
+- "Spin Your Own" viral loop closer on worlds-most and six-degrees detail pages
+
+### Fixed
+- FeatureNav: Six Degrees link pointed to `/` instead of `/six-degrees`
+
+---
+
 ## [4.3.0] - 2026-03-01
 
 ### Added — Six Degrees UI (Phase 4)

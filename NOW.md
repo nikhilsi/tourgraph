@@ -17,6 +17,9 @@ Phases 1-3 code-complete. Phase 4 (Six Degrees) UI built — gallery, detail pag
 4. ~~Build Six Degrees UI~~ — **Done.** Gallery page, detail page with vertical timeline/stepper, SurpriseMeButton, not-found page, OG image route. All compile clean (lint + build zero errors). Will populate once chains are generated.
 5. ~~About & Story pages~~ — **Done.** Professional pages for portfolio. Footer with GitHub + LinkedIn.
 6. ~~Favicon fix~~ — **Done.** Removed white background from icon.svg.
+7. ~~Homepage redesign~~ — **Done.** Added tagline, context line for roulette, "More to explore" section with feature teaser cards pulling live data.
+8. ~~Tooltips~~ — **Done.** HTML `title` attributes across all pages: stats (rating, price, duration), buttons (Share, Show Me Another, Book on Viator, Spin Your Own), FeatureNav links.
+9. ~~UX doc cross-check~~ — **Done.** Fixed FeatureNav Six Degrees href (`/` → `/six-degrees`). Added "Spin Your Own" viral loop closer to worlds-most and six-degrees detail pages.
 
 ### In Progress
 
@@ -53,5 +56,5 @@ Phases 1-3 code-complete. Phase 4 (Six Degrees) UI built — gallery, detail pag
 | 3 | The World's Most ___ | **Code complete** |
 | 4a | Data expansion (all destinations) | **Running** — 613/2,712 (22.6%) |
 | 4b | Six Degrees of Anywhere | **UI complete** — needs chain data |
-| 5 | Cross-feature polish, deploy | Planned |
+| 5 | Cross-feature polish, deploy | **Polish in progress** |
 | 6 | iOS app | Planned |

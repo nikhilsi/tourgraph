@@ -14,7 +14,7 @@ export default function TourCard({
   return (
     <div className="w-full max-w-md mx-auto rounded-2xl overflow-hidden bg-surface">
       {/* Photo — tappable to detail page */}
-      <Link href={`/roulette/${tour.id}`} className="block relative aspect-[3/2]">
+      <Link href={`/roulette/${tour.id}`} className="block relative aspect-[3/2]" title="Tap for full details">
         {tour.imageUrl ? (
           <Image
             src={tour.imageUrl}
@@ -56,16 +56,16 @@ export default function TourCard({
         {/* Stats row */}
         <div className="flex items-center gap-3 text-sm text-text-muted pt-1">
           {tour.rating > 0 && (
-            <span className="flex items-center gap-1">
+            <span className="flex items-center gap-1" title={`${tour.rating.toFixed(1)} out of 5 stars`}>
               <span className="text-accent">&#9733;</span>
               {tour.rating.toFixed(1)}
             </span>
           )}
           {tour.fromPrice > 0 && (
-            <span>${Math.round(tour.fromPrice)}</span>
+            <span title={`Starting from $${Math.round(tour.fromPrice)}`}>${Math.round(tour.fromPrice)}</span>
           )}
           {tour.durationMinutes > 0 && (
-            <span>{formatDurationShort(tour.durationMinutes)}</span>
+            <span title={`Tour duration: ${formatDurationShort(tour.durationMinutes)}`}>{formatDurationShort(tour.durationMinutes)}</span>
           )}
         </div>
 

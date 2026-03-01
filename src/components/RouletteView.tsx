@@ -104,6 +104,7 @@ export default function RouletteView() {
       {!loading && !error && (
         <button
           onClick={handleSpin}
+          title="Discover another random tour"
           className="w-full max-w-md py-4 px-8 rounded-xl bg-accent hover:bg-accent-hover text-black font-bold text-lg transition-colors active:scale-[0.98]"
         >
           Show Me Another
