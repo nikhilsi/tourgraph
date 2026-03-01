@@ -7,12 +7,16 @@
 //
 // Modes:
 //   --dest <id>         Index a single destination
-//   --full              Index all destinations (initial build)
+//   --full              Index all leaf destinations (default, skips countries/states)
+//   --full --all-destinations   Index ALL destinations (including parents)
 //   --continue          Resume from last position
 //   --limit <n>         Process at most n destinations
 //   --no-ai             Skip one-liner generation (faster)
 //
+// Logs: Output is written to both console and logs/indexer-<timestamp>.log
+//
 // Run: npx tsx src/scripts/indexer.ts --dest 704
+//      npx tsx src/scripts/indexer.ts --full --no-ai
 // ============================================================
 
 import { ViatorClient, extractCoverImageUrl, extractAllImageUrls, extractDurationMinutes, extractInclusions } from "../lib/viator";
@@ -26,14 +30,74 @@ import {
   getIndexerState,
   setIndexerState,
   getAllDestinations,
+  getLeafDestinations,
   getActiveTourCount,
 } from "../lib/db";
 import { generateOneLiner } from "../lib/claude";
 import { continentFromLookupId } from "../lib/continents";
 import type { ViatorSearchProduct, WeightCategory } from "../lib/types";
 import crypto from "crypto";
+import fs from "fs";
+import path from "path";
 
 loadEnv();
+
+// ============================================================
+// Logging — tee to console + file
+// ============================================================
+
+let logStream: fs.WriteStream | null = null;
+
+function initLogging(): string {
+  const logsDir = path.resolve("logs");
+  if (!fs.existsSync(logsDir)) {
+    fs.mkdirSync(logsDir, { recursive: true });
+  }
+
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+  const logPath = path.join(logsDir, `indexer-${timestamp}.log`);
+  logStream = fs.createWriteStream(logPath, { flags: "a" });
+  return logPath;
+}
+
+function closeLogging(): void {
+  if (logStream) {
+    logStream.end();
+    logStream = null;
+  }
+}
+
+function log(msg: string): void {
+  const line = msg;
+  console.log(line);
+  logStream?.write(line + "\n");
+}
+
+function logError(msg: string): void {
+  const line = msg;
+  console.error(line);
+  logStream?.write("[ERROR] " + line + "\n");
+}
+
+// ============================================================
+// Formatting helpers
+// ============================================================
+
+function formatDuration(ms: number): string {
+  const totalSec = Math.floor(ms / 1000);
+  const hours = Math.floor(totalSec / 3600);
+  const minutes = Math.floor((totalSec % 3600) / 60);
+  const seconds = totalSec % 60;
+  if (hours > 0) return `${hours}h ${minutes}m ${seconds}s`;
+  if (minutes > 0) return `${minutes}m ${seconds}s`;
+  return `${seconds}s`;
+}
+
+function formatBytes(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
 
 // ============================================================
 // Weight category thresholds (M15: named constants)
@@ -100,8 +164,8 @@ async function searchDestination(
         }
       }
     } catch (error) {
-      console.error(
-        `    ⚠ Search failed (${strategy.sort} ${strategy.order || ""}): ${error}`
+      logError(
+        `    Search failed (${strategy.sort} ${strategy.order || ""}): ${error}`
       );
     }
   }
@@ -211,12 +275,12 @@ export async function processDestination(
   destName: string,
   lookupId: string,
   options: { skipAi: boolean }
-): Promise<{ newCount: number; changedCount: number; totalSearched: number }> {
+): Promise<{ newCount: number; changedCount: number; totalSearched: number; errors: number }> {
   // Step 1: Search with 4 strategies
   const searchResults = await searchDestination(client, destId);
 
   if (searchResults.size === 0) {
-    return { newCount: 0, changedCount: 0, totalSearched: 0 };
+    return { newCount: 0, changedCount: 0, totalSearched: 0, errors: 0 };
   }
 
   // Step 2: Get cached tours for this destination
@@ -230,7 +294,7 @@ export async function processDestination(
   const { newProducts, changedProducts, unchangedCodes, missingCodes } =
     classifyProducts(searchResults, cachedTours);
 
-  console.log(
+  log(
     `    Found ${searchResults.size} products: ${newProducts.length} new, ${changedProducts.length} changed, ${unchangedCodes.length} unchanged, ${missingCodes.length} missing`
   );
 
@@ -255,7 +319,7 @@ export async function processDestination(
     })();
   } catch (error) {
     // H7: Don't crash the indexer on DB errors
-    console.error(`    ⚠ Failed to update existing tours: ${error}`);
+    logError(`    Failed to update existing tours: ${error}`);
   }
 
   // Step 6: Fetch full details for new products
@@ -266,6 +330,7 @@ export async function processDestination(
   const countryName = countryDest?.name || "Unknown";
 
   let actuallyInserted = 0;
+  let fetchErrors = 0;
   for (const p of newProducts) {
     try {
       const detail = await client.getProduct(p.productCode);
@@ -330,13 +395,14 @@ export async function processDestination(
       actuallyInserted++;
 
       if (oneLiner) {
-        console.log(`      + ${detail.productCode}: "${detail.title}" [${weightCategory}]`);
-        console.log(`        "${oneLiner}"`);
+        log(`      + ${detail.productCode}: "${detail.title}" [${weightCategory}]`);
+        log(`        "${oneLiner}"`);
       } else {
-        console.log(`      + ${detail.productCode}: "${detail.title}" [${weightCategory}]`);
+        log(`      + ${detail.productCode}: "${detail.title}" [${weightCategory}]`);
       }
     } catch (error) {
-      console.error(`      ⚠ Failed to fetch ${p.productCode}: ${error}`);
+      fetchErrors++;
+      logError(`      Failed to fetch ${p.productCode}: ${error}`);
     }
   }
 
@@ -344,12 +410,15 @@ export async function processDestination(
     newCount: actuallyInserted,
     changedCount: changedProducts.length,
     totalSearched: searchResults.size,
+    errors: fetchErrors,
   };
 }
 
 // ============================================================
 // Main
 // ============================================================
+
+const BATCH_LOG_INTERVAL = 50;
 
 async function main() {
   const args = process.argv.slice(2);
@@ -358,19 +427,27 @@ async function main() {
     : null;
   const fullMode = args.includes("--full");
   const continueMode = args.includes("--continue");
+  const allDestsMode = args.includes("--all-destinations");
   const limitArg = args.includes("--limit")
     ? parseInt(args[args.indexOf("--limit") + 1])
     : null;
   const skipAi = args.includes("--no-ai");
 
-  console.log("TourGraph Indexer");
-  console.log("=================\n");
+  // Initialize file logging
+  const logPath = initLogging();
+  const runStartTime = Date.now();
+
+  log("TourGraph Indexer");
+  log("=================");
+  log(`Started: ${new Date().toISOString()}`);
+  log(`Log file: ${logPath}\n`);
 
   const client = new ViatorClient();
 
   if (destArg) {
     // Single destination mode
-    console.log(`Mode: single destination (${destArg})`);
+    log(`Mode: single destination (${destArg})`);
+    if (skipAi) log("AI one-liners: DISABLED (--no-ai)");
 
     const viatorDests = await client.getDestinations();
     const dest = viatorDests.find(
@@ -378,11 +455,13 @@ async function main() {
     );
 
     if (!dest) {
-      console.error(`Destination ${destArg} not found`);
+      logError(`Destination ${destArg} not found`);
+      closeLogging();
       process.exit(1);
     }
 
-    console.log(`\n  Processing: ${dest.name} (${dest.type})`);
+    const destStart = Date.now();
+    log(`\n  Processing: ${dest.name} (${dest.type})`);
     const result = await processDestination(
       client,
       destArg,
@@ -390,61 +469,82 @@ async function main() {
       dest.lookupId,
       { skipAi }
     );
-    console.log(
-      `\n  Result: ${result.totalSearched} searched, ${result.newCount} new, ${result.changedCount} changed`
+    const destElapsed = ((Date.now() - destStart) / 1000).toFixed(1);
+    log(
+      `\n  Result: ${result.totalSearched} searched, ${result.newCount} new, ${result.changedCount} changed (${destElapsed}s)`
     );
+
+    // Summary
+    const totalElapsed = Date.now() - runStartTime;
+    log(`\n${"=".repeat(50)}`);
+    log(`Duration: ${formatDuration(totalElapsed)}`);
+    log(`Viator API calls: ${client.getRequestCount()}`);
+    log(`Total active tours in DB: ${getActiveTourCount()}`);
+
   } else if (fullMode || continueMode) {
     // Multi-destination mode
-    const allDests = getAllDestinations();
-    if (allDests.length === 0) {
-      console.error(
+    const useLeaves = !allDestsMode;
+    const destinations = useLeaves ? getLeafDestinations() : getAllDestinations();
+
+    if (destinations.length === 0) {
+      logError(
         "No destinations in DB. Run seed-destinations first:\n  npx tsx src/scripts/seed-destinations.ts"
       );
+      closeLogging();
       process.exit(1);
     }
 
+    log(`Destination mode: ${useLeaves ? "leaf nodes only" : "ALL destinations (including parents)"}`);
+    log(`Total destinations: ${destinations.length}`);
+    if (skipAi) log("AI one-liners: DISABLED (--no-ai)");
+
     // Fetch Viator destinations for lookupId data
-    console.log("Fetching destination metadata from Viator...");
+    log("\nFetching destination metadata from Viator...");
     const viatorDests = await client.getDestinations();
     const viatorById = new Map(
       viatorDests.map((d) => [String(d.destinationId), d])
     );
+    log(`  Viator returned ${viatorDests.length} destinations`);
 
     // H8: Resume using destination ID, not array index
     let startIdx = 0;
     if (continueMode) {
       const savedDestId = getIndexerState("last_destination_id");
       if (savedDestId) {
-        const foundIdx = allDests.findIndex((d) => d.id === savedDestId);
+        const foundIdx = destinations.findIndex((d) => d.id === savedDestId);
         startIdx = foundIdx >= 0 ? foundIdx + 1 : 0;
-        console.log(`Resuming from destination ${savedDestId} (position ${startIdx})`);
+        log(`Resuming from destination ${savedDestId} (position ${startIdx})`);
       }
     }
 
-    const limit = limitArg || allDests.length;
-    const endIdx = Math.min(startIdx + limit, allDests.length);
+    const limit = limitArg || destinations.length;
+    const endIdx = Math.min(startIdx + limit, destinations.length);
 
-    console.log(
-      `Mode: ${fullMode ? "full" : "continue"} — processing destinations ${startIdx} to ${endIdx - 1} of ${allDests.length}`
+    log(
+      `\nProcessing destinations ${startIdx + 1} to ${endIdx} of ${destinations.length}`
     );
-    if (skipAi) console.log("AI one-liners: DISABLED (--no-ai)");
+    log("");
 
     let totalNew = 0;
     let totalChanged = 0;
+    let totalSearched = 0;
+    let totalErrors = 0;
     let processed = 0;
+    let skipped = 0;
+    let emptyDests = 0;
+    const destTimes: number[] = [];
 
     for (let i = startIdx; i < endIdx; i++) {
-      const dest = allDests[i];
+      const dest = destinations[i];
       const viatorDest = viatorById.get(dest.id);
 
       if (!viatorDest) {
-        console.log(`  [${i}] ${dest.name} — skipped (no Viator metadata)`);
+        log(`  [${i + 1}/${destinations.length}] ${dest.name} — skipped (no Viator metadata)`);
+        skipped++;
         continue;
       }
 
-      console.log(
-        `\n  [${i}/${allDests.length}] ${dest.name} (${viatorDest.type})`
-      );
+      const destStart = Date.now();
 
       const result = await processDestination(
         client,
@@ -454,15 +554,42 @@ async function main() {
         { skipAi }
       );
 
+      const destElapsed = Date.now() - destStart;
+      destTimes.push(destElapsed);
+      const destSec = (destElapsed / 1000).toFixed(1);
+
       totalNew += result.newCount;
       totalChanged += result.changedCount;
+      totalSearched += result.totalSearched;
+      totalErrors += result.errors;
       processed++;
+
+      if (result.totalSearched === 0) {
+        emptyDests++;
+        log(`  [${i + 1}/${destinations.length}] ${dest.name} (${destSec}s) — no tours found`);
+      } else {
+        log(
+          `  [${i + 1}/${destinations.length}] ${dest.name} (${destSec}s) — ${result.totalSearched} searched, ${result.newCount} new, ${result.changedCount} changed`
+        );
+      }
 
       // H8: Save destination ID (not array index) for resume
       try {
         setIndexerState("last_destination_id", dest.id);
       } catch (error) {
-        console.error(`    ⚠ Failed to save indexer state: ${error}`);
+        logError(`    Failed to save indexer state: ${error}`);
+      }
+
+      // Batch progress summary
+      if (processed % BATCH_LOG_INTERVAL === 0) {
+        const avgMs = destTimes.reduce((a, b) => a + b, 0) / destTimes.length;
+        const remaining = endIdx - i - 1;
+        const etaMs = remaining * avgMs;
+        const pct = ((processed / (endIdx - startIdx)) * 100).toFixed(1);
+
+        log(`\n--- Progress: ${processed}/${endIdx - startIdx} (${pct}%) | avg ${(avgMs / 1000).toFixed(1)}s/dest | ETA: ~${formatDuration(etaMs)} remaining ---`);
+        log(`    Cumulative: ${totalNew} new, ${totalChanged} changed, ${totalErrors} errors, ${emptyDests} empty`);
+        log("");
       }
 
       // Throttle between destinations
@@ -471,29 +598,54 @@ async function main() {
       }
     }
 
+    // Final summary
+    const totalElapsed = Date.now() - runStartTime;
+    const dbPath = process.env.DATABASE_PATH || "./data/tourgraph.db";
+    const dbSize = fs.existsSync(dbPath) ? fs.statSync(dbPath).size : 0;
     const totalTours = getActiveTourCount();
-    console.log(`\n${"=".repeat(50)}`);
-    console.log(`Indexer complete:`);
-    console.log(`  Destinations processed: ${processed}`);
-    console.log(`  New tours: ${totalNew}`);
-    console.log(`  Changed tours: ${totalChanged}`);
-    console.log(`  Total active tours in DB: ${totalTours}`);
+
+    log("");
+    log("=".repeat(60));
+    log("  INDEXER RUN COMPLETE");
+    log("=".repeat(60));
+    log(`  Started:              ${new Date(runStartTime).toISOString()}`);
+    log(`  Finished:             ${new Date().toISOString()}`);
+    log(`  Duration:             ${formatDuration(totalElapsed)}`);
+    log(`  Destinations:         ${processed} processed${useLeaves ? " (leaf nodes)" : ""}`);
+    log(`  Destinations skipped: ${skipped} (no Viator metadata)`);
+    log(`  Destinations empty:   ${emptyDests} (no tours found)`);
+    log(`  Tours searched:       ${totalSearched}`);
+    log(`  New tours added:      ${totalNew}`);
+    log(`  Changed tours:        ${totalChanged}`);
+    log(`  Errors:               ${totalErrors}`);
+    log(`  Viator API calls:     ${client.getRequestCount()}`);
+    log(`  Total active tours:   ${totalTours}`);
+    log(`  DB size:              ${formatBytes(dbSize)}`);
+    log(`  Log file:             ${logPath}`);
+    log("=".repeat(60));
+
   } else {
-    console.log("Usage:");
-    console.log(
+    log("Usage:");
+    log(
       "  npx tsx src/scripts/indexer.ts --dest <id>          Index one destination"
     );
-    console.log(
-      "  npx tsx src/scripts/indexer.ts --full [--limit N]   Index all destinations"
+    log(
+      "  npx tsx src/scripts/indexer.ts --full [--limit N]   Index all leaf destinations"
     );
-    console.log(
+    log(
+      "  npx tsx src/scripts/indexer.ts --full --all-destinations   Include parent destinations"
+    );
+    log(
       "  npx tsx src/scripts/indexer.ts --continue            Resume from last position"
     );
-    console.log("  --no-ai                                             Skip one-liner generation");
+    log("  --no-ai                                             Skip one-liner generation");
   }
+
+  closeLogging();
 }
 
 main().catch((err) => {
-  console.error("Indexer failed:", err);
+  logError(`Indexer failed: ${err}`);
+  closeLogging();
   process.exit(1);
 });

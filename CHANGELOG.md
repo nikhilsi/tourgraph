@@ -6,6 +6,33 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [4.1.0] - 2026-03-01
+
+### Added — Phase 4 Research & Prototyping
+- `docs/phase4-six-degrees.md` — Full research doc: competitive analysis, thematic coverage, UX design, prompt engineering, test results
+- `src/scripts/test-chain.ts` — Chain generation test script (Claude Sonnet 4.6, ~$0.02/chain, ~12-14s)
+- `data/chain-tests/` — 8 test chain outputs (6 v2, 2 v1 for comparison)
+- Prompt v2 with "HARD RULES" — fixes chain length inconsistency and theme repetition (8/8 test runs produce exactly 5 stops with unique themes)
+
+### Added — Indexer Hardening (Production-Scale)
+- File logging: all output tees to `logs/indexer-<timestamp>.log` (no lost output)
+- Leaf-node filtering: `--full` now indexes only leaf destinations (~2,712) instead of all 3,380 (skips countries/states that would cause duplicate tours)
+- `--all-destinations` flag to override leaf filtering
+- Per-destination timing with running ETA every 50 destinations
+- Final summary block: start/finish, duration, destinations, tours, errors, API calls, DB size
+- `getLeafDestinations()` in db.ts (LEFT JOIN to find destinations with no children)
+- `getRequestCount()` public getter on ViatorClient
+- `logs/` directory with `.gitkeep` (log files gitignored)
+
+### Added — Reference
+- `docs/Rate_limiting.md` — Viator API rate limiting documentation (16 req/10s per endpoint, rolling window)
+
+### Discovered
+- **Data gap**: Only 53 of 3,380 Viator destinations indexed (1.6%). `seed-dev-data.ts` hardcodes 43 destination IDs — was a dev seed, not production. Need to expand to ~2,712 leaf destinations (~100K tours expected).
+- **Viator hierarchy**: Not country/state/city as assumed. Inconsistent depth (Rome at depth 1, San Francisco at depth 2). Correct approach: leaf nodes = destinations with no children.
+
+---
+
 ## [4.0.0] - 2026-02-28
 
 ### Added — Phase 2: Right Now Somewhere

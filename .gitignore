@@ -6,6 +6,10 @@
 # Database
 data/
 
+# Logs
+logs/
+!logs/.gitkeep
+
 # Node.js
 node_modules/
 .next/

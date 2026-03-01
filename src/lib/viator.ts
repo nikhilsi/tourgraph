@@ -40,6 +40,10 @@ export class ViatorClient {
     };
   }
 
+  getRequestCount(): number {
+    return this.requestCount;
+  }
+
   // Rate limiting: pause every THROTTLE_BATCH_SIZE requests
   private async throttle(): Promise<void> {
     this.requestCount++;

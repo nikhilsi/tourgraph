@@ -599,6 +599,18 @@ export function getAllDestinations(): DestinationRow[] {
   return db.prepare("SELECT * FROM destinations ORDER BY name").all() as DestinationRow[];
 }
 
+export function getLeafDestinations(): DestinationRow[] {
+  const db = getDb();
+  return db
+    .prepare(
+      `SELECT d.* FROM destinations d
+       LEFT JOIN destinations c ON c.parent_id = d.id
+       WHERE c.id IS NULL
+       ORDER BY d.name`
+    )
+    .all() as DestinationRow[];
+}
+
 export function getDestinationById(id: string): DestinationRow | undefined {
   const db = getDb();
   return db.prepare("SELECT * FROM destinations WHERE id = ?").get(id) as
