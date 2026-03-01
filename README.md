@@ -72,13 +72,19 @@ tourgraph/
 │   │   ├── globals.css       # Tailwind + theme tokens
 │   │   ├── roulette/[id]/    # Tour detail page
 │   │   ├── right-now/        # Right Now Somewhere (Phase 2)
-│   │   ├── worlds-most/      # Superlatives gallery (Phase 3)
-│   │   ├── worlds-most/[slug]/ # Superlative detail (Phase 3)
+│   │   ├── worlds-most/      # Superlatives gallery
+│   │   ├── worlds-most/[slug]/ # Superlative detail
+│   │   ├── six-degrees/      # Six Degrees gallery
+│   │   ├── six-degrees/[slug]/ # Chain detail (vertical timeline)
+│   │   ├── about/            # About page
+│   │   ├── story/            # Origin story
 │   │   ├── api/roulette/hand/  # Hand API endpoint
 │   │   ├── api/og/roulette/[id]/ # Roulette OG images
 │   │   ├── api/og/right-now/    # Right Now OG image
-│   │   └── api/og/worlds-most/[slug]/ # Superlative OG images
+│   │   ├── api/og/worlds-most/[slug]/ # Superlative OG images
+│   │   └── api/og/six-degrees/[slug]/ # Six Degrees OG images
 │   ├── components/
+│   │   ├── Logo.tsx          # TourGraph logo (linked to home)
 │   │   ├── TourCard.tsx      # Photo-dominant tour card
 │   │   ├── RouletteView.tsx  # Interactive spin + hand cycling
 │   │   ├── ShareButton.tsx   # Web Share API + clipboard
@@ -93,10 +99,13 @@ tourgraph/
 │   │   ├── claude.ts         # Claude API (one-liners)
 │   │   └── continents.ts     # Continent lookup from Viator hierarchy
 │   └── scripts/
-│       ├── indexer.ts        # Drip + Delta indexer
-│       ├── seed-dev-data.ts  # Seeds 43 destinations
+│       ├── indexer.ts              # Drip + Delta indexer
+│       ├── seed-dev-data.ts        # Seeds 43 destinations
 │       ├── seed-destinations.ts
-│       └── backfill-oneliners.ts # Batch AI one-liner generation
+│       ├── backfill-oneliners.ts   # Single-tour AI one-liners
+│       └── backfill-oneliners-batch.ts # Batch AI one-liners (20/call)
+│
+├── ios/                      # SwiftUI iOS app (see ios/README.md)
 │
 ├── docs/
 │   ├── product_brief.md      # Product vision (source of truth)
@@ -104,6 +113,8 @@ tourgraph/
 │   ├── architecture.md       # Technical architecture, schema, indexer design
 │   ├── implementation_plan.md # Phase 1-3 build plan
 │   ├── viator-api-reference.md # Basic-tier API endpoint summary
+│   ├── ios-architecture.md   # iOS app design: data strategy, services, navigation
+│   ├── ios-app-store.md      # App Store submission metadata (draft)
 │   ├── viator-openapi.json   # Full Viator OpenAPI 3.0 spec
 │   └── thesis_validation.md  # Why we pivoted
 │

@@ -136,68 +136,55 @@ App stores current DB version in UserDefaults. On launch, checks version endpoin
 ios/TourGraph/
 ├── TourGraph.xcodeproj
 ├── TourGraph/
-│   ├── TourGraphApp.swift              # @main entry, initializes services
-│   ├── ContentView.swift               # Root TabView
+│   ├── TourGraphApp.swift              # @main entry, database init, loading screen
+│   ├── ContentView.swift               # 4-tab TabView container
 │   │
 │   ├── Models/
 │   │   ├── Tour.swift                  # Core tour model (maps to tours table)
 │   │   ├── Destination.swift           # Destination with timezone
 │   │   ├── Chain.swift                 # Six Degrees chain + links
-│   │   ├── Superlative.swift           # Superlative type + config
-│   │   └── WeightCategory.swift        # Weight category enum
+│   │   └── Superlative.swift           # Superlative type + display config
 │   │
 │   ├── Services/
 │   │   ├── DatabaseService.swift       # GRDB connection, all queries
-│   │   ├── RouletteService.swift       # Hand algorithm, contrast sequencing
-│   │   ├── RightNowService.swift       # Timezone math, golden hour detection
-│   │   ├── SuperlativeService.swift    # Superlative queries (6 types)
-│   │   ├── ChainService.swift          # Six Degrees chain queries
-│   │   ├── ImageCache.swift            # NSCache + disk cache for tour photos
-│   │   └── DBEnrichmentService.swift   # Background DB download + swap
+│   │   └── TimezoneHelper.swift        # Golden hour detection, timezone math
 │   │
 │   ├── State/
-│   │   ├── AppSettings.swift           # Theme, haptics toggle → UserDefaults
-│   │   ├── Favorites.swift             # Saved tour IDs → UserDefaults
-│   │   └── RecentSpins.swift           # Last N tour IDs → UserDefaults
+│   │   ├── RouletteState.swift         # Hand algorithm, contrast sequencing, prefetch
+│   │   ├── AppSettings.swift           # Haptics toggle → UserDefaults
+│   │   └── Favorites.swift             # Saved tour IDs → UserDefaults
 │   │
 │   ├── Views/
 │   │   ├── Roulette/
-│   │   │   ├── RouletteView.swift      # Swipe-based card stack
-│   │   │   ├── TourCardView.swift      # Photo-dominant card (matches web)
-│   │   │   └── SwipeGesture.swift      # Custom swipe + haptic feedback
+│   │   │   └── RouletteView.swift      # Swipe cards, rotation effect, logo header
 │   │   │
 │   │   ├── RightNow/
-│   │   │   ├── RightNowView.swift      # Golden-hour moments grid
-│   │   │   └── MomentCardView.swift    # City + time + tour card
+│   │   │   └── RightNowView.swift      # RightNowTab + RightNowSection + MomentCardView
 │   │   │
 │   │   ├── WorldsMost/
-│   │   │   ├── WorldsMostView.swift    # Superlatives gallery
-│   │   │   └── SuperlativeCardView.swift
+│   │   │   └── WorldsMostView.swift    # WorldsMostTab + WorldsMostSection + SuperlativeCardView
 │   │   │
 │   │   ├── SixDegrees/
-│   │   │   ├── SixDegreesView.swift    # Chain gallery
-│   │   │   ├── ChainDetailView.swift   # Vertical timeline (matches web)
-│   │   │   └── ChainCardView.swift     # City pair + summary card
+│   │   │   ├── SixDegreesView.swift    # SixDegreesTab + SixDegreesSection + ChainCardView
+│   │   │   └── ChainDetailView.swift   # Vertical timeline detail
 │   │   │
 │   │   ├── Detail/
-│   │   │   └── TourDetailView.swift    # Full tour info + Viator link
+│   │   │   └── TourDetailView.swift    # Full tour info, image gallery, Viator link
+│   │   │
+│   │   ├── Settings/
+│   │   │   └── SettingsView.swift      # Modal sheet: haptics, favorites, stats, legal
 │   │   │
 │   │   └── Shared/
-│   │       ├── ShareCardView.swift     # Rendered to image for sharing
-│   │       ├── SkeletonView.swift      # Loading placeholders
+│   │       ├── TourCardView.swift      # Photo-dominant card with favorite heart
 │   │       └── StatBadge.swift         # Rating, price, duration pills
 │   │
-│   ├── Widgets/
-│   │   └── RightNowWidget/
-│   │       ├── RightNowWidget.swift    # Home screen widget
-│   │       └── RightNowEntry.swift     # Timeline entry
+│   ├── Assets.xcassets/                # App icon, LogoWhite, accent color
 │   │
 │   └── Resources/
-│       └── tourgraph-seed.db           # Bundled seed database (~150MB)
-│
-├── TourGraphTests/
-└── TourGraphWidgetExtension/
+│       └── tourgraph.db               # Bundled SQLite database (gitignored)
 ```
+
+**Not yet built** (V2): ImageCache, DBEnrichmentService, ShareCardView (ImageRenderer), SkeletonView, Widgets, RecentSpins.
 
 ---
 
@@ -406,27 +393,28 @@ This is pure SQL + Swift logic. No API calls.
 ## Navigation
 
 ```
-TabView (3 tabs)
+TabView (4 tabs)
 ├── Roulette (default tab)
-│   ├── RouletteView (swipe cards)
+│   ├── RouletteView (swipe cards, logo header)
 │   └── → TourDetailView (push)
 │
-├── Explore
-│   ├── Right Now section
-│   │   └── → TourDetailView (push)
-│   ├── World's Most section
-│   │   └── → TourDetailView (push)
-│   └── Six Degrees section
-│       └── → ChainDetailView (push)
-│           └── → TourDetailView (push)
+├── Right Now
+│   ├── RightNowTab (golden-hour moments)
+│   └── → TourDetailView (push)
 │
-└── Settings
-    ├── Haptics toggle
-    ├── About / Story
-    └── App version + DB version
+├── World's Most
+│   ├── WorldsMostTab (superlatives gallery)
+│   └── → TourDetailView (push)
+│
+└── Six Degrees
+    ├── SixDegreesTab (chain gallery, "Surprise Me")
+    └── → ChainDetailView (push)
+        └── → TourDetailView (push)
+
+Settings: gear icon in each tab's nav bar → modal sheet with Done button
 ```
 
-**Why 3 tabs not 4**: Roulette is the core loop (its own tab). The other three discovery features group naturally into "Explore." Settings is minimal.
+**Why 4 tabs, not 3 + Explore**: Each feature deserves direct one-tap access — matches the web's navigation. Settings is minimal and doesn't warrant a tab; it opens as a sheet from any tab's gear icon.
 
 ---
 
@@ -533,8 +521,8 @@ If the full DB after VACUUM is under ~180MB, skip the seed/enrich split entirely
 | 4 | RightNowSection + TimezoneHelper (golden hour) | Done |
 | 5 | WorldsMostSection + superlative stat highlights | Done |
 | 6 | SixDegreesSection + ChainDetailView + Surprise Me | Done |
-| 7 | Explore tab (sections, no nested scrolls) | Done |
-| 8 | Favorites + Settings + App Icon | Done |
+| 7 | 4-tab layout (each feature its own tab) + Settings as sheet | Done |
+| 8 | Favorites + App Icon | Done |
 | 9 | DBEnrichmentService (background download) | Not started |
 | 10 | App Store assets + submission | Not started |
 

@@ -47,8 +47,8 @@ npm run seed:data -- --no-ai   # Fast mode, skip AI
 
 **Destination list** (43 cities): Paris, London, Amsterdam, Rome, Lisbon, Barcelona, Prague, Vienna, Edinburgh, Athens, Dubrovnik, Istanbul, NYC, Seattle, Las Vegas, San Francisco, LA, Cancun, Mexico City, Tokyo, Kyoto, Bangkok, Phuket, Bali, Singapore, Seoul, Ho Chi Minh City, Mumbai, Cape Town, Dubai, Cairo, Marrakech, Nairobi, Zanzibar, Petra, Rio de Janeiro, Buenos Aires, Cusco, Lima, Cartagena, Sydney, Queenstown, Reykjavik.
 
-### `backfill-oneliners.ts` — AI Caption Generator
-Generates Claude Haiku one-liners for tours missing them. Prioritizes by review count (popular tours first).
+### `backfill-oneliners.ts` — AI Caption Generator (Single)
+Generates Claude Haiku one-liners one tour at a time. Good for small batches.
 
 ```bash
 npm run backfill:oneliners                  # All missing
@@ -56,7 +56,18 @@ npm run backfill:oneliners -- --limit 100   # First 100
 npm run backfill:oneliners -- --dry-run     # Preview without writing
 ```
 
-Rate limited: 200ms between API calls, progress logged every 20 tours.
+Rate limited: 200ms between API calls, progress logged every 20 tours. ~0.7 tours/sec.
+
+### `backfill-oneliners-batch.ts` — AI Caption Generator (Batch)
+Sends 20 tours per Claude Haiku API call with JSON response. ~3.5x faster than single-tour version.
+
+```bash
+npx tsx src/scripts/backfill-oneliners-batch.ts                # All missing
+npx tsx src/scripts/backfill-oneliners-batch.ts --limit 1000   # First 1000
+npx tsx src/scripts/backfill-oneliners-batch.ts --dry-run      # Preview without writing
+```
+
+Generates ~2.5 tours/sec. Logs to `logs/backfill-batch-<timestamp>.log` with ETA tracking. Stops after 5 consecutive batch errors. Max one-liner length: 150 chars, truncated at word boundary.
 
 ### `check-db.ts` — Database Audit
 Quick stats: weight category distribution, tour count, one-liner coverage, continent spread, top destinations.

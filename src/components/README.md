@@ -5,6 +5,7 @@ All reusable UI components. Client components are marked with `"use client"` —
 ## Component Map
 
 ```
+Logo                      — TourGraph logo linked to homepage
 RouletteView (client)     — Core game loop: fetches hand, cycles cards
   └── TourCard            — Single tour card display
        └── ShareButton (client) — Share / clipboard copy
@@ -44,5 +45,8 @@ Shows "Copied!" for 2 seconds after clipboard success. Silent failure on both �
 ### `TourCardSkeleton.tsx`
 Animated placeholder matching TourCard's exact layout (3:2 photo, text lines, stats row). Uses Tailwind `animate-pulse`. Dimensions must match TourCard to prevent layout shift during loading.
 
+### `Logo.tsx`
+Reusable TourGraph logo component. Wraps `next/image` with a link to `/`. Uses `public/logo-white.png` (white on transparent, 945x209). Used on all pages.
+
 ### `FeatureNav.tsx`
-Horizontal text navigation: `roulette · right now · world's most · six degrees`. Current feature shown as highlighted text, others as links. Roulette → `/`, Right Now → `/right-now`, World's Most → `/worlds-most`. Six Degrees points to `/` (Phase 4 not built yet).
+Horizontal text navigation: `roulette · right now · world's most · six degrees · about · story`. Current feature shown as highlighted text, others as links. Roulette → `/`, Right Now → `/right-now`, World's Most → `/worlds-most`, Six Degrees → `/six-degrees`, About → `/about`, Story → `/story`.

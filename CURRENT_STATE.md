@@ -7,7 +7,7 @@
 
 ## Live at https://tourgraph.ai
 
-All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. ~116K tours, 17 routes, all verified 200 over HTTPS. Data expansion indexer still running locally (~83% done).
+All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. ~123K tours across 3,380 destinations, 17 routes, all verified 200 over HTTPS. Data expansion indexer running locally (nearing completion).
 
 ### Web Features (All Deployed)
 
@@ -22,27 +22,26 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 
 ### iOS App (In Development)
 
-SwiftUI app with GRDB.swift reading from bundled SQLite database. All four features implemented. Builds and runs on simulator.
+SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, all four features implemented. Builds and runs on simulator.
 
 | Feature | File(s) | Status |
 |---------|---------|--------|
-| Tour Roulette (swipe) | `RouletteView.swift`, `RouletteState.swift` | Built — swipe gesture, haptics, rotation effect |
-| Right Now Somewhere | `RightNowView.swift`, `TimezoneHelper.swift` | Built — golden-hour detection |
-| The World's Most ___ | `WorldsMostView.swift`, `Superlative.swift` | Built — stat highlights on cards |
-| Six Degrees | `SixDegreesView.swift`, `ChainDetailView.swift` | Built — "Surprise Me" button, timeline |
-| Explore tab | `ExploreView.swift` | Built — combines all 3 as sections |
+| Tour Roulette (swipe) | `RouletteView.swift`, `RouletteState.swift` | Built — swipe gesture, haptics, rotation effect, logo header |
+| Right Now Somewhere | `RightNowView.swift`, `TimezoneHelper.swift` | Built — own tab, golden-hour detection |
+| The World's Most ___ | `WorldsMostView.swift`, `Superlative.swift` | Built — own tab, stat highlights on cards |
+| Six Degrees | `SixDegreesView.swift`, `ChainDetailView.swift` | Built — own tab, "Surprise Me" button, timeline |
 | Tour Detail | `TourDetailView.swift` | Built — image gallery, highlights, Viator link |
 | Favorites | `Favorites.swift`, heart on cards | Built — UserDefaults persistence |
+| Settings | `SettingsView.swift` | Built — gear icon in nav bar, modal sheet, haptics toggle |
 | App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
-| Settings | `SettingsView.swift` | Built — haptics, favorites count, stats |
 
-**Not yet built:** DB enrichment service, share card rendering (ImageRenderer), launch screen, App Store assets.
+**Not yet built:** DB enrichment service, share card rendering (ImageRenderer), launch screen, App Store screenshots.
 
 ## Data Expansion: Running Locally
 
-Full indexer (`--full --no-ai`): ~2,250/2,712 destinations (83%), ~116K tours. PID 29290.
+Full indexer (`--full --no-ai`): 3,380 destinations, ~123K tours. Nearing completion.
 
-**After indexer completes:** Backfill one-liners → Decide city pairs → Generate chains → Redeploy DB.
+**After indexer completes:** Backfill one-liners (~113K need them) → Decide city pairs → Generate chains → Redeploy DB.
 
 ## Deployment
 
@@ -100,7 +99,8 @@ src/
 │   ├── generate-chains.ts          # Production chain generator (logging, retries, dedup)
 │   ├── chain-pairs.json            # City pairs config for chain generation
 │   ├── seed-dev-data.ts            # Seeds 43 destinations (dev only)
-│   └── backfill-oneliners.ts       # Batch AI one-liner generation
+│   ├── backfill-oneliners.ts       # Single-tour AI one-liner generation
+│   └── backfill-oneliners-batch.ts # Batch AI one-liners (20 per call)
 logs/
 └── indexer-<timestamp>.log         # Indexer run logs (gitignored)
 data/
@@ -109,8 +109,8 @@ data/
 
 ### Data (Expanding)
 
-- **~40,000 tours** indexed from ~613 destinations (indexer running, targeting ~2,712)
-- **~9,800 with AI one-liners** (original dev seed; new tours need backfill)
+- **~123,000 tours** indexed across 3,380 destinations (indexer nearing completion)
+- **~10,600 with AI one-liners** (~113K new tours need backfill; batch script ready)
 - **3,380 destinations** from Viator API (~2,712 are leaf nodes)
 - **7 weight categories** for roulette variety
 - **6 superlatives** queried live from tours table
@@ -119,7 +119,7 @@ data/
 
 ### Key Technical Choices
 
-- **SQLite** (not Redis/Postgres) — single file, zero cold cache, deploys as-is. Confirmed capacity for ~100K tours at ~400MB.
+- **SQLite** (not Redis/Postgres) — single file, zero cold cache, deploys as-is. ~123K tours at ~400MB.
 - **Viator Basic tier** — free affiliate API, 300K+ experiences, 16 req/10s per endpoint
 - **Claude Haiku 4.5** — fast/cheap one-liners during indexing (~$0.003/1000 tours)
 - **Claude Sonnet 4.6** — Six Degrees chain generation (~$0.02/chain, 12-14s)
