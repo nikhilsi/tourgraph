@@ -344,95 +344,218 @@ From test runs (see `data/chain-tests/`):
 
 ---
 
-## Script Architecture: Parallelized Generation
+## Generation Architecture
 
-### Current Script (`generate-chains.ts`)
+### Architecture Evolution
 
-Fully sequential — `for` loop, one `await generateChain()` at a time.
+**v1 (current script):** Each API call sends tour data for 2 endpoint cities + 20 random intermediate cities. ~14K tokens per request. Sequential processing. Problems: random intermediate selection → inconsistent quality, same-country clustering, no shared context across calls.
 
-- 500 chains × 13s = **~108 min (1.8 hrs)** — too slow
+**v2 (proposed):** Upload a curated tour catalog as a shared context. Every API call sees the *full* curated dataset. Use Claude API features (Batch API, prompt caching, Files API) for cost efficiency and quality.
 
-### Why We Can't Batch (Like One-Liners)
+### Why v2 Is Better
 
-The one-liner script batches 20 tours per API call. Chains can't batch — each chain needs its own context window (~14K input tokens of city-specific tour data, ~22 cities per prompt). Each chain = one API call.
+| Aspect | v1 (per-request context) | v2 (shared catalog) |
+|--------|------------------------|---------------------|
+| Intermediate cities | 20 random from 910 | All ~100 curated cities visible |
+| Claude's view | Narrow (22 cities) | Full landscape (100 cities) |
+| Geographic diversity | Hope for the best | Claude can reason globally |
+| Quality consistency | Varies by random draw | Consistent — same data every time |
+| Clustering risk | High (3/5 stops in Japan) | Low — Claude sees all continents |
+| Cost per chain | ~$0.02 | ~$0.016 (with batch + cache) |
+| Total for 500 | ~$10-15 | ~$8 |
 
-### But We Can Parallelize API Calls
+The quality argument is the real win. When Claude can see tours from 100 cities across all continents, it can make genuinely surprising connections instead of being forced to pick from a random 20.
 
-**Rate limits (Tier 3, Sonnet Active):**
+### Claude API Features We'll Use
 
-| Limit | Value | Per chain | Max chains/min |
-|-------|-------|-----------|---------------|
-| Requests/min | 2,000 | 1 | 2,000 (not bottleneck) |
-| Input tokens/min | 800K | ~14K | **~57 (bottleneck)** |
-| Output tokens/min | 160K | ~600 | ~266 (not bottleneck) |
+**1. Batch API (`/v1/messages/batches`)**
+- Submit all 500 requests in one batch
+- **50% cost reduction** on all tokens (input, output, cache write)
+- Processing: ~1 hour (async, no streaming needed)
+- Results available as `.jsonl` for 29 days
+- Max: 100,000 requests or 256 MB per batch
 
-**Throughput at different concurrency levels:**
+**2. Prompt Caching (`cache_control`)**
+- Mark the tour catalog in the system prompt with `cache_control: {"type": "ephemeral", "ttl": "1h"}`
+- First request: cache write (1.25x base input cost)
+- Subsequent requests: cache read (0.10x base input cost — 90% discount)
+- 1-hour TTL recommended for batch processing (better hit rates)
+- **Combined with batch: cache reads cost 5% of base input price**
+- Minimum cacheable size for Sonnet 4.6: 2,048 tokens (our catalog is ~75K — well above)
+- Cache hit rate in batches: 30-98% (best effort, concurrent processing)
 
-| Concurrency | Chains/min | 500 chains | 1,000 chains | Notes |
-|-------------|-----------|------------|-------------|-------|
-| 1 (current) | ~4.6 | 108 min | 216 min | Too slow |
-| 5 | ~23 | 22 min | 43 min | Safe, conservative |
-| 8 | ~37 | 14 min | 27 min | Comfortable headroom |
-| **10** | **~46** | **11 min** | **22 min** | **Sweet spot** |
-| 12 | ~55 | 9 min | 18 min | Close to input token limit |
-| 15 | ~69 | 7 min | 14 min | Would exceed token limit |
+**3. Files API (beta: `files-api-2025-04-14`)**
+- Upload the curated tour catalog as a plain text file once → get a persistent `file_id`
+- Reference `file_id` in every batch request — avoids re-uploading ~75K tokens of text each time
+- **Important:** File content still counted as input tokens per call. Cost savings come from caching, not the upload itself.
+- Supported formats: plain text, PDF (NOT CSV or SQLite — must convert to text)
+- Max file size: 500 MB. Files persist until deleted.
+- Alternative: inline the catalog text directly in the system prompt (simpler, same caching behavior). Files API is cleaner for large contexts.
 
-**Recommended: concurrency 10** — 10x speedup, stays well under rate limits.
+**Features we evaluated but are NOT using:**
+- **Extended thinking** — Adds cost for reasoning tokens. Not needed for creative writing. Better for math/logic.
+- **Citations** — Structured source referencing. Overkill — we just need tour IDs in the output JSON.
+- **Projects/persistent knowledge** — Does not exist in the API. Prompt caching is the closest equivalent.
 
-### DB Write Safety
+### Curated Tour Catalog Design
 
-Not a concern:
+Instead of sending random city subsets per request, we pre-build a single structured text file containing the curated tour dataset for all pool cities.
+
+**Sizing analysis (March 2, 2026):**
+
+| Configuration | Tours | Cities | ~Tokens | Fits 200K context? |
+|---------------|-------|--------|---------|---------------------|
+| 15 tours × 100 cities | 1,500 | 100 | ~75K | Yes — leaves ~125K headroom |
+| 30 tours × 100 cities | 3,000 | 100 | ~150K | Tight — ~50K headroom |
+| 15 tours × 910 cities | 13,650 | 910 | ~663K | No — exceeds context window |
+| Full DB (136K tours) | 136,256 | 2,628 | ~5M+ | No — far exceeds context |
+
+**Recommended: 15 tours × 100 curated cities = ~75K tokens.** Comfortable headroom for system prompt (~1K tokens) + user prompt (~200 tokens) + output (~2K tokens).
+
+**Tour selection per city:** Top 8 by rating + 7 random (ensures both proven quality and quirky finds).
+
+**Catalog format (plain text, structured for Claude):**
+```
+=== TOUR CATALOG ===
+100 cities across 6 continents. Each city lists 15 tours.
+
+--- Tokyo, Japan (Asia) ---
+[2376] "Tokyo Sushi Making Class: Sake Ceremony & Matcha Experience"
+  "Roll your own sushi, sip ceremonial sake, and whisk matcha in a Tsukiji master's kitchen."
+  4.8★ | 342 reviews | $89 | 3h
+[2371] "Tokyo: Calligraphy Workshop & Original T-Shirt Creation"
+  "Brush ancient kanji onto cotton and walk out wearing your own handmade souvenir."
+  4.9★ | 127 reviews | $65 | 2h
+...
+
+--- Buenos Aires, Argentina (South America) ---
+[8514] "Private Photography Tour in Buenos Aires"
+  "Chase golden light through La Boca's technicolor alleys with a local pro."
+  5.0★ | 89 reviews | $120 | 4h
+...
+```
+
+**Build script:** New `src/scripts/build-tour-catalog.ts` that:
+1. Reads the curated city pool list
+2. For each city: selects top 8 by rating + 7 random tours
+3. Formats as structured plain text
+4. Writes to `data/tour-catalog.txt`
+5. Optionally uploads to Claude Files API and prints the `file_id`
+
+### Request Structure (v2)
+
+Each batch request looks like:
+
+```json
+{
+  "model": "claude-sonnet-4-6",
+  "max_tokens": 2000,
+  "system": [
+    {
+      "type": "text",
+      "text": "You are a creative travel writer... [system prompt with rules]"
+    },
+    {
+      "type": "text",
+      "text": "=== TOUR CATALOG ===\n100 cities across 6 continents...",
+      "cache_control": {"type": "ephemeral", "ttl": "1h"}
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": "Connect Tokyo to Buenos Aires. Build a 5-stop chain using ONLY tours from the catalog above. [output format spec]"
+    }
+  ]
+}
+```
+
+The system prompt + catalog (~76K tokens) is identical across all 500 requests → cached after the first write. Each user prompt is unique but tiny (~200 tokens).
+
+### Cost Estimates (v2 architecture)
+
+**Sonnet 4.6 pricing (standard → batch → batch+cache):**
+
+| Token type | Standard | Batch (50%) | Batch + Cache Read |
+|------------|----------|-------------|---------------------|
+| Input | $3.00/MTok | $1.50/MTok | — |
+| Cache write | $3.75/MTok | $1.875/MTok | — |
+| Cache read | $0.30/MTok | $0.15/MTok | $0.15/MTok |
+| Output | $15.00/MTok | $7.50/MTok | — |
+
+**500 chains estimate (conservative 60% cache hit rate in batch):**
+
+| Component | Tokens | Rate | Cost |
+|-----------|--------|------|------|
+| Cache write (1 request) | 76K | $1.875/MTok | $0.14 |
+| Cache miss (200 requests) | 200 × 76K = 15.2M | $1.50/MTok | $22.80 |
+| Cache hit (300 requests) | 300 × 76K = 22.8M | $0.15/MTok | $3.42 |
+| User prompts (500 requests) | 500 × 200 = 100K | $1.50/MTok | $0.15 |
+| Output (500 responses) | 500 × 600 = 300K | $7.50/MTok | $2.25 |
+| **Total** | | | **~$28.76** |
+
+**With 90% cache hit rate (optimistic, possible with sequential processing):**
+
+| Component | Tokens | Rate | Cost |
+|-----------|--------|------|------|
+| Cache write (1 request) | 76K | $1.875/MTok | $0.14 |
+| Cache miss (50 requests) | 50 × 76K = 3.8M | $1.50/MTok | $5.70 |
+| Cache hit (450 requests) | 450 × 76K = 34.2M | $0.15/MTok | $5.13 |
+| User prompts (500 requests) | 500 × 200 = 100K | $1.50/MTok | $0.15 |
+| Output (500 responses) | 500 × 600 = 300K | $7.50/MTok | $2.25 |
+| **Total** | | | **~$13.37** |
+
+**Comparison:**
+
+| Approach | Quality | Cost (500 chains) | Speed |
+|----------|---------|-------------------|-------|
+| v1 sequential (current) | Inconsistent | ~$10 | ~1.8 hrs |
+| v1 + concurrency 10 | Inconsistent | ~$10 | ~11 min |
+| v2 batch + cache (60% hit) | Consistent, high | ~$29 | ~1 hr (async) |
+| v2 batch + cache (90% hit) | Consistent, high | ~$13 | ~1 hr (async) |
+| v2 sequential + cache | Consistent, high | ~$8 | ~3.5 hrs |
+
+**Key tradeoff:** v2 with batch costs ~$13-29 depending on cache hit rate, vs. v1 at ~$10. The extra cost buys dramatically better quality — Claude sees the entire curated landscape for every chain, eliminating random intermediate selection and geographic clustering.
+
+**Alternative: v2 sequential (no batch)** processes requests one at a time with guaranteed near-100% cache hits. Slowest (~3.5 hrs) but cheapest (~$8) and highest cache hit rate. Could add concurrency 2-3 to speed up while maintaining high hit rates.
+
+### DB Write Safety (unchanged)
+
+Not a concern regardless of approach:
 - Each write is one tiny INSERT (~1ms)
 - SQLite WAL mode handles concurrent readers + sequential writers
 - `busy_timeout(5000)` queues any contention
-- At 10 concurrent workers, ~1 write per 1.3s — trivial load
 
-### Script Enhancement Plan
+### Implementation Plan
 
-Add `--concurrency N` flag to existing `generate-chains.ts`. Implementation:
-
-1. **Pre-load tour data** — Read all city tour lists upfront (read-only, fast)
-2. **Promise pool** — Maintain N in-flight API calls at once (no external dependency — just a simple queue)
-3. **As each resolves** — Validate chain, write to DB, log, start next pair
-4. **Rate limit safety** — If we get 429s, back off and reduce concurrency
-5. **Resume support** — Already exists (skips pairs with existing chains unless `--regenerate`)
-
-```
-Usage:
-  npx tsx src/scripts/generate-chains.ts                          # Default concurrency (10)
-  npx tsx src/scripts/generate-chains.ts --concurrency 5          # Conservative
-  npx tsx src/scripts/generate-chains.ts --concurrency 10 --dry-run  # Preview
-```
-
-### Cost Estimates (with parallelization)
-
-| Tier | Chains | Cost | Time @ concurrency 10 |
-|------|--------|------|----------------------|
-| Launch | 500 | ~$10 | ~11 min |
-| Growth | 1,000 | ~$20 | ~22 min |
-| Full | 2,000 | ~$40 | ~43 min |
+1. **Build curated city pool** → `src/scripts/city-pool.json` (hand-curated, ~100 cities)
+2. **Build catalog script** → `src/scripts/build-tour-catalog.ts` (extracts tours, formats text)
+3. **Build pair generator** → `src/scripts/generate-pairs.ts` (cross-continent pairs from pool)
+4. **Rewrite chain generator** → `src/scripts/generate-chains-v2.ts` (batch API + cache)
+   - Or: update existing `generate-chains.ts` with `--batch` flag
+   - Reads catalog from `data/tour-catalog.txt`
+   - Submits all pairs as one batch
+   - Polls for completion, downloads results
+   - Validates and saves to DB
+5. **Quality review** → Spot-check ~10%, run quality checklist
+6. **Redeploy DB** → `bash deployment/scripts/deploy-db.sh`
 
 ---
 
 ## Execution Steps (When Ready)
 
-1. **Finalize city pool** — Curate list, review, adjust
-2. **Generate pair list** — Script to create cross-continent pairs from pool
-3. **Enhance generator** — Add `--concurrency` flag to `generate-chains.ts`
-4. **Test batch** — Generate ~10 chains, review quality with full 136K dataset
-5. **UI enhancement** — Add one-liner to chain detail cards
-6. **Full generation** — Run generator on all pairs (~11 min for 500 chains at concurrency 10)
-7. **Quality spot-check** — Review ~10% of chains
-8. **Redeploy DB** — `bash deployment/scripts/deploy-db.sh 143.244.186.165`
-9. **Verify live** — Check gallery and detail pages on production
+1. **Curate city pool** → Hand-pick ~100 cities across 3 tiers (Anchors/Gems/Surprises), save as `src/scripts/city-pool.json`
+2. **Build tour catalog** → Run `build-tour-catalog.ts` to extract 15 tours per city, format as structured text → `data/tour-catalog.txt`
+3. **Generate pair list** → Run `generate-pairs.ts` to create ~500 cross-continent pairs → `src/scripts/chain-pairs.json`
+4. **Test batch (small)** → Generate ~10-20 chains with v2 architecture (shared catalog), review quality carefully
+5. **UI: one-liner on chain detail** → Add `tour.one_liner` to web + iOS chain detail views
+6. **Full generation** → Submit all ~500 pairs via Batch API with cached catalog
+7. **Quality spot-check** → Review ~10% of chains against quality checklist
+8. **Gallery redesign** → Curated groupings (superlatives pattern), "Surprise Me" from full pool
+9. **Redeploy DB** → `bash deployment/scripts/deploy-db.sh 143.244.186.165`
+10. **Verify live** → Check gallery, detail pages, OG previews on production
 
 ---
-
-## Decisions Made
-
-- [x] **Chain count for launch** — ~500. Evaluate, then expand to 1,000+ if needed.
-- [x] **Show one-liner on chain detail** — Yes, both web and iOS. Small code change, big delight gain.
-- [x] **Gallery UX** — NOT a wall of 500 cards. Curated display (like World's Most superlatives pattern) with "Surprise Me" drawing from the full pool.
 
 ## Prompt Review & Refinements
 
@@ -470,11 +593,22 @@ Output JSON structure unchanged — no code changes to validation or DB storage.
 
 ---
 
+## Decisions Made
+
+- [x] **Generation architecture** — v2: shared tour catalog in system prompt, Claude sees all ~100 curated cities for every chain. Eliminates random intermediate selection, geographic clustering, and quality inconsistency. Uses Batch API + prompt caching for efficiency, but the architecture is driven by quality, not cost.
+- [x] **Intermediate city selection** — Solved by v2 architecture. Claude picks intermediates from the full curated pool (~100 cities) instead of a random 20-city subset. No separate intermediate selection logic needed.
+- [x] **Chain count for launch** — ~500. Evaluate, then expand to 1,000+ if needed.
+- [x] **Show one-liner on chain detail** — Yes, both web and iOS.
+- [x] **Gallery UX** — NOT a wall of 500 cards. Curated display (like World's Most superlatives pattern) with "Surprise Me" drawing from the full pool.
+- [x] **v3 prompt** — One-liner context, mixed tour selection, surprise bias, theme = connection between cities, summary under 120 chars.
+
 ## Open Decisions
 
-- [ ] **City pool composition** — Which ~100 cities? (thematic richness data above informs this)
-- [ ] **Gallery categories** — By continent pair? By theme? Editor's picks?
-- [ ] **Daily featured chain?** — Static gallery for now, or highlight one per day?
+- [ ] **City pool composition** — Which ~100 cities? Thematic richness data above informs this. Three tiers: Anchors, Gems, Surprises.
+- [ ] **Gallery categories** — By continent pair? By theme? Editor's picks? Needs design thinking.
+- [ ] **Tours per city in catalog** — 15 (top 8 + 7 random) seems right. Could test with 20 or 10.
+- [ ] **Batch vs. sequential processing** — Batch is faster (~1 hr) but cache hit rate varies (30-98%). Sequential is slower (~3.5 hrs) but near-100% cache hits. Could also do sequential with concurrency 2-3.
+- [ ] **Files API vs. inline catalog** — Files API is cleaner for large contexts but adds beta dependency. Inline in system prompt works identically with caching.
 
 ---
 

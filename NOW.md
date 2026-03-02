@@ -38,29 +38,55 @@
 1. ~~One-liner backfill~~ — **Done.** 136,256/136,256 tours (100%). Batch + retry + single-tour. See `docs/data-snapshot.md`.
 
 ### Next — In Order
-2. **Show one-liner on chain detail cards** — Web: add `tour.one_liner` to chain detail page (`src/app/six-degrees/[slug]/page.tsx`). iOS: add to `ChainDetailView.swift`. Data already exists in DB, just not rendered. Small change, big delight.
-3. **Curate city pool for Six Degrees** — Use thematic richness data to build ~100-city pool (anchors/gems/surprises). See `docs/six-degrees-chains.md`.
-4. **Generate cross-continent pairs** — Script to auto-generate pairs from city pool.
-5. **Add --concurrency to chain generator** — Parallelize API calls (10 concurrent). 500 chains in ~11 min vs 1.8 hrs sequential.
-6. **Generate ~500 chains (Launch tier)** — Run generator, spot-check quality. ~$10, ~11 min.
-7. **Redesign Six Degrees gallery** — Don't dump 500 cards. Show curated set by category (like World's Most superlatives pattern) with "Surprise Me" drawing from full pool.
-8. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165`
-9. **iOS polish** — Image caching, share card rendering (ImageRenderer), DB enrichment service, LogoWhite @2x/@3x retina variants.
-10. **iOS App Store submission** — Register bundle ID `com.nikhilsi.TourGraph`, create App Store Connect listing, screenshots, real device testing. See `docs/ios-app-store.md`.
-11. **Production testing** — Mobile, OG previews in iMessage/Slack/Twitter, share flow on live URL.
+
+#### A. Pre-generation (Architecture & Design)
+
+2. **Show one-liner on chain detail cards** — Web: add `tour.one_liner` below tour title on chain detail page (`src/app/six-degrees/[slug]/page.tsx`). iOS: add to `ChainDetailView.swift`. Data already in DB via `getTourById()` → `SELECT *`, just not rendered. Quick win.
+
+3. **Curate city pool** — Hand-pick ~100 cities across 3 tiers: Anchors (~25-30 iconic), Gems (~30-40 aspirational), Surprises (~20-30 "wait, THAT exists?"). Use thematic richness analysis in `docs/six-degrees-chains.md` § "City Pool Design". Save as `src/scripts/city-pool.json`.
+
+4. **Build tour catalog** — Script (`build-tour-catalog.ts`) extracts 15 tours per pool city (top 8 by rating + 7 random), formats as structured plain text → `data/tour-catalog.txt` (~75K tokens). This is the shared context Claude sees for every chain.
+
+5. **Generate cross-continent pairs** — Script (`generate-pairs.ts`) creates ~500 pairs from pool. Math: 100 cities × ~10 chains each ÷ 2 endpoints = ~500. Rules: cross-continent only, no same-country, each city in 8-12 chains, mix of anchor↔gem/surprise pairings.
+
+6. **Build v2 chain generator** — Rewrite generator to use Batch API + prompt caching. Every request shares the full tour catalog in the system prompt (cached). Claude sees all 100 cities for every chain → eliminates random intermediate selection, geographic clustering, quality inconsistency. See `docs/six-degrees-chains.md` § "Generation Architecture".
+
+7. **Test batch (small)** — Generate ~10-20 chains with v2 architecture, review quality carefully against checklist.
+
+#### B. Generation
+
+8. **Generate ~500 chains** — Submit all pairs via Batch API. Spot-check ~10% for quality.
+
+#### C. Display & Polish
+
+9. **Redesign Six Degrees gallery** — Current gallery dumps all chains as flat card list. Redesign to match World's Most superlatives pattern: curated groupings (categories TBD) with representative chains, plus "Surprise Me" from full pool.
+
+10. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165`
+
+#### D. iOS & Launch
+
+11. **iOS polish** — Image caching, share card rendering (ImageRenderer), DB enrichment service, LogoWhite @2x/@3x retina variants.
+12. **iOS App Store submission** — Register bundle ID `com.nikhilsi.TourGraph`, create App Store Connect listing, screenshots, real device testing. See `docs/ios-app-store.md`.
+13. **Production testing** — Mobile, OG previews in iMessage/Slack/Twitter, share flow on live URL.
 
 ### Decided
 
-- [x] Chain count: **~500 for launch**, evaluate then expand to 1,000+ if needed
-- [x] Show one-liner on chain detail: **Yes**, both web and iOS
-- [x] Gallery UX: **Curated display** (like World's Most superlatives), not a wall of 500 cards. "Surprise Me" draws from full pool.
+- [x] **Generation architecture**: v2 — shared tour catalog (~75K tokens) in cached system prompt. Claude sees all ~100 curated cities for every chain. Eliminates random intermediate selection and geographic clustering. Quality-driven decision.
+- [x] **Intermediate city selection**: Solved by v2 — Claude picks from the full curated pool, not a random subset.
+- [x] **Claude API approach**: Batch API (async, ~1 hr) + prompt caching (shared catalog) + optionally Files API for upload. Driven by quality (full context), not cost.
+- [x] **Chain count**: ~500 for launch, evaluate then expand to 1,000+ if needed
+- [x] **Show one-liner on chain detail**: Yes, both web and iOS
+- [x] **Gallery UX**: Curated display (like World's Most superlatives), not a wall of 500 cards. "Surprise Me" draws from full pool.
+- [x] **v3 prompt**: one-liner context, mixed tour selection, surprise bias, theme = connection between cities, summary under 120 chars
 
 ### Open Decisions
 
-- [ ] City pool composition — which ~100 cities? (using thematic richness data)
-- [ ] Gallery categories — by continent pair? by theme? editor's picks?
+- [ ] **City pool composition** — Which ~100 cities? Thematic richness data in `docs/six-degrees-chains.md`.
+- [ ] **Gallery categories** — By continent pair? By theme? Editor's picks?
+- [ ] **Tours per city in catalog** — 15 (top 8 + 7 random) seems right. Could test with 20 or 10.
+- [ ] **Batch vs. sequential** — Batch faster (~1 hr) but variable cache hits. Sequential slower but near-100% hits.
 - [ ] iOS seed DB size — full DB may fit under 200MB after VACUUM
-- [ ] Dark-mode app icon variant (current has white bg — may want dark bg for dark mode)
+- [ ] Dark-mode app icon variant
 
 ### Not Now (V2)
 
