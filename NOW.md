@@ -9,7 +9,7 @@
 
 **Site is live at https://tourgraph.ai.** All four web features deployed, iOS app built. Data fully indexed: 136,256 tours, 100% AI one-liner coverage, 474MB database.
 
-**Next milestone:** Generate chain connections (Layer 4), then redeploy DB with the full data asset. Layer 3 (city intelligence) is complete — 909 city profiles generated.
+**Next milestone:** Generate chain connections (Layer 4), then redeploy DB with the full data asset. Layer 3 (city intelligence) is complete — 910 cities, 1,799 readings merged.
 
 ---
 
@@ -48,7 +48,7 @@
 - [x] **Batch API + prompt caching** — For quality (full context) and efficiency. Architecture driven by quality, not cost.
 - [x] **Chain count** — ~500 for launch, evaluate then expand to 1,000+ if needed.
 - [x] **Show one-liner on chain detail** — Yes, both web and iOS. Committed.
-- [x] **City intelligence (Layer 3)** — 909/910 cities profiled. Batch API + sequential gap fill. Only Zaventem (airport) failed.
+- [x] **City intelligence (Layer 3)** — 910 cities, 1,799 readings merged. Batch API + sequential gap fill + multi-batch merge.
 - [x] **Gallery UX** — Curated display (like World's Most superlatives), not a wall of 500 cards. "Surprise Me" draws from full pool.
 - [x] **v3 prompt** — one-liner context, mixed tour selection, surprise bias, theme = connection between cities, summary under 120 chars.
 
@@ -83,6 +83,6 @@
 | 4b | Six Degrees of Anywhere (web) | **UI complete** — needs chain data |
 | 5 | Deploy to production | **Live** — https://tourgraph.ai |
 | 6 | iOS app | **Built** — all 4 features, 4-tab layout, favorites, App Store metadata |
-| 7a | City intelligence (Layer 3) | **Complete** — 909 city profiles |
+| 7a | City intelligence (Layer 3) | **Complete** — 910 cities, 1,799 readings |
 | 7b | Chain generation (Layer 4) | **Next** — Stages 1+2 pipeline |
 | 8 | iOS App Store submission | Blocked on chain data + polish |

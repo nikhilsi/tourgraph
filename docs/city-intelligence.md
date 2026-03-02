@@ -24,7 +24,7 @@ TourGraph's data is built in layers. Each layer adds original intelligence on to
 |-------|------|--------|-------|--------|
 | 1. Raw Viator Data | Tour listings: titles, photos, ratings, prices, locations | Viator Partner API | 136,256 tours | Complete |
 | 2. AI One-Liners | Witty personality captions per tour | Claude Haiku 4.5 | 136,256 (100%) | Complete |
-| 3. City Intelligence | City profiles: personality, standout tours, themes | Claude Sonnet 4.6 | 909 / 910 cities | **Complete** |
+| 3. City Intelligence | City profiles: personality, standout tours, themes | Claude Sonnet 4.6 | 910 cities (1,799 readings) | **Complete** |
 | 4. Chain Connections | Thematic chains connecting cities | Claude Sonnet 4.6 | ~500 chains | **Pending** |
 
 Layer 1 is commodity — anyone with a Viator API key has it. Layer 2 is derivative IP — Viator doesn't have these. Layers 3 and 4 are original intelligence that couldn't be reproduced with the same results. Together, they form a unique understanding of the world's tour landscape that exists nowhere else.

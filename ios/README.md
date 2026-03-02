@@ -93,8 +93,8 @@ When new tours are indexed on the web side:
 
 ```bash
 # 1. Run indexer + backfill one-liners (web side)
-npx tsx src/scripts/indexer.ts --full
-npx tsx src/scripts/backfill-oneliners-batch.ts
+npx tsx src/scripts/1-viator/indexer.ts --full
+npx tsx src/scripts/2-oneliners/backfill-oneliners-batch.ts
 
 # 2. Copy updated DB to iOS resources
 cp data/tourgraph.db ios/TourGraph/TourGraph/TourGraph/Resources/tourgraph.db
