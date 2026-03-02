@@ -121,6 +121,18 @@ function initSchema(db: Database.Database): void {
       UNIQUE(city_from, city_to)
     );
 
+    CREATE TABLE IF NOT EXISTS city_profiles (
+      destination_name TEXT PRIMARY KEY,
+      country TEXT NOT NULL,
+      continent TEXT,
+      tour_count INTEGER NOT NULL,
+      personality TEXT NOT NULL,
+      themes_json TEXT NOT NULL,
+      standout_tours_json TEXT NOT NULL,
+      generated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      model TEXT NOT NULL
+    );
+
     CREATE TABLE IF NOT EXISTS indexer_state (
       key TEXT PRIMARY KEY,
       value TEXT NOT NULL,
