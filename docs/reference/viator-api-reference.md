@@ -2,7 +2,7 @@
 
 ---
 **Last Updated**: February 28, 2026
-**Source**: `docs/viator-openapi.json` (OpenAPI 3.0 spec from Viator)
+**Source**: `docs/reference/viator-openapi.json` (OpenAPI 3.0 spec from Viator)
 **Tier**: Basic-Access Affiliate (free)
 ---
 

@@ -111,14 +111,20 @@ tourgraph/
 │   ├── product_brief.md      # Product vision (source of truth)
 │   ├── ux_design.md          # UX design, wireframes, interaction patterns
 │   ├── architecture.md       # Technical architecture, schema, indexer design
-│   ├── implementation_plan.md # Phase 1-3 build plan
-│   ├── viator-api-reference.md # Basic-tier API endpoint summary
-│   ├── ios-architecture.md   # iOS app design: data strategy, services, navigation
-│   ├── ios-app-store.md      # App Store submission metadata (draft)
-│   ├── data-snapshot.md      # Data baseline stats (136K tours, for refresh deltas)
-│   ├── data-schema.md        # SQLite schema, rebuild instructions
-│   ├── viator-openapi.json   # Full Viator OpenAPI 3.0 spec
-│   └── thesis_validation.md  # Why we pivoted
+│   ├── city-intelligence.md  # City intelligence pipeline (Stage 0) — the IP layer
+│   ├── six-degrees-chains.md # Chain generation (Stages 1+2) — pairs, quality, gallery
+│   ├── data-snapshot.md      # Data baseline (4-layer IP asset, 136K tours)
+│   ├── data-schema.md        # SQLite schema (6 tables), rebuild instructions
+│   ├── implementation/       # Build plans, platform-specific docs
+│   │   ├── implementation_plan.md
+│   │   ├── ios-architecture.md
+│   │   └── ios-app-store.md
+│   └── reference/            # API docs, research, historical
+│       ├── viator-api-reference.md
+│       ├── viator-openapi.json
+│       ├── rate-limiting.md
+│       ├── phase4-six-degrees.md
+│       └── thesis_validation.md
 │
 ├── data/                     # SQLite database (gitignored)
 │
@@ -132,7 +138,7 @@ tourgraph/
 
 TourGraph started as AI-powered supply-side infrastructure for the tours & experiences industry. After competitive validation revealed that Peek, TourRadar, Magpie, and Expedia had all shipped live MCP servers, the original thesis was killed and the project pivoted to this consumer experience. The Phase 0 extraction work (83 products, 7 operators, 95% accuracy) is preserved in `archive/` for reference.
 
-Full story: [docs/thesis_validation.md](docs/thesis_validation.md)
+Full story: [docs/reference/thesis_validation.md](docs/reference/thesis_validation.md)
 
 ## License
 

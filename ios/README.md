@@ -104,6 +104,6 @@ cp data/tourgraph.db ios/TourGraph/TourGraph/TourGraph/Resources/tourgraph.db
 
 ## Related Docs
 
-- [iOS Architecture](../docs/ios-architecture.md) — Full design document with data strategy, DB versioning, enrichment service
+- [iOS Architecture](../docs/implementation/ios-architecture.md) — Full design document with data strategy, DB versioning, enrichment service
 - [Product Brief](../docs/product_brief.md) — Product vision and four pillars
 - [Data Schema](../docs/data-schema.md) — SQLite schema reference

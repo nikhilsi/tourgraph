@@ -118,6 +118,25 @@ CREATE TABLE six_degrees_chains (
 
 
 -- =============================================================
+-- city_profiles — AI-curated city intelligence (Stage 0).
+-- One row per city with 50+ active tours (910 cities).
+-- Built by src/scripts/build-city-profiles.ts via Claude Sonnet 4.6.
+-- See docs/city-intelligence.md for pipeline design.
+-- =============================================================
+CREATE TABLE city_profiles (
+    destination_name    TEXT PRIMARY KEY,              -- City name, matches tours.destination_name
+    country             TEXT NOT NULL,                 -- Country name
+    continent           TEXT,                          -- Continent name
+    tour_count          INTEGER NOT NULL,              -- Active tours with images at generation time
+    personality         TEXT NOT NULL,                 -- AI-generated one-line city personality (<150 chars)
+    themes_json         TEXT NOT NULL,                 -- JSON array of AI-curated theme tags
+    standout_tours_json TEXT NOT NULL,                 -- JSON array of 5 standout tours [{tour_id, theme, reason}]
+    generated_at        TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    model               TEXT NOT NULL                  -- Claude model used (e.g., "claude-sonnet-4-6")
+);
+
+
+-- =============================================================
 -- indexer_state — Key-value store for indexer resume state.
 -- Tracks last destination processed so indexer can resume on crash.
 -- =============================================================
@@ -134,6 +153,8 @@ CREATE TABLE indexer_state (
 npm run seed:destinations                      # Populate destinations (~3,380 rows, ~1 min)
 npx tsx src/scripts/indexer.ts --full           # Index all 2,712 leaf destinations (~20 hours)
 npx tsx src/scripts/backfill-oneliners-batch.ts # Generate AI one-liners (~14 hours)
+npx tsx src/scripts/build-city-profiles.ts      # Build city intelligence profiles (~1 hour via Batch API)
+npx tsx src/scripts/generate-chains.ts          # Generate Six Degrees chains (~1 hour via Batch API)
 ```
 
 ## Deploying to Server

@@ -3,10 +3,30 @@
 ---
 **Snapshot Date**: March 2, 2026 — 7:30 AM PST
 **Database File**: `data/tourgraph.db` (474 MB)
+**Schema**: `docs/data-schema.md`
 **Purpose**: Baseline for tracking deltas on future data refreshes
 ---
 
-## Summary
+## The Data Asset (4 IP Layers)
+
+TourGraph's data is built in layers. Each layer adds original intelligence on top of the previous one.
+
+| Layer | What | Source | Count | Status |
+|-------|------|--------|-------|--------|
+| 1. Raw Viator Data | Tour listings: titles, photos, ratings, prices, locations | Viator Partner API | 136,256 tours | **Complete** |
+| 2. AI One-Liners | Witty personality captions per tour | Claude Haiku 4.5 | 136,256 (100%) | **Complete** |
+| 3. City Intelligence | City profiles: personality, standout tours, themes | Claude Sonnet 4.6 | 910 cities | **Pending** |
+| 4. Chain Connections | Thematic chains connecting cities around the world | Claude Sonnet 4.6 | ~500 chains | **Pending** |
+
+Layer 1 is commodity — anyone with a Viator API key has it. Layer 2 is derivative IP — Viator doesn't have these. Layers 3 and 4 are original intelligence that couldn't be reproduced with the same results. Together, they form a unique understanding of the world's tour landscape that exists nowhere else.
+
+For Layer 3 design: `docs/city-intelligence.md`. For Layer 4 design: `docs/six-degrees-chains.md`.
+
+---
+
+## Layer 1: Raw Viator Data
+
+### Summary
 
 | Metric | Value |
 |--------|-------|
@@ -18,14 +38,12 @@
 | Countries | 205 |
 | Continents | 7 |
 | Timezones | 289 |
-| Six Degrees chains | 0 (not yet generated) |
 | Database size | 474 MB |
 
-## Field Coverage (Active Tours)
+### Field Coverage (Active Tours)
 
 | Field | Count | Coverage |
 |-------|-------|----------|
-| One-liner (AI) | 136,256 | 100.0% |
 | Image URL | 136,256 | 100.0% |
 | Price | 136,256 | 100.0% |
 | Description | 136,256 | 100.0% |
@@ -34,19 +52,7 @@
 | Rating | 91,098 | 66.9% |
 | Highlights | 0 | 0.0% (not fetched at Basic tier) |
 
-## Weight Categories
-
-| Category | Tours | % |
-|----------|-------|---|
-| exotic_location | 87,289 | 64.1% |
-| most_expensive | 25,779 | 18.9% |
-| highest_rated | 9,336 | 6.9% |
-| cheapest_5star | 5,767 | 4.2% |
-| unique | 5,353 | 3.9% |
-| wildcard | 1,411 | 1.0% |
-| most_reviewed | 1,321 | 1.0% |
-
-## Continent Distribution
+### Continent Distribution
 
 | Continent | Tours | % |
 |-----------|-------|---|
@@ -58,7 +64,19 @@
 | Oceania | 5,548 | 4.1% |
 | Caribbean | 4,916 | 3.6% |
 
-## Top 15 Countries
+### Weight Categories
+
+| Category | Tours | % |
+|----------|-------|---|
+| exotic_location | 87,289 | 64.1% |
+| most_expensive | 25,779 | 18.9% |
+| highest_rated | 9,336 | 6.9% |
+| cheapest_5star | 5,767 | 4.2% |
+| unique | 5,353 | 3.9% |
+| wildcard | 1,411 | 1.0% |
+| most_reviewed | 1,321 | 1.0% |
+
+### Top 15 Countries
 
 | Country | Tours |
 |---------|-------|
@@ -78,7 +96,7 @@
 | Portugal | 2,475 |
 | Canada | 2,392 |
 
-## Top 15 Destinations
+### Top 15 Destinations
 
 | Destination | Country | Tours |
 |-------------|---------|-------|
@@ -98,7 +116,7 @@
 | Porto | Portugal | 197 |
 | Singapore | Singapore | 197 |
 
-## Rating Stats (91,098 tours with ratings)
+### Rating Stats (91,098 tours with ratings)
 
 | Metric | Value |
 |--------|-------|
@@ -108,7 +126,7 @@
 | Rated 4.5+ | 76,791 (84.3%) |
 | Perfect 5.0 | 45,748 (50.2%) |
 
-## Price Stats
+### Price Stats
 
 | Metric | Value |
 |--------|-------|
@@ -118,7 +136,9 @@
 | Under $25 | 16,538 (12.1%) |
 | Over $1,000 | 14,261 (10.5%) |
 
-## One-Liner Stats
+---
+
+## Layer 2: AI One-Liners
 
 | Metric | Value |
 |--------|-------|
@@ -126,8 +146,28 @@
 | Average length | 83.9 chars |
 | Min length | 27 chars |
 | Max length | 149 chars |
-| Truncated (ends with …) | 4 |
+| Truncated (ends with ...) | 4 |
 | Duplicate one-liners | 62 unique phrases shared by 138 tours |
+| Model | Claude Haiku 4.5 |
+| Cost | ~$0.40 |
+
+---
+
+## Layer 3: City Intelligence — Pending
+
+910 cities with 50+ active tours will receive AI-curated profiles: personality line, standout tours, and theme tags. Stored in the `city_profiles` table.
+
+See `docs/city-intelligence.md` for full pipeline design.
+
+---
+
+## Layer 4: Chain Connections — Pending
+
+~500 thematic chains connecting cities around the world through surprising tour connections. Stored in the `six_degrees_chains` table.
+
+See `docs/six-degrees-chains.md` for full generation architecture.
+
+---
 
 ## How This Data Was Built
 
@@ -138,9 +178,11 @@
 | One-liner backfill | `backfill-oneliners-batch.ts` | ~14 hours | 126,498 tours at 2.5/sec via Claude Haiku 4.5 |
 | One-liner retry | `backfill-oneliners-batch.ts` | ~7 min | 997 missed tours |
 | One-liner singles | `backfill-oneliners.ts --limit 15` | ~1 min | Final 15 holdouts |
+| City profiles | `build-city-profiles.ts` | TBD | 910 cities via Batch API |
+| Chain generation | `generate-chains.ts` | TBD | ~500 chains via Batch API |
 
-**Total indexing cost estimate**: ~$0.40 (Claude Haiku 4.5 for one-liners)
-**Total indexing time**: ~34 hours
+**Total indexing time (Layers 1+2)**: ~34 hours
+**Total indexing cost (Layers 1+2)**: ~$0.40 (Claude Haiku 4.5 for one-liners)
 
 ---
 
@@ -150,5 +192,7 @@ Compare against these baselines:
 - **Tour count delta**: How many new/removed tours vs 136,256?
 - **Destination count delta**: Any new leaf destinations vs 2,712?
 - **One-liner gap**: How many new tours need one-liners?
+- **City profile gap**: How many new cities need profiles?
+- **Chain freshness**: Do chains reference tours that no longer exist?
 - **DB size delta**: Growth from 474 MB baseline?
 - **Rating coverage**: Still ~67% or improving?

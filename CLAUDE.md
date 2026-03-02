@@ -16,13 +16,14 @@
 5. **`git log --oneline -10`** — Recent commits
 
 **Optional** (if relevant to task):
-- **docs/data-snapshot.md** — Data baseline stats (136K tours, for tracking refresh deltas)
-- **docs/data-schema.md** — Full SQL schema (CREATE TABLE statements for all 5 tables)
-- **docs/ios-app-store.md** — App Store submission metadata, signing info, pre-submission checklist
-- **docs/ios-architecture.md** — iOS app design: data strategy, services, navigation
-- **docs/thesis_validation.md** — Why the original thesis was killed (context only)
+- **docs/city-intelligence.md** — City intelligence pipeline (Stage 0): the IP layer that makes TourGraph unique
+- **docs/six-degrees-chains.md** — Chain generation (Stages 1+2): pair selection, quality standards, gallery UX
+- **docs/data-snapshot.md** — Data baseline stats (4-layer IP asset, 136K tours)
+- **docs/data-schema.md** — Full SQL schema (CREATE TABLE statements for all 6 tables)
+- **docs/implementation/ios-app-store.md** — App Store submission metadata, signing info, pre-submission checklist
+- **docs/implementation/ios-architecture.md** — iOS app design: data strategy, services, navigation
+- **docs/reference/thesis_validation.md** — Why the original thesis was killed (context only)
 - **archive/docs/api_landscape.md** — Viator API details, test results, response formats
-- **archive/scripts/viator_compare.py** — Working Viator API call patterns
 
 ---
 
@@ -35,7 +36,7 @@ TourGraph was originally supply-side infrastructure for tour operators (AI extra
 Not a booking engine. Not a travel planner. Not a recommendation engine. A place you visit because it's fun, surprising, and shareable.
 
 Full product vision: `docs/product_brief.md`
-Why we pivoted: `docs/thesis_validation.md`
+Why we pivoted: `docs/reference/thesis_validation.md`
 
 ---
 
@@ -251,21 +252,30 @@ The `scripts/viator_compare.py` from Phase 0 has working API call patterns (endp
 **Root Level:**
 - **CLAUDE.md** — Rules & workflow (this file)
 - **README.md** — Project overview
-- **NOW.md** — Current priorities
+- **NOW.md** — Current priorities (forward-looking only)
 - **CURRENT_STATE.md** — What's built & status
 - **CHANGELOG.md** — Version history
 
-**Docs:**
-- **docs/product_brief.md** — Product vision (source of truth for what we're building)
-- **docs/ux_design.md** — UX design: wireframes, design principles, interaction flows, resolved decisions
-- **docs/data-snapshot.md** — Data baseline stats (136K tours, for tracking refresh deltas)
-- **docs/data-schema.md** — Full SQL schema (CREATE TABLE statements for all 5 tables)
-- **docs/ios-architecture.md** — iOS app design: data strategy, services, navigation
-- **docs/ios-app-store.md** — App Store submission metadata, signing, checklist
+**Core Docs (`docs/`):**
+- **docs/product_brief.md** — Product vision (source of truth)
+- **docs/ux_design.md** — UX design: wireframes, principles, interaction flows
+- **docs/city-intelligence.md** — City intelligence pipeline (Stage 0) — the IP layer
+- **docs/six-degrees-chains.md** — Chain generation (Stages 1+2) — pair selection, quality, gallery
+- **docs/data-snapshot.md** — Data baseline (4-layer IP asset, 136K tours)
+- **docs/data-schema.md** — Full SQL schema (6 tables)
 - **docs/architecture.md** — Technical architecture, schema, indexer design
-- **docs/implementation_plan.md** — Phase 1-3 build plan
-- **docs/viator-api-reference.md** — Basic-tier API endpoint summary
-- **docs/thesis_validation.md** — Competitive analysis that killed the original thesis
+
+**Implementation Docs (`docs/implementation/`):**
+- **docs/implementation/implementation_plan.md** — Phase 1-3 build plan
+- **docs/implementation/ios-architecture.md** — iOS app design: data strategy, services, navigation
+- **docs/implementation/ios-app-store.md** — App Store submission metadata, signing, checklist
+
+**Reference Docs (`docs/reference/`):**
+- **docs/reference/viator-api-reference.md** — Basic-tier API endpoint summary
+- **docs/reference/viator-openapi.json** — OpenAPI spec for Viator
+- **docs/reference/rate-limiting.md** — Viator rate limiting details
+- **docs/reference/phase4-six-degrees.md** — Early Six Degrees research & UI spec
+- **docs/reference/thesis_validation.md** — Competitive analysis that killed original thesis
 
 **Archive (Phase 0 — reference only):**
 - **archive/scripts/** — Extraction & Viator API scripts (API patterns reusable)

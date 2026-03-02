@@ -36,19 +36,24 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 | Settings | `SettingsView.swift` | Built — gear icon in nav bar, modal sheet, haptics toggle |
 | App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
 
-**App Store prep done:** PrivacyInfo.xcprivacy, ExportOptions.plist, metadata draft (`docs/ios-app-store.md`).
+**App Store prep done:** PrivacyInfo.xcprivacy, ExportOptions.plist, metadata draft (`docs/implementation/ios-app-store.md`).
 **Not yet built:** DB enrichment service, share card rendering (ImageRenderer), launch screen, App Store screenshots.
 
-## Data: Complete
+## Data Asset (4 IP Layers)
 
-Full indexer + one-liner backfill complete. See `docs/data-snapshot.md` for detailed stats with baseline numbers for future refreshes.
+TourGraph's data is built in layers, each adding original intelligence. See `docs/data-snapshot.md` for full baseline stats.
 
-- **136,256 active tours** across 2,712 leaf destinations, 205 countries, 7 continents
-- **136,256 AI one-liners** (100% coverage) via Claude Haiku 4.5
-- **474 MB** database file
-- **0 chains** generated — next step
+| Layer | What | Count | Status |
+|-------|------|-------|--------|
+| 1. Raw Viator Data | Tour listings, photos, ratings, prices | 136,256 tours | **Complete** |
+| 2. AI One-Liners | Witty personality captions per tour | 136,256 (100%) | **Complete** |
+| 3. City Intelligence | City profiles: personality, standout tours, themes | 910 cities | **Pending** |
+| 4. Chain Connections | Thematic chains connecting cities | ~500 chains | **Pending** |
 
-**Next:** Decide city pairs → Generate chains → Redeploy DB.
+- **474 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
+- Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
+
+**Next:** Build city profiles (Stage 0) → Generate chains (Stages 1+2) → Redeploy DB.
 
 ## Deployment
 
@@ -114,22 +119,16 @@ data/
 └── tourgraph.db                    # SQLite (gitignored)
 ```
 
-### Data (Complete — see `docs/data-snapshot.md` for full breakdown)
+### Data
 
-- **136,256 active tours** across 2,712 leaf destinations (indexer + backfill complete)
-- **136,256 AI one-liners** (100% coverage)
-- **3,380 destinations** from Viator API (2,712 leaf nodes indexed)
-- **205 countries**, 7 continents, 289 timezones
-- **7 weight categories** for roulette variety
-- **6 superlatives** queried live from tours table
-- **0 chains** generated (next step)
+See "Data Asset (4 IP Layers)" section above and `docs/data-snapshot.md` for full baseline stats.
 
 ### Key Technical Choices
 
 - **SQLite** (not Redis/Postgres) — single file, zero cold cache, deploys as-is. 136K tours at 474MB.
 - **Viator Basic tier** — free affiliate API, 300K+ experiences, 16 req/10s per endpoint
 - **Claude Haiku 4.5** — fast/cheap one-liners during indexing (~$0.003/1000 tours)
-- **Claude Sonnet 4.6** — Six Degrees chain generation (~$0.02/chain, 12-14s)
+- **Claude Sonnet 4.6** — City intelligence (Stage 0) + chain generation (Stages 1+2)
 - **Next.js 16 App Router** — server components for SEO, client for interactivity
 - **`Intl.DateTimeFormat`** — timezone math with no external library
 - **Dark theme** — photos pop, feels premium
@@ -144,4 +143,4 @@ data/
 
 ## Archived Phase 0
 
-AI extraction pipeline for tour operators — thesis invalidated Feb 2026. All work in `archive/`. See `docs/thesis_validation.md` for why.
+AI extraction pipeline for tour operators — thesis invalidated Feb 2026. All work in `archive/`. See `docs/reference/thesis_validation.md` for why.

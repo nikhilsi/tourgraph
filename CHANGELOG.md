@@ -24,7 +24,7 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 ### Updated
 - All tracking docs (CURRENT_STATE.md, NOW.md, CHANGELOG.md) reflect data completion
 - `docs/data-schema.md` — Updated rebuild instructions, deployment commands, current stats
-- `docs/ios-app-store.md` — Bundle ID `com.nikhilsi.TourGraph`, signing info, pre-submission checklist progress
+- `docs/implementation/ios-app-store.md` — Bundle ID `com.nikhilsi.TourGraph`, signing info, pre-submission checklist progress
 
 ---
 
@@ -78,7 +78,7 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 - `src/app/six-degrees/[slug]/not-found.tsx` — 404 with link back to gallery
 - `src/app/api/og/six-degrees/[slug]/route.tsx` — OG image: dark bg, city pair headline, summary quote, mini chain visualization (numbered circles connected by line), city labels
 - Chain query functions in `db.ts`: `getAllChains()`, `getChainBySlug()`, `chainSlug()`, types `ChainLink`, `ChainData`, `ChainWithMeta`
-- v1 UI spec added to `docs/phase4-six-degrees.md` with ASCII wireframes, design details, routes, data flow
+- v1 UI spec added to `docs/reference/phase4-six-degrees.md` with ASCII wireframes, design details, routes, data flow
 
 ### Status
 - Full indexer running: ~613/2,712 destinations (22.6%), ~40K tours in DB
@@ -105,7 +105,7 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 ## [4.1.0] - 2026-03-01
 
 ### Added — Phase 4 Research & Prototyping
-- `docs/phase4-six-degrees.md` — Full research doc: competitive analysis, thematic coverage, UX design, prompt engineering, test results
+- `docs/reference/phase4-six-degrees.md` — Full research doc: competitive analysis, thematic coverage, UX design, prompt engineering, test results
 - `src/scripts/test-chain.ts` — Chain generation test script (Claude Sonnet 4.6, ~$0.02/chain, ~12-14s)
 - `data/chain-tests/` — 8 test chain outputs (6 v2, 2 v1 for comparison)
 - Prompt v2 with "HARD RULES" — fixes chain length inconsistency and theme repetition (8/8 test runs produce exactly 5 stops with unique themes)
@@ -121,7 +121,7 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 - `logs/` directory with `.gitkeep` (log files gitignored)
 
 ### Added — Reference
-- `docs/Rate_limiting.md` — Viator API rate limiting documentation (16 req/10s per endpoint, rolling window)
+- `docs/reference/rate-limiting.md` — Viator API rate limiting documentation (16 req/10s per endpoint, rolling window)
 
 ### Discovered
 - **Data gap**: Only 53 of 3,380 Viator destinations indexed (1.6%). `seed-dev-data.ts` hardcodes 43 destination IDs — was a dev seed, not production. Need to expand to ~2,712 leaf destinations (~100K tours expected).
@@ -221,9 +221,9 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 - `src/app/roulette/[id]/not-found.tsx` — 404 with "Spin a New One" link
 
 ### Added — Reference Docs
-- `docs/implementation_plan.md` — 20-step Phase 1 plan with "Done when" criteria
-- `docs/viator-openapi.json` — Full Viator Partner API OpenAPI 3.0 spec
-- `docs/viator-api-reference.md` — Clean summary of 10 Basic-tier endpoints
+- `docs/implementation/implementation_plan.md` — 20-step Phase 1 plan with "Done when" criteria
+- `docs/reference/viator-openapi.json` — Full Viator Partner API OpenAPI 3.0 spec
+- `docs/reference/viator-api-reference.md` — Clean summary of 10 Basic-tier endpoints
 
 ### Fixed
 - Viator destination endpoint: `/taxonomy/destinations` → `GET /destinations` (correct Basic-tier endpoint)
