@@ -6,6 +6,28 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [5.1.0] - 2026-03-02
+
+### Complete — Data Fully Indexed
+- Full indexer complete: 2,712 leaf destinations, 136,256 active tours, 474MB database (~20 hours)
+- One-liner backfill complete: 136,256/136,256 tours (100% coverage) via Claude Haiku 4.5 (~14 hours)
+- Batch backfill (126,498 tours) + retry (997 missed) + single-tour (15 holdouts) = zero gaps
+- Word-boundary truncation fix: bumped max from 120→150 chars, clean cuts at word boundaries
+
+### Added
+- `docs/data-snapshot.md` — Complete data baseline: tour counts, field coverage, weight categories, continent/country/destination breakdowns, rating/price stats, one-liner quality metrics
+- Privacy page (`/privacy`) — No-data-collection policy, matches site dark theme
+- Support page (`/support`) — FAQ + contact, matches site dark theme
+- `ios/TourGraph/.../PrivacyInfo.xcprivacy` — Apple privacy manifest (UserDefaults, CA92.1)
+- `ios/ExportOptions.plist` — CLI archive/upload config (Team ID F66D7QPY4N)
+
+### Updated
+- All tracking docs (CURRENT_STATE.md, NOW.md, CHANGELOG.md) reflect data completion
+- `docs/data-schema.md` — Updated rebuild instructions, deployment commands, current stats
+- `docs/ios-app-store.md` — Bundle ID `com.nikhilsi.TourGraph`, signing info, pre-submission checklist progress
+
+---
+
 ## [5.0.0] - 2026-03-01
 
 ### Deployed — https://tourgraph.ai is live!

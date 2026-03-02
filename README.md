@@ -115,6 +115,8 @@ tourgraph/
 │   ├── viator-api-reference.md # Basic-tier API endpoint summary
 │   ├── ios-architecture.md   # iOS app design: data strategy, services, navigation
 │   ├── ios-app-store.md      # App Store submission metadata (draft)
+│   ├── data-snapshot.md      # Data baseline stats (136K tours, for refresh deltas)
+│   ├── data-schema.md        # SQLite schema, rebuild instructions
 │   ├── viator-openapi.json   # Full Viator OpenAPI 3.0 spec
 │   └── thesis_validation.md  # Why we pivoted
 │

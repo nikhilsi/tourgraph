@@ -1,13 +1,13 @@
 # Current State
 
 ---
-**Last Updated**: March 1, 2026
+**Last Updated**: March 2, 2026
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
 ## Live at https://tourgraph.ai
 
-All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. ~123K tours across 3,380 destinations, 17 routes, all verified 200 over HTTPS. Data expansion indexer running locally (nearing completion).
+All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. 136,256 tours across 2,712 destinations, 19 routes, all verified 200 over HTTPS. Data fully indexed with 100% AI one-liner coverage.
 
 ### Web Features (All Deployed)
 
@@ -39,11 +39,16 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 **App Store prep done:** PrivacyInfo.xcprivacy, ExportOptions.plist, metadata draft (`docs/ios-app-store.md`).
 **Not yet built:** DB enrichment service, share card rendering (ImageRenderer), launch screen, App Store screenshots.
 
-## Data: Indexing Complete, One-Liners Backfilling
+## Data: Complete
 
-Full indexer complete: 2,712 leaf destinations, 136,256 active tours, 451MB database. One-liner backfill running (~126K tours, ~14 hours).
+Full indexer + one-liner backfill complete. See `docs/data-snapshot.md` for detailed stats with baseline numbers for future refreshes.
 
-**After backfill completes:** Decide city pairs → Generate chains → Redeploy DB.
+- **136,256 active tours** across 2,712 leaf destinations, 205 countries, 7 continents
+- **136,256 AI one-liners** (100% coverage) via Claude Haiku 4.5
+- **474 MB** database file
+- **0 chains** generated — next step
+
+**Next:** Decide city pairs → Generate chains → Redeploy DB.
 
 ## Deployment
 
@@ -109,19 +114,19 @@ data/
 └── tourgraph.db                    # SQLite (gitignored)
 ```
 
-### Data (Expanding)
+### Data (Complete — see `docs/data-snapshot.md` for full breakdown)
 
-- **136,256 tours** indexed across 2,712 leaf destinations (indexer complete)
-- **~10,600 with AI one-liners** (~126K backfilling now; batch script running)
-- **3,380 destinations** from Viator API (~2,712 are leaf nodes)
+- **136,256 active tours** across 2,712 leaf destinations (indexer + backfill complete)
+- **136,256 AI one-liners** (100% coverage)
+- **3,380 destinations** from Viator API (2,712 leaf nodes indexed)
+- **205 countries**, 7 continents, 289 timezones
 - **7 weight categories** for roulette variety
 - **6 superlatives** queried live from tours table
-- **20+ timezones** with global coverage for Right Now
-- **0 chains** generated (waiting for data expansion to complete)
+- **0 chains** generated (next step)
 
 ### Key Technical Choices
 
-- **SQLite** (not Redis/Postgres) — single file, zero cold cache, deploys as-is. 136K tours at 451MB.
+- **SQLite** (not Redis/Postgres) — single file, zero cold cache, deploys as-is. 136K tours at 474MB.
 - **Viator Basic tier** — free affiliate API, 300K+ experiences, 16 req/10s per endpoint
 - **Claude Haiku 4.5** — fast/cheap one-liners during indexing (~$0.003/1000 tours)
 - **Claude Sonnet 4.6** — Six Degrees chain generation (~$0.02/chain, 12-14s)
