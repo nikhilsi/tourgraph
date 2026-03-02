@@ -1,7 +1,7 @@
 # Claude Code Development Guide
 
 ---
-**Last Updated**: February 28, 2026
+**Last Updated**: March 2, 2026
 **Purpose**: Rules and workflow for working with this codebase
 ---
 
@@ -16,6 +16,10 @@
 5. **`git log --oneline -10`** — Recent commits
 
 **Optional** (if relevant to task):
+- **docs/data-snapshot.md** — Data baseline stats (136K tours, for tracking refresh deltas)
+- **docs/data-schema.md** — Full SQL schema (CREATE TABLE statements for all 5 tables)
+- **docs/ios-app-store.md** — App Store submission metadata, signing info, pre-submission checklist
+- **docs/ios-architecture.md** — iOS app design: data strategy, services, navigation
 - **docs/thesis_validation.md** — Why the original thesis was killed (context only)
 - **archive/docs/api_landscape.md** — Viator API details, test results, response formats
 - **archive/scripts/viator_compare.py** — Working Viator API call patterns
@@ -254,6 +258,13 @@ The `scripts/viator_compare.py` from Phase 0 has working API call patterns (endp
 **Docs:**
 - **docs/product_brief.md** — Product vision (source of truth for what we're building)
 - **docs/ux_design.md** — UX design: wireframes, design principles, interaction flows, resolved decisions
+- **docs/data-snapshot.md** — Data baseline stats (136K tours, for tracking refresh deltas)
+- **docs/data-schema.md** — Full SQL schema (CREATE TABLE statements for all 5 tables)
+- **docs/ios-architecture.md** — iOS app design: data strategy, services, navigation
+- **docs/ios-app-store.md** — App Store submission metadata, signing, checklist
+- **docs/architecture.md** — Technical architecture, schema, indexer design
+- **docs/implementation_plan.md** — Phase 1-3 build plan
+- **docs/viator-api-reference.md** — Basic-tier API endpoint summary
 - **docs/thesis_validation.md** — Competitive analysis that killed the original thesis
 
 **Archive (Phase 0 — reference only):**
