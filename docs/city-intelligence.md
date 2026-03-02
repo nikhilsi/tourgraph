@@ -16,18 +16,11 @@ The city intelligence pipeline transforms raw Viator tour data into a curated un
 
 ---
 
-## The Data Asset (4 IP Layers)
+## Where This Fits
 
-TourGraph's data is built in layers. Each layer adds original intelligence on top of the previous one.
+City Intelligence is **Layer 3** of TourGraph's 4-layer data pipeline. It transforms commodity Viator listings (Layer 1) enriched with AI one-liners (Layer 2) into original city-level understanding that exists nowhere else. Layer 4 (chain connections) builds on top of it.
 
-| Layer | What | Source | Count | Status |
-|-------|------|--------|-------|--------|
-| 1. Raw Viator Data | Tour listings: titles, photos, ratings, prices, locations | Viator Partner API | 136,256 tours | Complete |
-| 2. AI One-Liners | Witty personality captions per tour | Claude Haiku 4.5 | 136,256 (100%) | Complete |
-| 3. City Intelligence | City profiles: personality, standout tours, themes | Claude Sonnet 4.6 | 910 cities (1,799 readings) | **Complete** |
-| 4. Chain Connections | Thematic chains connecting cities | Claude Sonnet 4.6 | ~500 chains | **Pending** |
-
-Layer 1 is commodity — anyone with a Viator API key has it. Layer 2 is derivative IP — Viator doesn't have these. Layers 3 and 4 are original intelligence that couldn't be reproduced with the same results. Together, they form a unique understanding of the world's tour landscape that exists nowhere else.
+See `docs/data-snapshot.md` for the full IP layers table, stats, and baseline numbers.
 
 ---
 

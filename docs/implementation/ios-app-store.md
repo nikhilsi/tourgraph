@@ -11,7 +11,7 @@
 |-------|-------|
 | App Name | TourGraph |
 | Subtitle | The world's most surprising tours |
-| Bundle ID | ai.tourgraph.app |
+| Bundle ID | com.nikhilsi.TourGraph |
 | SKU | tourgraph-ios-v1 |
 | Primary Category | Travel |
 | Secondary Category | Entertainment |
