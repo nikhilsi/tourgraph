@@ -4,6 +4,7 @@ struct ChainDetailView: View {
     let slug: String
     let database: DatabaseService
     @State private var chain: Chain?
+    @State private var toursByIds: [Int: Tour] = [:]
 
     var body: some View {
         ScrollView {
@@ -66,6 +67,13 @@ struct ChainDetailView: View {
                                         Text(link.tourTitle)
                                             .font(.subheadline)
                                             .foregroundStyle(.white.opacity(0.7))
+                                        if let tour = link.tourId.flatMap({ toursByIds[$0] }),
+                                           let oneLiner = tour.oneLiner {
+                                            Text(oneLiner)
+                                                .font(.caption)
+                                                .foregroundStyle(.white.opacity(0.5))
+                                                .italic()
+                                        }
                                         Text(link.theme)
                                             .font(.caption)
                                             .foregroundStyle(.white.opacity(0.5))
@@ -129,6 +137,14 @@ struct ChainDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .task {
             chain = try? database.getChainBySlug(slug)
+            if let chain {
+                for link in chain.links {
+                    if let tourId = link.tourId,
+                       let tour = try? database.getTourById(tourId) {
+                        toursByIds[tourId] = tour
+                    }
+                }
+            }
         }
     }
 }

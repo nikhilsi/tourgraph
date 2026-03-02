@@ -120,6 +120,11 @@ export default async function ChainDetailPage({ params }: Props) {
                     <h3 className="text-sm font-semibold leading-tight line-clamp-2">
                       {tour.title}
                     </h3>
+                    {tour.one_liner && (
+                      <p className="text-xs text-text-muted mt-1 leading-snug italic line-clamp-2">
+                        {tour.one_liner}
+                      </p>
+                    )}
                     <div className="flex items-center gap-3 text-xs text-text-muted mt-1.5">
                       {tour.rating != null && tour.rating > 0 && (
                         <span className="flex items-center gap-1" title={`${tour.rating.toFixed(1)} out of 5 stars`}>
