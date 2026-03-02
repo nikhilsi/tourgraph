@@ -45,7 +45,7 @@ ssh "root@$DROPLET_IP" "rm -f ${REMOTE_DB}-wal ${REMOTE_DB}-shm"
 
 # Restart the app
 echo "--- Restarting app ---"
-ssh "root@$DROPLET_IP" "pm2 start tourgraph 2>/dev/null || cd /opt/app && pm2 start deployment/ecosystem.config.cjs"
+ssh "root@$DROPLET_IP" "pm2 start tourgraph 2>/dev/null || (cd /opt/app && pm2 start deployment/ecosystem.config.cjs)"
 
 echo ""
 echo "============================================"
