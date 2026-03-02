@@ -2,14 +2,14 @@
 // Backfill One-Liners
 // Generates AI one-liners for tours that don't have them yet.
 //
-// Run: npx tsx src/scripts/backfill-oneliners.ts
-//       npx tsx src/scripts/backfill-oneliners.ts --limit 100
-//       npx tsx src/scripts/backfill-oneliners.ts --dry-run
+// Run: npx tsx src/scripts/2-oneliners/backfill-oneliners.ts
+//       npx tsx src/scripts/2-oneliners/backfill-oneliners.ts --limit 100
+//       npx tsx src/scripts/2-oneliners/backfill-oneliners.ts --dry-run
 // ============================================================
 
-import { loadEnv } from "../lib/env";
-import { getDb, updateTourFields } from "../lib/db";
-import { generateOneLiner } from "../lib/claude";
+import { loadEnv } from "../../lib/env";
+import { getDb, updateTourFields } from "../../lib/db";
+import { generateOneLiner } from "../../lib/claude";
 
 loadEnv();
 

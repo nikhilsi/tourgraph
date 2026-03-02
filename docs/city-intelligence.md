@@ -2,7 +2,7 @@
 
 ---
 **Created**: March 2, 2026
-**Status**: Designed — ready for implementation
+**Status**: Complete — 910 cities, 1,799 readings merged
 **Depends on**: `docs/data-snapshot.md` (data baseline), `docs/data-schema.md` (DB schema)
 ---
 
@@ -24,7 +24,7 @@ TourGraph's data is built in layers. Each layer adds original intelligence on to
 |-------|------|--------|-------|--------|
 | 1. Raw Viator Data | Tour listings: titles, photos, ratings, prices, locations | Viator Partner API | 136,256 tours | Complete |
 | 2. AI One-Liners | Witty personality captions per tour | Claude Haiku 4.5 | 136,256 (100%) | Complete |
-| 3. City Intelligence | City profiles: personality, standout tours, themes | Claude Sonnet 4.6 | 910 cities | **Pending** |
+| 3. City Intelligence | City profiles: personality, standout tours, themes | Claude Sonnet 4.6 | 909 / 910 cities | **Complete** |
 | 4. Chain Connections | Thematic chains connecting cities | Claude Sonnet 4.6 | ~500 chains | **Pending** |
 
 Layer 1 is commodity — anyone with a Viator API key has it. Layer 2 is derivative IP — Viator doesn't have these. Layers 3 and 4 are original intelligence that couldn't be reproduced with the same results. Together, they form a unique understanding of the world's tour landscape that exists nowhere else.
@@ -163,26 +163,55 @@ Return the city profile JSON.
 | Total input tokens | ~6.4M |
 | Batchable? | Yes — perfect for Batch API |
 | Cacheable? | System prompt is identical across all 910 calls |
-| Estimated cost | ~$10-15 at Sonnet 4.6 batch pricing |
-| Estimated time | Under 1 hour via Batch API |
-| Script | `src/scripts/build-city-profiles.ts` |
+| Actual cost | ~$12 (Batch API 50% discount + prompt caching) |
+| Actual time | 16 min batch + 10 min sequential gap fill |
+| Script | `src/scripts/3-city-intel/build-city-profiles.ts` |
 | Output | Validated profiles written to `city_profiles` table |
 
 ### Validation
 
-Before saving each profile:
-- [ ] `personality` exists and is under 150 characters
-- [ ] `themes` is a non-empty array of valid theme strings
-- [ ] `standout_tours` has exactly 5 entries
-- [ ] All `tour_id` values exist in the `tours` table
-- [ ] No duplicate `tour_id` values
-- [ ] Each standout tour has `theme` and `reason` fields
+Two-tier validation: hard errors (reject) and soft warnings (save anyway, log for review).
+
+**Hard errors (reject):**
+- `personality` missing or over 200 characters
+- `themes` missing or empty array
+- `standout_tours` fewer than 3 entries
+- Standout tour missing `tour_id`, `theme`, or `reason`
+
+**Soft warnings (save, log):**
+- Personality 150-200 chars (~30% of cities)
+- Unknown themes like "cycling", "sailing", "fishing" (~10% of cities)
+- `tour_id` not found in DB (diacritics mismatch, resolved by sequential re-run)
+- Duplicate `tour_id` (rare)
+
+**Normalizations applied:**
+- `id` → `tour_id` (Claude sometimes uses `id`)
+- Theme aliases: geology→geological, food→cuisine, nature→hiking, craft→craftsmanship
 
 ---
 
 ## Data Model
 
-### `city_profiles` Table
+### `city_readings` Table (Append-Only Log)
+
+Every AI analysis of a city is stored permanently as a reading. Multiple batch runs produce multiple readings per city. This table only grows — it is the permanent record of every AI perspective on every city.
+
+```sql
+CREATE TABLE city_readings (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  destination_name TEXT NOT NULL,
+  batch_id TEXT,
+  model TEXT NOT NULL,
+  personality TEXT NOT NULL,
+  themes_json TEXT NOT NULL,
+  standout_tours_json TEXT NOT NULL,
+  generated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+### `city_profiles` Table (Materialized View)
+
+One row per city, rebuilt by merging all readings. Personality comes from the first (oldest) reading. Themes are the union of all readings. Standout tours are deduped by `tour_id` across all readings.
 
 ```sql
 CREATE TABLE city_profiles (
@@ -193,6 +222,7 @@ CREATE TABLE city_profiles (
   personality TEXT NOT NULL,
   themes_json TEXT NOT NULL,
   standout_tours_json TEXT NOT NULL,
+  reading_count INTEGER NOT NULL DEFAULT 1,
   generated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   model TEXT NOT NULL
 );
@@ -205,9 +235,10 @@ CREATE TABLE city_profiles (
 | `continent` | TEXT | Continent name |
 | `tour_count` | INTEGER | Active tours with images at time of generation |
 | `personality` | TEXT | AI-generated one-line city personality |
-| `themes_json` | TEXT (JSON) | `["crafts","sacred","nature","food","wellness"]` |
-| `standout_tours_json` | TEXT (JSON) | `[{"tour_id":123,"theme":"crafts","reason":"..."},...]` |
-| `generated_at` | TEXT | ISO timestamp of generation |
+| `themes_json` | TEXT (JSON) | Union of all readings: `["crafts","sacred","nature","food","wellness"]` |
+| `standout_tours_json` | TEXT (JSON) | Union deduped by tour_id: `[{"tour_id":123,"theme":"crafts","reason":"..."},...]` |
+| `reading_count` | INTEGER | Number of readings merged into this profile |
+| `generated_at` | TEXT | ISO timestamp of most recent reading |
 | `model` | TEXT | Claude model used (e.g., "claude-sonnet-4-6") |
 
 ---
@@ -284,4 +315,5 @@ Detailed tables of cities with 7+ keyword-detected themes are archived in the gi
 | DB schema | `docs/data-schema.md` |
 | Chain generation (Stages 1+2) | `docs/six-degrees-chains.md` |
 | Phase 4 research (Six Degrees) | `docs/reference/phase4-six-degrees.md` |
-| Build script (to be created) | `src/scripts/build-city-profiles.ts` |
+| Build script | `src/scripts/3-city-intel/build-city-profiles.ts` |
+| Backfill + merge script | `src/scripts/3-city-intel/backfill-city-readings.ts` |

@@ -179,7 +179,7 @@ Examples: Takayama, Asheville, Gozo, Ulaanbaatar, Ohrid, St Kitts, Addis Ababa
 
 Math: 100 cities × ~10 chains each ÷ 2 endpoints per chain = ~500 chains.
 
-Script (`src/scripts/generate-pairs.ts`) creates pairs from the pool following the rules above. Output: `src/scripts/chain-pairs.json`.
+Script (`src/scripts/4-chains/generate-pairs.ts`) creates pairs from the pool following the rules above. Output: `src/scripts/4-chains/chain-pairs.json`.
 
 ---
 
@@ -266,9 +266,9 @@ Currently the chain detail page shows per node: city, tour photo, tour title, st
 |------|-------|
 | City intelligence (Stage 0) | `docs/city-intelligence.md` |
 | Research & UI spec | `docs/reference/phase4-six-degrees.md` |
-| Current generator (v1) | `src/scripts/generate-chains.ts` |
+| Current generator (v1) | `src/scripts/4-chains/generate-chains.ts` |
 | Test chain outputs | `data/chain-tests/` |
-| Current pair config | `src/scripts/chain-pairs.json` |
+| Current pair config | `src/scripts/4-chains/chain-pairs.json` |
 | DB schema | `docs/data-schema.md` |
 | Gallery page | `src/app/six-degrees/page.tsx` |
 | Detail page | `src/app/six-degrees/[slug]/page.tsx` |

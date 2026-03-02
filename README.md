@@ -42,13 +42,13 @@ npm install             # Install dependencies
 cp .env.example .env.local  # Add your API keys
 
 # Seed destinations from Viator API
-npx tsx src/scripts/seed-destinations.ts
+npx tsx src/scripts/1-viator/seed-destinations.ts
 
 # Index tours (single destination)
-npx tsx src/scripts/indexer.ts --dest 704
+npx tsx src/scripts/1-viator/indexer.ts --dest 704
 
 # Or seed a diverse dataset
-npx tsx src/scripts/seed-dev-data.ts --no-ai
+npx tsx src/scripts/1-viator/seed-dev-data.ts --no-ai
 
 # Start dev server
 npm run dev             # http://localhost:3000

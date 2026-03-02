@@ -15,12 +15,12 @@
 //
 // Logs: Output is written to both console and logs/indexer-<timestamp>.log
 //
-// Run: npx tsx src/scripts/indexer.ts --dest 704
-//      npx tsx src/scripts/indexer.ts --full --no-ai
+// Run: npx tsx src/scripts/1-viator/indexer.ts --dest 704
+//      npx tsx src/scripts/1-viator/indexer.ts --full --no-ai
 // ============================================================
 
-import { ViatorClient, extractCoverImageUrl, extractAllImageUrls, extractDurationMinutes, extractInclusions } from "../lib/viator";
-import { loadEnv } from "../lib/env";
+import { ViatorClient, extractCoverImageUrl, extractAllImageUrls, extractDurationMinutes, extractInclusions } from "../../lib/viator";
+import { loadEnv } from "../../lib/env";
 import {
   getDb,
   insertOrUpdateTour,
@@ -32,10 +32,10 @@ import {
   getAllDestinations,
   getLeafDestinations,
   getActiveTourCount,
-} from "../lib/db";
-import { generateOneLiner } from "../lib/claude";
-import { continentFromLookupId } from "../lib/continents";
-import type { ViatorSearchProduct, WeightCategory } from "../lib/types";
+} from "../../lib/db";
+import { generateOneLiner } from "../../lib/claude";
+import { continentFromLookupId } from "../../lib/continents";
+import type { ViatorSearchProduct, WeightCategory } from "../../lib/types";
 import crypto from "crypto";
 import fs from "fs";
 import path from "path";
@@ -488,7 +488,7 @@ async function main() {
 
     if (destinations.length === 0) {
       logError(
-        "No destinations in DB. Run seed-destinations first:\n  npx tsx src/scripts/seed-destinations.ts"
+        "No destinations in DB. Run seed-destinations first:\n  npx tsx src/scripts/1-viator/seed-destinations.ts"
       );
       closeLogging();
       process.exit(1);
@@ -627,16 +627,16 @@ async function main() {
   } else {
     log("Usage:");
     log(
-      "  npx tsx src/scripts/indexer.ts --dest <id>          Index one destination"
+      "  npx tsx src/scripts/1-viator/indexer.ts --dest <id>          Index one destination"
     );
     log(
-      "  npx tsx src/scripts/indexer.ts --full [--limit N]   Index all leaf destinations"
+      "  npx tsx src/scripts/1-viator/indexer.ts --full [--limit N]   Index all leaf destinations"
     );
     log(
-      "  npx tsx src/scripts/indexer.ts --full --all-destinations   Include parent destinations"
+      "  npx tsx src/scripts/1-viator/indexer.ts --full --all-destinations   Include parent destinations"
     );
     log(
-      "  npx tsx src/scripts/indexer.ts --continue            Resume from last position"
+      "  npx tsx src/scripts/1-viator/indexer.ts --continue            Resume from last position"
     );
     log("  --no-ai                                             Skip one-liner generation");
   }

@@ -3,10 +3,10 @@
 // Shows: weight categories, tour counts, one-liner coverage,
 // continent distribution, top destinations.
 //
-// Run: npx tsx src/scripts/check-db.ts
+// Run: npx tsx src/scripts/utils/check-db.ts
 // ============================================================
 
-import { getDb, getActiveTourCount } from "../lib/db";
+import { getDb, getActiveTourCount } from "../../lib/db";
 
 const db = getDb();
 

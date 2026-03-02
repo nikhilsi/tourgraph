@@ -118,9 +118,29 @@ CREATE TABLE six_degrees_chains (
 
 
 -- =============================================================
--- city_profiles — AI-curated city intelligence (Stage 0).
+-- city_readings — Append-only log of all AI readings per city.
+-- Each batch run or sequential run produces one reading per city.
+-- Permanent store — keeps growing as we re-run city intelligence.
+-- Built by src/scripts/3-city-intel/backfill-city-readings.ts.
+-- =============================================================
+CREATE TABLE city_readings (
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    destination_name    TEXT NOT NULL,                 -- City name, matches tours.destination_name
+    batch_id            TEXT,                          -- Batch ID or "sequential-backfill"
+    model               TEXT NOT NULL,                 -- Claude model used
+    personality         TEXT NOT NULL,                 -- AI-generated one-line city personality
+    themes_json         TEXT NOT NULL,                 -- JSON array of theme tags from this reading
+    standout_tours_json TEXT NOT NULL,                 -- JSON array of standout tours from this reading
+    generated_at        TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- =============================================================
+-- city_profiles — Materialized city intelligence (Stage 0).
 -- One row per city with 50+ active tours (910 cities).
--- Built by src/scripts/build-city-profiles.ts via Claude Sonnet 4.6.
+-- Rebuilt by merging all city_readings: personality from first
+-- reading, themes = union of all readings, standout tours =
+-- union deduped by tour_id.
 -- See docs/city-intelligence.md for pipeline design.
 -- =============================================================
 CREATE TABLE city_profiles (
@@ -129,8 +149,9 @@ CREATE TABLE city_profiles (
     continent           TEXT,                          -- Continent name
     tour_count          INTEGER NOT NULL,              -- Active tours with images at generation time
     personality         TEXT NOT NULL,                 -- AI-generated one-line city personality (<150 chars)
-    themes_json         TEXT NOT NULL,                 -- JSON array of AI-curated theme tags
-    standout_tours_json TEXT NOT NULL,                 -- JSON array of 5 standout tours [{tour_id, theme, reason}]
+    themes_json         TEXT NOT NULL,                 -- JSON array of AI-curated theme tags (union of all readings)
+    standout_tours_json TEXT NOT NULL,                 -- JSON array of standout tours (union deduped by tour_id)
+    reading_count       INTEGER NOT NULL DEFAULT 1,    -- Number of readings merged into this profile
     generated_at        TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     model               TEXT NOT NULL                  -- Claude model used (e.g., "claude-sonnet-4-6")
 );
@@ -151,10 +172,11 @@ CREATE TABLE indexer_state (
 
 ```bash
 npm run seed:destinations                      # Populate destinations (~3,380 rows, ~1 min)
-npx tsx src/scripts/indexer.ts --full           # Index all 2,712 leaf destinations (~20 hours)
-npx tsx src/scripts/backfill-oneliners-batch.ts # Generate AI one-liners (~14 hours)
-npx tsx src/scripts/build-city-profiles.ts      # Build city intelligence profiles (~1 hour via Batch API)
-npx tsx src/scripts/generate-chains.ts          # Generate Six Degrees chains (~1 hour via Batch API)
+npx tsx src/scripts/1-viator/indexer.ts --full           # Index all 2,712 leaf destinations (~20 hours)
+npx tsx src/scripts/2-oneliners/backfill-oneliners-batch.ts # Generate AI one-liners (~14 hours)
+npx tsx src/scripts/3-city-intel/build-city-profiles.ts      # Build city intelligence profiles (~1 hour via Batch API)
+npx tsx src/scripts/3-city-intel/backfill-city-readings.ts <results.jsonl> [...]  # Load batch results into city_readings + merge
+npx tsx src/scripts/4-chains/generate-chains.ts          # Generate Six Degrees chains (~1 hour via Batch API)
 ```
 
 ## Deploying to Server

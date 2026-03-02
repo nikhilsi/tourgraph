@@ -4,14 +4,14 @@
 // Pulls real tours from our DB, sends to Claude, prints the chain.
 //
 // Usage:
-//   npx tsx src/scripts/test-chain.ts "Tokyo" "Rome"
-//   npx tsx src/scripts/test-chain.ts "Paris" "Buenos Aires"
-//   npx tsx src/scripts/test-chain.ts --random
-//   npx tsx src/scripts/test-chain.ts --list-cities
+//   npx tsx src/scripts/4-chains/test-chain.ts "Tokyo" "Rome"
+//   npx tsx src/scripts/4-chains/test-chain.ts "Paris" "Buenos Aires"
+//   npx tsx src/scripts/4-chains/test-chain.ts --random
+//   npx tsx src/scripts/4-chains/test-chain.ts --list-cities
 // ============================================================
 
-import { loadEnv } from "../lib/env";
-import { getDb } from "../lib/db";
+import { loadEnv } from "../../lib/env";
+import { getDb } from "../../lib/db";
 import Anthropic from "@anthropic-ai/sdk";
 
 loadEnv();
@@ -281,9 +281,9 @@ async function main() {
     const args = process.argv.slice(2).filter((a) => !a.startsWith("--"));
     if (args.length < 2) {
       console.log("Usage:");
-      console.log('  npx tsx src/scripts/test-chain.ts "Tokyo" "Rome"');
-      console.log("  npx tsx src/scripts/test-chain.ts --random");
-      console.log("  npx tsx src/scripts/test-chain.ts --list-cities");
+      console.log('  npx tsx src/scripts/4-chains/test-chain.ts "Tokyo" "Rome"');
+      console.log("  npx tsx src/scripts/4-chains/test-chain.ts --random");
+      console.log("  npx tsx src/scripts/4-chains/test-chain.ts --list-cities");
       process.exit(1);
     }
     cityFrom = args[0];

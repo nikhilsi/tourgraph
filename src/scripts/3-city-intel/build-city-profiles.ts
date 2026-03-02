@@ -5,20 +5,29 @@
 // Sonnet and gets back a curated profile: personality line,
 // 5 standout tours, and theme tags.
 //
+// Writes to city_readings (append-only), then merges all readings
+// into city_profiles (union themes, union deduped standout tours).
+//
 // Uses the Anthropic Batch API for 50% cost savings and efficient
 // processing of all 910 cities in a single batch (~1 hour).
 //
-// Run: npx tsx src/scripts/build-city-profiles.ts
-//      npx tsx src/scripts/build-city-profiles.ts --dry-run
-//      npx tsx src/scripts/build-city-profiles.ts --limit 5
-//      npx tsx src/scripts/build-city-profiles.ts --sequential
-//      npx tsx src/scripts/build-city-profiles.ts --resume <batch-id>
+// Run: npx tsx src/scripts/3-city-intel/build-city-profiles.ts
+//      npx tsx src/scripts/3-city-intel/build-city-profiles.ts --dry-run
+//      npx tsx src/scripts/3-city-intel/build-city-profiles.ts --limit 5
+//      npx tsx src/scripts/3-city-intel/build-city-profiles.ts --sequential
+//      npx tsx src/scripts/3-city-intel/build-city-profiles.ts --resume <batch-id>
 //
 // See: docs/city-intelligence.md
 // ============================================================
 
-import { loadEnv } from "../lib/env";
-import { getDb } from "../lib/db";
+import { loadEnv } from "../../lib/env";
+import { getDb } from "../../lib/db";
+import {
+  VALID_THEMES,
+  THEME_ALIASES,
+  saveCityReading,
+  mergeReadings,
+} from "../../lib/city-intel";
 import Anthropic from "@anthropic-ai/sdk";
 import fs from "fs";
 import path from "path";
@@ -146,36 +155,15 @@ function getToursForCity(cityName: string): TourForPrompt[] {
     .all(cityName) as TourForPrompt[];
 }
 
-function getExistingProfiles(): Set<string> {
+function getExistingReadings(batchId: string): Set<string> {
   const db = getDb(true);
   const rows = db
-    .prepare("SELECT destination_name FROM city_profiles")
-    .all() as { destination_name: string }[];
+    .prepare("SELECT DISTINCT destination_name FROM city_readings WHERE batch_id = ?")
+    .all(batchId) as { destination_name: string }[];
   return new Set(rows.map((r) => r.destination_name));
 }
 
-function saveCityProfile(
-  city: CityInfo,
-  profile: CityProfile,
-  model: string
-): void {
-  const db = getDb();
-  db.prepare(
-    `INSERT OR REPLACE INTO city_profiles
-     (destination_name, country, continent, tour_count, personality, themes_json, standout_tours_json, generated_at, model)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
-  ).run(
-    city.name,
-    city.country,
-    city.continent,
-    city.tourCount,
-    profile.personality,
-    JSON.stringify(profile.themes),
-    JSON.stringify(profile.standout_tours),
-    new Date().toISOString(),
-    model
-  );
-}
+// saveCityReading imported from ../lib/city-intel — writes to city_readings table
 
 // ============================================================
 // Tour Formatting
@@ -205,28 +193,7 @@ function buildUserPrompt(city: CityInfo, tours: TourForPrompt[]): string {
 // Validation
 // ============================================================
 
-const VALID_THEMES = new Set([
-  "cuisine", "street-food", "drinks", "sacred", "markets", "street-art",
-  "nightlife", "water", "hiking", "dance", "music", "craftsmanship",
-  "wildlife", "dark-tourism", "photography", "wellness", "architecture",
-  "ancient-history", "colonial-history", "festivals", "geological",
-]);
-
-// Common variations Claude produces — normalize to our canonical names
-const THEME_ALIASES: Record<string, string> = {
-  "geology": "geological",
-  "food": "cuisine",
-  "nature": "hiking",
-  "history": "ancient-history",
-  "craft": "craftsmanship",
-  "crafts": "craftsmanship",
-  "street-art": "street-art",
-  "streetfood": "street-food",
-  "street_food": "street-food",
-  "dark_tourism": "dark-tourism",
-  "ancient_history": "ancient-history",
-  "colonial_history": "colonial-history",
-};
+// VALID_THEMES and THEME_ALIASES imported from ../lib/city-intel
 
 interface ValidationResult {
   errors: string[];   // Hard failures — don't save
@@ -330,7 +297,8 @@ function parseProfileResponse(text: string): CityProfile {
 async function runSequential(
   cities: CityInfo[],
   client: Anthropic,
-  dryRun: boolean
+  dryRun: boolean,
+  batchId: string
 ): Promise<{ succeeded: number; failed: number }> {
   let succeeded = 0;
   let failed = 0;
@@ -383,7 +351,7 @@ async function runSequential(
       }
 
       if (!dryRun) {
-        saveCityProfile(city, profile, CLAUDE_MODEL);
+        saveCityReading(city.name, batchId, CLAUDE_MODEL, profile.personality, profile.themes, profile.standout_tours);
       }
 
       succeeded++;
@@ -450,9 +418,13 @@ async function runBatch(
       continue;
     }
 
-    cityInfoMap.set(city.name, city);
+    // custom_id must match ^[a-zA-Z0-9_-]{1,64}$
+    const customId = city.name
+      .replace(/[^a-zA-Z0-9_-]/g, "_")
+      .slice(0, 64);
+    cityInfoMap.set(customId, city);
     requests.push({
-      custom_id: city.name,
+      custom_id: customId,
       params: {
         model: CLAUDE_MODEL,
         max_tokens: 1024,
@@ -548,20 +520,9 @@ async function pollAndProcessBatch(
   let failed = 0;
 
   for await (const result of await client.messages.batches.results(batchId)) {
-    const cityName = result.custom_id;
-    const cityInfo = cityInfoMap.get(cityName);
-
-    if (!cityInfo) {
-      // City may not be in our map if resuming — build from DB
-      const fallbackCities = getCitiesWithMinTours(1).filter(
-        (c) => c.name === cityName
-      );
-      if (fallbackCities.length === 0) {
-        logError(`Unknown city in results: ${cityName}`);
-        failed++;
-        continue;
-      }
-    }
+    const customId = result.custom_id;
+    const cityInfo = cityInfoMap.get(customId);
+    const cityName = cityInfo?.name ?? customId.replace(/_/g, " ");
 
     if (result.result.type !== "succeeded") {
       logError(`${cityName}: ${result.result.type}`);
@@ -600,7 +561,7 @@ async function pollAndProcessBatch(
         tourCount: tours.length,
       };
 
-      saveCityProfile(city, profile, CLAUDE_MODEL);
+      saveCityReading(city.name, batchId, CLAUDE_MODEL, profile.personality, profile.themes, profile.standout_tours);
       succeeded++;
 
       if (succeeded % 50 === 0 || succeeded <= 5) {
@@ -637,24 +598,29 @@ async function main() {
   log(`Log file: ${LOG_FILE}`);
   log("=".repeat(60));
 
-  // Ensure city_profiles table exists
+  // Ensure tables exist (city_readings + city_profiles)
   ensureSchema();
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) throw new Error("ANTHROPIC_API_KEY is required in .env.local");
   const client = new Anthropic({ apiKey });
 
+  // Determine batch ID for this run
+  const runTimestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+  const batchId = resumeId ?? (sequential ? `sequential-${runTimestamp}` : ""); // batch mode gets real ID after submission
+
   // Get eligible cities
   const allCities = getCitiesWithMinTours(MIN_TOURS);
   log(`Found ${allCities.length} cities with ${MIN_TOURS}+ tours`);
 
-  // Skip cities that already have profiles (unless resuming a batch)
-  const existing = resumeId ? new Set<string>() : getExistingProfiles();
+  // Skip cities already in city_readings for this batch (resume case)
+  const existing = resumeId ? getExistingReadings(resumeId) : new Set<string>();
   const cities = allCities.filter((c) => !existing.has(c.name));
-  log(`Already profiled: ${existing.size} | Remaining: ${cities.length}`);
+  log(`Already in readings for this batch: ${existing.size} | Remaining: ${cities.length}`);
 
   if (cities.length === 0) {
-    log("All cities already profiled. Nothing to do!");
+    log("All cities already have readings for this batch. Running merge only.");
+    mergeReadings();
     return;
   }
 
@@ -674,7 +640,7 @@ async function main() {
   if (resumeId) {
     results = await resumeBatch(resumeId, client, processCities);
   } else if (sequential) {
-    results = await runSequential(processCities, client, dryRun);
+    results = await runSequential(processCities, client, dryRun, batchId);
   } else {
     results = await runBatch(processCities, client, dryRun);
   }
@@ -686,6 +652,12 @@ async function main() {
   log(`  Failed: ${results.failed}`);
   log(`  Total: ${results.succeeded + results.failed}`);
   log("=".repeat(60));
+
+  // Merge all readings into city_profiles
+  if (!dryRun && results.succeeded > 0) {
+    log("\nMerging all readings into city_profiles...");
+    mergeReadings();
+  }
 }
 
 function getArgValue(flag: string): number | null {

@@ -121,6 +121,17 @@ function initSchema(db: Database.Database): void {
       UNIQUE(city_from, city_to)
     );
 
+    CREATE TABLE IF NOT EXISTS city_readings (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      destination_name TEXT NOT NULL,
+      batch_id TEXT,
+      model TEXT NOT NULL,
+      personality TEXT NOT NULL,
+      themes_json TEXT NOT NULL,
+      standout_tours_json TEXT NOT NULL,
+      generated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+
     CREATE TABLE IF NOT EXISTS city_profiles (
       destination_name TEXT PRIMARY KEY,
       country TEXT NOT NULL,
@@ -129,6 +140,7 @@ function initSchema(db: Database.Database): void {
       personality TEXT NOT NULL,
       themes_json TEXT NOT NULL,
       standout_tours_json TEXT NOT NULL,
+      reading_count INTEGER NOT NULL DEFAULT 1,
       generated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
       model TEXT NOT NULL
     );

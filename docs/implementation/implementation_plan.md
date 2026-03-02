@@ -65,7 +65,7 @@ Reference: `archive/scripts/viator_compare.py` lines 126-193 for headers, endpoi
 
 Fetch all Viator destinations via `GET /destinations`, insert into `destinations` table. Build a `countryToContinent` lookup mapping since Viator doesn't provide continent data.
 
-**Files created:** `src/scripts/seed-destinations.ts`, `src/lib/continents.ts`
+**Files created:** `src/scripts/1-viator/seed-destinations.ts`, `src/lib/continents.ts`
 **Files modified:** `src/lib/db.ts` (add `upsertDestination()`)
 
 **Done when:** Running script populates 3,380+ destination rows. Spot checks pass: "704" = Seattle, "479" = Paris, "737" = London.
@@ -76,11 +76,11 @@ Fetch all Viator destinations via `GET /destinations`, insert into `destinations
 
 First piece of the indexer: search one destination with 4 sort strategies (DEFAULT, TRAVELER_RATING desc, PRICE asc, PRICE desc), collect unique product codes, compute summary hashes for delta detection. No detail fetches yet.
 
-**Files created:** `src/scripts/indexer.ts` (first version)
+**Files created:** `src/scripts/1-viator/indexer.ts` (first version)
 
 Key functions: `computeSummaryHash()`, `searchDestination(destId)`, `classifyProducts(searchResults, cachedTours)` → returns `{ new, changed, unchanged, missing }`.
 
-**Done when:** `npx tsx src/scripts/indexer.ts --dest 704` outputs product count and classification. All products classified as "new" since DB is empty.
+**Done when:** `npx tsx src/scripts/1-viator/indexer.ts --dest 704` outputs product count and classification. All products classified as "new" since DB is empty.
 
 ---
 
@@ -88,11 +88,11 @@ Key functions: `computeSummaryHash()`, `searchDestination(destId)`, `classifyPro
 
 Extend indexer to fetch `GET /products/{code}` for new products and insert into tours table. Extract: title, description, cover image (720x480 variant), rating, reviews, duration, timezone, destination, tags, supplier, affiliate URL, inclusions, highlights.
 
-**Files modified:** `src/scripts/indexer.ts`, `src/lib/db.ts` (add `insertOrUpdateTour()`)
+**Files modified:** `src/scripts/1-viator/indexer.ts`, `src/lib/db.ts` (add `insertOrUpdateTour()`)
 
 Field extraction reference: `archive/results/viator_raw/tours_northwest/5396MTR_product.json` for exact nesting.
 
-**Done when:** `npx tsx src/scripts/indexer.ts --dest 704 --limit 5` inserts 5 Seattle tours. Spot-check "5396MTR": title matches, rating ~4.86, image_url is CDN URL, viator_url contains "mcid=42383".
+**Done when:** `npx tsx src/scripts/1-viator/indexer.ts --dest 704 --limit 5` inserts 5 Seattle tours. Spot-check "5396MTR": title matches, rating ~4.86, image_url is CDN URL, viator_url contains "mcid=42383".
 
 ---
 
@@ -101,11 +101,11 @@ Field extraction reference: `archive/results/viator_raw/tours_northwest/5396MTR_
 Integrate Claude Haiku 4.5 for witty one-liners during indexing. System prompt and user template from architecture doc lines 292-328.
 
 **Files created:** `src/lib/claude.ts`
-**Files modified:** `src/scripts/indexer.ts` (call `generateOneLiner()` for new tours)
+**Files modified:** `src/scripts/1-viator/indexer.ts` (call `generateOneLiner()` for new tours)
 
 Model: `claude-haiku-4-5-20251001`. Max tokens: 100. One-liner constraint: under 120 chars, no emojis, no hashtags, warm and witty.
 
-**Done when:** `npx tsx src/scripts/indexer.ts --dest 704 --limit 3` produces 3 tours with non-null `one_liner` values that are under 120 chars and read as warm/witty.
+**Done when:** `npx tsx src/scripts/1-viator/indexer.ts --dest 704 --limit 3` produces 3 tours with non-null `one_liner` values that are under 120 chars and read as warm/witty.
 
 ---
 
@@ -113,7 +113,7 @@ Model: `claude-haiku-4-5-20251001`. Max tokens: 100. One-liner constraint: under
 
 Classify each tour into one of 7 weight categories during indexing: `highest_rated`, `most_reviewed`, `most_expensive`, `cheapest_5star`, `unique`, `exotic_location`, `wildcard`.
 
-**Files modified:** `src/scripts/indexer.ts` (add `assignWeightCategory()`)
+**Files modified:** `src/scripts/1-viator/indexer.ts` (add `assignWeightCategory()`)
 
 Classification rules (priority order): rating >= 4.9 + 50 reviews → highest_rated, reviews >= 1000 → most_reviewed, price >= $500 → most_expensive, rating >= 4.8 + price <= $30 → cheapest_5star, unique experience tags → unique, non-top-50 destination → exotic_location, everything else → wildcard.
 
@@ -125,12 +125,12 @@ Classification rules (priority order): rating >= 4.9 + 50 reviews → highest_ra
 
 Extend from single-destination to full drip loop. Modes: `--full` (all destinations), `--continue` (resume), `--dest <id>` (single). State tracking, delta detection, graceful shutdown.
 
-**Files modified:** `src/scripts/indexer.ts`
+**Files modified:** `src/scripts/1-viator/indexer.ts`
 **Files modified:** `package.json` (add `"index"` and `"index:full"` scripts)
 
 Features: position tracking, configurable interval (`INDEXER_INTERVAL_MINUTES`), delta detection via `summary_hash`, mark missing products inactive, progress logging.
 
-**Done when:** `npx tsx src/scripts/indexer.ts --full --limit 10` processes 10 destinations, shows delta output, can resume with `--continue`.
+**Done when:** `npx tsx src/scripts/1-viator/indexer.ts --full --limit 10` processes 10 destinations, shows delta output, can resume with `--continue`.
 
 ---
 

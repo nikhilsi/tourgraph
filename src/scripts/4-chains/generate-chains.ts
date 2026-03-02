@@ -6,18 +6,18 @@
 // thematic chains, and stores results in six_degrees_chains table.
 //
 // Usage:
-//   npx tsx src/scripts/generate-chains.ts                    # Generate all pairs in config
-//   npx tsx src/scripts/generate-chains.ts --pair "Tokyo" "Rome"  # Generate one pair
-//   npx tsx src/scripts/generate-chains.ts --dry-run          # Preview pairs, don't generate
-//   npx tsx src/scripts/generate-chains.ts --list-cities      # Show available cities
+//   npx tsx src/scripts/4-chains/generate-chains.ts                    # Generate all pairs in config
+//   npx tsx src/scripts/4-chains/generate-chains.ts --pair "Tokyo" "Rome"  # Generate one pair
+//   npx tsx src/scripts/4-chains/generate-chains.ts --dry-run          # Preview pairs, don't generate
+//   npx tsx src/scripts/4-chains/generate-chains.ts --list-cities      # Show available cities
 //
-// Config: src/scripts/chain-pairs.json (array of [cityFrom, cityTo] tuples)
+// Config: src/scripts/4-chains/chain-pairs.json (array of [cityFrom, cityTo] tuples)
 //
 // Logs: Output written to both console and logs/chains-<timestamp>.log
 // ============================================================
 
-import { loadEnv } from "../lib/env";
-import { getDb } from "../lib/db";
+import { loadEnv } from "../../lib/env";
+import { getDb } from "../../lib/db";
 import Anthropic from "@anthropic-ai/sdk";
 import fs from "fs";
 import path from "path";
@@ -390,7 +390,7 @@ async function main() {
     pairs = [[cityFrom, cityTo]];
   } else {
     // Load from config file
-    const configPath = path.resolve("src/scripts/chain-pairs.json");
+    const configPath = path.resolve("src/scripts/4-chains/chain-pairs.json");
     if (!fs.existsSync(configPath)) {
       logError(`Config file not found: ${configPath}`);
       logError(`Create it with an array of [cityFrom, cityTo] pairs, e.g.:`);

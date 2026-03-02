@@ -19,7 +19,8 @@
 - **docs/city-intelligence.md** — City intelligence pipeline (Stage 0): the IP layer that makes TourGraph unique
 - **docs/six-degrees-chains.md** — Chain generation (Stages 1+2): pair selection, quality standards, gallery UX
 - **docs/data-snapshot.md** — Data baseline stats (4-layer IP asset, 136K tours)
-- **docs/data-schema.md** — Full SQL schema (CREATE TABLE statements for all 6 tables)
+- **docs/data-schema.md** — Full SQL schema (CREATE TABLE statements for all 7 tables)
+- **src/scripts/README.md** — Data pipeline playbook (step-by-step rebuild from scratch)
 - **docs/implementation/ios-app-store.md** — App Store submission metadata, signing info, pre-submission checklist
 - **docs/implementation/ios-architecture.md** — iOS app design: data strategy, services, navigation
 - **docs/reference/thesis_validation.md** — Why the original thesis was killed (context only)
@@ -262,7 +263,7 @@ The `scripts/viator_compare.py` from Phase 0 has working API call patterns (endp
 - **docs/city-intelligence.md** — City intelligence pipeline (Stage 0) — the IP layer
 - **docs/six-degrees-chains.md** — Chain generation (Stages 1+2) — pair selection, quality, gallery
 - **docs/data-snapshot.md** — Data baseline (4-layer IP asset, 136K tours)
-- **docs/data-schema.md** — Full SQL schema (6 tables)
+- **docs/data-schema.md** — Full SQL schema (7 tables including city_readings)
 - **docs/architecture.md** — Technical architecture, schema, indexer design
 
 **Implementation Docs (`docs/implementation/`):**
@@ -276,6 +277,14 @@ The `scripts/viator_compare.py` from Phase 0 has working API call patterns (endp
 - **docs/reference/rate-limiting.md** — Viator rate limiting details
 - **docs/reference/phase4-six-degrees.md** — Early Six Degrees research & UI spec
 - **docs/reference/thesis_validation.md** — Competitive analysis that killed original thesis
+
+**Data Pipeline (`src/scripts/`):**
+- **src/scripts/README.md** — Pipeline playbook (step-by-step rebuild guide)
+- **1-viator/** — Viator API indexing (destinations, tours, dev data)
+- **2-oneliners/** — AI caption generation (Claude Haiku 4.5)
+- **3-city-intel/** — City intelligence (readings → profiles merge pipeline)
+- **4-chains/** — Six Degrees chain generation
+- **utils/** — Database audit tools
 
 **Archive (Phase 0 — reference only):**
 - **archive/scripts/** — Extraction & Viator API scripts (API patterns reusable)

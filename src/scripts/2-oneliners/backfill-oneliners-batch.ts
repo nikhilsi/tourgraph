@@ -3,13 +3,13 @@
 // Generates AI one-liners using Claude Haiku in batches of 20.
 // ~15-20x faster than the single-tour version.
 //
-// Run: npx tsx src/scripts/backfill-oneliners-batch.ts
-//      npx tsx src/scripts/backfill-oneliners-batch.ts --limit 1000
-//      npx tsx src/scripts/backfill-oneliners-batch.ts --dry-run
+// Run: npx tsx src/scripts/2-oneliners/backfill-oneliners-batch.ts
+//      npx tsx src/scripts/2-oneliners/backfill-oneliners-batch.ts --limit 1000
+//      npx tsx src/scripts/2-oneliners/backfill-oneliners-batch.ts --dry-run
 // ============================================================
 
-import { loadEnv } from "../lib/env";
-import { getDb, updateTourFields } from "../lib/db";
+import { loadEnv } from "../../lib/env";
+import { getDb, updateTourFields } from "../../lib/db";
 import Anthropic from "@anthropic-ai/sdk";
 import fs from "fs";
 import path from "path";

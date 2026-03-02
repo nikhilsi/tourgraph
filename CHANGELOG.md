@@ -89,8 +89,8 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 ## [4.2.0] - 2026-03-01
 
 ### Added
-- `src/scripts/generate-chains.ts` — Production-grade Six Degrees chain generator: file logging, retries with backoff, chain validation (5 stops, unique cities/themes), dedup (skips existing), ETA tracking, final summary
-- `src/scripts/chain-pairs.json` — Config file for curated city pairs (placeholder, to be populated after data expansion)
+- `src/scripts/4-chains/generate-chains.ts` — Production-grade Six Degrees chain generator: file logging, retries with backoff, chain validation (5 stops, unique cities/themes), dedup (skips existing), ETA tracking, final summary
+- `src/scripts/4-chains/chain-pairs.json` — Config file for curated city pairs (placeholder, to be populated after data expansion)
 
 ### Fixed
 - Duration display: "96 hrs" → "4 days", "1h" → "1 hr", "45m" → "45 min". Both `formatDurationShort` and `formatDurationLong` now normalize days/hours/minutes properly.
@@ -106,7 +106,7 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ### Added — Phase 4 Research & Prototyping
 - `docs/reference/phase4-six-degrees.md` — Full research doc: competitive analysis, thematic coverage, UX design, prompt engineering, test results
-- `src/scripts/test-chain.ts` — Chain generation test script (Claude Sonnet 4.6, ~$0.02/chain, ~12-14s)
+- `src/scripts/4-chains/test-chain.ts` — Chain generation test script (Claude Sonnet 4.6, ~$0.02/chain, ~12-14s)
 - `data/chain-tests/` — 8 test chain outputs (6 v2, 2 v1 for comparison)
 - Prompt v2 with "HARD RULES" — fixes chain length inconsistency and theme repetition (8/8 test runs produce exactly 5 stops with unique themes)
 
@@ -180,7 +180,7 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 - `src/lib/format.ts` — Shared formatting utilities (duration, JSON parse)
 - `src/app/error.tsx` — React error boundary with retry
 - `src/app/api/og/roulette/[id]/route.tsx` — Dynamic OG images (1200x630, branded overlay)
-- `src/scripts/backfill-oneliners.ts` — Batch AI one-liner generation script
+- `src/scripts/2-oneliners/backfill-oneliners.ts` — Batch AI one-liner generation script
 - `eslint.config.mjs` — ESLint 9 flat config with Next.js + TypeScript rules
 - Favicon from existing brand icon
 - Viator attribution footer in layout
@@ -203,9 +203,9 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 - `src/lib/viator.ts` — Viator API client (searchProducts, getProduct, getDestinations, getTags)
 - `src/lib/claude.ts` — Claude Haiku 4.5 integration for AI one-liner generation
 - `src/lib/continents.ts` — Continent derivation from Viator's lookupId hierarchy
-- `src/scripts/seed-destinations.ts` — Seeds 3,380 destinations from Viator API
-- `src/scripts/indexer.ts` — Drip + Delta indexer with 4 sort strategies, delta detection, weight categories, one-liners
-- `src/scripts/seed-dev-data.ts` — Seeds diverse destinations across all continents
+- `src/scripts/1-viator/seed-destinations.ts` — Seeds 3,380 destinations from Viator API
+- `src/scripts/1-viator/indexer.ts` — Drip + Delta indexer with 4 sort strategies, delta detection, weight categories, one-liners
+- `src/scripts/1-viator/seed-dev-data.ts` — Seeds diverse destinations across all continents
 
 ### Added — API Layer
 - `GET /api/roulette/hand` — Returns ~20 curated, sequenced tours with category quotas and contrast sequencing

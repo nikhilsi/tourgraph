@@ -47,13 +47,13 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 |-------|------|-------|--------|
 | 1. Raw Viator Data | Tour listings, photos, ratings, prices | 136,256 tours | **Complete** |
 | 2. AI One-Liners | Witty personality captions per tour | 136,256 (100%) | **Complete** |
-| 3. City Intelligence | City profiles: personality, standout tours, themes | 910 cities | **Pending** |
+| 3. City Intelligence | City profiles: personality, standout tours, themes | 910 cities (1,799 readings) | **Complete** |
 | 4. Chain Connections | Thematic chains connecting cities | ~500 chains | **Pending** |
 
 - **474 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-**Next:** Build city profiles (Stage 0) → Generate chains (Stages 1+2) → Redeploy DB.
+**Next:** Generate chains (Stages 1+2) → Redeploy DB.
 
 ## Deployment
 
@@ -104,15 +104,25 @@ src/
 │   ├── format.ts                   # Shared formatting (price, duration)
 │   ├── types.ts                    # All TypeScript types
 │   ├── viator.ts                   # Viator API client (with rate limit handling)
-│   └── claude.ts                   # AI one-liner generation
+│   ├── claude.ts                   # AI one-liner generation
+│   └── city-intel.ts               # City intelligence: merge logic, theme normalization
 ├── scripts/
-│   ├── indexer.ts                  # Production indexer (logging, leaf filter, ETA, summary)
-│   ├── test-chain.ts               # Six Degrees chain generation testing
-│   ├── generate-chains.ts          # Production chain generator (logging, retries, dedup)
-│   ├── chain-pairs.json            # City pairs config for chain generation
-│   ├── seed-dev-data.ts            # Seeds 43 destinations (dev only)
-│   ├── backfill-oneliners.ts       # Single-tour AI one-liner generation
-│   └── backfill-oneliners-batch.ts # Batch AI one-liners (20 per call)
+│   ├── 1-viator/                   # Step 1: Viator API indexing
+│   │   ├── seed-destinations.ts    #   Bootstrap destination hierarchy
+│   │   ├── indexer.ts              #   Production indexer (logging, leaf filter, ETA)
+│   │   └── seed-dev-data.ts        #   Seeds 43 destinations (dev only)
+│   ├── 2-oneliners/                # Step 2: AI caption generation
+│   │   ├── backfill-oneliners.ts   #   Single-tour one-liners (slow)
+│   │   └── backfill-oneliners-batch.ts  #   Batch one-liners (fast)
+│   ├── 3-city-intel/               # Step 3: City intelligence pipeline
+│   │   ├── build-city-profiles.ts  #   Submit to Claude → city_readings → merge
+│   │   └── backfill-city-readings.ts  #   Load JSONL files → city_readings → merge
+│   ├── 4-chains/                   # Step 4: Six Degrees chain generation
+│   │   ├── generate-chains.ts      #   Production chain generator
+│   │   ├── test-chain.ts           #   Chain testing (dev)
+│   │   └── chain-pairs.json        #   City pairs config
+│   └── utils/
+│       └── check-db.ts             # Database audit
 logs/
 └── indexer-<timestamp>.log         # Indexer run logs (gitignored)
 data/

@@ -3,13 +3,13 @@
 // Indexes 43 diverse destinations across all continents
 // to build a 5,000+ tour dataset for UI development.
 //
-// Run: npx tsx src/scripts/seed-dev-data.ts
-//       npx tsx src/scripts/seed-dev-data.ts --no-ai
+// Run: npx tsx src/scripts/1-viator/seed-dev-data.ts
+//       npx tsx src/scripts/1-viator/seed-dev-data.ts --no-ai
 // ============================================================
 
-import { ViatorClient } from "../lib/viator";
-import { loadEnv } from "../lib/env";
-import { getActiveTourCount } from "../lib/db";
+import { ViatorClient } from "../../lib/viator";
+import { loadEnv } from "../../lib/env";
+import { getActiveTourCount } from "../../lib/db";
 import { processDestination } from "./indexer";
 
 loadEnv();

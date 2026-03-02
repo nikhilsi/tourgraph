@@ -3,14 +3,14 @@
 // Fetches all Viator destinations and inserts into SQLite.
 // Derives country and continent from the lookupId hierarchy.
 //
-// Run: npx tsx src/scripts/seed-destinations.ts
+// Run: npx tsx src/scripts/1-viator/seed-destinations.ts
 // ============================================================
 
-import { ViatorClient } from "../lib/viator";
-import { loadEnv } from "../lib/env";
-import { upsertDestination, getDb } from "../lib/db";
-import { continentFromLookupId } from "../lib/continents";
-import type { ViatorDestination } from "../lib/types";
+import { ViatorClient } from "../../lib/viator";
+import { loadEnv } from "../../lib/env";
+import { upsertDestination, getDb } from "../../lib/db";
+import { continentFromLookupId } from "../../lib/continents";
+import type { ViatorDestination } from "../../lib/types";
 
 loadEnv();
 

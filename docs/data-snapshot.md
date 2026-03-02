@@ -15,7 +15,7 @@ TourGraph's data is built in layers. Each layer adds original intelligence on to
 |-------|------|--------|-------|--------|
 | 1. Raw Viator Data | Tour listings: titles, photos, ratings, prices, locations | Viator Partner API | 136,256 tours | **Complete** |
 | 2. AI One-Liners | Witty personality captions per tour | Claude Haiku 4.5 | 136,256 (100%) | **Complete** |
-| 3. City Intelligence | City profiles: personality, standout tours, themes | Claude Sonnet 4.6 | 910 cities | **Pending** |
+| 3. City Intelligence | City profiles: personality, standout tours, themes | Claude Sonnet 4.6 | 909 / 910 cities | **Complete** |
 | 4. Chain Connections | Thematic chains connecting cities around the world | Claude Sonnet 4.6 | ~500 chains | **Pending** |
 
 Layer 1 is commodity — anyone with a Viator API key has it. Layer 2 is derivative IP — Viator doesn't have these. Layers 3 and 4 are original intelligence that couldn't be reproduced with the same results. Together, they form a unique understanding of the world's tour landscape that exists nowhere else.
@@ -153,9 +153,56 @@ For Layer 3 design: `docs/city-intelligence.md`. For Layer 4 design: `docs/six-d
 
 ---
 
-## Layer 3: City Intelligence — Pending
+## Layer 3: City Intelligence — Complete
 
-910 cities with 50+ active tours will receive AI-curated profiles: personality line, standout tours, and theme tags. Stored in the `city_profiles` table.
+| Metric | Value |
+|--------|-------|
+| Cities profiled | 910 |
+| Total readings | 1,799 (stored in `city_readings`) |
+| Avg readings per city | 2.0 |
+| Personality avg length | ~140 chars |
+| Themes per city | avg 11.6 (union of all readings) |
+| Standout tours per city | avg 6.0 (union deduped by tour_id) |
+| Model | Claude Sonnet 4.6 |
+| Cost | ~$12 (Batch API at 50% discount + prompt caching) |
+| Duration | ~16 min batch + ~10 min sequential gap fill |
+
+### Theme Distribution (Top 20)
+
+| Theme | Cities |
+|-------|--------|
+| photography | 864 |
+| wildlife | 783 |
+| water | 782 |
+| cuisine | 752 |
+| ancient-history | 707 |
+| hiking | 689 |
+| architecture | 564 |
+| street-food | 563 |
+| geological | 539 |
+| colonial-history | 539 |
+| drinks | 500 |
+| craftsmanship | 500 |
+| wellness | 464 |
+| dark-tourism | 437 |
+| nightlife | 358 |
+| festivals | 345 |
+| sacred | 327 |
+| markets | 303 |
+| music | 195 |
+| street-art | 176 |
+
+### Continent Coverage
+
+| Continent | Cities | Tours Covered | Avg Tours/City |
+|-----------|--------|---------------|----------------|
+| Europe | 307 | 38,127 | 124 |
+| Asia | 196 | 23,771 | 121 |
+| North America | 165 | 19,689 | 119 |
+| Africa | 89 | 11,623 | 131 |
+| South America | 82 | 9,981 | 122 |
+| Caribbean | 36 | 4,172 | 116 |
+| Oceania | 34 | 3,735 | 110 |
 
 See `docs/city-intelligence.md` for full pipeline design.
 
@@ -178,11 +225,12 @@ See `docs/six-degrees-chains.md` for full generation architecture.
 | One-liner backfill | `backfill-oneliners-batch.ts` | ~14 hours | 126,498 tours at 2.5/sec via Claude Haiku 4.5 |
 | One-liner retry | `backfill-oneliners-batch.ts` | ~7 min | 997 missed tours |
 | One-liner singles | `backfill-oneliners.ts --limit 15` | ~1 min | Final 15 holdouts |
-| City profiles | `build-city-profiles.ts` | TBD | 910 cities via Batch API |
+| City profiles (batch) | `build-city-profiles.ts` | ~16 min | 893/904 via Batch API (Sonnet 4.6) |
+| City profiles (gap fill) | `build-city-profiles.ts --sequential` | ~10 min | 46/47 remaining via sequential |
 | Chain generation | `generate-chains.ts` | TBD | ~500 chains via Batch API |
 
-**Total indexing time (Layers 1+2)**: ~34 hours
-**Total indexing cost (Layers 1+2)**: ~$0.40 (Claude Haiku 4.5 for one-liners)
+**Total indexing time (Layers 1-3)**: ~34.5 hours
+**Total indexing cost (Layers 1-3)**: ~$12.40 (Haiku 4.5 for one-liners, Sonnet 4.6 for city profiles)
 
 ---
 

@@ -7,11 +7,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "index": "tsx src/scripts/indexer.ts",
-    "index:full": "tsx src/scripts/indexer.ts --full",
-    "seed:destinations": "tsx src/scripts/seed-destinations.ts",
-    "seed:data": "tsx src/scripts/seed-dev-data.ts",
-    "backfill:oneliners": "tsx src/scripts/backfill-oneliners.ts",
+    "index": "tsx src/scripts/1-viator/indexer.ts",
+    "index:full": "tsx src/scripts/1-viator/indexer.ts --full",
+    "seed:destinations": "tsx src/scripts/1-viator/seed-destinations.ts",
+    "seed:data": "tsx src/scripts/1-viator/seed-dev-data.ts",
+    "backfill:oneliners": "tsx src/scripts/2-oneliners/backfill-oneliners.ts",
     "lint": "eslint src/"
   },
   "repository": {
