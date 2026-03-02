@@ -65,11 +65,13 @@ function logError(msg: string): void {
 interface TourSummary {
   id: number;
   title: string;
+  one_liner: string | null;
   destination_name: string;
   country: string;
   rating: number | null;
   review_count: number | null;
   from_price: number | null;
+  duration_minutes: number | null;
 }
 
 interface ChainLink {
@@ -107,37 +109,57 @@ function getAvailableCities(): { name: string; country: string; count: number }[
 
 function getToursForCity(city: string, limit = 30): TourSummary[] {
   const db = getDb(true);
-  return db
+  const half = Math.ceil(limit / 2);
+
+  // Top half by rating/reviews (popular, proven quality)
+  const popular = db
     .prepare(
-      `SELECT id, title, destination_name, country, rating, review_count, from_price
+      `SELECT id, title, one_liner, destination_name, country, rating, review_count, from_price, duration_minutes
        FROM tours
        WHERE status = 'active' AND destination_name = ? AND image_url IS NOT NULL
        ORDER BY rating DESC, review_count DESC
        LIMIT ?`
     )
-    .all(city, limit) as TourSummary[];
+    .all(city, half) as TourSummary[];
+
+  const popularIdList = popular.map((t) => t.id);
+
+  // Other half random (for quirky, surprising finds)
+  const placeholders = popularIdList.length > 0
+    ? popularIdList.map(() => "?").join(",")
+    : "0";
+  const random = db
+    .prepare(
+      `SELECT id, title, one_liner, destination_name, country, rating, review_count, from_price, duration_minutes
+       FROM tours
+       WHERE status = 'active' AND destination_name = ? AND image_url IS NOT NULL
+         AND id NOT IN (${placeholders})
+       ORDER BY RANDOM()
+       LIMIT ?`
+    )
+    .all(city, ...popularIdList, limit - half) as TourSummary[];
+
+  return [...popular, ...random];
 }
 
+/** Get thematically rich cities for intermediate stops.
+ *  Biased toward cities with diverse tour themes — these make the best
+ *  intermediate hubs because they can connect on many different threads.
+ *  Only fetches tours for the selected cities (not all 900+). */
 function getIntermediateTours(
   excludeCities: string[],
-  limit = 15
+  cityCount = 20,
+  toursPerCity = 15
 ): Map<string, TourSummary[]> {
-  const db = getDb(true);
-  const cities = getAvailableCities().filter(
-    (c) => !excludeCities.includes(c.name)
-  );
+  // Pick cityCount random cities with 50+ tours (proxy for thematic richness)
+  const cities = getAvailableCities()
+    .filter((c) => !excludeCities.includes(c.name) && c.count >= 50)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, cityCount);
 
   const result = new Map<string, TourSummary[]>();
   for (const city of cities) {
-    const tours = db
-      .prepare(
-        `SELECT id, title, destination_name, country, rating, review_count, from_price
-         FROM tours
-         WHERE status = 'active' AND destination_name = ? AND image_url IS NOT NULL
-         ORDER BY rating DESC, review_count DESC
-         LIMIT ?`
-      )
-      .all(city.name, limit) as TourSummary[];
+    const tours = getToursForCity(city.name, toursPerCity);
     if (tours.length > 0) {
       result.set(city.name, tours);
     }
@@ -145,11 +167,23 @@ function getIntermediateTours(
   return result;
 }
 
+function formatDuration(minutes: number | null): string {
+  if (!minutes) return "";
+  if (minutes < 60) return `${minutes}min`;
+  const h = Math.floor(minutes / 60);
+  const m = minutes % 60;
+  return m > 0 ? `${h}h${m}m` : `${h}h`;
+}
+
 function formatToursForPrompt(city: string, tours: TourSummary[]): string {
-  const lines = tours.map(
-    (t) =>
-      `  [${t.id}] "${t.title}" — ${t.rating?.toFixed(1) ?? "?"} stars, ${t.review_count ?? 0} reviews, $${t.from_price ?? "?"}`
-  );
+  const lines = tours.map((t) => {
+    const parts = [
+      `[${t.id}] "${t.title}"`,
+      t.one_liner ? `  "${t.one_liner}"` : null,
+      `  ${t.rating?.toFixed(1) ?? "?"} stars, ${t.review_count ?? 0} reviews, $${t.from_price ?? "?"}${t.duration_minutes ? `, ${formatDuration(t.duration_minutes)}` : ""}`,
+    ].filter(Boolean);
+    return parts.join("\n");
+  });
   return `${city}:\n${lines.join("\n")}`;
 }
 
@@ -216,13 +250,14 @@ async function generateChain(
   tourSections.push(formatToursForPrompt(cityFrom, toursFrom));
   tourSections.push(formatToursForPrompt(cityTo, toursTo));
 
-  // Add intermediate cities (shuffle and cap at 20)
+  // Add intermediate cities (20 random thematically-rich cities)
   const intermediateTours = getIntermediateTours([cityFrom, cityTo]);
-  const shuffled = [...intermediateTours.keys()].sort(() => Math.random() - 0.5).slice(0, 20);
-  for (const city of shuffled) {
-    tourSections.push(formatToursForPrompt(city, intermediateTours.get(city)!));
+  for (const [city, tours] of intermediateTours) {
+    tourSections.push(formatToursForPrompt(city, tours));
   }
 
+  // v3 prompt — improved tour context (one-liners, duration), surprise bias,
+  // theme clarity, summary length constraint. See docs/six-degrees-chains.md.
   const systemPrompt = `You are a creative travel writer who finds surprising thematic connections between cities around the world. Your tone is warm, witty, and wonder-filled — like a friend sharing travel discoveries over drinks.
 
 Your job: given two cities, build a chain of real tours that connects them through surprising thematic links across MULTIPLE intermediate cities.
@@ -230,14 +265,17 @@ Your job: given two cities, build a chain of real tours that connects them throu
 HARD RULES:
 1. The chain MUST have exactly 5 stops (including the start and end cities, plus 3 intermediate cities).
 2. Every stop MUST be in a DIFFERENT city. Never repeat a city.
-3. Every connection MUST use a DIFFERENT theme. Never repeat a theme.
+3. Every connection MUST use a DIFFERENT theme. The theme describes what LINKS two adjacent cities — not what the tour itself is about. Never repeat a theme.
 4. You MUST only use tours from the provided list. Each tour has an [id] — include it.
+5. Each tour also has a witty one-liner in quotes below the title. Use it to understand what the tour is really about — don't rely only on the title.
 
 Themes to choose from (use a different one for each connection): cuisine, street food, ancient history, colonial history, sacred spaces, markets/bazaars, street art, nightlife, water activities, hiking/nature, wine/spirits, music, dance, craftsmanship, architecture, wildlife, festivals, meditation/wellness, photography, dark tourism/ghost tours.
 
-The chain should feel like a journey of discovery — each connection should make someone think "oh wow, I see the connection!" Not obvious geographic proximity, but genuine cultural/thematic threads.
-
-Pick tours that best represent the thematic connection, not just highly rated ones.`;
+The chain should feel like a journey of discovery — each connection should make someone think "oh wow, I see the connection!" Prioritize:
+- SURPRISING connections over obvious ones
+- Lesser-known, quirky tours over generic popular ones — a calligraphy workshop beats a hop-on-hop-off bus
+- Cultural distance between stops — don't cluster in the same region
+- Tours that genuinely embody the thematic connection`;
 
   const userPrompt = `Connect ${cityFrom} to ${cityTo} using ONLY tours from this list.
 
@@ -255,10 +293,10 @@ Respond in this exact JSON format:
       "tour_title": "Exact tour title from the list",
       "tour_id": 123,
       "connection_to_next": "A witty 1-2 sentence description of the thematic link to the next city. null for the last stop.",
-      "theme": "one-word theme like 'cuisine' or 'sacred'"
+      "theme": "one-word theme like 'cuisine' or 'sacred spaces'"
     }
   ],
-  "summary": "A witty one-line summary of the entire chain, e.g. 'From sushi to pasta, connected by ancient temples and street art'"
+  "summary": "A witty one-line summary of the entire chain (under 120 characters). This appears on share cards."
 }
 
 Remember: EXACTLY 5 stops, 4 different themes, 5 different cities. Only return valid JSON. No markdown code fences.`;

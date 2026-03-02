@@ -38,17 +38,27 @@
 1. ~~One-liner backfill~~ — **Done.** 136,256/136,256 tours (100%). Batch + retry + single-tour. See `docs/data-snapshot.md`.
 
 ### Next — In Order
-2. **Decide city pairs for Six Degrees** — Review available cities, pick curated pairs.
-3. **Generate curated Six Degrees chains** — Run chain generator. Cost: ~$0.02/chain.
-4. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165`
-5. **iOS polish** — Image caching, share card rendering (ImageRenderer), DB enrichment service, LogoWhite @2x/@3x retina variants.
-6. **iOS App Store submission** — Register bundle ID `com.nikhilsi.TourGraph`, create App Store Connect listing, screenshots, real device testing. See `docs/ios-app-store.md`.
-7. **Production testing** — Mobile, OG previews in iMessage/Slack/Twitter, share flow on live URL.
+2. **Show one-liner on chain detail cards** — Web: add `tour.one_liner` to chain detail page (`src/app/six-degrees/[slug]/page.tsx`). iOS: add to `ChainDetailView.swift`. Data already exists in DB, just not rendered. Small change, big delight.
+3. **Curate city pool for Six Degrees** — Use thematic richness data to build ~100-city pool (anchors/gems/surprises). See `docs/six-degrees-chains.md`.
+4. **Generate cross-continent pairs** — Script to auto-generate pairs from city pool.
+5. **Add --concurrency to chain generator** — Parallelize API calls (10 concurrent). 500 chains in ~11 min vs 1.8 hrs sequential.
+6. **Generate ~500 chains (Launch tier)** — Run generator, spot-check quality. ~$10, ~11 min.
+7. **Redesign Six Degrees gallery** — Don't dump 500 cards. Show curated set by category (like World's Most superlatives pattern) with "Surprise Me" drawing from full pool.
+8. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165`
+9. **iOS polish** — Image caching, share card rendering (ImageRenderer), DB enrichment service, LogoWhite @2x/@3x retina variants.
+10. **iOS App Store submission** — Register bundle ID `com.nikhilsi.TourGraph`, create App Store Connect listing, screenshots, real device testing. See `docs/ios-app-store.md`.
+11. **Production testing** — Mobile, OG previews in iMessage/Slack/Twitter, share flow on live URL.
+
+### Decided
+
+- [x] Chain count: **~500 for launch**, evaluate then expand to 1,000+ if needed
+- [x] Show one-liner on chain detail: **Yes**, both web and iOS
+- [x] Gallery UX: **Curated display** (like World's Most superlatives), not a wall of 500 cards. "Surprise Me" draws from full pool.
 
 ### Open Decisions
 
-- [ ] How many curated chains for launch? (50? 100? 200?)
-- [ ] City pair selection strategy
+- [ ] City pool composition — which ~100 cities? (using thematic richness data)
+- [ ] Gallery categories — by continent pair? by theme? editor's picks?
 - [ ] iOS seed DB size — full DB may fit under 200MB after VACUUM
 - [ ] Dark-mode app icon variant (current has white bg — may want dark bg for dark mode)
 

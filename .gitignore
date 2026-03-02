@@ -39,6 +39,8 @@ site/
 
 # iOS
 ios/**/Resources/*.db
+ios/**/Resources/*.db-shm
+ios/**/Resources/*.db-wal
 ios/**/xcuserdata/
 ios/**/UserInterfaceState.xcuserstate
 ios/**/DerivedData/
