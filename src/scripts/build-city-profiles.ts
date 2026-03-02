@@ -73,6 +73,8 @@ interface TourForPrompt {
   review_count: number | null;
   from_price: number | null;
   duration_minutes: number | null;
+  country: string | null;
+  continent: string | null;
 }
 
 interface StandoutTour {
@@ -136,7 +138,7 @@ function getToursForCity(cityName: string): TourForPrompt[] {
   const db = getDb(true);
   return db
     .prepare(
-      `SELECT id, title, one_liner, rating, review_count, from_price, duration_minutes
+      `SELECT id, title, one_liner, rating, review_count, from_price, duration_minutes, country, continent
        FROM tours
        WHERE destination_name = ? AND status = 'active' AND image_url IS NOT NULL
        ORDER BY review_count DESC`
@@ -424,8 +426,8 @@ async function runBatch(
   client: Anthropic,
   dryRun: boolean
 ): Promise<{ succeeded: number; failed: number }> {
-  // Build batch requests
-  log("Building batch requests...");
+  // Build requests one at a time — don't hold raw tour data in memory
+  log("Building batch requests (one city at a time)...");
   const requests: Array<{
     custom_id: string;
     params: {
@@ -436,16 +438,19 @@ async function runBatch(
     };
   }> = [];
 
-  const cityMap = new Map<string, { city: CityInfo; tours: TourForPrompt[] }>();
+  // Track which cities made it into the batch (for metadata only)
+  const cityInfoMap = new Map<string, CityInfo>();
+  let skipped = 0;
 
-  for (const city of cities) {
-    const tours = getToursForCity(city.name);
+  for (let i = 0; i < cities.length; i++) {
+    const city = cities[i];
+    const tours = getToursForCity(city.name); // query, use, discard
     if (tours.length === 0) {
-      logError(`No tours for ${city.name} — skipping`);
+      skipped++;
       continue;
     }
-    cityMap.set(city.name, { city, tours });
 
+    cityInfoMap.set(city.name, city);
     requests.push({
       custom_id: city.name,
       params: {
@@ -458,31 +463,43 @@ async function runBatch(
             cache_control: { type: "ephemeral" },
           },
         ],
-        messages: [{ role: "user", content: buildUserPrompt(city, tours) }],
+        messages: [
+          { role: "user", content: buildUserPrompt(city, tours) },
+        ],
       },
     });
+    // tours goes out of scope here — GC can reclaim
+
+    if ((i + 1) % 100 === 0) {
+      log(`  Built ${requests.length} requests (${i + 1}/${cities.length} cities)...`);
+    }
   }
 
-  log(`Built ${requests.length} batch requests`);
+  log(`Built ${requests.length} batch requests (${skipped} skipped)`);
 
   if (dryRun) {
-    log("DRY RUN — would submit batch. Showing first request:");
-    log(JSON.stringify(requests[0], null, 2).slice(0, 500));
+    log("DRY RUN — would submit batch. Showing first request preview:");
+    log(`  custom_id: ${requests[0].custom_id}`);
+    log(`  prompt length: ${requests[0].params.messages[0].content.length} chars`);
     return { succeeded: 0, failed: 0 };
   }
 
-  // Submit batch
-  log("Submitting batch to Anthropic...");
+  // Submit entire batch — Batch API supports up to 100K requests / 256 MB
+  log(`Submitting batch of ${requests.length} requests to Anthropic...`);
   const batch = await client.messages.batches.create({ requests });
   log(`Batch created: ${batch.id}`);
   log(`Status: ${batch.processing_status}`);
 
-  // Save batch ID to file for resume capability
+  // Save batch ID for resume capability
   const batchIdFile = path.join(LOG_DIR, "city-profiles-batch-id.txt");
   fs.writeFileSync(batchIdFile, batch.id);
   log(`Batch ID saved to ${batchIdFile}`);
 
-  return await pollAndProcessBatch(batch.id, client, cityMap);
+  // Free the requests array — results will be streamed
+  requests.length = 0;
+
+  // For result processing, we re-query tours from DB (fast) rather than holding in memory
+  return await pollAndProcessBatch(batch.id, client, cityInfoMap);
 }
 
 async function resumeBatch(
@@ -490,23 +507,20 @@ async function resumeBatch(
   client: Anthropic,
   cities: CityInfo[]
 ): Promise<{ succeeded: number; failed: number }> {
-  // Rebuild city map for validation
-  const cityMap = new Map<string, { city: CityInfo; tours: TourForPrompt[] }>();
+  // Rebuild lightweight city info map
+  const cityInfoMap = new Map<string, CityInfo>();
   for (const city of cities) {
-    const tours = getToursForCity(city.name);
-    if (tours.length > 0) {
-      cityMap.set(city.name, { city, tours });
-    }
+    cityInfoMap.set(city.name, city);
   }
 
   log(`Resuming batch ${batchId}...`);
-  return await pollAndProcessBatch(batchId, client, cityMap);
+  return await pollAndProcessBatch(batchId, client, cityInfoMap);
 }
 
 async function pollAndProcessBatch(
   batchId: string,
   client: Anthropic,
-  cityMap: Map<string, { city: CityInfo; tours: TourForPrompt[] }>
+  cityInfoMap: Map<string, CityInfo>
 ): Promise<{ succeeded: number; failed: number }> {
   // Poll for completion
   let completedBatch;
@@ -535,12 +549,18 @@ async function pollAndProcessBatch(
 
   for await (const result of await client.messages.batches.results(batchId)) {
     const cityName = result.custom_id;
-    const cityData = cityMap.get(cityName);
+    const cityInfo = cityInfoMap.get(cityName);
 
-    if (!cityData) {
-      logError(`Unknown city in results: ${cityName}`);
-      failed++;
-      continue;
+    if (!cityInfo) {
+      // City may not be in our map if resuming — build from DB
+      const fallbackCities = getCitiesWithMinTours(1).filter(
+        (c) => c.name === cityName
+      );
+      if (fallbackCities.length === 0) {
+        logError(`Unknown city in results: ${cityName}`);
+        failed++;
+        continue;
+      }
     }
 
     if (result.result.type !== "succeeded") {
@@ -556,7 +576,10 @@ async function pollAndProcessBatch(
       if (!text) throw new Error("Empty response");
 
       const profile = parseProfileResponse(text);
-      const validTourIds = new Set(cityData.tours.map((t) => t.id));
+
+      // Re-query tours from DB for validation (lightweight, ~1ms)
+      const tours = getToursForCity(cityName);
+      const validTourIds = new Set(tours.map((t) => t.id));
       const { errors, warnings } = validateProfile(profile, cityName, validTourIds);
 
       if (warnings.length > 0) {
@@ -569,7 +592,15 @@ async function pollAndProcessBatch(
         continue;
       }
 
-      saveCityProfile(cityData.city, profile, CLAUDE_MODEL);
+      // Use cityInfo if available, otherwise build from tour metadata
+      const city: CityInfo = cityInfo ?? {
+        name: cityName,
+        country: tours[0]?.country ?? "Unknown",
+        continent: tours[0]?.continent ?? "Unknown",
+        tourCount: tours.length,
+      };
+
+      saveCityProfile(city, profile, CLAUDE_MODEL);
       succeeded++;
 
       if (succeeded % 50 === 0 || succeeded <= 5) {
