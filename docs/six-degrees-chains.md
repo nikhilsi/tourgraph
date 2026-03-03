@@ -3,7 +3,7 @@
 ---
 **Created**: March 2, 2026
 **Updated**: March 3, 2026
-**Status**: Generation complete — 453+ chains in DB from 500 pairs
+**Status**: Complete — 491 chains generated, gallery redesigned as chain roulette
 **Depends on**: `docs/city-intelligence.md` (Stage 0 / city profiles), `docs/data-schema.md` (DB schema)
 **Research**: `docs/reference/phase4-six-degrees.md` (early research, UI spec, test results)
 ---
@@ -62,15 +62,9 @@ Each chain is 5 stops connecting two endpoint cities through 3 intermediate citi
 
 ### What the User Sees
 
-**Gallery page (`/six-degrees`):**
-- Curated groupings (like World's Most superlatives pattern), not a flat list of 500 cards
-- "Surprise Me" button draws from the full chain pool
-- Categories TBD (by continent pair? by theme? editor's picks?)
+**Gallery page (`/six-degrees`):** Chain roulette — one random chain displayed with full inline timeline (same visual as detail page). "Surprise Me" button loads another random chain. No categories, no filtering, no click-through needed. The gallery page IS the experience.
 
-**Detail page (`/six-degrees/[slug]`):**
-- Vertical timeline with numbered circle nodes
-- Each node: city label, tour card (photo + title + one-liner + stats), theme badge, connection text
-- Share button with OG preview
+**Detail page (`/six-degrees/[slug]`):** Same vertical timeline, used for direct/shared links. Vertical timeline with numbered circle nodes. Each node: city label, tour card (photo + title + one-liner + stats), theme badge, connection text. Share button with OG preview.
 
 ---
 
@@ -217,34 +211,14 @@ Script (`src/scripts/4-chains/generate-pairs.ts`) creates pairs from the pool fo
 
 ## Gallery UX Design
 
-**Current state:** Flat list of all chain cards. Not viable at 491 chains.
+**Implemented:** Chain roulette — single random chain with full inline timeline + "Surprise Me" to refresh. Same pattern as Tour Roulette (the app's core loop). Gallery page IS the experience, no click-through needed.
 
-**Target:** 5-6 curated theme categories (each showing one representative chain) + "Surprise Me" button pulling from the full pool. Same pattern as World's Most superlatives — few focused choices, not a wall of cards. User preference: "a few chains, not 8-10. Few allows the user to focus. Too much is a distraction."
+**Design evolution:** Initially planned as 5-6 theme-based category cards (Sacred Journeys, Rhythm & Movement, etc.), but simplified to single-chain roulette after realizing categories add cognitive overhead. User preference: "a few chains, not 8-10. Few allows the user to focus. Too much is a distraction." Taken further: why not just one, with refresh?
 
-### Decided: Theme-Based Categories
-
-Data analysis (March 3, 2026) confirmed natural theme clusters in the chain data:
-
-| Category | Pool Size | Description |
-|----------|-----------|-------------|
-| **Sacred Journeys** | 48 chains | 2+ sacred/meditation themes — spiritual pilgrimage feel |
-| **Rhythm & Movement** | 37 chains | 2+ music/dance themes — energy and joy |
-| **Craft Trails** | 29 chains | 2+ craftsmanship/street-art themes — human artistry |
-| **Dark History** | 24 chains | 2+ dark tourism/colonial themes — weight and memory |
-| **Food & Drink** | 16 chains | 3+ food-related themes — the tastiest chains |
-| **World Tours** | 13 chains | Span 5 continents in 5 stops — the most ambitious |
-
-Each category card shows one representative chain from its pool. "Surprise Me" draws randomly from the full 491.
-
-### Design Considerations
-
-**Hub repetition:** Addis Ababa appears in 40% of chains, Varanasi in 34%, Dakar in 32%. Gallery cards should emphasize endpoints (city_from → city_to) prominently. Intermediate cities can be shown subtly (e.g., "via Varanasi, Dakar, Accra") to avoid the repetition feeling stale on browse.
-
-**Summary quality:** Average 104 chars, range 81-136. Perfect for single-line card text. Examples:
-- *"Leather wallets → slave history → Caribbean dance → sky lanterns → mezcal: the world's most unexpected pub crawl."*
-- *"From Andean looms to Cappadocian clay: craftsmanship, faith, forts, and fermented grapes connect four continents."*
-
-**146 unique cities** appear across all chains. 785 unique tours referenced (0.6% of catalog).
+**How it works:**
+- Web (`/six-degrees`): Server component picks one random chain, renders full timeline inline. "Surprise Me" calls `router.refresh()` to re-render with a new random chain.
+- iOS: `SixDegreesSection` loads all chains, picks random one, renders timeline inline. "Surprise Me" calls `pickRandom()`.
+- Detail page (`/six-degrees/[slug]`) still exists for shared/direct links.
 
 ### Data Analysis Reference (March 3, 2026)
 
@@ -255,6 +229,8 @@ Each category card shows one representative chain from its pool. "Surprise Me" d
 **Top intermediate hubs:** Addis Ababa (195/491 = 40%), Varanasi (166 = 34%), Dakar (155 = 32%), Cartagena (113), Accra (108), Zanzibar City (107).
 
 **Continents per chain:** 2 (22%), 3 (51%), 4 (25%), 5 (3%). Average 3.08.
+
+**146 unique cities** appear across all chains. 785 unique tours referenced (0.6% of catalog). Summary quality: avg 104 chars, range 81-136.
 
 ---
 
@@ -303,7 +279,7 @@ Currently the chain detail page shows per node: city, tour photo, tour title, st
 - [x] **Intermediates unconstrained** — Claude sees all 910 cities in Stage 1. No artificial limits on which cities can appear as intermediate stops.
 - [x] **Batch API + prompt caching** — For quality (full context) and efficiency. Architecture driven by quality, not cost.
 - [x] **Chain count** — ~500 for launch, evaluate then expand.
-- [x] **Gallery UX** — Curated display (superlatives pattern), not a wall of cards.
+- [x] **Gallery UX** — Chain roulette: single random chain with full inline timeline + "Surprise Me" to refresh. Simpler than the initially planned 6-category approach.
 - [x] **One-liner on chain detail** — Yes, both web and iOS.
 - [x] **v3 prompt refinements** — One-liner context, mixed tour selection, surprise bias, theme clarity, 120-char summary.
 - [x] **Endpoint pool composition** — 100 cities (30 anchors, 40 gems, 30 surprises) in `city-pool.json`. AI-curated + manually rebalanced.
@@ -313,7 +289,7 @@ Currently the chain detail page shows per node: city, tour photo, tour title, st
 
 ## Open Decisions
 
-- [x] **Gallery categories** — 5-6 theme-based categories + "Surprise Me". See Gallery UX Design section above.
+- [x] **Gallery design** — Chain roulette (single random chain + refresh). Evolved from 6-category plan to simpler single-chain pattern. See Gallery UX Design section above.
 
 ---
 

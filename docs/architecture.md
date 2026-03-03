@@ -51,7 +51,7 @@ TourGraph is a read-heavy, pre-cached consumer site. The user never triggers an 
 │     /right-now             → Right Now Somewhere (6 golden-hour) │
 │     /worlds-most           → Superlatives gallery (6 cards)      │
 │     /worlds-most/[slug]    → Individual superlative detail       │
-│     /six-degrees           → Chain gallery (curated groupings)   │
+│     /six-degrees           → Chain roulette (random chain + timeline) │
 │     /six-degrees/[slug]    → Chain detail (vertical timeline)   │
 │                                                                  │
 │   API Routes:                                                    │

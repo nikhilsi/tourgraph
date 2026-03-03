@@ -5,11 +5,11 @@
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 ---
 
-## Current Focus: Six Degrees Gallery Redesign & Deploy
+## Current Focus: Redeploy & Polish
 
 **Site is live at https://tourgraph.ai.** All four web features deployed, iOS app built. Data fully indexed: 136,256 tours, 100% AI one-liner coverage, 474MB database.
 
-**Next milestone:** Redesign Six Degrees gallery, then redeploy DB with the full data asset. Layer 4 (chain generation) is complete — 491 chains from 500 pairs, stored in `six_degrees_chains` table.
+**Gallery redesign done.** Six Degrees now uses chain roulette pattern (single random chain with full inline timeline + "Surprise Me"). Next: redeploy DB with full data asset, then iOS polish.
 
 ---
 
@@ -29,7 +29,7 @@
 
 #### B. Display & Polish
 
-6. **Redesign Six Degrees gallery** — Current gallery is a flat card list. Redesign to match World's Most superlatives pattern: curated groupings with representative chains, plus "Surprise Me" from full pool.
+6. ~~**Redesign Six Degrees gallery**~~ — **DONE.** Chain roulette: single random chain with full inline timeline + "Surprise Me" to refresh. Both web and iOS.
 
 7. **Redeploy database** — `bash deployment/scripts/deploy-db.sh 143.244.186.165`
 
@@ -49,13 +49,13 @@
 - [x] **Chain count** — ~500 for launch, evaluate then expand to 1,000+ if needed.
 - [x] **Show one-liner on chain detail** — Yes, both web and iOS. Committed.
 - [x] **City intelligence (Layer 3)** — 910 cities, 1,799 readings merged. Batch API + sequential gap fill + multi-batch merge.
-- [x] **Gallery UX** — Curated display (like World's Most superlatives), not a wall of 500 cards. "Surprise Me" draws from full pool.
+- [x] **Gallery UX** — Chain roulette: single random chain with full inline timeline + "Surprise Me" to refresh. Simpler than initially planned 6-category approach.
 - [x] **v3 prompt** — one-liner context, mixed tour selection, surprise bias, theme = connection between cities, summary under 120 chars.
 
 ### Open Decisions
 
 - [x] **Endpoint pool composition** — 100 cities curated: 30 anchors, 40 gems, 30 surprises. AI + manual rebalancing.
-- [x] **Gallery categories** — 5-6 theme-based categories (Sacred Journeys, Rhythm & Movement, Craft Trails, Dark History, Food & Drink, World Tours) + "Surprise Me". Few focused choices, not a wall of cards.
+- [x] **Gallery design** — Chain roulette (single random chain + refresh). Evolved from planned 6-category approach to simpler pattern matching Tour Roulette's core loop.
 - [x] **Batch vs. sequential** — Batch. Full 500-pair run completed in ~40 min (Stage 1) + ~1 hr (Stage 2). Prompt caching confirmed on Stage 1.
 - [ ] iOS seed DB size — full DB may fit under 200MB after VACUUM.
 - [ ] Dark-mode app icon variant.
@@ -80,9 +80,9 @@
 | 2 | Right Now Somewhere (web) | **Deployed** |
 | 3 | The World's Most ___ (web) | **Deployed** |
 | 4a | Data expansion + one-liners | **Complete** — 136,256 tours, 100% one-liners, 474MB |
-| 4b | Six Degrees of Anywhere (web) | **Data complete** — 485 chains, needs gallery redesign |
+| 4b | Six Degrees of Anywhere (web) | **Complete** — 491 chains, chain roulette gallery |
 | 5 | Deploy to production | **Live** — https://tourgraph.ai |
 | 6 | iOS app | **Built** — all 4 features, 4-tab layout, favorites, App Store metadata |
 | 7a | City intelligence (Layer 3) | **Complete** — 910 cities, 1,799 readings |
-| 7b | Chain generation (Layer 4) | **Complete** — 491 chains from 500 pairs, retry in progress |
-| 8 | iOS App Store submission | Blocked on gallery redesign + polish |
+| 7b | Chain generation (Layer 4) | **Complete** — 491 chains from 500 pairs |
+| 8 | iOS App Store submission | Blocked on polish |

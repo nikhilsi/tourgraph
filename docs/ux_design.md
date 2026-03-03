@@ -86,8 +86,8 @@ The discovery page is the engine. The tour page is the shareable viral unit.
 /right-now/[tour-id]        → Shared "right now" result (carries time/place framing)
 /worlds-most                → Today's superlatives
 /worlds-most/[slug]         → Individual superlative card (e.g., /worlds-most/most-expensive)
-/six-degrees                → Two-city input page
-/six-degrees/[city1]/[city2]→ Chain result (shareable graph)
+/six-degrees                → Chain roulette (random chain with timeline)
+/six-degrees/[slug]         → Chain detail (shareable link)
 ```
 
 Each URL is a complete, shareable experience with proper OG tags.
@@ -406,12 +406,12 @@ When a TourGraph link is shared on iMessage, WhatsApp, Twitter, etc., the previe
 └──────────────────────────────────┘
 ```
 
-**Six Degrees (`/six-degrees/[c1]/[c2]`):**
+**Six Degrees (`/six-degrees/[slug]`):**
 ```
 ┌──────────────────────────────────┐
 │                                  │
 │   Reykjavik ──→──→──→── Tokyo    │
-│        4 tours connect them      │
+│        5 stops, 4 connections    │
 │                                  │
 │──────────────────────────────────│
 │  Six Degrees of Anywhere         │
@@ -561,7 +561,7 @@ All wireframes and decisions in this doc have been implemented as of March 1, 20
 - Homepage: tagline, roulette context line, "More to explore" feature teasers (live data)
 - Tour detail pages: feature badge, description, inclusions, Book on Viator, Share, Spin Your Own
 - Tooltips: HTML `title` attributes on stats (rating, price, duration), buttons, and FeatureNav links
-- Six Degrees: vertical timeline/stepper (curated gallery, not open-ended input — that's V2)
+- Six Degrees: chain roulette with inline timeline (random chain + "Surprise Me" to refresh — on-demand generation is V2)
 - FeatureNav: subtle text links at bottom of every page with tooltip descriptions
 - Not yet implemented: spin animation (D3), "More tours in [location]" rabbit hole link (needs location filtering)
 

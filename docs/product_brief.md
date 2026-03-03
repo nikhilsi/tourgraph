@@ -65,10 +65,11 @@ Daily superlatives generated from the Viator catalog. Most expensive tour today.
 **On app:** Scrollable daily feed. Push notification potential: "Today's weirdest tour: Fairy hunting in Iceland with a certified elf spotter. 4.8 stars."
 
 ### Feature 4: Six Degrees of Anywhere
-Type two cities. The site builds a chain of tours connecting them through surprising thematic links — shared activities, cultural connections, overlapping cuisines, historical threads. Visualized as a simple graph (the name finally earns itself). This is the technically interesting feature and the deepest rabbit hole.
+Pre-generated chains of tours connecting cities around the world through surprising thematic links — shared activities, cultural connections, overlapping cuisines, historical threads. 491 chains from 500 city pairs, each 5 stops long. Presented as chain roulette: one random chain with full vertical timeline, "Surprise Me" to load another. The name finally earns itself.
 
-**On web:** Interactive graph visualization, animated chain reveal.
-**On app:** Simplified chain view optimized for vertical scrolling, with tap-to-explore each link.
+**On web:** Chain roulette — random chain with inline vertical timeline, "Surprise Me" refreshes.
+**On app:** Same chain roulette pattern, vertical timeline, "Surprise Me" picks another.
+**V2:** On-demand chain generation (user types two cities).
 
 ---
 

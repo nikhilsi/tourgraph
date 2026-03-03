@@ -16,7 +16,7 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 | Tour Roulette | `/`, `/roulette/[id]` | Live |
 | Right Now Somewhere | `/right-now` | Live |
 | The World's Most ___ | `/worlds-most`, `/worlds-most/[slug]` | Live |
-| Six Degrees of Anywhere | `/six-degrees`, `/six-degrees/[slug]` | UI live, 491 chains generated, needs gallery redesign |
+| Six Degrees of Anywhere | `/six-degrees`, `/six-degrees/[slug]` | UI live, 491 chains, chain roulette gallery |
 | About / Story | `/about`, `/story` | Live |
 | Privacy / Support | `/privacy`, `/support` | Live |
 | OG Images | `/api/og/*` | Live |
@@ -30,7 +30,7 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 | Tour Roulette (swipe) | `RouletteView.swift`, `RouletteState.swift` | Built — swipe gesture, haptics, rotation effect, logo header |
 | Right Now Somewhere | `RightNowView.swift`, `TimezoneHelper.swift` | Built — own tab, golden-hour detection |
 | The World's Most ___ | `WorldsMostView.swift`, `Superlative.swift` | Built — own tab, stat highlights on cards |
-| Six Degrees | `SixDegreesView.swift`, `ChainDetailView.swift` | Built — own tab, "Surprise Me" button, timeline |
+| Six Degrees | `SixDegreesView.swift`, `ChainDetailView.swift` | Built — own tab, chain roulette with inline timeline |
 | Tour Detail | `TourDetailView.swift` | Built — image gallery, highlights, Viator link |
 | Favorites | `Favorites.swift`, heart on cards | Built — UserDefaults persistence |
 | Settings | `SettingsView.swift` | Built — gear icon in nav bar, modal sheet, haptics toggle |
@@ -53,7 +53,7 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 - **474 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-**Next:** Redesign gallery → Redeploy DB.
+**Next:** Redeploy DB → iOS polish.
 
 ## Deployment
 
@@ -83,7 +83,7 @@ src/
 │   ├── right-now/                  # Right Now Somewhere page
 │   ├── worlds-most/                # Superlatives gallery
 │   ├── worlds-most/[slug]/         # Superlative detail page
-│   ├── six-degrees/                # Six Degrees gallery
+│   ├── six-degrees/                # Six Degrees chain roulette
 │   ├── six-degrees/[slug]/         # Chain detail (vertical timeline)
 │   ├── about/                      # About page
 │   ├── story/                      # Origin story page
