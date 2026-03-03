@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getAllChains, getTourById } from "@/lib/db";
+import { getRandomChain, getTourById } from "@/lib/db";
 import { formatDurationShort } from "@/lib/format";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
 };
 
 export default function SixDegreesGalleryPage() {
-  const chains = getAllChains();
+  const chain = getRandomChain();
 
-  if (chains.length === 0) {
+  if (!chain) {
     return (
       <main className="flex flex-col items-center min-h-screen py-8 px-4">
         <Logo className="mb-2" />
@@ -47,8 +47,6 @@ export default function SixDegreesGalleryPage() {
     );
   }
 
-  // Pick one random chain
-  const chain = chains[Math.floor(Math.random() * chains.length)];
   const tourData = chain.chain.map((link) => getTourById(link.tour_id));
 
   return (

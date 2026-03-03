@@ -7,7 +7,7 @@ import {
   getRightNowTours,
   tourRowToRouletteTour,
   getAllSuperlatives,
-  getAllChains,
+  getChainCount,
 } from "@/lib/db";
 import {
   getGoldenTimezones,
@@ -36,7 +36,7 @@ function getRightNowTeaser() {
 export default function Home() {
   const teaser = getRightNowTeaser();
   const superlatives = getAllSuperlatives();
-  const chains = getAllChains();
+  const chainCount = getChainCount();
 
   // Pick one interesting superlative for the teaser
   const featuredSuperlative = superlatives.find(
@@ -108,8 +108,8 @@ export default function Home() {
         >
           <h3 className="text-sm font-bold">Six Degrees of Anywhere</h3>
           <p className="text-xs text-text-muted mt-1">
-            {chains.length > 0
-              ? `${chains.length} curated chains connecting cities through surprising thematic links.`
+            {chainCount > 0
+              ? `${chainCount} curated chains connecting cities through surprising thematic links.`
               : "Every city is connected. Follow the thematic thread from one corner of the world to another."}
           </p>
         </Link>

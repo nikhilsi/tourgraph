@@ -277,8 +277,9 @@ struct SixDegreesSection: View {
                     .disabled(isRenderingCard)
                     .padding(.horizontal, 20)
                     .sheet(isPresented: $showShareSheet) {
-                        if let image = shareCardImage {
-                            ShareSheet(items: [image, URL(string: "https://tourgraph.ai/six-degrees/\(chain.slug)")!])
+                        if let image = shareCardImage,
+                           let shareURL = URL(string: "https://tourgraph.ai/six-degrees/\(chain.slug)") {
+                            ShareSheet(items: [image, shareURL])
                         }
                     }
                 }

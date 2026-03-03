@@ -117,9 +117,12 @@ function initSchema(db: Database.Database): void {
       city_from TEXT NOT NULL,
       city_to TEXT NOT NULL,
       chain_json TEXT NOT NULL,
+      slug TEXT,
       generated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(city_from, city_to)
     );
+
+    CREATE INDEX IF NOT EXISTS idx_chains_slug ON six_degrees_chains(slug);
 
     CREATE TABLE IF NOT EXISTS city_readings (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -151,6 +154,29 @@ function initSchema(db: Database.Database): void {
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
   `);
+
+  // Migration: add slug column to existing six_degrees_chains tables
+  const hasSlug = db
+    .prepare("SELECT COUNT(*) as cnt FROM pragma_table_info('six_degrees_chains') WHERE name = 'slug'")
+    .get() as { cnt: number };
+  if (hasSlug.cnt === 0) {
+    db.exec("ALTER TABLE six_degrees_chains ADD COLUMN slug TEXT");
+    db.exec("CREATE INDEX IF NOT EXISTS idx_chains_slug ON six_degrees_chains(slug)");
+  }
+
+  // Populate any null slugs
+  const nullSlugs = db
+    .prepare("SELECT id, city_from, city_to FROM six_degrees_chains WHERE slug IS NULL")
+    .all() as { id: number; city_from: string; city_to: string }[];
+  if (nullSlugs.length > 0) {
+    const update = db.prepare("UPDATE six_degrees_chains SET slug = ? WHERE id = ?");
+    const populateSlugs = db.transaction(() => {
+      for (const row of nullSlugs) {
+        update.run(chainSlug(row.city_from, row.city_to), row.id);
+      }
+    });
+    populateSlugs();
+  }
 }
 
 // ============================================================
@@ -692,8 +718,45 @@ export function getAllChains(): ChainWithMeta[] {
 }
 
 export function getChainBySlug(slug: string): ChainWithMeta | null {
-  const chains = getAllChains();
-  return chains.find((c) => c.slug === slug) ?? null;
+  const db = getDb(true);
+  const row = db
+    .prepare("SELECT * FROM six_degrees_chains WHERE slug = ?")
+    .get(slug) as { id: number; city_from: string; city_to: string; chain_json: string; slug: string; generated_at: string } | undefined;
+
+  if (!row) return null;
+
+  const data = JSON.parse(row.chain_json) as ChainData;
+  return {
+    ...data,
+    id: row.id,
+    slug: row.slug,
+    generated_at: row.generated_at,
+  };
+}
+
+export function getChainCount(): number {
+  const db = getDb(true);
+  const row = db
+    .prepare("SELECT COUNT(*) as cnt FROM six_degrees_chains")
+    .get() as { cnt: number };
+  return row.cnt;
+}
+
+export function getRandomChain(): ChainWithMeta | null {
+  const db = getDb(true);
+  const row = db
+    .prepare("SELECT * FROM six_degrees_chains ORDER BY RANDOM() LIMIT 1")
+    .get() as { id: number; city_from: string; city_to: string; chain_json: string; slug: string; generated_at: string } | undefined;
+
+  if (!row) return null;
+
+  const data = JSON.parse(row.chain_json) as ChainData;
+  return {
+    ...data,
+    id: row.id,
+    slug: row.slug,
+    generated_at: row.generated_at,
+  };
 }
 
 // ============================================================

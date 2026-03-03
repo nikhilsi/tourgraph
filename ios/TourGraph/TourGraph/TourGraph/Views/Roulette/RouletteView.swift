@@ -41,8 +41,9 @@ struct RouletteView: View {
                 SettingsView(settings: settings, favorites: favorites, database: rouletteState.database, enrichmentService: enrichmentService)
             }
             .sheet(isPresented: $showShareSheet) {
-                if let image = shareCardImage, let tour = rouletteState.currentTour {
-                    ShareSheet(items: [image, URL(string: "https://tourgraph.ai/roulette/\(tour.id)")!])
+                if let image = shareCardImage, let tour = rouletteState.currentTour,
+                   let shareURL = URL(string: "https://tourgraph.ai/roulette/\(tour.id)") {
+                    ShareSheet(items: [image, shareURL])
                 }
             }
             .onAppear {

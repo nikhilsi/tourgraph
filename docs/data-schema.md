@@ -112,9 +112,12 @@ CREATE TABLE six_degrees_chains (
     city_from     TEXT NOT NULL,                        -- Starting city
     city_to       TEXT NOT NULL,                        -- Ending city
     chain_json    TEXT NOT NULL,                        -- Full chain data (JSON)
+    slug          TEXT,                                 -- URL slug (auto-populated from city names)
     generated_at  DATETIME DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(city_from, city_to)
 );
+
+CREATE INDEX idx_chains_slug ON six_degrees_chains(slug);
 
 
 -- =============================================================

@@ -45,8 +45,8 @@ final class DatabaseService: Sendable {
 
             // Draw by category quota
             for (category, count) in Self.handQuotas {
-                let excludeList = usedIds.map { String($0) }.joined(separator: ",")
-                let excludeClause = usedIds.isEmpty ? "" : "AND id NOT IN (\(excludeList))"
+                let placeholders = usedIds.map { _ in "?" }.joined(separator: ",")
+                let excludeClause = usedIds.isEmpty ? "" : "AND id NOT IN (\(placeholders))"
 
                 let sql = """
                     SELECT id, product_code, title, one_liner, destination_name, country,
@@ -57,7 +57,10 @@ final class DatabaseService: Sendable {
                     ORDER BY RANDOM()
                     LIMIT ?
                     """
-                let tours = try Tour.fetchAll(db, sql: sql, arguments: [category, count])
+                var args: [DatabaseValueConvertible] = [category]
+                args.append(contentsOf: usedIds.sorted())
+                args.append(count)
+                let tours = try Tour.fetchAll(db, sql: sql, arguments: StatementArguments(args))
                 for tour in tours {
                     hand.append(tour)
                     usedIds.insert(tour.id)
@@ -67,8 +70,8 @@ final class DatabaseService: Sendable {
             // Fill remaining slots
             if hand.count < handSize {
                 let remaining = handSize - hand.count
-                let excludeList = usedIds.map { String($0) }.joined(separator: ",")
-                let excludeClause = usedIds.isEmpty ? "" : "AND id NOT IN (\(excludeList))"
+                let placeholders = usedIds.map { _ in "?" }.joined(separator: ",")
+                let excludeClause = usedIds.isEmpty ? "" : "AND id NOT IN (\(placeholders))"
 
                 let sql = """
                     SELECT id, product_code, title, one_liner, destination_name, country,
@@ -79,7 +82,9 @@ final class DatabaseService: Sendable {
                     ORDER BY RANDOM()
                     LIMIT ?
                     """
-                let fillers = try Tour.fetchAll(db, sql: sql, arguments: [remaining])
+                var args: [DatabaseValueConvertible] = Array(usedIds.sorted())
+                args.append(remaining)
+                let fillers = try Tour.fetchAll(db, sql: sql, arguments: StatementArguments(args))
                 hand.append(contentsOf: fillers)
             }
 
@@ -242,8 +247,12 @@ final class DatabaseService: Sendable {
     }
 
     func getChainBySlug(_ slug: String) throws -> Chain? {
-        let chains = try getAllChains()
-        return chains.first { $0.slug == slug }
+        try db.read { db in
+            guard let row = try ChainRow.fetchOne(db, sql: "SELECT * FROM six_degrees_chains WHERE slug = ?", arguments: [slug]) else {
+                return nil
+            }
+            return Chain(row: row)
+        }
     }
 
     // MARK: - Enrichment (write)

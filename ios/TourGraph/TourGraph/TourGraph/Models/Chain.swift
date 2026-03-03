@@ -7,6 +7,7 @@ struct ChainRow: Identifiable, Codable, FetchableRecord, Sendable {
     let cityFrom: String
     let cityTo: String
     let chainJson: String
+    let slug: String?
     let generatedAt: String?
 
     enum CodingKeys: String, CodingKey, ColumnExpression {
@@ -14,6 +15,7 @@ struct ChainRow: Identifiable, Codable, FetchableRecord, Sendable {
         case cityFrom = "city_from"
         case cityTo = "city_to"
         case chainJson = "chain_json"
+        case slug
         case generatedAt = "generated_at"
     }
 }

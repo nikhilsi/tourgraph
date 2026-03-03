@@ -160,8 +160,9 @@ struct TourDetailView: View {
         .background(Color.black)
         .navigationBarTitleDisplayMode(.inline)
         .sheet(isPresented: $showShareSheet) {
-            if let image = shareCardImage, let tour {
-                ShareSheet(items: [image, URL(string: "https://tourgraph.ai/roulette/\(tour.id)")!])
+            if let image = shareCardImage, let tour,
+               let shareURL = URL(string: "https://tourgraph.ai/roulette/\(tour.id)") {
+                ShareSheet(items: [image, shareURL])
             }
         }
         .task {
