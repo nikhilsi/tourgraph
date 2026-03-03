@@ -36,7 +36,7 @@ npx tsx src/scripts/3-city-intel/build-city-profiles.ts
 npx tsx src/scripts/4-chains/generate-chains.ts
 
 # Step 6: Deploy database to production
-bash deployment/scripts/deploy-db.sh 143.244.186.165
+bash deployment/scripts/deploy-db.sh $SERVER_IP
 ```
 
 **Total time:** ~36 hours | **Total cost:** ~$13

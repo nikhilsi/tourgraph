@@ -162,10 +162,18 @@ export default function AboutPage() {
               </p>
             </div>
             <div>
-              <h3 className="font-semibold">Six Degrees of Anywhere</h3>
+              <h3 className="font-semibold">
+                <Link
+                  href="/six-degrees"
+                  className="hover:text-accent transition-colors"
+                >
+                  Six Degrees of Anywhere
+                </Link>
+              </h3>
               <p className="text-sm text-text-muted">
-                Two cities connected through a chain of real tours with
-                surprising thematic links. Coming soon.
+                491 chains connecting cities through real tours with
+                surprising thematic links. One random chain, full timeline,
+                &ldquo;Surprise Me&rdquo; to explore another.
               </p>
             </div>
           </div>

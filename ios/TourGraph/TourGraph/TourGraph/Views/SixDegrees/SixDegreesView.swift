@@ -299,17 +299,18 @@ struct SixDegreesSection: View {
                     }
                     .disabled(isRenderingCard)
                     .padding(.horizontal, 20)
-                    .sheet(isPresented: $showShareSheet) {
-                        if let image = shareCardImage,
-                           let shareURL = URL(string: "https://tourgraph.ai/six-degrees/\(chain.slug)") {
-                            ShareSheet(items: [image, shareURL])
-                        }
-                    }
                 }
             } else {
                 Text("Chains coming soon!")
                     .foregroundStyle(.white.opacity(0.5))
                     .padding(.horizontal, 20)
+            }
+        }
+        .sheet(isPresented: $showShareSheet) {
+            if let image = shareCardImage,
+               let chain = selectedChain,
+               let shareURL = URL(string: "https://tourgraph.ai/six-degrees/\(chain.slug)") {
+                ShareSheet(items: [image, shareURL])
             }
         }
         .task {

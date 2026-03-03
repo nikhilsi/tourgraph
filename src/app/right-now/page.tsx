@@ -56,7 +56,7 @@ function getMoments(count: number): RightNowMoment[] {
   const tours = getRightNowTours(matchedTzs, count);
 
   return tours.map((tour) => {
-    const tz = tour.timezone!;
+    const tz = tour.timezone ?? "UTC";
     const hour = getCurrentHour(tz);
     return {
       tour: tourRowToRouletteTour(tour),

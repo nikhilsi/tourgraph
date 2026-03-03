@@ -4,65 +4,15 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { getSuperlative } from "@/lib/db";
-import { formatPrice, formatDurationLong, safeJsonParse } from "@/lib/format";
-import type { SuperlativeType, TourRow } from "@/lib/types";
+import { safeJsonParse, formatPrice, formatDurationLong } from "@/lib/format";
+import type { SuperlativeType } from "@/lib/types";
+import { isValidSlug, SUPERLATIVE_TITLES, SUPERLATIVE_DESCRIPTIONS, superlativeStatLong } from "@/lib/superlatives";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
 import Logo from "@/components/Logo";
 
 interface Props {
   params: Promise<{ slug: string }>;
-}
-
-const VALID_SLUGS: SuperlativeType[] = [
-  "most-expensive",
-  "cheapest-5star",
-  "longest",
-  "shortest",
-  "most-reviewed",
-  "hidden-gem",
-];
-
-const SUPERLATIVE_DISPLAY: Record<
-  SuperlativeType,
-  { title: string; description: string; statFn: (tour: TourRow) => string }
-> = {
-  "most-expensive": {
-    title: "The Most Expensive Tour",
-    description: "The priciest experience money can buy",
-    statFn: (t) => formatPrice(t.from_price ?? 0),
-  },
-  "cheapest-5star": {
-    title: "The Cheapest 5-Star Experience",
-    description: "Top-rated and practically free",
-    statFn: (t) => formatPrice(t.from_price ?? 0),
-  },
-  longest: {
-    title: "The Longest Tour on Earth",
-    description: "Pack your bags — you'll be gone a while",
-    statFn: (t) => formatDurationLong(t.duration_minutes ?? 0),
-  },
-  shortest: {
-    title: "The Shortest Tour on Earth",
-    description: "Blink and you might miss it",
-    statFn: (t) => formatDurationLong(t.duration_minutes ?? 0),
-  },
-  "most-reviewed": {
-    title: "The Most Reviewed Tour",
-    description: "More reviews than most restaurants",
-    statFn: (t) =>
-      `${(t.review_count ?? 0).toLocaleString("en-US")} reviews`,
-  },
-  "hidden-gem": {
-    title: "The Highest-Rated Hidden Gem",
-    description: "Perfect rating, almost nobody knows about it",
-    statFn: (t) =>
-      `${(t.rating ?? 0).toFixed(1)} stars · ${(t.review_count ?? 0).toLocaleString("en-US")} reviews`,
-  },
-};
-
-function isValidSlug(slug: string): slug is SuperlativeType {
-  return VALID_SLUGS.includes(slug as SuperlativeType);
 }
 
 // Memoize within a single request
@@ -81,30 +31,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tour = getCachedSuperlative(slug);
   if (!tour) return { title: "Not Found" };
 
-  const display = SUPERLATIVE_DISPLAY[slug];
-  const stat = display.statFn(tour);
-  const description = `${display.title}: ${tour.title} — ${stat}`;
+  const title = SUPERLATIVE_TITLES[slug];
+  const stat = superlativeStatLong(slug, tour);
+  const description = `${title}: ${tour.title} — ${stat}`;
   const ogImage = `/api/og/worlds-most/${slug}`;
 
   return {
-    title: `${display.title} — TourGraph`,
+    title: `${title} — TourGraph`,
     description,
     openGraph: {
-      title: display.title,
+      title,
       description,
       images: [{ url: ogImage, width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
-      title: display.title,
+      title,
       description,
       images: [ogImage],
     },
   };
-}
-
-export function generateStaticParams() {
-  return VALID_SLUGS.map((slug) => ({ slug }));
 }
 
 export const dynamic = "force-dynamic";
@@ -116,8 +62,9 @@ export default async function SuperlativeDetailPage({ params }: Props) {
   const tour = getCachedSuperlative(slug);
   if (!tour) notFound();
 
-  const display = SUPERLATIVE_DISPLAY[slug];
-  const stat = display.statFn(tour);
+  const displayTitle = SUPERLATIVE_TITLES[slug];
+  const displayDesc = SUPERLATIVE_DESCRIPTIONS[slug];
+  const stat = superlativeStatLong(slug, tour);
   const inclusions = safeJsonParse<string[]>(tour.inclusions_json, []);
   const imageUrls = safeJsonParse<string[]>(tour.image_urls_json, []);
 
@@ -133,8 +80,8 @@ export default async function SuperlativeDetailPage({ params }: Props) {
 
       {/* Superlative hero */}
       <div className="w-full max-w-lg text-center mb-6">
-        <h1 className="text-xl font-bold mb-1">{display.title}</h1>
-        <p className="text-text-muted text-sm">{display.description}</p>
+        <h1 className="text-xl font-bold mb-1">{displayTitle}</h1>
+        <p className="text-text-muted text-sm">{displayDesc}</p>
         <p className="text-3xl font-bold text-accent mt-3">{stat}</p>
       </div>
 

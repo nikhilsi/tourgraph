@@ -185,7 +185,7 @@ npx tsx src/scripts/4-chains/generate-chains-v2.ts       # Generate Six Degrees 
 ## Deploying to Server
 
 ```bash
-bash deployment/scripts/deploy-db.sh 143.244.186.165  # WAL checkpoint → SCP → restart PM2
+bash deployment/scripts/deploy-db.sh $SERVER_IP  # WAL checkpoint → SCP → restart PM2
 ```
 
 ## Concurrent Access

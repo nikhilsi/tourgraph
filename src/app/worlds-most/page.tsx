@@ -3,8 +3,8 @@ import Logo from "@/components/Logo";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getAllSuperlatives } from "@/lib/db";
-import { formatPrice, formatDurationShort } from "@/lib/format";
-import type { SuperlativeType, TourRow } from "@/lib/types";
+import type { TourRow } from "@/lib/types";
+import { SUPERLATIVE_TITLES, superlativeStatShort } from "@/lib/superlatives";
 import FeatureNav from "@/components/FeatureNav";
 
 export const dynamic = "force-dynamic";
@@ -28,38 +28,6 @@ export const metadata: Metadata = {
   },
 };
 
-const SUPERLATIVE_DISPLAY: Record<
-  SuperlativeType,
-  { title: string; statFn: (tour: TourRow) => string }
-> = {
-  "most-expensive": {
-    title: "Most Expensive Tour",
-    statFn: (t) => formatPrice(t.from_price ?? 0),
-  },
-  "cheapest-5star": {
-    title: "Cheapest 5-Star Experience",
-    statFn: (t) => formatPrice(t.from_price ?? 0),
-  },
-  longest: {
-    title: "Longest Tour on Earth",
-    statFn: (t) => formatDurationShort(t.duration_minutes ?? 0),
-  },
-  shortest: {
-    title: "Shortest Tour on Earth",
-    statFn: (t) => formatDurationShort(t.duration_minutes ?? 0),
-  },
-  "most-reviewed": {
-    title: "Most Reviewed Tour",
-    statFn: (t) =>
-      `${(t.review_count ?? 0).toLocaleString("en-US")} reviews`,
-  },
-  "hidden-gem": {
-    title: "Highest-Rated Hidden Gem",
-    statFn: (t) =>
-      `${(t.rating ?? 0).toFixed(1)} stars`,
-  },
-};
-
 export default function WorldsMostPage() {
   const superlatives = getAllSuperlatives();
 
@@ -80,18 +48,15 @@ export default function WorldsMostPage() {
         </p>
       ) : (
         <div className="w-full max-w-lg space-y-6">
-          {superlatives.map(({ type, tour }) => {
-            const display = SUPERLATIVE_DISPLAY[type];
-            return (
+          {superlatives.map(({ type, tour }) => (
               <SuperlativeCard
                 key={type}
                 slug={type}
-                title={display.title}
-                stat={display.statFn(tour)}
+                title={SUPERLATIVE_TITLES[type]}
+                stat={superlativeStatShort(type, tour)}
                 tour={tour}
               />
-            );
-          })}
+          ))}
         </div>
       )}
 

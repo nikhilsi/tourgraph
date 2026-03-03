@@ -1,57 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
 import { getSuperlative } from "@/lib/db";
-import { formatPrice, formatDurationShort } from "@/lib/format";
-import type { SuperlativeType, TourRow } from "@/lib/types";
+import { isValidSlug, SUPERLATIVE_TITLES, superlativeStatShort } from "@/lib/superlatives";
 
 export const runtime = "nodejs";
 
 const WIDTH = 1200;
 const HEIGHT = 630;
-
-const VALID_SLUGS: SuperlativeType[] = [
-  "most-expensive",
-  "cheapest-5star",
-  "longest",
-  "shortest",
-  "most-reviewed",
-  "hidden-gem",
-];
-
-const SUPERLATIVE_DISPLAY: Record<
-  SuperlativeType,
-  { title: string; statFn: (tour: TourRow) => string }
-> = {
-  "most-expensive": {
-    title: "Most Expensive Tour",
-    statFn: (t) => formatPrice(t.from_price ?? 0),
-  },
-  "cheapest-5star": {
-    title: "Cheapest 5-Star Experience",
-    statFn: (t) => formatPrice(t.from_price ?? 0),
-  },
-  longest: {
-    title: "Longest Tour on Earth",
-    statFn: (t) => formatDurationShort(t.duration_minutes ?? 0),
-  },
-  shortest: {
-    title: "Shortest Tour on Earth",
-    statFn: (t) => formatDurationShort(t.duration_minutes ?? 0),
-  },
-  "most-reviewed": {
-    title: "Most Reviewed Tour",
-    statFn: (t) =>
-      `${(t.review_count ?? 0).toLocaleString("en-US")} reviews`,
-  },
-  "hidden-gem": {
-    title: "Highest-Rated Hidden Gem",
-    statFn: (t) => `${(t.rating ?? 0).toFixed(1)} stars`,
-  },
-};
-
-function isValidSlug(slug: string): slug is SuperlativeType {
-  return VALID_SLUGS.includes(slug as SuperlativeType);
-}
 
 export async function GET(
   _request: Request,
@@ -68,8 +23,8 @@ export async function GET(
     return new Response("No tour found for this superlative", { status: 404 });
   }
 
-  const display = SUPERLATIVE_DISPLAY[slug];
-  const stat = display.statFn(tour);
+  const displayTitle = SUPERLATIVE_TITLES[slug];
+  const stat = superlativeStatShort(slug, tour);
   const location = [tour.destination_name, tour.country]
     .filter(Boolean)
     .join(", ");
@@ -148,7 +103,7 @@ export async function GET(
               marginBottom: "4px",
             }}
           >
-            {display.title}
+            {displayTitle}
           </div>
 
           <div

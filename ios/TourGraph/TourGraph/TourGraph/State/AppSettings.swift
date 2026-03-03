@@ -1,7 +1,7 @@
 import Foundation
 
-@Observable
-final class AppSettings: Sendable {
+@Observable @MainActor
+final class AppSettings {
     var hapticsEnabled: Bool {
         didSet { UserDefaults.standard.set(hapticsEnabled, forKey: "hapticsEnabled") }
     }

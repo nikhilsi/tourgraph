@@ -39,11 +39,15 @@ final class TourEnrichmentService {
         if let data = await fetchSingleTour(id: tour.id) {
             let elapsed = Int((CFAbsoluteTimeGetCurrent() - start) * 1000)
             logger.info("Tour \(tour.id) enriched in \(elapsed)ms — desc=\(data.description?.count ?? 0) chars")
-            try? database.enrichTour(
-                id: tour.id,
-                description: data.description,
-                imageUrlsJson: data.imageUrlsJson
-            )
+            do {
+                try database.enrichTour(
+                    id: tour.id,
+                    description: data.description,
+                    imageUrlsJson: data.imageUrlsJson
+                )
+            } catch {
+                logger.error("Tour \(tour.id) DB write failed: \(error.localizedDescription)")
+            }
         } else {
             let elapsed = Int((CFAbsoluteTimeGetCurrent() - start) * 1000)
             logger.error("Tour \(tour.id) enrichment failed after \(elapsed)ms")
@@ -111,11 +115,15 @@ final class TourEnrichmentService {
             logger.info("Batch enriched \(batch.tours.count) tours in \(elapsed)ms")
 
             for tour in batch.tours {
-                try? database.enrichTour(
-                    id: tour.id,
-                    description: tour.description,
-                    imageUrlsJson: tour.imageUrlsJson
-                )
+                do {
+                    try database.enrichTour(
+                        id: tour.id,
+                        description: tour.description,
+                        imageUrlsJson: tour.imageUrlsJson
+                    )
+                } catch {
+                    logger.error("Batch tour \(tour.id) DB write failed: \(error.localizedDescription)")
+                }
             }
         } catch {
             let elapsed = Int((CFAbsoluteTimeGetCurrent() - start) * 1000)

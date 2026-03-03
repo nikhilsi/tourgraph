@@ -67,13 +67,13 @@ Internet → Nginx (:443 SSL, :80 → redirect)
            /opt/app/data/tourgraph.db (SQLite, WAL mode)
 ```
 
-- **Server:** 143.244.186.165 (DigitalOcean, Ubuntu 24.04, $6/mo)
+- **Server:** DigitalOcean droplet (Ubuntu 24.04, $6/mo)
 - **Stack:** Node 20 + PM2 6 + Nginx 1.24 + Let's Encrypt
 - **SSL:** Valid through May 30, 2026, auto-renewal enabled
 - **Firewall:** UFW (SSH + Nginx only) + fail2ban
-- **Deploy code:** `ssh root@143.244.186.165 "cd /opt/app && bash deployment/scripts/deploy.sh"`
-- **Deploy DB:** `bash deployment/scripts/deploy-db.sh 143.244.186.165`
-- **Stream logs:** `bash deployment/scripts/stream-logs.sh 143.244.186.165`
+- **Deploy code:** `ssh root@$SERVER_IP "cd /opt/app && bash deployment/scripts/deploy.sh"`
+- **Deploy DB:** `bash deployment/scripts/deploy-db.sh $SERVER_IP`
+- **Stream logs:** `bash deployment/scripts/stream-logs.sh $SERVER_IP`
 
 ### Architecture
 

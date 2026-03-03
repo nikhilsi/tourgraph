@@ -26,7 +26,7 @@ enum SuperlativeType: String, CaseIterable, Sendable {
         case .longest: "⏳"
         case .shortest: "⚡"
         case .mostReviewed: "🗣️"
-        case .hiddenGem: "💎"
+        case .hiddenGem: "🌟"
         }
     }
 

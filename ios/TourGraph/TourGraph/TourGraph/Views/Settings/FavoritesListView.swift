@@ -42,6 +42,9 @@ struct FavoritesListView: View {
         .navigationTitle("Favorites")
         .navigationBarTitleDisplayMode(.large)
         .toolbarColorScheme(.dark, for: .navigationBar)
+        .onChange(of: favorites.tourIds) {
+            loadFavorites()
+        }
         .onAppear {
             loadFavorites()
         }

@@ -1,7 +1,7 @@
 import Foundation
 
-@Observable
-final class Favorites: Sendable {
+@Observable @MainActor
+final class Favorites {
     private static let key = "favoriteTourIds"
 
     private(set) var tourIds: Set<Int> {

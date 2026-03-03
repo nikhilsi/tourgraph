@@ -3,14 +3,17 @@ import GRDB
 
 /// Central SQLite connection. All queries go through here.
 /// Read-write: reads for all features, writes for per-tour enrichment.
-@Observable
-final class DatabaseService: Sendable {
+@Observable @MainActor
+final class DatabaseService {
     private let db: DatabaseQueue
 
     init() throws {
         // Copy bundled DB to app support directory (simulator sandbox requires this)
         let fileManager = FileManager.default
-        let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        guard let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+            throw NSError(domain: "DatabaseService", code: 2,
+                          userInfo: [NSLocalizedDescriptionKey: "Application Support directory not available"])
+        }
         try fileManager.createDirectory(at: appSupport, withIntermediateDirectories: true)
         let dbURL = appSupport.appendingPathComponent("tourgraph.db")
 
