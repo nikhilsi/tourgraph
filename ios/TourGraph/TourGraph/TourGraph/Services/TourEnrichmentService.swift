@@ -1,4 +1,7 @@
 import Foundation
+import os
+
+private let logger = Logger(subsystem: "ai.tourgraph", category: "enrichment")
 
 /// Lazy per-tour enrichment: fetches full description + image gallery from the server
 /// when the seed DB has truncated data. Writes enriched data back to local DB.
@@ -22,6 +25,9 @@ final class TourEnrichmentService {
     /// Returns the enriched tour (or the original if enrichment fails/not needed).
     func enrichIfNeeded(tour: Tour, batchIds: [Int] = []) async -> Tour? {
         guard needsEnrichment(tour), !inFlightIds.contains(tour.id) else {
+            if !needsEnrichment(tour) {
+                logger.debug("Tour \(tour.id) already enriched")
+            }
             return tour
         }
 
@@ -29,17 +35,24 @@ final class TourEnrichmentService {
         defer { inFlightIds.remove(tour.id) }
 
         // Call 1: Enrich this tour immediately
+        let start = CFAbsoluteTimeGetCurrent()
         if let data = await fetchSingleTour(id: tour.id) {
+            let elapsed = Int((CFAbsoluteTimeGetCurrent() - start) * 1000)
+            logger.info("Tour \(tour.id) enriched in \(elapsed)ms — desc=\(data.description?.count ?? 0) chars")
             try? database.enrichTour(
                 id: tour.id,
                 description: data.description,
                 imageUrlsJson: data.imageUrlsJson
             )
+        } else {
+            let elapsed = Int((CFAbsoluteTimeGetCurrent() - start) * 1000)
+            logger.error("Tour \(tour.id) enrichment failed after \(elapsed)ms")
         }
 
         // Call 2: Batch prefetch other IDs in background (fire-and-forget)
         let otherIds = batchIds.filter { $0 != tour.id && !inFlightIds.contains($0) }
         if !otherIds.isEmpty {
+            logger.info("Batch prefetching \(otherIds.count) tours")
             Task { await batchEnrich(ids: otherIds) }
         }
 
@@ -86,10 +99,16 @@ final class TourEnrichmentService {
         guard let httpBody = try? JSONEncoder().encode(body) else { return }
         request.httpBody = httpBody
 
+        let start = CFAbsoluteTimeGetCurrent()
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
-            guard let http = response as? HTTPURLResponse, http.statusCode == 200 else { return }
+            guard let http = response as? HTTPURLResponse, http.statusCode == 200 else {
+                logger.error("Batch failed — HTTP \((response as? HTTPURLResponse)?.statusCode ?? 0)")
+                return
+            }
             let batch = try JSONDecoder().decode(BatchResponse.self, from: data)
+            let elapsed = Int((CFAbsoluteTimeGetCurrent() - start) * 1000)
+            logger.info("Batch enriched \(batch.tours.count) tours in \(elapsed)ms")
 
             for tour in batch.tours {
                 try? database.enrichTour(
@@ -99,7 +118,8 @@ final class TourEnrichmentService {
                 )
             }
         } catch {
-            // Silent failure — seed data still works fine
+            let elapsed = Int((CFAbsoluteTimeGetCurrent() - start) * 1000)
+            logger.error("Batch failed after \(elapsed)ms — \(error.localizedDescription)")
         }
     }
 }
