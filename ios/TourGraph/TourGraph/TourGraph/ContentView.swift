@@ -24,7 +24,7 @@ struct ContentView: View {
                     Label("World's Most", systemImage: "trophy")
                 }
 
-            SixDegreesTab(database: database, favorites: favorites, settings: settings)
+            SixDegreesTab(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService)
                 .tabItem {
                     Label("Six Degrees", systemImage: "point.3.connected.trianglepath.dotted")
                 }

@@ -145,12 +145,13 @@ Timeframes are estimates, not commitments. This is supposed to be fun.
 | Cache | SQLite | Pre-built local index, no API calls at request time |
 | Domain | tourgraph.ai | Already owned and configured |
 
-### iOS App (Phase 7-8)
+### iOS App
 | Component | Choice | Rationale |
 |-----------|--------|-----------|
 | Framework | SwiftUI | Already proven with GitaVani |
-| Architecture | Bundled SQLite DB | Same data as web, no API calls at runtime |
-| Data | GRDB.swift + bundled tourgraph.db | Read-only queries against local DB |
+| Architecture | Bundled SQLite DB + lazy enrichment | All features work offline, enrichment adds full data on demand |
+| Data | GRDB.swift + bundled tourgraph.db (120MB) | Read-write queries (read for features, write for enrichment) |
+| Enrichment | tourgraph.ai server | Full descriptions + photo galleries fetched per-tour on detail tap |
 | Local Storage | UserDefaults | Favorites, settings persistence |
 
 ---

@@ -5,6 +5,7 @@ struct SettingsView: View {
     let settings: AppSettings
     let favorites: Favorites
     let database: DatabaseService
+    let enrichmentService: TourEnrichmentService
 
     @State private var tourCount: Int = 0
     @State private var destinationCount: Int = 0
@@ -20,15 +21,24 @@ struct SettingsView: View {
                 }
 
                 Section("Your Data") {
-                    HStack {
-                        Text("Favorites")
-                        Spacer()
-                        Text("\(favorites.count)")
-                            .foregroundStyle(.secondary)
+                    NavigationLink {
+                        FavoritesListView(database: database, favorites: favorites, enrichmentService: enrichmentService)
+                    } label: {
+                        HStack {
+                            Text("Favorites")
+                            Spacer()
+                            Text("\(favorites.count)")
+                                .foregroundStyle(.secondary)
+                        }
                     }
                 }
 
                 Section("About") {
+                    NavigationLink {
+                        AboutView(database: database)
+                    } label: {
+                        Text("About TourGraph")
+                    }
                     HStack {
                         Text("Tours")
                         Spacer()

@@ -30,10 +30,10 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 | Tour Roulette (swipe) | `RouletteView.swift`, `RouletteState.swift` | Built — swipe gesture, haptics, rotation effect, logo header |
 | Right Now Somewhere | `RightNowView.swift`, `TimezoneHelper.swift` | Built — own tab, golden-hour detection |
 | The World's Most ___ | `WorldsMostView.swift`, `Superlative.swift` | Built — own tab, stat highlights on cards |
-| Six Degrees | `SixDegreesView.swift`, `ChainDetailView.swift` | Built — own tab, chain roulette with inline timeline |
+| Six Degrees | `SixDegreesView.swift` | Built — own tab, chain roulette with inline timeline, tour photos, favorite hearts, theme badges |
 | Tour Detail | `TourDetailView.swift` | Built — image gallery, highlights, Viator link |
-| Favorites | `Favorites.swift`, heart on cards | Built — UserDefaults persistence |
-| Settings | `SettingsView.swift` | Built — gear icon in nav bar, modal sheet, haptics toggle |
+| Favorites | `Favorites.swift`, `FavoritesListView.swift`, heart on cards | Built — UserDefaults persistence, clickable list from Settings |
+| Settings | `SettingsView.swift`, `AboutView.swift` | Built — gear icon in nav bar, modal sheet, haptics toggle, favorites list, about page |
 | App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
 
 **App Store prep done:** PrivacyInfo.xcprivacy, ExportOptions.plist, metadata draft (`docs/implementation/ios-app-store.md`).

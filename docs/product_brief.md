@@ -107,17 +107,19 @@ Timeframes are estimates, not commitments. The goal is focused momentum, not dea
 The website is the **sharing backbone**. Every piece of content has a unique URL with OG preview cards. When someone shares a TourGraph link on any platform, the preview looks beautiful and inviting. The website is also the discovery surface for people who don't have the app.
 
 ### iOS App (TourGraph)
-The app is the **daily delight machine**. It's what people open when they're bored, waiting in line, or need a smile. The app is fully self-contained — it talks directly to Viator API and Claude API without depending on a shared backend with the website.
+The app is the **daily delight machine**. It's what people open when they're bored, waiting in line, or need a smile. The app ships with a bundled SQLite database (120MB, all 136K tours) — no API keys, no backend dependency for core features. Per-tour enrichment fetches full descriptions and photo galleries lazily from tourgraph.ai when users tap into detail views.
+
+**App-exclusive features:**
+- Haptic feedback on Tour Roulette spin
+- Swipe-based Tour Roulette (vs. button-based on web)
+- Favorites list (UserDefaults persistence, survives restarts)
 
 **App-exclusive features (post-launch possibilities):**
 - Home screen widget: "Right Now Somewhere..." rotating card
 - Push notifications: Daily "World's Most" superlative
-- Haptic feedback on Tour Roulette spin
-- Swipe-based Tour Roulette (vs. button-based on web)
 
 **App shares with website:**
-- Same Viator API integration patterns
-- Same Claude prompts for witty captions
+- Same tour data (pre-indexed from Viator API, AI one-liners from Claude)
 - Same visual design language (dark mode, big photos, playful typography)
 - Shared URLs — app-generated content links to the website for non-app users
 
@@ -139,10 +141,10 @@ The app is the **daily delight machine**. It's what people open when they're bor
 | Component | Choice | Rationale |
 |-----------|--------|-----------|
 | Framework | SwiftUI | Already proven with GitaVani |
-| Architecture | Self-contained (no shared backend) | Simplicity, independence |
-| Data | Viator API (direct calls) | Same API, thin caching layer on device |
-| AI Layer | Claude API (direct calls) | Same prompts, called from app |
-| Local Storage | SwiftData or UserDefaults | Cache tours, favorites, recent spins |
+| Architecture | Bundled SQLite DB + lazy enrichment | All features work offline, no API keys in binary |
+| Data | GRDB.swift + bundled tourgraph.db (120MB) | Read-only queries for all 4 features, read-write for enrichment |
+| Enrichment | tourgraph.ai server (per-tour on detail tap) | Full descriptions + photo galleries fetched lazily |
+| Local Storage | UserDefaults | Favorites, settings persistence |
 | Distribution | App Store | Free app |
 
 ---

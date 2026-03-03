@@ -6,6 +6,43 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [6.1.0] - 2026-03-03
+
+### iOS — Seed DB, Enrichment, Polish
+
+**Seed DB + Enrichment:**
+- Built 120MB seed DB (down from 479MB) — descriptions truncated to ~200 chars, image galleries NULLed, 5 unused tables dropped, VACUUM'd
+- Per-tour enrichment: `TourEnrichmentService.swift` fetches full descriptions + photo galleries from server on detail tap, writes to local DB
+- Server endpoints: `GET /api/ios/tour/[id]`, `POST /api/ios/tours/batch`
+- `os.Logger` integration (subsystem: "ai.tourgraph", category: "enrichment")
+
+**Six Degrees Polish:**
+- Tour photos on each stop (AsyncImage, 16:9 aspect ratio)
+- Card backgrounds (`Color.white.opacity(0.05)`)
+- Bright colors: pure white titles, yellow connection text, orange theme capsules
+- Favorite heart overlay on tour photos (ZStack pattern)
+- Tour stats row (rating, price, duration) on each stop
+- `ViewThatFits` for long city names (horizontal → vertical fallback)
+- "Show Me Another" button positioned above chain header
+- Fixed null `theme` decode crash — `ChainLink.theme` changed from `String` to `String?`
+- Deleted dead `ChainDetailView.swift` (replaced by inline timeline)
+
+**New Views:**
+- `FavoritesListView.swift` — shows favorited tours as TourCardView cards, navigates to TourDetailView
+- `AboutView.swift` — app info, features with icons, stats (tours/destinations/countries), links to tourgraph.ai
+
+**Settings Wiring:**
+- Favorites row is now NavigationLink → FavoritesListView
+- "About TourGraph" NavigationLink → AboutView
+- `enrichmentService` threaded through all 4 tabs → SettingsView → FavoritesListView
+
+### Updated
+- `docs/implementation/ios-architecture.md` — seed DB 120MB (was ~210MB), enrichment complete, ChainDetailView removed, project structure updated, implementation order current
+- `docs/product_brief.md` — iOS section corrected (bundled DB, not direct API calls)
+- All tracking docs (CURRENT_STATE.md, NOW.md, CHANGELOG.md) updated
+
+---
+
 ## [6.0.0] - 2026-03-03
 
 ### Complete — All 4 Data Layers + Gallery Redesign

@@ -22,11 +22,12 @@ The app has one dependency — [GRDB.swift](https://github.com/groue/GRDB.swift)
 ## Architecture
 
 ```
-SwiftUI Views → @Observable State → DatabaseService (GRDB) → SQLite (read-only)
+SwiftUI Views → @Observable State → DatabaseService (GRDB) → SQLite (read + write for enrichment)
+                                   → TourEnrichmentService → tourgraph.ai API (per-tour detail data)
                                    → Viator CDN (photos only, no auth)
 ```
 
-All tour data comes from a bundled SQLite database. No network calls except loading tour photos from Viator's public CDN. No API keys anywhere in the binary.
+All tour data comes from a bundled 120MB SQLite database. All four features work offline. Per-tour enrichment fetches full descriptions and photo galleries from the server when users tap into detail views, writing back to the local DB. No API keys anywhere in the binary.
 
 ## Project Structure
 
@@ -37,12 +38,13 @@ TourGraph/
 │
 ├── Models/
 │   ├── Tour.swift                  # Core tour model (maps to tours table)
-│   ├── Destination.swift           # Location with timezone
+│   ├── Destination.swift           # Location with timezone (dead code — no queries use it)
 │   ├── Chain.swift                 # Six Degrees chain + links
 │   └── Superlative.swift           # Superlative type enum + display config
 │
 ├── Services/
-│   ├── DatabaseService.swift       # GRDB connection, all SQL queries
+│   ├── DatabaseService.swift       # GRDB connection, all SQL queries + enrichment writes
+│   ├── TourEnrichmentService.swift # Per-tour lazy enrichment from server
 │   └── TimezoneHelper.swift        # Golden hour detection, timezone math
 │
 ├── State/
@@ -55,10 +57,12 @@ TourGraph/
 │   ├── RightNow/RightNowView.swift       # Golden-hour tours by timezone
 │   ├── WorldsMost/WorldsMostView.swift   # Superlative cards with stat highlights
 │   ├── SixDegrees/
-│   │   ├── SixDegreesView.swift          # Chain gallery, "Surprise Me"
-│   │   └── ChainDetailView.swift         # Vertical timeline detail
+│   │   └── SixDegreesView.swift          # Chain roulette with inline timeline
 │   ├── Detail/TourDetailView.swift       # Full tour info, image gallery, Viator link
-│   ├── Settings/SettingsView.swift       # Preferences, stats, legal
+│   ├── Settings/
+│   │   ├── SettingsView.swift              # Preferences, stats, legal
+│   │   ├── FavoritesListView.swift         # Saved tours list with navigation
+│   │   └── AboutView.swift                 # App info, features, stats, links
 │   └── Shared/
 │       ├── TourCardView.swift            # Photo-dominant card with favorite heart
 │       └── StatBadge.swift               # Rating/price/duration pill

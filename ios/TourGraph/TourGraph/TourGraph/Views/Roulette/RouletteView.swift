@@ -34,7 +34,7 @@ struct RouletteView: View {
                 }
             }
             .sheet(isPresented: $showSettings) {
-                SettingsView(settings: settings, favorites: favorites, database: rouletteState.database)
+                SettingsView(settings: settings, favorites: favorites, database: rouletteState.database, enrichmentService: enrichmentService)
             }
             .onAppear {
                 if rouletteState.currentTour == nil {

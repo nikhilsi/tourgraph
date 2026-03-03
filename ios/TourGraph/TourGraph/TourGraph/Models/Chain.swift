@@ -25,7 +25,7 @@ struct ChainLink: Codable, Sendable {
     let tourTitle: String
     let tourId: Int?
     let connectionToNext: String?
-    let theme: String
+    let theme: String?
 
     enum CodingKeys: String, CodingKey {
         case city, country, theme

@@ -28,7 +28,7 @@ struct WorldsMostTab: View {
                 }
             }
             .sheet(isPresented: $showSettings) {
-                SettingsView(settings: settings, favorites: favorites, database: database)
+                SettingsView(settings: settings, favorites: favorites, database: database, enrichmentService: enrichmentService)
             }
             .navigationDestination(for: Int.self) { tourId in
                 TourDetailView(tourId: tourId, database: database, favorites: favorites, enrichmentService: enrichmentService)

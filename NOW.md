@@ -16,11 +16,14 @@ Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset de
 
 ## Recently Completed
 
+- [x] Six Degrees polish — tour photos (16:9), card backgrounds, bright colors, theme badges, connection text, ViewThatFits for long city names (March 3)
+- [x] Favorites wiring — heart overlay on Six Degrees tour photos, FavoritesListView accessible from Settings (March 3)
+- [x] AboutView — app info, features, stats, links to tourgraph.ai (March 3)
+- [x] Settings wiring — NavigationLinks to FavoritesListView and AboutView, enrichmentService threaded through all tabs (March 3)
+- [x] Deleted dead code — ChainDetailView.swift removed (replaced by inline timeline in SixDegreesView) (March 3)
 - [x] Seed DB built — 120MB (479MB → 120MB via truncation + NULLing + VACUUM), bundled in iOS app (March 3)
 - [x] Per-tour enrichment built — server endpoints + iOS TourEnrichmentService + wired into TourDetailView (March 3)
 - [x] Web production testing — basic testing on mobile + desktop, all features looked good (March 3)
-- [x] iOS seed DB strategy decided — column NULLing + description truncation (March 3)
-- [x] iOS architecture doc updated with verified DB research — column analysis, query traces, build script (March 3)
 - [x] Code + DB deployed to production (March 3)
 - [x] Six Degrees gallery redesign — chain roulette with inline timeline (web + iOS)
 - [x] Chain generation pipeline (Layer 4) — 491/500 chains via two-stage Batch API
@@ -29,7 +32,7 @@ Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset de
 ## Open Decisions
 
 - [ ] Dark-mode app icon variant
-- [ ] Per-tour enrichment — built, needs production deploy + testing.
+- [ ] Share card rendering approach (ImageRenderer vs. server-side)
 
 ## Not Now (V2)
 
@@ -57,6 +60,7 @@ Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset de
 | 8a | Production testing (web) | **Done** — basic testing passed |
 | 8b | iOS seed DB build | **Done** — 120MB (479MB → 120MB) |
 | 8c | Per-tour enrichment (server + iOS) | **Done** — endpoints + TourEnrichmentService |
-| 8d | iOS testing (simulator + device) | **Next** — deploy endpoints, then test |
-| 8e | iOS polish | Blocked on testing |
+| 8d | Six Degrees polish + favorites + about | **Done** — images, cards, colors, FavoritesListView, AboutView |
+| 8e | iOS testing (simulator + device) | **In progress** |
+| 8f | iOS polish (share cards, launch screen) | Next |
 | 9 | iOS App Store submission | Blocked on polish |

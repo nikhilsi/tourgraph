@@ -2,26 +2,25 @@
 
 ---
 **Last Updated**: March 3, 2026
-**Status**: All 4 features built. Seed DB build + polish + App Store submission remaining.
+**Status**: All 4 features built + polished. Seed DB + enrichment complete. Testing + App Store submission remaining.
 **Reference apps**: GitaVani (all-local pattern), ClearNews (API + caching pattern)
 ---
 
 ## One-Line Summary
 
-A self-contained SwiftUI app that reads from a bundled SQLite database — no API keys, no backend, no accounts. Ship a ~210MB seed DB with all 136K tours (descriptions truncated, single cover photo per tour). Per-tour enrichment fetches full descriptions and photo galleries on demand when users tap into detail views.
+A self-contained SwiftUI app that reads from a bundled SQLite database — no API keys, no backend, no accounts. Ships a 120MB seed DB with all 136K tours (descriptions truncated, single cover photo per tour). Per-tour enrichment fetches full descriptions and photo galleries on demand when users tap into detail views.
 
 ---
 
 ## Architecture
 
 ```
-App Store (~240MB total)
-  └── Seed SQLite DB (~210MB, 136K tours, all features work)
+App Store (~150MB total)
+  └── Seed SQLite DB (120MB, 136K tours, all features work)
 
 On Tour Detail Tap (lazy enrichment):
   If image_urls_json IS NULL or description ends with "..."
-    → Call 1: GET /api/ios/tour/{id} → update this tour in local DB → UI refreshes
-    → Call 2: GET /api/ios/tours/batch (other tour IDs in current list) → update silently
+    → GET /api/ios/tour/{id} → update this tour in local DB → UI refreshes
   If already enriched → show full data immediately (persisted from previous view)
 
 Runtime:
@@ -86,7 +85,7 @@ Decodes into the full `Tour` struct via GRDB's `FetchableRecord`.
 - `tags_json`, `summary_hash`, `indexed_at`, `last_seen_at`
 - `status` — used in WHERE clauses only, not decoded into model
 
-### Seed DB (~210MB, bundled in app binary)
+### Seed DB (120MB, bundled in app binary)
 
 Ships with the app. All four features work instantly — every tour, every chain, every one-liner.
 
@@ -94,8 +93,8 @@ Ships with the app. All four features work instantly — every tour, every chain
 
 | What | Size | Why |
 |------|------|-----|
-| All 136K active tours (core columns) | ~175 MB | Roulette, Right Now, World's Most, Six Degrees tour lookups |
-| `description` truncated to ~200 chars | ~20 MB | Detail page shows 1-2 sentence preview (avg tour desc is 614 chars) |
+| All 136K active tours (core columns) | ~90 MB | Roulette, Right Now, World's Most, Six Degrees tour lookups |
+| `description` truncated to ~200 chars | ~15 MB | Detail page shows 1-2 sentence preview (avg tour desc is 614 chars) |
 | All 491 Six Degrees chains | ~1 MB | Six Degrees gallery + timeline |
 | Indexes (weight, status, rating, price, destination, timezone) | ~14 MB | Query performance |
 
@@ -118,13 +117,13 @@ Ships with the app. All four features work instantly — every tour, every chain
 - **image_urls_json**: NULLed entirely. The cover photo (`image_url`, ~12 MB, always kept) displays on every card in every feature. Detail page gracefully falls through to single hero image via `if tour.imageURLs.count > 1 { gallery } else { heroImage }`.
 - **Column schema preserved**: Columns are NULLed, not dropped from the table. This keeps GRDB's `FetchableRecord` Codable decoding working — Optional properties decode as nil when data is NULL. The 3 non-optional Tour properties (`id`, `productCode`, `title`) are always populated.
 
-**Estimated size: ~210MB** (pre-VACUUM ~220MB, VACUUM brings it to ~200-210MB). Slightly over Apple's 200MB cellular download limit — users on cellular get a "this app is large" prompt. Most popular apps exceed 200MB; this is not a hard block.
+**Actual size: 120MB** (479MB → 120MB after truncation + NULLing + VACUUM). Well below Apple's 200MB cellular download limit — no prompt for cellular downloads.
 
-### Per-Tour Enrichment — NOT BUILT
+### Per-Tour Enrichment — COMPLETE
 
-Lazy, on-demand enrichment that progressively fills in full data as the user explores. **Status: Designed, not built. Not required for App Store v1 — seed DB is fully functional.**
+Lazy, on-demand enrichment that progressively fills in full data as the user explores. **Status: Built and integrated.** Server endpoints deployed, `TourEnrichmentService.swift` wired into `TourDetailView.onAppear`.
 
-The seed DB ships with truncated descriptions (~200 chars) and NULL `image_urls_json`. All card views (Roulette, Right Now, World's Most, Six Degrees) display perfectly with seed data. The only degraded experience is TourDetailView, which shows a truncated description and single cover photo instead of a gallery.
+The seed DB ships with truncated descriptions (~200 chars) and NULL `image_urls_json`. All card views (Roulette, Right Now, World's Most, Six Degrees) display perfectly with seed data. TourDetailView triggers enrichment on first view — subsequent views show full data from local DB.
 
 **How it works:**
 
@@ -132,14 +131,10 @@ The seed DB ships with truncated descriptions (~200 chars) and NULL `image_urls_
 User taps tour card → TourDetailView opens
   → Show seed DB data immediately (truncated description, single photo)
   → If image_urls_json IS NULL or description ends with "..."
-      Call 1: GET /api/ios/tour/{id}
-        → Returns { description, image_urls_json } (~2KB)
-        → Write to local DB → UI refreshes in place
-        → Detail page now shows full description + photo gallery
-      Call 2: GET /api/ios/tours/batch  (body: { ids: [other IDs needing enrichment] })
-        → Returns array of { id, description, image_urls_json }
-        → Written to local DB silently in background
-        → Next time user taps any of these tours, data is already there
+      GET /api/ios/tour/{id}
+        → Returns { id, description, image_urls_json } (~2KB)
+        → Write to local DB via DatabaseService.enrichTour()
+        → UI refreshes in place — detail page now shows full description + photo gallery
   → If already enriched from a previous view → full data shown immediately
 ```
 
@@ -147,9 +142,9 @@ User taps tour card → TourDetailView opens
 - Full description (replacing truncated ~200-char preview)
 - `image_urls_json` (enabling multi-photo gallery on detail pages)
 
-**Server endpoints needed (Next.js API routes):**
-- `GET /api/ios/tour/[id]` — returns full description + image_urls_json for one tour
-- `POST /api/ios/tours/batch` — accepts `{ ids: [1, 2, 3] }`, returns array of enrichment data
+**Server endpoints (Next.js API routes):**
+- `GET /api/ios/tour/[id]` — returns `{ id, description, image_urls_json }` for one tour
+- `POST /api/ios/tours/batch` — accepts `{ ids: [1, 2, 3] }`, returns `{ tours: [...] }`
 
 **Progressive enrichment:** The app gets richer the more you use it. Only tours the user actually views get enriched — no wasted bandwidth. Over time, frequently browsed tours have full data cached locally.
 
@@ -202,13 +197,11 @@ Broader data refresh (new tours from Viator re-indexing, updated one-liners, new
 
 **Fallback**: Button still exists for accessibility. Swipe is the primary interaction.
 
-### D5: Seed DB size target — ~210MB
+### D5: Seed DB size — 120MB
 
-**Decision**: Seed DB is ~210MB after stripping unused tables, NULLing non-displayed columns, truncating descriptions to ~200 chars, and VACUUM. Total app binary ~240MB.
+**Decision**: Seed DB is 120MB after stripping unused tables, NULLing non-displayed columns, truncating descriptions to ~200 chars, and VACUUM. Total app binary ~150MB.
 
-**Why**: We tested aggressively stripping to hit 150MB but it required NULLing descriptions entirely, which degraded the detail page too much. The 200-char truncation preserves 1-2 meaningful sentences. Apple's 200MB cellular download limit isn't a hard block — it shows a prompt on cellular, not a refusal. Most popular apps exceed 200MB.
-
-**Tradeoff accepted**: Slightly over 200MB cellular limit vs. losing all description text. Per-tour enrichment (not yet built) restores full descriptions and photo galleries lazily as users browse.
+**Result**: Well below Apple's 200MB cellular download limit. The 200-char truncation preserves 1-2 meaningful sentences. Per-tour enrichment restores full descriptions and photo galleries lazily as users browse.
 
 ### D6: No user accounts, no sync, no backend
 
@@ -240,7 +233,8 @@ ios/TourGraph/
 │   │   └── Superlative.swift           # Superlative type + display config
 │   │
 │   ├── Services/
-│   │   ├── DatabaseService.swift       # GRDB connection, all queries
+│   │   ├── DatabaseService.swift       # GRDB connection, all queries + enrichment writes
+│   │   ├── TourEnrichmentService.swift # Per-tour lazy enrichment (fetch from server, write to DB)
 │   │   └── TimezoneHelper.swift        # Golden hour detection, timezone math
 │   │
 │   ├── State/
@@ -259,14 +253,15 @@ ios/TourGraph/
 │   │   │   └── WorldsMostView.swift    # WorldsMostTab + WorldsMostSection + SuperlativeCardView
 │   │   │
 │   │   ├── SixDegrees/
-│   │   │   ├── SixDegreesView.swift    # SixDegreesTab + SixDegreesSection + ChainCardView
-│   │   │   └── ChainDetailView.swift   # Vertical timeline detail
+│   │   │   └── SixDegreesView.swift    # SixDegreesTab + SixDegreesSection (inline chain timeline)
 │   │   │
 │   │   ├── Detail/
 │   │   │   └── TourDetailView.swift    # Full tour info, image gallery, Viator link
 │   │   │
 │   │   ├── Settings/
-│   │   │   └── SettingsView.swift      # Modal sheet: haptics, favorites, stats, legal
+│   │   │   ├── SettingsView.swift      # Modal sheet: haptics, favorites, about, stats, legal
+│   │   │   ├── FavoritesListView.swift # Saved tours list with TourCardView cards
+│   │   │   └── AboutView.swift         # App info, features, stats, links to web
 │   │   │
 │   │   └── Shared/
 │   │       ├── TourCardView.swift      # Photo-dominant card with favorite heart
@@ -278,7 +273,7 @@ ios/TourGraph/
 │       └── tourgraph.db               # Bundled SQLite database (gitignored)
 ```
 
-**Not yet built**: TourEnrichmentService (per-tour lazy enrichment), ImageCache, ShareCardView (ImageRenderer), SkeletonView, Widgets, RecentSpins.
+**Not yet built**: ShareCardView (ImageRenderer), launch screen, App Store screenshots. Widgets, RecentSpins are V2.
 
 ---
 
@@ -352,7 +347,7 @@ struct ChainLink: Codable, Sendable {
     let tourTitle: String           // tour_title
     let tourId: Int?                // Optional — used to fetch Tour for one-liner display
     let connectionToNext: String?   // connection_to_next — narrative bridge to next stop
-    let theme: String               // Thematic category (e.g., "craftsmanship")
+    let theme: String?              // Thematic category (e.g., "craftsmanship") — null on last stop
 }
 
 // Parsed JSON structure
@@ -430,39 +425,42 @@ final class DatabaseService {
 }
 ```
 
-### RouletteService
+### RouletteState
 
 Mirrors the web's hand algorithm: weighted random selection with category quotas and contrast sequencing (no same category or continent back-to-back).
 
 ```swift
 @Observable
-final class RouletteService {
+final class RouletteState {
+    let database: DatabaseService
     var currentTour: Tour?
     var hand: [Tour] = []
     private var handIndex = 0
     private var seenIds: Set<Int> = []
 
-    func spin()           // next tour from hand, refetch when exhausted
-    func prefetchHand()   // load next batch in background
+    func fetchHand()      // load batch from DB, apply contrast sequencing
+    func nextTour()       // advance to next tour in hand, refetch when exhausted
 }
 ```
 
-### TourEnrichmentService — NOT BUILT
+### TourEnrichmentService — COMPLETE
 
-Lazy per-tour enrichment. Fetches full description + image gallery when user views a tour detail, then prefetches the rest of the current batch.
+Lazy per-tour enrichment. Fetches full description + image gallery when user views a tour detail.
 
 ```swift
-@Observable
+@Observable @MainActor
 final class TourEnrichmentService {
-    func enrichIfNeeded(tour: Tour, batchIds: [Int]) async
-    // 1. If tour.imageUrlsJson != nil && !tour.description.hasSuffix("...") → already enriched, return
-    // 2. Call 1: GET /api/ios/tour/{tour.id} → update this tour in local DB → notify UI
-    // 3. Call 2: POST /api/ios/tours/batch with remaining batchIds that need enrichment
-    //    → update local DB silently in background
+    private let baseURL: URL       // defaults to https://tourgraph.ai
+    private let database: DatabaseService
+
+    func enrichIfNeeded(tourId: Int) async
+    // 1. Read tour from DB — if imageUrlsJson != nil, already enriched, return
+    // 2. GET {baseURL}/api/ios/tour/{tourId} → decode { id, description, image_urls_json }
+    // 3. Write to local DB via database.enrichTour() → UI refreshes in place
 }
 ```
 
-Called from `TourDetailView.onAppear`. The `batchIds` come from whatever list the user is currently browsing (roulette hand, superlative results, chain tour IDs). Only IDs where `image_urls_json IS NULL` are sent.
+Called from `TourDetailView.task`. Uses `os.Logger` (subsystem: "ai.tourgraph", category: "enrichment") for production logging — debug for skips, info for success + timing, error for failures.
 
 ---
 
@@ -520,9 +518,11 @@ This is pure SQL + Swift logic. No API calls.
 
 ### Six Degrees of Anywhere
 
-- Gallery of pre-computed chains (same as web)
-- Detail: vertical timeline matching web's stepper design
-- "Surprise Me" button picks random chain
+- Chain roulette: one random chain displayed inline with full vertical timeline
+- Each stop shows tour photo (16:9), title, one-liner, stats (rating/price/duration), and favorite heart overlay
+- Theme badges on stops, yellow connection text between stops with chevron icons
+- `ViewThatFits` handles long city names (horizontal → vertical fallback)
+- "Show Me Another" button loads a new random chain
 
 ---
 
@@ -543,11 +543,12 @@ TabView (4 tabs)
 │   └── → TourDetailView (push)
 │
 └── Six Degrees
-    ├── SixDegreesTab (chain gallery, "Surprise Me")
-    └── → ChainDetailView (push)
-        └── → TourDetailView (push)
+    ├── SixDegreesTab (inline chain timeline, "Show Me Another")
+    └── Tour photos link to favorites (heart overlay)
 
 Settings: gear icon in each tab's nav bar → modal sheet with Done button
+  ├── Favorites → FavoritesListView → TourDetailView
+  └── About → AboutView
 ```
 
 **Why 4 tabs, not 3 + Explore**: Each feature deserves direct one-tap access — matches the web's navigation. Settings is minimal and doesn't warrant a tab; it opens as a sheet from any tab's gear icon.
@@ -602,7 +603,7 @@ The app should **never** show a "no connection" error screen. Data is always loc
 - **Minimum target**: iOS 17.0
 - **Devices**: iPhone only (iPad layout is a V2 enhancement)
 - **App Store**: Free, no in-app purchases
-- **Size**: ~240MB download (210MB seed DB + 30MB app binary)
+- **Size**: ~150MB download (120MB seed DB + ~30MB app binary)
 - **Category**: Travel (with "Entertainment" as secondary)
 - **Privacy**: No data collected. App Privacy label = "Data Not Collected."
 
@@ -688,7 +689,7 @@ sqlite3 data/tourgraph-seed.db "SELECT id, LENGTH(description), SUBSTR(descripti
 cp data/tourgraph-seed.db ios/TourGraph/TourGraph/TourGraph/Resources/tourgraph.db
 ```
 
-**Expected result:** ~210MB seed DB (down from 479MB). All 4 features fully functional. Detail pages show truncated descriptions and single cover photos.
+**Actual result:** 120MB seed DB (down from 479MB). All 4 features fully functional. Detail pages show truncated descriptions and single cover photos. Per-tour enrichment restores full data on demand.
 
 ---
 
@@ -715,13 +716,16 @@ cp data/tourgraph-seed.db ios/TourGraph/TourGraph/TourGraph/Resources/tourgraph.
 | 3 | TourDetailView + sharing + image gallery | Done |
 | 4 | RightNowSection + TimezoneHelper (golden hour) | Done |
 | 5 | WorldsMostSection + superlative stat highlights | Done |
-| 6 | SixDegreesSection + ChainDetailView + Surprise Me | Done |
+| 6 | SixDegreesSection + inline chain timeline + "Show Me Another" | Done |
 | 7 | 4-tab layout (each feature its own tab) + Settings as sheet | Done |
 | 8 | Favorites + App Icon | Done |
-| 8b | **Build seed DB** (run seed DB build script above) | **Next** |
-| 8c | **Simulator + device testing** with seed DB | **Next** |
-| 9 | TourEnrichmentService (per-tour lazy enrichment) + server API endpoints | Not started — not required for App Store v1 |
-| 10 | App Store assets + submission | Not started |
+| 8b | Build seed DB (120MB from 479MB) | Done |
+| 8c | TourEnrichmentService + server API endpoints | Done |
+| 8d | Six Degrees polish (images, cards, colors, favorites) | Done |
+| 8e | FavoritesListView + AboutView + Settings wiring | Done |
+| 9 | **Simulator + device testing** | **In progress** |
+| 10 | iOS polish (share cards, launch screen) | Next |
+| 11 | App Store assets + submission | Blocked on polish |
 
 ---
 
