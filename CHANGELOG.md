@@ -36,6 +36,13 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 - "About TourGraph" NavigationLink → AboutView
 - `enrichmentService` threaded through all 4 tabs → SettingsView → FavoritesListView
 
+**Bug Fixes:**
+- Fixed FavoritesListView navigation — tapping a tour pushed detail then immediately covered it with duplicate list. Root cause: value-based NavigationLink + `.navigationDestination` on a pushed child view. Fix: destination-closure NavigationLinks.
+
+**World's Most Variety (iOS + Web):**
+- Superlative queries now `LIMIT 10` instead of `LIMIT 1`, random pick from top 10
+- Each visit shows a different extreme tour while staying genuinely top-tier (10 of 136K)
+
 ### Updated
 - `docs/implementation/ios-architecture.md` — seed DB 120MB (was ~210MB), enrichment complete, ChainDetailView removed, project structure updated, implementation order current
 - `docs/product_brief.md` — iOS section corrected (bundled DB, not direct API calls)

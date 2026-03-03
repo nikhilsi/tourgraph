@@ -3,19 +3,21 @@
 **Last Updated**: March 3, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 
-## Current Focus: iOS Seed DB → Enrichment → Test → Ship
+## Current Focus: iOS Testing → Polish → Ship
 
-Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset deployed (136,256 tours, 491 chains, 910 city profiles, 479MB database). All four web features complete and web production tested. iOS app built, executing the path to App Store.
+Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset deployed (136,256 tours, 491 chains, 910 city profiles, 479MB database). All four web features complete. iOS app built with seed DB + enrichment + polish. Simulator testing in progress.
 
 ## Next — In Order
 
-1. **Test on simulator** — All 4 features end-to-end with 120MB seed DB + enrichment working. Verify enrichment fills in full descriptions + photo galleries on detail tap. Deploy server enrichment endpoints to production first.
+1. **Continue simulator testing** — All 4 features end-to-end. Fix bugs as found.
 2. **Test on real device** — Hardware testing, haptics, performance.
 3. **iOS polish** — Share card rendering (ImageRenderer), LogoWhite @2x/@3x retina variants, launch screen.
 4. **iOS App Store submission** — Register bundle ID `com.nikhilsi.TourGraph`, create App Store Connect listing, screenshots. See `docs/implementation/ios-app-store.md`.
 
 ## Recently Completed
 
+- [x] Fixed favorites navigation bug — destination-closure NavigationLinks instead of value-based (March 3)
+- [x] World's Most variety — superlative queries now pick randomly from top 10 instead of always showing #1 (iOS + web) (March 3)
 - [x] Six Degrees polish — tour photos (16:9), card backgrounds, bright colors, theme badges, connection text, ViewThatFits for long city names (March 3)
 - [x] Favorites wiring — heart overlay on Six Degrees tour photos, FavoritesListView accessible from Settings (March 3)
 - [x] AboutView — app info, features, stats, links to tourgraph.ai (March 3)
