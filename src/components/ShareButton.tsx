@@ -6,17 +6,20 @@ export default function ShareButton({
   tourId,
   title,
   oneLiner,
+  url,
 }: {
-  tourId: number;
+  tourId?: number;
   title: string;
   oneLiner: string;
+  url?: string;
 }) {
   const [copied, setCopied] = useState(false);
 
-  const shareUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}/roulette/${tourId}`
-      : `/roulette/${tourId}`;
+  const shareUrl = url
+    ? (typeof window !== "undefined" ? `${window.location.origin}${url}` : url)
+    : (typeof window !== "undefined"
+        ? `${window.location.origin}/roulette/${tourId}`
+        : `/roulette/${tourId}`);
 
   const shareText = oneLiner ? `${title} — "${oneLiner}"` : title;
 
