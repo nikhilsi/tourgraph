@@ -1,7 +1,7 @@
 # Data Snapshot
 
 ---
-**Snapshot Date**: March 2, 2026 — 7:30 AM PST
+**Snapshot Date**: March 3, 2026
 **Database File**: `data/tourgraph.db` (474 MB)
 **Schema**: `docs/data-schema.md`
 **Purpose**: Baseline for tracking deltas on future data refreshes
@@ -16,7 +16,7 @@ TourGraph's data is built in layers. Each layer adds original intelligence on to
 | 1. Raw Viator Data | Tour listings: titles, photos, ratings, prices, locations | Viator Partner API | 136,256 tours | **Complete** |
 | 2. AI One-Liners | Witty personality captions per tour | Claude Haiku 4.5 | 136,256 (100%) | **Complete** |
 | 3. City Intelligence | City profiles: personality, standout tours, themes | Claude Sonnet 4.6 | 910 cities (1,799 readings) | **Complete** |
-| 4. Chain Connections | Thematic chains connecting cities around the world | Claude Sonnet 4.6 | ~500 chains | **Pending** |
+| 4. Chain Connections | Thematic chains connecting cities around the world | Claude Sonnet 4.6 | 491 chains | **Complete** |
 
 Layer 1 is commodity — anyone with a Viator API key has it. Layer 2 is derivative IP — Viator doesn't have these. Layers 3 and 4 are original intelligence that couldn't be reproduced with the same results. Together, they form a unique understanding of the world's tour landscape that exists nowhere else.
 
@@ -208,9 +208,21 @@ See `docs/city-intelligence.md` for full pipeline design.
 
 ---
 
-## Layer 4: Chain Connections — Pending
+## Layer 4: Chain Connections — Complete
 
-~500 thematic chains connecting cities around the world through surprising tour connections. Stored in the `six_degrees_chains` table.
+| Metric | Value |
+|--------|-------|
+| Chains generated | 485 (from 500 pairs, 97%) |
+| Endpoint cities | 100 curated (30 anchors, 40 gems, 30 surprises) |
+| Intermediate cities | Drawn from all 910 cities (unconstrained) |
+| Stops per chain | 5 (2 endpoints + 3 intermediates) |
+| Model | Claude Sonnet 4.6 |
+| Cost | ~$20 (Batch API 50% discount + prompt caching on Stage 1) |
+| Duration | ~40 min Stage 1 + ~1 hr Stage 2 (Batch API) |
+
+**Pipeline:** Two-stage — Stage 1 (City Picker) sees all 910 city profiles (~125K tokens, cached), picks 3 intermediates. Stage 2 (Chain Builder) gets 30 tours x 5 cities, builds chain with thematic connections.
+
+**Failure rate:** 15/500 pairs (3%) permanently failed — mostly Claude hallucinating cities not in our DB ("Havana" 7x, "Bali" 3x) or duplicate theme validation failures.
 
 See `docs/six-degrees-chains.md` for full generation architecture.
 
@@ -227,10 +239,11 @@ See `docs/six-degrees-chains.md` for full generation architecture.
 | One-liner singles | `backfill-oneliners.ts --limit 15` | ~1 min | Final 15 holdouts |
 | City profiles (batch) | `build-city-profiles.ts` | ~16 min | 893/904 via Batch API (Sonnet 4.6) |
 | City profiles (gap fill) | `build-city-profiles.ts --sequential` | ~10 min | 46/47 remaining via sequential |
-| Chain generation | `generate-chains.ts` | TBD | ~500 chains via Batch API |
+| Chain generation (Stage 1) | `generate-chains-v2.ts` | ~40 min | 500 pairs → 485 intermediate selections via Batch API (Sonnet 4.6) |
+| Chain generation (Stage 2) | `generate-chains-v2.ts` | ~1 hr | 491 chains built via Batch API (Sonnet 4.6) |
 
-**Total indexing time (Layers 1-3)**: ~34.5 hours
-**Total indexing cost (Layers 1-3)**: ~$12.40 (Haiku 4.5 for one-liners, Sonnet 4.6 for city profiles)
+**Total indexing time (Layers 1-4)**: ~36.5 hours
+**Total indexing cost (Layers 1-4)**: ~$32 (Haiku 4.5 for one-liners, Sonnet 4.6 for city profiles + chains)
 
 ---
 

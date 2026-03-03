@@ -1,15 +1,15 @@
 # NOW — What To Work On Next
 
 ---
-**Last Updated**: March 2, 2026
+**Last Updated**: March 3, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 ---
 
-## Current Focus: Six Degrees Chain Generation
+## Current Focus: Six Degrees Gallery Redesign & Deploy
 
 **Site is live at https://tourgraph.ai.** All four web features deployed, iOS app built. Data fully indexed: 136,256 tours, 100% AI one-liner coverage, 474MB database.
 
-**Next milestone:** Generate chain connections (Layer 4), then redeploy DB with the full data asset. Layer 3 (city intelligence) is complete — 910 cities, 1,799 readings merged.
+**Next milestone:** Redesign Six Degrees gallery, then redeploy DB with the full data asset. Layer 4 (chain generation) is complete — 491 chains from 500 pairs, stored in `six_degrees_chains` table.
 
 ---
 
@@ -17,15 +17,15 @@
 
 #### A. Chain Generation Pipeline (Layer 4)
 
-1. **Curate endpoint pool** — Hand-pick ~100 cities across 3 tiers: Anchors (~25-30 iconic), Gems (~30-40 aspirational), Surprises (~20-30 "wait, THAT exists?"). Save as `src/scripts/4-chains/city-pool.json`.
+1. ~~**Curate endpoint pool**~~ — **DONE.** 100 cities (30 anchors, 40 gems, 30 surprises) in `src/scripts/4-chains/city-pool.json`. AI-curated from 910 city profiles, manually rebalanced for continent coverage.
 
-2. **Generate cross-continent pairs** — Script (`generate-pairs.ts`) creates ~500 pairs. Rules: cross-continent only, no same-country, each city in 8-12 chains, mixed pairings. Save as `src/scripts/4-chains/chain-pairs.json`.
+2. ~~**Generate cross-continent pairs**~~ — **DONE.** 500 pairs in `src/scripts/4-chains/chain-pairs.json`. Scored greedy algorithm: Jaccard theme distance + tier mixing bonus, round-robin balanced selection. 97/100 cities in 8-12 range, avg thematic distance 0.574, 71% cross-tier pairs.
 
-3. **Build Stage 1 + Stage 2 generator** — Rewrite `src/scripts/4-chains/generate-chains.ts` to use three-stage pipeline. Stage 1: all 910 city profiles in system prompt (~190K tokens), Claude picks 3 intermediates. Stage 2: detailed tours for 5 selected cities, Claude builds chain. Batch API + prompt caching. See `docs/six-degrees-chains.md`.
+3. ~~**Build Stage 1 + Stage 2 generator**~~ — **DONE.** `generate-chains-v2.ts` — two-stage pipeline. Stage 1: ~125K token system prompt (910 city profiles, cached), Claude picks 3 intermediates. Stage 2: 30 tours × 5 cities, Claude builds chain. Batch API + prompt caching. Tested: Tokyo→Rome, Buenos Aires→Reykjavik.
 
-4. **Test batch (small)** — Generate ~10-20 chains with new architecture, review quality against checklist in `docs/six-degrees-chains.md`.
+4. ~~**Test batch (small)**~~ — **DONE.** 20 pairs via Batch API, 18/20 succeeded (2 validation failures: duplicate theme, malformed JSON). Quality reviewed — chains are high quality with surprising intermediates.
 
-5. **Generate ~500 chains** — Submit all pairs via Batch API. Spot-check ~10% for quality.
+5. ~~**Generate ~500 chains**~~ — **DONE.** Full 500-pair run via Batch API. First pass: 453/500 chains generated (90.6%). Improved JSON parser to handle text-after-JSON errors (21 of 50 failures). Retry of 50 remaining pairs in progress.
 
 #### B. Display & Polish
 
@@ -54,9 +54,9 @@
 
 ### Open Decisions
 
-- [ ] **Endpoint pool composition** — Which ~100 cities? Use city profiles from Stage 0 to inform selection.
-- [ ] **Gallery categories** — By continent pair? By theme? Editor's picks?
-- [ ] **Batch vs. sequential** — Batch faster (~1 hr) but variable cache hits. Sequential slower but near-100% hits.
+- [x] **Endpoint pool composition** — 100 cities curated: 30 anchors, 40 gems, 30 surprises. AI + manual rebalancing.
+- [x] **Gallery categories** — 5-6 theme-based categories (Sacred Journeys, Rhythm & Movement, Craft Trails, Dark History, Food & Drink, World Tours) + "Surprise Me". Few focused choices, not a wall of cards.
+- [x] **Batch vs. sequential** — Batch. Full 500-pair run completed in ~40 min (Stage 1) + ~1 hr (Stage 2). Prompt caching confirmed on Stage 1.
 - [ ] iOS seed DB size — full DB may fit under 200MB after VACUUM.
 - [ ] Dark-mode app icon variant.
 
@@ -80,9 +80,9 @@
 | 2 | Right Now Somewhere (web) | **Deployed** |
 | 3 | The World's Most ___ (web) | **Deployed** |
 | 4a | Data expansion + one-liners | **Complete** — 136,256 tours, 100% one-liners, 474MB |
-| 4b | Six Degrees of Anywhere (web) | **UI complete** — needs chain data |
+| 4b | Six Degrees of Anywhere (web) | **Data complete** — 485 chains, needs gallery redesign |
 | 5 | Deploy to production | **Live** — https://tourgraph.ai |
 | 6 | iOS app | **Built** — all 4 features, 4-tab layout, favorites, App Store metadata |
 | 7a | City intelligence (Layer 3) | **Complete** — 910 cities, 1,799 readings |
-| 7b | Chain generation (Layer 4) | **Next** — Stages 1+2 pipeline |
-| 8 | iOS App Store submission | Blocked on chain data + polish |
+| 7b | Chain generation (Layer 4) | **Complete** — 491 chains from 500 pairs, retry in progress |
+| 8 | iOS App Store submission | Blocked on gallery redesign + polish |

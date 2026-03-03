@@ -1,0 +1,618 @@
+{
+  "version": 1,
+  "generated": "2026-03-02",
+  "notes": "AI-curated endpoint pool for Six Degrees chains, manually rebalanced. Intermediates unconstrained (any of 910 cities).",
+  "continent_overrides": {
+    "Dubai": "Asia",
+    "Muscat": "Asia",
+    "Amman": "Asia",
+    "Baku": "Asia",
+    "Doha": "Asia"
+  },
+  "anchors": [
+    {
+      "city": "London",
+      "country": "United Kingdom",
+      "continent": "Europe",
+      "reason": "Global icon, 2000 years of layered history"
+    },
+    {
+      "city": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "reason": "World's most visited city, art, food, revolution"
+    },
+    {
+      "city": "Rome",
+      "country": "Italy",
+      "continent": "Europe",
+      "reason": "Eternal City, 2,500 years of continuous civilization"
+    },
+    {
+      "city": "Barcelona",
+      "country": "Spain",
+      "continent": "Europe",
+      "reason": "Gaudí, beach, food, nightlife — everyone's bucket list"
+    },
+    {
+      "city": "Amsterdam",
+      "country": "Netherlands",
+      "continent": "Europe",
+      "reason": "Canals, museums, cycling — Europe's most recognizable city"
+    },
+    {
+      "city": "Istanbul",
+      "country": "Turkey",
+      "continent": "Europe",
+      "reason": "Only city straddling two continents, 2,500 years of empires"
+    },
+    {
+      "city": "Prague",
+      "country": "Czech Republic",
+      "continent": "Europe",
+      "reason": "Fairy-tale medieval city, Europe's most beloved old town"
+    },
+    {
+      "city": "Vienna",
+      "country": "Austria",
+      "continent": "Europe",
+      "reason": "Imperial grandeur, Mozart, waltz — the ultimate European capital"
+    },
+    {
+      "city": "Dubai",
+      "country": "United Arab Emirates",
+      "continent": "Asia",
+      "reason": "Modern wonder of the world, everyone knows it"
+    },
+    {
+      "city": "Tokyo",
+      "country": "Japan",
+      "continent": "Asia",
+      "reason": "World's largest city, ancient meets futuristic"
+    },
+    {
+      "city": "Bangkok",
+      "country": "Thailand",
+      "continent": "Asia",
+      "reason": "Southeast Asia's iconic gateway, temples and street food"
+    },
+    {
+      "city": "Singapore",
+      "country": "Singapore",
+      "continent": "Asia",
+      "reason": "Global city-state, Asia's most recognizable modern icon"
+    },
+    {
+      "city": "Beijing",
+      "country": "China",
+      "continent": "Asia",
+      "reason": "5,000 years of imperial power, Great Wall, Forbidden City"
+    },
+    {
+      "city": "New Delhi",
+      "country": "India",
+      "continent": "Asia",
+      "reason": "India's capital, Mughal grandeur meets modern chaos"
+    },
+    {
+      "city": "Cairo",
+      "country": "Egypt",
+      "continent": "Africa",
+      "reason": "Pyramids, pharaohs, ancient civilization's most famous city"
+    },
+    {
+      "city": "Nairobi",
+      "country": "Kenya",
+      "continent": "Africa",
+      "reason": "Africa's safari capital, lions vs. skyline"
+    },
+    {
+      "city": "Cape Town",
+      "country": "South Africa",
+      "continent": "Africa",
+      "reason": "Africa's most iconic city, two oceans, Table Mountain"
+    },
+    {
+      "city": "New York City",
+      "country": "USA",
+      "continent": "North America",
+      "reason": "The definitive global metropolis, no explanation needed"
+    },
+    {
+      "city": "Mexico City",
+      "country": "Mexico",
+      "continent": "North America",
+      "reason": "Aztec foundations, colonial layers, food capital of the Americas"
+    },
+    {
+      "city": "Buenos Aires",
+      "country": "Argentina",
+      "continent": "South America",
+      "reason": "Paris of South America, tango, steak, passion"
+    },
+    {
+      "city": "Rio de Janeiro",
+      "country": "Brazil",
+      "continent": "South America",
+      "reason": "Christ the Redeemer, carnival, Copacabana — iconic worldwide"
+    },
+    {
+      "city": "Sydney",
+      "country": "Australia",
+      "continent": "Oceania",
+      "reason": "Australia's face to the world, harbour, opera house"
+    },
+    {
+      "city": "San Juan",
+      "country": "Puerto Rico",
+      "continent": "Caribbean",
+      "reason": "Caribbean's most storied colonial city, rum, salsa, beaches"
+    },
+    {
+      "city": "Kyoto",
+      "country": "Japan",
+      "continent": "Asia",
+      "reason": "Ancient Japan's soul — temples, geishas, tea ceremony"
+    },
+    {
+      "city": "Mumbai",
+      "country": "India",
+      "continent": "Asia",
+      "reason": "Bollywood, colonial grandeur, world's most intense city"
+    },
+    {
+      "city": "Marrakech",
+      "country": "Morocco",
+      "continent": "Africa",
+      "reason": "Africa's most-visited city, souks, medina, Sahara gateway"
+    },
+    {
+      "city": "Cusco",
+      "country": "Peru",
+      "continent": "South America",
+      "reason": "Gateway to Machu Picchu, Inca capital of the world"
+    },
+    {
+      "city": "Reykjavik",
+      "country": "Iceland",
+      "continent": "Europe",
+      "reason": "Aurora capital, geothermal wonder, world's northernmost capital"
+    },
+    {
+      "city": "San Francisco",
+      "country": "USA",
+      "continent": "North America",
+      "reason": "Golden Gate, Alcatraz, tech culture meets Victorian hills"
+    },
+    {
+      "city": "Toronto",
+      "country": "Canada",
+      "continent": "North America",
+      "reason": "World's most multicultural city, CN Tower, Niagara day trip"
+    }
+  ],
+  "gems": [
+    {
+      "city": "Tbilisi",
+      "country": "Georgia",
+      "continent": "Europe",
+      "reason": "Ancient wine, Caucasus peaks, Soviet layers — deeply aspirational"
+    },
+    {
+      "city": "Dubrovnik",
+      "country": "Croatia",
+      "continent": "Europe",
+      "reason": "Medieval walled city, Game of Thrones, Adriatic perfection"
+    },
+    {
+      "city": "Lisbon",
+      "country": "Portugal",
+      "continent": "Europe",
+      "reason": "Fado, Age of Exploration, seven-hill beauty — everyone's dream"
+    },
+    {
+      "city": "Edinburgh",
+      "country": "United Kingdom",
+      "continent": "Europe",
+      "reason": "Haunted castles, whisky, festivals — Scotland's romantic capital"
+    },
+    {
+      "city": "Budapest",
+      "country": "Hungary",
+      "continent": "Europe",
+      "reason": "Thermal baths, ruin bars, Danube grandeur"
+    },
+    {
+      "city": "Sarajevo",
+      "country": "Bosnia and Herzegovina",
+      "continent": "Europe",
+      "reason": "Four empires, siege history, four faiths in one city"
+    },
+    {
+      "city": "Porto",
+      "country": "Portugal",
+      "continent": "Europe",
+      "reason": "Wine, azulejos, Atlantic soul — Portugal's passionate second city"
+    },
+    {
+      "city": "Granada",
+      "country": "Spain",
+      "continent": "Europe",
+      "reason": "Alhambra, flamenco, Moorish magic — Spain's most dreamed-of city"
+    },
+    {
+      "city": "Valletta",
+      "country": "Malta",
+      "continent": "Europe",
+      "reason": "Crusader capital, most UNESCO drama per square meter"
+    },
+    {
+      "city": "Siem Reap",
+      "country": "Cambodia",
+      "continent": "Asia",
+      "reason": "Angkor Wat, temple empires — Asia's greatest ancient site"
+    },
+    {
+      "city": "Luang Prabang",
+      "country": "Laos",
+      "continent": "Asia",
+      "reason": "UNESCO river town, monks, waterfalls — Asia's most serene gem"
+    },
+    {
+      "city": "Ubud",
+      "country": "Indonesia",
+      "continent": "Asia",
+      "reason": "Bali's spiritual heart, rice terraces, ritual and art"
+    },
+    {
+      "city": "Kathmandu",
+      "country": "Nepal",
+      "continent": "Asia",
+      "reason": "Himalayan gateway, ancient temples, Everest dreams"
+    },
+    {
+      "city": "Hoi An",
+      "country": "Vietnam",
+      "continent": "Asia",
+      "reason": "Lantern-lit ancient town, silk, fishing boats — Asia's most romantic"
+    },
+    {
+      "city": "Varanasi",
+      "country": "India",
+      "continent": "Asia",
+      "reason": "World's oldest living city, sacred Ganges, life and death"
+    },
+    {
+      "city": "Chiang Mai",
+      "country": "Thailand",
+      "continent": "Asia",
+      "reason": "Temple culture, jungle adventures, Northern Thai cuisine"
+    },
+    {
+      "city": "Zanzibar City",
+      "country": "Tanzania",
+      "continent": "Africa",
+      "reason": "UNESCO spice island, Stone Town, Arab-African fusion"
+    },
+    {
+      "city": "Addis Ababa",
+      "country": "Ethiopia",
+      "continent": "Africa",
+      "reason": "Lucy's bones, ancient tribes, volcanoes — Africa's most layered city"
+    },
+    {
+      "city": "Cartagena",
+      "country": "Colombia",
+      "continent": "South America",
+      "reason": "Walled colonial beauty, Caribbean soul, first free Black town nearby"
+    },
+    {
+      "city": "Medellín",
+      "country": "Colombia",
+      "continent": "South America",
+      "reason": "World's most inspiring urban comeback story, cable cars and coffee"
+    },
+    {
+      "city": "Bogotá",
+      "country": "Colombia",
+      "continent": "South America",
+      "reason": "High-altitude contradiction, street art, salt cathedrals, El Dorado"
+    },
+    {
+      "city": "Queenstown",
+      "country": "New Zealand",
+      "continent": "Oceania",
+      "reason": "Planet's adventure capital, dramatic Alpine scenery"
+    },
+    {
+      "city": "Nassau",
+      "country": "Bahamas",
+      "continent": "Caribbean",
+      "reason": "Pirate history, swimming pigs, rum — Caribbean's iconic island city"
+    },
+    {
+      "city": "Petra",
+      "country": "Jordan",
+      "continent": "Asia",
+      "reason": "Rose-red city carved in cliffs — Indiana Jones made it real"
+    },
+    {
+      "city": "Baku",
+      "country": "Azerbaijan",
+      "continent": "Asia",
+      "reason": "Eternal flames, mud volcanoes, fire skyscrapers — utterly unique"
+    },
+    {
+      "city": "Salvador da Bahia",
+      "country": "Brazil",
+      "continent": "South America",
+      "reason": "Africa's heartbeat in Brazil — Candomblé, capoeira, UNESCO cobblestones"
+    },
+    {
+      "city": "Antigua",
+      "country": "Guatemala",
+      "continent": "South America",
+      "reason": "Colonial gem ringed by volcanoes, jade, coffee, lava walks"
+    },
+    {
+      "city": "Melbourne",
+      "country": "Australia",
+      "continent": "Oceania",
+      "reason": "Coffee culture, laneways, penguins — Australia's cultural soul"
+    },
+    {
+      "city": "Vancouver",
+      "country": "Canada",
+      "continent": "North America",
+      "reason": "Rainforest, whales, world-class Asian food — 30 min to wilderness"
+    },
+    {
+      "city": "Oaxaca City",
+      "country": "Mexico",
+      "continent": "North America",
+      "reason": "Zapotec ruins, seven moles, spirit-animal carvers"
+    },
+    {
+      "city": "Honolulu",
+      "country": "USA",
+      "continent": "North America",
+      "reason": "Pearl Harbor, volcanic hikes, ancient Polynesian culture"
+    },
+    {
+      "city": "Quebec City",
+      "country": "Canada",
+      "continent": "North America",
+      "reason": "European walled city transplanted to North America, ice palaces"
+    },
+    {
+      "city": "Seoul",
+      "country": "South Korea",
+      "continent": "Asia",
+      "reason": "Ancient palaces beside K-pop temples, meet a North Korean defector before lunch"
+    },
+    {
+      "city": "Krakow",
+      "country": "Poland",
+      "continent": "Europe",
+      "reason": "Darkest history alongside Poland's most exuberant mountain-spa party"
+    },
+    {
+      "city": "Yogyakarta",
+      "country": "Indonesia",
+      "continent": "Asia",
+      "reason": "1200-year-old Buddhist temple, volcanic lava jeep, firelit ancient epics"
+    },
+    {
+      "city": "Ushuaia",
+      "country": "Argentina",
+      "continent": "South America",
+      "reason": "World literally ends here — every glacier and penguin feels saved for you"
+    },
+    {
+      "city": "San Pedro de Atacama",
+      "country": "Chile",
+      "continent": "South America",
+      "reason": "Geysers at dawn, alien valleys at sunset, universe overhead at night"
+    },
+    {
+      "city": "Fez",
+      "country": "Morocco",
+      "continent": "Africa",
+      "reason": "World's largest living medieval city, 1200-year-old artisan labyrinth"
+    },
+    {
+      "city": "Copenhagen",
+      "country": "Denmark",
+      "continent": "Europe",
+      "reason": "Hygge as philosophy — bikes, canals, pastries, Noma-legacy food scene"
+    },
+    {
+      "city": "Viti Levu",
+      "country": "Fiji",
+      "continent": "Oceania",
+      "reason": "Geothermal mud spas, cannibal caves, floating bars beside village life"
+    }
+  ],
+  "surprises": [
+    {
+      "city": "Goreme",
+      "country": "Turkey",
+      "continent": "Europe",
+      "reason": "Actual cave hotels in volcanic dreamscape — wait, people live here?"
+    },
+    {
+      "city": "Matera",
+      "country": "Italy",
+      "continent": "Europe",
+      "reason": "9,000-year-old cave city — people lived here until 1952"
+    },
+    {
+      "city": "Mostar",
+      "country": "Bosnia and Herzegovina",
+      "continent": "Europe",
+      "reason": "Ottoman bridges beside 1990s war scars — history still raw"
+    },
+    {
+      "city": "Kotor",
+      "country": "Montenegro",
+      "continent": "Europe",
+      "reason": "Cold War submarine tunnels under a medieval Adriatic bay"
+    },
+    {
+      "city": "Tirana",
+      "country": "Albania",
+      "continent": "Europe",
+      "reason": "Communist bunkers, Ottoman bazaars, street art — Europe's dark horse"
+    },
+    {
+      "city": "Ohrid",
+      "country": "North Macedonia",
+      "continent": "Europe",
+      "reason": "UNESCO lake-city with Orthodox monasteries — almost nobody goes here"
+    },
+    {
+      "city": "Cesky Krumlov",
+      "country": "Czech Republic",
+      "continent": "Europe",
+      "reason": "Medieval UNESCO castle town so intact it feels fictional"
+    },
+    {
+      "city": "Lanzarote",
+      "country": "Spain",
+      "continent": "Europe",
+      "reason": "Volcanic moon-world where an artist turned lava into architecture"
+    },
+    {
+      "city": "Lalibela",
+      "country": "Ethiopia",
+      "continent": "Africa",
+      "reason": "11 churches carved into volcanic rock — monks still pray inside"
+    },
+    {
+      "city": "Swakopmund",
+      "country": "Namibia",
+      "continent": "Africa",
+      "reason": "German colonial beach town where desert meets Atlantic — surreal"
+    },
+    {
+      "city": "Ulaanbaatar",
+      "country": "Mongolia",
+      "continent": "Asia",
+      "reason": "Shamans, eagle hunters, Genghis Khan — last great wilderness gateway"
+    },
+    {
+      "city": "Zhangjiajie",
+      "country": "China",
+      "continent": "Asia",
+      "reason": "Sandstone pillars so dramatic Hollywood used them as alien CGI"
+    },
+    {
+      "city": "Ha Giang",
+      "country": "Vietnam",
+      "continent": "Asia",
+      "reason": "17 ethnic groups, UNESCO karst peaks, best entered on two wheels"
+    },
+    {
+      "city": "Hanga Roa",
+      "country": "Chile",
+      "continent": "South America",
+      "reason": "Easter Island — 900-year-old stone giants on world's most isolated island"
+    },
+    {
+      "city": "Uyuni",
+      "country": "Bolivia",
+      "continent": "South America",
+      "reason": "Earth's largest salt flat turns sky into a mirror floor"
+    },
+    {
+      "city": "Valparaíso",
+      "country": "Chile",
+      "continent": "South America",
+      "reason": "Anarchist street art on every hill, funiculars as commute"
+    },
+    {
+      "city": "Trinidad",
+      "country": "Trinidad and Tobago",
+      "continent": "Caribbean",
+      "reason": "Steelpan inventor, drive-through mud volcanoes, scarlet ibis sunsets"
+    },
+    {
+      "city": "Dominica",
+      "country": "Dominica",
+      "continent": "Caribbean",
+      "reason": "Caribbean before tourism — boiling lake, geothermal swims, real jungle"
+    },
+    {
+      "city": "Willemstad",
+      "country": "Curacao",
+      "continent": "Caribbean",
+      "reason": "Walk the ocean floor, sip the namesake liqueur, spot flamingos"
+    },
+    {
+      "city": "Rotorua",
+      "country": "New Zealand",
+      "continent": "Oceania",
+      "reason": "Sulfur-smelling volcano city with hot mud baths and Māori culture"
+    },
+    {
+      "city": "Uluru",
+      "country": "Australia",
+      "continent": "Oceania",
+      "reason": "Sacred ancient monolith, stargazing arena, continent's spiritual heart"
+    },
+    {
+      "city": "Sedona",
+      "country": "USA",
+      "continent": "North America",
+      "reason": "Red rock vortexes, dark-sky stargazing, desert mysticism"
+    },
+    {
+      "city": "San Miguel de Allende",
+      "country": "Mexico",
+      "continent": "North America",
+      "reason": "UNESCO colonial gem with pyramids, wine country, expat art studios"
+    },
+    {
+      "city": "Naha",
+      "country": "Japan",
+      "continent": "Asia",
+      "reason": "20 themes in 81 tours — Ryukyu kingdom, karate birthplace, surreal blue water"
+    },
+    {
+      "city": "Paro",
+      "country": "Bhutan",
+      "continent": "Asia",
+      "reason": "Kingdom measuring happiness not GDP; cliff monastery is just Tuesday"
+    },
+    {
+      "city": "Iquitos",
+      "country": "Peru",
+      "continent": "South America",
+      "reason": "No road connects it to the world — civilization's last gasp before the Amazon"
+    },
+    {
+      "city": "Pristina",
+      "country": "Kosovo",
+      "continent": "Europe",
+      "reason": "Europe's youngest nation — Byzantine monasteries, Ottoman bazaars, defiant optimism"
+    },
+    {
+      "city": "Bacalar",
+      "country": "Mexico",
+      "continent": "North America",
+      "reason": "Lagoon shifts through seven blues, stromatolites predate dinosaurs below"
+    },
+    {
+      "city": "Batumi",
+      "country": "Georgia",
+      "continent": "Europe",
+      "reason": "Black Sea subtropical jungle meets Caucasus peaks and Soviet-to-futurist architecture"
+    },
+    {
+      "city": "Chefchaouen",
+      "country": "Morocco",
+      "continent": "Africa",
+      "reason": "Blue-painted Moorish mountain maze, Gnawa healing music, Rif wilderness"
+    }
+  ]
+}

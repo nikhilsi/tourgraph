@@ -1,7 +1,7 @@
 # Current State
 
 ---
-**Last Updated**: March 2, 2026
+**Last Updated**: March 3, 2026
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
@@ -16,7 +16,7 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 | Tour Roulette | `/`, `/roulette/[id]` | Live |
 | Right Now Somewhere | `/right-now` | Live |
 | The World's Most ___ | `/worlds-most`, `/worlds-most/[slug]` | Live |
-| Six Degrees of Anywhere | `/six-degrees`, `/six-degrees/[slug]` | UI live, needs chain data |
+| Six Degrees of Anywhere | `/six-degrees`, `/six-degrees/[slug]` | UI live, 491 chains generated, needs gallery redesign |
 | About / Story | `/about`, `/story` | Live |
 | Privacy / Support | `/privacy`, `/support` | Live |
 | OG Images | `/api/og/*` | Live |
@@ -48,12 +48,12 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 | 1. Raw Viator Data | Tour listings, photos, ratings, prices | 136,256 tours | **Complete** |
 | 2. AI One-Liners | Witty personality captions per tour | 136,256 (100%) | **Complete** |
 | 3. City Intelligence | City profiles: personality, standout tours, themes | 910 cities (1,799 readings) | **Complete** |
-| 4. Chain Connections | Thematic chains connecting cities | ~500 chains | **Pending** |
+| 4. Chain Connections | Thematic chains connecting cities | 491 chains | **Complete** |
 
 - **474 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-**Next:** Generate chains (Stages 1+2) → Redeploy DB.
+**Next:** Redesign gallery → Redeploy DB.
 
 ## Deployment
 
@@ -118,9 +118,13 @@ src/
 │   │   ├── build-city-profiles.ts  #   Submit to Claude → city_readings → merge
 │   │   └── backfill-city-readings.ts  #   Load JSONL files → city_readings → merge
 │   ├── 4-chains/                   # Step 4: Six Degrees chain generation
-│   │   ├── generate-chains.ts      #   Production chain generator
+│   │   ├── generate-chains-v2.ts   #   Two-stage pipeline (Batch API + caching)
+│   │   ├── generate-chains.ts      #   Legacy single-shot generator
+│   │   ├── generate-pairs.ts       #   Pair generator (scored greedy)
+│   │   ├── curate-city-pool.ts     #   City pool curation (one-time)
 │   │   ├── test-chain.ts           #   Chain testing (dev)
-│   │   └── chain-pairs.json        #   City pairs config
+│   │   ├── chain-pairs.json        #   500 city pairs
+│   │   └── city-pool.json          #   100 curated endpoint cities
 │   └── utils/
 │       └── check-db.ts             # Database audit
 logs/

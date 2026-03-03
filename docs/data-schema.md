@@ -176,7 +176,7 @@ npx tsx src/scripts/1-viator/indexer.ts --full           # Index all 2,712 leaf 
 npx tsx src/scripts/2-oneliners/backfill-oneliners-batch.ts # Generate AI one-liners (~14 hours)
 npx tsx src/scripts/3-city-intel/build-city-profiles.ts      # Build city intelligence profiles (~1 hour via Batch API)
 npx tsx src/scripts/3-city-intel/backfill-city-readings.ts <results.jsonl> [...]  # Load batch results into city_readings + merge
-npx tsx src/scripts/4-chains/generate-chains.ts          # Generate Six Degrees chains (~1 hour via Batch API)
+npx tsx src/scripts/4-chains/generate-chains-v2.ts       # Generate Six Degrees chains (~2 hours via Batch API, two-stage pipeline)
 ```
 
 ## Deploying to Server

@@ -1,5 +1,2002 @@
 [
-  ["Tokyo", "Rome"],
-  ["Marrakech", "Kyoto"],
-  ["Buenos Aires", "Istanbul"]
+  [
+    "New York City",
+    "Zhangjiajie"
+  ],
+  [
+    "Buenos Aires",
+    "Zhangjiajie"
+  ],
+  [
+    "Kyoto",
+    "Uyuni"
+  ],
+  [
+    "Bacalar",
+    "Mumbai"
+  ],
+  [
+    "Rome",
+    "Zhangjiajie"
+  ],
+  [
+    "Cesky Krumlov",
+    "Nairobi"
+  ],
+  [
+    "Bacalar",
+    "London"
+  ],
+  [
+    "Bacalar",
+    "Prague"
+  ],
+  [
+    "Bacalar",
+    "Singapore"
+  ],
+  [
+    "Bacalar",
+    "Paris"
+  ],
+  [
+    "Istanbul",
+    "Zhangjiajie"
+  ],
+  [
+    "Ha Giang",
+    "Istanbul"
+  ],
+  [
+    "Nairobi",
+    "Paro"
+  ],
+  [
+    "Amsterdam",
+    "Bacalar"
+  ],
+  [
+    "Rio de Janeiro",
+    "Zhangjiajie"
+  ],
+  [
+    "Paro",
+    "Toronto"
+  ],
+  [
+    "Lalibela",
+    "New York City"
+  ],
+  [
+    "Buenos Aires",
+    "Dominica"
+  ],
+  [
+    "Dubai",
+    "Ohrid"
+  ],
+  [
+    "San Francisco",
+    "Zhangjiajie"
+  ],
+  [
+    "Beijing",
+    "Uyuni"
+  ],
+  [
+    "Cape Town",
+    "Paro"
+  ],
+  [
+    "Reykjavik",
+    "Valparaíso"
+  ],
+  [
+    "Matera",
+    "New York City"
+  ],
+  [
+    "Kotor",
+    "Kyoto"
+  ],
+  [
+    "Amsterdam",
+    "Ulaanbaatar"
+  ],
+  [
+    "Buenos Aires",
+    "Uluru"
+  ],
+  [
+    "Oaxaca City",
+    "Uyuni"
+  ],
+  [
+    "Cairo",
+    "Uyuni"
+  ],
+  [
+    "Hanga Roa",
+    "New Delhi"
+  ],
+  [
+    "Kyoto",
+    "Swakopmund"
+  ],
+  [
+    "Barcelona",
+    "Zhangjiajie"
+  ],
+  [
+    "Dominica",
+    "Tokyo"
+  ],
+  [
+    "Marrakech",
+    "Ohrid"
+  ],
+  [
+    "Rio de Janeiro",
+    "Rotorua"
+  ],
+  [
+    "Buenos Aires",
+    "Sedona"
+  ],
+  [
+    "Cape Town",
+    "Iquitos"
+  ],
+  [
+    "Bacalar",
+    "Budapest"
+  ],
+  [
+    "Vienna",
+    "Zhangjiajie"
+  ],
+  [
+    "Uyuni",
+    "Varanasi"
+  ],
+  [
+    "Addis Ababa",
+    "Bacalar"
+  ],
+  [
+    "Buenos Aires",
+    "Goreme"
+  ],
+  [
+    "Lanzarote",
+    "Mumbai"
+  ],
+  [
+    "Kyoto",
+    "Willemstad"
+  ],
+  [
+    "Paro",
+    "Sydney"
+  ],
+  [
+    "Granada",
+    "Uyuni"
+  ],
+  [
+    "Uyuni",
+    "Yogyakarta"
+  ],
+  [
+    "Bangkok",
+    "Uyuni"
+  ],
+  [
+    "Chefchaouen",
+    "Reykjavik"
+  ],
+  [
+    "Batumi",
+    "Buenos Aires"
+  ],
+  [
+    "Kyoto",
+    "Ushuaia"
+  ],
+  [
+    "Ha Giang",
+    "Tbilisi"
+  ],
+  [
+    "Queenstown",
+    "Valparaíso"
+  ],
+  [
+    "Petra",
+    "Valparaíso"
+  ],
+  [
+    "Cesky Krumlov",
+    "San Pedro de Atacama"
+  ],
+  [
+    "Chiang Mai",
+    "Lalibela"
+  ],
+  [
+    "Cartagena",
+    "Paro"
+  ],
+  [
+    "Honolulu",
+    "Lanzarote"
+  ],
+  [
+    "New York City",
+    "Pristina"
+  ],
+  [
+    "Antigua",
+    "Lalibela"
+  ],
+  [
+    "Naha",
+    "San Pedro de Atacama"
+  ],
+  [
+    "Dubrovnik",
+    "Trinidad"
+  ],
+  [
+    "Cesky Krumlov",
+    "Viti Levu"
+  ],
+  [
+    "Mostar",
+    "San Pedro de Atacama"
+  ],
+  [
+    "New Delhi",
+    "Tirana"
+  ],
+  [
+    "San Miguel de Allende",
+    "Ushuaia"
+  ],
+  [
+    "Ha Giang",
+    "Quebec City"
+  ],
+  [
+    "San Juan",
+    "Zhangjiajie"
+  ],
+  [
+    "Bacalar",
+    "Copenhagen"
+  ],
+  [
+    "Siem Reap",
+    "Uyuni"
+  ],
+  [
+    "Luang Prabang",
+    "Uyuni"
+  ],
+  [
+    "Nassau",
+    "Zhangjiajie"
+  ],
+  [
+    "Bacalar",
+    "Baku"
+  ],
+  [
+    "Mexico City",
+    "Zhangjiajie"
+  ],
+  [
+    "Seoul",
+    "Uyuni"
+  ],
+  [
+    "Uyuni",
+    "Zanzibar City"
+  ],
+  [
+    "Kathmandu",
+    "Willemstad"
+  ],
+  [
+    "Ubud",
+    "Willemstad"
+  ],
+  [
+    "Bacalar",
+    "Lisbon"
+  ],
+  [
+    "Bacalar",
+    "Valletta"
+  ],
+  [
+    "Ha Giang",
+    "Krakow"
+  ],
+  [
+    "Ha Giang",
+    "Sarajevo"
+  ],
+  [
+    "Edinburgh",
+    "Ha Giang"
+  ],
+  [
+    "Hoi An",
+    "Lalibela"
+  ],
+  [
+    "Medellín",
+    "Zhangjiajie"
+  ],
+  [
+    "Ulaanbaatar",
+    "Vancouver"
+  ],
+  [
+    "Ha Giang",
+    "Melbourne"
+  ],
+  [
+    "Cusco",
+    "Ha Giang"
+  ],
+  [
+    "Bogotá",
+    "Paro"
+  ],
+  [
+    "Cesky Krumlov",
+    "Fez"
+  ],
+  [
+    "Ha Giang",
+    "Salvador da Bahia"
+  ],
+  [
+    "Ha Giang",
+    "Porto"
+  ],
+  [
+    "Dominica",
+    "London"
+  ],
+  [
+    "Dominica",
+    "Singapore"
+  ],
+  [
+    "Cesky Krumlov",
+    "Marrakech"
+  ],
+  [
+    "Lalibela",
+    "Toronto"
+  ],
+  [
+    "Hanga Roa",
+    "Nairobi"
+  ],
+  [
+    "Matera",
+    "Rio de Janeiro"
+  ],
+  [
+    "Istanbul",
+    "Swakopmund"
+  ],
+  [
+    "Buenos Aires",
+    "Rotorua"
+  ],
+  [
+    "Rio de Janeiro",
+    "Uluru"
+  ],
+  [
+    "Cesky Krumlov",
+    "Dubai"
+  ],
+  [
+    "Varanasi",
+    "Willemstad"
+  ],
+  [
+    "Dominica",
+    "Prague"
+  ],
+  [
+    "Goreme",
+    "Mumbai"
+  ],
+  [
+    "Kotor",
+    "New York City"
+  ],
+  [
+    "Iquitos",
+    "Toronto"
+  ],
+  [
+    "Cairo",
+    "Dominica"
+  ],
+  [
+    "Swakopmund",
+    "Tokyo"
+  ],
+  [
+    "Rio de Janeiro",
+    "Sedona"
+  ],
+  [
+    "Chefchaouen",
+    "Queenstown"
+  ],
+  [
+    "Copenhagen",
+    "Ulaanbaatar"
+  ],
+  [
+    "Bangkok",
+    "Lalibela"
+  ],
+  [
+    "Beijing",
+    "Lanzarote"
+  ],
+  [
+    "Lalibela",
+    "San Juan"
+  ],
+  [
+    "Batumi",
+    "Mumbai"
+  ],
+  [
+    "Tbilisi",
+    "Valparaíso"
+  ],
+  [
+    "Chiang Mai",
+    "Willemstad"
+  ],
+  [
+    "Medellín",
+    "Ulaanbaatar"
+  ],
+  [
+    "Lalibela",
+    "Seoul"
+  ],
+  [
+    "Kyoto",
+    "Pristina"
+  ],
+  [
+    "Baku",
+    "Iquitos"
+  ],
+  [
+    "Antigua",
+    "Paro"
+  ],
+  [
+    "Melbourne",
+    "Ulaanbaatar"
+  ],
+  [
+    "Oaxaca City",
+    "Ohrid"
+  ],
+  [
+    "Valparaíso",
+    "Viti Levu"
+  ],
+  [
+    "Cesky Krumlov",
+    "Cusco"
+  ],
+  [
+    "Dubrovnik",
+    "Rotorua"
+  ],
+  [
+    "Kyoto",
+    "Mostar"
+  ],
+  [
+    "Amsterdam",
+    "Trinidad"
+  ],
+  [
+    "Naha",
+    "Nairobi"
+  ],
+  [
+    "Hanga Roa",
+    "Vancouver"
+  ],
+  [
+    "Dominica",
+    "Lisbon"
+  ],
+  [
+    "Goreme",
+    "Zanzibar City"
+  ],
+  [
+    "Addis Ababa",
+    "Dominica"
+  ],
+  [
+    "Chefchaouen",
+    "Petra"
+  ],
+  [
+    "Honolulu",
+    "Valparaíso"
+  ],
+  [
+    "Goreme",
+    "Yogyakarta"
+  ],
+  [
+    "San Pedro de Atacama",
+    "Tirana"
+  ],
+  [
+    "Fez",
+    "Ulaanbaatar"
+  ],
+  [
+    "Cape Town",
+    "Kathmandu"
+  ],
+  [
+    "Ulaanbaatar",
+    "Valletta"
+  ],
+  [
+    "Quebec City",
+    "Ulaanbaatar"
+  ],
+  [
+    "Krakow",
+    "Valparaíso"
+  ],
+  [
+    "San Miguel de Allende",
+    "San Pedro de Atacama"
+  ],
+  [
+    "Sarajevo",
+    "Valparaíso"
+  ],
+  [
+    "Ohrid",
+    "Ubud"
+  ],
+  [
+    "Lalibela",
+    "Siem Reap"
+  ],
+  [
+    "Ha Giang",
+    "Paris"
+  ],
+  [
+    "Ha Giang",
+    "San Francisco"
+  ],
+  [
+    "Cesky Krumlov",
+    "Sydney"
+  ],
+  [
+    "Granada",
+    "Iquitos"
+  ],
+  [
+    "Rome",
+    "Ulaanbaatar"
+  ],
+  [
+    "Barcelona",
+    "Lalibela"
+  ],
+  [
+    "Budapest",
+    "Ulaanbaatar"
+  ],
+  [
+    "Dominica",
+    "Edinburgh"
+  ],
+  [
+    "Dominica",
+    "Hoi An"
+  ],
+  [
+    "Lalibela",
+    "Vienna"
+  ],
+  [
+    "Lalibela",
+    "Mexico City"
+  ],
+  [
+    "Nassau",
+    "Paro"
+  ],
+  [
+    "Goreme",
+    "Luang Prabang"
+  ],
+  [
+    "Cartagena",
+    "Dominica"
+  ],
+  [
+    "Porto",
+    "Ulaanbaatar"
+  ],
+  [
+    "Bogotá",
+    "Dominica"
+  ],
+  [
+    "Paro",
+    "Salvador da Bahia"
+  ],
+  [
+    "Hanga Roa",
+    "Rome"
+  ],
+  [
+    "Matera",
+    "San Francisco"
+  ],
+  [
+    "Buenos Aires",
+    "Kotor"
+  ],
+  [
+    "Amsterdam",
+    "Uluru"
+  ],
+  [
+    "Dubai",
+    "Sedona"
+  ],
+  [
+    "Singapore",
+    "Uluru"
+  ],
+  [
+    "Barcelona",
+    "Swakopmund"
+  ],
+  [
+    "Kotor",
+    "Tokyo"
+  ],
+  [
+    "Beijing",
+    "Goreme"
+  ],
+  [
+    "Swakopmund",
+    "Vienna"
+  ],
+  [
+    "Istanbul",
+    "Ushuaia"
+  ],
+  [
+    "Batumi",
+    "Rio de Janeiro"
+  ],
+  [
+    "Chiang Mai",
+    "Matera"
+  ],
+  [
+    "Nassau",
+    "Rotorua"
+  ],
+  [
+    "Nairobi",
+    "Pristina"
+  ],
+  [
+    "Swakopmund",
+    "Varanasi"
+  ],
+  [
+    "Kotor",
+    "Siem Reap"
+  ],
+  [
+    "Ohrid",
+    "Petra"
+  ],
+  [
+    "Hanga Roa",
+    "Melbourne"
+  ],
+  [
+    "Seoul",
+    "Swakopmund"
+  ],
+  [
+    "Mostar",
+    "Nairobi"
+  ],
+  [
+    "Reykjavik",
+    "Trinidad"
+  ],
+  [
+    "Cape Town",
+    "Naha"
+  ],
+  [
+    "Baku",
+    "Rotorua"
+  ],
+  [
+    "Batumi",
+    "Honolulu"
+  ],
+  [
+    "Ohrid",
+    "Yogyakarta"
+  ],
+  [
+    "Viti Levu",
+    "Willemstad"
+  ],
+  [
+    "Kathmandu",
+    "Tirana"
+  ],
+  [
+    "Cartagena",
+    "Ohrid"
+  ],
+  [
+    "Iquitos",
+    "Sarajevo"
+  ],
+  [
+    "Luang Prabang",
+    "Willemstad"
+  ],
+  [
+    "Krakow",
+    "Swakopmund"
+  ],
+  [
+    "Hoi An",
+    "Willemstad"
+  ],
+  [
+    "Nairobi",
+    "San Miguel de Allende"
+  ],
+  [
+    "Marrakech",
+    "Valparaíso"
+  ],
+  [
+    "New Delhi",
+    "Valparaíso"
+  ],
+  [
+    "London",
+    "Paro"
+  ],
+  [
+    "Cesky Krumlov",
+    "Oaxaca City"
+  ],
+  [
+    "Antigua",
+    "Cesky Krumlov"
+  ],
+  [
+    "Paris",
+    "Ulaanbaatar"
+  ],
+  [
+    "Iquitos",
+    "Sydney"
+  ],
+  [
+    "Dubrovnik",
+    "Uluru"
+  ],
+  [
+    "Cusco",
+    "Goreme"
+  ],
+  [
+    "Swakopmund",
+    "Tbilisi"
+  ],
+  [
+    "Paro",
+    "Prague"
+  ],
+  [
+    "Granada",
+    "Willemstad"
+  ],
+  [
+    "Cairo",
+    "Paro"
+  ],
+  [
+    "Mumbai",
+    "Queenstown"
+  ],
+  [
+    "Copenhagen",
+    "Uluru"
+  ],
+  [
+    "Matera",
+    "Medellín"
+  ],
+  [
+    "Matera",
+    "San Juan"
+  ],
+  [
+    "Rotorua",
+    "Vancouver"
+  ],
+  [
+    "Budapest",
+    "Swakopmund"
+  ],
+  [
+    "Porto",
+    "Willemstad"
+  ],
+  [
+    "Bangkok",
+    "Valparaíso"
+  ],
+  [
+    "Mexico City",
+    "Valparaíso"
+  ],
+  [
+    "Fez",
+    "Hanga Roa"
+  ],
+  [
+    "Edinburgh",
+    "Iquitos"
+  ],
+  [
+    "Lisbon",
+    "Uluru"
+  ],
+  [
+    "Lanzarote",
+    "Quebec City"
+  ],
+  [
+    "Cesky Krumlov",
+    "Zanzibar City"
+  ],
+  [
+    "Addis Ababa",
+    "Cesky Krumlov"
+  ],
+  [
+    "Nairobi",
+    "Ubud"
+  ],
+  [
+    "Bogotá",
+    "Uluru"
+  ],
+  [
+    "Salvador da Bahia",
+    "Swakopmund"
+  ],
+  [
+    "Valletta",
+    "Willemstad"
+  ],
+  [
+    "Ohrid",
+    "Toronto"
+  ],
+  [
+    "Lanzarote",
+    "New Delhi"
+  ],
+  [
+    "Cairo",
+    "Goreme"
+  ],
+  [
+    "Kyoto",
+    "Sedona"
+  ],
+  [
+    "Kotor",
+    "Marrakech"
+  ],
+  [
+    "Dubai",
+    "Matera"
+  ],
+  [
+    "Chefchaouen",
+    "Ushuaia"
+  ],
+  [
+    "Chiang Mai",
+    "Kotor"
+  ],
+  [
+    "Matera",
+    "Nassau"
+  ],
+  [
+    "Hanga Roa",
+    "Sydney"
+  ],
+  [
+    "Dubrovnik",
+    "Iquitos"
+  ],
+  [
+    "Naha",
+    "Ushuaia"
+  ],
+  [
+    "Marrakech",
+    "Pristina"
+  ],
+  [
+    "Trinidad",
+    "Ushuaia"
+  ],
+  [
+    "New York City",
+    "Queenstown"
+  ],
+  [
+    "Copenhagen",
+    "Hanga Roa"
+  ],
+  [
+    "Kotor",
+    "San Juan"
+  ],
+  [
+    "Marrakech",
+    "Mostar"
+  ],
+  [
+    "Tirana",
+    "Varanasi"
+  ],
+  [
+    "Lanzarote",
+    "Petra"
+  ],
+  [
+    "Cape Town",
+    "Luang Prabang"
+  ],
+  [
+    "Addis Ababa",
+    "Lanzarote"
+  ],
+  [
+    "Reykjavik",
+    "San Miguel de Allende"
+  ],
+  [
+    "Sedona",
+    "Ubud"
+  ],
+  [
+    "Hoi An",
+    "Lanzarote"
+  ],
+  [
+    "San Francisco",
+    "Zanzibar City"
+  ],
+  [
+    "San Pedro de Atacama",
+    "Valletta"
+  ],
+  [
+    "Rome",
+    "Uluru"
+  ],
+  [
+    "London",
+    "Uluru"
+  ],
+  [
+    "Ohrid",
+    "Tokyo"
+  ],
+  [
+    "Ohrid",
+    "Siem Reap"
+  ],
+  [
+    "Iquitos",
+    "Yogyakarta"
+  ],
+  [
+    "Budapest",
+    "Hanga Roa"
+  ],
+  [
+    "Hanga Roa",
+    "Tbilisi"
+  ],
+  [
+    "Matera",
+    "Melbourne"
+  ],
+  [
+    "Goreme",
+    "Honolulu"
+  ],
+  [
+    "Matera",
+    "Viti Levu"
+  ],
+  [
+    "Kathmandu",
+    "Nairobi"
+  ],
+  [
+    "Paris",
+    "Swakopmund"
+  ],
+  [
+    "Chefchaouen",
+    "Edinburgh"
+  ],
+  [
+    "Porto",
+    "San Pedro de Atacama"
+  ],
+  [
+    "Fez",
+    "Goreme"
+  ],
+  [
+    "Iquitos",
+    "Krakow"
+  ],
+  [
+    "Hanga Roa",
+    "Singapore"
+  ],
+  [
+    "Beijing",
+    "Willemstad"
+  ],
+  [
+    "Dubai",
+    "Sarajevo"
+  ],
+  [
+    "Oaxaca City",
+    "Uluru"
+  ],
+  [
+    "Prague",
+    "Uluru"
+  ],
+  [
+    "Barcelona",
+    "Rotorua"
+  ],
+  [
+    "Ushuaia",
+    "Vienna"
+  ],
+  [
+    "Baku",
+    "New York City"
+  ],
+  [
+    "Cartagena",
+    "Rotorua"
+  ],
+  [
+    "Granada",
+    "Nairobi"
+  ],
+  [
+    "Medellín",
+    "Ohrid"
+  ],
+  [
+    "Bangkok",
+    "Matera"
+  ],
+  [
+    "Matera",
+    "Mexico City"
+  ],
+  [
+    "Kotor",
+    "Seoul"
+  ],
+  [
+    "Antigua",
+    "Kotor"
+  ],
+  [
+    "Cusco",
+    "Ohrid"
+  ],
+  [
+    "Iquitos",
+    "Vancouver"
+  ],
+  [
+    "Bogotá",
+    "Goreme"
+  ],
+  [
+    "Hanga Roa",
+    "Lisbon"
+  ],
+  [
+    "Kotor",
+    "Salvador da Bahia"
+  ],
+  [
+    "Goreme",
+    "Quebec City"
+  ],
+  [
+    "Paris",
+    "Ushuaia"
+  ],
+  [
+    "New Delhi",
+    "Sedona"
+  ],
+  [
+    "Batumi",
+    "New Delhi"
+  ],
+  [
+    "Beijing",
+    "Sedona"
+  ],
+  [
+    "Pristina",
+    "San Pedro de Atacama"
+  ],
+  [
+    "Sedona",
+    "Siem Reap"
+  ],
+  [
+    "Chefchaouen",
+    "Sydney"
+  ],
+  [
+    "Cairo",
+    "Trinidad"
+  ],
+  [
+    "Dubrovnik",
+    "Naha"
+  ],
+  [
+    "Cape Town",
+    "Chiang Mai"
+  ],
+  [
+    "Mostar",
+    "Queenstown"
+  ],
+  [
+    "Naha",
+    "Reykjavik"
+  ],
+  [
+    "Cairo",
+    "San Miguel de Allende"
+  ],
+  [
+    "Cusco",
+    "Mostar"
+  ],
+  [
+    "Fez",
+    "Rio de Janeiro"
+  ],
+  [
+    "Dubai",
+    "Tbilisi"
+  ],
+  [
+    "Cape Town",
+    "Ubud"
+  ],
+  [
+    "Cairo",
+    "Melbourne"
+  ],
+  [
+    "Honolulu",
+    "Rome"
+  ],
+  [
+    "Antigua",
+    "Chefchaouen"
+  ],
+  [
+    "Cape Town",
+    "Hoi An"
+  ],
+  [
+    "Amsterdam",
+    "Rotorua"
+  ],
+  [
+    "Rotorua",
+    "San Francisco"
+  ],
+  [
+    "Lanzarote",
+    "Nassau"
+  ],
+  [
+    "Barcelona",
+    "Ushuaia"
+  ],
+  [
+    "Petra",
+    "Sedona"
+  ],
+  [
+    "Tirana",
+    "Ushuaia"
+  ],
+  [
+    "Baku",
+    "Buenos Aires"
+  ],
+  [
+    "Lanzarote",
+    "Yogyakarta"
+  ],
+  [
+    "Kathmandu",
+    "Sedona"
+  ],
+  [
+    "Kyoto",
+    "Vancouver"
+  ],
+  [
+    "Rotorua",
+    "Toronto"
+  ],
+  [
+    "London",
+    "Rotorua"
+  ],
+  [
+    "Lisbon",
+    "San Pedro de Atacama"
+  ],
+  [
+    "Iquitos",
+    "Istanbul"
+  ],
+  [
+    "Chefchaouen",
+    "San Juan"
+  ],
+  [
+    "Copenhagen",
+    "Trinidad"
+  ],
+  [
+    "Reykjavik",
+    "Zanzibar City"
+  ],
+  [
+    "Prague",
+    "San Pedro de Atacama"
+  ],
+  [
+    "Kotor",
+    "Singapore"
+  ],
+  [
+    "Pristina",
+    "Viti Levu"
+  ],
+  [
+    "Batumi",
+    "Oaxaca City"
+  ],
+  [
+    "Medellín",
+    "Pristina"
+  ],
+  [
+    "Addis Ababa",
+    "Batumi"
+  ],
+  [
+    "Bogotá",
+    "Reykjavik"
+  ],
+  [
+    "Nairobi",
+    "Varanasi"
+  ],
+  [
+    "Sedona",
+    "Tokyo"
+  ],
+  [
+    "Bangkok",
+    "Lanzarote"
+  ],
+  [
+    "Lanzarote",
+    "Mexico City"
+  ],
+  [
+    "San Pedro de Atacama",
+    "Vienna"
+  ],
+  [
+    "Luang Prabang",
+    "Sedona"
+  ],
+  [
+    "Cartagena",
+    "New Delhi"
+  ],
+  [
+    "Batumi",
+    "Salvador da Bahia"
+  ],
+  [
+    "Cape Town",
+    "Valletta"
+  ],
+  [
+    "Seoul",
+    "Ushuaia"
+  ],
+  [
+    "Budapest",
+    "Ushuaia"
+  ],
+  [
+    "Cape Town",
+    "Granada"
+  ],
+  [
+    "Krakow",
+    "Nairobi"
+  ],
+  [
+    "Cairo",
+    "Sarajevo"
+  ],
+  [
+    "Edinburgh",
+    "Trinidad"
+  ],
+  [
+    "Batumi",
+    "Quebec City"
+  ],
+  [
+    "Cape Town",
+    "Porto"
+  ],
+  [
+    "Pristina",
+    "San Francisco"
+  ],
+  [
+    "Petra",
+    "Trinidad"
+  ],
+  [
+    "Marrakech",
+    "Tirana"
+  ],
+  [
+    "Cusco",
+    "Nassau"
+  ],
+  [
+    "New York City",
+    "Tbilisi"
+  ],
+  [
+    "Kathmandu",
+    "Rio de Janeiro"
+  ],
+  [
+    "Amsterdam",
+    "Fez"
+  ],
+  [
+    "Dubai",
+    "San Miguel de Allende"
+  ],
+  [
+    "Honolulu",
+    "Marrakech"
+  ],
+  [
+    "Antigua",
+    "New Delhi"
+  ],
+  [
+    "Queenstown",
+    "Vienna"
+  ],
+  [
+    "Granada",
+    "Queenstown"
+  ],
+  [
+    "Quebec City",
+    "Tirana"
+  ],
+  [
+    "Reykjavik",
+    "Salvador da Bahia"
+  ],
+  [
+    "Porto",
+    "Queenstown"
+  ],
+  [
+    "Batumi",
+    "Beijing"
+  ],
+  [
+    "Chefchaouen",
+    "Toronto"
+  ],
+  [
+    "Chiang Mai",
+    "Pristina"
+  ],
+  [
+    "Cairo",
+    "Dubrovnik"
+  ],
+  [
+    "Pristina",
+    "Tokyo"
+  ],
+  [
+    "Baku",
+    "Trinidad"
+  ],
+  [
+    "Oaxaca City",
+    "Trinidad"
+  ],
+  [
+    "Chefchaouen",
+    "Prague"
+  ],
+  [
+    "Kyoto",
+    "Medellín"
+  ],
+  [
+    "Cairo",
+    "Krakow"
+  ],
+  [
+    "Mumbai",
+    "San Pedro de Atacama"
+  ],
+  [
+    "London",
+    "Queenstown"
+  ],
+  [
+    "Istanbul",
+    "Queenstown"
+  ],
+  [
+    "Reykjavik",
+    "Seoul"
+  ],
+  [
+    "Rio de Janeiro",
+    "Sarajevo"
+  ],
+  [
+    "Batumi",
+    "Singapore"
+  ],
+  [
+    "Addis Ababa",
+    "Reykjavik"
+  ],
+  [
+    "Cape Town",
+    "Varanasi"
+  ],
+  [
+    "New Delhi",
+    "Viti Levu"
+  ],
+  [
+    "Batumi",
+    "Yogyakarta"
+  ],
+  [
+    "Luang Prabang",
+    "Tirana"
+  ],
+  [
+    "Rio de Janeiro",
+    "Zanzibar City"
+  ],
+  [
+    "Hoi An",
+    "Tirana"
+  ],
+  [
+    "Paris",
+    "Queenstown"
+  ],
+  [
+    "Rome",
+    "Trinidad"
+  ],
+  [
+    "Sydney",
+    "Trinidad"
+  ],
+  [
+    "Mumbai",
+    "Vancouver"
+  ],
+  [
+    "Pristina",
+    "San Juan"
+  ],
+  [
+    "Chefchaouen",
+    "Melbourne"
+  ],
+  [
+    "Chefchaouen",
+    "Siem Reap"
+  ],
+  [
+    "Copenhagen",
+    "New Delhi"
+  ],
+  [
+    "Pristina",
+    "Ubud"
+  ],
+  [
+    "Dubrovnik",
+    "Mexico City"
+  ],
+  [
+    "Bogotá",
+    "Dubai"
+  ],
+  [
+    "Barcelona",
+    "Queenstown"
+  ],
+  [
+    "Bangkok",
+    "Mostar"
+  ],
+  [
+    "Budapest",
+    "Petra"
+  ],
+  [
+    "New York City",
+    "Valletta"
+  ],
+  [
+    "Cairo",
+    "Edinburgh"
+  ],
+  [
+    "Cartagena",
+    "Reykjavik"
+  ],
+  [
+    "Cairo",
+    "Lisbon"
+  ],
+  [
+    "Istanbul",
+    "Petra"
+  ],
+  [
+    "Chiang Mai",
+    "Mostar"
+  ],
+  [
+    "Dubrovnik",
+    "Tokyo"
+  ],
+  [
+    "Amsterdam",
+    "Naha"
+  ],
+  [
+    "Naha",
+    "Toronto"
+  ],
+  [
+    "Amsterdam",
+    "Ubud"
+  ],
+  [
+    "Luang Prabang",
+    "Toronto"
+  ],
+  [
+    "Singapore",
+    "Viti Levu"
+  ],
+  [
+    "Antigua",
+    "Varanasi"
+  ],
+  [
+    "Sarajevo",
+    "Siem Reap"
+  ],
+  [
+    "Cartagena",
+    "Rome"
+  ],
+  [
+    "Paris",
+    "Petra"
+  ],
+  [
+    "Petra",
+    "San Francisco"
+  ],
+  [
+    "Beijing",
+    "Tirana"
+  ],
+  [
+    "Buenos Aires",
+    "Tbilisi"
+  ],
+  [
+    "Naha",
+    "Sydney"
+  ],
+  [
+    "Marrakech",
+    "Nassau"
+  ],
+  [
+    "Dubai",
+    "Honolulu"
+  ],
+  [
+    "Copenhagen",
+    "Naha"
+  ],
+  [
+    "Dubai",
+    "Granada"
+  ],
+  [
+    "Amsterdam",
+    "Zanzibar City"
+  ],
+  [
+    "Mostar",
+    "San Juan"
+  ],
+  [
+    "Edinburgh",
+    "Marrakech"
+  ],
+  [
+    "Mostar",
+    "Seoul"
+  ],
+  [
+    "Hoi An",
+    "Toronto"
+  ],
+  [
+    "Addis Ababa",
+    "Dubrovnik"
+  ],
+  [
+    "Amsterdam",
+    "Quebec City"
+  ],
+  [
+    "Cusco",
+    "Tirana"
+  ],
+  [
+    "Buenos Aires",
+    "Fez"
+  ],
+  [
+    "New Delhi",
+    "San Miguel de Allende"
+  ],
+  [
+    "London",
+    "Petra"
+  ],
+  [
+    "Buenos Aires",
+    "Kathmandu"
+  ],
+  [
+    "Reykjavik",
+    "Yogyakarta"
+  ],
+  [
+    "Baku",
+    "Istanbul"
+  ],
+  [
+    "Mumbai",
+    "Oaxaca City"
+  ],
+  [
+    "Barcelona",
+    "Petra"
+  ],
+  [
+    "Kathmandu",
+    "Prague"
+  ],
+  [
+    "Baku",
+    "Vienna"
+  ],
+  [
+    "Kyoto",
+    "Melbourne"
+  ],
+  [
+    "Medellín",
+    "Naha"
+  ],
+  [
+    "Dubai",
+    "Vancouver"
+  ],
+  [
+    "Dubai",
+    "Krakow"
+  ],
+  [
+    "Bangkok",
+    "Tirana"
+  ],
+  [
+    "Mexico City",
+    "Mostar"
+  ],
+  [
+    "Budapest",
+    "New Delhi"
+  ],
+  [
+    "Kyoto",
+    "Valletta"
+  ],
+  [
+    "Bogotá",
+    "Marrakech"
+  ],
+  [
+    "Amsterdam",
+    "Salvador da Bahia"
+  ],
+  [
+    "Lisbon",
+    "Marrakech"
+  ],
+  [
+    "Porto",
+    "Rio de Janeiro"
+  ],
+  [
+    "Fez",
+    "San Francisco"
+  ],
+  [
+    "Rome",
+    "Yogyakarta"
+  ],
+  [
+    "Oaxaca City",
+    "Varanasi"
+  ],
+  [
+    "Luang Prabang",
+    "Sydney"
+  ],
+  [
+    "Copenhagen",
+    "Cusco"
+  ],
+  [
+    "Honolulu",
+    "Singapore"
+  ],
+  [
+    "Beijing",
+    "San Miguel de Allende"
+  ],
+  [
+    "San Juan",
+    "Tbilisi"
+  ],
+  [
+    "Medellín",
+    "Vienna"
+  ],
+  [
+    "Rome",
+    "Ubud"
+  ],
+  [
+    "Fez",
+    "Nassau"
+  ],
+  [
+    "Melbourne",
+    "Mumbai"
+  ],
+  [
+    "Baku",
+    "Paris"
+  ],
+  [
+    "New York City",
+    "Zanzibar City"
+  ],
+  [
+    "Istanbul",
+    "Vancouver"
+  ],
+  [
+    "Baku",
+    "Barcelona"
+  ],
+  [
+    "Sarajevo",
+    "Singapore"
+  ],
+  [
+    "Budapest",
+    "Sydney"
+  ],
+  [
+    "San Francisco",
+    "Valletta"
+  ],
+  [
+    "Hoi An",
+    "Sydney"
+  ],
+  [
+    "Bangkok",
+    "Dubrovnik"
+  ],
+  [
+    "Krakow",
+    "Singapore"
+  ],
+  [
+    "Cartagena",
+    "Kathmandu"
+  ],
+  [
+    "Mumbai",
+    "Quebec City"
+  ],
+  [
+    "Kathmandu",
+    "Mexico City"
+  ],
+  [
+    "Amsterdam",
+    "Chiang Mai"
+  ],
+  [
+    "Rome",
+    "Viti Levu"
+  ],
+  [
+    "Seoul",
+    "Toronto"
+  ],
+  [
+    "Mostar",
+    "Tokyo"
+  ],
+  [
+    "San Miguel de Allende",
+    "Siem Reap"
+  ],
+  [
+    "Granada",
+    "New York City"
+  ],
+  [
+    "London",
+    "Naha"
+  ],
+  [
+    "Medellín",
+    "Prague"
+  ],
+  [
+    "Edinburgh",
+    "New York City"
+  ],
+  [
+    "Antigua",
+    "San Francisco"
+  ],
+  [
+    "Addis Ababa",
+    "San Francisco"
+  ],
+  [
+    "Bogotá",
+    "Dubrovnik"
+  ]
 ]

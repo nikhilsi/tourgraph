@@ -1,7 +1,7 @@
 # TourGraph.ai — Technical Architecture
 
 ---
-**Last Updated**: February 28, 2026
+**Last Updated**: March 3, 2026
 **Status**: Locked — all decisions resolved
 **Depends on**: `ux_design.md` (UX decisions), `product_brief.md` (product scope)
 ---
@@ -30,10 +30,11 @@ TourGraph is a read-heavy, pre-cached consumer site. The user never triggers an 
 │                         SQLite DB                                 │
 │                    (single file on disk)                          │
 │                                                                  │
-│   tours         ~5,000-10,000 share-worthy tours                 │
-│   superlatives  daily "World's Most ___" computed from cache     │
-│   destinations  ~3,380 Viator destinations with timezones        │
-│   six_degrees   cached chain results (grows over time)           │
+│   tours            136,256 indexed tours (all with AI one-liners) │
+│   superlatives     daily "World's Most ___" computed from cache  │
+│   destinations     ~3,380 Viator destinations with timezones     │
+│   city_profiles    910 AI city profiles (personality, themes)    │
+│   six_degrees      491 pre-generated chains (from 500 pairs)    │
 │                                                                  │
 │   Resilience: stale data is fine. Tours don't change daily.      │
 │   If indexer fails, existing data serves until it recovers.      │
@@ -50,19 +51,19 @@ TourGraph is a read-heavy, pre-cached consumer site. The user never triggers an 
 │     /right-now             → Right Now Somewhere (6 golden-hour) │
 │     /worlds-most           → Superlatives gallery (6 cards)      │
 │     /worlds-most/[slug]    → Individual superlative detail       │
-│     /six-degrees           → City pair input (Phase 4)           │
-│     /six-degrees/[c1]/[c2] → Chain result (Phase 4)             │
+│     /six-degrees           → Chain gallery (curated groupings)   │
+│     /six-degrees/[slug]    → Chain detail (vertical timeline)   │
 │                                                                  │
 │   API Routes:                                                    │
 │     /api/roulette/hand     → batch of ~20 sequenced tours       │
-│     /api/six-degrees       → Claude API call (~2-5s, cached)    │
+│     /api/og/six-degrees/[slug]/ → Six Degrees OG images         │
 │                                                                  │
 │   OG Image Generation:                                           │
 │     /api/og/roulette/[id]       → roulette tour OG image        │
 │     /api/og/right-now           → right now feature OG image     │
 │     /api/og/worlds-most/[slug]  → superlative OG images         │
 │                                                                  │
-│   Every response except Six Degrees: < 50ms (local DB read)     │
+│   Every response: < 50ms (all pre-generated, local DB read)     │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
@@ -161,7 +162,35 @@ CREATE TABLE destinations (
     longitude REAL
 );
 
--- Cached Six Degrees chains (grows over time)
+-- City readings (append-only AI analysis log)
+-- See docs/city-intelligence.md for pipeline design
+CREATE TABLE city_readings (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    destination_name TEXT NOT NULL,
+    batch_id TEXT,
+    model TEXT NOT NULL,
+    personality TEXT NOT NULL,
+    themes_json TEXT NOT NULL,
+    standout_tours_json TEXT NOT NULL,
+    generated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- City profiles (materialized from city_readings)
+-- 910 cities with 50+ tours, rebuilt by merging all readings
+CREATE TABLE city_profiles (
+    destination_name TEXT PRIMARY KEY,
+    country TEXT NOT NULL,
+    continent TEXT,
+    tour_count INTEGER NOT NULL,
+    personality TEXT NOT NULL,
+    themes_json TEXT NOT NULL,
+    standout_tours_json TEXT NOT NULL,
+    reading_count INTEGER NOT NULL DEFAULT 1,
+    generated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    model TEXT NOT NULL
+);
+
+-- Pre-generated Six Degrees chains (491 from 500 pairs)
 CREATE TABLE six_degrees_chains (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     city_from TEXT NOT NULL,
@@ -328,7 +357,7 @@ User prompt:
   Return JSON: { chain: [{ tour_id, connection_to_next }] }
 ```
 
-Model: Sonnet 4.6 for reasoning quality. Cache every result in `six_degrees_chains` table. Popular city pairs can be pre-generated during batch indexing.
+Model: Sonnet 4.6 for reasoning quality. All 491 chains pre-generated via two-stage Batch API pipeline and stored in `six_degrees_chains` table. No on-demand generation — all chains served from DB. See `docs/six-degrees-chains.md`.
 
 ---
 
@@ -354,7 +383,7 @@ src/
 │   ├── right-now/page.tsx         # Right Now Somewhere (6 golden-hour tours)
 │   ├── worlds-most/page.tsx       # Superlatives gallery (6 cards)
 │   ├── worlds-most/[slug]/page.tsx # Individual superlative detail
-│   ├── six-degrees/               # Phase 4 (not yet built)
+│   ├── six-degrees/               # Chain gallery + detail pages
 │   └── api/
 │       ├── roulette/hand/route.ts       # GET: batch of ~20 sequenced tours
 │       ├── og/roulette/[id]/route.tsx   # OG image: roulette tour
@@ -378,10 +407,23 @@ src/
 │   └── continents.ts              # Continent mapping from Viator lookupId
 │
 ├── scripts/
-│   ├── indexer.ts                 # Drip + Delta indexer
-│   ├── seed-dev-data.ts           # Seeds 43 destinations
-│   ├── seed-destinations.ts       # Seeds all 3,380 Viator destinations
-│   └── backfill-oneliners.ts      # Batch AI one-liner generation
+│   ├── 1-viator/                  # Step 1: Viator API indexing
+│   │   ├── indexer.ts             #   Production indexer (136K tours)
+│   │   ├── seed-destinations.ts   #   Bootstrap destination hierarchy
+│   │   └── seed-dev-data.ts       #   Seeds 43 destinations (dev only)
+│   ├── 2-oneliners/               # Step 2: AI caption generation
+│   │   ├── backfill-oneliners.ts  #   Single-tour one-liners
+│   │   └── backfill-oneliners-batch.ts  #   Batch one-liners (fast)
+│   ├── 3-city-intel/              # Step 3: City intelligence pipeline
+│   │   ├── build-city-profiles.ts #   Submit to Claude → city_readings → merge
+│   │   └── backfill-city-readings.ts  #   Load JSONL files → merge
+│   ├── 4-chains/                  # Step 4: Six Degrees chain generation
+│   │   ├── generate-chains-v2.ts  #   Two-stage pipeline (Batch API + caching)
+│   │   ├── generate-pairs.ts      #   Pair generator (scored greedy)
+│   │   ├── curate-city-pool.ts    #   City pool curation (one-time)
+│   │   └── test-chain.ts          #   Chain testing (dev)
+│   └── utils/
+│       └── check-db.ts            # Database audit
 │
 └── public/                        # Static assets
 ```
@@ -431,24 +473,9 @@ Unlike Roulette (which needs a client API for the interactive spin loop), Right 
 
 All responses < 50ms (local DB reads). Pages use `force-dynamic` for fresh data.
 
-**`POST /api/six-degrees`**
+**Six Degrees — Pre-Generated Chains (No API Route)**
 
-```typescript
-// Request:
-{ cityFrom: string, cityTo: string }
-
-// Response: 2-5 seconds (Claude API call, or instant if cached)
-{
-  chain: [
-    {
-      tour: { ...tour data },
-      connectionToNext: "fermentation"  // thematic link
-    },
-    ...
-  ],
-  cached: boolean
-}
-```
+Chains are pre-generated via batch pipeline (`generate-chains-v2.ts`) and stored in `six_degrees_chains` table. The gallery and detail pages read directly from SQLite — no Claude API calls at request time. 491 chains from 500 curated cross-continent pairs. See `docs/six-degrees-chains.md` for generation architecture.
 
 ### OG Image Generation
 
@@ -641,7 +668,7 @@ All 6 are queried live via `getSuperlative(type)` / `getAllSuperlatives()` in `d
 
 ### The Core Principle
 
-**No API call at request time** (except Six Degrees).
+**No API call at request time.** All data pre-generated and served from SQLite.
 
 | Action | Data Source | Expected Latency |
 |--------|-----------|-----------------|
@@ -650,7 +677,7 @@ All 6 are queried live via `getSuperlative(type)` / `getAllSuperlatives()` in `d
 | Load Right Now | SQLite query | < 50ms |
 | Load World's Most | SQLite query | < 50ms |
 | Generate OG image | SQLite + CDN image fetch | < 500ms (then cached) |
-| Six Degrees chain | Claude API (or cache) | 2-5s (instant if cached) |
+| Six Degrees chain | SQLite query (pre-generated) | < 50ms |
 
 ### Client-Side Performance
 
@@ -821,7 +848,7 @@ CLAUDE_MODEL_SIXDEGREES=claude-sonnet-4-6
 |------|------|
 | DigitalOcean droplet | ~$6 |
 | Claude API (Haiku, nightly one-liners) | < $0.10 |
-| Claude API (Sonnet, Six Degrees on-demand) | ~$1-5 (depends on usage) |
+| Claude API (Sonnet, chains — one-time batch) | ~$20 (already generated) |
 | Viator API | Free |
 | Domain (tourgraph.ai) | Already paid |
 | **Total** | **~$7-12/month** |

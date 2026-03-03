@@ -2,7 +2,8 @@
 
 ---
 **Created**: March 2, 2026
-**Status**: Architecture locked — ready for implementation
+**Updated**: March 3, 2026
+**Status**: Generation complete — 453+ chains in DB from 500 pairs
 **Depends on**: `docs/city-intelligence.md` (Stage 0 / city profiles), `docs/data-schema.md` (DB schema)
 **Research**: `docs/reference/phase4-six-degrees.md` (early research, UI spec, test results)
 ---
@@ -80,7 +81,7 @@ Chain generation uses a three-stage pipeline where each stage does what it's bes
 | Stage | Name | What it does | Input | Output | Where |
 |-------|------|-------------|-------|--------|-------|
 | **0** | City Curator | Understands each city | All tours per city | City profile (personality, standout tours, themes) | `docs/city-intelligence.md` |
-| **1** | City Picker | Selects intermediate cities | All 910 city profiles (~190K tokens) | 3 intermediate cities per pair | This doc |
+| **1** | City Picker | Selects intermediate cities | All 910 city profiles (~125K tokens) | 3 intermediate cities per pair | This doc |
 | **2** | Chain Builder | Builds the chain | Detailed tours for 5 selected cities | Full chain JSON | This doc |
 
 Stage 0 runs once (builds the `city_profiles` table). Stages 1+2 run per chain.
@@ -89,15 +90,15 @@ Stage 0 runs once (builds the `city_profiles` table). Stages 1+2 run per chain.
 
 **Goal:** For a given endpoint pair (e.g., Tokyo → Buenos Aires), select 3 intermediate cities that maximize cultural distance, thematic surprise, and geographic diversity.
 
-**Input (~190K tokens):**
+**Input (~125K tokens):**
 - System prompt with selection rules (~2K tokens)
-- All 910 city profiles from `city_profiles` table (~188K tokens):
+- All 910 city profiles from `city_profiles` table in compact format (~123K tokens):
   - City name, country, continent, tour count
   - AI personality line
-  - 5 standout tours with one-liners and themes
+  - 3 standout tours per city with 60-char truncated reasons
   - AI-curated theme tags
 
-**Why this fits:** 910 cities × 5 standout tours with one-liners = ~186K tokens. Plus system prompt and output buffer = ~195K total. Within the 200K context window.
+**Why this fits:** 910 cities in compact format (3 standout tours, 60-char reasons) = ~499K chars → ~125K tokens. Plus system prompt rules (~2K tokens) and output buffer. Within the 200K context window.
 
 **Output:** 3 intermediate city names with reasoning.
 
@@ -216,17 +217,44 @@ Script (`src/scripts/4-chains/generate-pairs.ts`) creates pairs from the pool fo
 
 ## Gallery UX Design
 
-**Current state:** Flat list of all chain cards. Not viable at 500 chains.
+**Current state:** Flat list of all chain cards. Not viable at 491 chains.
 
-**Target:** Curated display following the World's Most superlatives pattern — groupings with one representative chain per group, plus "Surprise Me" from the full pool.
+**Target:** 5-6 curated theme categories (each showing one representative chain) + "Surprise Me" button pulling from the full pool. Same pattern as World's Most superlatives — few focused choices, not a wall of cards. User preference: "a few chains, not 8-10. Few allows the user to focus. Too much is a distraction."
 
-**Open question:** What are the groupings?
-- By continent pair (Asia↔Europe, Americas↔Africa, ...)?
-- By dominant theme (food chains, sacred chains, nature chains)?
-- Editor's picks (hand-curated "best of")?
-- Some combination?
+### Decided: Theme-Based Categories
 
-This needs design thinking after we have actual chain data to work with.
+Data analysis (March 3, 2026) confirmed natural theme clusters in the chain data:
+
+| Category | Pool Size | Description |
+|----------|-----------|-------------|
+| **Sacred Journeys** | 48 chains | 2+ sacred/meditation themes — spiritual pilgrimage feel |
+| **Rhythm & Movement** | 37 chains | 2+ music/dance themes — energy and joy |
+| **Craft Trails** | 29 chains | 2+ craftsmanship/street-art themes — human artistry |
+| **Dark History** | 24 chains | 2+ dark tourism/colonial themes — weight and memory |
+| **Food & Drink** | 16 chains | 3+ food-related themes — the tastiest chains |
+| **World Tours** | 13 chains | Span 5 continents in 5 stops — the most ambitious |
+
+Each category card shows one representative chain from its pool. "Surprise Me" draws randomly from the full 491.
+
+### Design Considerations
+
+**Hub repetition:** Addis Ababa appears in 40% of chains, Varanasi in 34%, Dakar in 32%. Gallery cards should emphasize endpoints (city_from → city_to) prominently. Intermediate cities can be shown subtly (e.g., "via Varanasi, Dakar, Accra") to avoid the repetition feeling stale on browse.
+
+**Summary quality:** Average 104 chars, range 81-136. Perfect for single-line card text. Examples:
+- *"Leather wallets → slave history → Caribbean dance → sky lanterns → mezcal: the world's most unexpected pub crawl."*
+- *"From Andean looms to Cappadocian clay: craftsmanship, faith, forts, and fermented grapes connect four continents."*
+
+**146 unique cities** appear across all chains. 785 unique tours referenced (0.6% of catalog).
+
+### Data Analysis Reference (March 3, 2026)
+
+**Theme distribution (top 10):** markets/bazaars (234), craftsmanship (205), sacred spaces (182), cuisine (174), dark tourism (173), music (154), dance (140), photography (121), meditation/wellness (120), wine/spirits (117). 20 themes total.
+
+**Continent pairs (top 5):** Asia↔Europe (82), Africa↔Europe (62), Europe↔South America (62), Asia↔South America (36), Europe↔North America (35).
+
+**Top intermediate hubs:** Addis Ababa (195/491 = 40%), Varanasi (166 = 34%), Dakar (155 = 32%), Cartagena (113), Accra (108), Zanzibar City (107).
+
+**Continents per chain:** 2 (22%), 3 (51%), 4 (25%), 5 (3%). Average 3.08.
 
 ---
 
@@ -242,6 +270,33 @@ Currently the chain detail page shows per node: city, tour photo, tour title, st
 
 ---
 
+## Generation Results
+
+**Full run (March 3, 2026):**
+
+| Metric | Value |
+|--------|-------|
+| Total pairs | 500 |
+| Chains generated (first pass) | 453 (90.6%) |
+| Stage 1 failures | 34 (19 invalid city names, 15 JSON parse errors) |
+| Stage 2 failures | 16 (7 duplicate themes, 6 JSON parse errors, 3 duplicate cities) |
+| Retry pass | 50 pairs resubmitted with improved JSON parser |
+| Batch API cost | ~$20 estimated |
+
+**Common failure patterns:**
+- "Havana" hallucinated 7 times (not in our 910-city DB)
+- "Bali" hallucinated 3 times (we have "Ubud" not "Bali")
+- "craftsmanship" most frequently duplicated theme
+- JSON parse errors: Claude added explanatory text after valid JSON — fixed with robust parser
+
+**Batch IDs (Anthropic portal):**
+- Stage 1 test: `msgbatch_013B25p6Nkmh46NEkDErRmFH` (20/20)
+- Stage 2 test: `msgbatch_01C4z3cBsrowHfuzAZhJRDgR` (20/20)
+- Stage 1 full: `msgbatch_01Ru73vyj5gv2MuJJhef8TDP` (482/482)
+- Stage 2 full: `msgbatch_01MYDG4BWgkDfT6jfE8m2qE5` (448/448)
+
+---
+
 ## Decisions Made
 
 - [x] **Three-stage pipeline** — Stage 0 (city intelligence) → Stage 1 (city picker) → Stage 2 (chain builder). Each stage optimized for its job.
@@ -251,12 +306,14 @@ Currently the chain detail page shows per node: city, tour photo, tour title, st
 - [x] **Gallery UX** — Curated display (superlatives pattern), not a wall of cards.
 - [x] **One-liner on chain detail** — Yes, both web and iOS.
 - [x] **v3 prompt refinements** — One-liner context, mixed tour selection, surprise bias, theme clarity, 120-char summary.
+- [x] **Endpoint pool composition** — 100 cities (30 anchors, 40 gems, 30 surprises) in `city-pool.json`. AI-curated + manually rebalanced.
+- [x] **Pair selection** — 500 pairs in `chain-pairs.json`. Scored greedy algorithm (Jaccard theme distance + tier mixing).
+- [x] **Two-stage pipeline** — `generate-chains-v2.ts`. Stage 1 system prompt: ~125K tokens (910 city profiles), cached. Batch API for both stages.
+- [x] **Batch mode** — Batch API for full runs (~40 min Stage 1, ~1 hr Stage 2). Prompt caching confirmed on Stage 1.
 
 ## Open Decisions
 
-- [ ] **Endpoint pool composition** — Which ~100 cities? Informed by Stage 0 city profiles.
-- [ ] **Gallery categories** — By continent pair? By theme? Editor's picks?
-- [ ] **Batch vs. sequential** — Batch faster but variable cache hits. Sequential slower but near-100% hits.
+- [x] **Gallery categories** — 5-6 theme-based categories + "Surprise Me". See Gallery UX Design section above.
 
 ---
 
@@ -266,9 +323,13 @@ Currently the chain detail page shows per node: city, tour photo, tour title, st
 |------|-------|
 | City intelligence (Stage 0) | `docs/city-intelligence.md` |
 | Research & UI spec | `docs/reference/phase4-six-degrees.md` |
-| Current generator (v1) | `src/scripts/4-chains/generate-chains.ts` |
+| Two-stage generator (v2) | `src/scripts/4-chains/generate-chains-v2.ts` |
+| Legacy generator (v1) | `src/scripts/4-chains/generate-chains.ts` |
 | Test chain outputs | `data/chain-tests/` |
-| Current pair config | `src/scripts/4-chains/chain-pairs.json` |
+| Pair generator | `src/scripts/4-chains/generate-pairs.ts` |
+| 500 pairs config | `src/scripts/4-chains/chain-pairs.json` |
+| 100-city endpoint pool | `src/scripts/4-chains/city-pool.json` |
+| City pool curator | `src/scripts/4-chains/curate-city-pool.ts` |
 | DB schema | `docs/data-schema.md` |
 | Gallery page | `src/app/six-degrees/page.tsx` |
 | Detail page | `src/app/six-degrees/[slug]/page.tsx` |

@@ -240,7 +240,7 @@ CREATE TABLE city_profiles (
 
 ### Six Degrees (Stages 1+2) — Primary consumer
 
-**Stage 1 (City Picker):** All 910 city profiles are loaded into the system prompt (~190K tokens). For each chain pair, Claude picks 3 intermediate cities from the *entire* set of 910 — no artificial constraints. The personality lines and standout tours give Claude rich context for finding surprising thematic connections.
+**Stage 1 (City Picker):** All 910 city profiles are loaded into the system prompt (~125K tokens in compact format: personality + themes + 3 standout tours per city). For each chain pair, Claude picks 3 intermediate cities from the *entire* set of 910 — no artificial constraints. The personality lines and standout tours give Claude rich context for finding surprising thematic connections.
 
 **Stage 2 (Chain Builder):** Detailed tours for the 5 selected cities. The city profile's themes and personality inform the chain narrative.
 
