@@ -53,7 +53,7 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 - **474 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-**Next:** Redeploy DB → iOS polish.
+**Next:** Production testing → iOS seed DB + polish → App Store.
 
 ## Deployment
 
