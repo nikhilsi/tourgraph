@@ -11,7 +11,7 @@ const features = [
 
 export default function FeatureNav({ current }: { current: string }) {
   return (
-    <nav className="flex items-center justify-center gap-2 text-sm text-text-dim">
+    <nav aria-label="Feature navigation" className="flex items-center justify-center gap-2 text-sm text-text-dim">
       {features.map((f, i) => (
         <span key={f.name}>
           {i > 0 && <span className="mx-1">&middot;</span>}

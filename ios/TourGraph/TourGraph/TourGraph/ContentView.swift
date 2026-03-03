@@ -30,6 +30,5 @@ struct ContentView: View {
                 }
         }
         .tint(.white)
-        .preferredColorScheme(.dark)
     }
 }

@@ -6,9 +6,9 @@ struct TourDetailView: View {
     let database: DatabaseService
     let favorites: Favorites
     var enrichmentService: TourEnrichmentService?
-    var batchIds: [Int] = []
 
     @State private var tour: Tour?
+    @State private var loadFailed = false
     @State private var isRenderingCard = false
     @State private var showShareSheet = false
     @State private var shareCardImage: UIImage?
@@ -40,6 +40,7 @@ struct TourDetailView: View {
                                     .font(.title3)
                                     .foregroundStyle(favorites.contains(tour.id) ? .red : .white.opacity(0.5))
                             }
+                            .accessibilityLabel(favorites.contains(tour.id) ? "Remove from favorites" : "Add to favorites")
                         }
 
                         // One-liner
@@ -151,6 +152,15 @@ struct TourDetailView: View {
                     }
                     .padding(.horizontal, 20)
                 }
+            } else if loadFailed {
+                VStack(spacing: 12) {
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.largeTitle)
+                        .foregroundStyle(.yellow)
+                    Text("Tour not found")
+                        .foregroundStyle(.white.opacity(0.7))
+                }
+                .frame(maxWidth: .infinity, minHeight: 300)
             } else {
                 ProgressView()
                     .tint(.white)
@@ -167,9 +177,13 @@ struct TourDetailView: View {
         }
         .task {
             tour = try? database.getTourById(tourId)
+            if tour == nil {
+                loadFailed = true
+                return
+            }
             // Enrich if needed (lazy fetch from server)
             if let currentTour = tour, let enrichment = enrichmentService {
-                if let enriched = await enrichment.enrichIfNeeded(tour: currentTour, batchIds: batchIds) {
+                if let enriched = await enrichment.enrichIfNeeded(tour: currentTour) {
                     tour = enriched
                 }
             }

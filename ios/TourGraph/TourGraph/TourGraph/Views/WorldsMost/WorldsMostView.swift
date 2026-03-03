@@ -25,6 +25,7 @@ struct WorldsMostTab: View {
                         Image(systemName: "gearshape")
                             .foregroundStyle(.white.opacity(0.6))
                     }
+                    .accessibilityLabel("Settings")
                 }
             }
             .sheet(isPresented: $showSettings) {

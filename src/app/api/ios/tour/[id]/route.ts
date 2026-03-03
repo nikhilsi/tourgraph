@@ -23,11 +23,18 @@ export async function GET(
       return NextResponse.json({ error: "Tour not found" }, { status: 404 });
     }
 
-    return NextResponse.json({
-      id,
-      description: row.description,
-      image_urls_json: row.image_urls_json,
-    });
+    return NextResponse.json(
+      {
+        id,
+        description: row.description,
+        image_urls_json: row.image_urls_json,
+      },
+      {
+        headers: {
+          "Cache-Control": "public, max-age=86400, s-maxage=86400",
+        },
+      }
+    );
   } catch (error) {
     console.error("iOS tour enrichment error:", error);
     return NextResponse.json(

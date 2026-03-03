@@ -52,6 +52,7 @@ struct TourCardView: View {
                             .padding(8)
                             .background(.ultraThinMaterial, in: Circle())
                     }
+                    .accessibilityLabel(favorites.contains(tour.id) ? "Remove from favorites" : "Add to favorites")
                     .padding(8)
                 }
             }

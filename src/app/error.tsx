@@ -1,11 +1,13 @@
 "use client";
 
 export default function Error({
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  console.error("[TourGraph error boundary]", error.message, error.digest);
   return (
     <main className="flex flex-col items-center justify-center min-h-screen py-8 px-4">
       <h1 className="text-2xl font-bold mb-4">Something went wrong</h1>

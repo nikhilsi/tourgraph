@@ -6,7 +6,7 @@ import ShareButton from "./ShareButton";
 
 export default function TourCard({
   tour,
-  priority = true,
+  priority = false,
 }: {
   tour: RouletteTour;
   priority?: boolean;

@@ -26,6 +26,7 @@ struct SixDegreesTab: View {
                         Image(systemName: "gearshape")
                             .foregroundStyle(.white.opacity(0.6))
                     }
+                    .accessibilityLabel("Settings")
                 }
             }
             .sheet(isPresented: $showSettings) {
@@ -208,6 +209,7 @@ struct SixDegreesSection: View {
                                                     .padding(6)
                                                     .background(.ultraThinMaterial, in: Circle())
                                             }
+                                            .accessibilityLabel(favorites.contains(tour.id) ? "Remove from favorites" : "Add to favorites")
                                             .padding(6)
                                         }
                                         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))

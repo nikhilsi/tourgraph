@@ -72,9 +72,17 @@ struct Tour: Identifiable, Codable, FetchableRecord, Sendable {
         guard let mins = durationMinutes else { return "" }
         if mins >= 1440 {
             let days = mins / 1440
+            let remainingHrs = (mins % 1440) / 60
+            if remainingHrs > 0 {
+                return "\(days)d \(remainingHrs)h"
+            }
             return "\(days) day\(days == 1 ? "" : "s")"
         } else if mins >= 60 {
             let hrs = mins / 60
+            let remainingMins = mins % 60
+            if remainingMins > 0 {
+                return "\(hrs)h \(remainingMins)m"
+            }
             return "\(hrs) hr\(hrs == 1 ? "" : "s")"
         }
         return "\(mins) min"

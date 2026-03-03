@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import FeatureNav from "@/components/FeatureNav";
 import Logo from "@/components/Logo";

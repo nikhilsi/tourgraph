@@ -30,7 +30,14 @@ export async function POST(request: Request) {
       )
       .all(...validIds) as { id: number; description: string | null; image_urls_json: string | null }[];
 
-    return NextResponse.json({ tours: rows });
+    return NextResponse.json(
+      { tours: rows },
+      {
+        headers: {
+          "Cache-Control": "public, max-age=86400, s-maxage=86400",
+        },
+      }
+    );
   } catch (error) {
     console.error("iOS batch enrichment error:", error);
     return NextResponse.json(
