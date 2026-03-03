@@ -6,6 +6,50 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [6.2.0] - 2026-03-03
+
+### Code Review — Tiers 1-3
+
+**Performance (Tier 1):**
+- Six Degrees chain lookup by slug (was full table scan of 491 chains per request)
+- Added `slug` column to `six_degrees_chains` with auto-migration for existing DBs
+- `getChainCount()`, `getRandomChain()`, `getChainBySlug()` — targeted queries instead of loading all chains
+
+**Security (Tier 1):**
+- Parameterized SQL in iOS `DatabaseService` — replaced string-interpolated NOT IN with `StatementArguments`
+- Safe URL unwrapping in iOS share sheets (was force-unwrapped)
+- Rate limiter hardened: TTL eviction at 10K entries, rightmost X-Forwarded-For IP
+- Removed `unsafe-eval` from CSP headers
+
+**Batch Queries (Tier 2):**
+- `getToursByIds()` — single batch query replaces N+1 individual lookups (web + iOS)
+- iOS `pickRandom()` — 1 batch query instead of 5 individual fetches
+
+**Error Handling (Tier 2):**
+- iOS error states + retry UI on WorldsMost, RightNow, SixDegrees views
+- `TourEnrichmentService` — do/catch with logger instead of silent `try?`
+- Removed dead `prefetchHand()` method
+
+**Shared Components (Tier 3):**
+- `ChainTimeline.tsx` — extracted from 2 Six Degrees pages (~96 duplicated lines each)
+- `superlatives.ts` — extracted from 3 World's Most files (titles, descriptions, stat formatters)
+- Restored missing `formatPrice`/`formatDurationLong` imports broken during extraction
+
+**iOS Concurrency (Tier 3):**
+- `@MainActor` isolation on `AppSettings`, `Favorites`, `DatabaseService` (was `@Observable + Sendable` — unsound)
+- Guard-let on `DatabaseService.init()` (was force-unwrap)
+- Fixed `.sheet()` inside conditional body → moved to outer VStack
+- Fixed stale `FavoritesListView` with `.onChange(of: favorites.tourIds)`
+
+**Polish (Tier 3):**
+- Health endpoint: `GET /api/health`
+- Non-null timezone assertion → safe fallback (`?? "UTC"`)
+- Fixed duplicate diamond emoji → hidden gem uses star
+- Updated About page Six Degrees description (was "Coming soon")
+- Removed hardcoded server IPs from docs
+
+---
+
 ## [6.1.0] - 2026-03-03
 
 ### iOS — Seed DB, Enrichment, Polish
