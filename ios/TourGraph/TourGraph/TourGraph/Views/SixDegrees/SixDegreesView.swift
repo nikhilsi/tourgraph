@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 // MARK: - Standalone tab
 
@@ -43,6 +44,9 @@ struct SixDegreesSection: View {
     @State private var selectedChain: Chain?
     @State private var toursByIds: [Int: Tour] = [:]
     @State private var isLoading = true
+    @State private var isRenderingCard = false
+    @State private var showShareSheet = false
+    @State private var shareCardImage: UIImage?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -244,13 +248,23 @@ struct SixDegreesSection: View {
 
                 // Share
                 if let chain = selectedChain {
-                    ShareLink(
-                        item: URL(string: "https://tourgraph.ai/six-degrees/\(chain.slug)")!,
-                        subject: Text("\(chain.cityFrom) to \(chain.cityTo)"),
-                        message: Text(chain.summary)
-                    ) {
+                    Button {
+                        Task {
+                            isRenderingCard = true
+                            shareCardImage = ShareCardRenderer.renderChainCard(chain: chain)
+                            isRenderingCard = false
+                            if shareCardImage != nil {
+                                showShareSheet = true
+                            }
+                        }
+                    } label: {
                         HStack {
-                            Image(systemName: "square.and.arrow.up")
+                            if isRenderingCard {
+                                ProgressView()
+                                    .tint(.white)
+                            } else {
+                                Image(systemName: "square.and.arrow.up")
+                            }
                             Text("Share This Chain")
                         }
                         .font(.headline)
@@ -260,7 +274,13 @@ struct SixDegreesSection: View {
                         .background(Color.white.opacity(0.15))
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
+                    .disabled(isRenderingCard)
                     .padding(.horizontal, 20)
+                    .sheet(isPresented: $showShareSheet) {
+                        if let image = shareCardImage {
+                            ShareSheet(items: [image, URL(string: "https://tourgraph.ai/six-degrees/\(chain.slug)")!])
+                        }
+                    }
                 }
             } else {
                 Text("Chains coming soon!")

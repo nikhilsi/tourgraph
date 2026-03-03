@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct TourDetailView: View {
     let tourId: Int
@@ -8,6 +9,9 @@ struct TourDetailView: View {
     var batchIds: [Int] = []
 
     @State private var tour: Tour?
+    @State private var isRenderingCard = false
+    @State private var showShareSheet = false
+    @State private var shareCardImage: UIImage?
 
     var body: some View {
         ScrollView {
@@ -116,14 +120,24 @@ struct TourDetailView: View {
                             .padding(.top, 8)
                         }
 
-                        // Share
-                        ShareLink(
-                            item: URL(string: "https://tourgraph.ai/roulette/\(tour.id)")!,
-                            subject: Text(tour.title),
-                            message: Text(tour.oneLiner ?? tour.title)
-                        ) {
+                        // Share card
+                        Button {
+                            Task {
+                                isRenderingCard = true
+                                shareCardImage = await ShareCardRenderer.renderTourCard(tour: tour)
+                                isRenderingCard = false
+                                if shareCardImage != nil {
+                                    showShareSheet = true
+                                }
+                            }
+                        } label: {
                             HStack {
-                                Image(systemName: "square.and.arrow.up")
+                                if isRenderingCard {
+                                    ProgressView()
+                                        .tint(.white)
+                                } else {
+                                    Image(systemName: "square.and.arrow.up")
+                                }
                                 Text("Share")
                             }
                             .font(.headline)
@@ -133,6 +147,7 @@ struct TourDetailView: View {
                             .background(Color.white.opacity(0.15))
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                         }
+                        .disabled(isRenderingCard)
                     }
                     .padding(.horizontal, 20)
                 }
@@ -144,6 +159,11 @@ struct TourDetailView: View {
         }
         .background(Color.black)
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $showShareSheet) {
+            if let image = shareCardImage, let tour {
+                ShareSheet(items: [image, URL(string: "https://tourgraph.ai/roulette/\(tour.id)")!])
+            }
+        }
         .task {
             tour = try? database.getTourById(tourId)
             // Enrich if needed (lazy fetch from server)

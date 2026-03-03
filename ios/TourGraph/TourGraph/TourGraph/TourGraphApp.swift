@@ -37,12 +37,13 @@ struct TourGraphApp: App {
                 } else {
                     ZStack {
                         Color.black.ignoresSafeArea()
-                        VStack(spacing: 16) {
+                        VStack(spacing: 24) {
+                            Image("LogoWhite")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 200)
                             ProgressView()
                                 .tint(.white)
-                            Text("Loading tours...")
-                                .font(.subheadline)
-                                .foregroundStyle(.white.opacity(0.5))
                         }
                     }
                 }

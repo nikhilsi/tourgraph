@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct RouletteView: View {
     let rouletteState: RouletteState
@@ -9,6 +10,9 @@ struct RouletteView: View {
     @State private var dragOffset: CGFloat = 0
     @State private var cardOpacity: Double = 1
     @State private var showSettings = false
+    @State private var isRenderingCard = false
+    @State private var showShareSheet = false
+    @State private var shareCardImage: UIImage?
 
     var body: some View {
         NavigationStack {
@@ -35,6 +39,11 @@ struct RouletteView: View {
             }
             .sheet(isPresented: $showSettings) {
                 SettingsView(settings: settings, favorites: favorites, database: rouletteState.database, enrichmentService: enrichmentService)
+            }
+            .sheet(isPresented: $showShareSheet) {
+                if let image = shareCardImage, let tour = rouletteState.currentTour {
+                    ShareSheet(items: [image, URL(string: "https://tourgraph.ai/roulette/\(tour.id)")!])
+                }
             }
             .onAppear {
                 if rouletteState.currentTour == nil {
@@ -75,15 +84,26 @@ struct RouletteView: View {
 
             // Bottom controls
             HStack(spacing: 24) {
-                ShareLink(
-                    item: URL(string: "https://tourgraph.ai/roulette/\(tour.id)")!,
-                    subject: Text(tour.title),
-                    message: Text(tour.oneLiner ?? tour.title)
-                ) {
-                    Label("Share", systemImage: "square.and.arrow.up")
-                        .font(.subheadline)
-                        .foregroundStyle(.white.opacity(0.6))
+                Button {
+                    Task {
+                        isRenderingCard = true
+                        shareCardImage = await ShareCardRenderer.renderTourCard(tour: tour)
+                        isRenderingCard = false
+                        if shareCardImage != nil {
+                            showShareSheet = true
+                        }
+                    }
+                } label: {
+                    if isRenderingCard {
+                        ProgressView()
+                            .tint(.white.opacity(0.6))
+                    } else {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                            .font(.subheadline)
+                            .foregroundStyle(.white.opacity(0.6))
+                    }
                 }
+                .disabled(isRenderingCard)
 
                 Button {
                     nextTour()
