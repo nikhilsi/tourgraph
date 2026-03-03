@@ -4,6 +4,8 @@ struct TourDetailView: View {
     let tourId: Int
     let database: DatabaseService
     let favorites: Favorites
+    var enrichmentService: TourEnrichmentService?
+    var batchIds: [Int] = []
 
     @State private var tour: Tour?
 
@@ -144,6 +146,12 @@ struct TourDetailView: View {
         .navigationBarTitleDisplayMode(.inline)
         .task {
             tour = try? database.getTourById(tourId)
+            // Enrich if needed (lazy fetch from server)
+            if let currentTour = tour, let enrichment = enrichmentService {
+                if let enriched = await enrichment.enrichIfNeeded(tour: currentTour, batchIds: batchIds) {
+                    tour = enriched
+                }
+            }
         }
     }
 

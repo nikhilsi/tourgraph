@@ -1,7 +1,8 @@
 import Foundation
 import GRDB
 
-/// Central read-only SQLite connection. All queries go through here.
+/// Central SQLite connection. All queries go through here.
+/// Read-write: reads for all features, writes for per-tour enrichment.
 @Observable
 final class DatabaseService: Sendable {
     private let db: DatabaseQueue
@@ -242,6 +243,19 @@ final class DatabaseService: Sendable {
     func getChainBySlug(_ slug: String) throws -> Chain? {
         let chains = try getAllChains()
         return chains.first { $0.slug == slug }
+    }
+
+    // MARK: - Enrichment (write)
+
+    /// Write enriched data back to local DB for a single tour.
+    /// Called by TourEnrichmentService after fetching from server.
+    func enrichTour(id: Int, description: String?, imageUrlsJson: String?) throws {
+        try db.write { db in
+            try db.execute(
+                sql: "UPDATE tours SET description = ?, image_urls_json = ? WHERE id = ?",
+                arguments: [description, imageUrlsJson, id]
+            )
+        }
     }
 
     // MARK: - Stats

@@ -4,6 +4,7 @@ struct RouletteView: View {
     let rouletteState: RouletteState
     let settings: AppSettings
     let favorites: Favorites
+    let enrichmentService: TourEnrichmentService
 
     @State private var dragOffset: CGFloat = 0
     @State private var cardOpacity: Double = 1
@@ -99,7 +100,7 @@ struct RouletteView: View {
             .padding(.bottom, 16)
         }
         .navigationDestination(for: Int.self) { tourId in
-            TourDetailView(tourId: tourId, database: rouletteState.database, favorites: favorites)
+            TourDetailView(tourId: tourId, database: rouletteState.database, favorites: favorites, enrichmentService: enrichmentService)
         }
     }
 

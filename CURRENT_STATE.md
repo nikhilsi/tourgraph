@@ -37,9 +37,9 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 | App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
 
 **App Store prep done:** PrivacyInfo.xcprivacy, ExportOptions.plist, metadata draft (`docs/implementation/ios-app-store.md`).
-**Seed DB strategy decided:** ~210MB target from 479MB production DB. Truncate descriptions to ~200 chars, NULL image galleries/inclusions/supplier, drop 5 unused tables, VACUUM. Build script in `docs/implementation/ios-architecture.md`.
-**Bundled DB is stale:** Currently 367MB with 110K tours, 0 chains — must rebuild from production data before testing.
-**Not yet built:** Seed DB build (script ready), per-tour enrichment (lazy fetch on detail tap — designed, not required for App Store v1), share card rendering (ImageRenderer), launch screen, App Store screenshots.
+**Seed DB built:** 120MB (down from 479MB production). 136,256 tours, 491 chains. Descriptions truncated to ~200 chars, image galleries NULLed, 5 unused tables dropped, VACUUM'd. Bundled in iOS app.
+**Per-tour enrichment built:** `TourEnrichmentService.swift` + server endpoints (`/api/ios/tour/[id]`, `/api/ios/tours/batch`). Lazy fetch on detail tap — full descriptions + photo galleries load from server, written to local DB, persisted for future views.
+**Not yet built:** Share card rendering (ImageRenderer), launch screen, App Store screenshots.
 
 ## Data Asset (4 IP Layers)
 
@@ -55,7 +55,7 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 - **479 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-**Next:** Build seed DB (~210MB) → iOS testing on simulator/device → polish → App Store.
+**Next:** iOS testing on simulator/device → polish → App Store.
 
 ## Deployment
 

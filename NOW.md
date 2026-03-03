@@ -3,21 +3,23 @@
 **Last Updated**: March 3, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 
-## Current Focus: iOS Seed DB & Polish
+## Current Focus: iOS Seed DB → Enrichment → Test → Ship
 
-Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset deployed (136,256 tours, 491 chains, 910 city profiles, 479MB database). All four web features complete and web production tested. iOS app built, needs seed DB + polish before App Store submission.
+Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset deployed (136,256 tours, 491 chains, 910 city profiles, 479MB database). All four web features complete and web production tested. iOS app built, executing the path to App Store.
 
 ## Next — In Order
 
-1. **iOS seed DB** — Build ~210MB seed DB from production 479MB. Strategy decided: drop 5 unused tables, NULL `image_urls_json`/`inclusions_json`/`supplier_name`, truncate `description` to ~200 chars at word boundary, drop redundant indexes, VACUUM. Concrete build script in `docs/implementation/ios-architecture.md` ("Seed DB Build Script" section). Current bundled DB is stale (367MB, 110K tours, 0 chains) — must rebuild from production data.
-2. **iOS testing** — Test all 4 features on simulator + real device with seed DB. Verify Six Degrees chains render, roulette works, Right Now timezone logic, World's Most superlatives.
-3. **iOS polish** — Image caching, share card rendering (ImageRenderer), LogoWhite @2x/@3x retina variants, launch screen.
-4. **iOS App Store submission** — Register bundle ID `com.nikhilsi.TourGraph`, create App Store Connect listing, screenshots, real device testing. See `docs/implementation/ios-app-store.md`.
+1. **Test on simulator** — All 4 features end-to-end with 120MB seed DB + enrichment working. Verify enrichment fills in full descriptions + photo galleries on detail tap. Deploy server enrichment endpoints to production first.
+2. **Test on real device** — Hardware testing, haptics, performance.
+3. **iOS polish** — Share card rendering (ImageRenderer), LogoWhite @2x/@3x retina variants, launch screen.
+4. **iOS App Store submission** — Register bundle ID `com.nikhilsi.TourGraph`, create App Store Connect listing, screenshots. See `docs/implementation/ios-app-store.md`.
 
 ## Recently Completed
 
+- [x] Seed DB built — 120MB (479MB → 120MB via truncation + NULLing + VACUUM), bundled in iOS app (March 3)
+- [x] Per-tour enrichment built — server endpoints + iOS TourEnrichmentService + wired into TourDetailView (March 3)
 - [x] Web production testing — basic testing on mobile + desktop, all features looked good (March 3)
-- [x] iOS seed DB strategy decided — ~210MB target via column NULLing + description truncation (March 3)
+- [x] iOS seed DB strategy decided — column NULLing + description truncation (March 3)
 - [x] iOS architecture doc updated with verified DB research — column analysis, query traces, build script (March 3)
 - [x] Code + DB deployed to production (March 3)
 - [x] Six Degrees gallery redesign — chain roulette with inline timeline (web + iOS)
@@ -27,7 +29,7 @@ Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset de
 ## Open Decisions
 
 - [ ] Dark-mode app icon variant
-- [ ] Per-tour enrichment — designed (lazy fetch on detail view tap), not built. Server API endpoints + iOS TourEnrichmentService needed. Not required for App Store v1.
+- [ ] Per-tour enrichment — built, needs production deploy + testing.
 
 ## Not Now (V2)
 
@@ -53,6 +55,8 @@ Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset de
 | 7a | City intelligence (Layer 3) | **Complete** — 910 cities, 1,799 readings |
 | 7b | Chain generation (Layer 4) | **Complete** — 491 chains from 500 pairs |
 | 8a | Production testing (web) | **Done** — basic testing passed |
-| 8b | iOS seed DB build | Next — strategy decided, ~210MB target |
-| 8c | iOS testing + polish | Blocked on seed DB |
-| 9 | iOS App Store submission | Blocked on testing + polish |
+| 8b | iOS seed DB build | **Done** — 120MB (479MB → 120MB) |
+| 8c | Per-tour enrichment (server + iOS) | **Done** — endpoints + TourEnrichmentService |
+| 8d | iOS testing (simulator + device) | **Next** — deploy endpoints, then test |
+| 8e | iOS polish | Blocked on testing |
+| 9 | iOS App Store submission | Blocked on polish |

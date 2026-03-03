@@ -6,6 +6,7 @@ struct WorldsMostTab: View {
     let database: DatabaseService
     let favorites: Favorites
     let settings: AppSettings
+    let enrichmentService: TourEnrichmentService
     @State private var showSettings = false
 
     var body: some View {
@@ -30,7 +31,7 @@ struct WorldsMostTab: View {
                 SettingsView(settings: settings, favorites: favorites, database: database)
             }
             .navigationDestination(for: Int.self) { tourId in
-                TourDetailView(tourId: tourId, database: database, favorites: favorites)
+                TourDetailView(tourId: tourId, database: database, favorites: favorites, enrichmentService: enrichmentService)
             }
         }
     }

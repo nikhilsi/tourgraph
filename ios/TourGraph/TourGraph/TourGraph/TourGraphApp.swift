@@ -6,17 +6,19 @@ struct TourGraphApp: App {
     @State private var settings = AppSettings()
     @State private var favorites = Favorites()
     @State private var rouletteState: RouletteState?
+    @State private var enrichmentService: TourEnrichmentService?
     @State private var loadError: String?
 
     var body: some Scene {
         WindowGroup {
             Group {
-                if let database, let rouletteState {
+                if let database, let rouletteState, let enrichmentService {
                     ContentView(
                         database: database,
                         settings: settings,
                         favorites: favorites,
-                        rouletteState: rouletteState
+                        rouletteState: rouletteState,
+                        enrichmentService: enrichmentService
                     )
                 } else if let loadError {
                     VStack(spacing: 16) {
@@ -51,6 +53,7 @@ struct TourGraphApp: App {
                     let db = try DatabaseService()
                     database = db
                     rouletteState = RouletteState(database: db)
+                    enrichmentService = TourEnrichmentService(database: db)
                 } catch {
                     loadError = error.localizedDescription
                 }
