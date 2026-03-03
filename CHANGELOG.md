@@ -6,6 +6,36 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [6.3.0] - 2026-03-03
+
+### Code Review — Tier 4 + Polish
+
+**Accessibility:**
+- VoiceOver labels on favorite buttons (TourDetailView, TourCardView, SixDegreesView)
+- Accessibility labels on settings gear icon (4 tab views)
+- `aria-label` on web FeatureNav `<nav>` element
+
+**SEO:**
+- Added `robots.ts` + `sitemap.ts` — 491 chain URLs, 6 superlative detail pages, static pages
+- Sitemap gracefully handles missing slug column on first deploy
+
+**Bug Fixes:**
+- Fixed `displayDuration` — 36h now shows "1d 12h", 90min shows "1h 30m" (was "1 day" / "1 hr")
+- TourDetailView error state replaces infinite spinner when tour not found
+- Renamed "Surprise Me" → "Show Me Another", scrolls to top on click
+
+**Performance:**
+- Cache headers (24h) on iOS enrichment endpoints (`/api/ios/tour/[id]`, `/api/ios/tours/batch`)
+- TourCard image `priority` default changed from `true` to `false` (enables lazy loading)
+
+**Cleanup:**
+- `error.tsx` now logs error message + digest to console
+- Removed dead `batchIds` parameter from TourDetailView
+- Removed duplicate `preferredColorScheme(.dark)` from ContentView
+- Removed unused `Link` import from story page
+
+---
+
 ## [6.2.0] - 2026-03-03
 
 ### Code Review — Tiers 1-3

@@ -3,38 +3,34 @@
 **Last Updated**: March 3, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 
-## Current Focus: iOS Testing → Polish → Ship
+## Current Focus: iOS Polish → App Store
 
-Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset deployed (136,256 tours, 491 chains, 910 city profiles, 479MB database). All four web features complete. iOS app built with seed DB + enrichment + polish. Simulator testing in progress.
+Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset deployed (136,256 tours, 491 chains, 910 city profiles, 479MB database). All four web features complete. iOS app built, tested on real device, 6-agent code review complete (Tiers 1-4). SEO (robots.txt, sitemap.xml), accessibility (VoiceOver labels), performance, and security all addressed.
 
 ## Next — In Order
 
-1. **Continue simulator testing** — All 4 features end-to-end. Fix bugs as found.
-2. **Test on real device** — Hardware testing, haptics, performance.
-3. **iOS polish** — Share card rendering (ImageRenderer), LogoWhite @2x/@3x retina variants, launch screen.
-4. **iOS App Store submission** — Register bundle ID `com.nikhilsi.TourGraph`, create App Store Connect listing, screenshots. See `docs/implementation/ios-app-store.md`.
+1. **iOS polish** — Share card rendering (ImageRenderer), launch screen.
+2. **iOS App Store submission** — Register bundle ID `com.nikhilsi.TourGraph`, create App Store Connect listing, screenshots. See `docs/implementation/ios-app-store.md`.
 
 ## Recently Completed
 
-- [x] Fixed favorites navigation bug — destination-closure NavigationLinks instead of value-based (March 3)
-- [x] World's Most variety — superlative queries now pick randomly from top 10 instead of always showing #1 (iOS + web) (March 3)
-- [x] Six Degrees polish — tour photos (16:9), card backgrounds, bright colors, theme badges, connection text, ViewThatFits for long city names (March 3)
-- [x] Favorites wiring — heart overlay on Six Degrees tour photos, FavoritesListView accessible from Settings (March 3)
-- [x] AboutView — app info, features, stats, links to tourgraph.ai (March 3)
-- [x] Settings wiring — NavigationLinks to FavoritesListView and AboutView, enrichmentService threaded through all tabs (March 3)
-- [x] Deleted dead code — ChainDetailView.swift removed (replaced by inline timeline in SixDegreesView) (March 3)
-- [x] Seed DB built — 120MB (479MB → 120MB via truncation + NULLing + VACUUM), bundled in iOS app (March 3)
-- [x] Per-tour enrichment built — server endpoints + iOS TourEnrichmentService + wired into TourDetailView (March 3)
-- [x] Web production testing — basic testing on mobile + desktop, all features looked good (March 3)
-- [x] Code + DB deployed to production (March 3)
-- [x] Six Degrees gallery redesign — chain roulette with inline timeline (web + iOS)
-- [x] Chain generation pipeline (Layer 4) — 491/500 chains via two-stage Batch API
-- [x] City intelligence (Layer 3) — 910 cities, 1,799 readings
+- [x] 6-agent code review — Tiers 1-4 complete, all deployed to production (March 3)
+  - Tier 1: Chain perf (slug column), SQL injection, URL safety, rate limiter
+  - Tier 2: Batch queries, CSP, error states, dead code
+  - Tier 3: Shared components, concurrency safety, health endpoint, polish
+  - Tier 4: Accessibility (VoiceOver), SEO (robots/sitemap), duration bug, cache headers, dead code
+- [x] iOS tested on real device (iPhone 15 Pro Max) — all 4 features working (March 3)
+- [x] "Show Me Another" button fix — renamed from "Surprise Me", scrolls to top (March 3)
+- [x] iOS polish — share card rendering, logo retina, branded launch screen (March 3)
+- [x] Fixed favorites navigation bug — destination-closure NavigationLinks (March 3)
+- [x] World's Most variety — random pick from top 10 (March 3)
+- [x] Six Degrees polish — tour photos, card backgrounds, bright colors, theme badges (March 3)
+- [x] Seed DB + enrichment — 120MB bundled, lazy server fetch on detail tap (March 3)
+- [x] All 4 data layers + gallery redesign deployed to production (March 3)
 
 ## Open Decisions
 
 - [ ] Dark-mode app icon variant
-- [ ] Share card rendering approach (ImageRenderer vs. server-side)
 
 ## Not Now (V2)
 
@@ -63,6 +59,7 @@ Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset de
 | 8b | iOS seed DB build | **Done** — 120MB (479MB → 120MB) |
 | 8c | Per-tour enrichment (server + iOS) | **Done** — endpoints + TourEnrichmentService |
 | 8d | Six Degrees polish + favorites + about | **Done** — images, cards, colors, FavoritesListView, AboutView |
-| 8e | iOS testing (simulator + device) | **In progress** |
-| 8f | iOS polish (share cards, launch screen) | Next |
-| 9 | iOS App Store submission | Blocked on polish |
+| 8e | iOS testing (simulator + device) | **Done** — real device tested |
+| 8f | iOS polish (share cards, launch screen) | **Done** |
+| 8g | Code review (6-agent, Tiers 1-4) | **Done** — perf, security, a11y, SEO |
+| 9 | iOS App Store submission | Next |

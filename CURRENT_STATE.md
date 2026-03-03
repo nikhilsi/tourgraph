@@ -20,6 +20,7 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 | About / Story | `/about`, `/story` | Live |
 | Privacy / Support | `/privacy`, `/support` | Live |
 | OG Images | `/api/og/*` | Live |
+| Health / SEO | `/api/health`, `/robots.txt`, `/sitemap.xml` | Live |
 
 ### iOS App (In Development)
 
@@ -39,6 +40,7 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 **App Store prep done:** PrivacyInfo.xcprivacy, ExportOptions.plist, metadata draft (`docs/implementation/ios-app-store.md`).
 **Seed DB built:** 120MB (down from 479MB production). 136,256 tours, 491 chains. Descriptions truncated to ~200 chars, image galleries NULLed, 5 unused tables dropped, VACUUM'd. Bundled in iOS app.
 **Per-tour enrichment built:** `TourEnrichmentService.swift` + server endpoints (`/api/ios/tour/[id]`, `/api/ios/tours/batch`). Lazy fetch on detail tap — full descriptions + photo galleries load from server, written to local DB, persisted for future views.
+**Code review complete:** 6-agent deep review (Tiers 1-4) — performance, security, accessibility, SEO, error handling all addressed. See CHANGELOG.md [6.2.0] and [6.3.0].
 **Not yet built:** Share card rendering (ImageRenderer), launch screen, App Store screenshots.
 
 ## Data Asset (4 IP Layers)
@@ -97,11 +99,14 @@ src/
 ├── components/
 │   ├── RouletteView.tsx            # Core game loop (client)
 │   ├── TourCard.tsx                # Tour card display
+│   ├── ChainTimeline.tsx           # Shared Six Degrees timeline
 │   ├── ShareButton.tsx             # Web Share / clipboard
 │   ├── TourCardSkeleton.tsx        # Loading skeleton
-│   └── FeatureNav.tsx              # Cross-feature navigation
+│   ├── FeatureNav.tsx              # Cross-feature navigation
+│   └── Logo.tsx                    # Brand logo
 ├── lib/
 │   ├── db.ts                       # SQLite layer + all queries
+│   ├── superlatives.ts             # Shared superlative constants + formatters
 │   ├── timezone.ts                 # Timezone helpers (Intl.DateTimeFormat)
 │   ├── format.ts                   # Shared formatting (price, duration)
 │   ├── types.ts                    # All TypeScript types
@@ -152,7 +157,7 @@ See "Data Asset (4 IP Layers)" section above and `docs/data-snapshot.md` for ful
 ### Build Status
 
 - `npm run build` — zero errors
-- `npm run lint` — zero warnings
+- `npm run lint` — zero errors (12 warnings in pipeline scripts only)
 - TypeScript strict mode — clean
 
 ---
