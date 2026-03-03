@@ -1,7 +1,7 @@
 # Claude Code Development Guide
 
 ---
-**Last Updated**: March 2, 2026
+**Last Updated**: March 3, 2026
 **Purpose**: Rules and workflow for working with this codebase
 ---
 
@@ -81,7 +81,7 @@ Time-zone-aware: shows a tour happening (or about to happen) where it's currentl
 Daily superlatives from the Viator catalog. Most expensive tour. Cheapest 5-star experience. Longest duration. Each one is a shareable card with photo, stat, and witty caption.
 
 ### Feature 4: Six Degrees of Anywhere
-Type two cities. The site builds a chain of tours connecting them through surprising thematic links. Visualized as a simple graph (the name finally earns itself).
+Pre-generated chains of tours connecting cities through surprising thematic links — shared activities, cultural connections, overlapping cuisines, historical threads. 491 chains, each 5 stops long. Presented as chain roulette: one random chain with full vertical timeline, "Surprise Me" to load another.
 
 ### What We're NOT Building
 - A booking engine (Viator affiliate links handle bookings)
@@ -149,10 +149,9 @@ Timeframes are estimates, not commitments. This is supposed to be fun.
 | Component | Choice | Rationale |
 |-----------|--------|-----------|
 | Framework | SwiftUI | Already proven with GitaVani |
-| Architecture | Self-contained (no shared backend) | Simplicity, independence |
-| Data | Viator API (direct calls) | Same API, thin caching layer on device |
-| AI Layer | Claude API (direct calls) | Same prompts, called from app |
-| Local Storage | SwiftData or UserDefaults | Cache tours, favorites, recent spins |
+| Architecture | Bundled SQLite DB | Same data as web, no API calls at runtime |
+| Data | GRDB.swift + bundled tourgraph.db | Read-only queries against local DB |
+| Local Storage | UserDefaults | Favorites, settings persistence |
 
 ---
 
@@ -222,7 +221,7 @@ npm run dev     # local development server
 - `ANTHROPIC_API_KEY` — https://console.anthropic.com
 
 **Existing Viator integration code:**
-The `scripts/viator_compare.py` from Phase 0 has working API call patterns (endpoint URLs, auth headers, response parsing) that can be referenced when building the Next.js API routes. The Viator production API key in `.env` is already tested and working.
+The `archive/scripts/viator_compare.py` from Phase 0 has working API call patterns (endpoint URLs, auth headers, response parsing). The Viator production API key in `.env` is already tested and working.
 
 ---
 
@@ -302,9 +301,7 @@ The `scripts/viator_compare.py` from Phase 0 has working API call patterns (endp
 |-------|----------|-----------------|
 | Viator API patterns | `archive/scripts/viator_compare.py` | Endpoint URLs, auth headers, response parsing, product search, detail fetching |
 | Working API key | `.env` | `VIATOR_API_KEY` (production, Basic tier) |
-| Domain | tourgraph.ai | DNS currently points to GitHub Pages — needs re-pointing to DigitalOcean |
-| GitHub Actions | `.github/workflows/` | Deployment workflow (needs rewriting for Next.js) |
-| OG image approach | Previous MkDocs setup | Meta tag patterns for social sharing |
+| Domain | tourgraph.ai | DNS configured, pointing to DigitalOcean droplet |
 
 ---
 
@@ -313,7 +310,7 @@ The `scripts/viator_compare.py` from Phase 0 has working API call patterns (endp
 - **Viator Partner API** — Our primary data source. 300K+ experiences, free Basic tier. We're affiliates — bookings redirect to Viator and we earn commission.
 - **OG Cards** — Open Graph meta tags that create rich previews when links are shared on social platforms. Critical for Pillar 3 (Effortlessly Shareable).
 - **Tour Roulette** — The core engagement loop. Random tour discovery, weighted toward interesting extremes.
-- **Six Degrees** — The graph feature. AI builds chains of tours connecting any two cities through thematic links. This is where the "graph" in TourGraph earns its name.
+- **Six Degrees** — The graph feature. 491 pre-generated chains connecting cities through thematic links. Chain roulette shows one random chain with full timeline, "Surprise Me" loads another.
 
 ---
 
