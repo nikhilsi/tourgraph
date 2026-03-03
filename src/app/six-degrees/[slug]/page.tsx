@@ -83,7 +83,7 @@ export default async function ChainDetailPage({ params }: Props) {
             href="/six-degrees"
             className="py-3 px-6 rounded-xl border border-accent text-accent hover:bg-accent hover:text-black font-bold transition-colors"
           >
-            Explore Another
+            Show Me Another
           </Link>
           <ShareButton
             tourId={chain.id}

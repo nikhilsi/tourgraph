@@ -7,10 +7,13 @@ export default function SurpriseMeButton() {
 
   return (
     <button
-      onClick={() => router.refresh()}
+      onClick={() => {
+        window.scrollTo({ top: 0, behavior: "instant" });
+        router.refresh();
+      }}
       className="py-3 px-8 rounded-xl bg-accent hover:bg-accent-hover text-black font-bold transition-colors"
     >
-      Surprise Me
+      Show Me Another
     </button>
   );
 }
