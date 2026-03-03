@@ -24,9 +24,11 @@ struct FavoritesListView: View {
                 }
                 .frame(maxWidth: .infinity, minHeight: 300)
             } else {
-                LazyVStack(spacing: 16) {
+                VStack(spacing: 16) {
                     ForEach(tours) { tour in
-                        NavigationLink(value: tour.id) {
+                        NavigationLink {
+                            TourDetailView(tourId: tour.id, database: database, favorites: favorites, enrichmentService: enrichmentService)
+                        } label: {
                             TourCardView(tour: tour, favorites: favorites)
                         }
                         .buttonStyle(.plain)
@@ -40,13 +42,7 @@ struct FavoritesListView: View {
         .navigationTitle("Favorites")
         .navigationBarTitleDisplayMode(.large)
         .toolbarColorScheme(.dark, for: .navigationBar)
-        .navigationDestination(for: Int.self) { tourId in
-            TourDetailView(tourId: tourId, database: database, favorites: favorites, enrichmentService: enrichmentService)
-        }
-        .task {
-            loadFavorites()
-        }
-        .onChange(of: favorites.tourIds) {
+        .onAppear {
             loadFavorites()
         }
     }

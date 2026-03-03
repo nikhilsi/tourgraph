@@ -531,46 +531,48 @@ const SUPERLATIVE_QUERIES: Record<SuperlativeType, string> = {
     FROM tours
     WHERE status = 'active' AND from_price IS NOT NULL
       AND from_price <= 50000 AND image_url IS NOT NULL
-    ORDER BY from_price DESC LIMIT 1`,
+    ORDER BY from_price DESC LIMIT 10`,
   "cheapest-5star": `
     SELECT ${HAND_SELECT_COLUMNS}
     FROM tours
     WHERE status = 'active' AND rating >= 4.5
       AND from_price IS NOT NULL AND from_price > 0
       AND review_count >= 10 AND image_url IS NOT NULL
-    ORDER BY from_price ASC LIMIT 1`,
+    ORDER BY from_price ASC LIMIT 10`,
   "longest": `
     SELECT ${HAND_SELECT_COLUMNS}
     FROM tours
     WHERE status = 'active' AND duration_minutes IS NOT NULL
       AND duration_minutes <= 20160 AND image_url IS NOT NULL
-    ORDER BY duration_minutes DESC LIMIT 1`,
+    ORDER BY duration_minutes DESC LIMIT 10`,
   "shortest": `
     SELECT ${HAND_SELECT_COLUMNS}
     FROM tours
     WHERE status = 'active' AND duration_minutes IS NOT NULL
       AND duration_minutes >= 30 AND image_url IS NOT NULL
-    ORDER BY duration_minutes ASC LIMIT 1`,
+    ORDER BY duration_minutes ASC LIMIT 10`,
   "most-reviewed": `
     SELECT ${HAND_SELECT_COLUMNS}
     FROM tours
     WHERE status = 'active' AND review_count IS NOT NULL
       AND image_url IS NOT NULL
-    ORDER BY review_count DESC LIMIT 1`,
+    ORDER BY review_count DESC LIMIT 10`,
   "hidden-gem": `
     SELECT ${HAND_SELECT_COLUMNS}
     FROM tours
     WHERE status = 'active' AND rating >= 4.8
       AND review_count >= 10 AND review_count <= 100
       AND image_url IS NOT NULL
-    ORDER BY rating DESC, review_count ASC LIMIT 1`,
+    ORDER BY rating DESC, review_count ASC LIMIT 10`,
 };
 
 export function getSuperlative(type: SuperlativeType): TourRow | undefined {
   const db = getDb(true);
   const sql = SUPERLATIVE_QUERIES[type];
   if (!sql) return undefined;
-  return db.prepare(sql).get() as TourRow | undefined;
+  const candidates = db.prepare(sql).all() as TourRow[];
+  if (candidates.length === 0) return undefined;
+  return candidates[Math.floor(Math.random() * candidates.length)];
 }
 
 export function getAllSuperlatives(): SuperlativeResult[] {
