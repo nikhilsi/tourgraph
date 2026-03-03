@@ -6,6 +6,34 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [6.0.0] - 2026-03-03
+
+### Complete — All 4 Data Layers + Gallery Redesign
+- City intelligence (Layer 3): 910 city profiles from 1,799 readings via Claude Sonnet 4.6
+- Chain generation (Layer 4): 491 chains from 500 city pairs via two-stage Batch API pipeline
+- Six Degrees gallery redesigned as chain roulette (single random chain with full inline timeline)
+
+### Added — Chain Generation Pipeline
+- `src/scripts/4-chains/generate-chains-v2.ts` — Two-stage pipeline: Stage 1 (city picker, ~125K cached system prompt) + Stage 2 (chain builder, 30 tours × 5 cities). Batch API + prompt caching.
+- `src/scripts/4-chains/generate-pairs.ts` — Scored greedy pair generator (Jaccard theme distance + tier mixing)
+- `src/scripts/4-chains/curate-city-pool.ts` — AI-assisted city pool curation from 910 profiles
+- `src/scripts/4-chains/city-pool.json` — 100 curated endpoint cities (30 anchors, 40 gems, 30 surprises)
+- `src/scripts/4-chains/chain-pairs.json` — 500 cross-continent city pairs
+- Robust JSON parser with brace-depth tracking (handles Claude adding text after JSON)
+
+### Changed — Six Degrees Gallery Redesign
+- `src/app/six-degrees/page.tsx` — Replaced flat 491-card list with chain roulette: one random chain with full inline timeline (images, one-liners, stats, theme badges, connections)
+- `src/app/six-degrees/SurpriseMeButton.tsx` — Simplified to `router.refresh()` (no slugs array)
+- `src/components/ShareButton.tsx` — Added optional `url` prop for non-roulette share URLs
+- `ios/.../SixDegreesView.swift` — Same chain roulette pattern: random chain with inline timeline + "Surprise Me"
+
+### Updated
+- All docs updated to reflect chain roulette design (six-degrees-chains.md, architecture.md, product_brief.md, ux_design.md, NOW.md, CURRENT_STATE.md)
+- `docs/data-snapshot.md` — Layer 4 stats: 491 chains, ~$20 cost, ~2 hours
+- `docs/data-schema.md` — Updated rebuild instructions for v2 generator
+
+---
+
 ## [5.1.0] - 2026-03-02
 
 ### Complete — Data Fully Indexed
