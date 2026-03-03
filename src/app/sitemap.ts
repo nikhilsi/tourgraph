@@ -23,16 +23,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // Six Degrees chain pages
-  const db = getDb(true);
-  const chains = db
-    .prepare("SELECT slug FROM six_degrees_chains WHERE slug IS NOT NULL")
-    .all() as { slug: string }[];
+  let chainPages: MetadataRoute.Sitemap = [];
+  try {
+    const db = getDb(true);
+    const chains = db
+      .prepare("SELECT slug FROM six_degrees_chains WHERE slug IS NOT NULL")
+      .all() as { slug: string }[];
 
-  const chainPages: MetadataRoute.Sitemap = chains.map((row) => ({
-    url: `${base}/six-degrees/${row.slug}`,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
+    chainPages = chains.map((row) => ({
+      url: `${base}/six-degrees/${row.slug}`,
+      changeFrequency: "monthly" as const,
+      priority: 0.6,
+    }));
+  } catch {
+    // slug column may not exist yet on first deploy
+  }
 
   return [...staticPages, ...superlativePages, ...chainPages];
 }
