@@ -1,30 +1,33 @@
 # TourGraph iOS App — Architecture
 
 ---
-**Last Updated**: March 1, 2026
-**Status**: Scaffold built — all 4 features + favorites + app icon. Polish + App Store prep remaining.
+**Last Updated**: March 3, 2026
+**Status**: All 4 features built. Seed DB build + polish + App Store submission remaining.
 **Reference apps**: GitaVani (all-local pattern), ClearNews (API + caching pattern)
 ---
 
 ## One-Line Summary
 
-A self-contained SwiftUI app that reads from a bundled SQLite database — no API keys, no backend, no accounts. Ship a ~150MB seed DB under Apple's cellular download limit, silently enrich with the full ~400MB dataset on first launch.
+A self-contained SwiftUI app that reads from a bundled SQLite database — no API keys, no backend, no accounts. Ship a ~210MB seed DB with all 136K tours (descriptions truncated, single cover photo per tour). Per-tour enrichment fetches full descriptions and photo galleries on demand when users tap into detail views.
 
 ---
 
 ## Architecture
 
 ```
-App Store (~180MB total)
-  └── Seed SQLite DB (~150MB, ~50K tours, all features work)
+App Store (~240MB total)
+  └── Seed SQLite DB (~210MB, 136K tours, all features work)
 
-First Launch:
-  App → tourgraph.ai/data/tourgraph-full.db.gz → decompress → replace seed DB
-  (background, non-blocking, all features work during download)
+On Tour Detail Tap (lazy enrichment):
+  If image_urls_json IS NULL or description ends with "..."
+    → Call 1: GET /api/ios/tour/{id} → update this tour in local DB → UI refreshes
+    → Call 2: GET /api/ios/tours/batch (other tour IDs in current list) → update silently
+  If already enriched → show full data immediately (persisted from previous view)
 
 Runtime:
-  SwiftUI Views → Services (@Observable) → SQLite (GRDB.swift, read-only)
+  SwiftUI Views → Services (@Observable) → SQLite (GRDB.swift, read + write for enrichment)
                                           → Viator CDN (photos only)
+                                          → tourgraph.ai API (per-tour enrichment only)
                                           → No API keys anywhere
 ```
 
@@ -32,47 +35,136 @@ Runtime:
 
 ## Data Strategy: Seed + Enrich
 
-### Seed DB (~150MB, bundled in app binary)
+### iOS DB Requirements (Verified)
 
-Ships with the app. All four features work instantly on first open.
+The iOS app queries exactly **2 tables**. Everything else is pipeline/web-only infrastructure.
 
-| What's included | Why |
-|-----------------|-----|
-| All tour rows (core columns: id, title, one_liner, destination, country, continent, rating, review_count, from_price, duration_minutes, image_url, viator_url, weight_category) | Roulette, Right Now, World's Most all work |
-| All destinations + timezones | Right Now timezone queries work |
-| All Six Degrees chains | Six Degrees gallery + detail works |
-| All one-liners | Every tour card has its witty caption |
-| All superlative-eligible data (price, rating, duration, review_count) | World's Most queries work |
+| Table | Queried? | By | Notes |
+|-------|----------|-----|-------|
+| `tours` | **YES** | All 4 features + settings stats | The only data table that matters |
+| `six_degrees_chains` | **YES** | Six Degrees tab | 491 chains, self-contained JSON blobs |
+| `city_profiles` | NO | — | Used during chain *generation* (Stage 1), not at display time |
+| `city_readings` | NO | — | Append-only pipeline log for city intelligence |
+| `destinations` | NO | — | `Destination.swift` model exists but is dead code — no query uses it |
+| `superlatives` | NO | — | Empty table; superlatives computed live from `tours` |
+| `indexer_state` | NO | — | Indexer resume key — web pipeline only |
 
-**What's excluded from seed** (saves ~250MB):
-- Extended descriptions, highlights[], inclusions[]
-- Additional image URLs (seed keeps 1 per tour, full DB has up to 31)
-- Supplier details, meeting points, itineraries
-- Any tours added after the app was submitted
+### Column Usage Analysis
 
-### Enrichment DB (~400MB, downloaded on first launch)
+`DatabaseService.swift` has two query patterns for tours:
 
-Replaces the seed DB silently in background. User never waits.
+**Pattern 1 — Card queries** (Roulette hand, Right Now tours): explicit column list.
+```sql
+SELECT id, product_code, title, one_liner, destination_name, country,
+       continent, rating, review_count, from_price, currency,
+       duration_minutes, image_url, viator_url, weight_category
+FROM tours WHERE ...
+```
+Right Now adds `timezone` to the SELECT.
+
+**Pattern 2 — Detail page** (`getTourById`): `SELECT * FROM tours WHERE id = ?`
+Decodes into the full `Tour` struct via GRDB's `FetchableRecord`.
+
+**What TourDetailView actually renders from the `SELECT *`:**
+- `title` — heading
+- `oneLiner` — italic caption
+- `destinationName` + `country` — location line
+- `rating`, `reviewCount`, `fromPrice`, `durationMinutes` — stat badges
+- `description` — body text paragraph (the expensive column)
+- `imageUrlsJson` → horizontal photo gallery, up to 10 images (the other expensive column)
+- `highlightsJson` → bullet list — but **100% NULL in DB** (Viator Basic tier doesn't provide this)
+- `viatorUrl` — "Book on Viator" button
+
+**Columns in Tour struct but never rendered in any view:**
+- `productCode` — in model, never displayed
+- `inclusionsJson` — in model, never displayed
+- `supplierName` — in model, never displayed
+- `destinationId` — in model, never displayed (only `destinationName` is shown)
+
+**Columns in DB but not in the Tour struct at all** (GRDB safely ignores these):
+- `latitude`, `longitude` — all NULL anyway (never populated)
+- `tags_json`, `summary_hash`, `indexed_at`, `last_seen_at`
+- `status` — used in WHERE clauses only, not decoded into model
+
+### Seed DB (~210MB, bundled in app binary)
+
+Ships with the app. All four features work instantly — every tour, every chain, every one-liner.
+
+**What's in the seed DB:**
+
+| What | Size | Why |
+|------|------|-----|
+| All 136K active tours (core columns) | ~175 MB | Roulette, Right Now, World's Most, Six Degrees tour lookups |
+| `description` truncated to ~200 chars | ~20 MB | Detail page shows 1-2 sentence preview (avg tour desc is 614 chars) |
+| All 491 Six Degrees chains | ~1 MB | Six Degrees gallery + timeline |
+| Indexes (weight, status, rating, price, destination, timezone) | ~14 MB | Query performance |
+
+**What's excluded from seed** (saves ~270MB):
+
+| Column/Table | Saved | Impact |
+|--------------|-------|--------|
+| `image_urls_json` (NULLed) | ~142 MB | Detail page shows single cover photo instead of 10-photo gallery |
+| `description` truncation (614→200 chars) | ~60 MB | Detail page shows preview paragraph + "..." instead of full text |
+| `inclusions_json` (NULLed) | ~18 MB | Never displayed in any view |
+| `supplier_name` (NULLed) | ~2 MB | Never displayed in any view |
+| 5 unused tables dropped | ~4 MB | Zero impact — app never queries them |
+| Unused columns NULLed (tags_json, summary_hash, indexed_at, last_seen_at) | ~19 MB | Not in Tour struct |
+| Redundant indexes dropped | ~7 MB | idx_tours_indexed + idx_tours_product_code never queried by app |
+| 47 inactive tours deleted | negligible | Filtered out by `WHERE status = 'active'` anyway |
+| VACUUM | ~10-15% | Reclaims freed space |
+
+**Key decisions:**
+- **Description**: Truncated to ~200 chars at word boundary + "..." — not NULLed. Tested with 30 random tours; 200 chars consistently captures 1-2 complete thoughts. Between the one-liner (~84 chars) and the truncated description, the detail page has enough personality.
+- **image_urls_json**: NULLed entirely. The cover photo (`image_url`, ~12 MB, always kept) displays on every card in every feature. Detail page gracefully falls through to single hero image via `if tour.imageURLs.count > 1 { gallery } else { heroImage }`.
+- **Column schema preserved**: Columns are NULLed, not dropped from the table. This keeps GRDB's `FetchableRecord` Codable decoding working — Optional properties decode as nil when data is NULL. The 3 non-optional Tour properties (`id`, `productCode`, `title`) are always populated.
+
+**Estimated size: ~210MB** (pre-VACUUM ~220MB, VACUUM brings it to ~200-210MB). Slightly over Apple's 200MB cellular download limit — users on cellular get a "this app is large" prompt. Most popular apps exceed 200MB; this is not a hard block.
+
+### Per-Tour Enrichment — NOT BUILT
+
+Lazy, on-demand enrichment that progressively fills in full data as the user explores. **Status: Designed, not built. Not required for App Store v1 — seed DB is fully functional.**
+
+The seed DB ships with truncated descriptions (~200 chars) and NULL `image_urls_json`. All card views (Roulette, Right Now, World's Most, Six Degrees) display perfectly with seed data. The only degraded experience is TourDetailView, which shows a truncated description and single cover photo instead of a gallery.
+
+**How it works:**
 
 ```
-First open → all features work instantly (seed DB)
-Background → download full DB (~250MB gzipped) from tourgraph.ai
-           → decompress → swap atomically → done
-           → detail pages now show full descriptions, more photos, etc.
+User taps tour card → TourDetailView opens
+  → Show seed DB data immediately (truncated description, single photo)
+  → If image_urls_json IS NULL or description ends with "..."
+      Call 1: GET /api/ios/tour/{id}
+        → Returns { description, image_urls_json } (~2KB)
+        → Write to local DB → UI refreshes in place
+        → Detail page now shows full description + photo gallery
+      Call 2: GET /api/ios/tours/batch  (body: { ids: [other IDs needing enrichment] })
+        → Returns array of { id, description, image_urls_json }
+        → Written to local DB silently in background
+        → Next time user taps any of these tours, data is already there
+  → If already enriched from a previous view → full data shown immediately
 ```
 
-**Hosting**: Static file on the DigitalOcean droplet. Nginx serves it.
-**Update cadence**: New DB version whenever we re-index. App checks a version endpoint on launch.
-**Fallback**: If download fails, seed DB works indefinitely. Retry next launch.
+**What enrichment restores per tour:**
+- Full description (replacing truncated ~200-char preview)
+- `image_urls_json` (enabling multi-photo gallery on detail pages)
 
-### DB Versioning
+**Server endpoints needed (Next.js API routes):**
+- `GET /api/ios/tour/[id]` — returns full description + image_urls_json for one tour
+- `POST /api/ios/tours/batch` — accepts `{ ids: [1, 2, 3] }`, returns array of enrichment data
 
-```
-GET https://tourgraph.ai/api/ios/db-version
-→ { "version": "2026-03-15", "url": "https://tourgraph.ai/data/tourgraph-ios.db.gz", "size_bytes": 268435456 }
-```
+**Progressive enrichment:** The app gets richer the more you use it. Only tours the user actually views get enriched — no wasted bandwidth. Over time, frequently browsed tours have full data cached locally.
 
-App stores current DB version in UserDefaults. On launch, checks version endpoint. If newer, downloads in background. No forced updates.
+**Offline graceful:** If no network, seed data displays fine. Enrichment simply doesn't happen until next time with connectivity. No error states needed.
+
+### Data Refresh — V2 (NOT DESIGNED)
+
+Broader data refresh (new tours from Viator re-indexing, updated one-liners, new chains) is a separate concern from per-tour enrichment. Not needed until we actually start running periodic indexer updates on the production DB. No design work done yet — will address when we build the drip indexer (see "Not Now" in NOW.md).
+
+### GRDB Safety Notes
+
+- **SELECT \* with NULLed columns**: GRDB's Codable decoder handles `Optional` properties as `nil` when the column value is NULL. The 3 non-optional Tour properties (`id: Int`, `productCode: String`, `title: String`) must always have real data — they do, across all 136K tours.
+- **Strategy**: NULL column *data* rather than dropping columns from the schema. This keeps `FetchableRecord` decoding working without Swift code changes.
+- **Extra DB columns**: Columns in the DB but not in the Tour struct's `CodingKeys` (e.g., `tags_json`, `indexed_at`) are safely ignored by GRDB during decoding. No crash, no error.
+- **Write access for enrichment**: The DB connection needs to be read-write (not read-only) to support per-tour enrichment writing `description` and `image_urls_json` back. GRDB supports this — just use `DatabaseQueue` instead of read-only mode.
 
 ---
 
@@ -92,7 +184,7 @@ App stores current DB version in UserDefaults. On launch, checks version endpoin
 
 **Decision**: Zero API keys shipped in the binary. No Viator key, no Claude key.
 
-**Why**: One-liners are pre-generated in the DB. Tour data is pre-indexed. Photos load from Viator's public CDN URLs (no auth needed). The only network calls are: (1) photo loading, (2) DB enrichment download, (3) version check. All unauthenticated.
+**Why**: One-liners are pre-generated in the DB. Tour data is pre-indexed. Photos load from Viator's public CDN URLs (no auth needed). The only network calls are: (1) photo loading, (2) per-tour enrichment (lazy, on detail view tap). All unauthenticated — no API keys in the binary.
 
 **Implication**: No API rate limiting concerns, no key rotation, no secrets management, no risk of key extraction from the binary.
 
@@ -110,11 +202,13 @@ App stores current DB version in UserDefaults. On launch, checks version endpoin
 
 **Fallback**: Button still exists for accessibility. Swipe is the primary interaction.
 
-### D5: Seed DB size target — ~150MB
+### D5: Seed DB size target — ~210MB
 
-**Decision**: Keep seed DB under 150MB so total app binary stays under ~200MB (Apple's cellular download limit).
+**Decision**: Seed DB is ~210MB after stripping unused tables, NULLing non-displayed columns, truncating descriptions to ~200 chars, and VACUUM. Total app binary ~240MB.
 
-**Why**: TourGraph is a "casual delight" app discovered via shared links. If someone taps a link and the App Store says "requires WiFi to download," we lose them. Under 200MB = instant cellular download = zero friction (Pillar 1).
+**Why**: We tested aggressively stripping to hit 150MB but it required NULLing descriptions entirely, which degraded the detail page too much. The 200-char truncation preserves 1-2 meaningful sentences. Apple's 200MB cellular download limit isn't a hard block — it shows a prompt on cellular, not a refusal. Most popular apps exceed 200MB.
+
+**Tradeoff accepted**: Slightly over 200MB cellular limit vs. losing all description text. Per-tour enrichment (not yet built) restores full descriptions and photo galleries lazily as users browse.
 
 ### D6: No user accounts, no sync, no backend
 
@@ -141,7 +235,7 @@ ios/TourGraph/
 │   │
 │   ├── Models/
 │   │   ├── Tour.swift                  # Core tour model (maps to tours table)
-│   │   ├── Destination.swift           # Destination with timezone
+│   │   ├── Destination.swift           # Destination with timezone (dead code — no queries use it)
 │   │   ├── Chain.swift                 # Six Degrees chain + links
 │   │   └── Superlative.swift           # Superlative type + display config
 │   │
@@ -184,75 +278,119 @@ ios/TourGraph/
 │       └── tourgraph.db               # Bundled SQLite database (gitignored)
 ```
 
-**Not yet built** (V2): ImageCache, DBEnrichmentService, ShareCardView (ImageRenderer), SkeletonView, Widgets, RecentSpins.
+**Not yet built**: TourEnrichmentService (per-tour lazy enrichment), ImageCache, ShareCardView (ImageRenderer), SkeletonView, Widgets, RecentSpins.
 
 ---
 
 ## Data Models (Swift)
 
-These map directly to the web app's SQLite schema.
+These map to the SQLite schema. Updated March 3, 2026 to match actual code in `ios/.../Models/`.
 
-### Tour (primary model)
+### Tour (primary model) — `Tour.swift`
 
 ```swift
-struct Tour: Identifiable, Codable, FetchableRecord {
-    let id: Int
-    let productCode: String
-    let title: String
-    let oneLiner: String?
-    let description: String?         // enrichment data
-    let destinationId: String
-    let destinationName: String
+struct Tour: Identifiable, Codable, FetchableRecord, Sendable {
+    let id: Int                     // NON-OPTIONAL — must always exist
+    let productCode: String         // NON-OPTIONAL — must always exist
+    let title: String               // NON-OPTIONAL — must always exist
+    let oneLiner: String?           // AI caption (~84 chars avg)
+    let description: String?        // Truncated to ~200 chars in seed DB
+    let destinationId: String?      // Never displayed, but in model
+    let destinationName: String?
     let country: String?
     let continent: String?
-    let timezone: String?
-    let rating: Double?
-    let reviewCount: Int
+    let timezone: String?           // IANA timezone, used by Right Now
+    let rating: Double?             // NULL for 33% of tours (no reviews)
+    let reviewCount: Int?
     let fromPrice: Double?
-    let currency: String
+    let currency: String?
     let durationMinutes: Int?
-    let imageUrl: String?
-    let imageUrls: String?           // JSON array, enrichment data
-    let highlights: String?          // JSON array, enrichment data
-    let inclusions: String?          // JSON array, enrichment data
-    let viatorUrl: String?
-    let weightCategory: String?
+    let imageUrl: String?           // Cover photo — always populated, always kept
+    let imageUrlsJson: String?      // JSON array — NULLed in seed DB
+    let highlightsJson: String?     // JSON array — 100% NULL (Basic tier)
+    let inclusionsJson: String?     // JSON array — NULLed in seed DB, never displayed
+    let viatorUrl: String?          // Affiliate link
+    let supplierName: String?       // Never displayed in any view
+    let weightCategory: String?     // Roulette category quotas
 }
+// CodingKeys map snake_case DB columns → camelCase Swift (e.g., product_code → productCode)
 ```
 
-### Destination
+### Destination — `Destination.swift` (DEAD CODE)
+
+Model exists but **no query in DatabaseService.swift references the `destinations` table**. The `destinations` table is dropped from the seed DB. This file can be removed during cleanup.
 
 ```swift
-struct Destination: Identifiable, Codable, FetchableRecord {
+struct Destination: Identifiable, Codable, FetchableRecord, Sendable {
     let id: String
     let name: String
     let parentId: String?
     let timezone: String?
     let latitude: Double?
     let longitude: Double?
-    let lookupId: String?
 }
 ```
 
-### Chain (Six Degrees)
+### Chain (Six Degrees) — `Chain.swift`
+
+The chain structure uses a raw DB row + parsed JSON pattern:
 
 ```swift
-struct Chain: Identifiable, Codable, FetchableRecord {
+// Raw row from six_degrees_chains table
+struct ChainRow: Identifiable, Codable, FetchableRecord, Sendable {
     let id: Int
-    let cityA: String
-    let cityB: String
-    let slug: String
-    let summary: String?
-    let links: String               // JSON array of ChainLink
-    let createdAt: String
+    let cityFrom: String            // city_from column
+    let cityTo: String              // city_to column
+    let chainJson: String           // Full chain data as JSON blob
+    let generatedAt: String?
 }
 
-struct ChainLink: Codable {
+// One stop in a chain (parsed from chainJson)
+struct ChainLink: Codable, Sendable {
     let city: String
-    let tourTitle: String
-    let tourId: Int?
-    let theme: String
-    let connection: String
+    let country: String
+    let tourTitle: String           // tour_title
+    let tourId: Int?                // Optional — used to fetch Tour for one-liner display
+    let connectionToNext: String?   // connection_to_next — narrative bridge to next stop
+    let theme: String               // Thematic category (e.g., "craftsmanship")
+}
+
+// Parsed JSON structure
+struct ChainData: Codable, Sendable {
+    let cityFrom: String
+    let cityTo: String
+    let chain: [ChainLink]          // 5 stops
+    let summary: String             // Narrative summary of entire chain
+}
+
+// Display-ready chain (slug computed from city names)
+struct Chain: Identifiable, Sendable {
+    let id: Int
+    let cityFrom: String
+    let cityTo: String
+    let summary: String
+    let links: [ChainLink]
+    let slug: String                // "tokyo-rome" (for share URLs)
+    let generatedAt: String?
+
+    init(row: ChainRow)             // Decodes chainJson → ChainData → properties
+}
+```
+
+### Superlative — `Superlative.swift`
+
+```swift
+enum SuperlativeType: String, CaseIterable, Sendable {
+    case mostExpensive = "most-expensive"
+    case cheapest5Star = "cheapest-5star"
+    case longest, shortest
+    case mostReviewed = "most-reviewed"
+    case hiddenGem = "hidden-gem"
+}
+
+struct SuperlativeResult: Identifiable, Sendable {
+    let type: SuperlativeType
+    let tour: Tour                  // Full tour fetched via superlative query
 }
 ```
 
@@ -287,8 +425,8 @@ final class DatabaseService {
     // Detail
     func getTourById(_ id: Int) -> Tour?
 
-    // DB management
-    func replaceDatabase(with url: URL) throws  // atomic swap for enrichment
+    // Enrichment (write back to local DB)
+    func enrichTour(id: Int, description: String?, imageUrlsJson: String?) throws
 }
 ```
 
@@ -309,24 +447,22 @@ final class RouletteService {
 }
 ```
 
-### DBEnrichmentService
+### TourEnrichmentService — NOT BUILT
 
-Downloads full DB on first launch, swaps atomically.
+Lazy per-tour enrichment. Fetches full description + image gallery when user views a tour detail, then prefetches the rest of the current batch.
 
 ```swift
 @Observable
-final class DBEnrichmentService {
-    var status: EnrichmentStatus = .idle  // .idle, .downloading(progress), .complete, .failed
-
-    func checkAndEnrich()  // called on app launch
-    // 1. Check version endpoint
-    // 2. If newer, download gzipped DB to temp file
-    // 3. Decompress
-    // 4. Validate (check tour count > seed count)
-    // 5. Atomic swap: close DB → move file → reopen
-    // 6. Update stored version in UserDefaults
+final class TourEnrichmentService {
+    func enrichIfNeeded(tour: Tour, batchIds: [Int]) async
+    // 1. If tour.imageUrlsJson != nil && !tour.description.hasSuffix("...") → already enriched, return
+    // 2. Call 1: GET /api/ios/tour/{tour.id} → update this tour in local DB → notify UI
+    // 3. Call 2: POST /api/ios/tours/batch with remaining batchIds that need enrichment
+    //    → update local DB silently in background
 }
 ```
+
+Called from `TourDetailView.onAppear`. The `batchIds` come from whatever list the user is currently browsing (roulette hand, superlative results, chain tour IDs). Only IDs where `image_urls_json IS NULL` are sent.
 
 ---
 
@@ -450,10 +586,10 @@ Tour photos from Viator CDN (public URLs, no auth). Strategy:
 
 | Scenario | Behavior |
 |----------|----------|
-| No internet, first launch | All features work (seed DB). Photos show placeholders. |
-| No internet, enriched | All features work. Cached photos show, uncached show placeholders. |
-| Airplane mode | Fully functional except photo loading. |
-| Spotty connection | Photos load progressively. No spinners or error states for data. |
+| No internet, first launch | All features work (seed DB). Photos show placeholders. Detail pages show truncated descriptions. |
+| No internet, some tours enriched | Enriched tours show full data. Unenriched tours show seed data. No errors. |
+| Airplane mode | Fully functional except photo loading and enrichment. |
+| Spotty connection | Photos load progressively. Enrichment fails silently, retries on next view. |
 
 The app should **never** show a "no connection" error screen. Data is always local. Only photos need network.
 
@@ -466,35 +602,93 @@ The app should **never** show a "no connection" error screen. Data is always loc
 - **Minimum target**: iOS 17.0
 - **Devices**: iPhone only (iPad layout is a V2 enhancement)
 - **App Store**: Free, no in-app purchases
-- **Size**: ~180MB download (150MB seed DB + 30MB app binary)
+- **Size**: ~240MB download (210MB seed DB + 30MB app binary)
 - **Category**: Travel (with "Entertainment" as secondary)
 - **Privacy**: No data collected. App Privacy label = "Data Not Collected."
 
 ---
 
-## DB Build Pipeline (for App Releases)
+## Seed DB Build Script
 
-When preparing a new app version:
+Concrete steps to build the seed DB from the production database. Run before each App Store submission.
 
 ```bash
-# 1. Ensure indexer has completed and one-liners are backfilled
-# 2. Build seed DB (strip enrichment columns to reduce size)
-sqlite3 data/tourgraph.db ".dump tours" | grep -v "description\|highlights\|inclusions\|image_urls" > seed.sql
-# (actual script TBD — may be simpler to just copy full DB and VACUUM)
+# 1. Copy production DB (never modify the original)
+cp data/tourgraph.db data/tourgraph-seed.db
 
-# 3. Or: just ship the full DB if it's under 200MB after VACUUM
-sqlite3 data/tourgraph.db "VACUUM;"
-ls -lh data/tourgraph.db  # check size
+# 2. Drop unused tables (app never queries these)
+sqlite3 data/tourgraph-seed.db "
+  DROP TABLE IF EXISTS city_readings;
+  DROP TABLE IF EXISTS city_profiles;
+  DROP TABLE IF EXISTS destinations;
+  DROP TABLE IF EXISTS superlatives;
+  DROP TABLE IF EXISTS indexer_state;
+"
 
-# 4. Copy to Xcode project resources
-cp data/tourgraph.db ios/TourGraph/TourGraph/Resources/tourgraph-seed.db
+# 3. Truncate descriptions to ~200 chars at word boundary + "..."
+#    (Pure SQL word-boundary truncation is awkward — use a small Node script
+#    or this SQLite approximation that finds last space before char 200)
+sqlite3 data/tourgraph-seed.db "
+  UPDATE tours SET description =
+    SUBSTR(description, 1,
+      MAX(
+        INSTR(SUBSTR(REVERSE(SUBSTR(description, 1, 200)), 1, 200), ' '),
+        200 - INSTR(SUBSTR(description, 1, 200), SUBSTR(description, 200, 1))
+      )
+    ) || '...'
+  WHERE description IS NOT NULL AND LENGTH(description) > 200;
+"
+#    Note: If pure-SQL truncation is unreliable, write a 10-line Node script:
+#      rows.forEach(r => { let i = r.description.lastIndexOf(' ', 200); ... })
+#    Either way: verify with SELECT SUBSTR(description,1,50), LENGTH(description) FROM tours LIMIT 20;
 
-# 5. Build full DB for enrichment endpoint
-gzip -k data/tourgraph.db
-scp data/tourgraph.db.gz root@143.244.186.165:/opt/app/public/data/
+# 4. NULL out expensive columns the app never displays
+sqlite3 data/tourgraph-seed.db "
+  UPDATE tours SET
+    image_urls_json = NULL,
+    inclusions_json = NULL,
+    supplier_name = NULL;
+"
+
+# 5. NULL out columns not in the Tour Swift struct
+sqlite3 data/tourgraph-seed.db "
+  UPDATE tours SET
+    tags_json = NULL,
+    summary_hash = NULL,
+    indexed_at = NULL,
+    last_seen_at = NULL,
+    latitude = NULL,
+    longitude = NULL;
+"
+
+# 6. Delete inactive tours (47 rows, filtered by WHERE status='active' anyway)
+sqlite3 data/tourgraph-seed.db "DELETE FROM tours WHERE status != 'active';"
+
+# 7. Drop redundant indexes (never queried by app)
+sqlite3 data/tourgraph-seed.db "
+  DROP INDEX IF EXISTS idx_tours_indexed;
+  DROP INDEX IF EXISTS idx_tours_product_code;
+"
+
+# 8. Reclaim space
+sqlite3 data/tourgraph-seed.db "VACUUM;"
+
+# 9. Verify
+echo "=== Seed DB size ==="
+ls -lh data/tourgraph-seed.db
+echo "=== Row counts ==="
+sqlite3 data/tourgraph-seed.db "
+  SELECT 'tours' as tbl, COUNT(*) FROM tours;
+  SELECT 'chains' as tbl, COUNT(*) FROM six_degrees_chains;
+"
+echo "=== Sample truncated description ==="
+sqlite3 data/tourgraph-seed.db "SELECT id, LENGTH(description), SUBSTR(description,1,80) FROM tours WHERE description IS NOT NULL LIMIT 5;"
+
+# 10. Copy to iOS bundle
+cp data/tourgraph-seed.db ios/TourGraph/TourGraph/TourGraph/Resources/tourgraph.db
 ```
 
-If the full DB after VACUUM is under ~180MB, skip the seed/enrich split entirely and just bundle the full DB. Simpler is better.
+**Expected result:** ~210MB seed DB (down from 479MB). All 4 features fully functional. Detail pages show truncated descriptions and single cover photos.
 
 ---
 
@@ -507,6 +701,7 @@ If the full DB after VACUUM is under ~180MB, skip the seed/enrich split entirely
 - Analytics / crash reporting
 - Universal links (deep linking from website to app)
 - On-demand chain generation (user types two cities)
+- Data refresh / delta sync (new tours, updated one-liners, new chains from re-indexing)
 - Favorites sync across devices (iCloud)
 
 ---
@@ -523,10 +718,10 @@ If the full DB after VACUUM is under ~180MB, skip the seed/enrich split entirely
 | 6 | SixDegreesSection + ChainDetailView + Surprise Me | Done |
 | 7 | 4-tab layout (each feature its own tab) + Settings as sheet | Done |
 | 8 | Favorites + App Icon | Done |
-| 9 | DBEnrichmentService (background download) | Not started |
+| 8b | **Build seed DB** (run seed DB build script above) | **Next** |
+| 8c | **Simulator + device testing** with seed DB | **Next** |
+| 9 | TourEnrichmentService (per-tour lazy enrichment) + server API endpoints | Not started — not required for App Store v1 |
 | 10 | App Store assets + submission | Not started |
-
-**Total: ~5 days** (matches the product brief's Week 4-5 estimate)
 
 ---
 

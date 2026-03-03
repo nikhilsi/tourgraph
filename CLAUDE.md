@@ -22,7 +22,7 @@
 - **docs/data-schema.md** — Full SQL schema (CREATE TABLE statements for all 7 tables)
 - **src/scripts/README.md** — Data pipeline playbook (step-by-step rebuild from scratch)
 - **docs/implementation/ios-app-store.md** — App Store submission metadata, signing info, pre-submission checklist
-- **docs/implementation/ios-architecture.md** — iOS app design: data strategy, services, navigation
+- **docs/implementation/ios-architecture.md** — iOS app design: seed DB strategy (~210MB build script), column analysis, GRDB safety, services, navigation
 - **docs/reference/thesis_validation.md** — Why the original thesis was killed (context only)
 - **archive/docs/api_landscape.md** — Viator API details, test results, response formats
 
@@ -267,7 +267,7 @@ The `archive/scripts/viator_compare.py` from Phase 0 has working API call patter
 
 **Implementation Docs (`docs/implementation/`):**
 - **docs/implementation/implementation_plan.md** — Phase 1-3 build plan
-- **docs/implementation/ios-architecture.md** — iOS app design: data strategy, services, navigation
+- **docs/implementation/ios-architecture.md** — iOS app design: seed DB strategy (~210MB build script), column analysis, GRDB safety, services, navigation
 - **docs/implementation/ios-app-store.md** — App Store submission metadata, signing, checklist
 
 **Reference Docs (`docs/reference/`):**

@@ -23,7 +23,7 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 
 ### iOS App (In Development)
 
-SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, all four features implemented. Builds and runs on simulator.
+SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, all four features implemented. Builds and runs on simulator. App queries only 2 tables (`tours` + `six_degrees_chains`) — see `docs/implementation/ios-architecture.md` for verified column analysis.
 
 | Feature | File(s) | Status |
 |---------|---------|--------|
@@ -37,7 +37,9 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 | App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
 
 **App Store prep done:** PrivacyInfo.xcprivacy, ExportOptions.plist, metadata draft (`docs/implementation/ios-app-store.md`).
-**Not yet built:** DB enrichment service, share card rendering (ImageRenderer), launch screen, App Store screenshots.
+**Seed DB strategy decided:** ~210MB target from 479MB production DB. Truncate descriptions to ~200 chars, NULL image galleries/inclusions/supplier, drop 5 unused tables, VACUUM. Build script in `docs/implementation/ios-architecture.md`.
+**Bundled DB is stale:** Currently 367MB with 110K tours, 0 chains — must rebuild from production data before testing.
+**Not yet built:** Seed DB build (script ready), per-tour enrichment (lazy fetch on detail tap — designed, not required for App Store v1), share card rendering (ImageRenderer), launch screen, App Store screenshots.
 
 ## Data Asset (4 IP Layers)
 
@@ -50,10 +52,10 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 | 3. City Intelligence | City profiles: personality, standout tours, themes | 910 cities (1,799 readings) | **Complete** |
 | 4. Chain Connections | Thematic chains connecting cities | 491 chains | **Complete** |
 
-- **474 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
+- **479 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-**Next:** Production testing → iOS seed DB + polish → App Store.
+**Next:** Build seed DB (~210MB) → iOS testing on simulator/device → polish → App Store.
 
 ## Deployment
 
