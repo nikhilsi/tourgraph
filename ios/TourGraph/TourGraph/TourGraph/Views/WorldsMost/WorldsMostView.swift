@@ -43,10 +43,11 @@ struct WorldsMostSection: View {
     let database: DatabaseService
     @State private var superlatives: [SuperlativeResult] = []
     @State private var isLoading = true
+    @State private var loadError: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Superlatives from 100,000+ tours")
+            Text("Superlatives from 136,000+ tours")
                 .font(.subheadline)
                 .foregroundStyle(.white.opacity(0.5))
                 .padding(.horizontal, 20)
@@ -55,6 +56,16 @@ struct WorldsMostSection: View {
                 ProgressView()
                     .tint(.white)
                     .frame(maxWidth: .infinity, minHeight: 120)
+            } else if let loadError {
+                VStack(spacing: 8) {
+                    Text(loadError)
+                        .font(.caption)
+                        .foregroundStyle(.white.opacity(0.5))
+                    Button("Try Again") { Task { await load() } }
+                        .font(.caption.bold())
+                        .foregroundStyle(.white)
+                }
+                .frame(maxWidth: .infinity, minHeight: 120)
             } else {
                 ForEach(superlatives) { result in
                     NavigationLink(value: result.tour.id) {
@@ -65,12 +76,18 @@ struct WorldsMostSection: View {
                 }
             }
         }
-        .task {
-            do {
-                superlatives = try database.getAllSuperlatives()
-            } catch {}
-            isLoading = false
+        .task { await load() }
+    }
+
+    private func load() async {
+        isLoading = true
+        loadError = nil
+        do {
+            superlatives = try database.getAllSuperlatives()
+        } catch {
+            loadError = "Could not load superlatives"
         }
+        isLoading = false
     }
 }
 

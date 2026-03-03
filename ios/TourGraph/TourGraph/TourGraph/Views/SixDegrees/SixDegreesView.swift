@@ -44,6 +44,7 @@ struct SixDegreesSection: View {
     @State private var selectedChain: Chain?
     @State private var toursByIds: [Int: Tour] = [:]
     @State private var isLoading = true
+    @State private var loadError: String?
     @State private var isRenderingCard = false
     @State private var showShareSheet = false
     @State private var shareCardImage: UIImage?
@@ -74,6 +75,28 @@ struct SixDegreesSection: View {
                 ProgressView()
                     .tint(.white)
                     .frame(maxWidth: .infinity, minHeight: 120)
+            } else if let loadError {
+                VStack(spacing: 8) {
+                    Text(loadError)
+                        .font(.caption)
+                        .foregroundStyle(.white.opacity(0.5))
+                    Button("Try Again") {
+                        Task {
+                            isLoading = true
+                            self.loadError = nil
+                            do {
+                                chains = try database.getAllChains()
+                            } catch {
+                                self.loadError = "Could not load chains"
+                            }
+                            pickRandom()
+                            isLoading = false
+                        }
+                    }
+                    .font(.caption.bold())
+                    .foregroundStyle(.white)
+                }
+                .frame(maxWidth: .infinity, minHeight: 120)
             } else if let chain = selectedChain {
                 // Chain header
                 VStack(alignment: .leading, spacing: 8) {
@@ -292,7 +315,9 @@ struct SixDegreesSection: View {
         .task {
             do {
                 chains = try database.getAllChains()
-            } catch {}
+            } catch {
+                loadError = "Could not load chains"
+            }
             pickRandom()
             isLoading = false
         }
@@ -313,11 +338,9 @@ struct SixDegreesSection: View {
         selectedChain = chains.randomElement()
         toursByIds = [:]
         if let chain = selectedChain {
-            for link in chain.links {
-                if let tourId = link.tourId,
-                   let tour = try? database.getTourById(tourId) {
-                    toursByIds[tourId] = tour
-                }
+            let ids = chain.links.compactMap(\.tourId)
+            if let tours = try? database.getToursByIds(ids) {
+                toursByIds = tours
             }
         }
     }

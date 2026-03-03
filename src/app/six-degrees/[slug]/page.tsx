@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getChainBySlug, getTourById } from "@/lib/db";
+import { getChainBySlug, getToursByIds } from "@/lib/db";
 import { formatDurationShort } from "@/lib/format";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
@@ -47,8 +47,10 @@ export default async function ChainDetailPage({ params }: Props) {
   const chain = getCachedChain(slug);
   if (!chain) notFound();
 
-  // Look up tour data for each stop
-  const tourData = chain.chain.map((link) => getTourById(link.tour_id));
+  // Look up tour data for each stop (single batch query)
+  const tourIds = chain.chain.map((link) => link.tour_id).filter((id): id is number => id != null);
+  const tourMap = getToursByIds(tourIds);
+  const tourData = chain.chain.map((link) => link.tour_id ? tourMap.get(link.tour_id) : undefined);
 
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">

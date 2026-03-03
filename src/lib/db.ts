@@ -304,6 +304,20 @@ export function getTourById(id: number): TourRow | undefined {
     | undefined;
 }
 
+export function getToursByIds(ids: number[]): Map<number, TourRow> {
+  if (ids.length === 0) return new Map();
+  const db = getDb(true);
+  const placeholders = ids.map(() => "?").join(",");
+  const rows = db
+    .prepare(`SELECT * FROM tours WHERE id IN (${placeholders})`)
+    .all(...ids) as TourRow[];
+  const map = new Map<number, TourRow>();
+  for (const row of rows) {
+    map.set(row.id, row);
+  }
+  return map;
+}
+
 export function getTourByProductCode(code: string): TourRow | undefined {
   const db = getDb();
   return db

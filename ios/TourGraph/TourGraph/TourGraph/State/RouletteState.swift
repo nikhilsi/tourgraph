@@ -29,10 +29,6 @@ final class RouletteState {
         }
         handIndex += 1
 
-        // Prefetch next hand when 5 cards from the end
-        if hand.count - handIndex <= 5 {
-            prefetchHand()
-        }
     }
 
     func fetchHand() {
@@ -49,13 +45,6 @@ final class RouletteState {
         } catch {
             self.error = "Could not load tours"
             isLoading = false
-        }
-    }
-
-    private func prefetchHand() {
-        // Fire-and-forget: load next hand in background
-        Task.detached { [database, seenIds] in
-            _ = try? database.getRouletteHand(excludeIds: seenIds)
         }
     }
 

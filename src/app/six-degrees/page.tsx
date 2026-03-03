@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getRandomChain, getTourById } from "@/lib/db";
+import { getRandomChain, getToursByIds } from "@/lib/db";
 import { formatDurationShort } from "@/lib/format";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
@@ -47,7 +47,9 @@ export default function SixDegreesGalleryPage() {
     );
   }
 
-  const tourData = chain.chain.map((link) => getTourById(link.tour_id));
+  const tourIds = chain.chain.map((link) => link.tour_id).filter((id): id is number => id != null);
+  const tourMap = getToursByIds(tourIds);
+  const tourData = chain.chain.map((link) => link.tour_id ? tourMap.get(link.tour_id) : undefined);
 
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">

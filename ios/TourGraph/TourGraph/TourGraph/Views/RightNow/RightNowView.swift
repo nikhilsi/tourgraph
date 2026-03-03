@@ -51,6 +51,7 @@ struct RightNowSection: View {
     let database: DatabaseService
     @State private var moments: [RightNowMoment] = []
     @State private var isLoading = true
+    @State private var loadError: String?
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -63,6 +64,16 @@ struct RightNowSection: View {
                 ProgressView()
                     .tint(.white)
                     .frame(maxWidth: .infinity, minHeight: 120)
+            } else if let loadError {
+                VStack(spacing: 8) {
+                    Text(loadError)
+                        .font(.caption)
+                        .foregroundStyle(.white.opacity(0.5))
+                    Button("Try Again") { Task { await loadMoments() } }
+                        .font(.caption.bold())
+                        .foregroundStyle(.white)
+                }
+                .frame(maxWidth: .infinity, minHeight: 120)
             } else if moments.isEmpty {
                 Text("No golden-hour moments right now. Check back soon!")
                     .foregroundStyle(.white.opacity(0.5))
@@ -83,6 +94,8 @@ struct RightNowSection: View {
     }
 
     private func loadMoments() async {
+        isLoading = true
+        loadError = nil
         do {
             let allTimezones = try database.getDistinctTimezones()
 
@@ -104,10 +117,10 @@ struct RightNowSection: View {
                     timeOfDay: TimezoneHelper.getTimeOfDayLabel(hour: hour)
                 )
             }
-            isLoading = false
         } catch {
-            isLoading = false
+            loadError = "Could not load moments"
         }
+        isLoading = false
     }
 }
 

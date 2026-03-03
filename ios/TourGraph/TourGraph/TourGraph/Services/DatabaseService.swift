@@ -136,6 +136,19 @@ final class DatabaseService: Sendable {
         }
     }
 
+    func getToursByIds(_ ids: [Int]) throws -> [Int: Tour] {
+        guard !ids.isEmpty else { return [:] }
+        return try db.read { db in
+            let placeholders = ids.map { _ in "?" }.joined(separator: ",")
+            let tours = try Tour.fetchAll(db, sql: "SELECT * FROM tours WHERE id IN (\(placeholders))", arguments: StatementArguments(ids))
+            var map: [Int: Tour] = [:]
+            for tour in tours {
+                map[tour.id] = tour
+            }
+            return map
+        }
+    }
+
     // MARK: - Right Now Somewhere
 
     func getDistinctTimezones() throws -> [String] {
