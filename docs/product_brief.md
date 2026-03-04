@@ -2,7 +2,7 @@
 
 **Version:** 1.1
 **Date:** February 28, 2026
-**Status:** Greenlit for development
+**Status:** Shipped — website live at tourgraph.ai, iOS app submitted for review
 
 ---
 

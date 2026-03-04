@@ -212,7 +212,7 @@ See `docs/city-intelligence.md` for full pipeline design.
 
 | Metric | Value |
 |--------|-------|
-| Chains generated | 485 (from 500 pairs, 97%) |
+| Chains generated | 491 (from 500 pairs, 98.2% — includes retry pass) |
 | Endpoint cities | 100 curated (30 anchors, 40 gems, 30 surprises) |
 | Intermediate cities | Drawn from all 910 cities (unconstrained) |
 | Stops per chain | 5 (2 endpoints + 3 intermediates) |
@@ -222,7 +222,7 @@ See `docs/city-intelligence.md` for full pipeline design.
 
 **Pipeline:** Two-stage — Stage 1 (City Picker) sees all 910 city profiles (~125K tokens, cached), picks 3 intermediates. Stage 2 (Chain Builder) gets 30 tours x 5 cities, builds chain with thematic connections.
 
-**Failure rate:** 15/500 pairs (3%) permanently failed — mostly Claude hallucinating cities not in our DB ("Havana" 7x, "Bali" 3x) or duplicate theme validation failures.
+**Failure rate:** 9/500 pairs (1.8%) permanently failed after retry pass — mostly Claude hallucinating cities not in our DB ("Havana" 7x, "Bali" 3x) or duplicate theme validation failures.
 
 See `docs/six-degrees-chains.md` for full generation architecture.
 

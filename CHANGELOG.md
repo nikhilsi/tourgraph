@@ -6,6 +6,20 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [7.0.0] - 2026-03-03
+
+### iOS App Store Submission
+
+- Submitted TourGraph v1.0 (build 1) to App Store — waiting for review
+- Registered bundle ID `com.nikhilsi.TourGraph`, App ID `6759991920`
+- Archived and uploaded build via CLI (`xcodebuild archive` + `xcodebuild -exportArchive`)
+- Metadata pushed via App Store Connect API: description, keywords, promotional text, subtitle, privacy URL, categories (Travel + Entertainment), review notes
+- 10 screenshots uploaded via API (6.9" and 6.1" display sizes)
+- App Store metadata files created in `appstore/metadata/`
+- Privacy: "Data Not Collected", age rating 4+, free pricing, no encryption
+
+---
+
 ## [6.3.0] - 2026-03-03
 
 ### Code Review — Tier 4 + Polish

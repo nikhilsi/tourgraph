@@ -3,17 +3,21 @@
 **Last Updated**: March 3, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 
-## Current Focus: iOS Polish → App Store
+## Current Focus: Waiting for App Store Review
 
-Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset deployed (136,256 tours, 491 chains, 910 city profiles, 479MB database). All four web features complete. iOS app built, tested on real device, 6-agent code review complete (Tiers 1-4). SEO (robots.txt, sitemap.xml), accessibility (VoiceOver labels), performance, and security all addressed.
+Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset deployed (136,256 tours, 491 chains, 910 city profiles, 479MB database). All four web features complete. iOS app submitted to App Store — waiting for review (submitted March 3, 2026).
 
 ## Next — In Order
 
-1. **iOS polish** — Share card rendering (ImageRenderer), launch screen.
-2. **iOS App Store submission** — Register bundle ID `com.nikhilsi.TourGraph`, create App Store Connect listing, screenshots. See `docs/implementation/ios-app-store.md`.
+1. **App Store review** — Waiting. Typically 24-48 hours. Check status at App Store Connect.
+2. **Post-launch** — Monitor for review feedback, respond to any Apple questions.
 
 ## Recently Completed
 
+- [x] iOS App Store submission — v1.0 (build 1) submitted, waiting for review (March 3)
+  - Bundle ID registered, app record created, metadata + screenshots uploaded via API
+  - Build archived, exported, uploaded via CLI (`xcodebuild`)
+  - Privacy, age rating, pricing, encryption compliance all set
 - [x] 6-agent code review — Tiers 1-4 complete, all deployed to production (March 3)
   - Tier 1: Chain perf (slug column), SQL injection, URL safety, rate limiter
   - Tier 2: Batch queries, CSP, error states, dead code
@@ -62,4 +66,4 @@ Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset de
 | 8e | iOS testing (simulator + device) | **Done** — real device tested |
 | 8f | iOS polish (share cards, launch screen) | **Done** |
 | 8g | Code review (6-agent, Tiers 1-4) | **Done** — perf, security, a11y, SEO |
-| 9 | iOS App Store submission | Next |
+| 9 | iOS App Store submission | **Submitted** — waiting for review (March 3) |

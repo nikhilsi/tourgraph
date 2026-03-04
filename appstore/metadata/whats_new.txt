@@ -1,0 +1,6 @@
+Welcome to TourGraph! Discover the world's most surprising tours:
+- Tour Roulette: swipe through random tours from around the world
+- Right Now Somewhere: golden-hour tours happening right now
+- The World's Most: daily superlatives from 120,000+ experiences
+- Six Degrees of Anywhere: cities connected through thematic tour chains
+- Save your favorites with a tap

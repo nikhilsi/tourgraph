@@ -2,7 +2,7 @@
 
 ---
 **Last Updated**: March 3, 2026
-**Status**: All 4 features built + polished. Seed DB + enrichment complete. Testing + App Store submission remaining.
+**Status**: Complete — submitted to App Store March 3, 2026 (App ID 6759991920), waiting for review.
 **Reference apps**: GitaVani (all-local pattern), ClearNews (API + caching pattern)
 ---
 
@@ -273,7 +273,7 @@ ios/TourGraph/
 │       └── tourgraph.db               # Bundled SQLite database (gitignored)
 ```
 
-**Not yet built**: ShareCardView (ImageRenderer), launch screen, App Store screenshots. Widgets, RecentSpins are V2.
+**V2 ideas**: Widgets, RecentSpins.
 
 ---
 
@@ -723,9 +723,9 @@ cp data/tourgraph-seed.db ios/TourGraph/TourGraph/TourGraph/Resources/tourgraph.
 | 8c | TourEnrichmentService + server API endpoints | Done |
 | 8d | Six Degrees polish (images, cards, colors, favorites) | Done |
 | 8e | FavoritesListView + AboutView + Settings wiring | Done |
-| 9 | **Simulator + device testing** | **In progress** |
-| 10 | iOS polish (share cards, launch screen) | Next |
-| 11 | App Store assets + submission | Blocked on polish |
+| 9 | Simulator + device testing | Done |
+| 10 | iOS polish (share cards, launch screen) | Done |
+| 11 | App Store assets + submission | **Submitted** March 3, 2026 |
 
 ---
 

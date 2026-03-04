@@ -1,8 +1,8 @@
 # iOS App Store Submission — Ready-to-Paste Metadata
 
 ---
-**Last Updated**: March 1, 2026
-**Status**: Draft — review before submission
+**Last Updated**: March 3, 2026
+**Status**: Submitted — v1.0 (build 1) waiting for review
 ---
 
 ## App Identity
@@ -247,30 +247,36 @@ Or just use **Xcode → Product → Archive → Distribute App** (simpler for fi
 
 > **Note:** PrivacyInfo.xcprivacy must be added to the Xcode project's target (drag into Xcode, check "Add to target: TourGraph").
 
-## Pre-Submission Checklist
+## Pre-Submission Checklist — ALL COMPLETE
+
+**Submitted March 3, 2026** — App ID `6759991920`, waiting for review.
 
 ### Setup (one-time)
-- [ ] Register bundle ID `com.nikhilsi.TourGraph` in Apple Developer portal
-- [ ] Set Team ID to `F66D7QPY4N` in Xcode signing settings
-- [ ] Add PrivacyInfo.xcprivacy to Xcode target
-- [ ] Create app record in App Store Connect (or via API)
+- [x] Register bundle ID `com.nikhilsi.TourGraph` in Apple Developer portal
+- [x] Set Team ID to `F66D7QPY4N` in Xcode signing settings
+- [x] Add PrivacyInfo.xcprivacy to Xcode target
+- [x] Create app record in App Store Connect (via browser)
 
 ### Code
-- [ ] Verify app builds with Release configuration
-- [ ] Test on physical device (not just Simulator)
-- [ ] Add LogoWhite @2x and @3x retina variants
+- [x] Verify app builds with Release configuration
+- [x] Test on physical device (not just Simulator)
+- [x] Add LogoWhite @2x and @3x retina variants
 
 ### Content
 - [x] Host privacy policy at `https://tourgraph.ai/privacy`
 - [x] Host support page at `https://tourgraph.ai/support`
-- [ ] Capture screenshots (5 minimum, iPhone 6.9")
-- [ ] Upload screenshots to App Store Connect
+- [x] Capture screenshots (5 per device size, 6.9" + 6.1")
+- [x] Upload screenshots to App Store Connect (via API)
 
 ### Submission
-- [ ] Fill in App Store Connect metadata (copy from sections above)
-- [ ] Archive and upload build
-- [ ] Set encryption declaration (usesNonExemptEncryption: false)
-- [ ] Submit for review with review notes above
+- [x] Fill in App Store Connect metadata (via API — description, keywords, promo text, subtitle, categories, review notes)
+- [x] Archive and upload build (via CLI — `xcodebuild archive` + `xcodebuild -exportArchive`)
+- [x] Set encryption declaration (no encryption)
+- [x] App privacy: Data Not Collected
+- [x] Age rating: 4+
+- [x] Pricing: Free
+- [x] Submit for review with review notes
 
 ### Reference
 - Full submission playbook with API calls: `~/src/gh/news-aggregator/docs/app-store-submission-playbook.md`
+- Subtitle adjusted to 30 chars: "World's most surprising tours" (original was too long)

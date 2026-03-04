@@ -1,0 +1,15 @@
+TourGraph is a tour discovery app. It displays pre-loaded tour data from a bundled SQLite database — no login, no network-dependent features. All four tabs work immediately on launch.
+
+The app links to Viator (viator.com) for tour bookings via affiliate URLs. TourGraph does not process any transactions.
+
+No demo account needed — the app has no accounts or login.
+
+Test Instructions:
+1. Launch the app — Tour Roulette loads immediately
+2. Swipe left or right on the tour card, or tap "Show Me Another"
+3. Tap the card to see tour details
+4. Tap the heart icon to save a favorite
+5. Switch to "Right Now" tab — see golden-hour tours
+6. Switch to "World's Most" tab — see superlatives
+7. Switch to "Six Degrees" tab — see city chains
+8. Tap the gear icon for Settings

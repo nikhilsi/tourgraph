@@ -2,7 +2,7 @@
 
 ---
 **Last Updated**: March 1, 2026
-**Status**: v1 UI spec finalized, building
+**Status**: Reference only — see `docs/six-degrees-chains.md` for current implementation
 ---
 
 ## Concept
