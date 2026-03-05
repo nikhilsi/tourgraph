@@ -11,20 +11,20 @@ iOS app v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality) on March
 
 ## Next — In Order
 
-### Tier 1: Home Screen Widgets (WidgetKit) — CURRENT
+### Tier 1: Home Screen Widgets (WidgetKit) — DONE
 
-- [ ] 1a. Create App Group (`group.com.nikhilsi.TourGraph`) in Apple Developer portal + Xcode
-- [ ] 1b. Migrate DB path from Application Support → shared App Group container in `DatabaseService.swift`
-- [ ] 1c. Create `Shared/` directory — move `Tour.swift`, `TimezoneHelper.swift`, `Superlative.swift` (both targets need these)
-- [ ] 1d. Add Widget Extension target (`TourGraphWidgets`) to Xcode project with GRDB dependency
-- [ ] 1e. Create `WidgetDatabase.swift` — lightweight read-only DB access for widget extension (App Group path)
-- [ ] 1f. Build "Right Now Somewhere" widget (small + medium) — golden-hour tour, 30-min timeline refresh
-- [ ] 1g. Build "Random Tour" widget (small + medium) — random tour card, interactive "Surprise Me" button (iOS 17+)
-- [ ] 1h. Build Lock Screen widget (accessoryRectangular) — text-only Right Now moment
-- [ ] 1i. Deep link from widget tap → correct tab/tour in main app
-- [ ] 1j. Test all widgets on simulator + device
+- [x] 1a. App Group entitlements (`group.com.nikhilsi.TourGraph`) for main app + widget extension
+- [x] 1b. DB path migrated to shared App Group container
+- [x] 1c. `Shared/` directory — Tour.swift, TimezoneHelper.swift, Superlative.swift, SharedConstants.swift
+- [x] 1d. Widget Extension target (`TourGraphWidgetsExtension`) with GRDB dependency
+- [x] 1e. `WidgetDatabase.swift` — lightweight read-only DB for widget extension
+- [x] 1f. "Right Now Somewhere" widget (small + medium) — golden-hour tour, photo, 30-min refresh
+- [x] 1g. "Random Tour" widget (small + medium) — tour photo, interactive "Surprise Me" button (iOS 17+)
+- [x] 1h. Lock Screen widget (accessoryRectangular) — text-only Right Now moment
+- [x] 1i. Deep link from widget tap → correct tab in main app (`tourgraph://` URL scheme)
+- [x] 1j. Tested on real device (iPhone 15 Pro Max) — all 5 widget sizes working with photos
 
-### Tier 2: App Intents + Siri Shortcuts
+### Tier 2: App Intents + Siri Shortcuts — CURRENT
 
 - [ ] ShowRandomTourIntent + ShowRightNowIntent + GetTourFactIntent
 - [ ] AppShortcutsProvider with Siri phrases
@@ -51,6 +51,7 @@ iOS app v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality) on March
 
 ## Recently Completed
 
+- [x] Tier 1: Home Screen Widgets — 3 widget types (Right Now, Random Tour, Lock Screen), 5 sizes, tour photos, interactive Surprise Me, deep links, tested on iPhone 15 Pro Max (March 5)
 - [x] iOS App Store submission — v1.0 rejected (4.2.2 Minimum Functionality), resubmission in progress (March 5)
   - Bundle ID registered, app record created, metadata + screenshots uploaded via API
   - Build archived, exported, uploaded via CLI (`xcodebuild`)

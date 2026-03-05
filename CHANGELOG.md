@@ -6,16 +6,30 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [7.2.0] - 2026-03-05
+
+### Tier 1: Home Screen Widgets (WidgetKit)
+
+- Added Widget Extension target (`TourGraphWidgetsExtension`) with shared GRDB dependency
+- Created `Shared/` directory — Tour.swift, TimezoneHelper.swift, Superlative.swift, SharedConstants.swift shared between main app and widget extension
+- Migrated DB path to shared App Group container (`group.com.nikhilsi.TourGraph`)
+- **Right Now Somewhere widget** (small + medium) — golden-hour tour with photo, destination, local time, rating, price, 30-min refresh
+- **Random Tour widget** (small + medium) — random tour with photo, one-liner, interactive "Surprise Me" button (iOS 17+ AppIntent)
+- **Lock Screen widget** (accessoryRectangular) — text-only Right Now moment
+- `WidgetDatabase.swift` — lightweight read-only DB access for widget extension
+- Deep linking via `tourgraph://` URL scheme — widget tap navigates to correct tab
+- Registered URL scheme in Info.plist, added `AppTab` enum + `onOpenURL` handler
+- Tested on real device (iPhone 15 Pro Max) — all 5 widget sizes working with tour photos
+
+---
+
 ## [7.1.0] - 2026-03-05
 
-### App Store Resubmission — Native Features (In Progress)
+### App Store Resubmission Plan
 
 - v1.0 rejected under Guideline 4.2.2 (Minimum Functionality) — "does not sufficiently differ from a web browsing experience"
 - Created resubmission plan: `docs/implementation/app-store-resubmission.md`
-- Tier 1: Home Screen Widgets (Right Now, Random Tour, Lock Screen) — WidgetKit
-- Tier 2: App Intents + Siri Shortcuts (3 intents, voice triggers)
-- Tier 3: Local Notifications (daily superlative discovery)
-- Tier 4: Spotlight indexing + enhanced haptics + spring animations
+- 4-tier plan: Widgets, Siri, Notifications, Spotlight + Polish
 
 ---
 

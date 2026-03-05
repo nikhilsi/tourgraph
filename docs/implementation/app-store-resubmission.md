@@ -2,7 +2,7 @@
 
 ---
 **Created**: March 5, 2026
-**Status**: In Progress
+**Status**: In Progress — Tier 1 (Widgets) complete, Tier 2 (Siri) next
 **Context**: Apple rejected TourGraph v1.0 under Guideline 4.2.2 (Minimum Functionality)
 ---
 
@@ -368,14 +368,14 @@ These are small touches, but they make the app feel alive in a way web animation
 
 | Step | What | Depends On | Commit Scope |
 |------|------|------------|-------------|
-| 1 | Shared App Group setup + DB migration | — | Tier 1 prep |
-| 2 | Move Tour.swift + TimezoneHelper to Shared | Step 1 | Tier 1 prep |
-| 3 | Widget extension target + GRDB dependency | Step 2 | Tier 1 |
-| 4 | "Right Now" widget (small + medium) | Step 3 | Tier 1 |
-| 5 | "Random Tour" widget (small + medium + interactive) | Step 3 | Tier 1 |
-| 6 | Lock Screen widget | Step 3 | Tier 1 |
+| 1 | Shared App Group setup + DB migration | — | **Done** |
+| 2 | Move Tour.swift + TimezoneHelper to Shared | Step 1 | **Done** |
+| 3 | Widget extension target + GRDB dependency | Step 2 | **Done** |
+| 4 | "Right Now" widget (small + medium) | Step 3 | **Done** |
+| 5 | "Random Tour" widget (small + medium + interactive) | Step 3 | **Done** |
+| 6 | Lock Screen widget | Step 3 | **Done** |
 | 7 | App Intents (3 intents + shortcuts provider) | — | Tier 2 |
-| 8 | Deep linking (tab navigation from intents/widgets) | Step 7 | Tier 2 |
+| 8 | Deep linking (tab navigation from intents/widgets) | Step 7 | **Done** (Tier 1) |
 | 9 | Local notifications (scheduling + settings UI) | — | Tier 3 |
 | 10 | Spotlight indexing | — | Tier 4 |
 | 11 | Enhanced haptics + spring animations | — | Tier 4 |

@@ -8,14 +8,12 @@ final class DatabaseService {
     private let db: DatabaseQueue
 
     init() throws {
-        // Copy bundled DB to app support directory (simulator sandbox requires this)
+        // Copy bundled DB to shared App Group container (widgets + main app share this)
         let fileManager = FileManager.default
-        guard let appSupport = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+        guard let dbURL = SharedConstants.sharedDBURL else {
             throw NSError(domain: "DatabaseService", code: 2,
-                          userInfo: [NSLocalizedDescriptionKey: "Application Support directory not available"])
+                          userInfo: [NSLocalizedDescriptionKey: "App Group container not available"])
         }
-        try fileManager.createDirectory(at: appSupport, withIntermediateDirectories: true)
-        let dbURL = appSupport.appendingPathComponent("tourgraph.db")
 
         if !fileManager.fileExists(atPath: dbURL.path) {
             guard let bundledURL = Bundle.main.url(forResource: "tourgraph", withExtension: "db") else {

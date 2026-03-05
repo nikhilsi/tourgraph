@@ -8,6 +8,7 @@ struct TourGraphApp: App {
     @State private var rouletteState: RouletteState?
     @State private var enrichmentService: TourEnrichmentService?
     @State private var loadError: String?
+    @State private var selectedTab: AppTab = .roulette
 
     var body: some Scene {
         WindowGroup {
@@ -18,7 +19,8 @@ struct TourGraphApp: App {
                         settings: settings,
                         favorites: favorites,
                         rouletteState: rouletteState,
-                        enrichmentService: enrichmentService
+                        enrichmentService: enrichmentService,
+                        selectedTab: $selectedTab
                     )
                 } else if let loadError {
                     VStack(spacing: 16) {
@@ -59,6 +61,29 @@ struct TourGraphApp: App {
                     loadError = error.localizedDescription
                 }
             }
+            .onOpenURL { url in
+                handleDeepLink(url)
+            }
+        }
+    }
+
+    private func handleDeepLink(_ url: URL) {
+        guard url.scheme == "tourgraph" else { return }
+
+        switch url.host {
+        case "tab":
+            switch url.pathComponents.last {
+            case "roulette": selectedTab = .roulette
+            case "rightnow": selectedTab = .rightNow
+            case "worldsmost": selectedTab = .worldsMost
+            case "sixdegrees": selectedTab = .sixDegrees
+            default: break
+            }
+        case "tour":
+            // Navigate to roulette tab for tour deep links
+            selectedTab = .roulette
+        default:
+            break
         }
     }
 }

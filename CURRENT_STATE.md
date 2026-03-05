@@ -37,7 +37,7 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 | Settings | `SettingsView.swift`, `AboutView.swift` | Built — gear icon in nav bar, modal sheet, haptics toggle, favorites list, about page |
 | App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
 
-**App Store status:** v1.0 rejected March 5, 2026 (4.2.2 Minimum Functionality). Adding native features (widgets, Siri, notifications, Spotlight) for v1.1 resubmission. Bundle ID `com.nikhilsi.TourGraph`, App ID `6759991920`.
+**App Store status:** v1.0 rejected March 5, 2026 (4.2.2 Minimum Functionality). Adding native features for v1.1 resubmission. Tier 1 (Widgets) complete — 3 widget types, 5 sizes, tested on iPhone 15 Pro Max. Bundle ID `com.nikhilsi.TourGraph`, App ID `6759991920`.
 **Seed DB built:** 120MB (down from 479MB production). 136,256 tours, 491 chains. Descriptions truncated to ~200 chars, image galleries NULLed, 5 unused tables dropped, VACUUM'd. Bundled in iOS app.
 **Per-tour enrichment built:** `TourEnrichmentService.swift` + server endpoints (`/api/ios/tour/[id]`, `/api/ios/tours/batch`). Lazy fetch on detail tap — full descriptions + photo galleries load from server, written to local DB, persisted for future views.
 **Code review complete:** 6-agent deep review (Tiers 1-4) — performance, security, accessibility, SEO, error handling all addressed. See CHANGELOG.md [6.2.0] and [6.3.0].
