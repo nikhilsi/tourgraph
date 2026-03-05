@@ -11,14 +11,18 @@ iOS app v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality) on March
 
 ## Next — In Order
 
-### Tier 1: Home Screen Widgets (WidgetKit)
+### Tier 1: Home Screen Widgets (WidgetKit) — CURRENT
 
-- [ ] Shared App Group setup + DB migration
-- [ ] Move Tour.swift + TimezoneHelper.swift to Shared target
-- [ ] Widget extension target + GRDB dependency
-- [ ] "Right Now" widget (small + medium)
-- [ ] "Random Tour" widget (small + medium + interactive)
-- [ ] Lock Screen widget
+- [ ] 1a. Create App Group (`group.com.nikhilsi.TourGraph`) in Apple Developer portal + Xcode
+- [ ] 1b. Migrate DB path from Application Support → shared App Group container in `DatabaseService.swift`
+- [ ] 1c. Create `Shared/` directory — move `Tour.swift`, `TimezoneHelper.swift`, `Superlative.swift` (both targets need these)
+- [ ] 1d. Add Widget Extension target (`TourGraphWidgets`) to Xcode project with GRDB dependency
+- [ ] 1e. Create `WidgetDatabase.swift` — lightweight read-only DB access for widget extension (App Group path)
+- [ ] 1f. Build "Right Now Somewhere" widget (small + medium) — golden-hour tour, 30-min timeline refresh
+- [ ] 1g. Build "Random Tour" widget (small + medium) — random tour card, interactive "Surprise Me" button (iOS 17+)
+- [ ] 1h. Build Lock Screen widget (accessoryRectangular) — text-only Right Now moment
+- [ ] 1i. Deep link from widget tap → correct tab/tour in main app
+- [ ] 1j. Test all widgets on simulator + device
 
 ### Tier 2: App Intents + Siri Shortcuts
 
