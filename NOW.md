@@ -24,13 +24,16 @@ iOS app v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality) on March
 - [x] 1i. Deep link from widget tap → correct tab in main app (`tourgraph://` URL scheme)
 - [x] 1j. Tested on real device (iPhone 15 Pro Max) — all 5 widget sizes working with photos
 
-### Tier 2: App Intents + Siri Shortcuts — CURRENT
+### Tier 2: App Intents + Siri Shortcuts — DONE
 
-- [ ] ShowRandomTourIntent + ShowRightNowIntent + GetTourFactIntent
-- [ ] AppShortcutsProvider with Siri phrases
-- [ ] Deep linking (tab navigation from intents/widgets)
+- [x] 2a. ShowRandomTourIntent — opens app to Roulette tab
+- [x] 2b. ShowRightNowIntent — opens app to Right Now tab
+- [x] 2c. ShowChainIntent — opens app to Six Degrees tab (replaced GetTourFact — more engaging)
+- [x] 2d. AppShortcutsProvider with consistent "Show me [X] in TourGraph" Siri phrases
+- [x] 2e. Modal sheet deep linking — `tourgraph://tour/{id}` shows TourDetailView as fullScreenCover (all 4 widgets + intents)
+- [x] 2f. Tested on real device (iPhone 15 Pro Max) — all 3 shortcuts, all 3 Siri phrases, all 4 widget→tour modals
 
-### Tier 3: Local Notifications
+### Tier 3: Local Notifications — CURRENT
 
 - [ ] Daily Discovery notification scheduling
 - [ ] Settings UI (toggle + time picker)
@@ -51,6 +54,7 @@ iOS app v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality) on March
 
 ## Recently Completed
 
+- [x] Tier 2: App Intents + Siri Shortcuts — 3 intents (Random Tour, Right Now, Random Chain), Siri phrases, modal sheet deep linking for all widgets, tested on iPhone 15 Pro Max (March 5)
 - [x] Tier 1: Home Screen Widgets — 3 widget types (Right Now, Random Tour, Lock Screen), 5 sizes, tour photos, interactive Surprise Me, deep links, tested on iPhone 15 Pro Max (March 5)
 - [x] iOS App Store submission — v1.0 rejected (4.2.2 Minimum Functionality), resubmission in progress (March 5)
   - Bundle ID registered, app record created, metadata + screenshots uploaded via API

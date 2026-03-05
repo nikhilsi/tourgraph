@@ -180,26 +180,27 @@ struct ShowRightNowIntent: AppIntent {
 }
 ```
 
-**Siri trigger**: "What tours are happening right now?"
+**Siri trigger**: "Show me right now in TourGraph" / "What's happening right now in TourGraph"
 
-#### 2c. "Get Tour Fact" Intent (non-opening)
+#### 2c. "Show Random Chain" Intent
 
 ```swift
-struct GetTourFactIntent: AppIntent {
-    static var title: LocalizedStringResource = "Get a Tour Fact"
-    static var description = IntentDescription("Get a surprising tour fact")
+struct ShowChainIntent: AppIntent {
+    static var title: LocalizedStringResource = "Show Random Chain"
+    static var description = IntentDescription("Discover a surprising chain of connected cities")
+    static var openAppWhenRun = true
 
-    func perform() async throws -> some IntentResult & ReturnsValue<String> {
-        // Returns a text fact without opening the app
-        // e.g., "The most expensive tour on Earth costs $47,000 — it's an Antarctic expedition"
-        let db = WidgetDatabase()
-        let tour = try db.getRandomSuperlativeFact()
-        return .result(value: tour)
+    func perform() async throws -> some IntentResult {
+        await MainActor.run {
+            DeepLinkManager.shared.pendingTab = .sixDegrees
+        }
+        return .result()
     }
 }
 ```
 
-**Use case**: Siri responds with a fun fact. Also usable in Shortcuts automations ("Every morning at 8am, show me a tour fact").
+**Siri trigger**: "Show me a chain in TourGraph" / "Six degrees in TourGraph"
+**Shortcuts**: Appears in Shortcuts app as an action. Opens Six Degrees tab with a random chain.
 
 ### App Shortcuts Provider
 
@@ -213,23 +214,46 @@ struct TourGraphShortcuts: AppShortcutsProvider {
                     systemImageName: "dice")
 
         AppShortcut(intent: ShowRightNowIntent(),
-                    phrases: ["What's happening right now in \(.applicationName)"],
+                    phrases: ["Show me right now in \(.applicationName)",
+                              "What's happening right now in \(.applicationName)"],
                     shortTitle: "Right Now",
                     systemImageName: "sun.horizon")
 
-        AppShortcut(intent: GetTourFactIntent(),
-                    phrases: ["Give me a tour fact from \(.applicationName)"],
-                    shortTitle: "Tour Fact",
-                    systemImageName: "lightbulb")
+        AppShortcut(intent: ShowChainIntent(),
+                    phrases: ["Show me a chain in \(.applicationName)",
+                              "Six degrees in \(.applicationName)"],
+                    shortTitle: "Random Chain",
+                    systemImageName: "point.3.connected.trianglepath.dotted")
     }
 }
 ```
 
+### Deep Linking: Modal Sheet for Tour-Specific Navigation
+
+**Decision**: When a widget or intent targets a specific tour (e.g., `tourgraph://tour/12345`), the app shows that tour in a **fullScreenCover modal sheet** rather than pushing onto a tab's NavigationStack.
+
+**Why modal sheet (not tab push)**:
+- Works regardless of which tab is active — no need to switch tabs first
+- Familiar iOS pattern (tapping a notification/widget shows content as an overlay)
+- Clean dismiss — swipe down or tap X returns to wherever the user was
+- Avoids corrupting the NavigationStack state of any tab
+
+**Implementation**:
+- `TourGraphApp.swift` holds `@State var deepLinkedTourId: Int?`
+- `.onOpenURL` parses `tourgraph://tour/{id}` and sets `deepLinkedTourId`
+- `.fullScreenCover(item: $deepLinkedTourId)` presents `TourDetailView`
+- Tab-level deep links (`tourgraph://tab/rightnow`) still switch tabs directly
+
+This enhancement applies to both Tier 1 (widget taps) and Tier 2 (intent launches).
+
 ### Technical Notes
 
-- App Intents live in the main app target (not the widget extension)
-- `WidgetDatabase` (shared) provides read-only DB access for intents that don't open the app
-- Deep linking: intents that open the app use a URL scheme or `NavigationPath` to jump to specific tabs
+- App Intents live in the main app target (`TourGraph/Intents/`)
+- `WidgetDatabase` moved to `Shared/` — accessible by both main app and widget extension
+- `DeepLinkManager` singleton bridges App Intents → UI (intents set pending state, app picks it up on `didBecomeActive`)
+- All intents use `@MainActor.run` to safely set `DeepLinkManager` properties from non-isolated async context
+- All widgets deep link to specific tours (`tourgraph://tour/{id}`) showing fullScreenCover modal
+- Consistent Siri phrase pattern: "Show me [X] in TourGraph" for all 3 intents
 - iOS 17+ required (matches our deployment target)
 
 ---
@@ -374,8 +398,9 @@ These are small touches, but they make the app feel alive in a way web animation
 | 4 | "Right Now" widget (small + medium) | Step 3 | **Done** |
 | 5 | "Random Tour" widget (small + medium + interactive) | Step 3 | **Done** |
 | 6 | Lock Screen widget | Step 3 | **Done** |
-| 7 | App Intents (3 intents + shortcuts provider) | — | Tier 2 |
-| 8 | Deep linking (tab navigation from intents/widgets) | Step 7 | **Done** (Tier 1) |
+| 7a | App Intents (3 intents + shortcuts provider) | — | **Done** |
+| 7b | Modal sheet deep linking (tour-specific from widgets/intents) | Step 7a | **Done** |
+| 8 | Deep linking (tab navigation from intents/widgets) | — | **Done** (Tier 1) |
 | 9 | Local notifications (scheduling + settings UI) | — | Tier 3 |
 | 10 | Spotlight indexing | — | Tier 4 |
 | 11 | Enhanced haptics + spring animations | — | Tier 4 |

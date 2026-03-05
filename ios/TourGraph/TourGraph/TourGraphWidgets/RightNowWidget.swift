@@ -151,7 +151,14 @@ struct RightNowSmallView: View {
             .padding(12)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .widgetURL(URL(string: "tourgraph://tab/rightnow"))
+        .widgetURL(widgetURL)
+    }
+
+    private var widgetURL: URL? {
+        guard let tourId = entry.tourId else {
+            return URL(string: "tourgraph://tab/rightnow")
+        }
+        return URL(string: "tourgraph://tour/\(tourId)")
     }
 }
 
@@ -215,7 +222,14 @@ struct RightNowMediumView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         .background(.black)
-        .widgetURL(URL(string: "tourgraph://tab/rightnow"))
+        .widgetURL(widgetURL)
+    }
+
+    private var widgetURL: URL? {
+        guard let tourId = entry.tourId else {
+            return URL(string: "tourgraph://tab/rightnow")
+        }
+        return URL(string: "tourgraph://tour/\(tourId)")
     }
 }
 

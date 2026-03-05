@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 @main
 struct TourGraphApp: App {
@@ -9,6 +10,7 @@ struct TourGraphApp: App {
     @State private var enrichmentService: TourEnrichmentService?
     @State private var loadError: String?
     @State private var selectedTab: AppTab = .roulette
+    @State private var deepLinkedTourId: Int?
 
     var body: some Scene {
         WindowGroup {
@@ -22,6 +24,33 @@ struct TourGraphApp: App {
                         enrichmentService: enrichmentService,
                         selectedTab: $selectedTab
                     )
+                    .fullScreenCover(isPresented: Binding(
+                        get: { deepLinkedTourId != nil },
+                        set: { if !$0 { deepLinkedTourId = nil } }
+                    )) {
+                        if let tourId = deepLinkedTourId {
+                            NavigationStack {
+                                TourDetailView(
+                                    tourId: tourId,
+                                    database: database,
+                                    favorites: favorites,
+                                    enrichmentService: enrichmentService
+                                )
+                                .toolbar {
+                                    ToolbarItem(placement: .topBarLeading) {
+                                        Button {
+                                            deepLinkedTourId = nil
+                                        } label: {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .font(.title3)
+                                                .foregroundStyle(.white.opacity(0.6))
+                                        }
+                                    }
+                                }
+                            }
+                            .preferredColorScheme(.dark)
+                        }
+                    }
                 } else if let loadError {
                     VStack(spacing: 16) {
                         Image(systemName: "exclamationmark.triangle")
@@ -64,6 +93,9 @@ struct TourGraphApp: App {
             .onOpenURL { url in
                 handleDeepLink(url)
             }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                handlePendingIntent()
+            }
         }
     }
 
@@ -80,10 +112,32 @@ struct TourGraphApp: App {
             default: break
             }
         case "tour":
-            // Navigate to roulette tab for tour deep links
-            selectedTab = .roulette
+            if let idString = url.pathComponents.last, let tourId = Int(idString) {
+                if deepLinkedTourId != nil {
+                    // Dismiss current modal, then present the new one after a brief delay
+                    deepLinkedTourId = nil
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        deepLinkedTourId = tourId
+                    }
+                } else {
+                    deepLinkedTourId = tourId
+                }
+            }
         default:
             break
+        }
+    }
+
+    /// Pick up pending navigation from App Intents (which run before the UI is ready).
+    private func handlePendingIntent() {
+        let manager = DeepLinkManager.shared
+        if let tab = manager.pendingTab {
+            selectedTab = tab
+            manager.pendingTab = nil
+        }
+        if let tourId = manager.pendingTourId {
+            deepLinkedTourId = tourId
+            manager.pendingTourId = nil
         }
     }
 }
