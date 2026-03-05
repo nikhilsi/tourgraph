@@ -365,15 +365,34 @@ This is not a website wrapped in an app. This is an iOS app that happens to disp
 
 ---
 
-## Reply to Apple (Draft After Implementation)
+## Reply to Apple (Final — for Resolution Center)
 
-To be drafted after all tiers are implemented and tested. The reply will:
+We've added 8 native iOS capabilities:
 
-1. Acknowledge the feedback respectfully
-2. List every native-only feature (widgets, Siri, Shortcuts, Spotlight, haptics, deep linking, offline DB)
-3. Explain that the app provides a curated discovery experience fundamentally different from browsing Viator's catalog
-4. Note the 120MB bundled database that works fully offline
-5. Include updated screenshots showing widgets on the home screen
+- **Home Screen Widgets** — 3 types (Right Now Somewhere, Random Tour, Lock Screen) with interactive "Surprise Me" refresh
+- **Siri Integration** — "Show me a random tour," "Show me right now," "Show me a chain"
+- **Shortcuts** — 3 actions in the Shortcuts app, assignable to Action button
+- **Spotlight Search** — Favorited tours indexed and searchable from home screen
+- **Deep Linking** — Widget and Siri taps open specific tour detail views
+- **Context-Aware Haptics** — Different feedback patterns for swipes, favorites, navigation
+- **Spring Animations** — Physics-based card transitions throughout
+- **120MB Offline Database** — All 136,000 tours work without internet
+
+Several of these features were already in development for our next release. Your feedback helped us prioritize shipping them in v1.1.
+
+## What's New (App Store listing)
+
+- Home Screen Widgets: see golden-hour tours and random discoveries right from your home screen
+- Siri & Shortcuts: "Show me a random tour" — hands-free discovery
+- Spotlight Search: find your favorite tours from the home screen
+- Enhanced haptics and animations throughout
+
+## Screenshot Plan
+
+- All screenshots from iPhone 17 Pro Max simulator (1320 x 2868 = 6.9", the only required size)
+- 5-6 in-app screenshots: Roulette, Tour Detail, Right Now, World's Most, Six Degrees, Settings
+- Widget/Siri screenshots omitted from listing — reviewer will discover them via the reply and the binary
+- Apple auto-scales 6.9" to all smaller display sizes
 
 ---
 
