@@ -1,20 +1,53 @@
 # NOW — What To Work On Next
 
-**Last Updated**: March 3, 2026
+**Last Updated**: March 5, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 
-## Current Focus: Waiting for App Store Review
+## Current Focus: App Store Resubmission — Native Features
 
-Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset deployed (136,256 tours, 491 chains, 910 city profiles, 479MB database). All four web features complete. iOS app submitted to App Store — waiting for review (submitted March 3, 2026).
+iOS app v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality) on March 5, 2026. Apple said the app doesn't sufficiently differ from a web browsing experience. We're adding genuine native-only features and resubmitting.
+
+**Full plan**: `docs/implementation/app-store-resubmission.md`
 
 ## Next — In Order
 
-1. **App Store review** — Waiting. Typically 24-48 hours. Check status at App Store Connect.
-2. **Post-launch** — Monitor for review feedback, respond to any Apple questions.
+### Tier 1: Home Screen Widgets (WidgetKit)
+
+- [ ] Shared App Group setup + DB migration
+- [ ] Move Tour.swift + TimezoneHelper.swift to Shared target
+- [ ] Widget extension target + GRDB dependency
+- [ ] "Right Now" widget (small + medium)
+- [ ] "Random Tour" widget (small + medium + interactive)
+- [ ] Lock Screen widget
+
+### Tier 2: App Intents + Siri Shortcuts
+
+- [ ] ShowRandomTourIntent + ShowRightNowIntent + GetTourFactIntent
+- [ ] AppShortcutsProvider with Siri phrases
+- [ ] Deep linking (tab navigation from intents/widgets)
+
+### Tier 3: Local Notifications
+
+- [ ] Daily Discovery notification scheduling
+- [ ] Settings UI (toggle + time picker)
+- [ ] Rich notification with tour image
+
+### Tier 4: Spotlight + Polish
+
+- [ ] Spotlight indexing of favorite tours
+- [ ] Enhanced haptics (context-aware patterns)
+- [ ] Spring animations on card transitions
+
+### Resubmission
+
+- [ ] Test all features on simulator + device
+- [ ] New screenshots (showing widgets)
+- [ ] Draft reply to Apple
+- [ ] Archive, upload, resubmit
 
 ## Recently Completed
 
-- [x] iOS App Store submission — v1.0 (build 1) submitted, waiting for review (March 3)
+- [x] iOS App Store submission — v1.0 rejected (4.2.2 Minimum Functionality), resubmission in progress (March 5)
   - Bundle ID registered, app record created, metadata + screenshots uploaded via API
   - Build archived, exported, uploaded via CLI (`xcodebuild`)
   - Privacy, age rating, pricing, encryption compliance all set
@@ -40,8 +73,6 @@ Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset de
 
 - Weekly data refresh (drip indexer on schedule) + delta sync to iOS app
 - On-demand chain generation (user types two cities)
-- iOS widgets (RightNow home screen widget)
-- Push notifications (daily superlative)
 - iPad layout
 - City discovery pages (`/cities/takayama`)
 - Theme browsing (filter by `craftsmanship`, `sacred`, etc.)
@@ -66,4 +97,6 @@ Site is live at [tourgraph.ai](https://tourgraph.ai) with the full data asset de
 | 8e | iOS testing (simulator + device) | **Done** — real device tested |
 | 8f | iOS polish (share cards, launch screen) | **Done** |
 | 8g | Code review (6-agent, Tiers 1-4) | **Done** — perf, security, a11y, SEO |
-| 9 | iOS App Store submission | **Submitted** — waiting for review (March 3) |
+| 9 | iOS App Store submission | **Rejected** — 4.2.2 Minimum Functionality (March 5) |
+| 10 | Native features (widgets, Siri, notifications, Spotlight) | **In Progress** |
+| 11 | App Store resubmission | Next |

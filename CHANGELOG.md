@@ -6,11 +6,24 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [7.1.0] - 2026-03-05
+
+### App Store Resubmission — Native Features (In Progress)
+
+- v1.0 rejected under Guideline 4.2.2 (Minimum Functionality) — "does not sufficiently differ from a web browsing experience"
+- Created resubmission plan: `docs/implementation/app-store-resubmission.md`
+- Tier 1: Home Screen Widgets (Right Now, Random Tour, Lock Screen) — WidgetKit
+- Tier 2: App Intents + Siri Shortcuts (3 intents, voice triggers)
+- Tier 3: Local Notifications (daily superlative discovery)
+- Tier 4: Spotlight indexing + enhanced haptics + spring animations
+
+---
+
 ## [7.0.0] - 2026-03-03
 
 ### iOS App Store Submission
 
-- Submitted TourGraph v1.0 (build 1) to App Store — waiting for review
+- Submitted TourGraph v1.0 (build 1) to App Store — rejected March 5 (4.2.2)
 - Registered bundle ID `com.nikhilsi.TourGraph`, App ID `6759991920`
 - Archived and uploaded build via CLI (`xcodebuild archive` + `xcodebuild -exportArchive`)
 - Metadata pushed via App Store Connect API: description, keywords, promotional text, subtitle, privacy URL, categories (Travel + Entertainment), review notes

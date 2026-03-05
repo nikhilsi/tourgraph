@@ -2,7 +2,7 @@
 
 ---
 **Last Updated**: March 3, 2026
-**Status**: Submitted — v1.0 (build 1) waiting for review
+**Status**: v1.0 rejected (4.2.2 Minimum Functionality). Resubmission in progress — see `app-store-resubmission.md`
 ---
 
 ## App Identity

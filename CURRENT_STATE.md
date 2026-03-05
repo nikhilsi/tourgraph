@@ -22,9 +22,9 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 | OG Images | `/api/og/*` | Live |
 | Health / SEO | `/api/health`, `/robots.txt`, `/sitemap.xml` | Live |
 
-### iOS App (Submitted to App Store)
+### iOS App (Adding Native Features for Resubmission)
 
-SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, all four features implemented. Submitted to App Store March 3, 2026 — waiting for review. App queries only 2 tables (`tours` + `six_degrees_chains`) — see `docs/implementation/ios-architecture.md` for verified column analysis.
+SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, all four features implemented. v1.0 rejected March 5, 2026 (Guideline 4.2.2 — Minimum Functionality). Adding widgets, Siri, notifications, and Spotlight to differentiate from web. See `docs/implementation/app-store-resubmission.md` for full plan.
 
 | Feature | File(s) | Status |
 |---------|---------|--------|
@@ -37,7 +37,7 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 | Settings | `SettingsView.swift`, `AboutView.swift` | Built — gear icon in nav bar, modal sheet, haptics toggle, favorites list, about page |
 | App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
 
-**App Store submitted:** v1.0 (build 1) submitted March 3, 2026. Bundle ID `com.nikhilsi.TourGraph`, App ID `6759991920`. Metadata, screenshots, and build uploaded via App Store Connect API + CLI.
+**App Store status:** v1.0 rejected March 5, 2026 (4.2.2 Minimum Functionality). Adding native features (widgets, Siri, notifications, Spotlight) for v1.1 resubmission. Bundle ID `com.nikhilsi.TourGraph`, App ID `6759991920`.
 **Seed DB built:** 120MB (down from 479MB production). 136,256 tours, 491 chains. Descriptions truncated to ~200 chars, image galleries NULLed, 5 unused tables dropped, VACUUM'd. Bundled in iOS app.
 **Per-tour enrichment built:** `TourEnrichmentService.swift` + server endpoints (`/api/ios/tour/[id]`, `/api/ios/tours/batch`). Lazy fetch on detail tap — full descriptions + photo galleries load from server, written to local DB, persisted for future views.
 **Code review complete:** 6-agent deep review (Tiers 1-4) — performance, security, accessibility, SEO, error handling all addressed. See CHANGELOG.md [6.2.0] and [6.3.0].
@@ -56,7 +56,7 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 - **479 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-**Next:** Waiting for App Store review. Monitor for feedback.
+**Next:** Build native features (Tiers 1-4) → resubmit to App Store.
 
 ## Deployment
 
