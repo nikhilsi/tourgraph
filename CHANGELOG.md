@@ -6,6 +6,33 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [7.4.0] - 2026-03-05
+
+### Tier 4: Spotlight + Polish
+
+- **Spotlight indexing** — favorited tours indexed in CoreSpotlight, searchable from home screen. Tap result opens tour in app via modal deep link. Deindexed on unfavorite.
+- **Enhanced haptics** — context-aware haptic patterns via `HapticManager`: favorite (light + success), unfavorite (light), superlative tap (rigid), chain "Show Me Another" (soft), swipe (medium)
+- **Spring animations** — card entrance after swipe/tap springs up (`response: 0.5, dampingFraction: 0.8`), favorite heart bounces on tap (`response: 0.3, dampingFraction: 0.5`)
+- `SpotlightService.swift` — index/deindex tours in CoreSpotlight
+- `HapticManager.swift` — centralized haptic patterns replacing inline UIImpactFeedbackGenerator calls
+- Spotlight deep link handling via `onContinueUserActivity(CSSearchableItemActionType)`
+
+---
+
+## [7.3.0] - 2026-03-05
+
+### Tier 2: App Intents + Siri Shortcuts
+
+- **3 App Intents**: ShowRandomTourIntent (Roulette tab), ShowRightNowIntent (Right Now tab), ShowChainIntent (Six Degrees tab)
+- **AppShortcutsProvider** with consistent "Show me [X] in TourGraph" Siri phrases — all 3 discoverable in Shortcuts app and via Siri
+- **Modal sheet deep linking** — `tourgraph://tour/{id}` opens TourDetailView as fullScreenCover with dismiss button. All 4 widgets now deep link to specific tours (not just tabs).
+- `DeepLinkManager` singleton bridges App Intents → UI navigation (intents run before UI is ready)
+- `WidgetDatabase` moved to `Shared/` for access by both main app and widget extension
+- Right Now widgets updated to deep link to specific tours (was tab-only)
+- Tested on iPhone 15 Pro Max: all 3 shortcuts, all 3 Siri phrases, all 4 widget→tour modals
+
+---
+
 ## [7.2.0] - 2026-03-05
 
 ### Tier 1: Home Screen Widgets (WidgetKit)

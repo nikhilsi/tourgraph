@@ -9,6 +9,7 @@ struct RouletteView: View {
 
     @State private var dragOffset: CGFloat = 0
     @State private var cardOpacity: Double = 1
+    @State private var cardEntryOffset: CGFloat = 0
     @State private var showSettings = false
     @State private var isRenderingCard = false
     @State private var showShareSheet = false
@@ -74,7 +75,7 @@ struct RouletteView: View {
                     .padding(.horizontal, 20)
             }
             .buttonStyle(.plain)
-            .offset(x: dragOffset)
+            .offset(x: dragOffset, y: cardEntryOffset)
             .opacity(cardOpacity)
             .rotation3DEffect(
                 .degrees(Double(dragOffset) / 20),
@@ -108,7 +109,13 @@ struct RouletteView: View {
                 .disabled(isRenderingCard)
 
                 Button {
+                    cardOpacity = 0
+                    cardEntryOffset = 30
                     nextTour()
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                        cardOpacity = 1
+                        cardEntryOffset = 0
+                    }
                 } label: {
                     Text("Show Me Another")
                         .font(.headline)
@@ -143,9 +150,11 @@ struct RouletteView: View {
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                         nextTour()
-                        withAnimation(.none) {
-                            dragOffset = 0
-                            cardOpacity = 1
+                        dragOffset = 0
+                        cardOpacity = 1
+                        cardEntryOffset = 30
+                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                            cardEntryOffset = 0
                         }
                     }
                 } else {

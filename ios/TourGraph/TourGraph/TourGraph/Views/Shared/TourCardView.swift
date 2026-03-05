@@ -4,6 +4,7 @@ import SwiftUI
 struct TourCardView: View {
     let tour: Tour
     var favorites: Favorites? = nil
+    @State private var heartScale: CGFloat = 1.0
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -44,11 +45,26 @@ struct TourCardView: View {
                 // Favorite button
                 if let favorites {
                     Button {
+                        let wasAdding = !favorites.contains(tour.id)
                         favorites.toggle(tour.id)
+                        if wasAdding {
+                            HapticManager.favorite()
+                            SpotlightService.indexTour(id: tour.id, title: tour.title, oneLiner: tour.oneLiner, destinationName: tour.destinationName, rating: tour.rating)
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.5)) {
+                                heartScale = 1.3
+                            }
+                            withAnimation(.spring(response: 0.3, dampingFraction: 0.5).delay(0.15)) {
+                                heartScale = 1.0
+                            }
+                        } else {
+                            HapticManager.unfavorite()
+                            SpotlightService.deindexTour(id: tour.id)
+                        }
                     } label: {
                         Image(systemName: favorites.contains(tour.id) ? "heart.fill" : "heart")
                             .font(.body)
                             .foregroundStyle(favorites.contains(tour.id) ? .red : .white.opacity(0.8))
+                            .scaleEffect(heartScale)
                             .padding(8)
                             .background(.ultraThinMaterial, in: Circle())
                     }

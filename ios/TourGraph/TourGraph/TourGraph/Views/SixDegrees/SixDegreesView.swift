@@ -59,6 +59,7 @@ struct SixDegreesSection: View {
 
             if !chains.isEmpty {
                 Button {
+                    HapticManager.showMeAnother()
                     pickRandom()
                 } label: {
                     Text("Show Me Another")
@@ -201,7 +202,15 @@ struct SixDegreesSection: View {
                                             .aspectRatio(16/9, contentMode: .fit)
 
                                             Button {
+                                                let wasAdding = !favorites.contains(tour.id)
                                                 favorites.toggle(tour.id)
+                                                if wasAdding {
+                                                    HapticManager.favorite()
+                                                    SpotlightService.indexTour(id: tour.id, title: tour.title, oneLiner: tour.oneLiner, destinationName: tour.destinationName, rating: tour.rating)
+                                                } else {
+                                                    HapticManager.unfavorite()
+                                                    SpotlightService.deindexTour(id: tour.id)
+                                                }
                                             } label: {
                                                 Image(systemName: favorites.contains(tour.id) ? "heart.fill" : "heart")
                                                     .font(.body)

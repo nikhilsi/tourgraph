@@ -2,7 +2,7 @@
 
 ---
 **Created**: March 5, 2026
-**Status**: In Progress — Tier 1 (Widgets) complete, Tier 2 (Siri) next
+**Status**: Native features complete — Tier 1 (Widgets), Tier 2 (Siri/Shortcuts), Tier 4 (Spotlight/Haptics/Animations). Tier 3 (Notifications) skipped. Ready for resubmission.
 **Context**: Apple rejected TourGraph v1.0 under Guideline 4.2.2 (Minimum Functionality)
 ---
 
@@ -258,70 +258,9 @@ This enhancement applies to both Tier 1 (widget taps) and Tier 2 (intent launche
 
 ---
 
-## Tier 3: Local Notifications
+## Tier 3: Local Notifications — SKIPPED
 
-**Why this matters**: Notifications are proactive engagement — the app reaches out to the user, which a website cannot do. A daily "World's Most" notification gives users a reason to come back, driven entirely by on-device data (no push server needed).
-
-### Notification Types
-
-#### 3a. "Daily Discovery" Notification
-
-A daily notification at a user-chosen time featuring a superlative tour.
-
-**Content examples**:
-- "Today's most expensive tour: $47,000 for an Antarctic expedition from Ushuaia"
-- "Hidden gem alert: 4.9★ waterfall hike in Ubud, just $12"
-- "The world's most reviewed tour: 85,000+ reviews in Cancún"
-
-**Rich notification**: Includes tour image as attachment (loaded from cache or bundled URL).
-
-**Scheduling**:
-```swift
-// Repeating daily notification at user's chosen time
-let content = UNMutableNotificationContent()
-content.title = "Daily Discovery"
-content.body = "The world's most expensive tour: $47,000 for an Antarctic expedition"
-content.sound = .default
-
-// Attach tour image
-if let imageURL = tour.imageURL {
-    let attachment = try UNNotificationAttachment(identifier: "tour-image", url: localImageURL)
-    content.attachments = [attachment]
-}
-
-let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-```
-
-**How it picks tours**: Each day, a different superlative category (cycles through all 6). The specific tour is random from the top 10 in that category — same logic as `DatabaseService.getSuperlative()`.
-
-#### 3b. Settings Integration
-
-Add to `SettingsView.swift`:
-
-```
-Section("Notifications") {
-    Toggle("Daily Discovery", isOn: $dailyDiscoveryEnabled)
-
-    if dailyDiscoveryEnabled {
-        DatePicker("Delivery Time",
-                   selection: $dailyDiscoveryTime,
-                   displayedComponents: .hourAndMinute)
-    }
-}
-```
-
-**Defaults**: Off by default (opt-in). Default time: 8:00 AM if enabled.
-
-**Storage**: `UserDefaults` — `dailyDiscoveryEnabled` (Bool), `dailyDiscoveryTime` (Date).
-
-### Technical Notes
-
-- Uses `UNUserNotificationCenter` — local notifications only, no server infrastructure
-- Permission request on first toggle-on (standard iOS permission dialog)
-- Notification content generated on schedule from bundled DB
-- Pre-schedule 7 days of notifications (iOS allows up to 64 pending local notifications)
-- Re-schedule on app launch to keep the queue fresh
-- Tap notification → deep link to tour detail in the app
+Decided to skip. Daily notifications don't fit TourGraph's casual "bored in line" usage pattern — they'd feel annoying rather than delightful. Widgets already provide persistent home screen presence without interrupting. Not needed for a strong Apple review case.
 
 ---
 
@@ -401,9 +340,9 @@ These are small touches, but they make the app feel alive in a way web animation
 | 7a | App Intents (3 intents + shortcuts provider) | — | **Done** |
 | 7b | Modal sheet deep linking (tour-specific from widgets/intents) | Step 7a | **Done** |
 | 8 | Deep linking (tab navigation from intents/widgets) | — | **Done** (Tier 1) |
-| 9 | Local notifications (scheduling + settings UI) | — | Tier 3 |
-| 10 | Spotlight indexing | — | Tier 4 |
-| 11 | Enhanced haptics + spring animations | — | Tier 4 |
+| 9 | ~~Local notifications~~ | — | **Skipped** |
+| 10 | Spotlight indexing | — | **Done** |
+| 11 | Enhanced haptics + spring animations | — | **Done** |
 | 12 | Test all features on simulator + device | All | Final |
 | 13 | New screenshots (showing widgets) | Step 12 | Submission |
 | 14 | Archive, upload, resubmit | Step 13 | Submission |
@@ -413,9 +352,9 @@ These are small touches, but they make the app feel alive in a way web animation
 When the reviewer opens TourGraph v1.1, they see:
 
 1. **Widgets on the home screen** — 3 widget types (Right Now, Random Tour, Lock Screen) with interactive refresh
-2. **Siri integration** — "Show me a random tour" works via voice
-3. **Shortcuts support** — 3 actions in the Shortcuts app
-4. **Proactive notifications** — daily tour discovery alerts with rich images
+2. **Siri integration** — "Show me a random tour/right now/chain" works via voice
+3. **Shortcuts support** — 3 actions in the Shortcuts app, assignable to Action button
+4. **Deep linking** — widget/Siri → specific tour detail via fullScreenCover modal
 5. **Spotlight search** — favorite tours searchable from home screen
 6. **120MB offline database** — fully functional without internet
 7. **Native gestures** — swipe-to-discover roulette with spring physics
@@ -431,7 +370,7 @@ This is not a website wrapped in an app. This is an iOS app that happens to disp
 To be drafted after all tiers are implemented and tested. The reply will:
 
 1. Acknowledge the feedback respectfully
-2. List every native-only feature (widgets, Siri, notifications, Spotlight, haptics, offline DB)
+2. List every native-only feature (widgets, Siri, Shortcuts, Spotlight, haptics, deep linking, offline DB)
 3. Explain that the app provides a curated discovery experience fundamentally different from browsing Viator's catalog
 4. Note the 120MB bundled database that works fully offline
 5. Include updated screenshots showing widgets on the home screen

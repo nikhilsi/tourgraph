@@ -33,19 +33,17 @@ iOS app v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality) on March
 - [x] 2e. Modal sheet deep linking — `tourgraph://tour/{id}` shows TourDetailView as fullScreenCover (all 4 widgets + intents)
 - [x] 2f. Tested on real device (iPhone 15 Pro Max) — all 3 shortcuts, all 3 Siri phrases, all 4 widget→tour modals
 
-### Tier 3: Local Notifications — CURRENT
+### Tier 3: Local Notifications — SKIPPED
 
-- [ ] Daily Discovery notification scheduling
-- [ ] Settings UI (toggle + time picker)
-- [ ] Rich notification with tour image
+Decided to skip. Daily notifications don't fit TourGraph's "bored in line" usage pattern — they'd be annoying, not delightful. Widgets already provide persistent home screen presence. Not needed for Apple review.
 
-### Tier 4: Spotlight + Polish
+### Tier 4: Spotlight + Polish — DONE
 
-- [ ] Spotlight indexing of favorite tours
-- [ ] Enhanced haptics (context-aware patterns)
-- [ ] Spring animations on card transitions
+- [x] 4a. Spotlight indexing — favorited tours searchable from home screen, tap opens tour modal
+- [x] 4b. Enhanced haptics — context-aware patterns (favorite, unfavorite, superlative, chain, swipe)
+- [x] 4c. Spring animations — card entrance slide-up, favorite heart bounce
 
-### Resubmission
+### Resubmission — CURRENT
 
 - [ ] Test all features on simulator + device
 - [ ] New screenshots (showing widgets)
@@ -54,6 +52,7 @@ iOS app v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality) on March
 
 ## Recently Completed
 
+- [x] Tier 4: Spotlight + Polish — Spotlight indexing, enhanced haptics (5 patterns), spring animations, tested on iPhone 15 Pro Max (March 5)
 - [x] Tier 2: App Intents + Siri Shortcuts — 3 intents (Random Tour, Right Now, Random Chain), Siri phrases, modal sheet deep linking for all widgets, tested on iPhone 15 Pro Max (March 5)
 - [x] Tier 1: Home Screen Widgets — 3 widget types (Right Now, Random Tour, Lock Screen), 5 sizes, tour photos, interactive Surprise Me, deep links, tested on iPhone 15 Pro Max (March 5)
 - [x] iOS App Store submission — v1.0 rejected (4.2.2 Minimum Functionality), resubmission in progress (March 5)
@@ -107,5 +106,5 @@ iOS app v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality) on March
 | 8f | iOS polish (share cards, launch screen) | **Done** |
 | 8g | Code review (6-agent, Tiers 1-4) | **Done** — perf, security, a11y, SEO |
 | 9 | iOS App Store submission | **Rejected** — 4.2.2 Minimum Functionality (March 5) |
-| 10 | Native features (widgets, Siri, notifications, Spotlight) | **In Progress** |
-| 11 | App Store resubmission | Next |
+| 10 | Native features (widgets, Siri/Shortcuts, Spotlight, haptics, animations) | **Complete** |
+| 11 | App Store resubmission | **Current** |

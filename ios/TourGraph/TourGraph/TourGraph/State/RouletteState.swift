@@ -49,7 +49,6 @@ final class RouletteState {
     }
 
     func triggerHaptic() {
-        let generator = UIImpactFeedbackGenerator(style: .medium)
-        generator.impactOccurred()
+        HapticManager.swipe()
     }
 }

@@ -74,6 +74,9 @@ struct WorldsMostSection: View {
                     }
                     .buttonStyle(.plain)
                     .padding(.horizontal, 20)
+                    .simultaneousGesture(TapGesture().onEnded {
+                        HapticManager.superlativeTap()
+                    })
                 }
             }
         }

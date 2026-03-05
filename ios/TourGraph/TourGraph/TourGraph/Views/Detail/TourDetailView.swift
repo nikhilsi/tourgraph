@@ -34,7 +34,15 @@ struct TourDetailView: View {
                             Spacer()
 
                             Button {
+                                let wasAdding = !favorites.contains(tour.id)
                                 favorites.toggle(tour.id)
+                                if wasAdding {
+                                    HapticManager.favorite()
+                                    SpotlightService.indexTour(id: tour.id, title: tour.title, oneLiner: tour.oneLiner, destinationName: tour.destinationName, rating: tour.rating)
+                                } else {
+                                    HapticManager.unfavorite()
+                                    SpotlightService.deindexTour(id: tour.id)
+                                }
                             } label: {
                                 Image(systemName: favorites.contains(tour.id) ? "heart.fill" : "heart")
                                     .font(.title3)

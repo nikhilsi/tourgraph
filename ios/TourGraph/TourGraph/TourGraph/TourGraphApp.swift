@@ -1,5 +1,6 @@
 import SwiftUI
 import UIKit
+import CoreSpotlight
 
 @main
 struct TourGraphApp: App {
@@ -95,6 +96,13 @@ struct TourGraphApp: App {
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                 handlePendingIntent()
+            }
+            .onContinueUserActivity(CSSearchableItemActionType) { activity in
+                if let identifier = activity.userInfo?[CSSearchableItemActivityIdentifier] as? String,
+                   let idString = identifier.split(separator: "-").last,
+                   let tourId = Int(idString) {
+                    deepLinkedTourId = tourId
+                }
             }
         }
     }
