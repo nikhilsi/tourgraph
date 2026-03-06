@@ -1,7 +1,7 @@
 # Current State
 
 ---
-**Last Updated**: March 3, 2026
+**Last Updated**: March 5, 2026
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
@@ -22,9 +22,9 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 | OG Images | `/api/og/*` | Live |
 | Health / SEO | `/api/health`, `/robots.txt`, `/sitemap.xml` | Live |
 
-### iOS App (Adding Native Features for Resubmission)
+### iOS App (v1.1 Submitted — Waiting for Review)
 
-SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, all four features implemented. v1.0 rejected March 5, 2026 (Guideline 4.2.2 — Minimum Functionality). Adding widgets, Siri, notifications, and Spotlight to differentiate from web. See `docs/implementation/app-store-resubmission.md` for full plan.
+SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, all four features implemented. v1.0 rejected March 5, 2026 (Guideline 4.2.2 — Minimum Functionality). v1.1 resubmitted same day with 8 native iOS capabilities. See `docs/implementation/app-store-resubmission.md` for full plan.
 
 | Feature | File(s) | Status |
 |---------|---------|--------|
@@ -37,7 +37,7 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, 
 | Settings | `SettingsView.swift`, `AboutView.swift` | Built — gear icon in nav bar, modal sheet, haptics toggle, favorites list, about page |
 | App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
 
-**App Store status:** v1.0 rejected March 5, 2026 (4.2.2 Minimum Functionality). Native features complete — Tier 1 (Widgets), Tier 2 (Siri/Shortcuts), Tier 4 (Spotlight/Haptics/Animations). Tier 3 (Notifications) skipped. Ready for resubmission. Bundle ID `com.nikhilsi.TourGraph`, App ID `6759991920`.
+**App Store status:** v1.1 submitted to App Review on March 5, 2026. v1.0 was rejected (4.2.2 Minimum Functionality). v1.1 adds: Home Screen Widgets (3 types, 5 sizes), Siri Shortcuts (3 intents), Spotlight indexing, deep linking, context-aware haptics, spring animations. Bundle ID `com.nikhilsi.TourGraph`, App ID `6759991920`.
 **Seed DB built:** 120MB (down from 479MB production). 136,256 tours, 491 chains. Descriptions truncated to ~200 chars, image galleries NULLed, 5 unused tables dropped, VACUUM'd. Bundled in iOS app.
 **Per-tour enrichment built:** `TourEnrichmentService.swift` + server endpoints (`/api/ios/tour/[id]`, `/api/ios/tours/batch`). Lazy fetch on detail tap — full descriptions + photo galleries load from server, written to local DB, persisted for future views.
 **Code review complete:** 6-agent deep review (Tiers 1-4) — performance, security, accessibility, SEO, error handling all addressed. See CHANGELOG.md [6.2.0] and [6.3.0].
@@ -56,7 +56,7 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 - **479 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-**Next:** Build native features (Tiers 1-4) → resubmit to App Store.
+**Next:** Waiting for App Store review of v1.1. If approved, app goes live automatically.
 
 ## Deployment
 

@@ -3,13 +3,13 @@
 **Last Updated**: March 5, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 
-## Current Focus: App Store Resubmission — Native Features
+## Current Focus: Waiting for App Store Review
 
-iOS app v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality) on March 5, 2026. Apple said the app doesn't sufficiently differ from a web browsing experience. We're adding genuine native-only features and resubmitting.
+v1.1 submitted to App Review on March 5, 2026. Added 8 native iOS capabilities (widgets, Siri, Shortcuts, Spotlight, deep linking, haptics, animations, offline database) after v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality).
 
 **Full plan**: `docs/implementation/app-store-resubmission.md`
 
-## Next — In Order
+## Completed — In Order
 
 ### Tier 1: Home Screen Widgets (WidgetKit) — DONE
 
@@ -43,15 +43,18 @@ Decided to skip. Daily notifications don't fit TourGraph's "bored in line" usage
 - [x] 4b. Enhanced haptics — context-aware patterns (favorite, unfavorite, superlative, chain, swipe)
 - [x] 4c. Spring animations — card entrance slide-up, favorite heart bounce
 
-### Resubmission — CURRENT
+### Resubmission — DONE
 
-- [ ] Test all features on simulator + device
-- [ ] New screenshots (showing widgets)
-- [ ] Draft reply to Apple
-- [ ] Archive, upload, resubmit
+- [x] Test all features on simulator + real device (iPhone 15 Pro)
+- [x] New screenshots — 8 total (6 in-app + shortcuts + widgets from real device)
+- [x] Update App Store metadata (promo text, description, keywords, review notes)
+- [x] Archive v1.1 (build 2) + upload via CLI with `-allowProvisioningUpdates`
+- [x] Reply to Apple in Resolution Center with feature list + widget screenshot
+- [x] Resubmit to App Review — **Waiting for Review** (March 5, 2026)
 
 ## Recently Completed
 
+- [x] App Store resubmission — v1.1 submitted March 5, 2026. 8 screenshots, updated metadata, reply to Apple with feature list (March 5)
 - [x] Tier 4: Spotlight + Polish — Spotlight indexing, enhanced haptics (5 patterns), spring animations, tested on iPhone 15 Pro Max (March 5)
 - [x] Tier 2: App Intents + Siri Shortcuts — 3 intents (Random Tour, Right Now, Random Chain), Siri phrases, modal sheet deep linking for all widgets, tested on iPhone 15 Pro Max (March 5)
 - [x] Tier 1: Home Screen Widgets — 3 widget types (Right Now, Random Tour, Lock Screen), 5 sizes, tour photos, interactive Surprise Me, deep links, tested on iPhone 15 Pro Max (March 5)
@@ -107,4 +110,4 @@ Decided to skip. Daily notifications don't fit TourGraph's "bored in line" usage
 | 8g | Code review (6-agent, Tiers 1-4) | **Done** — perf, security, a11y, SEO |
 | 9 | iOS App Store submission | **Rejected** — 4.2.2 Minimum Functionality (March 5) |
 | 10 | Native features (widgets, Siri/Shortcuts, Spotlight, haptics, animations) | **Complete** |
-| 11 | App Store resubmission | **Current** |
+| 11 | App Store resubmission | **Submitted** — v1.1 waiting for review (March 5) |

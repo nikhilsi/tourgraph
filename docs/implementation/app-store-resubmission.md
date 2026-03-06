@@ -2,7 +2,7 @@
 
 ---
 **Created**: March 5, 2026
-**Status**: Native features complete — Tier 1 (Widgets), Tier 2 (Siri/Shortcuts), Tier 4 (Spotlight/Haptics/Animations). Tier 3 (Notifications) skipped. Ready for resubmission.
+**Status**: v1.1 submitted to App Review on March 5, 2026. Waiting for review.
 **Context**: Apple rejected TourGraph v1.0 under Guideline 4.2.2 (Minimum Functionality)
 ---
 
@@ -343,9 +343,9 @@ These are small touches, but they make the app feel alive in a way web animation
 | 9 | ~~Local notifications~~ | — | **Skipped** |
 | 10 | Spotlight indexing | — | **Done** |
 | 11 | Enhanced haptics + spring animations | — | **Done** |
-| 12 | Test all features on simulator + device | All | Final |
-| 13 | New screenshots (showing widgets) | Step 12 | Submission |
-| 14 | Archive, upload, resubmit | Step 13 | Submission |
+| 12 | Test all features on simulator + device | All | **Done** |
+| 13 | New screenshots (8, showing widgets + shortcuts) | Step 12 | **Done** |
+| 14 | Archive, upload, resubmit | Step 13 | **Done** — v1.1 submitted March 5 |
 
 ## What This Gives Apple
 
@@ -387,12 +387,42 @@ Several of these features were already in development for our next release. Your
 - Spotlight Search: find your favorite tours from the home screen
 - Enhanced haptics and animations throughout
 
-## Screenshot Plan
+## Screenshot Plan (Final — 8 screenshots uploaded)
 
-- All screenshots from iPhone 17 Pro Max simulator (1320 x 2868 = 6.9", the only required size)
-- 5-6 in-app screenshots: Roulette, Tour Detail, Right Now, World's Most, Six Degrees, Settings
-- Widget/Siri screenshots omitted from listing — reviewer will discover them via the reply and the binary
-- Apple auto-scales 6.9" to all smaller display sizes
+All screenshots 1320 x 2868 (6.9" display). Apple auto-scales to all smaller display sizes.
+
+| # | File | Source | Content |
+|---|------|--------|---------|
+| 1 | 01-roulette.png | iPhone 17 Pro Max simulator | Tour Roulette — core swipe discovery |
+| 2 | 02-right-now.png | iPhone 17 Pro Max simulator | Right Now Somewhere — golden-hour cities |
+| 3 | 03-worlds-most.png | iPhone 17 Pro Max simulator | The World's Most — superlatives gallery |
+| 4 | 04-six-degrees.png | iPhone 17 Pro Max simulator | Six Degrees — chain timeline |
+| 5 | 05-tour-detail.png | iPhone 17 Pro Max simulator | Tour Detail — full tour view |
+| 6 | 06-favorites.png | iPhone 17 Pro Max simulator | Favorites — saved tours list |
+| 7 | 07-shortcuts.png | iPhone 17 Pro Max simulator | Shortcuts app — TourGraph actions |
+| 8 | 08-widgets.png | iPhone 15 Pro (real device, scaled 1.12x) | Home screen with 4 TourGraph widgets |
+
+Screenshots stored in `appstore/screenshots/v1.1-iphone-6.9/`. Old v1.0 screenshots preserved in `appstore/screenshots/iphone-6.9/`.
+
+## App Store Metadata Updates (v1.1)
+
+Updated in App Store Connect alongside the resubmission:
+
+- **Promotional Text**: Added widgets + Siri mention — "Discover the world's most surprising tours — with home screen widgets, Siri, and zero friction."
+- **Description**: Added HOME SCREEN WIDGETS, SIRI & SHORTCUTS, and SPOTLIGHT SEARCH sections
+- **Keywords**: Replaced `experiences,bucket list` with `widgets,siri`
+- **Review Notes**: Detailed v1.1 feature list + step-by-step testing instructions for widgets, Siri, Shortcuts, and Spotlight
+- **Build**: Changed from 1 (v1.0) to 2 (v1.1)
+- **Version**: Changed from 1.0 to 1.1
+
+## Submission Timeline
+
+| Date | Event |
+|------|-------|
+| March 3, 2026 | v1.0 submitted to App Store |
+| March 5, 2026 | v1.0 rejected (4.2.2 Minimum Functionality) |
+| March 5, 2026 | Built Tiers 1-4 native features |
+| March 5, 2026 | v1.1 (build 2) archived, uploaded, resubmitted |
 
 ---
 

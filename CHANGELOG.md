@@ -6,6 +6,20 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [7.5.0] - 2026-03-05
+
+### App Store Resubmission — v1.1 Submitted
+
+- **v1.1 (build 2) submitted** to App Review after v1.0 rejection (4.2.2 Minimum Functionality)
+- **8 screenshots uploaded** — 6 in-app (simulator) + shortcuts + widgets (real device, scaled)
+- **App Store metadata updated** — promotional text (added widgets/Siri), description (3 new feature sections), keywords (added `widgets,siri`), review notes (v1.1 testing instructions)
+- **Reply to Apple** in Resolution Center — 8 native capabilities listed, widget screenshot attached
+- **Version bump** — 1.0 → 1.1, build 1 → 2
+- **Archive + upload** via `xcodebuild` CLI with `-allowProvisioningUpdates` (auto-creates App Group + widget provisioning profiles)
+- Screenshots stored in `appstore/screenshots/v1.1-iphone-6.9/`
+
+---
+
 ## [7.4.0] - 2026-03-05
 
 ### Tier 4: Spotlight + Polish

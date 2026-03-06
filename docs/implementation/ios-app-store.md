@@ -1,8 +1,8 @@
 # iOS App Store Submission — Ready-to-Paste Metadata
 
 ---
-**Last Updated**: March 3, 2026
-**Status**: v1.0 rejected (4.2.2 Minimum Functionality). Resubmission in progress — see `app-store-resubmission.md`
+**Last Updated**: March 5, 2026
+**Status**: v1.1 submitted to App Review (March 5, 2026). v1.0 was rejected (4.2.2 Minimum Functionality). See `app-store-resubmission.md` for full plan.
 ---
 
 ## App Identity
@@ -27,7 +27,7 @@
 
 ### Promotional Text (170 chars, can be updated without new build)
 
-Discover the world's weirdest, most wonderful tours — one random spin at a time. No accounts, no algorithms, just pure serendipity.
+Discover the world's most surprising tours — with home screen widgets, Siri, and zero friction. No accounts, no algorithms, just pure serendipity.
 
 ### Description (4000 chars max)
 
@@ -57,22 +57,33 @@ WHAT WE'RE NOT
 
 We're the place you visit because it's fun, surprising, and effortlessly shareable. Think of it as a rabbit hole you actually enjoy falling down.
 
+HOME SCREEN WIDGETS
+See golden-hour tours and random discoveries right from your home screen — no need to open the app. Five widget sizes including lock screen.
+
+SIRI & SHORTCUTS
+"Show me a random tour" — hands-free discovery via Siri or the Shortcuts app. Assign to your Action button.
+
+SPOTLIGHT SEARCH
+Favorite a tour and find it later from your home screen search.
+
 120,000+ tours. 2,700+ destinations. 7 continents. Zero friction.
 
 ### Keywords (100 chars max, comma-separated)
 
-tours,travel,discovery,roulette,adventures,explore,world,surprising,random,experiences,bucket list
+tours,travel,discovery,roulette,adventures,explore,world,surprising,random,widgets,siri
 
 ---
 
-## What's New (Version 1.0)
+## What's New
 
-Welcome to TourGraph! Discover the world's most surprising tours:
-- Tour Roulette: swipe through random tours from around the world
-- Right Now Somewhere: golden-hour tours happening right now
-- The World's Most: daily superlatives from 120,000+ experiences
-- Six Degrees of Anywhere: cities connected through thematic tour chains
-- Save your favorites with a tap
+### Version 1.1 (submitted March 5, 2026)
+
+Note: "What's New" doesn't apply since v1.0 was never live — this is effectively the first release. Kept here for reference.
+
+- Home Screen Widgets: see golden-hour tours and random discoveries right from your home screen
+- Siri & Shortcuts: "Show me a random tour" — hands-free discovery
+- Spotlight Search: find your favorite tours from the home screen
+- Enhanced haptics and animations throughout
 
 ---
 
@@ -147,53 +158,37 @@ Questions about this privacy policy can be directed to: privacy@tourgraph.ai
 
 ## App Review Notes
 
-### Review Notes for Apple
+### Review Notes for Apple (v1.1)
 
-TourGraph is a tour discovery app. It displays pre-loaded tour data from a bundled SQLite database — no login, no network-dependent features. All four tabs work immediately on launch.
+TourGraph is a tour discovery app with a bundled 120MB SQLite database — no login, no network-dependent features. All four tabs work immediately on launch.
+
+New in v1.1: Home Screen Widgets (3 types, 5 sizes including lock screen), Siri Shortcuts (3 intents — "Show me a random tour/right now/chain in TourGraph"), Spotlight indexing for favorited tours, context-aware haptics, and spring animations.
+
+To test widgets: long-press home screen → tap + → search "TourGraph" → add any widget.
+To test Siri: say "Show me a random tour in TourGraph".
+To test Shortcuts: open Shortcuts app → search TourGraph → 3 actions available.
+To test Spotlight: favorite a tour → swipe down on home screen → search the tour title.
 
 The app links to Viator (viator.com) for tour bookings via affiliate URLs. TourGraph does not process any transactions.
 
-No demo account needed — the app has no accounts or login.
-
-### Test Instructions
-
-1. Launch the app — Tour Roulette loads immediately
-2. Swipe left or right on the tour card, or tap "Show Me Another"
-3. Tap the card to see tour details
-4. Tap the heart icon to save a favorite
-5. Switch to "Right Now" tab — see golden-hour tours
-6. Switch to "World's Most" tab — see superlatives
-7. Switch to "Six Degrees" tab — see city chains
-8. Tap the gear icon for Settings
-
 ---
 
-## Screenshots Plan
+## Screenshots (v1.1 — 8 uploaded)
 
-Required: 5 screenshots minimum for each device size.
+All 1320 x 2868 (6.9" display). Apple auto-scales to all smaller sizes. Stored in `appstore/screenshots/v1.1-iphone-6.9/`.
 
-### Screenshots to Capture
+| # | File | Content |
+|---|------|---------|
+| 1 | 01-roulette.png | Tour Roulette — core swipe discovery |
+| 2 | 02-right-now.png | Right Now Somewhere — golden-hour cities |
+| 3 | 03-worlds-most.png | The World's Most — superlatives gallery |
+| 4 | 04-six-degrees.png | Six Degrees — chain timeline |
+| 5 | 05-tour-detail.png | Tour Detail — full tour view |
+| 6 | 06-favorites.png | Favorites — saved tours list |
+| 7 | 07-shortcuts.png | Shortcuts app — TourGraph actions |
+| 8 | 08-widgets.png | Home screen with 4 TourGraph widgets |
 
-| # | Screen | Caption |
-|---|--------|---------|
-| 1 | Tour Roulette (card visible) | "Discover surprising tours from around the world" |
-| 2 | Tour Detail (expanded) | "Every tour has a story worth sharing" |
-| 3 | Right Now Somewhere | "See what's happening in golden-hour cities right now" |
-| 4 | The World's Most | "The most expensive, cheapest, longest — daily superlatives" |
-| 5 | Six Degrees chain detail | "Two cities. One chain of surprising connections" |
-
-### Device Sizes Required
-
-- iPhone 6.9" (iPhone 16 Pro Max) — required
-- iPhone 6.3" (iPhone 16 Pro) — optional but recommended
-- iPad 13" (if supporting iPad) — not applicable (iPhone only)
-
-### Screenshot Tips
-
-- Use Simulator with sample data loaded
-- Dark mode (app default)
-- Status bar: 9:41 AM, full battery, full signal
-- No personal information visible
+Screenshots 1-7 from iPhone 17 Pro Max simulator. Screenshot 8 from real iPhone 15 Pro, scaled 1.12x via `sips`.
 
 ---
 
@@ -211,30 +206,25 @@ Store these locally — never commit to the repo:
 - API Key ID, Issuer ID, and `.p8` key file are in your Apple Developer account under Users and Access → Keys.
 - Same credentials used for ClearNews uploads.
 
-### Upload via CLI (alternative to Xcode Organizer)
+### Upload via CLI
 
 ```bash
 # Archive
 xcodebuild archive \
-  -project ios/TourGraph/TourGraph.xcodeproj \
+  -project ios/TourGraph/TourGraph/TourGraph.xcodeproj \
   -scheme TourGraph \
-  -archivePath build/TourGraph.xcarchive
+  -archivePath build/TourGraph.xcarchive \
+  -destination 'generic/platform=iOS'
 
-# Export IPA
+# Export + Upload (single step — handles provisioning, signing, and upload)
 xcodebuild -exportArchive \
   -archivePath build/TourGraph.xcarchive \
-  -exportPath build/ \
-  -exportOptionsPlist ios/ExportOptions.plist
-
-# Upload to App Store Connect
-xcrun altool --upload-app \
-  -f build/TourGraph.ipa \
-  -t ios \
-  --apiKey <YOUR_KEY_ID> \
-  --apiIssuer <YOUR_ISSUER_ID>
+  -exportPath build/v1.1/ \
+  -exportOptionsPlist ios/ExportOptions.plist \
+  -allowProvisioningUpdates
 ```
 
-Or just use **Xcode → Product → Archive → Distribute App** (simpler for first submission).
+**Key flag**: `-allowProvisioningUpdates` auto-creates App Group, widget bundle ID, and provisioning profiles. Without it, export fails if profiles are missing for new capabilities (widgets, App Groups).
 
 ---
 
@@ -247,35 +237,32 @@ Or just use **Xcode → Product → Archive → Distribute App** (simpler for fi
 
 > **Note:** PrivacyInfo.xcprivacy must be added to the Xcode project's target (drag into Xcode, check "Add to target: TourGraph").
 
-## Pre-Submission Checklist — ALL COMPLETE
+## Submission History
 
-**Submitted March 3, 2026** — App ID `6759991920`, waiting for review.
+### v1.1 — Submitted March 5, 2026
 
-### Setup (one-time)
-- [x] Register bundle ID `com.nikhilsi.TourGraph` in Apple Developer portal
-- [x] Set Team ID to `F66D7QPY4N` in Xcode signing settings
-- [x] Add PrivacyInfo.xcprivacy to Xcode target
-- [x] Create app record in App Store Connect (via browser)
+**Status**: Waiting for Review. App ID `6759991920`.
 
-### Code
-- [x] Verify app builds with Release configuration
-- [x] Test on physical device (not just Simulator)
-- [x] Add LogoWhite @2x and @3x retina variants
+Resubmission after v1.0 rejection (4.2.2 Minimum Functionality). Added 8 native iOS capabilities: widgets, Siri, Shortcuts, Spotlight, deep linking, haptics, spring animations, offline database. See `app-store-resubmission.md` for full plan.
 
-### Content
-- [x] Host privacy policy at `https://tourgraph.ai/privacy`
-- [x] Host support page at `https://tourgraph.ai/support`
-- [x] Capture screenshots (5 per device size, 6.9" + 6.1")
-- [x] Upload screenshots to App Store Connect (via API)
+- [x] Build Tiers 1-4 native features
+- [x] Version bump 1.0 → 1.1, build 1 → 2
+- [x] Archive + export via CLI with `-allowProvisioningUpdates`
+- [x] Upload build to App Store Connect (auto-upload via export)
+- [x] Set encryption compliance (no encryption)
+- [x] Update screenshots (8 new, including widgets + shortcuts)
+- [x] Update metadata (promo text, description, keywords, review notes)
+- [x] Select new build (build 2, v1.1)
+- [x] Reply to Apple in Resolution Center with feature list + widget screenshot attachment
+- [x] Click "Resubmit to App Review"
 
-### Submission
-- [x] Fill in App Store Connect metadata (via API — description, keywords, promo text, subtitle, categories, review notes)
-- [x] Archive and upload build (via CLI — `xcodebuild archive` + `xcodebuild -exportArchive`)
-- [x] Set encryption declaration (no encryption)
-- [x] App privacy: Data Not Collected
-- [x] Age rating: 4+
-- [x] Pricing: Free
-- [x] Submit for review with review notes
+### v1.0 — Submitted March 3, 2026
+
+**Status**: Rejected (4.2.2 Design: Minimum Functionality).
+
+- [x] All setup, code, content, and submission checklist items completed
+- Reviewed on iPad Air 11-inch (M3) in iPhone compatibility mode
+- Apple said app "does not sufficiently differ from a web browsing experience"
 
 ### Reference
 - Full submission playbook with API calls: `~/src/gh/news-aggregator/docs/app-store-submission-playbook.md`
