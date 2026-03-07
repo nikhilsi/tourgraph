@@ -24,6 +24,7 @@ import androidx.compose.material.icons.filled.Timer
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -34,7 +35,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -68,171 +68,162 @@ fun TourCard(
         label = "heartBounce"
     )
 
-    Box(
+    Surface(
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.surface,
         modifier = modifier
             .fillMaxWidth()
-            .aspectRatio(3f / 2f)
-            .clip(RoundedCornerShape(16.dp))
             .clickable(enabled = onClick != null) { onClick?.invoke() }
     ) {
-        // Tour photo
-        if (tour.imageURL != null) {
-            AsyncImage(
-                model = ImageRequest.Builder(context)
-                    .data(tour.imageURL)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = tour.title,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
-            )
-        } else {
+        Column {
+            // Tour photo
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .background(MaterialTheme.colorScheme.surfaceVariant)
-            )
-        }
-
-        // Gradient overlay
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Color.Black.copy(alpha = 0.3f),
-                            Color.Black.copy(alpha = 0.85f)
-                        ),
-                        startY = 0f,
-                        endY = Float.POSITIVE_INFINITY
-                    )
-                )
-        )
-
-        // Favorite button
-        if (showFavorite && onFavoriteToggle != null) {
-            IconButton(
-                onClick = {
-                    heartBounce = true
-                    onFavoriteToggle()
-                },
-                modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(8.dp)
+                    .fillMaxWidth()
+                    .aspectRatio(16f / 9f)
+                    .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
             ) {
-                Icon(
-                    imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                    contentDescription = if (isFavorite) "Remove from favorites" else "Add to favorites",
-                    tint = if (isFavorite) Color(0xFFFF6B6B) else Color.White.copy(alpha = 0.8f),
-                    modifier = Modifier
-                        .size(28.dp)
-                        .scale(heartScale)
-                )
+                if (tour.imageURL != null) {
+                    AsyncImage(
+                        model = ImageRequest.Builder(context)
+                            .data(tour.imageURL)
+                            .crossfade(true)
+                            .build(),
+                        contentDescription = tour.title,
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                } else {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(MaterialTheme.colorScheme.surfaceVariant)
+                    )
+                }
+
+                // Favorite button over image
+                if (showFavorite && onFavoriteToggle != null) {
+                    IconButton(
+                        onClick = {
+                            heartBounce = true
+                            onFavoriteToggle()
+                        },
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .padding(4.dp)
+                    ) {
+                        Icon(
+                            imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                            contentDescription = if (isFavorite) "Remove from favorites" else "Add to favorites",
+                            tint = if (isFavorite) Color(0xFFFF6B6B) else Color.White.copy(alpha = 0.8f),
+                            modifier = Modifier
+                                .size(26.dp)
+                                .scale(heartScale)
+                        )
+                    }
+                }
             }
-        }
 
-        // Text overlay
-        Column(
-            modifier = Modifier
-                .align(Alignment.BottomStart)
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(4.dp)
-        ) {
-            Text(
-                text = tour.title,
-                color = Color.White,
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Bold,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
-
-            tour.oneLiner?.let { oneLiner ->
+            // Text content below image
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(12.dp),
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
                 Text(
-                    text = oneLiner,
-                    color = Color.White.copy(alpha = 0.85f),
-                    fontSize = 14.sp,
+                    text = tour.title,
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
                 )
-            }
 
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(top = 4.dp)
-            ) {
-                // Location
-                tour.destinationName?.let { dest ->
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(3.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            Icons.Default.LocationOn,
-                            contentDescription = null,
-                            tint = Color.White.copy(alpha = 0.7f),
-                            modifier = Modifier.size(14.dp)
-                        )
-                        Text(
-                            text = dest,
-                            color = Color.White.copy(alpha = 0.7f),
-                            fontSize = 12.sp,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    }
-                }
-
-                // Rating
-                if (tour.rating != null) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(3.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            Icons.Default.Star,
-                            contentDescription = null,
-                            tint = Color(0xFFFFA726),
-                            modifier = Modifier.size(14.dp)
-                        )
-                        Text(
-                            text = tour.displayRating,
-                            color = Color.White.copy(alpha = 0.7f),
-                            fontSize = 12.sp
-                        )
-                    }
-                }
-
-                // Price
-                if (tour.fromPrice != null && tour.fromPrice > 0) {
+                tour.oneLiner?.let { oneLiner ->
                     Text(
-                        text = tour.displayPrice,
+                        text = oneLiner,
                         color = Color.White.copy(alpha = 0.7f),
-                        fontSize = 12.sp
+                        fontSize = 13.sp,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
                     )
                 }
 
-                // Duration
-                if (tour.durationMinutes != null) {
-                    Row(
-                        horizontalArrangement = Arrangement.spacedBy(3.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            Icons.Default.Timer,
-                            contentDescription = null,
-                            tint = Color.White.copy(alpha = 0.7f),
-                            modifier = Modifier.size(14.dp)
-                        )
+                Row(
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(top = 2.dp)
+                ) {
+                    // Location
+                    tour.destinationName?.let { dest ->
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(3.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                Icons.Default.LocationOn,
+                                contentDescription = null,
+                                tint = Color.White.copy(alpha = 0.5f),
+                                modifier = Modifier.size(13.dp)
+                            )
+                            Text(
+                                text = dest,
+                                color = Color.White.copy(alpha = 0.5f),
+                                fontSize = 12.sp,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
+                    }
+
+                    // Rating
+                    if (tour.rating != null) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(3.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                Icons.Default.Star,
+                                contentDescription = null,
+                                tint = Color(0xFFFFA726),
+                                modifier = Modifier.size(13.dp)
+                            )
+                            Text(
+                                text = tour.displayRating,
+                                color = Color.White.copy(alpha = 0.5f),
+                                fontSize = 12.sp
+                            )
+                        }
+                    }
+
+                    // Price
+                    if (tour.fromPrice != null && tour.fromPrice > 0) {
                         Text(
-                            text = tour.displayDuration,
-                            color = Color.White.copy(alpha = 0.7f),
+                            text = tour.displayPrice,
+                            color = Color.White.copy(alpha = 0.5f),
                             fontSize = 12.sp
                         )
+                    }
+
+                    // Duration
+                    if (tour.durationMinutes != null) {
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(3.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(
+                                Icons.Default.Timer,
+                                contentDescription = null,
+                                tint = Color.White.copy(alpha = 0.5f),
+                                modifier = Modifier.size(13.dp)
+                            )
+                            Text(
+                                text = tour.displayDuration,
+                                color = Color.White.copy(alpha = 0.5f),
+                                fontSize = 12.sp
+                            )
+                        }
                     }
                 }
             }
