@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Simple "TG" text placeholder - replace with proper icon -->
+    <path
+        android:fillColor="#FFA726"
+        android:pathData="M34,44 L34,38 L54,38 L54,44 L47,44 L47,70 L41,70 L41,44 Z"/>
+    <path
+        android:fillColor="#FFA726"
+        android:pathData="M58,38 L78,38 L78,44 L64,44 L64,50 L76,50 L76,56 L64,56 L64,64 L78,64 L78,70 L58,70 Z"/>
+</vector>

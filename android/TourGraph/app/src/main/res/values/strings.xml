@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TourGraph</string>
+    <string name="right_now_widget_name">Right Now Somewhere</string>
+    <string name="right_now_widget_description">A tour happening at the perfect time of day</string>
+    <string name="random_tour_widget_name">Random Tour</string>
+    <string name="random_tour_widget_description">Discover a random tour from around the world</string>
+</resources>

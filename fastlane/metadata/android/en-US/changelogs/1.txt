@@ -1,0 +1,1 @@
+Initial release. All 4 features: Tour Roulette, Right Now Somewhere, The World's Most, Six Degrees of Anywhere. Home screen widgets. 136,256 tours.

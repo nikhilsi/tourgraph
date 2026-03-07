@@ -1,0 +1,29 @@
+TourGraph makes people smile using the world's tour data. Not a booking engine. Not a travel planner. A place you visit because it's fun, surprising, and shareable.
+
+TOUR ROULETTE
+Press a button. Get a random tour from anywhere in the world. Swipe for another. Each tour comes with a witty one-liner, stunning photo, and real stats. The rabbit hole starts here.
+
+RIGHT NOW SOMEWHERE
+Tours happening at the perfect time of day, wherever golden hour is happening right now. "Right now in Kyoto it's 6:47am and you could be doing forest bathing with a Buddhist monk."
+
+THE WORLD'S MOST ___
+Daily superlatives from 136,000+ tours worldwide. Most expensive tour. Cheapest 5-star experience. Longest duration. Hidden gems with perfect ratings but barely any reviews.
+
+SIX DEGREES OF ANYWHERE
+Cities connected through surprising thematic links. 491 pre-generated chains showing how Tokyo connects to Marrakech through shared activities, cultural threads, and overlapping cuisines.
+
+HOME SCREEN WIDGETS
+Right Now Somewhere and Random Tour widgets keep the world's tours on your home screen.
+
+FEATURES
+- 136,256 tours across 2,712 destinations in 205 countries
+- AI-generated witty one-liners for every tour
+- Swipe gesture card navigation
+- Favorites with heart button
+- Share tours with friends
+- Dark theme with photo-dominant design
+- Home screen widgets
+- Haptic feedback
+- Zero accounts, zero tracking, zero ads
+
+Tour data from Viator. Made with curiosity.

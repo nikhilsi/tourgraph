@@ -45,5 +45,13 @@ ios/**/xcuserdata/
 ios/**/UserInterfaceState.xcuserstate
 ios/**/DerivedData/
 
+# Android
+android/**/build/
+android/**/local.properties
+android/**/keystore.properties
+android/**/keystore/
+android/**/.gradle/
+android/**/assets/*.db
+
 # OS
 Thumbs.db
