@@ -8,15 +8,23 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ## [8.0.0] - 2026-03-07
 
-### Android App — Planning Complete
+### Android App — Built + Tested on Emulator
 
-- **Full implementation plan** created: `docs/implementation/android-app.md`
-- **Tech stack**: Kotlin 2.1, Jetpack Compose (Material 3), Raw SQLiteDatabase, Coil 3, OkHttp 4, Glance widgets
-- **11 build phases**: Skeleton + DB → Roulette → Right Now → World's Most → Six Degrees → Detail + Enrichment → Settings/Favorites/Share → Deep Linking → Widgets → Distribution → Polish
-- **Distribution**: GitHub Releases (CI/CD) + F-Droid + Google Play Store
-- **Key decisions**: Raw SQLiteDatabase (not Room) for verbatim SQL from iOS, Coil for images, Glance for widgets, dark-mode only
-- **iOS-only features not ported**: Siri/App Intents, Spotlight, lock screen widget (added for Apple 4.2.2, no Android equivalent needed)
-- **Pattern source**: GitaVani Android — same build config, signing, CI/CD, distribution channels
+- **Full native Android app** — Kotlin 2.1 + Jetpack Compose (Material 3), 54 source files
+- **All 4 features**: Tour Roulette (swipe + contrast sequencing), Right Now Somewhere (golden hour), World's Most (6 superlatives), Six Degrees (timeline + tour photos)
+- **Tour Detail** with image gallery, lazy enrichment from tourgraph.ai, highlights, Viator booking link
+- **Favorites** (SharedPreferences), **Share** (Intent.ACTION_SEND), **Haptics** (VibrationEffect), **Settings/About**
+- **Home Screen Widgets** — Glance API: Right Now Somewhere + Random Tour (2 types)
+- **Deep linking** — `tourgraph://` scheme for tab navigation + tour detail
+- **4-tab bottom navigation**, dark theme, edge-to-edge display
+- **Database**: Raw SQLiteDatabase (not Room) — all SQL queries copied verbatim from iOS GRDB
+- **Images**: Coil 3 loading from Viator CDN
+- **HTTP**: OkHttp 4 for per-tour enrichment
+- **Build**: zero errors, zero warnings, 53MB debug APK (120MB DB compresses well)
+- **Tested** on Pixel 7 emulator — DB loads, tours display, images from CDN, tab navigation works
+- **CI/CD**: GitHub Actions workflow for automated releases on tag push
+- **Fastlane metadata** for F-Droid submission
+- **Git LFS** set up for all DB files (production 479MB + iOS seed 120MB + Android seed)
 
 ---
 

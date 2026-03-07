@@ -56,22 +56,36 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 - **479 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-### Android App (Planning)
+### Android App (Built — Testing)
 
-Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity: all 4 features, home screen widgets (Glance), haptics, favorites, share cards, deep linking, enrichment. Same 120MB bundled SQLite database. Distribution: GitHub Releases + F-Droid + Google Play.
+Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity. Built, compiled (zero errors/warnings), tested on Pixel 7 emulator.
+
+| Feature | File(s) | Status |
+|---------|---------|--------|
+| Tour Roulette (swipe) | `RouletteScreen.kt`, `TourGraphViewModel.kt` | Built — swipe gesture, contrast sequencing, haptics |
+| Right Now Somewhere | `RightNowScreen.kt`, `TimezoneHelper.kt` | Built — golden hour detection, timezone-aware |
+| The World's Most ___ | `WorldsMostScreen.kt` | Built — 6 superlatives, random from top 10 |
+| Six Degrees | `SixDegreesScreen.kt` | Built — timeline, tour photos, theme badges |
+| Tour Detail | `TourDetailScreen.kt` | Built — image gallery, enrichment, highlights |
+| Favorites | `Favorites.kt`, `FavoritesScreen.kt` | Built — SharedPreferences, list view |
+| Settings | `SettingsScreen.kt`, `AboutScreen.kt` | Built — haptics toggle, about, favorites |
+| Widgets | `RightNowWidget.kt`, `RandomTourWidget.kt` | Built — Glance (2 types) |
+| Share | `ShareUtils.kt` | Built — Intent.ACTION_SEND |
+| Deep Linking | `AndroidManifest.xml` | Built — `tourgraph://` scheme |
 
 | Component | Technology |
 |-----------|-----------|
 | Language | Kotlin 2.1 |
 | UI | Jetpack Compose (Material 3) |
-| Database | Raw SQLiteDatabase (not Room — SQL copies from iOS verbatim) |
+| Database | Raw SQLiteDatabase (SQL from iOS verbatim) |
 | Images | Coil 3 |
 | HTTP | OkHttp 4 (enrichment) |
 | Widgets | Glance (Jetpack) |
 | Build | Gradle 8.11.1 + AGP 8.9.1 |
 
-**Plan:** `docs/implementation/android-app.md` (11 phases)
-**Pattern reference:** GitaVani Android (`../gitavani/android/`) — same build config, CI/CD, signing, distribution
+**Debug APK:** 53MB (120MB DB compresses well)
+**Plan:** `docs/implementation/android-app.md` | **CI/CD:** `.github/workflows/android-release.yml`
+**Next:** Test on real device, generate keystore, screenshots, store submissions
 
 **Next:** Waiting for iOS App Store review of v1.1. Building Android app in parallel.
 

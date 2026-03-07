@@ -5,9 +5,9 @@
 
 ## Current Focus: Android App + Waiting for App Store Review
 
-### Android App — Building
+### Android App — Built, Testing
 
-Building native Android app (Kotlin + Jetpack Compose) with full iOS feature parity. Same 120MB bundled SQLite, all 4 features, widgets, haptics, share cards, deep linking, enrichment. Distribution: GitHub Releases + F-Droid + Google Play.
+Native Android app built and tested on emulator. All 4 features working, widgets, haptics, share, favorites, enrichment. 53MB debug APK. Next: test on real device, generate keystore, take screenshots, submit to stores.
 
 **Full plan**: `docs/implementation/android-app.md`
 
@@ -119,4 +119,4 @@ Decided to skip. Daily notifications don't fit TourGraph's "bored in line" usage
 | 9 | iOS App Store submission | **Rejected** — 4.2.2 Minimum Functionality (March 5) |
 | 10 | Native features (widgets, Siri/Shortcuts, Spotlight, haptics, animations) | **Complete** |
 | 11 | App Store resubmission | **Submitted** — v1.1 waiting for review (March 5) |
-| 12 | Android app | **Planning** — full plan in `docs/implementation/android-app.md` |
+| 12 | Android app | **Built** — tested on emulator, all 4 features + widgets working |
