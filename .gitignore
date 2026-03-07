@@ -3,8 +3,9 @@
 .env.local
 .env.production.local
 
-# Database
-data/
+# Database (non-DB files in data/)
+data/*
+!data/*.db
 
 # Logs
 logs/
@@ -37,8 +38,7 @@ build/
 # MkDocs (legacy)
 site/
 
-# iOS
-ios/**/Resources/*.db
+# iOS (WAL/SHM files only — .db tracked via LFS)
 ios/**/Resources/*.db-shm
 ios/**/Resources/*.db-wal
 ios/**/xcuserdata/
