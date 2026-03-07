@@ -6,6 +6,20 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [8.0.0] - 2026-03-07
+
+### Android App — Planning Complete
+
+- **Full implementation plan** created: `docs/implementation/android-app.md`
+- **Tech stack**: Kotlin 2.1, Jetpack Compose (Material 3), Raw SQLiteDatabase, Coil 3, OkHttp 4, Glance widgets
+- **11 build phases**: Skeleton + DB → Roulette → Right Now → World's Most → Six Degrees → Detail + Enrichment → Settings/Favorites/Share → Deep Linking → Widgets → Distribution → Polish
+- **Distribution**: GitHub Releases (CI/CD) + F-Droid + Google Play Store
+- **Key decisions**: Raw SQLiteDatabase (not Room) for verbatim SQL from iOS, Coil for images, Glance for widgets, dark-mode only
+- **iOS-only features not ported**: Siri/App Intents, Spotlight, lock screen widget (added for Apple 4.2.2, no Android equivalent needed)
+- **Pattern source**: GitaVani Android — same build config, signing, CI/CD, distribution channels
+
+---
+
 ## [7.5.0] - 2026-03-05
 
 ### App Store Resubmission — v1.1 Submitted

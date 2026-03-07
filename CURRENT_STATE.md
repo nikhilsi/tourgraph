@@ -1,7 +1,7 @@
 # Current State
 
 ---
-**Last Updated**: March 5, 2026
+**Last Updated**: March 7, 2026
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
@@ -56,7 +56,24 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 - **479 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-**Next:** Waiting for App Store review of v1.1. If approved, app goes live automatically.
+### Android App (Planning)
+
+Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity: all 4 features, home screen widgets (Glance), haptics, favorites, share cards, deep linking, enrichment. Same 120MB bundled SQLite database. Distribution: GitHub Releases + F-Droid + Google Play.
+
+| Component | Technology |
+|-----------|-----------|
+| Language | Kotlin 2.1 |
+| UI | Jetpack Compose (Material 3) |
+| Database | Raw SQLiteDatabase (not Room — SQL copies from iOS verbatim) |
+| Images | Coil 3 |
+| HTTP | OkHttp 4 (enrichment) |
+| Widgets | Glance (Jetpack) |
+| Build | Gradle 8.11.1 + AGP 8.9.1 |
+
+**Plan:** `docs/implementation/android-app.md` (11 phases)
+**Pattern reference:** GitaVani Android (`../gitavani/android/`) — same build config, CI/CD, signing, distribution
+
+**Next:** Waiting for iOS App Store review of v1.1. Building Android app in parallel.
 
 ## Deployment
 

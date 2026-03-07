@@ -3,11 +3,19 @@
 **Last Updated**: March 5, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 
-## Current Focus: Waiting for App Store Review
+## Current Focus: Android App + Waiting for App Store Review
 
-v1.1 submitted to App Review on March 5, 2026. Added 8 native iOS capabilities (widgets, Siri, Shortcuts, Spotlight, deep linking, haptics, animations, offline database) after v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality).
+### Android App — Building
 
-**Full plan**: `docs/implementation/app-store-resubmission.md`
+Building native Android app (Kotlin + Jetpack Compose) with full iOS feature parity. Same 120MB bundled SQLite, all 4 features, widgets, haptics, share cards, deep linking, enrichment. Distribution: GitHub Releases + F-Droid + Google Play.
+
+**Full plan**: `docs/implementation/android-app.md`
+
+### iOS App Store — Waiting
+
+v1.1 submitted to App Review on March 5, 2026. Added 8 native iOS capabilities after v1.0 was rejected under Guideline 4.2.2.
+
+**iOS plan**: `docs/implementation/app-store-resubmission.md`
 
 ## Completed — In Order
 
@@ -111,3 +119,4 @@ Decided to skip. Daily notifications don't fit TourGraph's "bored in line" usage
 | 9 | iOS App Store submission | **Rejected** — 4.2.2 Minimum Functionality (March 5) |
 | 10 | Native features (widgets, Siri/Shortcuts, Spotlight, haptics, animations) | **Complete** |
 | 11 | App Store resubmission | **Submitted** — v1.1 waiting for review (March 5) |
+| 12 | Android app | **Planning** — full plan in `docs/implementation/android-app.md` |
