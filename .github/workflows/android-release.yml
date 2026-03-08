@@ -30,12 +30,10 @@ jobs:
 
       - name: Create keystore.properties
         run: |
-          cat > android/TourGraph/keystore.properties << EOF
-          storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-          keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}
-          keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}
-          storeFile=../keystore/tourgraph-release.jks
-          EOF
+          echo "storePassword=${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" > android/TourGraph/keystore.properties
+          echo "keyPassword=${{ secrets.ANDROID_KEY_PASSWORD }}" >> android/TourGraph/keystore.properties
+          echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/TourGraph/keystore.properties
+          echo "storeFile=../keystore/tourgraph-release.jks" >> android/TourGraph/keystore.properties
 
       - name: Build release APK
         working-directory: android/TourGraph
