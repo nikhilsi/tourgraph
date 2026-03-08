@@ -1,0 +1,38 @@
+Categories:
+  - Navigation
+  - Sports & Leisure
+License: MIT
+AuthorName: Nikhil Singhal
+SourceCode: https://github.com/nikhilsi/tourgraph
+IssueTracker: https://github.com/nikhilsi/tourgraph/issues
+Changelog: https://github.com/nikhilsi/tourgraph/blob/main/CHANGELOG.md
+
+Summary: Discover surprising tours from around the world. Swipe, explore, smile.
+Description: |
+  TourGraph makes people smile using the world's tour data. Not a booking
+  engine. Not a travel planner. A place you visit because it's fun, surprising,
+  and shareable.
+
+  Tour Roulette — Press a button. Get a random tour from anywhere in the world.
+  Right Now Somewhere — Tours happening at the perfect time of day.
+  The World's Most — Daily superlatives from 136,000+ tours worldwide.
+  Six Degrees of Anywhere — Cities connected through surprising thematic links.
+
+  136,256 tours across 2,712 destinations in 205 countries. AI-generated witty
+  one-liners for every tour. Zero accounts, zero tracking, zero ads.
+
+RepoType: git
+Repo: https://github.com/nikhilsi/tourgraph.git
+
+Builds:
+  - versionName: 1.0.0
+    versionCode: 1
+    commit: v1.0.0
+    subdir: android/TourGraph/app
+    gradle:
+      - yes
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: 1.0.0
+CurrentVersionCode: 1
