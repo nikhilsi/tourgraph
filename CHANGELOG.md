@@ -39,7 +39,7 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 - **Build**: zero errors, zero warnings, 53MB debug APK (120MB DB compresses well)
 - **Tested** on Pixel 7 emulator — DB loads, tours display, images from CDN, tab navigation works
 - **CI/CD**: GitHub Actions workflow for automated releases on tag push
-- **Fastlane metadata** for F-Droid submission
+- **F-Droid submission** — Fastlane metadata in repo, [MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392) submitted (pending review)
 - **Git LFS** set up for all DB files (production 479MB + iOS seed 120MB + Android seed)
 
 ---

@@ -1,7 +1,7 @@
 # Current State
 
 ---
-**Last Updated**: March 7, 2026
+**Last Updated**: March 8, 2026
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
@@ -88,7 +88,7 @@ Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity. Bui
 **Debug APK:** 53MB (120MB DB compresses well)
 **Plan:** `docs/implementation/android-app.md` | **CI/CD:** `.github/workflows/android-release.yml`
 **Signing:** Release keystore generated, GitHub Actions secrets configured for automated builds.
-**F-Droid:** [MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392) submitted, AutoUpdateMode configured.
+**F-Droid:** [MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392) submitted, pending review. Summary/description pulled from fastlane metadata (not YAML). AutoUpdateMode configured.
 
 ## Deployment
 
