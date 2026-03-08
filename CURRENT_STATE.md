@@ -56,9 +56,9 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 - **479 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
 
-### Android App (Built — Testing)
+### Android App (Built — Release Pipeline Complete)
 
-Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity. Built, compiled (zero errors/warnings), tested on Pixel 7 emulator.
+Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity. Built, compiled (zero errors/warnings), tested on Pixel 7 emulator. Signed release APK, CI/CD on tag push, F-Droid MR submitted.
 
 | Feature | File(s) | Status |
 |---------|---------|--------|
@@ -87,9 +87,8 @@ Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity. Bui
 
 **Debug APK:** 53MB (120MB DB compresses well)
 **Plan:** `docs/implementation/android-app.md` | **CI/CD:** `.github/workflows/android-release.yml`
-**Next:** Test on real device, generate keystore, screenshots, store submissions
-
-**Next:** Waiting for iOS App Store review of v1.1. Building Android app in parallel.
+**Signing:** Release keystore generated, GitHub Actions secrets configured for automated builds.
+**F-Droid:** [MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392) submitted, AutoUpdateMode configured.
 
 ## Deployment
 

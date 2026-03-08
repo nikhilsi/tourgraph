@@ -2,8 +2,9 @@
 
 ---
 **Created**: March 7, 2026
-**Status**: Planning — ready to build
+**Status**: Complete — app built, tested, release pipeline active
 **Reference**: GitaVani Android (`../gitavani/android/`) for patterns, `docs/android-playbook.md` for distribution
+**Architecture**: See `android-architecture.md` for what was actually built
 ---
 
 ## Overview
