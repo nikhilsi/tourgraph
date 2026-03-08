@@ -1,17 +1,17 @@
-# TourGraph
+# TourGraph — The World's Tour Data, Made Delightful
 
-A zero-friction site and iOS app that makes people smile using the world's tour data. Discover the weirdest, most wonderful, and most surprising experiences on Earth — one random spin at a time.
+A zero-friction site and mobile app that makes people smile using the world's tour data. Available on web, iOS, and Android. 136,000+ tours across 2,700+ destinations, AI-generated witty captions, and four ways to discover something surprising.
 
-## What Is This?
+**Live at [tourgraph.ai](https://tourgraph.ai)**
 
-TourGraph surfaces delightful, surprising tours and experiences from around the world. No accounts, no algorithms, no planning tools. Just pure discovery and serendipity.
+## Features
 
-**Four features:**
+- **Tour Roulette** — One button. Random tour. Weighted toward the extremes: highest rated, weirdest, cheapest, most expensive. AI-generated witty one-liner. Swipe or press again.
+- **Right Now Somewhere...** — Time-zone-aware. Shows tours happening right now where it's golden hour. "Right now in Kyoto it's 6:47am and you could be doing forest bathing with a Buddhist monk."
+- **The World's Most ___** — Superlatives from 136,000+ experiences. Most expensive tour. Cheapest 5-star. Longest duration. Each one a shareable card.
+- **Six Degrees of Anywhere** — 491 pre-generated chains connecting cities through surprising thematic links. Chain roulette with vertical timeline.
 
-- **Tour Roulette** — One button. Random tour. Weighted toward the extremes: highest rated, weirdest, cheapest, most expensive. AI-generated witty one-liner. Press again.
-- **Right Now Somewhere...** — Time-zone-aware. Shows a tour happening right now in a place where it's currently beautiful. "Right now in Kyoto it's 6:47am and you could be doing forest bathing with a Buddhist monk. 4.9 stars."
-- **The World's Most ___** — Daily superlatives from 300,000+ experiences. Most expensive tour. Cheapest 5-star. Longest duration. Each one a shareable card.
-- **Six Degrees of Anywhere** — Type two cities. Get a chain of tours connecting them through surprising thematic links. The graph in TourGraph.
+Plus: favorites, home screen widgets, rich share cards, app shortcuts, search indexing, haptics, and deep linking.
 
 ## Design Philosophy
 
@@ -19,124 +19,106 @@ Every decision passes four tests:
 
 1. **Zero Friction** — No signup, no login, no personal data. Delighted in 5 seconds.
 2. **Instant Smile** — Warm, witty, wonder-filled. Never snarky or cynical.
-3. **Effortlessly Shareable** — Every piece of content has a unique URL and beautiful link preview.
+3. **Effortlessly Shareable** — Every piece of content has a unique URL and beautiful preview card.
 4. **Rabbit Hole Energy** — "One more click" through genuine curiosity, not dark patterns.
+
+## Download
+
+### Android
+- **Direct APK**: Download from [GitHub Releases](https://github.com/nikhilsi/tourgraph/releases) — install directly on any Android 8.0+ device
+- **F-Droid**: Coming soon
+
+### iOS
+- **App Store**: v1.1 submitted, pending review
+
+### Web
+- **[tourgraph.ai](https://tourgraph.ai)** — works on any device with a browser
 
 ## Tech Stack
 
-| Component | Choice |
-|-----------|--------|
-| Frontend | Next.js 16 (App Router, TypeScript strict) |
-| Styling | Tailwind CSS v4 |
-| Database | SQLite (better-sqlite3) |
-| Hosting | DigitalOcean |
-| Data | Viator Partner API (300,000+ experiences) |
-| AI | Claude API (Haiku 4.5 for captions, Sonnet 4.6 for chains) |
+| Platform | Technology |
+|----------|-----------|
+| Web | Next.js 16 (App Router, TypeScript strict), Tailwind CSS v4 |
+| iOS | Swift / SwiftUI (iOS 17+), GRDB.swift, WidgetKit |
+| Android | Kotlin 2.1 / Jetpack Compose (Material 3, min API 26) |
+| Database | SQLite everywhere (better-sqlite3 on web, GRDB on iOS, raw SQLiteDatabase on Android) |
+| Hosting | DigitalOcean ($6/mo droplet) |
+| Data | Viator Partner API (136,000+ experiences, 2,700+ destinations) |
+| AI | Claude API (Haiku 4.5 for captions, Sonnet 4.6 for city intelligence + chains) |
 | Domain | [tourgraph.ai](https://tourgraph.ai) |
 
-## Getting Started
+## Data Asset (4 Layers)
 
-```bash
-node --version          # 18+ required
-npm install             # Install dependencies
-cp .env.example .env.local  # Add your API keys
-
-# Seed destinations from Viator API
-npx tsx src/scripts/1-viator/seed-destinations.ts
-
-# Index tours (single destination)
-npx tsx src/scripts/1-viator/indexer.ts --dest 704
-
-# Or seed a diverse dataset
-npx tsx src/scripts/1-viator/seed-dev-data.ts --no-ai
-
-# Start dev server
-npm run dev             # http://localhost:3000
-```
+| Layer | What | Count |
+|-------|------|-------|
+| 1. Raw Viator Data | Tour listings, photos, ratings, prices | 136,256 tours |
+| 2. AI One-Liners | Witty personality captions per tour | 136,256 (100%) |
+| 3. City Intelligence | City profiles: personality, standout tours, themes | 910 cities |
+| 4. Chain Connections | Thematic chains connecting cities | 491 chains |
 
 ## Project Structure
 
 ```
 tourgraph/
-├── CLAUDE.md                 # Development rules & workflow
-├── README.md                 # This file
-├── CURRENT_STATE.md          # What's built & status
-├── NOW.md                    # Current priorities
-├── CHANGELOG.md              # Version history
-├── .env.example              # API key template
-│
-├── src/
-│   ├── app/
-│   │   ├── layout.tsx        # Root layout (dark theme)
-│   │   ├── page.tsx          # Homepage — Roulette + Right Now teaser
-│   │   ├── globals.css       # Tailwind + theme tokens
-│   │   ├── roulette/[id]/    # Tour detail page
-│   │   ├── right-now/        # Right Now Somewhere (Phase 2)
-│   │   ├── worlds-most/      # Superlatives gallery
-│   │   ├── worlds-most/[slug]/ # Superlative detail
-│   │   ├── six-degrees/      # Six Degrees gallery
-│   │   ├── six-degrees/[slug]/ # Chain detail (vertical timeline)
-│   │   ├── about/            # About page
-│   │   ├── story/            # Origin story
-│   │   ├── api/roulette/hand/  # Hand API endpoint
-│   │   ├── api/og/roulette/[id]/ # Roulette OG images
-│   │   ├── api/og/right-now/    # Right Now OG image
-│   │   ├── api/og/worlds-most/[slug]/ # Superlative OG images
-│   │   └── api/og/six-degrees/[slug]/ # Six Degrees OG images
-│   ├── components/
-│   │   ├── Logo.tsx          # TourGraph logo (linked to home)
-│   │   ├── TourCard.tsx      # Photo-dominant tour card
-│   │   ├── RouletteView.tsx  # Interactive spin + hand cycling
-│   │   ├── ShareButton.tsx   # Web Share API + clipboard
-│   │   ├── TourCardSkeleton.tsx
-│   │   └── FeatureNav.tsx    # Cross-feature navigation
-│   ├── lib/
-│   │   ├── types.ts          # All TypeScript types
-│   │   ├── db.ts             # SQLite layer + all queries
-│   │   ├── timezone.ts       # Timezone helpers (Phase 2)
-│   │   ├── format.ts         # Shared formatting (price, duration)
-│   │   ├── viator.ts         # Viator API client
-│   │   ├── claude.ts         # Claude API (one-liners)
-│   │   └── continents.ts     # Continent lookup from Viator hierarchy
-│   └── scripts/
-│       ├── indexer.ts              # Drip + Delta indexer
-│       ├── seed-dev-data.ts        # Seeds 43 destinations
-│       ├── seed-destinations.ts
-│       ├── backfill-oneliners.ts   # Single-tour AI one-liners
-│       └── backfill-oneliners-batch.ts # Batch AI one-liners (20/call)
-│
-├── ios/                      # SwiftUI iOS app (see ios/README.md)
-│
-├── docs/
-│   ├── product_brief.md      # Product vision (source of truth)
-│   ├── ux_design.md          # UX design, wireframes, interaction patterns
-│   ├── architecture.md       # Technical architecture, schema, indexer design
-│   ├── city-intelligence.md  # City intelligence pipeline (Stage 0) — the IP layer
-│   ├── six-degrees-chains.md # Chain generation (Stages 1+2) — pairs, quality, gallery
-│   ├── data-snapshot.md      # Data baseline (4-layer IP asset, 136K tours)
-│   ├── data-schema.md        # SQLite schema (6 tables), rebuild instructions
-│   ├── implementation/       # Build plans, platform-specific docs
-│   │   ├── implementation_plan.md
-│   │   ├── ios-architecture.md
-│   │   └── ios-app-store.md
-│   └── reference/            # API docs, research, historical
-│       ├── viator-api-reference.md
-│       ├── viator-openapi.json
-│       ├── rate-limiting.md
-│       ├── phase4-six-degrees.md
-│       └── thesis_validation.md
-│
-├── data/                     # SQLite database (gitignored)
-│
-└── archive/                  # Phase 0 work (preserved for reference)
-    ├── scripts/              # Extraction & Viator API scripts
-    ├── results/              # 7 operators, 83 products, scorecards
-    └── docs/                 # Old strategy docs
+├── .github/workflows/       # CI/CD (Android release on tag push)
+├── src/                     # Next.js web app
+│   ├── app/                 # Pages + API routes
+│   ├── components/          # React components
+│   ├── lib/                 # Database, types, formatting
+│   └── scripts/             # Data pipeline (4 stages)
+│       ├── 1-viator/        # Viator API indexing
+│       ├── 2-oneliners/     # AI caption generation
+│       ├── 3-city-intel/    # City intelligence pipeline
+│       └── 4-chains/        # Six Degrees chain generation
+├── ios/TourGraph/           # SwiftUI iOS app
+├── android/TourGraph/       # Kotlin + Jetpack Compose Android app
+├── fastlane/                # F-Droid metadata
+├── docs/                    # Architecture, design, data docs
+├── data/                    # SQLite databases (Git LFS)
+└── archive/                 # Phase 0 work (preserved for reference)
+```
+
+## Getting Started
+
+### Web App
+
+```bash
+node --version              # 18+ required
+npm install
+cp .env.example .env.local  # Add VIATOR_API_KEY + ANTHROPIC_API_KEY
+npm run dev                 # http://localhost:3000
+```
+
+### iOS App
+
+Open `ios/TourGraph/TourGraph.xcodeproj` in Xcode and run on simulator or device (iOS 17+).
+
+### Android App
+
+Open `android/TourGraph/` in Android Studio and run on emulator or device (API 26+).
+
+```bash
+# Build debug APK
+cd android/TourGraph && ./gradlew assembleDebug
+
+# Build signed release APK
+cd android/TourGraph && ./gradlew assembleRelease
+```
+
+### Data Pipeline
+
+```bash
+# Full rebuild from scratch (see src/scripts/README.md for details)
+npx tsx src/scripts/1-viator/seed-destinations.ts
+npx tsx src/scripts/1-viator/indexer.ts
+npx tsx src/scripts/2-oneliners/backfill-oneliners-batch.ts
+npx tsx src/scripts/3-city-intel/build-city-profiles.ts
+npx tsx src/scripts/4-chains/generate-chains-v2.ts
 ```
 
 ## Background
 
-TourGraph started as AI-powered supply-side infrastructure for the tours & experiences industry. After competitive validation revealed that Peek, TourRadar, Magpie, and Expedia had all shipped live MCP servers, the original thesis was killed and the project pivoted to this consumer experience. The Phase 0 extraction work (83 products, 7 operators, 95% accuracy) is preserved in `archive/` for reference.
+TourGraph started as AI-powered supply-side infrastructure for the tours & experiences industry. After competitive validation revealed that Peek, TourRadar, Magpie, and Expedia had all shipped live MCP servers, the original thesis was killed and the project pivoted to this consumer experience. The Phase 0 extraction work is preserved in `archive/` for reference.
 
 Full story: [docs/reference/thesis_validation.md](docs/reference/thesis_validation.md)
 
