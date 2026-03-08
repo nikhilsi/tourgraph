@@ -26,6 +26,8 @@ class Favorites(context: Context) {
 
     fun contains(tourId: Int): Boolean = _tourIds.value.contains(tourId)
 
+    fun currentIds(): List<Int> = _tourIds.value
+
     fun toggle(tourId: Int) {
         val current = _tourIds.value.toMutableList()
         if (current.contains(tourId)) {

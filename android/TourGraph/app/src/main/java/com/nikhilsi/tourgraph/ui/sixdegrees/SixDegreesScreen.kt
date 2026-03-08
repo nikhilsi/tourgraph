@@ -166,9 +166,7 @@ fun SixDegreesScreen(
                                     onClick = {
                                         ShareUtils.shareChain(
                                             context,
-                                            currentChain.cityFrom,
-                                            currentChain.cityTo,
-                                            currentChain.summary
+                                            currentChain
                                         )
                                     }
                                 ) {

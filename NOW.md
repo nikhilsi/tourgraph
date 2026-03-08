@@ -7,7 +7,7 @@
 
 ### Android App — Built, Testing
 
-Native Android app built and tested on emulator. All 4 features working, widgets, haptics, share, favorites, enrichment. 53MB debug APK. Next: test on real device, generate keystore, take screenshots, submit to stores.
+Native Android app built and tested on emulator. Full iOS v1.1 feature parity: all 4 features, widgets, haptics, rich share cards, favorites, enrichment, app shortcuts (long-press), search indexing, deep linking. 53MB debug APK. Next: test on real device, generate keystore, take screenshots, submit to stores.
 
 **Full plan**: `docs/implementation/android-app.md`
 

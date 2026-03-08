@@ -1,5 +1,6 @@
 package com.nikhilsi.tourgraph
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
@@ -14,6 +15,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -44,11 +46,54 @@ class MainActivity : ComponentActivity() {
                     loadError != null -> ErrorScreen(loadError!!)
                     else -> {
                         val navController = rememberNavController()
+
+                        // Handle deep link from intent
+                        LaunchedEffect(Unit) {
+                            handleDeepLink(intent, viewModel, navigateTab = { route ->
+                                navController.navigate(route) {
+                                    popUpTo(navController.graph.startDestinationId) { saveState = false }
+                                    launchSingleTop = true
+                                }
+                            })
+                        }
+
                         TourGraphNavGraph(
                             navController = navController,
                             viewModel = viewModel
                         )
                     }
+                }
+            }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+    }
+
+    private fun handleDeepLink(
+        intent: Intent?,
+        viewModel: TourGraphViewModel,
+        navigateTab: (String) -> Unit
+    ) {
+        val uri = intent?.data ?: return
+        if (uri.scheme != "tourgraph") return
+
+        when (uri.host) {
+            "tab" -> {
+                val tab = uri.lastPathSegment
+                when (tab) {
+                    "roulette" -> navigateTab("roulette")
+                    "rightnow" -> navigateTab("rightnow")
+                    "worldsmost" -> navigateTab("worldsmost")
+                    "sixdegrees" -> navigateTab("sixdegrees")
+                }
+            }
+            "tour" -> {
+                val tourId = uri.lastPathSegment?.toIntOrNull()
+                if (tourId != null) {
+                    viewModel.openTourDetail(tourId)
                 }
             }
         }

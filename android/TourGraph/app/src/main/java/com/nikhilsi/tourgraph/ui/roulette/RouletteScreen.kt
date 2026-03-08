@@ -35,7 +35,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -63,6 +65,7 @@ fun RouletteScreen(
     val favorites by viewModel.favorites.tourIds.collectAsState()
     val hapticsEnabled by viewModel.settings.hapticsEnabled.collectAsState()
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
     var dragOffset by remember { mutableFloatStateOf(0f) }
     val animatedOffset by animateFloatAsState(
@@ -159,7 +162,7 @@ fun RouletteScreen(
                         horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        IconButton(onClick = { ShareUtils.shareTour(context, tour) }) {
+                        IconButton(onClick = { scope.launch { ShareUtils.shareTour(context, tour) } }) {
                             Icon(
                                 Icons.Default.Share,
                                 contentDescription = "Share",

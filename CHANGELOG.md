@@ -6,6 +6,22 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [8.1.0] - 2026-03-07
+
+### Android — UX Polish, Rich Share Cards, App Shortcuts, Search Indexing
+
+- **Rich share cards** — `ShareCardRenderer.kt` renders branded 1200x630 image cards (tour photo + gradient + title + one-liner + stats + branding), matching iOS `ShareCardRenderer.swift`. Shared via FileProvider as image + text.
+- **App Shortcuts** — 3 static shortcuts (long-press app icon): Random Tour, Right Now, Six Degrees. Uses `tourgraph://` deep links. Android equivalent of iOS Siri Shortcuts.
+- **Search Indexing** — Favorited tours indexed as dynamic shortcuts, searchable from launcher. Re-indexes automatically on favorite toggle. Android equivalent of iOS Spotlight.
+- **Deep link handler** — `MainActivity` now processes `tourgraph://tab/{name}` and `tourgraph://tour/{id}` intents for tab navigation and tour detail.
+- **TourCard UX** — Image-on-top with text below (Material card pattern) instead of text overlay on image.
+- **Close button** — Full-width "Close" button at bottom of tour detail (easy to reach), removed hard-to-tap X from top.
+- **Nav fix** — Disabled `restoreState` on tab switches to prevent stale sub-routes (e.g. favorites screen showing when tapping Six Degrees).
+- **App icon** — Real TourGraph icon (graph nodes + location pin) replacing placeholder, all mipmap densities.
+- **Chain share** — Six Degrees share card with dark bg, amber gradient, city pair, numbered circles, same style as iOS.
+
+---
+
 ## [8.0.0] - 2026-03-07
 
 ### Android App — Built + Tested on Emulator

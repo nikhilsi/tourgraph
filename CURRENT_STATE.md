@@ -70,8 +70,10 @@ Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity. Bui
 | Favorites | `Favorites.kt`, `FavoritesScreen.kt` | Built — SharedPreferences, list view |
 | Settings | `SettingsScreen.kt`, `AboutScreen.kt` | Built — haptics toggle, about, favorites |
 | Widgets | `RightNowWidget.kt`, `RandomTourWidget.kt` | Built — Glance (2 types) |
-| Share | `ShareUtils.kt` | Built — Intent.ACTION_SEND |
-| Deep Linking | `AndroidManifest.xml` | Built — `tourgraph://` scheme |
+| Share | `ShareUtils.kt`, `ShareCardRenderer.kt` | Built — rich 1200x630 image cards (matches iOS), FileProvider |
+| Deep Linking | `MainActivity.kt`, `AndroidManifest.xml` | Built — `tourgraph://` scheme, tab + tour routing |
+| App Shortcuts | `shortcuts.xml` | Built — 3 static shortcuts (long-press icon), matches iOS Siri Shortcuts |
+| Search Indexing | `SearchIndexer.kt` | Built — favorited tours as dynamic shortcuts, searchable from launcher |
 
 | Component | Technology |
 |-----------|-----------|

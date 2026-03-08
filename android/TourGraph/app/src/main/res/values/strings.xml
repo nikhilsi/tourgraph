@@ -5,4 +5,10 @@
     <string name="right_now_widget_description">A tour happening at the perfect time of day</string>
     <string name="random_tour_widget_name">Random Tour</string>
     <string name="random_tour_widget_description">Discover a random tour from around the world</string>
+    <string name="shortcut_random_tour_short">Random Tour</string>
+    <string name="shortcut_random_tour_long">Show me a random tour</string>
+    <string name="shortcut_right_now_short">Right Now</string>
+    <string name="shortcut_right_now_long">Right Now Somewhere</string>
+    <string name="shortcut_six_degrees_short">Six Degrees</string>
+    <string name="shortcut_six_degrees_long">Show me a random chain</string>
 </resources>

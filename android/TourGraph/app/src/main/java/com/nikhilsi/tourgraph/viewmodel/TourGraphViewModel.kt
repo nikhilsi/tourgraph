@@ -11,11 +11,13 @@ import com.nikhilsi.tourgraph.model.SuperlativeResult
 import com.nikhilsi.tourgraph.model.SuperlativeType
 import com.nikhilsi.tourgraph.model.Tour
 import com.nikhilsi.tourgraph.state.AppSettings
+import com.nikhilsi.tourgraph.search.SearchIndexer
 import com.nikhilsi.tourgraph.state.Favorites
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -91,6 +93,11 @@ class TourGraphViewModel(application: Application) : AndroidViewModel(applicatio
                 enrichmentService = TourEnrichmentService(db)
                 _isLoading.value = false
                 fetchRouletteHand()
+                reindexFavorites()
+                // Re-index when favorites change
+                launch {
+                    favorites.tourIds.drop(1).collect { reindexFavorites() }
+                }
             } catch (e: Exception) {
                 _loadError.value = e.message
                 _isLoading.value = false
@@ -202,6 +209,16 @@ class TourGraphViewModel(application: Application) : AndroidViewModel(applicatio
     fun closeTourDetail() {
         _showTourDetail.value = false
         _detailTour.value = null
+    }
+
+    // --- Search Indexing ---
+
+    fun reindexFavorites() {
+        viewModelScope.launch {
+            if (::db.isInitialized) {
+                SearchIndexer.indexFavorites(getApplication(), db, favorites)
+            }
+        }
     }
 
     // --- Stats ---

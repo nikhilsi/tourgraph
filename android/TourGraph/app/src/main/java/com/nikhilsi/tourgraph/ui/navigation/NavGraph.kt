@@ -80,10 +80,10 @@ fun TourGraphNavGraph(
                                     selectedTab = index
                                     navController.navigate(tab.route) {
                                         popUpTo(navController.graph.startDestinationId) {
-                                            saveState = true
+                                            saveState = false
                                         }
                                         launchSingleTop = true
-                                        restoreState = true
+                                        restoreState = false
                                     }
                                 }
                             },

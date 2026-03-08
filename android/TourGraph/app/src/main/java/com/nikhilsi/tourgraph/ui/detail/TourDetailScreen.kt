@@ -38,6 +38,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -62,6 +64,7 @@ fun TourDetailScreen(
     val tour by viewModel.detailTour.collectAsState()
     val favorites by viewModel.favorites.tourIds.collectAsState()
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
 
     tour?.let { t ->
         val isFavorite = favorites.contains(t.id)
@@ -117,24 +120,6 @@ fun TourDetailScreen(
                     )
                 }
 
-                // Close button with visible background
-                IconButton(
-                    onClick = onDismiss,
-                    modifier = Modifier
-                        .align(Alignment.TopStart)
-                        .padding(12.dp)
-                        .background(
-                            Color.Black.copy(alpha = 0.5f),
-                            RoundedCornerShape(50)
-                        )
-                ) {
-                    Icon(
-                        Icons.Default.Close,
-                        contentDescription = "Close",
-                        tint = Color.White,
-                        modifier = Modifier.size(24.dp)
-                    )
-                }
             }
 
             Column(
@@ -248,13 +233,26 @@ fun TourDetailScreen(
                     }
 
                     // Share
-                    IconButton(onClick = { ShareUtils.shareTour(context, t) }) {
+                    IconButton(onClick = { scope.launch { ShareUtils.shareTour(context, t) } }) {
                         Icon(
                             Icons.Default.Share,
                             contentDescription = "Share",
                             tint = Color.White.copy(alpha = 0.7f)
                         )
                     }
+                }
+
+                // Close button at bottom — easy to reach
+                Button(
+                    onClick = onDismiss,
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.White.copy(alpha = 0.1f),
+                        contentColor = Color.White
+                    ),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Icon(Icons.Default.Close, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Text("Close", modifier = Modifier.padding(start = 8.dp))
                 }
 
                 Spacer(modifier = Modifier.height(32.dp))

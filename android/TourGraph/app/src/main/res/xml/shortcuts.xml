@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="random_tour"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_random_tour_short"
+        android:shortcutLongLabel="@string/shortcut_random_tour_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.nikhilsi.tourgraph"
+            android:targetClass="com.nikhilsi.tourgraph.MainActivity"
+            android:data="tourgraph://tab/roulette" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="right_now"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_right_now_short"
+        android:shortcutLongLabel="@string/shortcut_right_now_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.nikhilsi.tourgraph"
+            android:targetClass="com.nikhilsi.tourgraph.MainActivity"
+            android:data="tourgraph://tab/rightnow" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="six_degrees"
+        android:enabled="true"
+        android:icon="@mipmap/ic_launcher"
+        android:shortcutShortLabel="@string/shortcut_six_degrees_short"
+        android:shortcutLongLabel="@string/shortcut_six_degrees_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.nikhilsi.tourgraph"
+            android:targetClass="com.nikhilsi.tourgraph.MainActivity"
+            android:data="tourgraph://tab/sixdegrees" />
+    </shortcut>
+</shortcuts>
