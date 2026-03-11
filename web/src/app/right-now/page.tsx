@@ -3,10 +3,10 @@ import Logo from "@/components/Logo";
 import Image from "next/image";
 import type { Metadata } from "next";
 import {
-  getDistinctTimezones,
+  getTimezones,
   getRightNowTours,
-  tourRowToRouletteTour,
-} from "@/lib/db";
+} from "@/lib/api";
+import type { RouletteTour } from "@/lib/api";
 import {
   getGoldenTimezones,
   getPleasantTimezones,
@@ -15,7 +15,6 @@ import {
   getTimeOfDayLabel,
 } from "@/lib/timezone";
 import { formatDurationShort } from "@/lib/format";
-import type { RightNowMoment } from "@/lib/types";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
 
@@ -40,10 +39,15 @@ export const metadata: Metadata = {
   },
 };
 
-function getMoments(count: number): RightNowMoment[] {
-  const allTimezones = getDistinctTimezones();
+interface RightNowMoment {
+  tour: RouletteTour & { timezone: string };
+  localTime: string;
+  timeOfDayLabel: string;
+}
 
-  // Try golden hour first, fall back to pleasant daytime
+async function getMoments(count: number): Promise<RightNowMoment[]> {
+  const allTimezones = await getTimezones();
+
   let matchedTzs = getGoldenTimezones(allTimezones);
   if (matchedTzs.length < count) {
     const pleasant = getPleasantTimezones(allTimezones);
@@ -53,22 +57,21 @@ function getMoments(count: number): RightNowMoment[] {
     }
   }
 
-  const tours = getRightNowTours(matchedTzs, count);
+  const tours = await getRightNowTours(matchedTzs, count);
 
   return tours.map((tour) => {
     const tz = tour.timezone ?? "UTC";
     const hour = getCurrentHour(tz);
     return {
-      tour: tourRowToRouletteTour(tour),
-      timezone: tz,
+      tour,
       localTime: formatLocalTime(tz),
       timeOfDayLabel: getTimeOfDayLabel(hour),
     };
   });
 }
 
-export default function RightNowPage() {
-  const moments = getMoments(6);
+export default async function RightNowPage() {
+  const moments = await getMoments(6);
 
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">

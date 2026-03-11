@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { formatDurationShort } from "@/lib/format";
-import type { ChainLink } from "@/lib/db";
-import type { TourRow } from "@/lib/types";
+import type { ChainLink } from "@/lib/types";
+import type { RouletteTour } from "@/lib/api";
 
 interface ChainTimelineProps {
   chain: ChainLink[];
-  tourData: (TourRow | undefined)[];
+  tourData: (RouletteTour | undefined)[];
 }
 
 export default function ChainTimeline({ chain, tourData }: ChainTimelineProps) {
@@ -43,10 +43,10 @@ export default function ChainTimeline({ chain, tourData }: ChainTimelineProps) {
                 href={`/roulette/${tour.id}`}
                 className="block rounded-xl bg-surface overflow-hidden mb-3 hover:bg-surface-hover transition-colors"
               >
-                {tour.image_url && (
+                {tour.imageUrl && (
                   <div className="relative aspect-[3/2]">
                     <Image
-                      src={tour.image_url}
+                      src={tour.imageUrl}
                       alt={tour.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 448px"
@@ -58,25 +58,24 @@ export default function ChainTimeline({ chain, tourData }: ChainTimelineProps) {
                   <h3 className="text-sm font-semibold leading-tight line-clamp-2">
                     {tour.title}
                   </h3>
-                  {tour.one_liner && (
+                  {tour.oneLiner && (
                     <p className="text-xs text-text-muted mt-1 leading-snug italic line-clamp-2">
-                      {tour.one_liner}
+                      {tour.oneLiner}
                     </p>
                   )}
                   <div className="flex items-center gap-3 text-xs text-text-muted mt-1.5">
-                    {tour.rating != null && tour.rating > 0 && (
+                    {tour.rating > 0 && (
                       <span className="flex items-center gap-1" title={`${tour.rating.toFixed(1)} out of 5 stars`}>
                         <span className="text-accent">&#9733;</span>
                         {tour.rating.toFixed(1)}
                       </span>
                     )}
-                    {tour.from_price != null && tour.from_price > 0 && (
-                      <span title={`Starting from $${Math.round(tour.from_price)}`}>${Math.round(tour.from_price)}</span>
+                    {tour.fromPrice > 0 && (
+                      <span title={`Starting from $${Math.round(tour.fromPrice)}`}>${Math.round(tour.fromPrice)}</span>
                     )}
-                    {tour.duration_minutes != null &&
-                      tour.duration_minutes > 0 && (
-                        <span title={`Tour duration: ${formatDurationShort(tour.duration_minutes)}`}>
-                          {formatDurationShort(tour.duration_minutes)}
+                    {tour.durationMinutes > 0 && (
+                        <span title={`Tour duration: ${formatDurationShort(tour.durationMinutes)}`}>
+                          {formatDurationShort(tour.durationMinutes)}
                         </span>
                       )}
                   </div>

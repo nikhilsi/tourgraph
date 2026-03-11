@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
-import { getSuperlative } from "@/lib/db";
+import { getSuperlative } from "@/lib/api";
 import { isValidSlug, SUPERLATIVE_TITLES, superlativeStatShort } from "@/lib/superlatives";
 
 export const runtime = "nodejs";
@@ -18,14 +18,14 @@ export async function GET(
     return new Response("Invalid superlative type", { status: 404 });
   }
 
-  const tour = getSuperlative(slug);
+  const tour = await getSuperlative(slug);
   if (!tour) {
     return new Response("No tour found for this superlative", { status: 404 });
   }
 
   const displayTitle = SUPERLATIVE_TITLES[slug];
   const stat = superlativeStatShort(slug, tour);
-  const location = [tour.destination_name, tour.country]
+  const location = [tour.destinationName, tour.country]
     .filter(Boolean)
     .join(", ");
 
@@ -41,9 +41,9 @@ export async function GET(
           fontFamily: "system-ui, sans-serif",
         }}
       >
-        {tour.image_url && (
+        {tour.imageUrl && (
           <img
-            src={tour.image_url}
+            src={tour.imageUrl}
             alt=""
             style={{
               position: "absolute",

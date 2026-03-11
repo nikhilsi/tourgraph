@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getChainBySlug } from "@/lib/db";
+import { getChainBySlug } from "@/lib/api";
 
 export const runtime = "nodejs";
 
@@ -11,7 +11,7 @@ export async function GET(
   { params }: { params: Promise<{ slug: string }> }
 ) {
   const { slug } = await params;
-  const chain = getChainBySlug(slug);
+  const chain = await getChainBySlug(slug);
 
   if (!chain) {
     return new Response("Chain not found", { status: 404 });
@@ -20,7 +20,6 @@ export async function GET(
   const stops = chain.chain;
   const stopCount = stops.length;
 
-  // Chain visualization: evenly spaced circles connected by lines
   const chainY = 320;
   const chainPadding = 200;
   const chainWidth = WIDTH - chainPadding * 2;
@@ -39,7 +38,6 @@ export async function GET(
           position: "relative",
         }}
       >
-        {/* Subtle gradient overlay */}
         <div
           style={{
             position: "absolute",
@@ -53,7 +51,6 @@ export async function GET(
           }}
         />
 
-        {/* Content */}
         <div
           style={{
             display: "flex",
@@ -63,7 +60,6 @@ export async function GET(
             flex: 1,
           }}
         >
-          {/* Feature label */}
           <div style={{ display: "flex", marginBottom: "20px" }}>
             <span
               style={{
@@ -78,7 +74,6 @@ export async function GET(
             </span>
           </div>
 
-          {/* City pair */}
           <div
             style={{
               fontSize: "52px",
@@ -95,7 +90,6 @@ export async function GET(
             <span>{chain.city_to}</span>
           </div>
 
-          {/* Summary quote */}
           <div
             style={{
               fontSize: "22px",
@@ -115,7 +109,6 @@ export async function GET(
           </div>
         </div>
 
-        {/* Chain visualization — circles connected by line */}
         <div
           style={{
             position: "absolute",
@@ -126,7 +119,6 @@ export async function GET(
             display: "flex",
           }}
         >
-          {/* Connecting line */}
           <div
             style={{
               position: "absolute",
@@ -139,7 +131,6 @@ export async function GET(
             }}
           />
 
-          {/* Stop circles with city names */}
           {stops.map((stop, i) => {
             const x = chainPadding + i * gap;
             return (
@@ -195,7 +186,6 @@ export async function GET(
           })}
         </div>
 
-        {/* Footer */}
         <div
           style={{
             position: "absolute",

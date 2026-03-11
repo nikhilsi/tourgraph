@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getRandomChain, getToursByIds } from "@/lib/db";
+import { getRandomChain, getTourDetail } from "@/lib/api";
+import type { RouletteTour } from "@/lib/api";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
 import Logo from "@/components/Logo";
@@ -26,8 +27,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SixDegreesGalleryPage() {
-  const chain = getRandomChain();
+export default async function SixDegreesGalleryPage() {
+  const chain = await getRandomChain();
 
   if (!chain) {
     return (
@@ -47,7 +48,11 @@ export default function SixDegreesGalleryPage() {
   }
 
   const tourIds = chain.chain.map((link) => link.tour_id).filter((id): id is number => id != null);
-  const tourMap = getToursByIds(tourIds);
+  const tourDetails = await Promise.all(tourIds.map((id) => getTourDetail(id)));
+  const tourMap = new Map<number, RouletteTour>();
+  for (const detail of tourDetails) {
+    if (detail) tourMap.set(detail.id, detail);
+  }
   const tourData = chain.chain.map((link) => link.tour_id ? tourMap.get(link.tour_id) : undefined);
 
   return (

@@ -3,9 +3,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getTourById } from "@/lib/db";
+import { getTourDetail } from "@/lib/api";
 import { formatDurationLong } from "@/lib/format";
-import { safeJsonParse } from "@/lib/format";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
 import Logo from "@/components/Logo";
@@ -14,17 +13,15 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
-// M2: Memoize within a single request to avoid duplicate DB calls
-const getCachedTour = cache((id: number) => getTourById(id));
+// Memoize within a single request to avoid duplicate API calls
+const getCachedTour = cache((id: number) => getTourDetail(id));
 
-// H4: Validate ID parameter
 function parseAndValidateId(raw: string): number | null {
   const id = parseInt(raw, 10);
   if (isNaN(id) || id <= 0 || id > 2147483647) return null;
   return id;
 }
 
-// M16: Append campaign tracking to Viator affiliate URL
 function withCampaign(url: string, campaign: string): string {
   return `${url}${url.includes("?") ? "&" : "?"}campaign=${campaign}`;
 }
@@ -34,12 +31,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const numId = parseAndValidateId(id);
   if (!numId) return { title: "Tour Not Found" };
 
-  const tour = getCachedTour(numId);
+  const tour = await getCachedTour(numId);
   if (!tour) return { title: "Tour Not Found" };
 
   const description =
-    tour.one_liner ||
-    `${tour.title} in ${tour.destination_name}, ${tour.country}`;
+    tour.oneLiner ||
+    `${tour.title} in ${tour.destinationName}, ${tour.country}`;
 
   const ogImage = `/api/og/roulette/${id}`;
 
@@ -66,12 +63,8 @@ export default async function TourDetailPage({ params }: Props) {
   const numId = parseAndValidateId(id);
   if (!numId) notFound();
 
-  const tour = getCachedTour(numId);
+  const tour = await getCachedTour(numId);
   if (!tour) notFound();
-
-  // M13: Safe JSON parse with fallback
-  const inclusions = safeJsonParse<string[]>(tour.inclusions_json, []);
-  const imageUrls = safeJsonParse<string[]>(tour.image_urls_json, []);
 
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
@@ -86,10 +79,10 @@ export default async function TourDetailPage({ params }: Props) {
       {/* Tour Card */}
       <div className="w-full max-w-lg rounded-2xl overflow-hidden bg-surface">
         {/* Hero image */}
-        {tour.image_url ? (
+        {tour.imageUrl ? (
           <div className="relative aspect-[3/2]">
             <Image
-              src={tour.image_url}
+              src={tour.imageUrl}
               alt={tour.title}
               fill
               sizes="(max-width: 768px) 100vw, 512px"
@@ -109,35 +102,35 @@ export default async function TourDetailPage({ params }: Props) {
 
           {/* Location */}
           <p className="text-sm text-text-muted">
-            {tour.destination_name}
+            {tour.destinationName}
             {tour.country ? `, ${tour.country}` : ""}
           </p>
 
           {/* One-liner */}
-          {tour.one_liner && (
+          {tour.oneLiner && (
             <p className="text-base italic text-text-muted leading-relaxed">
-              &ldquo;{tour.one_liner}&rdquo;
+              &ldquo;{tour.oneLiner}&rdquo;
             </p>
           )}
 
-          {/* Stats — M7: use > 0 instead of truthy check to avoid rendering bare "0" */}
+          {/* Stats */}
           <div className="flex items-center gap-4 text-sm text-text-muted">
-            {tour.rating != null && tour.rating > 0 && (
+            {tour.rating > 0 && (
               <span className="flex items-center gap-1" title={`${tour.rating.toFixed(1)} out of 5 stars`}>
                 <span className="text-accent">&#9733;</span>
                 {tour.rating.toFixed(1)}
-                {tour.review_count != null && tour.review_count > 0 && (
+                {tour.reviewCount > 0 && (
                   <span className="text-text-dim">
-                    ({tour.review_count.toLocaleString()})
+                    ({tour.reviewCount.toLocaleString()})
                   </span>
                 )}
               </span>
             )}
-            {tour.from_price != null && tour.from_price > 0 && (
-              <span title={`Starting from $${Math.round(tour.from_price)}`}>${Math.round(tour.from_price)}</span>
+            {tour.fromPrice > 0 && (
+              <span title={`Starting from $${Math.round(tour.fromPrice)}`}>${Math.round(tour.fromPrice)}</span>
             )}
-            {tour.duration_minutes != null && tour.duration_minutes > 0 && (
-              <span title={`Tour duration: ${formatDurationLong(tour.duration_minutes)}`}>{formatDurationLong(tour.duration_minutes)}</span>
+            {tour.durationMinutes > 0 && (
+              <span title={`Tour duration: ${formatDurationLong(tour.durationMinutes)}`}>{formatDurationLong(tour.durationMinutes)}</span>
             )}
           </div>
 
@@ -151,11 +144,11 @@ export default async function TourDetailPage({ params }: Props) {
           )}
 
           {/* Inclusions */}
-          {inclusions.length > 0 && (
+          {tour.inclusions.length > 0 && (
             <div className="pt-2 border-t border-text-dim/20">
               <h3 className="text-sm font-semibold mb-2">What&apos;s Included</h3>
               <ul className="text-sm text-text-muted space-y-1">
-                {inclusions.map((inc, i) => (
+                {tour.inclusions.map((inc, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <span className="text-accent mt-0.5">&#10003;</span>
                     {inc}
@@ -165,11 +158,11 @@ export default async function TourDetailPage({ params }: Props) {
             </div>
           )}
 
-          {/* Actions — M16: campaign tracking on Viator link */}
+          {/* Actions */}
           <div className="flex items-center gap-3 pt-3">
-            {tour.viator_url && (
+            {tour.viatorUrl && (
               <a
-                href={withCampaign(tour.viator_url, "roulette")}
+                href={withCampaign(tour.viatorUrl, "roulette")}
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Book this tour on Viator"
@@ -181,16 +174,16 @@ export default async function TourDetailPage({ params }: Props) {
             <ShareButton
               tourId={tour.id}
               title={tour.title}
-              oneLiner={tour.one_liner || ""}
+              oneLiner={tour.oneLiner}
             />
           </div>
         </div>
       </div>
 
       {/* More images */}
-      {imageUrls.length > 1 && (
+      {tour.imageUrls.length > 1 && (
         <div className="w-full max-w-lg mt-4 grid grid-cols-2 gap-2">
-          {imageUrls.slice(1, 5).map((url, i) => (
+          {tour.imageUrls.slice(1, 5).map((url, i) => (
             <div key={i} className="relative aspect-[3/2] rounded-lg overflow-hidden bg-surface-hover">
               <Image
                 src={url}

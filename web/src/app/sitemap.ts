@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { getDb } from "@/lib/db";
+import { getChainSlugs } from "@/lib/api";
 import { VALID_SLUGS } from "@/lib/superlatives";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = "https://tourgraph.ai";
 
   // Static pages
@@ -25,18 +25,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Six Degrees chain pages
   let chainPages: MetadataRoute.Sitemap = [];
   try {
-    const db = getDb(true);
-    const chains = db
-      .prepare("SELECT slug FROM six_degrees_chains WHERE slug IS NOT NULL")
-      .all() as { slug: string }[];
-
-    chainPages = chains.map((row) => ({
-      url: `${base}/six-degrees/${row.slug}`,
+    const slugs = await getChainSlugs();
+    chainPages = slugs.map((slug) => ({
+      url: `${base}/six-degrees/${slug}`,
       changeFrequency: "monthly" as const,
       priority: 0.6,
     }));
   } catch {
-    // slug column may not exist yet on first deploy
+    // API might not be available during build
   }
 
   return [...staticPages, ...superlativePages, ...chainPages];

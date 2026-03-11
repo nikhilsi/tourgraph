@@ -7,11 +7,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "index": "tsx src/scripts/1-viator/indexer.ts",
-    "index:full": "tsx src/scripts/1-viator/indexer.ts --full",
-    "seed:destinations": "tsx src/scripts/1-viator/seed-destinations.ts",
-    "seed:data": "tsx src/scripts/1-viator/seed-dev-data.ts",
-    "backfill:oneliners": "tsx src/scripts/2-oneliners/backfill-oneliners.ts",
     "lint": "eslint src/"
   },
   "repository": {
@@ -20,9 +15,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.78.0",
     "@tailwindcss/postcss": "^4.2.1",
-    "better-sqlite3": "^12.6.2",
     "dotenv": "^17.3.1",
     "next": "^16.1.6",
     "postcss": "^8.5.6",
@@ -31,8 +24,7 @@
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-"@types/better-sqlite3": "^7.6.13",
-    "@types/node": "^25.3.3",
+"@types/node": "^25.3.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.3",

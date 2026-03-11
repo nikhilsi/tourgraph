@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getSuperlative } from "@/lib/db";
-import { safeJsonParse, formatPrice, formatDurationLong } from "@/lib/format";
+import { getSuperlative } from "@/lib/api";
+import { formatPrice, formatDurationLong } from "@/lib/format";
 import type { SuperlativeType } from "@/lib/types";
 import { isValidSlug, SUPERLATIVE_TITLES, SUPERLATIVE_DESCRIPTIONS, superlativeStatLong } from "@/lib/superlatives";
 import ShareButton from "@/components/ShareButton";
@@ -15,7 +15,6 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-// Memoize within a single request
 const getCachedSuperlative = cache(
   (type: SuperlativeType) => getSuperlative(type)
 );
@@ -28,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   if (!isValidSlug(slug)) return { title: "Not Found" };
 
-  const tour = getCachedSuperlative(slug);
+  const tour = await getCachedSuperlative(slug);
   if (!tour) return { title: "Not Found" };
 
   const title = SUPERLATIVE_TITLES[slug];
@@ -59,14 +58,12 @@ export default async function SuperlativeDetailPage({ params }: Props) {
   const { slug } = await params;
   if (!isValidSlug(slug)) notFound();
 
-  const tour = getCachedSuperlative(slug);
+  const tour = await getCachedSuperlative(slug);
   if (!tour) notFound();
 
   const displayTitle = SUPERLATIVE_TITLES[slug];
   const displayDesc = SUPERLATIVE_DESCRIPTIONS[slug];
   const stat = superlativeStatLong(slug, tour);
-  const inclusions = safeJsonParse<string[]>(tour.inclusions_json, []);
-  const imageUrls = safeJsonParse<string[]>(tour.image_urls_json, []);
 
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
@@ -88,10 +85,10 @@ export default async function SuperlativeDetailPage({ params }: Props) {
       {/* Tour Card */}
       <div className="w-full max-w-lg rounded-2xl overflow-hidden bg-surface">
         {/* Hero image */}
-        {tour.image_url ? (
+        {tour.imageUrl ? (
           <div className="relative aspect-[3/2]">
             <Image
-              src={tour.image_url}
+              src={tour.imageUrl}
               alt={tour.title}
               fill
               sizes="(max-width: 768px) 100vw, 512px"
@@ -111,35 +108,35 @@ export default async function SuperlativeDetailPage({ params }: Props) {
 
           {/* Location */}
           <p className="text-sm text-text-muted">
-            {tour.destination_name}
+            {tour.destinationName}
             {tour.country ? `, ${tour.country}` : ""}
           </p>
 
           {/* One-liner */}
-          {tour.one_liner && (
+          {tour.oneLiner && (
             <p className="text-base italic text-text-muted leading-relaxed">
-              &ldquo;{tour.one_liner}&rdquo;
+              &ldquo;{tour.oneLiner}&rdquo;
             </p>
           )}
 
           {/* Stats */}
           <div className="flex items-center gap-4 text-sm text-text-muted">
-            {tour.rating != null && tour.rating > 0 && (
+            {tour.rating > 0 && (
               <span className="flex items-center gap-1" title={`${tour.rating.toFixed(1)} out of 5 stars`}>
                 <span className="text-accent">&#9733;</span>
                 {tour.rating.toFixed(1)}
-                {tour.review_count != null && tour.review_count > 0 && (
+                {tour.reviewCount > 0 && (
                   <span className="text-text-dim">
-                    ({tour.review_count.toLocaleString()})
+                    ({tour.reviewCount.toLocaleString()})
                   </span>
                 )}
               </span>
             )}
-            {tour.from_price != null && tour.from_price > 0 && (
-              <span title={`Starting from ${formatPrice(tour.from_price)}`}>{formatPrice(tour.from_price)}</span>
+            {tour.fromPrice > 0 && (
+              <span title={`Starting from ${formatPrice(tour.fromPrice)}`}>{formatPrice(tour.fromPrice)}</span>
             )}
-            {tour.duration_minutes != null && tour.duration_minutes > 0 && (
-              <span title={`Tour duration: ${formatDurationLong(tour.duration_minutes)}`}>{formatDurationLong(tour.duration_minutes)}</span>
+            {tour.durationMinutes > 0 && (
+              <span title={`Tour duration: ${formatDurationLong(tour.durationMinutes)}`}>{formatDurationLong(tour.durationMinutes)}</span>
             )}
           </div>
 
@@ -153,13 +150,13 @@ export default async function SuperlativeDetailPage({ params }: Props) {
           )}
 
           {/* Inclusions */}
-          {inclusions.length > 0 && (
+          {tour.inclusions.length > 0 && (
             <div className="pt-2 border-t border-text-dim/20">
               <h3 className="text-sm font-semibold mb-2">
                 What&apos;s Included
               </h3>
               <ul className="text-sm text-text-muted space-y-1">
-                {inclusions.map((inc, i) => (
+                {tour.inclusions.map((inc, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <span className="text-accent mt-0.5">&#10003;</span>
                     {inc}
@@ -171,9 +168,9 @@ export default async function SuperlativeDetailPage({ params }: Props) {
 
           {/* Actions */}
           <div className="flex items-center gap-3 pt-3">
-            {tour.viator_url && (
+            {tour.viatorUrl && (
               <a
-                href={withCampaign(tour.viator_url, "worlds-most")}
+                href={withCampaign(tour.viatorUrl, "worlds-most")}
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Book this tour on Viator"
@@ -185,16 +182,16 @@ export default async function SuperlativeDetailPage({ params }: Props) {
             <ShareButton
               tourId={tour.id}
               title={tour.title}
-              oneLiner={tour.one_liner || ""}
+              oneLiner={tour.oneLiner}
             />
           </div>
         </div>
       </div>
 
       {/* More images */}
-      {imageUrls.length > 1 && (
+      {tour.imageUrls.length > 1 && (
         <div className="w-full max-w-lg mt-4 grid grid-cols-2 gap-2">
-          {imageUrls.slice(1, 5).map((url, i) => (
+          {tour.imageUrls.slice(1, 5).map((url, i) => (
             <div
               key={i}
               className="relative aspect-[3/2] rounded-lg overflow-hidden bg-surface-hover"

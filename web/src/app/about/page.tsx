@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getDb } from "@/lib/db";
+import { getStats } from "@/lib/api";
 import FeatureNav from "@/components/FeatureNav";
 import Logo from "@/components/Logo";
 
@@ -15,30 +15,8 @@ export const metadata: Metadata = {
   },
 };
 
-function getStats() {
-  const db = getDb(true);
-  const tours = (
-    db.prepare("SELECT COUNT(*) as c FROM tours WHERE status = 'active'").get() as { c: number }
-  ).c;
-  const destinations = (
-    db
-      .prepare(
-        `SELECT COUNT(DISTINCT destination_name) as c FROM tours WHERE status = 'active'`
-      )
-      .get() as { c: number }
-  ).c;
-  const countries = (
-    db
-      .prepare(
-        `SELECT COUNT(DISTINCT country) as c FROM tours WHERE status = 'active' AND country IS NOT NULL`
-      )
-      .get() as { c: number }
-  ).c;
-  return { tours, destinations, countries };
-}
-
-export default function AboutPage() {
-  const stats = getStats();
+export default async function AboutPage() {
+  const stats = await getStats();
 
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
@@ -188,8 +166,8 @@ export default function AboutPage() {
               Components for instant page loads and SEO-friendly OG previews.
             </p>
             <p>
-              <span className="text-text">SQLite</span> as a pre-built local
-              index — zero API calls at page load, sub-50ms queries.
+              <span className="text-text">Express + TypeScript API</span> serving
+              data from SQLite — sub-50ms queries, clean separation of concerns.
             </p>
             <p>
               <span className="text-text">Viator Partner API</span> for tour

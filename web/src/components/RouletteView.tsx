@@ -28,7 +28,7 @@ export default function RouletteView() {
         const params = exclude.length
           ? `?exclude=${exclude.join(",")}`
           : "";
-        const res = await fetch(`/api/roulette/hand${params}`, {
+        const res = await fetch(`/api/v1/roulette/hand${params}`, {
           signal: controller.signal,
         });
         if (!res.ok) throw new Error("Failed to fetch tours");

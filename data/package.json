@@ -1,0 +1,25 @@
+{
+  "name": "tourgraph-data",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TourGraph data pipeline — indexer, AI captions, city intelligence, chain generation.",
+  "scripts": {
+    "seed:destinations": "tsx scripts/1-viator/seed-destinations.ts",
+    "index:full": "tsx scripts/1-viator/indexer.ts --full",
+    "seed:data": "tsx scripts/1-viator/seed-dev-data.ts",
+    "backfill:oneliners": "tsx scripts/2-oneliners/backfill-oneliners.ts",
+    "check:db": "tsx scripts/utils/check-db.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.78.0",
+    "better-sqlite3": "^12.6.2",
+    "dotenv": "^17.3.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/node": "^25.3.3",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  }
+}

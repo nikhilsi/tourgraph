@@ -1,5 +1,6 @@
 import { formatPrice, formatDurationShort, formatDurationLong } from "./format";
-import type { SuperlativeType, TourRow } from "./types";
+import type { SuperlativeType } from "./types";
+import type { RouletteTour } from "./api";
 
 export const VALID_SLUGS: SuperlativeType[] = [
   "most-expensive",
@@ -32,32 +33,32 @@ export const SUPERLATIVE_DESCRIPTIONS: Record<SuperlativeType, string> = {
   "hidden-gem": "Quietly exceptional",
 };
 
-export function superlativeStatShort(type: SuperlativeType, tour: TourRow): string {
+export function superlativeStatShort(type: SuperlativeType, tour: RouletteTour): string {
   switch (type) {
     case "most-expensive":
     case "cheapest-5star":
-      return formatPrice(tour.from_price ?? 0);
+      return formatPrice(tour.fromPrice);
     case "longest":
     case "shortest":
-      return formatDurationShort(tour.duration_minutes ?? 0);
+      return formatDurationShort(tour.durationMinutes);
     case "most-reviewed":
-      return `${(tour.review_count ?? 0).toLocaleString("en-US")} reviews`;
+      return `${tour.reviewCount.toLocaleString("en-US")} reviews`;
     case "hidden-gem":
-      return `${(tour.rating ?? 0).toFixed(1)} stars`;
+      return `${tour.rating.toFixed(1)} stars`;
   }
 }
 
-export function superlativeStatLong(type: SuperlativeType, tour: TourRow): string {
+export function superlativeStatLong(type: SuperlativeType, tour: RouletteTour): string {
   switch (type) {
     case "most-expensive":
     case "cheapest-5star":
-      return formatPrice(tour.from_price ?? 0);
+      return formatPrice(tour.fromPrice);
     case "longest":
     case "shortest":
-      return formatDurationLong(tour.duration_minutes ?? 0);
+      return formatDurationLong(tour.durationMinutes);
     case "most-reviewed":
-      return `${(tour.review_count ?? 0).toLocaleString("en-US")} reviews`;
+      return `${tour.reviewCount.toLocaleString("en-US")} reviews`;
     case "hidden-gem":
-      return `${(tour.rating ?? 0).toFixed(1)} stars`;
+      return `${tour.rating.toFixed(1)} stars`;
   }
 }

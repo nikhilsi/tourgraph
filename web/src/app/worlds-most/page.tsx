@@ -2,9 +2,10 @@ import Link from "next/link";
 import Logo from "@/components/Logo";
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getAllSuperlatives } from "@/lib/db";
-import type { TourRow } from "@/lib/types";
+import { getAllSuperlatives } from "@/lib/api";
+import type { RouletteTour } from "@/lib/api";
 import { SUPERLATIVE_TITLES, superlativeStatShort } from "@/lib/superlatives";
+import type { SuperlativeType } from "@/lib/types";
 import FeatureNav from "@/components/FeatureNav";
 
 export const dynamic = "force-dynamic";
@@ -28,8 +29,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function WorldsMostPage() {
-  const superlatives = getAllSuperlatives();
+export default async function WorldsMostPage() {
+  const superlatives = await getAllSuperlatives();
 
   return (
     <main className="flex flex-col items-center min-h-screen py-8 px-4">
@@ -52,8 +53,8 @@ export default function WorldsMostPage() {
               <SuperlativeCard
                 key={type}
                 slug={type}
-                title={SUPERLATIVE_TITLES[type]}
-                stat={superlativeStatShort(type, tour)}
+                title={SUPERLATIVE_TITLES[type as SuperlativeType]}
+                stat={superlativeStatShort(type as SuperlativeType, tour)}
                 tour={tour}
               />
           ))}
@@ -76,9 +77,9 @@ function SuperlativeCard({
   slug: string;
   title: string;
   stat: string;
-  tour: TourRow;
+  tour: RouletteTour;
 }) {
-  const location = [tour.destination_name, tour.country]
+  const location = [tour.destinationName, tour.country]
     .filter(Boolean)
     .join(", ");
 
@@ -95,9 +96,9 @@ function SuperlativeCard({
 
       {/* Tour photo */}
       <div className="relative aspect-[3/2]">
-        {tour.image_url ? (
+        {tour.imageUrl ? (
           <Image
-            src={tour.image_url}
+            src={tour.imageUrl}
             alt={tour.title}
             fill
             sizes="(max-width: 768px) 100vw, 512px"

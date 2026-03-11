@@ -15,7 +15,7 @@ const globalForDb = globalThis as typeof globalThis & {
 export function getDb(readOnly = false): Database.Database {
   // Read-only connections are not cached (short-lived)
   if (readOnly) {
-    const dbPath = process.env.DATABASE_PATH || "../data/tourgraph.db";
+    const dbPath = process.env.DATABASE_PATH || path.join(__dirname, "../tourgraph.db");
     const conn = new Database(dbPath, { readonly: true });
     conn.pragma("busy_timeout = 5000");
     return conn;
@@ -23,7 +23,7 @@ export function getDb(readOnly = false): Database.Database {
 
   if (globalForDb.__tourgraphDb) return globalForDb.__tourgraphDb;
 
-  const dbPath = process.env.DATABASE_PATH || "../data/tourgraph.db";
+  const dbPath = process.env.DATABASE_PATH || path.join(__dirname, "../tourgraph.db");
   const dir = path.dirname(dbPath);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
@@ -117,12 +117,9 @@ function initSchema(db: Database.Database): void {
       city_from TEXT NOT NULL,
       city_to TEXT NOT NULL,
       chain_json TEXT NOT NULL,
-      slug TEXT,
       generated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       UNIQUE(city_from, city_to)
     );
-
-    CREATE INDEX IF NOT EXISTS idx_chains_slug ON six_degrees_chains(slug);
 
     CREATE TABLE IF NOT EXISTS city_readings (
       id INTEGER PRIMARY KEY AUTOINCREMENT,

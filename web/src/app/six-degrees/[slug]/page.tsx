@@ -2,7 +2,8 @@ import { cache } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getChainBySlug, getToursByIds } from "@/lib/db";
+import { getChainBySlug, getTourDetail } from "@/lib/api";
+import type { RouletteTour } from "@/lib/api";
 import ShareButton from "@/components/ShareButton";
 import FeatureNav from "@/components/FeatureNav";
 import Logo from "@/components/Logo";
@@ -16,7 +17,7 @@ const getCachedChain = cache((slug: string) => getChainBySlug(slug));
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const chain = getCachedChain(slug);
+  const chain = await getCachedChain(slug);
   if (!chain) return { title: "Chain Not Found" };
 
   const description = chain.summary;
@@ -43,12 +44,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ChainDetailPage({ params }: Props) {
   const { slug } = await params;
-  const chain = getCachedChain(slug);
+  const chain = await getCachedChain(slug);
   if (!chain) notFound();
 
-  // Look up tour data for each stop (single batch query)
   const tourIds = chain.chain.map((link) => link.tour_id).filter((id): id is number => id != null);
-  const tourMap = getToursByIds(tourIds);
+  const tourDetails = await Promise.all(tourIds.map((id) => getTourDetail(id)));
+  const tourMap = new Map<number, RouletteTour>();
+  for (const detail of tourDetails) {
+    if (detail) tourMap.set(detail.id, detail);
+  }
   const tourData = chain.chain.map((link) => link.tour_id ? tourMap.get(link.tour_id) : undefined);
 
   return (

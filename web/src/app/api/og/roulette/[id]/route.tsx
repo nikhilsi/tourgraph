@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
-import { getTourById } from "@/lib/db";
+import { getTourDetail } from "@/lib/api";
 
 export const runtime = "nodejs";
 
@@ -24,14 +24,14 @@ export async function GET(
     return new Response("Not found", { status: 404 });
   }
 
-  const tour = getTourById(numId);
+  const tour = await getTourDetail(numId);
   if (!tour) {
     return new Response("Not found", { status: 404 });
   }
 
   const rating = tour.rating ? `${tour.rating.toFixed(1)} ★` : "";
-  const price = tour.from_price ? `$${Math.round(tour.from_price)}` : "";
-  const location = [tour.destination_name, tour.country]
+  const price = tour.fromPrice ? `$${Math.round(tour.fromPrice)}` : "";
+  const location = [tour.destinationName, tour.country]
     .filter(Boolean)
     .join(", ");
   const stats = [rating, price].filter(Boolean).join("  ·  ");
@@ -48,10 +48,9 @@ export async function GET(
           fontFamily: "system-ui, sans-serif",
         }}
       >
-        {/* Background tour image */}
-        {tour.image_url && (
+        {tour.imageUrl && (
           <img
-            src={tour.image_url}
+            src={tour.imageUrl}
             alt=""
             style={{
               position: "absolute",
@@ -64,7 +63,6 @@ export async function GET(
           />
         )}
 
-        {/* Dark gradient overlay */}
         <div
           style={{
             position: "absolute",
@@ -78,7 +76,6 @@ export async function GET(
           }}
         />
 
-        {/* Content overlay */}
         <div
           style={{
             position: "absolute",
@@ -90,13 +87,7 @@ export async function GET(
             padding: "48px",
           }}
         >
-          {/* Badge */}
-          <div
-            style={{
-              display: "flex",
-              marginBottom: "16px",
-            }}
-          >
+          <div style={{ display: "flex", marginBottom: "16px" }}>
             <span
               style={{
                 fontSize: "14px",
@@ -110,7 +101,6 @@ export async function GET(
             </span>
           </div>
 
-          {/* Title */}
           <div
             style={{
               fontSize: "42px",
@@ -126,7 +116,6 @@ export async function GET(
               : tour.title}
           </div>
 
-          {/* Location */}
           <div
             style={{
               fontSize: "20px",
@@ -138,7 +127,6 @@ export async function GET(
             {location}
           </div>
 
-          {/* Stats + Brand row */}
           <div
             style={{
               display: "flex",

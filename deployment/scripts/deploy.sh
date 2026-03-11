@@ -18,24 +18,24 @@ git pull origin main
 # 2. Clean stale root-level artifacts (pre-web/ migration remnants)
 rm -rf "$APP_DIR/node_modules" "$APP_DIR/.next" 2>/dev/null
 
-# 3. Install dependencies (ci = clean, deterministic, rebuilds native bindings)
-echo "--- Installing dependencies ---"
+# 3. Install + build web frontend
+echo "--- Building web frontend ---"
 cd "$APP_DIR/web"
 npm ci
+npm run build
 
-# 4. Build Next.js
-echo "--- Building Next.js ---"
+# 4. Install + build backend API
+echo "--- Building backend API ---"
+cd "$APP_DIR/backend"
+npm ci
 npm run build
 
 cd "$APP_DIR"
 
-# 5. Restart or start PM2
+# 5. Restart PM2 (both web + api processes)
 echo "--- Restarting PM2 ---"
-if pm2 describe tourgraph > /dev/null 2>&1; then
-    pm2 reload "$ECOSYSTEM"
-else
-    pm2 start "$ECOSYSTEM"
-fi
+pm2 delete all 2>/dev/null || true
+pm2 start "$ECOSYSTEM"
 
 # 6. Save PM2 process list (survives reboot)
 pm2 save
@@ -47,5 +47,6 @@ echo "============================================"
 pm2 status
 echo ""
 echo "Verify: curl -I https://tourgraph.ai"
-echo "Logs:   pm2 logs tourgraph --lines 20"
+echo "API:    curl https://tourgraph.ai/api/v1/health"
+echo "Logs:   pm2 logs --lines 20"
 echo ""

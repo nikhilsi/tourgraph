@@ -3,9 +3,11 @@
 .env.local
 .env.production.local
 
-# Database (non-DB files in data/)
-data/*
-!data/*.db
+# Data pipeline
+data/node_modules/
+data/*.db-shm
+data/*.db-wal
+data/chain-tests/
 
 # Logs
 logs/

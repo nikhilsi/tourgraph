@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from "next/og";
 import {
-  getDistinctTimezones,
+  getTimezones,
   getRightNowTours,
-} from "@/lib/db";
+} from "@/lib/api";
 import {
   getGoldenTimezones,
   getPleasantTimezones,
@@ -18,21 +18,22 @@ const WIDTH = 1200;
 const HEIGHT = 630;
 
 export async function GET() {
-  const allTimezones = getDistinctTimezones();
+  const allTimezones = await getTimezones();
   let matchedTzs = getGoldenTimezones(allTimezones);
   if (matchedTzs.length === 0) {
     matchedTzs = getPleasantTimezones(allTimezones);
   }
 
-  const [tour] = getRightNowTours(matchedTzs, 1);
+  const tours = await getRightNowTours(matchedTzs, 1);
+  const tour = tours[0];
   if (!tour) {
     return new Response("No tours available", { status: 404 });
   }
 
-  const tz = tour.timezone!;
+  const tz = tour.timezone;
   const localTime = formatLocalTime(tz);
   const label = getTimeOfDayLabel(getCurrentHour(tz));
-  const location = [tour.destination_name, tour.country]
+  const location = [tour.destinationName, tour.country]
     .filter(Boolean)
     .join(", ");
 
@@ -48,9 +49,9 @@ export async function GET() {
           fontFamily: "system-ui, sans-serif",
         }}
       >
-        {tour.image_url && (
+        {tour.imageUrl && (
           <img
-            src={tour.image_url}
+            src={tour.imageUrl}
             alt=""
             style={{
               position: "absolute",

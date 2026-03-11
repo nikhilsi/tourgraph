@@ -3,12 +3,11 @@ import RouletteView from "@/components/RouletteView";
 import FeatureNav from "@/components/FeatureNav";
 import Logo from "@/components/Logo";
 import {
-  getDistinctTimezones,
+  getTimezones,
   getRightNowTours,
-  tourRowToRouletteTour,
   getAllSuperlatives,
   getChainCount,
-} from "@/lib/db";
+} from "@/lib/api";
 import {
   getGoldenTimezones,
   getPleasantTimezones,
@@ -18,25 +17,28 @@ import {
 } from "@/lib/timezone";
 import { formatPrice, formatDurationShort } from "@/lib/format";
 
-function getRightNowTeaser() {
+async function getRightNowTeaser() {
   try {
-    const allTzs = getDistinctTimezones();
+    const allTzs = await getTimezones();
     let matchedTzs = getGoldenTimezones(allTzs);
     if (matchedTzs.length === 0) matchedTzs = getPleasantTimezones(allTzs);
-    const [tour] = getRightNowTours(matchedTzs, 1);
+    const tours = await getRightNowTours(matchedTzs, 1);
+    const tour = tours[0];
     if (!tour || !tour.timezone) return null;
     const localTime = formatLocalTime(tour.timezone);
     const label = getTimeOfDayLabel(getCurrentHour(tour.timezone));
-    return { tour: tourRowToRouletteTour(tour), localTime, label };
+    return { tour, localTime, label };
   } catch {
     return null;
   }
 }
 
-export default function Home() {
-  const teaser = getRightNowTeaser();
-  const superlatives = getAllSuperlatives();
-  const chainCount = getChainCount();
+export default async function Home() {
+  const [teaser, superlatives, chainCount] = await Promise.all([
+    getRightNowTeaser(),
+    getAllSuperlatives(),
+    getChainCount(),
+  ]);
 
   // Pick one interesting superlative for the teaser
   const featuredSuperlative = superlatives.find(
@@ -96,7 +98,7 @@ export default function Home() {
           <h3 className="text-sm font-bold">The World&apos;s Most ___</h3>
           <p className="text-xs text-text-muted mt-1">
             {featuredSuperlative
-              ? `The most expensive tour costs ${formatPrice(featuredSuperlative.tour.from_price ?? 0)}. The longest takes ${formatDurationShort(featuredSuperlative.tour.duration_minutes ?? 0)}.`
+              ? `The most expensive tour costs ${formatPrice(featuredSuperlative.tour.fromPrice)}. The longest takes ${formatDurationShort(featuredSuperlative.tour.durationMinutes)}.`
               : "Daily superlatives from 300,000+ experiences. Most expensive, cheapest 5-star, longest, and more."}
           </p>
         </Link>
