@@ -102,7 +102,7 @@ interface CityProfile {
 // Logging
 // ============================================================
 
-const LOG_DIR = path.resolve("logs");
+const LOG_DIR = path.resolve("../logs");
 if (!fs.existsSync(LOG_DIR)) fs.mkdirSync(LOG_DIR, { recursive: true });
 
 const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);

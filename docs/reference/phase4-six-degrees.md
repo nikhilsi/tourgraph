@@ -277,7 +277,7 @@ Two-step process:
 
 ## Prompt Engineering (Validated)
 
-See `src/scripts/4-chains/test-chain.ts` for the working prompt (v2).
+See `web/src/scripts/4-chains/test-chain.ts` for the working prompt (v2).
 
 ### v1 prompt issues (fixed)
 - Chains were sometimes 2-3 stops instead of 4-6 (Marrakech→Kyoto returned only 2 stops)

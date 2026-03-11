@@ -30,7 +30,7 @@ loadEnv();
 
 const MODEL = process.env.CLAUDE_MODEL_CHAIN || "claude-sonnet-4-6";
 const POLL_INTERVAL_MS = 30_000;
-const LOG_DIR = path.resolve("logs");
+const LOG_DIR = path.resolve("../logs");
 
 // ============================================================
 // Logging — tee to console + file

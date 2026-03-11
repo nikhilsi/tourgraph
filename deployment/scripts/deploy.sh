@@ -17,11 +17,14 @@ git pull origin main
 
 # 2. Install dependencies (ci = clean, deterministic, rebuilds native bindings)
 echo "--- Installing dependencies ---"
+cd "$APP_DIR/web"
 npm ci
 
 # 3. Build Next.js
 echo "--- Building Next.js ---"
 npm run build
+
+cd "$APP_DIR"
 
 # 4. Restart or start PM2
 echo "--- Restarting PM2 ---"

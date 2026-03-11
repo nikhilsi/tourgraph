@@ -8,7 +8,7 @@
 
 ## Schema SQL
 
-The following creates the full database from scratch. This matches what `src/lib/db.ts` generates via `initSchema()`.
+The following creates the full database from scratch. This matches what `web/src/lib/db.ts` generates via `initSchema()`.
 
 ```sql
 -- =============================================================

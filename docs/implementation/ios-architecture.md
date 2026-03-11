@@ -732,13 +732,13 @@ cp data/tourgraph-seed.db ios/TourGraph/TourGraph/TourGraph/Resources/tourgraph.
 
 | What | Where |
 |------|-------|
-| SQLite schema + all queries | `src/lib/db.ts` |
-| TypeScript types → Swift models | `src/lib/types.ts` |
-| Roulette hand algorithm | `src/lib/db.ts:getRouletteHand()` |
-| Timezone / golden hour logic | `src/lib/timezone.ts` |
-| Superlative queries | `src/lib/db.ts:SUPERLATIVE_QUERIES` |
-| Chain data structure | `src/lib/db.ts:getChainBySlug()` |
-| Weight categories + quotas | `src/lib/db.ts:CATEGORY_QUOTAS` |
+| SQLite schema + all queries | `web/src/lib/db.ts` |
+| TypeScript types → Swift models | `web/src/lib/types.ts` |
+| Roulette hand algorithm | `web/src/lib/db.ts:getRouletteHand()` |
+| Timezone / golden hour logic | `web/src/lib/timezone.ts` |
+| Superlative queries | `web/src/lib/db.ts:SUPERLATIVE_QUERIES` |
+| Chain data structure | `web/src/lib/db.ts:getChainBySlug()` |
+| Weight categories + quotas | `web/src/lib/db.ts:CATEGORY_QUOTAS` |
 | GitaVani app structure | `~/src/gh/gitavani/ios/GitaVani/` |
 | ClearNews API client pattern | `~/src/gh/news-aggregator/ios/ClearNews/` |
 | Product brief (iOS section) | `docs/product_brief.md` |

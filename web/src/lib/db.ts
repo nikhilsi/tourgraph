@@ -15,7 +15,7 @@ const globalForDb = globalThis as typeof globalThis & {
 export function getDb(readOnly = false): Database.Database {
   // Read-only connections are not cached (short-lived)
   if (readOnly) {
-    const dbPath = process.env.DATABASE_PATH || "./data/tourgraph.db";
+    const dbPath = process.env.DATABASE_PATH || "../data/tourgraph.db";
     const conn = new Database(dbPath, { readonly: true });
     conn.pragma("busy_timeout = 5000");
     return conn;
@@ -23,7 +23,7 @@ export function getDb(readOnly = false): Database.Database {
 
   if (globalForDb.__tourgraphDb) return globalForDb.__tourgraphDb;
 
-  const dbPath = process.env.DATABASE_PATH || "./data/tourgraph.db";
+  const dbPath = process.env.DATABASE_PATH || "../data/tourgraph.db";
   const dir = path.dirname(dbPath);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });

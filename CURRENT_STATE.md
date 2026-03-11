@@ -115,7 +115,7 @@ Internet → Nginx (:443 SSL, :80 → redirect)
 ### Architecture
 
 ```
-src/
+web/src/
 ├── app/
 │   ├── page.tsx                    # Homepage — Roulette + Right Now teaser
 │   ├── roulette/[id]/              # Tour detail page
@@ -191,8 +191,8 @@ See "Data Asset (4 IP Layers)" section above and `docs/data-snapshot.md` for ful
 
 ### Build Status
 
-- `npm run build` — zero errors
-- `npm run lint` — zero errors (12 warnings in pipeline scripts only)
+- `cd web && npm run build` — zero errors
+- `cd web && npm run lint` — zero errors (12 warnings in pipeline scripts only)
 - TypeScript strict mode — clean
 
 ---

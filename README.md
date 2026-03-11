@@ -78,22 +78,19 @@ TourGraph's value is built in layers, each adding original intelligence on top o
 
 ```text
 tourgraph/
-├── .github/workflows/       # CI/CD (Android release on tag push)
-├── src/                     # Next.js web app
-│   ├── app/                 # Pages + API routes
-│   ├── components/          # React components
-│   ├── lib/                 # Database, types, formatting
-│   └── scripts/             # Data pipeline (4 stages)
-│       ├── 1-viator/        # Viator API indexing
-│       ├── 2-oneliners/     # AI caption generation
-│       ├── 3-city-intel/    # City intelligence pipeline
-│       └── 4-chains/        # Six Degrees chain generation
-├── ios/TourGraph/           # SwiftUI iOS app
-├── android/TourGraph/       # Kotlin + Jetpack Compose Android app
-├── distribution/            # App Store, F-Droid, fastlane metadata + screenshots
-├── docs/                    # Architecture, design, data docs
-├── data/                    # SQLite databases (Git LFS)
-└── archive/                 # Phase 0 work (preserved for reference)
+├── web/                         # Next.js web app + data pipeline
+│   ├── src/app/                 # Pages + API routes
+│   ├── src/components/          # React components
+│   ├── src/lib/                 # Database, types, formatting
+│   └── src/scripts/             # Data pipeline (4 stages)
+├── ios/TourGraph/               # SwiftUI iOS app
+├── android/TourGraph/           # Kotlin + Jetpack Compose Android app
+├── data/                        # SQLite databases (Git LFS, shared)
+├── docs/                        # Architecture, design, data docs
+├── deployment/                  # Server deploy scripts + PM2 config
+├── distribution/                # App Store, F-Droid, fastlane metadata
+├── .github/workflows/           # CI/CD (Android release on tag push)
+└── archive/                     # Phase 0 work (preserved for reference)
 ```
 
 ## Getting Started
@@ -101,6 +98,7 @@ tourgraph/
 ### Web App
 
 ```bash
+cd web
 node --version              # 18+ required
 npm install
 cp .env.example .env.local  # Add VIATOR_API_KEY + ANTHROPIC_API_KEY
@@ -126,7 +124,8 @@ cd android/TourGraph && ./gradlew assembleRelease
 ### Data Pipeline
 
 ```bash
-# Full rebuild from scratch (see src/scripts/README.md for details)
+# Full rebuild from scratch (run from web/ directory)
+cd web
 npx tsx src/scripts/1-viator/seed-destinations.ts
 npx tsx src/scripts/1-viator/indexer.ts
 npx tsx src/scripts/2-oneliners/backfill-oneliners-batch.ts

@@ -158,7 +158,7 @@ Return the city profile JSON.
 | Cacheable? | System prompt is identical across all 910 calls |
 | Actual cost | ~$12 (Batch API 50% discount + prompt caching) |
 | Actual time | 16 min batch + 10 min sequential gap fill |
-| Script | `src/scripts/3-city-intel/build-city-profiles.ts` |
+| Script | `web/src/scripts/3-city-intel/build-city-profiles.ts` |
 | Output | Validated profiles written to `city_profiles` table |
 
 ### Validation
@@ -308,5 +308,5 @@ Detailed tables of cities with 7+ keyword-detected themes are archived in the gi
 | DB schema | `docs/data-schema.md` |
 | Chain generation (Stages 1+2) | `docs/six-degrees-chains.md` |
 | Phase 4 research (Six Degrees) | `docs/reference/phase4-six-degrees.md` |
-| Build script | `src/scripts/3-city-intel/build-city-profiles.ts` |
-| Backfill + merge script | `src/scripts/3-city-intel/backfill-city-readings.ts` |
+| Build script | `web/src/scripts/3-city-intel/build-city-profiles.ts` |
+| Backfill + merge script | `web/src/scripts/3-city-intel/backfill-city-readings.ts` |

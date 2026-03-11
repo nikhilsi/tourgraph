@@ -174,7 +174,7 @@ Examples: Takayama, Asheville, Gozo, Ulaanbaatar, Ohrid, St Kitts, Addis Ababa
 
 Math: 100 cities × ~10 chains each ÷ 2 endpoints per chain = ~500 chains.
 
-Script (`src/scripts/4-chains/generate-pairs.ts`) creates pairs from the pool following the rules above. Output: `src/scripts/4-chains/chain-pairs.json`.
+Script (`web/src/scripts/4-chains/generate-pairs.ts`) creates pairs from the pool following the rules above. Output: `web/src/scripts/4-chains/chain-pairs.json`.
 
 ---
 
@@ -241,7 +241,7 @@ Currently the chain detail page shows per node: city, tour photo, tour title, st
 **Missing:** The tour's one-liner. Every tour has one (100% coverage). These are the personality-filled captions that make Tour Roulette delightful. Adding them to chain nodes makes each stop its own moment of delight.
 
 **Implementation:** Small code change — data already available via `getTourById()`.
-- Web: `src/app/six-degrees/[slug]/page.tsx`
+- Web: `web/src/app/six-degrees/[slug]/page.tsx`
 - iOS: `ChainDetailView.swift`
 
 ---
@@ -299,15 +299,15 @@ Currently the chain detail page shows per node: city, tour photo, tour title, st
 |------|-------|
 | City intelligence (Stage 0) | `docs/city-intelligence.md` |
 | Research & UI spec | `docs/reference/phase4-six-degrees.md` |
-| Two-stage generator (v2) | `src/scripts/4-chains/generate-chains-v2.ts` |
-| Legacy generator (v1) | `src/scripts/4-chains/generate-chains.ts` |
+| Two-stage generator (v2) | `web/src/scripts/4-chains/generate-chains-v2.ts` |
+| Legacy generator (v1) | `web/src/scripts/4-chains/generate-chains.ts` |
 | Test chain outputs | `data/chain-tests/` |
-| Pair generator | `src/scripts/4-chains/generate-pairs.ts` |
-| 500 pairs config | `src/scripts/4-chains/chain-pairs.json` |
-| 100-city endpoint pool | `src/scripts/4-chains/city-pool.json` |
-| City pool curator | `src/scripts/4-chains/curate-city-pool.ts` |
+| Pair generator | `web/src/scripts/4-chains/generate-pairs.ts` |
+| 500 pairs config | `web/src/scripts/4-chains/chain-pairs.json` |
+| 100-city endpoint pool | `web/src/scripts/4-chains/city-pool.json` |
+| City pool curator | `web/src/scripts/4-chains/curate-city-pool.ts` |
 | DB schema | `docs/data-schema.md` |
-| Gallery page | `src/app/six-degrees/page.tsx` |
-| Detail page | `src/app/six-degrees/[slug]/page.tsx` |
-| DB queries | `src/lib/db.ts` |
+| Gallery page | `web/src/app/six-degrees/page.tsx` |
+| Detail page | `web/src/app/six-degrees/[slug]/page.tsx` |
+| DB queries | `web/src/lib/db.ts` |
 | Data baseline | `docs/data-snapshot.md` |

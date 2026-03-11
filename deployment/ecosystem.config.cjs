@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "tourgraph",
-      cwd: "/opt/app",
+      cwd: "/opt/app/web",
       script: "node_modules/.bin/next",
       args: "start",
       instances: 1,

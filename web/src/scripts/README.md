@@ -20,6 +20,8 @@ Step-by-step guide to building TourGraph's 4-layer data asset from scratch.
 ## Full Rebuild (from scratch)
 
 ```bash
+# All commands run from the web/ directory
+cd web
 # Step 1: Bootstrap destinations (~1 min)
 npm run seed:destinations
 

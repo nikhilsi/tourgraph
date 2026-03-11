@@ -34,7 +34,7 @@ const MAX_RETRIES = 2;
 let logStream: fs.WriteStream | null = null;
 
 function initLogging(): string {
-  const logsDir = path.resolve("logs");
+  const logsDir = path.resolve("../logs");
   if (!fs.existsSync(logsDir)) {
     fs.mkdirSync(logsDir, { recursive: true });
   }

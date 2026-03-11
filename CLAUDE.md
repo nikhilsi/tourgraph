@@ -212,17 +212,18 @@ No user accounts. No databases of personal data. Just cached Viator responses + 
 
 **Node.js (Next.js):**
 ```bash
+cd web
 node --version  # 18+ required
 npm install     # or yarn/pnpm
 npm run dev     # local development server
 ```
 
-**API Keys** (in `.env.local`):
+**API Keys** (in `web/.env.local`):
 - `VIATOR_API_KEY` — https://viator.com/partners (Basic Access, free affiliate signup)
 - `ANTHROPIC_API_KEY` — https://console.anthropic.com
 
 **Existing Viator integration code:**
-The `archive/scripts/viator_compare.py` from Phase 0 has working API call patterns (endpoint URLs, auth headers, response parsing). The Viator production API key in `.env` is already tested and working.
+The `archive/scripts/viator_compare.py` from Phase 0 has working API call patterns (endpoint URLs, auth headers, response parsing). The Viator production API key in `web/.env` is already tested and working.
 
 ---
 
@@ -278,8 +279,8 @@ The `archive/scripts/viator_compare.py` from Phase 0 has working API call patter
 - **docs/reference/phase4-six-degrees.md** — Early Six Degrees research & UI spec
 - **docs/reference/thesis_validation.md** — Competitive analysis that killed original thesis
 
-**Data Pipeline (`src/scripts/`):**
-- **src/scripts/README.md** — Pipeline playbook (step-by-step rebuild guide)
+**Data Pipeline (`web/src/scripts/`):**
+- **web/src/scripts/README.md** — Pipeline playbook (step-by-step rebuild guide)
 - **1-viator/** — Viator API indexing (destinations, tours, dev data)
 - **2-oneliners/** — AI caption generation (Claude Haiku 4.5)
 - **3-city-intel/** — City intelligence (readings → profiles merge pipeline)
@@ -301,7 +302,7 @@ The `archive/scripts/viator_compare.py` from Phase 0 has working API call patter
 | Asset | Location | What's Reusable |
 |-------|----------|-----------------|
 | Viator API patterns | `archive/scripts/viator_compare.py` | Endpoint URLs, auth headers, response parsing, product search, detail fetching |
-| Working API key | `.env` | `VIATOR_API_KEY` (production, Basic tier) |
+| Working API key | `web/.env` | `VIATOR_API_KEY` (production, Basic tier) |
 | Domain | tourgraph.ai | DNS configured, pointing to DigitalOcean droplet |
 
 ---
