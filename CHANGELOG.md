@@ -6,6 +6,43 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [10.0.0] - 2026-03-11
+
+### Architecture: Standalone Backend API + Clean Separation
+
+Extracted all database access from Next.js into a standalone Express + TypeScript backend API. Web frontend is now a pure API consumer. Data pipeline scripts relocated to `data/` directory. Three independent directories with clear responsibilities.
+
+**New: `backend/` — Express API server**
+- All endpoints under `/api/v1/`: roulette, tours, right-now, superlatives, chains, health, stats
+- Read-only SQLite connection to `data/tourgraph.db`
+- Rate limiting on roulette hand (30 req/10s per IP)
+- TypeScript types, row-to-API transforms, camelCase responses
+- `backend/src/routes/` — 6 route modules, clean separation
+
+**Changed: `web/` — Pure API consumer**
+- New `src/lib/api.ts` — typed fetch client for all backend endpoints
+- All pages migrated from direct SQLite queries to API calls
+- Removed: `db.ts`, `viator.ts`, `claude.ts`, `env.ts`, `continents.ts`, `city-intel.ts`
+- Removed: `api/roulette/hand/`, `api/health/`, `api/ios/tour/`, `api/ios/tours/batch/`
+- All template references updated from snake_case to camelCase
+- `better-sqlite3` and `@anthropic-ai/sdk` removed from web dependencies
+
+**New: `data/` — Pipeline scripts + shared library**
+- Moved from `web/src/scripts/` → `data/scripts/` (all 4 pipeline stages + utils)
+- Moved from `web/src/lib/` → `data/lib/` (db.ts, viator.ts, claude.ts, city-intel.ts, etc.)
+- Standalone `package.json` with pipeline-specific dependencies
+- Scripts retain read-write DB access
+
+**Deployment updated:**
+- PM2 now runs 2 processes: `tourgraph-web` (:3000) + `tourgraph-api` (:3001)
+- Nginx routes `/api/v1/*` → backend, `/*` → Next.js
+- `/api/ios/*` rewritten to `/api/v1/*` for mobile app backwards compatibility
+- `deploy.sh` builds both web and backend
+
+**Motivation:** Clean separation for a portfolio repo showcasing senior engineering. Web never touches DB. Backend is the single data access layer. Structure matches other projects (ScreenTrades, ClearNews, Recurate) and enables future language migration.
+
+---
+
 ## [9.0.0] - 2026-03-11
 
 ### iOS v2 Phase 1a: World Map + Location Foundation

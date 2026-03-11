@@ -7,7 +7,7 @@
 
 ## Live at https://tourgraph.ai
 
-All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. 136,256 tours across 2,712 destinations, 19 routes, all verified 200 over HTTPS. Data fully indexed with 100% AI one-liner coverage.
+All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. Standalone Express API backend + Next.js frontend. 136,256 tours across 2,712 destinations, all verified 200 over HTTPS. Data fully indexed with 100% AI one-liner coverage.
 
 ### Web Features (All Deployed)
 
@@ -20,7 +20,8 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 | About / Story | `/about`, `/story` | Live |
 | Privacy / Support | `/privacy`, `/support` | Live |
 | OG Images | `/api/og/*` | Live |
-| Health / SEO | `/api/health`, `/robots.txt`, `/sitemap.xml` | Live |
+| Backend API | `/api/v1/health`, `/api/v1/roulette/hand`, etc. | Live |
+| Health / SEO | `/robots.txt`, `/sitemap.xml` | Live |
 
 ### iOS App (v2 In Progress — Pivoting After Two 4.2.2 Rejections)
 
@@ -98,81 +99,77 @@ Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity. Bui
 
 ```
 Internet → Nginx (:443 SSL, :80 → redirect)
-              ↓ proxy_pass http://127.0.0.1:3000
-           PM2 → next start (fork mode, single process)
-              ↓
-           /opt/app/data/tourgraph.db (SQLite, WAL mode)
+              ├── /api/v1/*  → proxy to :3001 (Express backend)
+              ├── /api/ios/* → rewrite to /api/v1/* → :3001 (mobile compat)
+              └── /*         → proxy to :3000 (Next.js frontend)
+
+           PM2 manages two processes:
+              ├── tourgraph-web (:3000) — next start
+              └── tourgraph-api (:3001) — node dist/index.js
+                       ↓ read-only
+                  /opt/app/data/tourgraph.db (SQLite, WAL mode)
 ```
 
 - **Server:** DigitalOcean droplet (Ubuntu 24.04, $6/mo)
 - **Stack:** Node 20 + PM2 6 + Nginx 1.24 + Let's Encrypt
 - **SSL:** Valid through May 30, 2026, auto-renewal enabled
 - **Firewall:** UFW (SSH + Nginx only) + fail2ban
-- **Deploy code:** `ssh root@$SERVER_IP "cd /opt/app && bash deployment/scripts/deploy.sh"`
+- **Deploy code:** `ssh root@143.244.186.165 "bash /opt/app/deployment/scripts/deploy.sh"`
 - **Deploy DB:** `bash deployment/scripts/deploy-db.sh $SERVER_IP`
 - **Stream logs:** `bash deployment/scripts/stream-logs.sh $SERVER_IP`
 
 ### Architecture
 
+Three independent directories with clear responsibilities:
+
 ```
-web/src/
-├── app/
-│   ├── page.tsx                    # Homepage — Roulette + Right Now teaser
-│   ├── roulette/[id]/              # Tour detail page
-│   ├── right-now/                  # Right Now Somewhere page
-│   ├── worlds-most/                # Superlatives gallery
-│   ├── worlds-most/[slug]/         # Superlative detail page
-│   ├── six-degrees/                # Six Degrees chain roulette
-│   ├── six-degrees/[slug]/         # Chain detail (vertical timeline)
-│   ├── about/                      # About page
-│   ├── story/                      # Origin story page
-│   ├── api/roulette/hand/          # Hand API (GET, ~20 tours)
-│   ├── api/og/roulette/[id]/       # Roulette OG images
-│   ├── api/og/right-now/           # Right Now OG image
-│   ├── api/og/worlds-most/[slug]/  # Superlative OG images
-│   └── api/og/six-degrees/[slug]/  # Six Degrees OG images
-├── components/
-│   ├── RouletteView.tsx            # Core game loop (client)
-│   ├── TourCard.tsx                # Tour card display
-│   ├── ChainTimeline.tsx           # Shared Six Degrees timeline
-│   ├── ShareButton.tsx             # Web Share / clipboard
-│   ├── TourCardSkeleton.tsx        # Loading skeleton
-│   ├── FeatureNav.tsx              # Cross-feature navigation
-│   └── Logo.tsx                    # Brand logo
-├── lib/
-│   ├── db.ts                       # SQLite layer + all queries
-│   ├── superlatives.ts             # Shared superlative constants + formatters
-│   ├── timezone.ts                 # Timezone helpers (Intl.DateTimeFormat)
-│   ├── format.ts                   # Shared formatting (price, duration)
-│   ├── types.ts                    # All TypeScript types
-│   ├── viator.ts                   # Viator API client (with rate limit handling)
-│   ├── claude.ts                   # AI one-liner generation
-│   └── city-intel.ts               # City intelligence: merge logic, theme normalization
+backend/                              # Express + TypeScript API server
+├── src/
+│   ├── index.ts                      # App entry, mounts /api/v1 router
+│   ├── db.ts                         # Read-only SQLite connection
+│   ├── types.ts                      # Shared types (RouletteTour, TourDetail, etc.)
+│   ├── transform.ts                  # Row-to-API transforms (snake_case → camelCase)
+│   └── routes/
+│       ├── roulette.ts               # GET /roulette/hand (quota sampling, contrast sequencing, rate limiting)
+│       ├── tours.ts                  # GET /tours/:id, /tours/:id/enrichment, /tours/:id/card, POST /tours/batch
+│       ├── right-now.ts              # GET /right-now/tours, /right-now/timezones
+│       ├── superlatives.ts           # GET /superlatives, /superlatives/:type
+│       ├── chains.ts                 # GET /chains, /chains/random, /chains/:slug, /chains/slugs, /chains/count
+│       └── health.ts                 # GET /health, /stats
+
+web/                                  # Next.js frontend (pure API consumer)
+├── src/
+│   ├── app/
+│   │   ├── page.tsx                  # Homepage — Roulette + Right Now teaser + superlatives
+│   │   ├── roulette/[id]/            # Tour detail page
+│   │   ├── right-now/                # Right Now Somewhere page
+│   │   ├── worlds-most/              # Superlatives gallery + detail
+│   │   ├── six-degrees/              # Six Degrees chain roulette + detail
+│   │   ├── about/, story/            # Static pages
+│   │   └── api/og/                   # OG image generation (roulette, right-now, worlds-most, six-degrees)
+│   ├── components/
+│   │   ├── RouletteView.tsx          # Core game loop (client, fetches /api/v1/roulette/hand)
+│   │   ├── TourCard.tsx              # Tour card display
+│   │   ├── ChainTimeline.tsx         # Shared Six Degrees timeline
+│   │   ├── ShareButton.tsx           # Web Share / clipboard
+│   │   └── ...                       # Logo, FeatureNav, TourCardSkeleton
+│   └── lib/
+│       ├── api.ts                    # Typed fetch client for all backend endpoints
+│       ├── superlatives.ts           # Superlative constants + formatters
+│       ├── timezone.ts               # Timezone helpers (Intl.DateTimeFormat)
+│       ├── format.ts                 # Shared formatting (price, duration)
+│       └── types.ts                  # Frontend-only types
+
+data/                                 # Pipeline scripts + shared library
 ├── scripts/
-│   ├── 1-viator/                   # Step 1: Viator API indexing
-│   │   ├── seed-destinations.ts    #   Bootstrap destination hierarchy
-│   │   ├── indexer.ts              #   Production indexer (logging, leaf filter, ETA)
-│   │   └── seed-dev-data.ts        #   Seeds 43 destinations (dev only)
-│   ├── 2-oneliners/                # Step 2: AI caption generation
-│   │   ├── backfill-oneliners.ts   #   Single-tour one-liners (slow)
-│   │   └── backfill-oneliners-batch.ts  #   Batch one-liners (fast)
-│   ├── 3-city-intel/               # Step 3: City intelligence pipeline
-│   │   ├── build-city-profiles.ts  #   Submit to Claude → city_readings → merge
-│   │   └── backfill-city-readings.ts  #   Load JSONL files → city_readings → merge
-│   ├── 4-chains/                   # Step 4: Six Degrees chain generation
-│   │   ├── generate-chains-v2.ts   #   Two-stage pipeline (Batch API + caching)
-│   │   ├── generate-chains.ts      #   Legacy single-shot generator
-│   │   ├── generate-pairs.ts       #   Pair generator (scored greedy)
-│   │   ├── curate-city-pool.ts     #   City pool curation (one-time)
-│   │   ├── test-chain.ts           #   Chain testing (dev)
-│   │   ├── chain-pairs.json        #   500 city pairs
-│   │   └── city-pool.json          #   100 curated endpoint cities
-│   └── utils/
-│       └── check-db.ts             # Database audit
-logs/
-└── indexer-<timestamp>.log         # Indexer run logs (gitignored)
-data/
-└── tourgraph.db                    # SQLite (gitignored)
+│   ├── 1-viator/                     # Viator API indexing (destinations, tours, dev data)
+│   ├── 2-oneliners/                  # AI caption generation (Claude Haiku 4.5)
+│   ├── 3-city-intel/                 # City intelligence (readings → profiles merge)
+│   ├── 4-chains/                     # Six Degrees chain generation
+│   └── utils/                        # Database audit tools
+├── lib/                              # Shared library (db.ts, viator.ts, claude.ts, etc.)
+├── tourgraph.db                      # Production SQLite database (479MB, Git LFS)
+└── tourgraph-seed.db                 # iOS seed database (123MB, Git LFS)
 ```
 
 ### Data
@@ -181,18 +178,20 @@ See "Data Asset (4 IP Layers)" section above and `docs/data-snapshot.md` for ful
 
 ### Key Technical Choices
 
-- **SQLite** (not Redis/Postgres) — single file, zero cold cache, deploys as-is. 136K tours at 474MB.
+- **Express 5 + TypeScript backend** — standalone API server, read-only SQLite, camelCase responses
+- **SQLite** (not Redis/Postgres) — single file, zero cold cache, deploys as-is. 136K tours at 479MB.
 - **Viator Basic tier** — free affiliate API, 300K+ experiences, 16 req/10s per endpoint
 - **Claude Haiku 4.5** — fast/cheap one-liners during indexing (~$0.003/1000 tours)
 - **Claude Sonnet 4.6** — City intelligence (Stage 0) + chain generation (Stages 1+2)
-- **Next.js 16 App Router** — server components for SEO, client for interactivity
+- **Next.js 16 App Router** — server components for SEO, client for interactivity. Pure API consumer.
 - **`Intl.DateTimeFormat`** — timezone math with no external library
 - **Dark theme** — photos pop, feels premium
 
 ### Build Status
 
 - `cd web && npm run build` — zero errors
-- `cd web && npm run lint` — zero errors (12 warnings in pipeline scripts only)
+- `cd backend && npm run build` — zero errors
+- `cd web && npm run lint` — zero errors
 - TypeScript strict mode — clean
 
 ---

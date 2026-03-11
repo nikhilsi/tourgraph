@@ -1,8 +1,8 @@
 # TourGraph.ai — Technical Architecture
 
 ---
-**Last Updated**: March 3, 2026
-**Status**: Locked — all decisions resolved
+**Last Updated**: March 11, 2026
+**Status**: Updated for backend extraction (v10.0.0)
 **Depends on**: `ux_design.md` (UX decisions), `product_brief.md` (product scope)
 ---
 
@@ -42,28 +42,46 @@ TourGraph is a read-heavy, pre-cached consumer site. The user never triggers an 
                            │
                            ▼
 ┌──────────────────────────────────────────────────────────────────┐
-│                       NEXT.JS APP                                 │
-│                   (App Router, TypeScript)                        │
+│                    EXPRESS API (backend/)                          │
+│              (TypeScript, read-only SQLite, :3001)                │
 │                                                                  │
-│   Server Components:                                             │
+│   All endpoints under /api/v1/:                                  │
+│     /roulette/hand         → batch of ~20 sequenced tours       │
+│     /tours/:id             → full tour detail                    │
+│     /tours/:id/enrichment  → mobile enrichment (description+photos) │
+│     /right-now/tours       → golden-hour tours by timezone       │
+│     /superlatives          → all 6 superlative cards             │
+│     /superlatives/:type    → individual superlative detail       │
+│     /chains/random         → random chain with full data         │
+│     /chains/:slug          → chain by slug                       │
+│     /health, /stats        → status + counts for about page     │
+│                                                                  │
+│   Rate limiting (30 req/10s per IP on roulette)                  │
+│   camelCase JSON responses throughout                             │
+└──────────────────────────┬───────────────────────────────────────┘
+                           │ fetch()
+                           ▼
+┌──────────────────────────────────────────────────────────────────┐
+│                     NEXT.JS APP (web/)                             │
+│              (App Router, TypeScript, :3000)                      │
+│              Pure API consumer — no direct DB access              │
+│                                                                  │
+│   Server Components (async, call backend API):                   │
 │     /                      → Tour Roulette (homepage + teaser)   │
 │     /roulette/[id]         → Tour detail (shared link landing)   │
 │     /right-now             → Right Now Somewhere (6 golden-hour) │
 │     /worlds-most           → Superlatives gallery (6 cards)      │
 │     /worlds-most/[slug]    → Individual superlative detail       │
-│     /six-degrees           → Chain roulette (random chain + timeline) │
+│     /six-degrees           → Chain roulette (random chain)       │
 │     /six-degrees/[slug]    → Chain detail (vertical timeline)   │
 │                                                                  │
-│   API Routes:                                                    │
-│     /api/roulette/hand     → batch of ~20 sequenced tours       │
-│     /api/og/six-degrees/[slug]/ → Six Degrees OG images         │
-│                                                                  │
-│   OG Image Generation:                                           │
+│   OG Image Generation (also calls backend API):                  │
 │     /api/og/roulette/[id]       → roulette tour OG image        │
 │     /api/og/right-now           → right now feature OG image     │
 │     /api/og/worlds-most/[slug]  → superlative OG images         │
+│     /api/og/six-degrees/[slug]  → chain OG images               │
 │                                                                  │
-│   Every response: < 50ms (all pre-generated, local DB read)     │
+│   Client component: RouletteView fetches /api/v1/roulette/hand  │
 └──────────────────────────────────────────────────────────────────┘
 ```
 

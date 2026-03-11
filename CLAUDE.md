@@ -1,7 +1,7 @@
 # Claude Code Development Guide
 
 ---
-**Last Updated**: March 3, 2026
+**Last Updated**: March 11, 2026
 **Purpose**: Rules and workflow for working with this codebase
 ---
 
@@ -16,11 +16,13 @@
 5. **`git log --oneline -10`** — Recent commits
 
 **Optional** (if relevant to task):
+- **TRACKER.md** — Live iOS v2 implementation progress (read after context compaction)
+- **docs/ios-v2-plan.md** — Full iOS v2 plan (3 pillars, travel awareness companion)
 - **docs/city-intelligence.md** — City intelligence pipeline (Stage 0): the IP layer that makes TourGraph unique
 - **docs/six-degrees-chains.md** — Chain generation (Stages 1+2): pair selection, quality standards, gallery UX
 - **docs/data-snapshot.md** — Data baseline stats (4-layer IP asset, 136K tours)
 - **docs/data-schema.md** — Full SQL schema (CREATE TABLE statements for all 7 tables)
-- **src/scripts/README.md** — Data pipeline playbook (step-by-step rebuild from scratch)
+- **data/scripts/README.md** — Data pipeline playbook (step-by-step rebuild from scratch)
 - **docs/implementation/ios-app-store.md** — App Store submission metadata, signing info, pre-submission checklist
 - **docs/implementation/ios-architecture.md** — iOS app design: seed DB (120MB), per-tour enrichment, column analysis, GRDB safety, services, navigation
 - **docs/reference/thesis_validation.md** — Why the original thesis was killed (context only)
@@ -138,11 +140,12 @@ Timeframes are estimates, not commitments. This is supposed to be fun.
 ### Website
 | Component | Choice | Rationale |
 |-----------|--------|-----------|
-| Frontend | Next.js (React) | SSR for OG previews, fast, familiar |
-| Hosting | DigitalOcean droplet (~$6/mo) | Already have infrastructure there |
+| Backend API | Express 5 + TypeScript | Standalone API server, clean separation from frontend |
+| Frontend | Next.js 16 (React) | SSR for OG previews, pure API consumer |
+| Hosting | DigitalOcean droplet (~$6/mo) | PM2 runs both processes, nginx routes traffic |
 | Data | Viator Partner API (Basic tier, free) | Already integrated, 300K+ experiences |
-| AI Layer | Claude API | Witty captions, Six Degrees chains |
-| Cache | SQLite | Pre-built local index, no API calls at request time |
+| AI Layer | Claude API | Witty captions, Six Degrees chains (pipeline only) |
+| Database | SQLite (read-only from backend) | Pre-built local index, no API calls at request time |
 | Domain | tourgraph.ai | Already owned and configured |
 
 ### iOS App
@@ -159,19 +162,27 @@ Timeframes are estimates, not commitments. This is supposed to be fun.
 ## Architecture
 
 ```
-                    ┌─────────────┐
-                    │  tourgraph.ai│  (Next.js on DigitalOcean)
-                    └──────┬──────┘
-                           │
-              ┌────────────┼────────────┐
-              ▼            ▼            ▼
-       ┌────────────┐ ┌─────────┐ ┌──────────┐
-       │ Viator API │ │ Claude  │ │ SQLite   │
-       │ (tours,    │ │ API     │ │ (pre-    │
-       │  photos,   │ │ (witty  │ │  built   │
-       │  pricing,  │ │  lines, │ │  index)  │
-       │  ratings)  │ │  chains)│ └──────────┘
-       └────────────┘ └─────────┘
+                    ┌──────────────────┐
+                    │   tourgraph.ai   │  (DigitalOcean droplet)
+                    └────────┬─────────┘
+                             │ Nginx
+                    ┌────────┴─────────┐
+                    ▼                  ▼
+           ┌──────────────┐   ┌──────────────┐
+           │ backend/     │   │ web/         │
+           │ Express API  │   │ Next.js      │
+           │ :3001        │   │ :3000        │
+           │ /api/v1/*    │   │ /* (pages)   │
+           └──────┬───────┘   └──────────────┘
+                  │ read-only         │ fetch()
+                  ▼                   │
+           ┌──────────────┐           │
+           │ data/        │◄──────────┘
+           │ tourgraph.db │   (web calls backend API,
+           │ (SQLite)     │    never touches DB directly)
+           └──────────────┘
+
+  data/scripts/ ──── pipeline (Viator, Claude) ──── writes to DB
 ```
 
 User flow: Visit site -> See delightful content -> Share link -> Friend visits -> Repeat
@@ -210,29 +221,40 @@ No user accounts. No databases of personal data. Just cached Viator responses + 
 
 ## Environment Setup
 
-**Node.js (Next.js):**
+**Backend API:**
 ```bash
-cd web
-node --version  # 18+ required
-npm install     # or yarn/pnpm
-npm run dev     # local development server
+cd backend
+npm install
+npm run dev     # Express on :3001
 ```
 
-**API Keys** (in `web/.env.local`):
+**Web Frontend:**
+```bash
+cd web
+npm install
+npm run dev     # Next.js on :3000 (requires backend running)
+```
+
+**Data Pipeline:**
+```bash
+cd data
+npm install
+npx tsx scripts/1-viator/indexer.ts --full   # example
+```
+
+**API Keys** (in `.env.local` at repo root or in respective directories):
 - `VIATOR_API_KEY` — https://viator.com/partners (Basic Access, free affiliate signup)
 - `ANTHROPIC_API_KEY` — https://console.anthropic.com
-
-**Existing Viator integration code:**
-The `archive/scripts/viator_compare.py` from Phase 0 has working API call patterns (endpoint URLs, auth headers, response parsing). The Viator production API key in `web/.env` is already tested and working.
+- `DATABASE_PATH` — path to SQLite DB (defaults to `data/tourgraph.db`)
 
 ---
 
 ## Development Standards
 
 ### Code Quality
-- **TypeScript** for all Next.js code — strict mode, proper types
+- **TypeScript** for all code — strict mode, proper types (backend, web, data pipeline)
 - **React Server Components** where possible — minimize client JS
-- **API routes** for Viator/Claude calls — never expose API keys to the client
+- **Web never touches DB** — all data access goes through backend API
 - **OG image generation** — every shareable page needs proper meta tags
 
 ### Git Workflow
@@ -279,13 +301,14 @@ The `archive/scripts/viator_compare.py` from Phase 0 has working API call patter
 - **docs/reference/phase4-six-degrees.md** — Early Six Degrees research & UI spec
 - **docs/reference/thesis_validation.md** — Competitive analysis that killed original thesis
 
-**Data Pipeline (`web/src/scripts/`):**
-- **web/src/scripts/README.md** — Pipeline playbook (step-by-step rebuild guide)
-- **1-viator/** — Viator API indexing (destinations, tours, dev data)
-- **2-oneliners/** — AI caption generation (Claude Haiku 4.5)
-- **3-city-intel/** — City intelligence (readings → profiles merge pipeline)
-- **4-chains/** — Six Degrees chain generation
-- **utils/** — Database audit tools
+**Data Pipeline (`data/`):**
+- **data/scripts/README.md** — Pipeline playbook (step-by-step rebuild guide)
+- **data/scripts/1-viator/** — Viator API indexing (destinations, tours, dev data)
+- **data/scripts/2-oneliners/** — AI caption generation (Claude Haiku 4.5)
+- **data/scripts/3-city-intel/** — City intelligence (readings → profiles merge pipeline)
+- **data/scripts/4-chains/** — Six Degrees chain generation
+- **data/scripts/utils/** — Database audit tools
+- **data/lib/** — Shared library (db.ts, viator.ts, claude.ts, city-intel.ts, types.ts)
 
 **Archive (Phase 0 — reference only):**
 - **archive/scripts/** — Extraction & Viator API scripts (API patterns reusable)
@@ -302,7 +325,7 @@ The `archive/scripts/viator_compare.py` from Phase 0 has working API call patter
 | Asset | Location | What's Reusable |
 |-------|----------|-----------------|
 | Viator API patterns | `archive/scripts/viator_compare.py` | Endpoint URLs, auth headers, response parsing, product search, detail fetching |
-| Working API key | `web/.env` | `VIATOR_API_KEY` (production, Basic tier) |
+| Working API key | `.env` / `.env.local` | `VIATOR_API_KEY` (production, Basic tier) |
 | Domain | tourgraph.ai | DNS configured, pointing to DigitalOcean droplet |
 
 ---
