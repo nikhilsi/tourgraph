@@ -15,18 +15,21 @@ cd "$APP_DIR"
 echo "--- Pulling latest code ---"
 git pull origin main
 
-# 2. Install dependencies (ci = clean, deterministic, rebuilds native bindings)
+# 2. Clean stale root-level artifacts (pre-web/ migration remnants)
+rm -rf "$APP_DIR/node_modules" "$APP_DIR/.next" 2>/dev/null
+
+# 3. Install dependencies (ci = clean, deterministic, rebuilds native bindings)
 echo "--- Installing dependencies ---"
 cd "$APP_DIR/web"
 npm ci
 
-# 3. Build Next.js
+# 4. Build Next.js
 echo "--- Building Next.js ---"
 npm run build
 
 cd "$APP_DIR"
 
-# 4. Restart or start PM2
+# 5. Restart or start PM2
 echo "--- Restarting PM2 ---"
 if pm2 describe tourgraph > /dev/null 2>&1; then
     pm2 reload "$ECOSYSTEM"
@@ -34,7 +37,7 @@ else
     pm2 start "$ECOSYSTEM"
 fi
 
-# 5. Save PM2 process list (survives reboot)
+# 6. Save PM2 process list (survives reboot)
 pm2 save
 
 echo ""
