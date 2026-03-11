@@ -16,8 +16,7 @@
 5. **`git log --oneline -10`** — Recent commits
 
 **Optional** (if relevant to task):
-- **TRACKER.md** — Live iOS v2 implementation progress (read after context compaction)
-- **docs/ios-v2-plan.md** — Full iOS v2 plan (3 pillars, travel awareness companion)
+- **docs/ios-v2-plan.md** — iOS v2 plan + implementation tracker (3 pillars, progress tables, decisions log)
 - **docs/city-intelligence.md** — City intelligence pipeline (Stage 0): the IP layer that makes TourGraph unique
 - **docs/six-degrees-chains.md** — Chain generation (Stages 1+2): pair selection, quality standards, gallery UX
 - **docs/data-snapshot.md** — Data baseline stats (4-layer IP asset, 136K tours)

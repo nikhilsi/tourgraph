@@ -2,8 +2,10 @@
 
 ---
 **Created**: March 11, 2026
-**Status**: Plan — ready for implementation scoping
+**Last Updated**: March 11, 2026
+**Status**: In progress (Phase 1a done, Phase 1b active)
 **Context**: v1.0 and v1.1 both rejected under Guideline 4.2.2 (Minimum Functionality). Same boilerplate both times. Native features bolted onto a content viewer don't change Apple's perception. v2 needs to be a fundamentally different kind of app.
+**Role**: Partner-level architect. Think critically, don't rush, challenge bad ideas, maintain quality bar.
 ---
 
 ## Why v1.1 Failed
@@ -264,9 +266,9 @@ This could single-handedly change Apple's perception. A content viewer shows you
 
 ## Location Data Status
 
-- **Tours:** 0/136K have lat/lng (all NULL)
+- **Tours:** 136,303/136,303 have lat/lng (100% — backfilled from destinations in Phase 1a)
 - **Destinations:** 3,380/3,380 have lat/lng (100% coverage)
-- **Solution:** Join through `tours.destination_id → destinations.id` for city-level coordinates
+- **Map shows:** 2,694 destinations (filtered to those with active tours)
 - City-level precision is sufficient for geofencing, "near me," and map features
 
 ---
@@ -294,6 +296,74 @@ The four pillars still apply:
 4. **Rabbit Hole Energy** — "one more click" through genuine curiosity
 
 The existing four features (Roulette, Right Now, World's Most, Six Degrees) stay as the discovery engine that feeds into the map and identity.
+
+---
+
+## Implementation Progress
+
+### Phase 1a: World Map — DONE
+
+| # | Task | Status | Notes |
+|---|------|--------|-------|
+| 1 | Backfill tours.latitude/longitude from destinations table | **Done** | 136,303 tours updated from destinations join |
+| 2 | Rebuild iOS seed DB with lat/lng populated | **Done** | 123MB, kept destinations table + lat/lng |
+| 3 | MapKit globe view in iOS app | **Done** | Satellite imagery style, annotation-based pins |
+| 4 | Pin clustering at zoom levels | **Done** | Size-based pins (7-18px based on tour count) |
+| 5 | "Explored" tracking (tap = explored, glow change) | **Done** | ExploredDestinations (UserDefaults), green=explored, orange=unexplored |
+| 6 | Map as new tab or accessible view | **Done** | 5th tab "World Map" with globe icon |
+| 7 | Stats overlay ("47 of 3,380 destinations explored") | **Done** | Bottom-left overlay with .ultraThinMaterial |
+
+**New files:** `WorldMapView.swift`, `MapPinView.swift`, `DestinationDetailSheet.swift`, `MilestoneToast.swift`, `ExploredDestinations.swift`, `MapLocationManager`
+
+### Phase 1b: Daily Trivia — ACTIVE
+
+| # | Task | Status | Notes |
+|---|------|--------|-------|
+| 1 | Prototype 20-30 questions by hand | Not Started | Find formats that spark joy |
+| 2 | Design Haiku prompt for question generation | Not Started | |
+| 3 | Build server endpoint for daily questions | Not Started | |
+| 4 | Game UI + streaks | Not Started | |
+
+### Phase 2: Travel Awareness (after Phase 1)
+
+| # | Task | Status | Notes |
+|---|------|--------|-------|
+| 1 | CoreLocation research spike | Not Started | Significant monitoring, geofencing limits |
+| 2 | Passive travel detection | Not Started | |
+| 3 | Geofenced city welcome | Not Started | |
+| 4 | Live Activities | Not Started | |
+
+### Phase 3: Polish + Resubmit
+
+| # | Task | Status | Notes |
+|---|------|--------|-------|
+| 1 | Travel identity / shareable card | Not Started | |
+| 2 | Privacy opt-in UX | Not Started | |
+| 3 | Screenshots + resubmit | Not Started | |
+
+---
+
+## Decisions Log
+
+| Date | Decision | Rationale |
+|------|----------|-----------|
+| Mar 11 | Skip AR for v2 | City-level coords too imprecise, would feel gimmicky |
+| Mar 11 | Skip HealthKit | Forced connection, doesn't serve core vision |
+| Mar 11 | Skip collaborative/SharePlay | Needs 2 people, Apple tests solo |
+| Mar 11 | Start with Phase 1a (map) | Zero research blockers, high visual impact |
+| Mar 11 | Phase 1 might be enough to pass Apple | Map + trivia fundamentally changes what the app is |
+
+---
+
+## Key Technical Facts
+
+- Destinations: 2,694 with tours + lat/lng shown on map (3,380 total in DB)
+- Tours: 136,303/136,303 have lat/lng (backfilled from destinations)
+- iOS seed DB: 123MB, bundled in app (includes destinations table + lat/lng)
+- iOS deployment target: 17.0
+- Xcode simulator: "iPhone 17 Pro"
+- Bundle ID: com.nikhilsi.TourGraph
+- GRDB.swift for SQLite, @Observable pattern
 
 ---
 

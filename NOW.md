@@ -11,8 +11,7 @@ Extracted all DB access into standalone Express API backend (`backend/`). Web fr
 
 v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum Functionality). Same boilerplate both times. Native features bolted onto a content viewer don't change Apple's perception. v2 pivots to "travel awareness companion."
 
-**Plan**: `docs/ios-v2-plan.md`
-**Tracker**: `TRACKER.md`
+**Plan + Tracker**: `docs/ios-v2-plan.md`
 
 ### Three Pillars
 

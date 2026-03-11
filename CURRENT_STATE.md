@@ -25,7 +25,7 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 
 ### iOS App (v2 In Progress — Pivoting After Two 4.2.2 Rejections)
 
-SwiftUI app with GRDB.swift reading from bundled SQLite database. v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum Functionality). Pivoting to "travel awareness companion" for v2. See `docs/ios-v2-plan.md` for full plan, `TRACKER.md` for live progress.
+SwiftUI app with GRDB.swift reading from bundled SQLite database. v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum Functionality). Pivoting to "travel awareness companion" for v2. See `docs/ios-v2-plan.md` for full plan and implementation progress.
 
 | Feature | File(s) | Status |
 |---------|---------|--------|
@@ -42,7 +42,7 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. v1.0 rejected 
 | Siri/Shortcuts | `Intents/` | Built — 3 intents, App Shortcuts provider |
 | Spotlight | `SpotlightService.swift` | Built — favorited tours searchable |
 
-**v2 progress:** Phase 1a (World Map) complete. Phase 1b (Daily Trivia) up next. See `TRACKER.md`.
+**v2 progress:** Phase 1a (World Map) complete. Phase 1b (Daily Trivia) up next. See `docs/ios-v2-plan.md`.
 **Seed DB:** 123MB bundled. 136,256 tours with lat/lng, 2,694 destinations with lat/lng, 491 chains. DB versioning for seamless updates.
 **Per-tour enrichment:** `TourEnrichmentService.swift` + server endpoints. Lazy fetch on detail tap.
 **Bundle ID:** `com.nikhilsi.TourGraph`, App ID `6759991920`.
