@@ -7,6 +7,7 @@ struct TourGraphApp: App {
     @State private var database: DatabaseService?
     @State private var settings = AppSettings()
     @State private var favorites = Favorites()
+    @State private var exploredDestinations = ExploredDestinations()
     @State private var rouletteState: RouletteState?
     @State private var enrichmentService: TourEnrichmentService?
     @State private var loadError: String?
@@ -23,6 +24,7 @@ struct TourGraphApp: App {
                         favorites: favorites,
                         rouletteState: rouletteState,
                         enrichmentService: enrichmentService,
+                        exploredDestinations: exploredDestinations,
                         selectedTab: $selectedTab
                     )
                     .fullScreenCover(isPresented: Binding(
@@ -117,6 +119,7 @@ struct TourGraphApp: App {
             case "rightnow": selectedTab = .rightNow
             case "worldsmost": selectedTab = .worldsMost
             case "sixdegrees": selectedTab = .sixDegrees
+            case "worldmap": selectedTab = .worldMap
             default: break
             }
         case "tour":

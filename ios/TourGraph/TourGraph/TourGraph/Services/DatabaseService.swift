@@ -7,6 +7,10 @@ import GRDB
 final class DatabaseService {
     private let db: DatabaseQueue
 
+    /// Increment this when the bundled DB schema or data changes significantly.
+    /// Forces a re-copy from the bundle on next launch.
+    private static let dbVersion = 2  // v2: added destinations table + lat/lng on tours
+
     init() throws {
         // Copy bundled DB to shared App Group container (widgets + main app share this)
         let fileManager = FileManager.default
@@ -15,12 +19,19 @@ final class DatabaseService {
                           userInfo: [NSLocalizedDescriptionKey: "App Group container not available"])
         }
 
-        if !fileManager.fileExists(atPath: dbURL.path) {
+        let versionKey = "installedDBVersion"
+        let installedVersion = UserDefaults.standard.integer(forKey: versionKey)
+        let needsCopy = !fileManager.fileExists(atPath: dbURL.path) || installedVersion < Self.dbVersion
+
+        if needsCopy {
             guard let bundledURL = Bundle.main.url(forResource: "tourgraph", withExtension: "db") else {
                 throw NSError(domain: "DatabaseService", code: 1,
                               userInfo: [NSLocalizedDescriptionKey: "Bundled database not found"])
             }
+            // Remove old DB if present, then copy fresh
+            try? fileManager.removeItem(at: dbURL)
             try fileManager.copyItem(at: bundledURL, to: dbURL)
+            UserDefaults.standard.set(Self.dbVersion, forKey: versionKey)
         }
 
         self.db = try DatabaseQueue(path: dbURL.path)
@@ -266,6 +277,49 @@ final class DatabaseService {
                 return nil
             }
             return Chain(row: row)
+        }
+    }
+
+    // MARK: - World Map
+
+    /// All destinations with coordinates for map pins.
+    func getAllDestinations() throws -> [Destination] {
+        try db.read { db in
+            try Destination.fetchAll(db, sql: """
+                SELECT * FROM destinations
+                WHERE latitude IS NOT NULL AND longitude IS NOT NULL
+                """)
+        }
+    }
+
+    /// Tour counts grouped by destination, for map pin sizing/labels.
+    func tourCountsByDestination() throws -> [String: Int] {
+        try db.read { db in
+            let rows = try Row.fetchAll(db, sql: """
+                SELECT destination_id, COUNT(*) as cnt
+                FROM tours WHERE status = 'active' AND destination_id IS NOT NULL
+                GROUP BY destination_id
+                """)
+            var result: [String: Int] = [:]
+            for row in rows {
+                if let destId: String = row["destination_id"],
+                   let count: Int = row["cnt"] {
+                    result[destId] = count
+                }
+            }
+            return result
+        }
+    }
+
+    /// Tours for a specific destination (for map pin detail).
+    func getToursForDestination(_ destinationId: String, limit: Int = 5) throws -> [Tour] {
+        try db.read { db in
+            try Tour.fetchAll(db, sql: """
+                SELECT * FROM tours
+                WHERE status = 'active' AND destination_id = ? AND image_url IS NOT NULL
+                ORDER BY rating DESC
+                LIMIT ?
+                """, arguments: [destinationId, limit])
         }
     }
 

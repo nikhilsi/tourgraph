@@ -1,7 +1,7 @@
 # Current State
 
 ---
-**Last Updated**: March 8, 2026
+**Last Updated**: March 11, 2026
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
@@ -22,25 +22,29 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 | OG Images | `/api/og/*` | Live |
 | Health / SEO | `/api/health`, `/robots.txt`, `/sitemap.xml` | Live |
 
-### iOS App (v1.1 Submitted — Waiting for Review)
+### iOS App (v2 In Progress — Pivoting After Two 4.2.2 Rejections)
 
-SwiftUI app with GRDB.swift reading from bundled SQLite database. 4-tab layout, all four features implemented. v1.0 rejected March 5, 2026 (Guideline 4.2.2 — Minimum Functionality). v1.1 resubmitted same day with 8 native iOS capabilities. See `docs/implementation/app-store-resubmission.md` for full plan.
+SwiftUI app with GRDB.swift reading from bundled SQLite database. v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum Functionality). Pivoting to "travel awareness companion" for v2. See `docs/ios-v2-plan.md` for full plan, `TRACKER.md` for live progress.
 
 | Feature | File(s) | Status |
 |---------|---------|--------|
-| Tour Roulette (swipe) | `RouletteView.swift`, `RouletteState.swift` | Built — swipe gesture, haptics, rotation effect, logo header |
+| Tour Roulette (swipe) | `RouletteView.swift`, `RouletteState.swift` | Built — swipe gesture, haptics, rotation effect |
 | Right Now Somewhere | `RightNowView.swift`, `TimezoneHelper.swift` | Built — own tab, golden-hour detection |
-| The World's Most ___ | `WorldsMostView.swift`, `Superlative.swift` | Built — own tab, stat highlights on cards, random pick from top 10 per category |
-| Six Degrees | `SixDegreesView.swift` | Built — own tab, chain roulette with inline timeline, tour photos, favorite hearts, theme badges |
+| The World's Most ___ | `WorldsMostView.swift`, `Superlative.swift` | Built — own tab, stat highlights on cards |
+| Six Degrees | `SixDegreesView.swift` | Built — own tab, chain roulette, timeline, theme badges |
+| **World Map** | `WorldMapView.swift`, `MapPinView.swift`, `DestinationDetailSheet.swift` | **Built (v2)** — MapKit satellite globe, 2,694 destination pins, lazy viewport loading, explored tracking, milestone toasts |
 | Tour Detail | `TourDetailView.swift` | Built — image gallery, highlights, Viator link |
-| Favorites | `Favorites.swift`, `FavoritesListView.swift`, heart on cards | Built — UserDefaults persistence, clickable list from Settings |
-| Settings | `SettingsView.swift`, `AboutView.swift` | Built — gear icon in nav bar, modal sheet, haptics toggle, favorites list, about page |
-| App Icon | `AppIcon.appiconset/` | Set — 1024x1024 from archive assets |
+| Favorites | `Favorites.swift`, `FavoritesListView.swift` | Built — UserDefaults persistence |
+| Explored Destinations | `ExploredDestinations.swift` | **Built (v2)** — UserDefaults, green/orange pin states, milestone celebrations |
+| Settings | `SettingsView.swift`, `AboutView.swift` | Built — haptics toggle, favorites list, about page |
+| Widgets | `TourGraphWidgets/` | Built — 3 types (Right Now, Random Tour, Lock Screen) |
+| Siri/Shortcuts | `Intents/` | Built — 3 intents, App Shortcuts provider |
+| Spotlight | `SpotlightService.swift` | Built — favorited tours searchable |
 
-**App Store status:** v1.1 submitted to App Review on March 5, 2026. v1.0 was rejected (4.2.2 Minimum Functionality). v1.1 adds: Home Screen Widgets (3 types, 5 sizes), Siri Shortcuts (3 intents), Spotlight indexing, deep linking, context-aware haptics, spring animations. Bundle ID `com.nikhilsi.TourGraph`, App ID `6759991920`.
-**Seed DB built:** 120MB (down from 479MB production). 136,256 tours, 491 chains. Descriptions truncated to ~200 chars, image galleries NULLed, 5 unused tables dropped, VACUUM'd. Bundled in iOS app.
-**Per-tour enrichment built:** `TourEnrichmentService.swift` + server endpoints (`/api/ios/tour/[id]`, `/api/ios/tours/batch`). Lazy fetch on detail tap — full descriptions + photo galleries load from server, written to local DB, persisted for future views.
-**Code review complete:** 6-agent deep review (Tiers 1-4) — performance, security, accessibility, SEO, error handling all addressed. See CHANGELOG.md [6.2.0] and [6.3.0].
+**v2 progress:** Phase 1a (World Map) complete. Phase 1b (Daily Trivia) up next. See `TRACKER.md`.
+**Seed DB:** 123MB bundled. 136,256 tours with lat/lng, 2,694 destinations with lat/lng, 491 chains. DB versioning for seamless updates.
+**Per-tour enrichment:** `TourEnrichmentService.swift` + server endpoints. Lazy fetch on detail tap.
+**Bundle ID:** `com.nikhilsi.TourGraph`, App ID `6759991920`.
 
 ## Data Asset (4 IP Layers)
 

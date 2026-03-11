@@ -618,10 +618,10 @@ Concrete steps to build the seed DB from the production database. Run before eac
 cp data/tourgraph.db data/tourgraph-seed.db
 
 # 2. Drop unused tables (app never queries these)
+#    NOTE: Keep destinations — needed for World Map feature (3,380 pins with lat/lng)
 sqlite3 data/tourgraph-seed.db "
   DROP TABLE IF EXISTS city_readings;
   DROP TABLE IF EXISTS city_profiles;
-  DROP TABLE IF EXISTS destinations;
   DROP TABLE IF EXISTS superlatives;
   DROP TABLE IF EXISTS indexer_state;
 "
@@ -651,15 +651,14 @@ sqlite3 data/tourgraph-seed.db "
     supplier_name = NULL;
 "
 
-# 5. NULL out columns not in the Tour Swift struct
+# 5. NULL out columns not needed for app display
+#    NOTE: Keep latitude/longitude — needed for World Map feature
 sqlite3 data/tourgraph-seed.db "
   UPDATE tours SET
     tags_json = NULL,
     summary_hash = NULL,
     indexed_at = NULL,
-    last_seen_at = NULL,
-    latitude = NULL,
-    longitude = NULL;
+    last_seen_at = NULL;
 "
 
 # 6. Delete inactive tours (47 rows, filtered by WHERE status='active' anyway)

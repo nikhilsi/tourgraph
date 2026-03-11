@@ -13,6 +13,8 @@ struct Tour: Identifiable, Codable, FetchableRecord, Sendable {
     let country: String?
     let continent: String?
     let timezone: String?
+    let latitude: Double?
+    let longitude: Double?
     let rating: Double?
     let reviewCount: Int?
     let fromPrice: Double?
@@ -39,6 +41,8 @@ struct Tour: Identifiable, Codable, FetchableRecord, Sendable {
         case country
         case continent
         case timezone
+        case latitude
+        case longitude
         case rating
         case reviewCount = "review_count"
         case fromPrice = "from_price"

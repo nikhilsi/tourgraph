@@ -13,6 +13,8 @@
 			<string>com.nikhilsi.TourGraph</string>
 		</dict>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>TourGraph uses your location to show tour destinations near you on the World Map.</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageName</key>

@@ -6,6 +6,39 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [9.0.0] - 2026-03-11
+
+### iOS v2 Phase 1a: World Map + Location Foundation
+
+v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum Functionality). Pivoting from "content viewer with native sprinkles" to "travel awareness companion." Full plan: `docs/ios-v2-plan.md`.
+
+**World Map (5th tab):**
+- MapKit satellite globe with 2,694 destination pins (filtered to destinations with tours)
+- Lazy viewport loading — only renders pins visible on screen
+- Progressive detail by zoom level — zoomed out shows major destinations only (50+ tours), close zoom shows all
+- Pin size scales with tour count (10px to 22px), orange glow for unexplored, green for explored
+- Tap pin → full-height destination sheet with top 5 tour cards → tap card → tour detail
+- Location centering on launch (CoreLocation when-in-use)
+- Globe button (zoom out) + location button (center on me)
+- "X of 2,694 destinations explored" stats overlay
+
+**Gamification:**
+- `ExploredDestinations` — UserDefaults-backed tracker, pins turn green on tap
+- Milestone toast system — celebrations at 1, 5, 10, 25, 50, 100, 250, 500, 1000 destinations
+- Welcome toast on first visit ("Tap a destination to start exploring") — persists until first tap
+- Milestone toasts appear after sheet dismiss with success haptic
+
+**Data foundation:**
+- Backfilled lat/lng on all 136,303 tours from destinations table (100% coverage)
+- Rebuilt seed DB (123MB) — now includes destinations table + tour lat/lng
+- DB version tracking — `dbVersion` in DatabaseService forces re-copy when schema changes
+- `NSLocationWhenInUseUsageDescription` added to Info.plist
+
+**New files:** `WorldMapView.swift`, `MapPinView.swift`, `DestinationDetailSheet.swift`, `MilestoneToast.swift`, `ExploredDestinations.swift`, `MapLocationManager`
+**Modified:** `Tour.swift` (added lat/lng), `DatabaseService.swift` (map queries + DB versioning), `ContentView.swift` (5th tab), `TourGraphApp.swift` (explored state + deep link), `Info.plist` (location permission)
+
+---
+
 ## [8.1.0] - 2026-03-07
 
 ### Android — UX Polish, Rich Share Cards, App Shortcuts, Search Indexing

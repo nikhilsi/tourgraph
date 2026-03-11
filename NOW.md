@@ -1,44 +1,55 @@
 # NOW — What To Work On Next
 
-**Last Updated**: March 7, 2026
+**Last Updated**: March 11, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
+
+## Active: iOS v2 — Breaking the 4.2.2 Rejection Cycle
+
+v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum Functionality). Same boilerplate both times. Native features bolted onto a content viewer don't change Apple's perception. v2 pivots to "travel awareness companion."
+
+**Plan**: `docs/ios-v2-plan.md`
+**Tracker**: `TRACKER.md`
+
+### Three Pillars
+
+- **Pillar A: Travel Awareness** — passive location detection, geofenced city welcome, Live Activities
+- **Pillar B: Personal World Map** — MapKit globe, explored tracking, travel identity
+- **Pillar C: Daily Challenge** — trivia game, streaks, location-aware bonuses
+
+### Phase 1a: World Map — DONE
+
+MapKit satellite globe with 2,694 destination pins, lazy viewport loading, progressive detail by zoom level, explored tracking (green/orange), milestone toasts, location centering, stats overlay.
+
+### Phase 1b: Daily Trivia — UP NEXT
+
+- Prototype question formats from existing data
+- Design Haiku prompt for batch question generation
+- Build server endpoint + game UI + streaks
+
+### Phase 2: Travel Awareness (after Phase 1)
+
+- CoreLocation significant monitoring research
+- Passive travel detection + auto-journal
+- Geofenced city welcome notifications
+- Live Activities during travel
+
+### Phase 3: Polish + Resubmit
+
+- Travel identity / shareable card
+- Privacy opt-in UX
+- Screenshots + App Store resubmission
 
 ## Waiting
 
-### iOS App Store Review
-
-v1.1 submitted March 5, 2026. Added 8 native iOS capabilities after v1.0 was rejected under Guideline 4.2.2 (Minimum Functionality): Home Screen Widgets, Siri Shortcuts, Spotlight indexing, deep linking, haptics, spring animations.
-
-**Plan**: `docs/implementation/app-store-resubmission.md`
-
 ### F-Droid Review
 
-Submitted [MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392). AutoUpdateMode configured — new tags auto-detected.
+Submitted [MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392). AutoUpdateMode configured.
 
-## Up Next
+## Future
 
-### Android — Real Device Testing
-
-- Test on a physical Android device (emulator-tested only so far)
-- Verify widgets render correctly on home screen
-- Verify share cards generate and share properly
-- Verify deep links from shortcuts work
-
-### Google Play Store Submission
-
-- Generate Play Store screenshots from real device
-- Create Play Store listing (title, description, graphics)
-- Submit for review
-
-## Future (V2)
-
-- Weekly data refresh (drip indexer on schedule) + delta sync to mobile apps
+- Weekly data refresh + delta sync to mobile apps
 - On-demand chain generation (user types two cities)
 - iPad layout
-- City discovery pages (`/cities/takayama`)
-- Theme browsing (filter by `craftsmanship`, `sacred`, etc.)
-- Dark-mode app icon variant
-
-## Open Decisions
-
-- [ ] Dark-mode app icon variant
+- City discovery pages
+- Theme browsing
+- Android v2 feature parity

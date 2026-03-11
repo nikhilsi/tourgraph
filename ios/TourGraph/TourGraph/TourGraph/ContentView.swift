@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum AppTab: String {
-    case roulette, rightNow, worldsMost, sixDegrees
+    case roulette, rightNow, worldsMost, sixDegrees, worldMap
 }
 
 struct ContentView: View {
@@ -10,6 +10,7 @@ struct ContentView: View {
     let favorites: Favorites
     let rouletteState: RouletteState
     let enrichmentService: TourEnrichmentService
+    let exploredDestinations: ExploredDestinations
 
     @Binding var selectedTab: AppTab
 
@@ -38,6 +39,12 @@ struct ContentView: View {
                     Label("Six Degrees", systemImage: "point.3.connected.trianglepath.dotted")
                 }
                 .tag(AppTab.sixDegrees)
+
+            WorldMapView(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService, exploredDestinations: exploredDestinations)
+                .tabItem {
+                    Label("World Map", systemImage: "globe")
+                }
+                .tag(AppTab.worldMap)
         }
         .tint(.white)
     }
