@@ -402,7 +402,7 @@ All screenshots 1320 x 2868 (6.9" display). Apple auto-scales to all smaller dis
 | 7 | 07-shortcuts.png | iPhone 17 Pro Max simulator | Shortcuts app — TourGraph actions |
 | 8 | 08-widgets.png | iPhone 15 Pro (real device, scaled 1.12x) | Home screen with 4 TourGraph widgets |
 
-Screenshots stored in `appstore/screenshots/v1.1-iphone-6.9/`. Old v1.0 screenshots preserved in `appstore/screenshots/iphone-6.9/`.
+Screenshots stored in `distribution/appstore/screenshots/v1.1-iphone-6.9/`. Old v1.0 screenshots preserved in `distribution/appstore/screenshots/iphone-6.9/`.
 
 ## App Store Metadata Updates (v1.1)
 

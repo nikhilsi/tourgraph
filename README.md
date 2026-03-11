@@ -45,7 +45,7 @@ Every travel app wants you to plan, compare, and book. TourGraph wants you to sm
 
 | Tour Roulette | Right Now | World's Most | Six Degrees | Tour Detail |
 |:---:|:---:|:---:|:---:|:---:|
-| <img src="screenshots/android/01_roulette.png" width="160"> | <img src="screenshots/android/02_rightnow.png" width="160"> | <img src="screenshots/android/03_worldsmost.png" width="160"> | <img src="screenshots/android/04_sixdegrees.png" width="160"> | <img src="screenshots/android/05_detail.png" width="160"> |
+| <img src="distribution/screenshots/android/01_roulette.png" width="160"> | <img src="distribution/screenshots/android/02_rightnow.png" width="160"> | <img src="distribution/screenshots/android/03_worldsmost.png" width="160"> | <img src="distribution/screenshots/android/04_sixdegrees.png" width="160"> | <img src="distribution/screenshots/android/05_detail.png" width="160"> |
 
 ## Tech Stack
 
@@ -90,7 +90,7 @@ tourgraph/
 │       └── 4-chains/        # Six Degrees chain generation
 ├── ios/TourGraph/           # SwiftUI iOS app
 ├── android/TourGraph/       # Kotlin + Jetpack Compose Android app
-├── fastlane/                # F-Droid metadata + screenshots
+├── distribution/            # App Store, F-Droid, fastlane metadata + screenshots
 ├── docs/                    # Architecture, design, data docs
 ├── data/                    # SQLite databases (Git LFS)
 └── archive/                 # Phase 0 work (preserved for reference)

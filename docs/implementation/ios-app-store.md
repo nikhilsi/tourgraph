@@ -175,7 +175,7 @@ The app links to Viator (viator.com) for tour bookings via affiliate URLs. TourG
 
 ## Screenshots (v1.1 — 8 uploaded)
 
-All 1320 x 2868 (6.9" display). Apple auto-scales to all smaller sizes. Stored in `appstore/screenshots/v1.1-iphone-6.9/`.
+All 1320 x 2868 (6.9" display). Apple auto-scales to all smaller sizes. Stored in `distribution/appstore/screenshots/v1.1-iphone-6.9/`.
 
 | # | File | Content |
 |---|------|---------|

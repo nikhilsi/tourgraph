@@ -87,7 +87,7 @@ v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum 
 - **Reply to Apple** in Resolution Center — 8 native capabilities listed, widget screenshot attached
 - **Version bump** — 1.0 → 1.1, build 1 → 2
 - **Archive + upload** via `xcodebuild` CLI with `-allowProvisioningUpdates` (auto-creates App Group + widget provisioning profiles)
-- Screenshots stored in `appstore/screenshots/v1.1-iphone-6.9/`
+- Screenshots stored in `distribution/appstore/screenshots/v1.1-iphone-6.9/`
 
 ---
 
@@ -154,7 +154,7 @@ v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum 
 - Archived and uploaded build via CLI (`xcodebuild archive` + `xcodebuild -exportArchive`)
 - Metadata pushed via App Store Connect API: description, keywords, promotional text, subtitle, privacy URL, categories (Travel + Entertainment), review notes
 - 10 screenshots uploaded via API (6.9" and 6.1" display sizes)
-- App Store metadata files created in `appstore/metadata/`
+- App Store metadata files created in `distribution/appstore/metadata/`
 - Privacy: "Data Not Collected", age rating 4+, free pricing, no encryption
 
 ---

@@ -138,7 +138,7 @@ android/TourGraph/
 ```
 
 Additional repo-level files:
-- `fastlane/metadata/android/en-US/` — F-Droid + Play Store metadata
+- `distribution/fastlane/metadata/android/en-US/` — F-Droid + Play Store metadata
 - `.github/workflows/android-release.yml` — CI/CD for GitHub Releases
 
 ## Build Phases
