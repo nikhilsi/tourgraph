@@ -317,12 +317,17 @@ The existing four features (Roulette, Right Now, World's Most, Six Degrees) stay
 
 ### Phase 1b: Daily Trivia — ACTIVE
 
+**Design doc**: `docs/trivia-prototype.md`
+
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1 | Prototype 20-30 questions by hand | Not Started | Find formats that spark joy |
-| 2 | Design Haiku prompt for question generation | Not Started | |
-| 3 | Build server endpoint for daily questions | Not Started | |
-| 4 | Game UI + streaks | Not Started | |
+| 1 | Prototype question formats | **Done** | 7 formats, 18 sample questions. See `docs/trivia-prototype.md` |
+| 2a | SQL generators for 6 formats | **Done** | `data/scripts/5-trivia/generate-pool.ts` — 1,035 questions (200/format, 35 numbers) |
+| 2b | Haiku batch for fake tour titles | **Done** | `data/scripts/5-trivia/generate-fakes.ts` — 200 real_or_fake questions via Haiku |
+| 2c | DB schema + pool generation | **Done** | 3 tables + 1,235 total questions in trivia_pool. Lazy daily assembly on first API request. |
+| 2d | GeoIP2 setup on droplet | Not Started | nginx module + MaxMind GeoLite2 + X-Country-Code header |
+| 3 | Backend API endpoints | **Done** | `backend/src/routes/trivia.ts` — 6 endpoints, all tested locally |
+| 4 | iOS game UI + streaks + sharing | Not Started | Daily challenge, practice mode, streak badges, share cards |
 
 ### Phase 2: Travel Awareness (after Phase 1)
 

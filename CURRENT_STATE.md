@@ -20,7 +20,7 @@ All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 +
 | About / Story | `/about`, `/story` | Live |
 | Privacy / Support | `/privacy`, `/support` | Live |
 | OG Images | `/api/og/*` | Live |
-| Backend API | `/api/v1/health`, `/api/v1/roulette/hand`, etc. | Live |
+| Backend API | `/api/v1/health`, `/api/v1/roulette/hand`, `/api/v1/trivia/*`, etc. | Live (trivia pending deploy) |
 | Health / SEO | `/robots.txt`, `/sitemap.xml` | Live |
 
 ### iOS App (v2 In Progress — Pivoting After Two 4.2.2 Rejections)
@@ -42,12 +42,12 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. v1.0 rejected 
 | Siri/Shortcuts | `Intents/` | Built — 3 intents, App Shortcuts provider |
 | Spotlight | `SpotlightService.swift` | Built — favorited tours searchable |
 
-**v2 progress:** Phase 1a (World Map) complete. Phase 1b (Daily Trivia) up next. See `docs/ios-v2-plan.md`.
+**v2 progress:** Phase 1a (World Map) complete. Phase 1b (Daily Trivia) active — backend API done, question pool generated (1,235 questions across 7 formats), iOS UI next. See `docs/ios-v2-plan.md`.
 **Seed DB:** 123MB bundled. 136,256 tours with lat/lng, 2,694 destinations with lat/lng, 491 chains. DB versioning for seamless updates.
 **Per-tour enrichment:** `TourEnrichmentService.swift` + server endpoints. Lazy fetch on detail tap.
 **Bundle ID:** `com.nikhilsi.TourGraph`, App ID `6759991920`.
 
-## Data Asset (4 IP Layers)
+## Data Asset (5 IP Layers)
 
 TourGraph's data is built in layers, each adding original intelligence. See `docs/data-snapshot.md` for full baseline stats.
 
@@ -57,6 +57,7 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 | 2. AI One-Liners | Witty personality captions per tour | 136,256 (100%) | **Complete** |
 | 3. City Intelligence | City profiles: personality, standout tours, themes | 910 cities (1,799 readings) | **Complete** |
 | 4. Chain Connections | Thematic chains connecting cities | 491 chains | **Complete** |
+| 5. Trivia Pool | Pre-generated questions across 7 formats | 1,235 questions | **Complete** |
 
 - **479 MB** database, 2,712 leaf destinations, 205 countries, 7 continents
 - Layer 3 design: `docs/city-intelligence.md` | Layer 4 design: `docs/six-degrees-chains.md`
@@ -126,7 +127,7 @@ Three independent directories with clear responsibilities:
 backend/                              # Express + TypeScript API server
 ├── src/
 │   ├── index.ts                      # App entry, mounts /api/v1 router
-│   ├── db.ts                         # Read-only SQLite connection
+│   ├── db.ts                         # Read-only + read-write (trivia) SQLite connections
 │   ├── types.ts                      # Shared types (RouletteTour, TourDetail, etc.)
 │   ├── transform.ts                  # Row-to-API transforms (snake_case → camelCase)
 │   └── routes/
@@ -135,6 +136,7 @@ backend/                              # Express + TypeScript API server
 │       ├── right-now.ts              # GET /right-now/tours, /right-now/timezones
 │       ├── superlatives.ts           # GET /superlatives, /superlatives/:type
 │       ├── chains.ts                 # GET /chains, /chains/random, /chains/:slug, /chains/slugs, /chains/count
+│       ├── trivia.ts                 # GET /trivia/daily, /trivia/practice, /trivia/stats, /trivia/results; POST /trivia/answer, /trivia/score
 │       └── health.ts                 # GET /health, /stats
 
 web/                                  # Next.js frontend (pure API consumer)
@@ -166,6 +168,7 @@ data/                                 # Pipeline scripts + shared library
 │   ├── 2-oneliners/                  # AI caption generation (Claude Haiku 4.5)
 │   ├── 3-city-intel/                 # City intelligence (readings → profiles merge)
 │   ├── 4-chains/                     # Six Degrees chain generation
+│   ├── 5-trivia/                     # Trivia pool generation (SQL generators + Haiku fakes)
 │   └── utils/                        # Database audit tools
 ├── lib/                              # Shared library (db.ts, viator.ts, claude.ts, etc.)
 ├── tourgraph.db                      # Production SQLite database (479MB, Git LFS)

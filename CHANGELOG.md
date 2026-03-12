@@ -6,6 +6,41 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [11.0.0] - 2026-03-12
+
+### iOS v2 Phase 1b: Daily Trivia — Backend + Data Pipeline
+
+Full trivia system: question pool generation, backend API, GeoIP2 regional scoring. iOS game UI is next.
+
+**Data pipeline (`data/scripts/5-trivia/`):**
+- `generate-pool.ts` — SQL-based generators for 6 question formats (higher_or_lower, where_in_world, numbers_game, odd_one_out, the_connection, city_personality). 1,035 questions from tour/chain/city data.
+- `generate-fakes.ts` — Claude Haiku generates convincing fake tour titles, paired with real tours for 200 real_or_fake questions.
+- Total pool: 1,235 questions across 7 formats. ~200 days of daily challenges before reuse.
+
+**Backend API (`backend/src/routes/trivia.ts`):**
+- `GET /trivia/daily` — today's 5 questions (answers stripped). Lazy assembly: first request picks from pool, writes to `trivia_daily`. No cron.
+- `POST /trivia/answer` — check answer, returns correctIndex + reveal fact + image
+- `GET /trivia/results` — full results with answers (after completion)
+- `POST /trivia/score` — submit anonymous score with country from GeoIP
+- `GET /trivia/stats` — leaderboard: avg score, distribution, country breakdown, percentile
+- `GET /trivia/practice` — random question (excludes today's daily to prevent spoilers)
+- Added `getWriteDb()` to `backend/src/db.ts` for trivia writes (scores, daily assembly)
+
+**DB schema (3 new tables):**
+- `trivia_pool` — pre-generated questions (format, question_json, used_date)
+- `trivia_daily` — lazy-assembled daily sets (date → 5 question IDs)
+- `trivia_scores` — anonymous scores (date, score, session_hash, country_code, answers)
+
+**GeoIP2 setup:**
+- Installed `libnginx-mod-http-geoip2` + MaxMind GeoLite2-Country.mmdb on droplet
+- `geoipupdate.timer` enabled for automatic DB updates
+- Nginx passes `X-Country-Code` header to backend on all `/api/v1/` requests
+- Backend reads header for regional leaderboard scoring
+
+**Design doc:** `docs/trivia-prototype.md` — 7 question formats, game mechanics, gamification (streaks, Travel IQ, category mastery, World Map integration), sharing, architecture.
+
+---
+
 ## [10.0.0] - 2026-03-11
 
 ### Architecture: Standalone Backend API + Clean Separation

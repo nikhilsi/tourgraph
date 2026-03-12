@@ -2,23 +2,37 @@ import Database from "better-sqlite3";
 import path from "path";
 
 // ============================================================
-// Read-Only Database Connection
+// Database Connections
 // ============================================================
-// Backend serves data only — all writes happen through web/src/scripts/.
-// Single connection, read-only, WAL mode for concurrent reads.
+// Primary: read-only for serving data (roulette, chains, etc.)
+// Write: read-write for trivia (scores, daily assembly)
 
-let db: Database.Database | null = null;
+let readDb: Database.Database | null = null;
+let writeDb: Database.Database | null = null;
+
+function resolveDbPath(): string {
+  return process.env.DATABASE_PATH || path.join(__dirname, "../../data/tourgraph.db");
+}
 
 export function getDb(): Database.Database {
-  if (db) return db;
+  if (readDb) return readDb;
 
-  const dbPath = process.env.DATABASE_PATH || path.join(__dirname, "../../data/tourgraph.db");
+  readDb = new Database(resolveDbPath(), { readonly: true });
+  readDb.pragma("busy_timeout = 5000");
 
-  db = new Database(dbPath, { readonly: true });
-  db.pragma("busy_timeout = 5000");
+  process.on("exit", () => readDb?.close());
 
-  // Clean close on exit
-  process.on("exit", () => db?.close());
+  return readDb;
+}
 
-  return db;
+export function getWriteDb(): Database.Database {
+  if (writeDb) return writeDb;
+
+  writeDb = new Database(resolveDbPath());
+  writeDb.pragma("journal_mode = WAL");
+  writeDb.pragma("busy_timeout = 5000");
+
+  process.on("exit", () => writeDb?.close());
+
+  return writeDb;
 }

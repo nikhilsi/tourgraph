@@ -150,6 +150,39 @@ function initSchema(db: Database.Database): void {
       value TEXT NOT NULL,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
+
+    -- Trivia: pre-generated question pool
+    CREATE TABLE IF NOT EXISTS trivia_pool (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      format TEXT NOT NULL,           -- higher_or_lower, where_in_world, real_or_fake, numbers_game, odd_one_out, the_connection, city_personality
+      question_json TEXT NOT NULL,    -- Full question data (question text, options, correct answer, reveal/fun fact, image URLs)
+      used_date TEXT,                 -- Date this question was picked for daily (NULL = unused)
+      created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_trivia_pool_format ON trivia_pool(format);
+    CREATE INDEX IF NOT EXISTS idx_trivia_pool_used ON trivia_pool(used_date);
+
+    -- Trivia: daily question sets (lazy-assembled on first request)
+    CREATE TABLE IF NOT EXISTS trivia_daily (
+      date TEXT PRIMARY KEY,          -- YYYY-MM-DD (UTC)
+      question_ids_json TEXT NOT NULL, -- JSON array of 5 trivia_pool IDs
+      created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+
+    -- Trivia: anonymous scores
+    CREATE TABLE IF NOT EXISTS trivia_scores (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      date TEXT NOT NULL,             -- YYYY-MM-DD (UTC)
+      score INTEGER NOT NULL,         -- 0-5
+      session_hash TEXT NOT NULL,     -- Random anonymous identifier
+      country_code TEXT,              -- ISO 3166-1 alpha-2 from GeoIP (nullable until GeoIP setup)
+      answers_json TEXT,              -- JSON array of per-question results [{questionId, correct, answeredOption}]
+      created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE INDEX IF NOT EXISTS idx_trivia_scores_date ON trivia_scores(date);
+    CREATE INDEX IF NOT EXISTS idx_trivia_scores_country ON trivia_scores(country_code);
   `);
 
   // Migration: add slug column to existing six_degrees_chains tables

@@ -306,6 +306,7 @@ npx tsx scripts/1-viator/indexer.ts --full   # example
 - **data/scripts/2-oneliners/** — AI caption generation (Claude Haiku 4.5)
 - **data/scripts/3-city-intel/** — City intelligence (readings → profiles merge pipeline)
 - **data/scripts/4-chains/** — Six Degrees chain generation
+- **data/scripts/5-trivia/** — Trivia pool generation (SQL generators + Haiku fakes)
 - **data/scripts/utils/** — Database audit tools
 - **data/lib/** — Shared library (db.ts, viator.ts, claude.ts, city-intel.ts, types.ts)
 

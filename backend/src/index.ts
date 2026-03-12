@@ -7,6 +7,7 @@ import tourRoutes from "./routes/tours";
 import rightNowRoutes from "./routes/right-now";
 import superlativeRoutes from "./routes/superlatives";
 import chainRoutes from "./routes/chains";
+import triviaRoutes from "./routes/trivia";
 
 const app = express();
 const PORT = parseInt(process.env.PORT || "3001", 10);
@@ -23,6 +24,7 @@ v1.use(tourRoutes);
 v1.use(rightNowRoutes);
 v1.use(superlativeRoutes);
 v1.use(chainRoutes);
+v1.use(triviaRoutes);
 
 app.use("/api/v1", v1);
 

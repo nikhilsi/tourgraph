@@ -23,11 +23,37 @@ v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum 
 
 MapKit satellite globe with 2,694 destination pins, lazy viewport loading, progressive detail by zoom level, explored tracking (green/orange), milestone toasts, location centering, stats overlay.
 
-### Phase 1b: Daily Trivia — UP NEXT
+### Phase 1b: Daily Trivia — ACTIVE
 
-- Prototype question formats from existing data
-- Design Haiku prompt for batch question generation
-- Build server endpoint + game UI + streaks
+**Design doc**: `docs/trivia-prototype.md`
+
+**Game structure**: Daily Challenge (5 questions, same for everyone, Wordle model) + Practice Mode (unlimited). 7 question formats rotating across days. Anonymous scoring with regional comparison (IP-derived country via nginx GeoIP2).
+
+**7 question formats:**
+
+1. Higher or Lower (Price) — two tours, guess which costs more
+2. Where in the World? — one-liner shown, pick city from 4, photo revealed after
+3. Real or Fake Tour? — one real title, one Haiku-generated fake
+4. The Numbers Game — surprising stats as multiple choice
+5. Odd One Out — 3 tours same city + 1 intruder, using one-liners (not titles)
+6. The Connection — which theme links two cities (from chain data)
+7. City Personality Match — match AI personality to city (from city_profiles)
+
+**Architecture**: Pre-generate large question pool (one-time batch). Lazy daily assembly: first API request for a date picks 5 from pool, writes to `trivia_daily`, everyone gets those 5. No cron jobs, self-healing.
+
+**Gamification**: Streaks (3/7/14/30/60/100 day badges), Travel IQ (levels from Tourist to World Expert), category mastery tracking, feeds into World Map (Pillar B — trivia knowledge as third map layer), shareable results + answer cards.
+
+**Steps:**
+
+| # | Task | Status | Notes |
+|---|------|--------|-------|
+| 1 | Prototype question formats | **Done** | 7 formats, 18 sample questions, evaluated in `docs/trivia-prototype.md` |
+| 2a | SQL generators for 6 formats | **Done** | `data/scripts/5-trivia/generate-pool.ts` — 1,035 questions across 6 formats |
+| 2b | Haiku batch for fake tour titles | **Done** | `data/scripts/5-trivia/generate-fakes.ts` — 200 real_or_fake questions via Haiku |
+| 2c | DB schema + pool generation script | **Done** | 3 tables (trivia_pool, trivia_daily, trivia_scores) + 1,235 total pool questions |
+| 2d | GeoIP2 setup on droplet | Not Started | `libnginx-mod-http-geoip2` + GeoLite2-Country.mmdb + `X-Country-Code` header. Same pattern as ScreenTrades. MaxMind account ID: 1266437. |
+| 3 | Backend API endpoints | **Done** | `backend/src/routes/trivia.ts` — daily, answer, results, score, stats, practice. Lazy daily assembly. |
+| 4 | iOS game UI + streaks + sharing | Not Started | New tab, daily challenge flow, practice mode, streak display, share cards |
 
 ### Phase 2: Travel Awareness (after Phase 1)
 
@@ -40,6 +66,7 @@ MapKit satellite globe with 2,694 destination pins, lazy viewport loading, progr
 
 - Travel identity / shareable card
 - Privacy opt-in UX
+- README.md overhaul (public-facing portfolio repo — showcase architecture, features, screenshots)
 - Screenshots + App Store resubmission
 
 ## Waiting

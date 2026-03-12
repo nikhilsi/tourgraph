@@ -35,6 +35,9 @@ TourGraph is a read-heavy, pre-cached consumer site. The user never triggers an 
 │   destinations     ~3,380 Viator destinations with timezones     │
 │   city_profiles    910 AI city profiles (personality, themes)    │
 │   six_degrees      491 pre-generated chains (from 500 pairs)    │
+│   trivia_pool      1,235 pre-generated questions (7 formats)    │
+│   trivia_daily     lazy-assembled daily sets (5 questions/day)   │
+│   trivia_scores    anonymous player scores + country from GeoIP  │
 │                                                                  │
 │   Resilience: stale data is fine. Tours don't change daily.      │
 │   If indexer fails, existing data serves until it recovers.      │
@@ -54,6 +57,12 @@ TourGraph is a read-heavy, pre-cached consumer site. The user never triggers an 
 │     /superlatives/:type    → individual superlative detail       │
 │     /chains/random         → random chain with full data         │
 │     /chains/:slug          → chain by slug                       │
+│     /trivia/daily          → today's 5 questions (no answers)    │
+│     /trivia/answer         → check answer, get reveal            │
+│     /trivia/results        → full results with answers           │
+│     /trivia/score          → submit anonymous score              │
+│     /trivia/stats          → leaderboard + country breakdown     │
+│     /trivia/practice       → random question (unlimited)         │
 │     /health, /stats        → status + counts for about page     │
 │                                                                  │
 │   Rate limiting (30 req/10s per IP on roulette)                  │
@@ -392,58 +401,30 @@ Model: Sonnet 4.6 for reasoning quality. All 491 chains pre-generated via two-st
 
 ### Project Structure
 
+See `CURRENT_STATE.md` for the full architecture tree. Key directories:
+
 ```
-src/
-├── app/
-│   ├── layout.tsx                 # Root layout (dark theme, minimal nav)
-│   ├── page.tsx                   # Homepage = Tour Roulette + Right Now teaser
-│   ├── roulette/[id]/page.tsx     # Tour detail page (shared link landing)
-│   ├── right-now/page.tsx         # Right Now Somewhere (6 golden-hour tours)
-│   ├── worlds-most/page.tsx       # Superlatives gallery (6 cards)
-│   ├── worlds-most/[slug]/page.tsx # Individual superlative detail
-│   ├── six-degrees/               # Chain gallery + detail pages
-│   └── api/
-│       ├── roulette/hand/route.ts       # GET: batch of ~20 sequenced tours
-│       ├── og/roulette/[id]/route.tsx   # OG image: roulette tour
-│       ├── og/right-now/route.tsx       # OG image: right now feature
-│       └── og/worlds-most/[slug]/route.tsx  # OG image: superlative
-│
-├── components/
-│   ├── RouletteView.tsx           # Interactive roulette (client component)
-│   ├── TourCard.tsx               # The atomic tour card (used everywhere)
-│   ├── TourCardSkeleton.tsx       # Shimmer loading placeholder
-│   ├── ShareButton.tsx            # Native share / copy link (client component)
-│   └── FeatureNav.tsx             # Cross-feature text navigation
-│
-├── lib/
-│   ├── db.ts                      # SQLite connection + all queries
-│   ├── timezone.ts                # Timezone helpers (Intl.DateTimeFormat)
-│   ├── format.ts                  # Shared formatting (price, duration)
-│   ├── types.ts                   # Shared TypeScript types
-│   ├── viator.ts                  # Viator API client (used by indexer only)
-│   ├── claude.ts                  # Claude API client (one-liners + chains)
-│   └── continents.ts              # Continent mapping from Viator lookupId
-│
-├── scripts/
-│   ├── 1-viator/                  # Step 1: Viator API indexing
-│   │   ├── indexer.ts             #   Production indexer (136K tours)
-│   │   ├── seed-destinations.ts   #   Bootstrap destination hierarchy
-│   │   └── seed-dev-data.ts       #   Seeds 43 destinations (dev only)
-│   ├── 2-oneliners/               # Step 2: AI caption generation
-│   │   ├── backfill-oneliners.ts  #   Single-tour one-liners
-│   │   └── backfill-oneliners-batch.ts  #   Batch one-liners (fast)
-│   ├── 3-city-intel/              # Step 3: City intelligence pipeline
-│   │   ├── build-city-profiles.ts #   Submit to Claude → city_readings → merge
-│   │   └── backfill-city-readings.ts  #   Load JSONL files → merge
-│   ├── 4-chains/                  # Step 4: Six Degrees chain generation
-│   │   ├── generate-chains-v2.ts  #   Two-stage pipeline (Batch API + caching)
-│   │   ├── generate-pairs.ts      #   Pair generator (scored greedy)
-│   │   ├── curate-city-pool.ts    #   City pool curation (one-time)
-│   │   └── test-chain.ts          #   Chain testing (dev)
-│   └── utils/
-│       └── check-db.ts            # Database audit
-│
-└── public/                        # Static assets
+backend/src/                           # Express API server (:3001)
+├── routes/                            # roulette, tours, right-now, superlatives, chains, trivia, health
+├── db.ts                              # Read-only + read-write (trivia) SQLite connections
+├── transform.ts                       # Row-to-API transforms (snake_case → camelCase)
+└── types.ts                           # Shared types
+
+web/src/                               # Next.js frontend (:3000) — pure API consumer
+├── app/                               # Pages (roulette, right-now, worlds-most, six-degrees)
+├── components/                        # RouletteView, TourCard, ChainTimeline, ShareButton
+└── lib/api.ts                         # Typed fetch client for all backend endpoints
+
+data/                                  # Pipeline scripts + shared library
+├── scripts/1-viator/                  # Viator API indexing
+├── scripts/2-oneliners/               # AI caption generation (Claude Haiku 4.5)
+├── scripts/3-city-intel/              # City intelligence pipeline
+├── scripts/4-chains/                  # Six Degrees chain generation
+├── scripts/5-trivia/                  # Trivia pool generation (SQL + Haiku fakes)
+├── scripts/utils/                     # Database audit tools
+├── lib/                               # Shared library (db.ts, viator.ts, claude.ts, etc.)
+├── tourgraph.db                       # Production SQLite database (479MB)
+└── tourgraph-seed.db                  # iOS seed database (123MB)
 ```
 
 ### API Route Design
