@@ -1,9 +1,28 @@
 import SwiftUI
 
+enum PinState {
+    case visited    // Physically visited (travel detection) — blue
+    case explored   // Explored in-app (tapped on map) — green
+    case unexplored // Not yet touched — orange
+}
+
 struct MapPinView: View {
     let name: String
     let tourCount: Int
-    let isExplored: Bool
+    let pinState: PinState
+
+    /// Backwards-compatible init for existing code
+    init(name: String, tourCount: Int, isExplored: Bool) {
+        self.name = name
+        self.tourCount = tourCount
+        self.pinState = isExplored ? .explored : .unexplored
+    }
+
+    init(name: String, tourCount: Int, pinState: PinState) {
+        self.name = name
+        self.tourCount = tourCount
+        self.pinState = pinState
+    }
 
     var body: some View {
         ZStack {
@@ -25,7 +44,11 @@ struct MapPinView: View {
     }
 
     private var pinColor: Color {
-        isExplored ? .green : .orange
+        switch pinState {
+        case .visited: .blue
+        case .explored: .green
+        case .unexplored: .orange
+        }
     }
 
     private var pinSize: CGFloat {

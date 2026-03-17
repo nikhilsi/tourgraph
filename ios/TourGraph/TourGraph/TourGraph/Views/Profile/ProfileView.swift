@@ -7,6 +7,8 @@ struct ProfileView: View {
     let enrichmentService: TourEnrichmentService
     let triviaState: TriviaState
     let exploredDestinations: ExploredDestinations
+    let travelService: TravelAwarenessService
+    let visitHistory: CityVisitHistory
 
     @State private var tourCount: Int = 0
     @State private var destinationCount: Int = 0
@@ -61,11 +63,50 @@ struct ProfileView: View {
                     Text("Travel IQ")
                 }
 
+                // Travel Journal
+                if !visitHistory.recentVisits.isEmpty {
+                    Section("Travel Journal") {
+                        ForEach(visitHistory.recentVisits.prefix(10)) { visit in
+                            HStack(spacing: 12) {
+                                Circle()
+                                    .fill(.blue)
+                                    .frame(width: 8, height: 8)
+
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(visit.cityName)
+                                        .font(.subheadline)
+                                        .foregroundStyle(.white)
+                                    Text(visit.arrivalDate, style: .date)
+                                        .font(.caption)
+                                        .foregroundStyle(.white.opacity(0.5))
+                                }
+
+                                Spacer()
+
+                                if visit.isReturn {
+                                    Text("Return")
+                                        .font(.caption2)
+                                        .foregroundStyle(.blue)
+                                        .padding(.horizontal, 6)
+                                        .padding(.vertical, 2)
+                                        .background(Color.blue.opacity(0.15))
+                                        .clipShape(Capsule())
+                                }
+                            }
+                        }
+                    }
+                }
+
                 // Preferences
                 Section("Preferences") {
                     Toggle("Haptic Feedback", isOn: Binding(
                         get: { settings.hapticsEnabled },
                         set: { settings.hapticsEnabled = $0 }
+                    ))
+
+                    Toggle("Nearby Alerts", isOn: Binding(
+                        get: { travelService.nearbyAlertsEnabled },
+                        set: { travelService.nearbyAlertsEnabled = $0 }
                     ))
                 }
 

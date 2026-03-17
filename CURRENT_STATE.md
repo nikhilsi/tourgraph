@@ -41,9 +41,12 @@ SwiftUI app with GRDB.swift reading from bundled SQLite database. v1.0 rejected 
 | Widgets | `TourGraphWidgets/` | Built — 3 types (Right Now, Random Tour, Lock Screen) |
 | Siri/Shortcuts | `Intents/` | Built — 3 intents, App Shortcuts provider |
 | Spotlight | `SpotlightService.swift` | Built — favorited tours searchable |
-| **Daily Trivia** | `TriviaTabView.swift`, `TriviaQuestionView.swift`, `TriviaResultsView.swift`, `TriviaState.swift`, `TriviaService.swift`, `TriviaModels.swift` | **Built (v2)** — 6th tab, daily challenge (5Q), practice mode (format filter), streaks, Travel IQ, share results. API-driven. |
+| **Daily Trivia** | `TriviaTabView.swift`, `TriviaQuestionView.swift`, `TriviaResultsView.swift`, `TriviaState.swift`, `TriviaService.swift`, `TriviaModels.swift` | **Built (v2)** — Trivia tab, daily challenge (5Q), practice mode (format filter), streaks, Travel IQ, share results. API-driven. |
+| **Travel Awareness** | `TravelAwarenessService.swift`, `CityVisit.swift`, `NearbyAlertsExplainer.swift`, `NotificationDelegate.swift` | **Built (v2)** — CLMonitor geofencing, nearest-20 rotation, city welcome notifications (6hr cooldown, 2/day cap), auto-map follow, progressive permissions (WIU → Always). |
+| **Discover Tab** | `DiscoverView.swift` | **Built (v2)** — Combines Right Now + World's Most + Six Degrees with segmented picker. |
+| **Profile Tab** | `ProfileView.swift` | **Built (v2)** — Travel IQ, streak, explored stats, travel journal, nearby alerts toggle, favorites, settings. |
 
-**v2 progress:** Phase 1a (World Map) done. Phase 1b (Daily Trivia) done — backend API deployed, 1,235 questions, GeoIP2 configured, iOS game UI complete. Tab restructure done: 5 tabs (Roulette, Discover, World Map, Trivia, Profile). Phase 2 (Travel Awareness) next. See `docs/ios-v2-plan.md`.
+**v2 progress:** Phase 1 (World Map + Daily Trivia) done. Phase 2 (Travel Awareness) done — CLMonitor geofencing, city welcome notifications, auto-map, progressive permissions, travel journal. Version 2.0. 5 tabs (Roulette, Discover, World Map, Trivia, Profile). Phase 3 (Polish + Resubmit) next. See `docs/ios-v2-plan.md`.
 **Seed DB:** 123MB bundled. 136,256 tours with lat/lng, 2,694 destinations with lat/lng, 491 chains. DB versioning for seamless updates.
 **Per-tour enrichment:** `TourEnrichmentService.swift` + server endpoints. Lazy fetch on detail tap.
 **Bundle ID:** `com.nikhilsi.TourGraph`, App ID `6759991920`.

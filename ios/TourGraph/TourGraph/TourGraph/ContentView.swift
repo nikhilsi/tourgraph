@@ -12,6 +12,8 @@ struct ContentView: View {
     let enrichmentService: TourEnrichmentService
     let exploredDestinations: ExploredDestinations
     let triviaState: TriviaState
+    let travelService: TravelAwarenessService
+    let visitHistory: CityVisitHistory
 
     @Binding var selectedTab: AppTab
     @Binding var discoverSection: DiscoverSection
@@ -30,7 +32,7 @@ struct ContentView: View {
                 }
                 .tag(AppTab.discover)
 
-            WorldMapView(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService, exploredDestinations: exploredDestinations)
+            WorldMapView(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService, exploredDestinations: exploredDestinations, travelService: travelService, visitHistory: visitHistory)
                 .tabItem {
                     Label("World Map", systemImage: "globe")
                 }
@@ -42,7 +44,7 @@ struct ContentView: View {
                 }
                 .tag(AppTab.trivia)
 
-            ProfileView(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService, triviaState: triviaState, exploredDestinations: exploredDestinations)
+            ProfileView(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService, triviaState: triviaState, exploredDestinations: exploredDestinations, travelService: travelService, visitHistory: visitHistory)
                 .tabItem {
                     Label("Profile", systemImage: "person.crop.circle")
                 }

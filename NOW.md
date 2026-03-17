@@ -52,23 +52,23 @@ MapKit satellite globe with 2,694 destination pins, lazy viewport loading, progr
 | 4 | iOS game UI + streaks + sharing | **Done** | Daily challenge, practice mode, results screen, streaks/Travel IQ. Smoke tested on device. |
 | 5 | Tab restructure (5-tab layout) | **Done** | 5 tabs: Roulette, Discover (RN+WM+SD), World Map, Trivia, Profile. Deep links/intents/widgets preserved. |
 
-### Phase 2: Travel Awareness — NEXT
+### Phase 2: Travel Awareness — DONE
 
-Make the app alive when it's closed. Two CoreLocation services: significant location changes (~500m, cell/Wi-Fi) trigger nearest-20 geofence rotation via CLMonitor. Geofence entry → local notification + auto-mark destination visited on World Map. All data local (UserDefaults), no server. Progressive permission flow (When In Use → Always). Live Activities deferred to post-approval.
+The app is alive when it's closed. Significant location changes + CLMonitor geofencing detect city arrivals, send welcome notifications, auto-light World Map pins blue. All data local. Progressive permission flow. Map auto-follows location. Tested on device with simulated locations.
 
 Full architecture in `docs/ios-v2-plan.md`.
 
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1 | `TravelAwarenessService` — CLLocationManager + CLMonitor | Not Started | Singleton, @Observable, manages permissions + geofence rotation |
-| 2 | Permission flow UI — explainer + progressive auth | Not Started | In-app screen before system prompt, WIU → Always escalation |
-| 3 | Significant location change → nearest-20 geofences | Not Started | Query destinations DB, calculate distances, register via CLMonitor |
-| 4 | Geofence entry → city welcome notification | Not Started | Local notification: city name, tour count, top one-liner |
-| 5 | CityVisit model + UserDefaults persistence | Not Started | Arrival/departure dates, destination IDs |
-| 6 | World Map — third pin color (physically visited = blue) | Not Started | Blue/green/orange pin scheme |
-| 7 | Profile tab — travel journal section | Not Started | Recent visits with dates |
-| 8 | Info.plist + entitlements + background modes | Not Started | Purpose strings, UIBackgroundModes location |
-| 9 | On-device testing + battery verification | Not Started | Geofence detection, notification timing, battery |
+| 1 | `TravelAwarenessService` — CLLocationManager + CLMonitor | **Done** | Singleton, @Observable, manages permissions + geofence rotation |
+| 2 | Permission flow UI — explainer + progressive auth | **Done** | NearbyAlertsExplainer sheet, WIU → Always escalation after first detection |
+| 3 | Significant location change → nearest-20 geofences | **Done** | Bounding-box pre-filter + distance sort, debug-mode continuous updates |
+| 4 | Geofence entry → city welcome notification | **Done** | Foreground banner support, 6hr cooldown, 2/day cap, "Welcome back" for returns |
+| 5 | CityVisit model + UserDefaults persistence | **Done** | Cached visitedDestinationIds, separate notification-sent counter |
+| 6 | World Map — third pin color (physically visited = blue) | **Done** | Blue/green/orange pin scheme, visited count in stats overlay |
+| 7 | Profile tab — travel journal + nearby alerts toggle | **Done** | Recent visits with dates, return badges, toggle in Preferences |
+| 8 | Info.plist + entitlements + background modes | **Done** | Both purpose strings, UIBackgroundModes location |
+| 9 | Map auto-follow + single location manager | **Done** | Removed redundant MapLocationManager, map re-centers on >1km movement |
 
 ### Phase 3: Polish + Resubmit
 

@@ -3,7 +3,7 @@
 ---
 **Created**: March 11, 2026
 **Last Updated**: March 17, 2026
-**Status**: In progress (Phase 1a done, Phase 1b done, Phase 2 next)
+**Status**: In progress (Phase 1a done, Phase 1b done, Phase 2 done, Phase 3 next)
 **Context**: v1.0 and v1.1 both rejected under Guideline 4.2.2 (Minimum Functionality). Same boilerplate both times. Native features bolted onto a content viewer don't change Apple's perception. v2 needs to be a fundamentally different kind of app.
 **Role**: Partner-level architect. Think critically, don't rush, challenge bad ideas, maintain quality bar.
 ---
@@ -330,7 +330,7 @@ The existing four features (Roulette, Right Now, World's Most, Six Degrees) stay
 | 4 | iOS game UI + streaks + sharing | **Done** | Daily challenge, practice mode, results screen, streaks/Travel IQ. Smoke tested on device. |
 | 5 | Tab restructure (5-tab layout) | **Done** | 5 tabs: Roulette, Discover (RN+WM+SD), World Map, Trivia, Profile. Deep links/intents/widgets preserved. |
 
-### Phase 2: Travel Awareness — NEXT
+### Phase 2: Travel Awareness — DONE
 
 **Goal:** Make the app alive when it's closed. Detect travel, welcome users to cities, auto-light the World Map.
 
@@ -393,15 +393,15 @@ Local Notification: "Welcome to Barcelona. 197 tours here..."
 
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1 | `TravelAwarenessService` — CLLocationManager + CLMonitor singleton | Not Started | @Observable, @MainActor, manages permission state + geofence rotation |
-| 2 | Permission flow UI — explainer screen + progressive authorization | Not Started | In-app screen before system prompt, When In Use → Always escalation |
-| 3 | Significant location change handler — nearest-20 geofence rotation | Not Started | Query destinations DB, calculate distances, register 20 nearest CLMonitor conditions |
-| 4 | Geofence entry handler — city welcome notification | Not Started | Local notification with city name, tour count, top tour one-liner |
-| 5 | CityVisit model + UserDefaults persistence | Not Started | Record visits, arrival/departure dates, feed into World Map |
-| 6 | World Map integration — third pin color (physically visited) | Not Started | Blue = visited, green = explored in-app, orange = unexplored |
-| 7 | Profile tab — travel journal section | Not Started | Recent city visits with dates, fed from CityVisit data |
-| 8 | Info.plist + entitlements + background modes | Not Started | Purpose strings, UIBackgroundModes location, privacy descriptions |
-| 9 | On-device testing + battery verification | Not Started | Test geofence detection, notification timing, battery impact |
+| 1 | `TravelAwarenessService` — CLLocationManager + CLMonitor singleton | **Done** | @Observable, @MainActor, manages permission state + geofence rotation |
+| 2 | Permission flow UI — explainer screen + progressive authorization | **Done** | NearbyAlertsExplainer sheet, WIU first, Always upgrade after first detection |
+| 3 | Significant location change handler — nearest-20 geofence rotation | **Done** | Bounding-box pre-filter + distance sort. Debug-mode continuous updates for simulator testing. |
+| 4 | Geofence entry handler — city welcome notification | **Done** | Foreground banner support (NotificationDelegate), 6hr cooldown, 2/day cap, "Welcome back" for returns |
+| 5 | CityVisit model + UserDefaults persistence | **Done** | Cached visitedDestinationIds, separate notification-sent counter (not visit counter) |
+| 6 | World Map integration — third pin color (physically visited) | **Done** | Blue = visited, green = explored in-app, orange = unexplored. Visited count in stats overlay. |
+| 7 | Profile tab — travel journal + nearby alerts toggle | **Done** | Recent visits with dates, return badges, toggle in Preferences section |
+| 8 | Info.plist + entitlements + background modes | **Done** | Both purpose strings, UIBackgroundModes location |
+| 9 | Map auto-follow + single location manager | **Done** | Removed redundant MapLocationManager, map re-centers on >1km movement, location button uses TravelAwarenessService |
 
 ### Phase 3: Polish + Resubmit
 

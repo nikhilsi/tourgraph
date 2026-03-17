@@ -10,7 +10,9 @@ struct TourGraphApp: App {
     @State private var exploredDestinations = ExploredDestinations()
     @State private var rouletteState: RouletteState?
     @State private var enrichmentService: TourEnrichmentService?
+    @State private var travelService: TravelAwarenessService?
     @State private var triviaState = TriviaState()
+    @State private var visitHistory = CityVisitHistory()
     @State private var loadError: String?
     @State private var selectedTab: AppTab = .roulette
     @State private var discoverSection: DiscoverSection = .rightNow
@@ -19,7 +21,7 @@ struct TourGraphApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if let database, let rouletteState, let enrichmentService {
+                if let database, let rouletteState, let enrichmentService, let travelService {
                     ContentView(
                         database: database,
                         settings: settings,
@@ -28,6 +30,8 @@ struct TourGraphApp: App {
                         enrichmentService: enrichmentService,
                         exploredDestinations: exploredDestinations,
                         triviaState: triviaState,
+                        travelService: travelService,
+                        visitHistory: visitHistory,
                         selectedTab: $selectedTab,
                         discoverSection: $discoverSection
                     )
@@ -93,9 +97,13 @@ struct TourGraphApp: App {
                     database = db
                     rouletteState = RouletteState(database: db)
                     enrichmentService = TourEnrichmentService(database: db)
+                    travelService = TravelAwarenessService(database: db, visitHistory: visitHistory, exploredDestinations: exploredDestinations)
                 } catch {
                     loadError = error.localizedDescription
                 }
+
+                // Allow notifications to show as banners even when the app is in the foreground
+                UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
             }
             .onOpenURL { url in
                 handleDeepLink(url)

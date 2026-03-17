@@ -311,6 +311,16 @@ final class DatabaseService {
         }
     }
 
+    /// Tour count for a single destination (for notifications).
+    func tourCountForDestination(_ destinationId: String) throws -> Int {
+        try db.read { db in
+            try Int.fetchOne(db, sql: """
+                SELECT COUNT(*) FROM tours
+                WHERE status = 'active' AND destination_id = ?
+                """, arguments: [destinationId]) ?? 0
+        }
+    }
+
     /// Tours for a specific destination (for map pin detail).
     func getToursForDestination(_ destinationId: String, limit: Int = 5) throws -> [Tour] {
         try db.read { db in

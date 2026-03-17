@@ -8,6 +8,8 @@ struct WorldMapView: View {
     let settings: AppSettings
     let enrichmentService: TourEnrichmentService
     let exploredDestinations: ExploredDestinations
+    let travelService: TravelAwarenessService
+    let visitHistory: CityVisitHistory
 
     @State private var destinations: [Destination] = []
     @State private var tourCounts: [String: Int] = [:]
@@ -19,8 +21,8 @@ struct WorldMapView: View {
         span: MKCoordinateSpan(latitudeDelta: 40, longitudeDelta: 40)
     ))
     @State private var totalDestinations = 0
-    @State private var locationManager = MapLocationManager()
     @State private var visibleDestinations: [Destination] = []
+    @State private var lastFollowedLocation: CLLocation?
     @State private var mapRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: 37.0, longitude: -95.0),
         span: MKCoordinateSpan(latitudeDelta: 40, longitudeDelta: 40)
@@ -31,6 +33,9 @@ struct WorldMapView: View {
     @State private var showToast = false
     @State private var isWelcomeToast = false  // Welcome stays until first tap
     @State private var pendingMilestoneCheck = false
+
+    // Nearby alerts
+    @State private var showNearbyExplainer = false
 
     // Track if welcome has been shown (persists across sessions)
     private static let welcomeShownKey = "worldMapWelcomeShown"
@@ -59,16 +64,33 @@ struct WorldMapView: View {
                     }
                 }
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
-                            cameraPosition = .region(MKCoordinateRegion(
-                                center: CLLocationCoordinate2D(latitude: 20, longitude: 0),
-                                span: MKCoordinateSpan(latitudeDelta: 140, longitudeDelta: 140)
-                            ))
+                    HStack(spacing: 12) {
+                        // Nearby alerts toggle
+                        Button {
+                            if travelService.nearbyAlertsEnabled {
+                                travelService.nearbyAlertsEnabled = false
+                            } else if travelService.permissionState == .denied {
+                                // Can't enable — permission denied, would need to go to Settings
+                            } else {
+                                showNearbyExplainer = true
+                            }
+                        } label: {
+                            Image(systemName: travelService.nearbyAlertsEnabled ? "location.fill" : "location.slash")
+                                .foregroundStyle(travelService.nearbyAlertsEnabled ? .blue : .white.opacity(0.6))
                         }
-                    } label: {
-                        Image(systemName: "globe")
-                            .foregroundStyle(.white)
+
+                        // Globe reset
+                        Button {
+                            withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                                cameraPosition = .region(MKCoordinateRegion(
+                                    center: CLLocationCoordinate2D(latitude: 20, longitude: 0),
+                                    span: MKCoordinateSpan(latitudeDelta: 140, longitudeDelta: 140)
+                                ))
+                            }
+                        } label: {
+                            Image(systemName: "globe")
+                                .foregroundStyle(.white)
+                        }
                     }
                 }
             }
@@ -81,6 +103,12 @@ struct WorldMapView: View {
                 updateVisibleDestinations()
                 showWelcomeIfNeeded()
             }
+            .onChange(of: travelService.lastLocation?.coordinate.latitude) { _, _ in
+                autoFollowIfNeeded()
+            }
+            .onChange(of: travelService.lastLocation?.coordinate.longitude) { _, _ in
+                autoFollowIfNeeded()
+            }
             .onChange(of: showingDetail) { _, isShowing in
                 if !isShowing && pendingMilestoneCheck {
                     pendingMilestoneCheck = false
@@ -90,6 +118,11 @@ struct WorldMapView: View {
                         checkMilestone()
                     }
                 }
+            }
+            .sheet(isPresented: $showNearbyExplainer) {
+                NearbyAlertsExplainer(travelService: travelService)
+                    .presentationDetents([.medium])
+                    .presentationDragIndicator(.visible)
             }
             .sheet(isPresented: $showingDetail) {
                 if let dest = selectedDestination {
@@ -114,8 +147,14 @@ struct WorldMapView: View {
     private var mapView: some View {
         Map(position: $cameraPosition) {
             ForEach(visibleDestinations) { dest in
-                let isExplored = exploredDestinations.contains(dest.id)
                 let count = tourCounts[dest.id] ?? 0
+                let state: PinState = if visitHistory.visitedDestinationIds.contains(dest.id) {
+                    .visited
+                } else if exploredDestinations.contains(dest.id) {
+                    .explored
+                } else {
+                    .unexplored
+                }
 
                 Annotation(dest.name, coordinate: CLLocationCoordinate2D(
                     latitude: dest.latitude ?? 0,
@@ -124,7 +163,7 @@ struct WorldMapView: View {
                     MapPinView(
                         name: dest.name,
                         tourCount: count,
-                        isExplored: isExplored
+                        pinState: state
                     )
                     .onTapGesture {
                         selectDestination(dest)
@@ -150,9 +189,19 @@ struct WorldMapView: View {
                     Text("\(exploredDestinations.count) of \(totalDestinations)")
                         .font(.title2.bold())
                         .foregroundStyle(.white)
-                    Text("destinations explored")
-                        .font(.caption)
-                        .foregroundStyle(.white.opacity(0.7))
+                    HStack(spacing: 12) {
+                        Text("explored")
+                            .font(.caption)
+                            .foregroundStyle(.white.opacity(0.7))
+                        if visitHistory.count > 0 {
+                            HStack(spacing: 4) {
+                                Circle().fill(.blue).frame(width: 6, height: 6)
+                                Text("\(visitHistory.count) visited")
+                                    .font(.caption)
+                                    .foregroundStyle(.blue)
+                            }
+                        }
+                    }
                 }
                 .padding(.horizontal, 16)
                 .padding(.vertical, 12)
@@ -214,13 +263,30 @@ struct WorldMapView: View {
     }
 
     private func centerOnUser() {
-        if let location = locationManager.lastLocation {
+        if let location = travelService.lastLocation {
+            lastFollowedLocation = location
             withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
                 cameraPosition = .region(MKCoordinateRegion(
                     center: location.coordinate,
                     span: MKCoordinateSpan(latitudeDelta: 8, longitudeDelta: 8)
                 ))
             }
+        }
+    }
+
+    /// Auto-follow user location when it changes significantly, but only if they
+    /// haven't manually panned the map far from their last known position.
+    private func autoFollowIfNeeded() {
+        guard let newLocation = travelService.lastLocation else { return }
+
+        if let lastFollowed = lastFollowedLocation {
+            let distanceMoved = newLocation.distance(from: lastFollowed)
+            if distanceMoved > 1000 { // Moved > 1km — re-center
+                centerOnUser()
+            }
+        } else {
+            // First location — center on it
+            centerOnUser()
         }
     }
 
@@ -293,26 +359,3 @@ struct WorldMapView: View {
     }
 }
 
-// MARK: - Location Manager
-
-@Observable
-final class MapLocationManager: NSObject, CLLocationManagerDelegate {
-    var lastLocation: CLLocation?
-    private let manager = CLLocationManager()
-
-    override init() {
-        super.init()
-        manager.delegate = self
-        manager.desiredAccuracy = kCLLocationAccuracyKilometer
-        manager.requestWhenInUseAuthorization()
-        manager.requestLocation()
-    }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        lastLocation = locations.last
-    }
-
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        // Silently fail — map stays at default position
-    }
-}

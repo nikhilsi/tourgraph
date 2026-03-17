@@ -14,7 +14,13 @@
 		</dict>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>TourGraph uses your location to show tour destinations near you on the World Map.</string>
+	<string>Your location is used to show nearby tour destinations and light up your personal World Map.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Background location lets TourGraph quietly detect when you arrive in cities with tours, so your World Map updates automatically — even when the app is closed.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageName</key>

@@ -6,6 +6,63 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [12.0.0] - 2026-03-17
+
+### iOS v2 Phase 2: Travel Awareness — The App Is Alive When It's Closed
+
+The core native feature that makes TourGraph impossible on the web. Background location detection, geofenced city welcome, auto-lighting World Map.
+
+**TravelAwarenessService (`Services/TravelAwarenessService.swift`):**
+- Significant location change monitoring (~500m, cell/Wi-Fi, zero GPS battery)
+- CLMonitor (iOS 17+) with nearest-20 geofence rotation — 1.5km radius per destination
+- Bounding-box pre-filter for distance calculations (5° box before Vincenty)
+- Background location updates only enabled with "Always" authorization
+- Debug-mode continuous location updates (`#if DEBUG`) for Xcode simulator testing
+- Progressive permission escalation: When In Use first, Always after first successful detection
+
+**City welcome notifications:**
+- Local notifications on geofence entry: "Welcome to Barcelona! 197 tours here. {one-liner}"
+- "Welcome back" for return visits (detected from CityVisit history)
+- 6-hour cooldown per city (prevents "I live here" spam)
+- Max 2 notifications per day (separate counter from visits)
+- Foreground banner support via NotificationDelegate
+
+**CityVisit model (`Models/CityVisit.swift`):**
+- Records arrival/departure dates per destination, stored in UserDefaults
+- Cached `visitedDestinationIds` set (invalidated on change, not recomputed per pin render)
+- Separate `notificationsSentToday` counter (auto-resets daily)
+
+**World Map enhancements:**
+- Three-color pin scheme: blue (physically visited), green (explored in-app), orange (unexplored)
+- Removed redundant MapLocationManager — single location source via TravelAwarenessService
+- Map auto-follows user location on >1km movement
+- Stats overlay shows visited count alongside explored count
+- Nearby Alerts toggle button in toolbar (location icon)
+- NearbyAlertsExplainer sheet: privacy-first permission flow with feature explanation
+
+**Profile tab enhancements:**
+- Travel journal section showing recent city visits with dates
+- "Return" badges on revisited cities
+- Nearby Alerts toggle in Preferences
+
+**Info.plist:**
+- Updated `NSLocationWhenInUseUsageDescription` (user-benefit focused)
+- Added `NSLocationAlwaysAndWhenInUseUsageDescription` (explains background value)
+- Added `UIBackgroundModes: location`
+
+**Version bump:** 2.0 (1) — both app and widgets targets.
+
+**Code review fixes (7 issues resolved):**
+- `allowsBackgroundLocationUpdates` only set when "Always" granted (was crashing potential)
+- Off-by-one notification cap fixed (`<` not `<=`)
+- Notification count tracks actual sends, not visits
+- "Always" upgrade triggered after first successful detection
+- Removed premature `requestWhenInUseAuthorization()` from MapLocationManager init
+- Bounding-box pre-filter for distance calculations (perf)
+- Cached `visitedDestinationIds` (perf)
+
+---
+
 ## [11.1.0] - 2026-03-17
 
 ### iOS v2 Phase 1b: Tab Restructure + Trivia UI Fixes
