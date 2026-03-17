@@ -330,22 +330,88 @@ The existing four features (Roulette, Right Now, World's Most, Six Degrees) stay
 | 4 | iOS game UI + streaks + sharing | **Done** | Daily challenge, practice mode, results screen, streaks/Travel IQ. Smoke tested on device. |
 | 5 | Tab restructure (5-tab layout) | **Done** | 5 tabs: Roulette, Discover (RN+WM+SD), World Map, Trivia, Profile. Deep links/intents/widgets preserved. |
 
-### Phase 2: Travel Awareness (after Phase 1)
+### Phase 2: Travel Awareness — NEXT
+
+**Goal:** Make the app alive when it's closed. Detect travel, welcome users to cities, auto-light the World Map.
+
+**Architecture: Two CoreLocation services working together**
+
+```
+Significant Location Changes (~500m, cell/Wi-Fi, zero GPS)
+    │
+    │ fires when user moves ~500m
+    ▼
+Query bundled DB: "what are the 20 nearest destinations?"
+    │
+    │ clear old geofences, register 20 nearest
+    ▼
+CLMonitor (iOS 17+) — 20 CircularGeographicConditions
+    │
+    │ fires when user enters a destination region
+    ▼
+Local Notification: "Welcome to Barcelona. 197 tours here..."
+    + Mark destination as "visited" on World Map
+    + Record CityVisit locally (UserDefaults)
+```
+
+**Key constraints:**
+- 20 geofence limit per app → "nearest 20 rotation" pattern (recalculate on every significant location change)
+- ~500m accuracy is perfect for city-level detection (our destinations ARE cities)
+- "Always" authorization required for background/terminated detection
+- CLMonitor is iOS 17+ (our deployment target) — use it instead of deprecated CLCircularRegion
+- CLMonitor must be singleton (duplicate name = crash)
+- Both services work when app is terminated + survive device restart
+
+**Permission flow (earn trust, don't demand it):**
+1. App works fully without any location permission
+2. World Map tab shows subtle prompt: "Enable Nearby Alerts to auto-discover destinations"
+3. User taps → in-app explainer screen (before system prompt): "TourGraph can quietly watch for cities you visit and light up your map automatically. We never store or share your location."
+4. User confirms → system "When In Use" prompt
+5. After user sees value, prompt upgrade to "Always": "Want TourGraph to detect cities even when the app is closed?"
+6. System grants provisional "Always" → iOS later shows confirmation dialog with location map
+
+**Info.plist strings:**
+- `NSLocationWhenInUseUsageDescription`: "Your location is used to show nearby tour destinations and light up your personal World Map."
+- `NSLocationAlwaysAndWhenInUseUsageDescription`: "Background location lets TourGraph quietly detect when you arrive in cities with tours, so your World Map updates automatically — even when the app is closed."
+- `UIBackgroundModes`: `location`
+
+**Data model — local only (no server, no accounts):**
+- `CityVisit`: destination ID, city name, arrival date, departure date
+- Stored in UserDefaults (small dataset — list of visited destination IDs + dates)
+- Powers World Map third pin state (blue = physically visited)
+
+**What's NOT in Phase 2:**
+- Live Activities (can't start from background without push infra — defer to post-approval)
+- Travel identity / personality (Phase 3 — needs enough visit data)
+- Location-aware trivia bonus rounds (easy add-on later)
+- Street-level "nearby tour" alerts (city-level coords only)
+
+**Graceful degradation:**
+- No permission: all features work, just no background detection. Manual "I've been here" on map.
+- "When In Use" only: detection works while app is open. No background.
+- "Always": full background detection, auto-journal, city welcome notifications.
 
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1 | CoreLocation research spike | Not Started | Significant monitoring, geofencing limits |
-| 2 | Passive travel detection | Not Started | |
-| 3 | Geofenced city welcome | Not Started | |
-| 4 | Live Activities | Not Started | |
+| 1 | `TravelAwarenessService` — CLLocationManager + CLMonitor singleton | Not Started | @Observable, @MainActor, manages permission state + geofence rotation |
+| 2 | Permission flow UI — explainer screen + progressive authorization | Not Started | In-app screen before system prompt, When In Use → Always escalation |
+| 3 | Significant location change handler — nearest-20 geofence rotation | Not Started | Query destinations DB, calculate distances, register 20 nearest CLMonitor conditions |
+| 4 | Geofence entry handler — city welcome notification | Not Started | Local notification with city name, tour count, top tour one-liner |
+| 5 | CityVisit model + UserDefaults persistence | Not Started | Record visits, arrival/departure dates, feed into World Map |
+| 6 | World Map integration — third pin color (physically visited) | Not Started | Blue = visited, green = explored in-app, orange = unexplored |
+| 7 | Profile tab — travel journal section | Not Started | Recent city visits with dates, fed from CityVisit data |
+| 8 | Info.plist + entitlements + background modes | Not Started | Purpose strings, UIBackgroundModes location, privacy descriptions |
+| 9 | On-device testing + battery verification | Not Started | Test geofence detection, notification timing, battery impact |
 
 ### Phase 3: Polish + Resubmit
 
 | # | Task | Status | Notes |
 |---|------|--------|-------|
-| 1 | Travel identity / shareable card | Not Started | |
-| 2 | Privacy opt-in UX | Not Started | |
-| 3 | Screenshots + resubmit | Not Started | |
+| 1 | Travel identity / shareable card | Not Started | Evolving archetype from visits + favorites + trivia. Haiku-generated personality. |
+| 2 | Full QA pass — all features, deep links, edge cases | Not Started | Systematic test of every tab, deep link, intent, widget |
+| 3 | App Store screenshots + preview video | Not Started | Show Map, Trivia, Discover, city welcome notification |
+| 4 | App Review notes — detailed feature walkthrough | Not Started | Explain each native integration, how to test background location |
+| 5 | Resubmit to App Store | Not Started | v2.0, new screenshots, updated description ||
 
 ---
 
@@ -359,6 +425,14 @@ The existing four features (Roulette, Right Now, World's Most, Six Degrees) stay
 | Mar 11 | Start with Phase 1a (map) | Zero research blockers, high visual impact |
 | Mar 11 | Phase 1 might be enough to pass Apple | Map + trivia fundamentally changes what the app is |
 | Mar 17 | Restructure to 5 tabs (from 6) | 6 tabs triggers iOS "More" overflow. Combine Right Now + World's Most + Six Degrees into "Discover" tab. Add "Profile" tab. Designed for Phase 2: Travel Awareness is background infra feeding World Map, not a new tab. |
+| Mar 17 | Defer Live Activities to post-approval | Can't start from background without APNs push infra. Risk/complexity not worth it — travel detection + geofencing + auto-map is already a strong native story. |
+| Mar 17 | Visit history stored locally only (UserDefaults) | No server storage of location data. Aligns with "no accounts, no personal data" pillar. Avoids privacy liability Apple would scrutinize. Future: iCloud sync via CloudKit if needed. |
+| Mar 17 | Three-color pin scheme for World Map | Blue = physically visited (from travel detection), green = explored in-app, orange = unexplored. Travel detection auto-lights pins without user action. |
+| Mar 17 | CLMonitor over deprecated CLCircularRegion | iOS 17+ async/await API, persists conditions across launches, matches our deployment target. Must use singleton pattern (duplicate name crashes). |
+| Mar 17 | "Nearest 20 rotation" for geofencing | 20-region iOS limit vs 2,694 destinations. Significant location changes trigger recalculation of 20 nearest, clearing and re-registering geofences. |
+| Mar 17 | Progressive permission flow | Never request location at launch. Earn trust → in-app explainer → When In Use → demonstrate value → Always. Apple expects this pattern. |
+| Mar 17 | Geofence radius: 1.5km | Large enough to fire reliably (car, transit, foot), small enough to feel like "arriving." No per-city variation — data is city-level. |
+| Mar 17 | Notification throttling: 6hr cooldown, 2/day cap | Once per city per trip (6hr away = new trip). Max 2 notifications/day. Never on first launch. User toggle in Profile. "Welcome back" for return visits. Handles "I live here" problem. |
 
 ---
 
@@ -376,12 +450,14 @@ The existing four features (Roulette, Right Now, World's Most, Six Degrees) stay
 
 ## Open Questions
 
-- [ ] Implementation phasing — what's the minimum set that breaks the rejection cycle?
+- [x] Implementation phasing — Phase 1 (Map + Trivia) done, Phase 2 (Travel Awareness) next, Phase 3 (Polish + Resubmit)
+- [x] Privacy UX for location opt-in — Progressive flow: explainer → When In Use → Always. Decided Mar 17.
+- [x] How to handle graceful degradation if user denies location permission — All features work without it. Decided Mar 17.
 - [ ] Haiku cost model for trivia generation + identity descriptions
-- [ ] Privacy UX for location opt-in (needs to feel trustworthy, not creepy)
-- [ ] How to handle graceful degradation if user denies location permission
 - [ ] Additional data source integration depth (weather, festivals, currency)
 - [ ] Should we request an App Review phone call before resubmitting?
+- [x] Geofence radius — 1.5km (1500m). City-level detection, reliable for CLMonitor, matches our data granularity. Decided Mar 17.
+- [x] Notification throttling — once per city per trip (6-hour cooldown), max 2/day, never on first launch, user toggle. "Welcome back" for return visits. Decided Mar 17.
 
 ---
 

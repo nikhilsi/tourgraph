@@ -52,19 +52,33 @@ MapKit satellite globe with 2,694 destination pins, lazy viewport loading, progr
 | 4 | iOS game UI + streaks + sharing | **Done** | Daily challenge, practice mode, results screen, streaks/Travel IQ. Smoke tested on device. |
 | 5 | Tab restructure (5-tab layout) | **Done** | 5 tabs: Roulette, Discover (RN+WM+SD), World Map, Trivia, Profile. Deep links/intents/widgets preserved. |
 
-### Phase 2: Travel Awareness (after Phase 1)
+### Phase 2: Travel Awareness — NEXT
 
-- CoreLocation significant monitoring research
-- Passive travel detection + auto-journal
-- Geofenced city welcome notifications
-- Live Activities during travel
+Make the app alive when it's closed. Two CoreLocation services: significant location changes (~500m, cell/Wi-Fi) trigger nearest-20 geofence rotation via CLMonitor. Geofence entry → local notification + auto-mark destination visited on World Map. All data local (UserDefaults), no server. Progressive permission flow (When In Use → Always). Live Activities deferred to post-approval.
+
+Full architecture in `docs/ios-v2-plan.md`.
+
+| # | Task | Status | Notes |
+|---|------|--------|-------|
+| 1 | `TravelAwarenessService` — CLLocationManager + CLMonitor | Not Started | Singleton, @Observable, manages permissions + geofence rotation |
+| 2 | Permission flow UI — explainer + progressive auth | Not Started | In-app screen before system prompt, WIU → Always escalation |
+| 3 | Significant location change → nearest-20 geofences | Not Started | Query destinations DB, calculate distances, register via CLMonitor |
+| 4 | Geofence entry → city welcome notification | Not Started | Local notification: city name, tour count, top one-liner |
+| 5 | CityVisit model + UserDefaults persistence | Not Started | Arrival/departure dates, destination IDs |
+| 6 | World Map — third pin color (physically visited = blue) | Not Started | Blue/green/orange pin scheme |
+| 7 | Profile tab — travel journal section | Not Started | Recent visits with dates |
+| 8 | Info.plist + entitlements + background modes | Not Started | Purpose strings, UIBackgroundModes location |
+| 9 | On-device testing + battery verification | Not Started | Geofence detection, notification timing, battery |
 
 ### Phase 3: Polish + Resubmit
 
-- Travel identity / shareable card
-- Privacy opt-in UX
-- README.md overhaul (public-facing portfolio repo — showcase architecture, features, screenshots)
-- Screenshots + App Store resubmission
+| # | Task | Status | Notes |
+|---|------|--------|-------|
+| 1 | Travel identity / shareable card | Not Started | Evolving archetype from visits + favorites + trivia |
+| 2 | Full QA pass | Not Started | Every tab, deep link, intent, widget |
+| 3 | App Store screenshots + preview video | Not Started | Show Map, Trivia, Discover, city welcome |
+| 4 | App Review notes — feature walkthrough | Not Started | Explain native integrations, how to test background location |
+| 5 | Resubmit to App Store | Not Started | v2.0 |
 
 ## Waiting
 
