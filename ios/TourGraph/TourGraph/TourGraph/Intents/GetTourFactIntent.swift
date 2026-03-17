@@ -7,7 +7,8 @@ struct ShowChainIntent: AppIntent {
 
     func perform() async throws -> some IntentResult {
         await MainActor.run {
-            DeepLinkManager.shared.pendingTab = .sixDegrees
+            DeepLinkManager.shared.pendingTab = .discover
+            DeepLinkManager.shared.pendingDiscoverSection = .sixDegrees
         }
         return .result()
     }

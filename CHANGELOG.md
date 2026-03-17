@@ -6,6 +6,27 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [11.1.0] - 2026-03-17
+
+### iOS v2 Phase 1b: Tab Restructure + Trivia UI Fixes
+
+**Tab architecture (6→5 tabs):**
+- 6 tabs triggered iOS "More" overflow. Restructured to 5 permanent tabs: Roulette, Discover, World Map, Trivia, Profile.
+- Discover tab combines Right Now + World's Most + Six Degrees with horizontal section picker.
+- Profile tab consolidates settings, favorites, Travel IQ, streak history.
+- All deep links (`tourgraph://tab/rightnow`, etc.) preserved — handler translates to Discover tab + section.
+- Siri intents and widget URLs unchanged — translation happens in the handler layer.
+- Architecture designed for Phase 2: Travel Awareness feeds into World Map tab (no new tab needed).
+
+**Trivia UI fixes:**
+- Fixed double back button on results screen (duplicate NavigationStack removed).
+- Removed duplicate ShareSheet (uses existing `Views/Shared/ShareSheet.swift`).
+- Fixed OptionState scope (`private` → `fileprivate`).
+- Added Equatable conformance to TriviaAnswerResult and TriviaReveal.
+- Fixed MainActor isolation for TriviaService init.
+
+---
+
 ## [11.0.0] - 2026-03-12
 
 ### iOS v2 Phase 1b: Daily Trivia — Backend + Data Pipeline

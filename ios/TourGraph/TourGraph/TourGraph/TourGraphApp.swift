@@ -10,8 +10,10 @@ struct TourGraphApp: App {
     @State private var exploredDestinations = ExploredDestinations()
     @State private var rouletteState: RouletteState?
     @State private var enrichmentService: TourEnrichmentService?
+    @State private var triviaState = TriviaState()
     @State private var loadError: String?
     @State private var selectedTab: AppTab = .roulette
+    @State private var discoverSection: DiscoverSection = .rightNow
     @State private var deepLinkedTourId: Int?
 
     var body: some Scene {
@@ -25,7 +27,9 @@ struct TourGraphApp: App {
                         rouletteState: rouletteState,
                         enrichmentService: enrichmentService,
                         exploredDestinations: exploredDestinations,
-                        selectedTab: $selectedTab
+                        triviaState: triviaState,
+                        selectedTab: $selectedTab,
+                        discoverSection: $discoverSection
                     )
                     .fullScreenCover(isPresented: Binding(
                         get: { deepLinkedTourId != nil },
@@ -116,16 +120,25 @@ struct TourGraphApp: App {
         case "tab":
             switch url.pathComponents.last {
             case "roulette": selectedTab = .roulette
-            case "rightnow": selectedTab = .rightNow
-            case "worldsmost": selectedTab = .worldsMost
-            case "sixdegrees": selectedTab = .sixDegrees
+            case "rightnow":
+                selectedTab = .discover
+                discoverSection = .rightNow
+            case "worldsmost":
+                selectedTab = .discover
+                discoverSection = .worldsMost
+            case "sixdegrees":
+                selectedTab = .discover
+                discoverSection = .sixDegrees
             case "worldmap": selectedTab = .worldMap
+            case "trivia": selectedTab = .trivia
+            case "profile": selectedTab = .profile
+            // Legacy tab names still work
+            case "discover": selectedTab = .discover
             default: break
             }
         case "tour":
             if let idString = url.pathComponents.last, let tourId = Int(idString) {
                 if deepLinkedTourId != nil {
-                    // Dismiss current modal, then present the new one after a brief delay
                     deepLinkedTourId = nil
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                         deepLinkedTourId = tourId
@@ -145,6 +158,11 @@ struct TourGraphApp: App {
         if let tab = manager.pendingTab {
             selectedTab = tab
             manager.pendingTab = nil
+        }
+        if let section = manager.pendingDiscoverSection {
+            selectedTab = .discover
+            discoverSection = section
+            manager.pendingDiscoverSection = nil
         }
         if let tourId = manager.pendingTourId {
             deepLinkedTourId = tourId

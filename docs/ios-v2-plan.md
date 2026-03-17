@@ -2,8 +2,8 @@
 
 ---
 **Created**: March 11, 2026
-**Last Updated**: March 11, 2026
-**Status**: In progress (Phase 1a done, Phase 1b active)
+**Last Updated**: March 17, 2026
+**Status**: In progress (Phase 1a done, Phase 1b done, Phase 2 next)
 **Context**: v1.0 and v1.1 both rejected under Guideline 4.2.2 (Minimum Functionality). Same boilerplate both times. Native features bolted onto a content viewer don't change Apple's perception. v2 needs to be a fundamentally different kind of app.
 **Role**: Partner-level architect. Think critically, don't rush, challenge bad ideas, maintain quality bar.
 ---
@@ -315,7 +315,7 @@ The existing four features (Roulette, Right Now, World's Most, Six Degrees) stay
 
 **New files:** `WorldMapView.swift`, `MapPinView.swift`, `DestinationDetailSheet.swift`, `MilestoneToast.swift`, `ExploredDestinations.swift`, `MapLocationManager`
 
-### Phase 1b: Daily Trivia — ACTIVE
+### Phase 1b: Daily Trivia — DONE
 
 **Design doc**: `docs/trivia-prototype.md`
 
@@ -325,9 +325,10 @@ The existing four features (Roulette, Right Now, World's Most, Six Degrees) stay
 | 2a | SQL generators for 6 formats | **Done** | `data/scripts/5-trivia/generate-pool.ts` — 1,035 questions (200/format, 35 numbers) |
 | 2b | Haiku batch for fake tour titles | **Done** | `data/scripts/5-trivia/generate-fakes.ts` — 200 real_or_fake questions via Haiku |
 | 2c | DB schema + pool generation | **Done** | 3 tables + 1,235 total questions in trivia_pool. Lazy daily assembly on first API request. |
-| 2d | GeoIP2 setup on droplet | Not Started | nginx module + MaxMind GeoLite2 + X-Country-Code header |
-| 3 | Backend API endpoints | **Done** | `backend/src/routes/trivia.ts` — 6 endpoints, all tested locally |
-| 4 | iOS game UI + streaks + sharing | Not Started | Daily challenge, practice mode, streak badges, share cards |
+| 2d | GeoIP2 setup on droplet | **Done** | `libnginx-mod-http-geoip2` + GeoLite2-Country.mmdb + `X-Country-Code` header |
+| 3 | Backend API endpoints | **Done** | `backend/src/routes/trivia.ts` — 6 endpoints, deployed to production |
+| 4 | iOS game UI + streaks + sharing | **Done** | Daily challenge, practice mode, results screen, streaks/Travel IQ. Smoke tested on device. |
+| 5 | Tab restructure (5-tab layout) | **Done** | 5 tabs: Roulette, Discover (RN+WM+SD), World Map, Trivia, Profile. Deep links/intents/widgets preserved. |
 
 ### Phase 2: Travel Awareness (after Phase 1)
 
@@ -357,6 +358,7 @@ The existing four features (Roulette, Right Now, World's Most, Six Degrees) stay
 | Mar 11 | Skip collaborative/SharePlay | Needs 2 people, Apple tests solo |
 | Mar 11 | Start with Phase 1a (map) | Zero research blockers, high visual impact |
 | Mar 11 | Phase 1 might be enough to pass Apple | Map + trivia fundamentally changes what the app is |
+| Mar 17 | Restructure to 5 tabs (from 6) | 6 tabs triggers iOS "More" overflow. Combine Right Now + World's Most + Six Degrees into "Discover" tab. Add "Profile" tab. Designed for Phase 2: Travel Awareness is background infra feeding World Map, not a new tab. |
 
 ---
 

@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum AppTab: String {
-    case roulette, rightNow, worldsMost, sixDegrees, worldMap
+    case roulette, discover, worldMap, trivia, profile
 }
 
 struct ContentView: View {
@@ -11,8 +11,10 @@ struct ContentView: View {
     let rouletteState: RouletteState
     let enrichmentService: TourEnrichmentService
     let exploredDestinations: ExploredDestinations
+    let triviaState: TriviaState
 
     @Binding var selectedTab: AppTab
+    @Binding var discoverSection: DiscoverSection
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -22,29 +24,29 @@ struct ContentView: View {
                 }
                 .tag(AppTab.roulette)
 
-            RightNowTab(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService)
+            DiscoverView(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService, section: $discoverSection)
                 .tabItem {
-                    Label("Right Now", systemImage: "sun.horizon")
+                    Label("Discover", systemImage: "binoculars")
                 }
-                .tag(AppTab.rightNow)
-
-            WorldsMostTab(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService)
-                .tabItem {
-                    Label("World's Most", systemImage: "trophy")
-                }
-                .tag(AppTab.worldsMost)
-
-            SixDegreesTab(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService)
-                .tabItem {
-                    Label("Six Degrees", systemImage: "point.3.connected.trianglepath.dotted")
-                }
-                .tag(AppTab.sixDegrees)
+                .tag(AppTab.discover)
 
             WorldMapView(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService, exploredDestinations: exploredDestinations)
                 .tabItem {
                     Label("World Map", systemImage: "globe")
                 }
                 .tag(AppTab.worldMap)
+
+            TriviaTabView(triviaState: triviaState, settings: settings)
+                .tabItem {
+                    Label("Trivia", systemImage: "questionmark.bubble")
+                }
+                .tag(AppTab.trivia)
+
+            ProfileView(database: database, favorites: favorites, settings: settings, enrichmentService: enrichmentService, triviaState: triviaState, exploredDestinations: exploredDestinations)
+                .tabItem {
+                    Label("Profile", systemImage: "person.crop.circle")
+                }
+                .tag(AppTab.profile)
         }
         .tint(.white)
     }

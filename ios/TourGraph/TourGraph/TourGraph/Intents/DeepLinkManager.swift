@@ -9,5 +9,6 @@ final class DeepLinkManager {
     private init() {}
 
     var pendingTab: AppTab?
+    var pendingDiscoverSection: DiscoverSection?
     var pendingTourId: Int?
 }

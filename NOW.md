@@ -1,11 +1,7 @@
 # NOW — What To Work On Next
 
-**Last Updated**: March 11, 2026
+**Last Updated**: March 17, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
-
-## Just Completed: Backend Extraction (v10.0.0)
-
-Extracted all DB access into standalone Express API backend (`backend/`). Web frontend (`web/`) is now a pure API consumer via `src/lib/api.ts`. Data pipeline scripts moved to `data/`. Two PM2 processes in production. See CHANGELOG.md [10.0.0] for full details.
 
 ## Active: iOS v2 — Breaking the 4.2.2 Rejection Cycle
 
@@ -23,7 +19,7 @@ v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum 
 
 MapKit satellite globe with 2,694 destination pins, lazy viewport loading, progressive detail by zoom level, explored tracking (green/orange), milestone toasts, location centering, stats overlay.
 
-### Phase 1b: Daily Trivia — ACTIVE
+### Phase 1b: Daily Trivia — DONE
 
 **Design doc**: `docs/trivia-prototype.md`
 
@@ -51,9 +47,10 @@ MapKit satellite globe with 2,694 destination pins, lazy viewport loading, progr
 | 2a | SQL generators for 6 formats | **Done** | `data/scripts/5-trivia/generate-pool.ts` — 1,035 questions across 6 formats |
 | 2b | Haiku batch for fake tour titles | **Done** | `data/scripts/5-trivia/generate-fakes.ts` — 200 real_or_fake questions via Haiku |
 | 2c | DB schema + pool generation script | **Done** | 3 tables (trivia_pool, trivia_daily, trivia_scores) + 1,235 total pool questions |
-| 2d | GeoIP2 setup on droplet | Not Started | `libnginx-mod-http-geoip2` + GeoLite2-Country.mmdb + `X-Country-Code` header. Same pattern as ScreenTrades. MaxMind account ID: 1266437. |
+| 2d | GeoIP2 setup on droplet | **Done** | `libnginx-mod-http-geoip2` + GeoLite2-Country.mmdb + `X-Country-Code` header. Same pattern as ScreenTrades. |
 | 3 | Backend API endpoints | **Done** | `backend/src/routes/trivia.ts` — daily, answer, results, score, stats, practice. Lazy daily assembly. |
-| 4 | iOS game UI + streaks + sharing | Not Started | New tab, daily challenge flow, practice mode, streak display, share cards |
+| 4 | iOS game UI + streaks + sharing | **Done** | Daily challenge, practice mode, results screen, streaks/Travel IQ. Smoke tested on device. |
+| 5 | Tab restructure (5-tab layout) | **Done** | 5 tabs: Roulette, Discover (RN+WM+SD), World Map, Trivia, Profile. Deep links/intents/widgets preserved. |
 
 ### Phase 2: Travel Awareness (after Phase 1)
 

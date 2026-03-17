@@ -7,7 +7,8 @@ struct ShowRightNowIntent: AppIntent {
 
     func perform() async throws -> some IntentResult {
         await MainActor.run {
-            DeepLinkManager.shared.pendingTab = .rightNow
+            DeepLinkManager.shared.pendingTab = .discover
+            DeepLinkManager.shared.pendingDiscoverSection = .rightNow
         }
         return .result()
     }
