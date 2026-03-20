@@ -27,6 +27,9 @@
 - **docs/reference/thesis_validation.md** — Why the original thesis was killed (context only)
 - **archive/docs/api_landscape.md** — Viator API details, test results, response formats
 
+
+- Before beginning implementation, check with your project lead for any cross-session context or coordination notes that may affect this work.
+
 ---
 
 ## Project Context
