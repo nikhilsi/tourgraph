@@ -6,6 +6,14 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## Infrastructure hardening - 2026-04-24
+
+Production environment file on the deployment host no longer carries live API credentials. Build-time ingestion keys (Viator, Anthropic) moved to local-only storage; the server-side `.env.production.local` now holds placeholder values for those entries. Runtime code paths (Express API backend, Next.js SSR) read exclusively from the pre-built SQLite database, so removing the keys from the server has no impact on the live site. Re-running the data ingestion scripts in `data/scripts/` will require restoring the keys locally for that single session.
+
+No application code changes.
+
+---
+
 ## [12.0.0] - 2026-03-17
 
 ### iOS v2 Phase 2: Travel Awareness — The App Is Alive When It's Closed

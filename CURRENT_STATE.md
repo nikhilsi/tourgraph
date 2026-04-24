@@ -1,13 +1,17 @@
 # Current State
 
 ---
-**Last Updated**: March 17, 2026
+**Last Updated**: April 24, 2026
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
 ## Live at https://tourgraph.ai
 
 All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. Standalone Express API backend + Next.js frontend. 136,256 tours across 2,712 destinations, all verified 200 over HTTPS. Data fully indexed with 100% AI one-liner coverage.
+
+### Infrastructure review: 2026-04-24
+
+Production environment file on the deployment host was audited and hardened. Build-time API keys (Viator, Anthropic) are no longer present at runtime on the server; those credentials remain in local-only storage for occasional ingestion-script runs. The live Express API and Next.js front-end read only from the pre-built SQLite database, so this change has zero effect on what visitors see. Re-running the data ingestion scripts will require restoring the keys locally for that session. Runtime behavior and API contracts are unchanged.
 
 ### Web Features (All Deployed)
 
