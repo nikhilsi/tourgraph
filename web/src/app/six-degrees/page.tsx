@@ -11,7 +11,7 @@ import SurpriseMeButton from "./SurpriseMeButton";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Six Degrees of Anywhere — TourGraph",
+  title: "Six Degrees of Anywhere",
   description:
     "Every city is connected. Find the surprising thematic links between tours around the world.",
   openGraph: {

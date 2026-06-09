@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Logo from "@/components/Logo";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — TourGraph",
+  title: "Privacy Policy",
   description: "TourGraph does not collect, store, or transmit any personal data.",
 };
 

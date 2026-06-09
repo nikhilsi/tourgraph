@@ -21,7 +21,7 @@ import FeatureNav from "@/components/FeatureNav";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Right Now Somewhere... — TourGraph",
+  title: "Right Now Somewhere...",
   description:
     "See what's happening in the world's most beautiful places right now.",
   openGraph: {

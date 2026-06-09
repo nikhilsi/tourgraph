@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Logo from "@/components/Logo";
 
 export const metadata: Metadata = {
-  title: "Support — TourGraph",
+  title: "Support",
   description: "Get help with TourGraph — the world's most surprising tours.",
 };
 

@@ -5,7 +5,7 @@ import FeatureNav from "@/components/FeatureNav";
 import Logo from "@/components/Logo";
 
 export const metadata: Metadata = {
-  title: "About — TourGraph",
+  title: "About",
   description:
     "TourGraph is a zero-friction site that surfaces the world's most surprising tours. No signup, no tracking, just delight.",
   openGraph: {

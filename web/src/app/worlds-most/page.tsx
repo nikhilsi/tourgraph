@@ -11,7 +11,7 @@ import FeatureNav from "@/components/FeatureNav";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "The World's Most ___ — TourGraph",
+  title: "The World's Most ___",
   description:
     "The most expensive, cheapest, longest, shortest, and most surprising tours on Earth.",
   openGraph: {

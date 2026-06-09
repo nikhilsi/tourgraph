@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const ogImage = `/api/og/roulette/${id}`;
 
   return {
-    title: `${tour.title} — TourGraph`,
+    title: `${tour.title}`,
     description,
     openGraph: {
       title: tour.title,
