@@ -74,10 +74,12 @@ async function compare(path, { init, mode = "exact", normalize = (x) => x } = {}
   if (a.status !== b.status) problems.push(`status ${a.status} vs ${b.status}`);
   if (a.cache !== b.cache) problems.push(`cache-control "${a.cache}" vs "${b.cache}"`);
   if (a.cors !== b.cors) problems.push(`cors "${a.cors}" vs "${b.cors}"`);
-  const left = mode === "shape" ? shape(normalize(a.json)) : normalize(a.json);
-  const right = mode === "shape" ? shape(normalize(b.json)) : normalize(b.json);
+  const view = (j) =>
+    mode === "shape" ? shape(normalize(j)) : mode === "keys" ? Object.keys(normalize(j) ?? {}).sort() : normalize(j);
+  const left = view(a.json);
+  const right = view(b.json);
   if (!isDeepStrictEqual(left, right)) {
-    problems.push(`${mode === "shape" ? "shape" : "body"} differs: ${JSON.stringify(left)?.slice(0, 160)} vs ${JSON.stringify(right)?.slice(0, 160)}`);
+    problems.push(`${mode === "exact" ? "body" : mode} differs: ${JSON.stringify(left)?.slice(0, 160)} vs ${JSON.stringify(right)?.slice(0, 160)}`);
   }
   report(`${init?.method ?? "GET"} ${path}`, problems.length === 0, problems.join("; "));
 }
@@ -136,7 +138,8 @@ console.log("roulette");
 await compare("/api/v1/roulette/hand?exclude=1,2,3", { mode: "shape", normalize: firstCard });
 
 console.log("trivia (read-only)");
-await compare("/api/v1/trivia/practice", { mode: "shape" });
+// Option shapes vary by question (inventory O7), so only top-level fields.
+await compare("/api/v1/trivia/practice", { mode: "keys" });
 await compare("/api/v1/trivia/answer", post({ questionId, selectedIndex: 0 }));
 await compare("/api/v1/trivia/answer", post({ questionId: 99999999, selectedIndex: 0 }));
 await compare("/api/v1/trivia/answer", post({}));

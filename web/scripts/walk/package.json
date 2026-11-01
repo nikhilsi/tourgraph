@@ -1,0 +1,9 @@
+{
+  "name": "tourgraph-walk",
+  "private": true,
+  "type": "module",
+  "description": "Browser walk of tourgraph.ai in headless Chrome (playwright-core), desktop and phone.",
+  "devDependencies": {
+    "playwright-core": "1.64.1"
+  }
+}
