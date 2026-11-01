@@ -3,16 +3,17 @@
 **Last Updated**: November 1, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 
-## Active: finish the move to Cloudflare (task #399)
+## Active: wrap-up after the move to Cloudflare
 
-The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflare (`docs/cloudflare-architecture.md`, `docs/deploy-runbook.md`). What is left:
+The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflare (`docs/cloudflare-architecture.md`, `docs/deploy-runbook.md`). Task #399 is closed. Google Analytics was turned on the same day (Nikhil's call), and a DMARC record (`p=none`) was added. What is left:
 
 | # | Task | Who | Notes |
 |---|------|-----|-------|
 | 1 | Look at tourgraph.ai on your phone and laptop | Nikhil | Everything should look as before, only faster |
-| 2 | Decide on Google Analytics | Nikhil | GA4 is in the layout but blocked by the site's own CSP since June 2026, and the privacy page promises "No analytics, no tracking". Recommendation: remove the GA tag and use Cloudflare's Worker metrics (requests per day, no script, no cookies). The other way: allow GA in the CSP and rewrite the privacy page |
-| 3 | Delete the droplet and the DigitalOcean project "TourGraph" | Nikhil | Rollback to it only works until Nov 27 anyway (its certificate is not renewing) |
-| 4 | Remove `backend/` and `deployment/` from the repo | Claude | After step 3; git history keeps them |
+| 2 | Delete the droplet and the DigitalOcean project "TourGraph" | Nikhil | Rollback to it only works until Nov 27 anyway (its certificate is not renewing) |
+| 3 | Remove `backend/` and `deployment/` from the repo | Claude | After step 2; git history keeps them |
+| 4 | Create DKIM keys for tourgraph.ai in Microsoft 365 | Nikhil | security.microsoft.com/authentication?viewid=DKIM, row tourgraph.ai, "Create DKIM keys". Microsoft generates the two CNAME targets (tenant `omspark`); they can't be guessed |
+| 5 | Add the two DKIM CNAMEs, then Nikhil turns signing on | Claude, then Nikhil | After step 4. Then move DMARC from `p=none` to `p=quarantine` |
 
 ## Paused: iOS v2 — Breaking the 4.2.2 Rejection Cycle
 

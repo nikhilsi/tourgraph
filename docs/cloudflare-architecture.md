@@ -88,7 +88,7 @@ D1-specific changes inside the routes:
 - **No image proxy:** `next.config.ts` has no `remotePatterns`, so `/_next/image` refuses remote URLs (review R13).
 - **Zone settings** (tourgraph.ai): Always Use HTTPS on, Email Obfuscation off (it rewrites pages and injects a script), Rocket Loader off, minimum TLS 1.2 (as nginx). Set Nov 1, 2026; before: off, on, off, 1.0.
 - **Secrets never reach the bundle.** `web/.env` and `web/.env.local` hold the data pipeline's Viator and Anthropic keys (`data/lib/env.ts` reads them there), and OpenNext bakes any `.env` file into the Worker. `web/scripts/deploy.mjs` therefore builds in a copy of `web/` made of files git tracks or would track, then scans every file of the OpenNext output and of the dry-run bundle wrangler uploads for the key names, the key values and any `.env` file, and refuses to deploy if anything shows up (review R10).
-- **Google Analytics:** unchanged. `layout.tsx` loads GA4, and the CSP blocks it, as it has since June 2026. The privacy page says "No analytics, no tracking", so turning GA on is Nikhil's call (see section 10).
+- **Google Analytics:** on since Nov 1, 2026 (Nikhil's call, section 10). `layout.tsx` loads GA4 (`G-LMSTJHBDPZ`). The CSP in `next.config.ts` and `public/_headers` allows Google's hosts for Analytics without Ads features, and nothing more. The privacy page describes it. From June to Nov 1, 2026 the CSP blocked the tag, so GA has no data from before Nov 1. `scripts/walk/walk.mjs` fails if the tag cannot load or send page views. It answers those page views itself, so walks don't count as visits.
 
 ## 6. Behaviors replaced
 
@@ -143,7 +143,7 @@ Rollback to the droplet works until its certificate expires on Nov 27, 2026 08:2
 | 7 | Data | D1 with the API's five tables; all columns kept, since the unused ones are small. |
 | 8 | Images | Unoptimized, no Cloudflare Images. |
 | 9 | Rate limit | Rate Limiting binding with the old numbers. |
-| 10 | Google Analytics | Not turned on. Nikhil asked for the GA fix before the inventory found that the privacy page promises no analytics and the product's rules say no cookies. Left blocked as it was; Nikhil decides. |
+| 10 | Google Analytics | Kept and turned on (Nikhil, Nov 1, 2026, after the move). The CSP now allows GA, and the privacy page, the about page and the pillar text no longer promise "no analytics" or "no cookies". |
 | 11 | Trivia rows on the droplet | Not copied. |
 | 12 | Independent review | 14 findings: 12 fixed, R2 accepted as a dated rollback limit, R9 documented. |
 

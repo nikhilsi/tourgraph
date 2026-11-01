@@ -18,7 +18,7 @@ Every feature, design decision, and code commit must pass all four of these test
 
 ### 1. Zero Friction
 
-No signup. No login. No personal data. No cookies beyond essential function. A stranger lands on the site (or opens the app) and is delighted within 5 seconds. There is nothing to configure, no profile to create, no preferences to set. The site gives before it asks.
+No signup. No login. No personal data asked for. (Nov 1, 2026: the website runs Google Analytics to count visits, by Nikhil's decision; the privacy page says so. This line used to say "no cookies beyond essential function".) A stranger lands on the site (or opens the app) and is delighted within 5 seconds. There is nothing to configure, no profile to create, no preferences to set. The site gives before it asks.
 
 **Test:** Can my mom use this without asking me a single question?
 

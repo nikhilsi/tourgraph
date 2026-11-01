@@ -6,6 +6,19 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [13.1.0] - 2026-11-01
+
+### Google Analytics on, privacy page rewritten
+
+- Nikhil decided to keep Google Analytics. The CSP (`next.config.ts`, `public/_headers`) now allows Google's hosts for Analytics without Ads features. The GA4 tag added in June 2026 had been blocked by that CSP ever since, so GA has no data from before Nov 1.
+- The privacy page says what is collected: Google Analytics cookies and visit data, how to opt out, no accounts, no ads. It used to promise "no analytics, no tracking, no cookies". The site description, the about page and the story page no longer say "no tracking" or "no cookies".
+- Pillar 1 in `CLAUDE.md` and `docs/product_brief.md` records the decision.
+- `scripts/walk/walk.mjs` now fails if GA can't load or send page views. It answers those page views itself, so walks don't show up in GA.
+- `npm run preview` works again: wrangler presented local requests as `http://tourgraph.ai` (from the custom domain routes), and the http-to-https redirect looped. `deploy.mjs --local` now passes `--infer-origin-from-routes=false`.
+- DNS: a DMARC record for tourgraph.ai (`p=none`). DKIM waits on keys from Microsoft 365 (NOW.md).
+
+---
+
 ## [13.0.0] - 2026-11-01
 
 ### Moved from the DigitalOcean droplet to Cloudflare

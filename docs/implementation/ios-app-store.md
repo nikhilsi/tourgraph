@@ -99,6 +99,8 @@ TourGraph does not collect any data from users. All preferences (favorites, sett
 
 The following can be hosted at `https://tourgraph.ai/privacy` and linked from App Store Connect.
 
+Note (Nov 1, 2026): the live page at `https://tourgraph.ai/privacy` now also covers the website's Google Analytics. Adjust it before linking it from App Store Connect.
+
 ---
 
 **TourGraph Privacy Policy**

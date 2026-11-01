@@ -52,7 +52,7 @@ Why we pivoted: `docs/reference/thesis_validation.md`
 Every feature, design decision, and code commit must pass all four tests. If it doesn't, it's out of scope.
 
 ### 1. Zero Friction
-No signup, no login, no personal data, no cookies beyond essential function. A stranger lands on the site and is delighted within 5 seconds.
+No signup, no login, nothing to fill in, no personal data asked for. A stranger lands on the site and is delighted within 5 seconds. The website runs Google Analytics to count visits (Nikhil's decision, Nov 1, 2026; the privacy page says so). Nothing else tracks visitors.
 
 **Test:** Can my mom use this without asking me a single question?
 
