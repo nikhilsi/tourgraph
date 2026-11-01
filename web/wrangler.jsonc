@@ -5,8 +5,14 @@
   "main": "worker.ts",
   "compatibility_date": "2026-10-20",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
-  // Before the switchover the Worker is reached at its workers.dev address only.
-  // The custom domains are added at the switchover (docs/deploy-runbook.md).
+  // Live on tourgraph.ai and www.tourgraph.ai since the Nov 1, 2026 switchover
+  // (www redirects to the apex in src/server/route.ts). ROLLBACK: remove these
+  // routes first, or the next deploy takes the hostnames back
+  // (docs/cloudflare-architecture.md section 9).
+  "routes": [
+    { "pattern": "tourgraph.ai", "custom_domain": true },
+    { "pattern": "www.tourgraph.ai", "custom_domain": true }
+  ],
   "workers_dev": true,
   "preview_urls": false,
   "observability": { "enabled": true },
