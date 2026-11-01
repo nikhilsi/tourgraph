@@ -132,7 +132,12 @@ console.log(
 
 // 5. Deploy, dry-run, or serve locally.
 if (local) {
-  run(`npx wrangler dev --local --port 8787 --persist-to ${join(webDir, ".wrangler/state")}`, stage);
+  // Without --infer-origin-from-routes=false, wrangler shows the Worker
+  // http://tourgraph.ai (from the routes) and its http-to-https redirect loops.
+  run(
+    `npx wrangler dev --local --port 8787 --infer-origin-from-routes=false --persist-to ${join(webDir, ".wrangler/state")}`,
+    stage
+  );
 } else if (!dryRun) {
   run("npx wrangler deploy", stage, cf);
   console.log("\nDeployed. Next: node scripts/verify.mjs [--base <url>]");
