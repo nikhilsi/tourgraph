@@ -1,13 +1,21 @@
-// API client — all data fetched from the backend API server.
-// In production: localhost:3001 (same droplet). In dev: same.
-
-const API_URL = process.env.API_URL || "http://localhost:3001";
+// API client for server components. The API runs in the same Cloudflare
+// Worker (src/server/api), so pages call it in-process: same routes, same
+// JSON as the public /api/v1 endpoints, no network hop.
+import { connection } from "next/server";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { api } from "@/server/api/app";
+import type { Env } from "@/server/api/env";
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_URL}/api/v1${path}`, {
-    ...init,
-    cache: "no-store", // Server Components: always fresh
-  });
+  // Render per request, never at build time: the old fetch(..., { cache:
+  // "no-store" }) did this implicitly, and the content is random.
+  await connection();
+  const { env, ctx } = await getCloudflareContext({ async: true });
+  const res = await api.fetch(
+    new Request(`https://tourgraph.internal/api/v1${path}`, init),
+    env as unknown as Env,
+    ctx
+  );
   if (!res.ok) {
     throw new Error(`API ${path}: ${res.status} ${res.statusText}`);
   }
@@ -105,7 +113,7 @@ export async function getRightNowTours(
   timezones: string[],
   count: number
 ): Promise<(RouletteTour & { timezone: string })[]> {
-  const params = `?timezones=${timezones.join(",")}&count=${count}`;
+  const params = `?timezones=${encodeURIComponent(timezones.join(","))}&count=${count}`;
   const data = await apiFetch<{ tours: (RouletteTour & { timezone: string })[] }>(
     `/right-now/tours${params}`
   );

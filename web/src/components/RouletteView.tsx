@@ -32,7 +32,7 @@ export default function RouletteView() {
           signal: controller.signal,
         });
         if (!res.ok) throw new Error("Failed to fetch tours");
-        const data = await res.json();
+        const data = (await res.json()) as { hand?: RouletteTour[] };
 
         // M5: Validate response shape before accessing
         if (!data.hand || !Array.isArray(data.hand) || data.hand.length === 0) {

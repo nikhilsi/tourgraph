@@ -6,8 +6,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "test": "vitest run",
+    "preview": "node scripts/deploy.mjs --local",
+    "deploy": "node scripts/deploy.mjs",
+    "verify": "node scripts/verify.mjs",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv"
   },
   "repository": {
     "type": "git",
@@ -17,19 +21,24 @@
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",
     "dotenv": "^17.3.1",
-    "next": "^16.1.6",
+    "hono": "4.13.14",
+    "next": "16.4.3",
     "postcss": "^8.5.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-"@types/node": "^25.3.3",
+    "@cloudflare/vitest-plugin": "1.4.11",
+    "@opennextjs/cloudflare": "1.20.15",
+    "@types/node": "^25.3.3",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "eslint": "^9.39.3",
-    "eslint-config-next": "^16.1.6",
+    "eslint-config-next": "16.4.3",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "5.0.5",
+    "wrangler": "4.156.0"
   }
 }

@@ -1,0 +1,12 @@
+{
+  // Test-only config: the API and routing without the OpenNext build.
+  // No rate limiter binding, so roulette tests are not throttled; the limiter
+  // path is tested with a stand-in.
+  "name": "tourgraph-test",
+  "main": "entry.ts",
+  "compatibility_date": "2026-10-20",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    { "binding": "DB", "database_name": "tourgraph-test", "database_id": "00000000-0000-0000-0000-000000000000" }
+  ]
+}

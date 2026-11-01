@@ -37,6 +37,10 @@
   ],
   "exclude": [
     "node_modules",
+    "test",
+    "vitest.config.mts",
+    ".open-next",
+    ".wrangler",
     "archive",
     "src/scripts",
     "src/lib/city-intel.ts"

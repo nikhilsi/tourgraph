@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const nextConfig: NextConfig = {
   images: {
+    // On Cloudflare, Next's image optimizer would need Cloudflare Images
+    // (billed per transformation). The tour photos are already 720x480 JPEGs
+    // on TripAdvisor's CDN, so they are served as they are.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -37,6 +42,9 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
+            // Unchanged in the Cloudflare move. It blocks the Google Analytics
+            // tag in layout.tsx, which keeps the privacy page's "no analytics"
+            // promise true. Whether GA stays is the owner's call.
             value: [
               "default-src 'self'",
               "img-src 'self' https://*.tripadvisor.com https://*.cloudfront.net https://*.viator.com data:",
@@ -53,3 +61,6 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// Lets `next dev` reach the Cloudflare bindings (local D1) through wrangler.
+initOpenNextCloudflareForDev();

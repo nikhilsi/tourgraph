@@ -1,0 +1,29 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tourgraph",
+  // Our own entry (routing, redirects, API); it hands pages to the OpenNext build.
+  "main": "worker.ts",
+  "compatibility_date": "2026-10-20",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  // Before the switchover the Worker is reached at its workers.dev address only.
+  // The custom domains are added at the switchover (docs/deploy-runbook.md).
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "tourgraph-db",
+      "database_id": "8c7d8475-0130-4e69-8f5d-679d2f4305e4",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // /roulette/hand: 30 requests per 10 s per IP, as the Express version had.
+  "ratelimits": [
+    { "name": "ROULETTE_LIMITER", "namespace_id": "3001", "simple": { "limit": 30, "period": 10 } }
+  ]
+}

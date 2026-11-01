@@ -57,3 +57,8 @@ android/**/assets/*.db
 
 # OS
 Thumbs.db
+
+# Cloudflare (web/ Worker build and local state)
+web/.open-next/
+web/.wrangler/
+web/.dev.vars
