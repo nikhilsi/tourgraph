@@ -14,7 +14,7 @@ The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflar
 | 3 | Remove `backend/` and `deployment/` from the repo | Claude | **Done** Nov 1; git history keeps them |
 | 4 | Create DKIM keys for tourgraph.ai in Microsoft 365 | Claude | **Done** Nov 1 (in Nikhil's logged-in Defender session) |
 | 5 | Add the two DKIM CNAMEs, move DMARC to `p=quarantine` | Claude | **Done** Nov 1 |
-| 6 | Turn DKIM signing on for tourgraph.ai | Claude or Nikhil | Microsoft refuses until it publishes its half of the keys ("a few minutes to as many as 4 days"). Then flip the toggle at security.microsoft.com/authentication?viewid=DKIM; the status should read Valid |
+| 6 | Turn DKIM signing on for tourgraph.ai | Claude | **Done** Nov 1 (status Valid, about an hour after the keys were created) |
 
 ## Paused: iOS v2 — Breaking the 4.2.2 Rejection Cycle
 

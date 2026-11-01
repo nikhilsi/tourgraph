@@ -15,8 +15,8 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ### Mail records
 
-- DKIM keys created for tourgraph.ai in Microsoft 365, and the two `selector1`/`selector2` `_domainkey` CNAMEs added (DNS only). Signing turns on once Microsoft publishes its side of the keys (NOW.md).
-- DMARC moved from `p=none` to `p=quarantine`: nothing sends mail as tourgraph.ai except Microsoft 365, which passes on SPF today and on DKIM once signing is on.
+- DKIM for tourgraph.ai: keys created in Microsoft 365, the two `selector1`/`selector2` `_domainkey` CNAMEs added (DNS only), and signing turned on once Microsoft had published its side (status Valid).
+- DMARC moved from `p=none` to `p=quarantine`: nothing sends mail as tourgraph.ai except Microsoft 365, which passes on both SPF and DKIM.
 
 ---
 
