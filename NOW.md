@@ -5,7 +5,7 @@
 
 ## Active: wrap-up after the move to Cloudflare
 
-The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflare (`docs/cloudflare-architecture.md`, `docs/deploy-runbook.md`). Task #399 is closed. Google Analytics was turned on the same day (Nikhil's call). The droplet is deleted. Mail records got DKIM CNAMEs and DMARC `p=quarantine`, as did centereye.ai, recurate.ai, screentrades.ai and screentrades.com (all in the Om Spark Microsoft 365 tenant; details in the domain-registry card). What is left:
+The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflare (`docs/cloudflare-architecture.md`, `docs/deploy-runbook.md`). Task #399 is closed. Google Analytics was turned on the same day (Nikhil's call). The droplet is deleted. Mail: DKIM signing is on (Defender status Valid) and DMARC is `p=quarantine` for tourgraph.ai, and the same for centereye.ai, recurate.ai, screentrades.ai and screentrades.com (all in the Om Spark Microsoft 365 tenant; details in the domain-registry card). Nothing about mail is open. Only step 1 is left:
 
 | # | Task | Who | Notes |
 |---|------|-----|-------|
@@ -93,11 +93,11 @@ Full architecture in `docs/ios-v2-plan.md`.
 | 4 | App Review notes — feature walkthrough | Not Started | Explain native integrations, how to test background location |
 | 5 | Resubmit to App Store | Not Started | v2.0 |
 
-## Waiting
+## Closed
 
-### F-Droid Review
+### F-Droid
 
-Submitted [MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392). AutoUpdateMode configured.
+[MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392) was closed by an F-Droid reviewer on June 5, 2026 with the labels waiting-for-upstream and dependency-block (they were waiting on changes from us; the comments need a GitLab login to read). Found Nov 1, 2026. Not resubmitted; whether to try again is Nikhil's call.
 
 ## Future
 

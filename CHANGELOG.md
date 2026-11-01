@@ -18,6 +18,10 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 - DKIM for tourgraph.ai: keys created in Microsoft 365, the two `selector1`/`selector2` `_domainkey` CNAMEs added (DNS only), and signing turned on once Microsoft had published its side (status Valid).
 - DMARC moved from `p=none` to `p=quarantine`: nothing sends mail as tourgraph.ai except Microsoft 365, which passes on both SPF and DKIM.
 
+### Docs
+
+- F-Droid is marked closed, not pending: an F-Droid reviewer closed MR #34392 on June 5, 2026 (waiting-for-upstream, dependency-block), and it was never resubmitted.
+
 ---
 
 ## [13.1.0] - 2026-11-01

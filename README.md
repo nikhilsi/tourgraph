@@ -17,7 +17,7 @@ Every travel app wants you to plan, compare, and book. TourGraph wants you to sm
 ### Android
 
 - **Direct APK**: Download from [GitHub Releases](https://github.com/nikhilsi/tourgraph/releases) — install directly on any Android 8.0+ device
-- **F-Droid**: Submitted ([MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392)), pending review
+- **F-Droid**: not listed. The submission ([MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392)) was closed by an F-Droid reviewer on June 5, 2026 and not resubmitted
 
 ### Web
 

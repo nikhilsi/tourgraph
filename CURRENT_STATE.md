@@ -76,7 +76,7 @@ TourGraph's data is built in layers, each adding original intelligence. See `doc
 
 ### Android App (Built — Release Pipeline Complete)
 
-Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity. Built, compiled (zero errors/warnings), tested on Pixel 7 emulator. Signed release APK, CI/CD on tag push, F-Droid MR submitted.
+Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity. Built, compiled (zero errors/warnings), tested on Pixel 7 emulator. Signed release APK, CI/CD on tag push. The F-Droid submission (MR #34392) was closed by an F-Droid reviewer on June 5, 2026 (waiting-for-upstream, dependency-block) and not resubmitted; the app is not in any store.
 
 | Feature | File(s) | Status |
 |---------|---------|--------|

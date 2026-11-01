@@ -268,7 +268,7 @@ SQLite compresses well in both APK and AAB formats.
 | Channel | Status | Auto-update |
 |---------|--------|-------------|
 | GitHub Releases | Active — push `v*` tag | Yes (GitHub Actions) |
-| F-Droid | [MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392) pending | Yes (detects new tags) |
+| F-Droid | [MR #34392](https://gitlab.com/fdroid/fdroiddata/-/merge_requests/34392) closed by an F-Droid reviewer on June 5, 2026 (labels: waiting-for-upstream, dependency-block), not resubmitted | Yes (detects new tags) |
 | Google Play | Not yet submitted | Manual AAB upload |
 
 ### Release Process
