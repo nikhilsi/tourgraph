@@ -128,7 +128,7 @@ Switchover, as done on Nov 1, 2026 at 02:38 ET (Nikhil's written OK in chat):
 5. Checked: both Cloudflare nameservers answer with Cloudflare addresses; the six mail records are unchanged; `verify.mjs` and the browser walk pass on tourgraph.ai.
 6. Turned off `workers_dev`, so tourgraph.ai is the only address.
 
-Rollback to the droplet works until its certificate expires on Nov 27, 2026 08:23 GMT (it is not renewing, and cannot once the Worker answers the ACME path; review R2), or until the droplet is deleted, whichever comes first: remove the routes from `wrangler.jsonc`, detach both custom domains, and recreate the two A records at once. After that: `npx wrangler rollback` for code, D1 Time Travel for data.
+Rollback to the droplet ended when Nikhil deleted it on Nov 1, 2026 (it would have ended on Nov 27 anyway, when its certificate expired; review R2). Rollback now: `npx wrangler rollback` for code, D1 Time Travel for data.
 
 ## 10. Decisions
 

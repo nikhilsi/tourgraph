@@ -1,7 +1,7 @@
 # Deploy runbook: TourGraph on Cloudflare
 
 **Last Updated:** November 1, 2026
-**Replaces:** `deployment/` (nginx, PM2, droplet scripts). Design: [cloudflare-architecture.md](cloudflare-architecture.md).
+**Replaces:** the droplet's nginx, PM2 and deploy scripts (`deployment/`, removed with the droplet on Nov 1, 2026; git history keeps them). Design: [cloudflare-architecture.md](cloudflare-architecture.md).
 
 ---
 
@@ -106,5 +106,4 @@ Both hostnames became custom domains of the Worker. Cloudflare would not replace
 
 1. **Bad code:** `npx wrangler rollback` (or pick an earlier version under Workers & Pages > tourgraph > Deployments).
 2. **Bad data:** `npx wrangler d1 time-travel restore tourgraph-db --timestamp=<before the problem>`.
-3. **Back to the droplet** (only while it exists, and only until its certificate expires on Nov 27, 2026 08:23 GMT): remove the `routes` from `wrangler.jsonc`, detach both custom domains (Workers & Pages > tourgraph > Settings > Domains), then recreate `A tourgraph.ai 143.244.186.165` and `A www.tourgraph.ai 143.244.186.165`, DNS only, TTL auto. A JSON and BIND export of the zone from before the switchover were taken; the records are listed in section "What lives where".
-4. If the custom domains ever have to be detached, remove their routes from `wrangler.jsonc` first, or the next deploy takes the hostnames back.
+3. If the custom domains ever have to be detached, remove their routes from `wrangler.jsonc` first, or the next deploy takes the hostnames back.

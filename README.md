@@ -90,7 +90,6 @@ tourgraph/
 ├── android/TourGraph/           # Kotlin + Jetpack Compose Android app
 ├── data/                        # Data pipeline + SQLite databases (Git LFS, source of truth)
 ├── docs/                        # Architecture, design, data docs
-├── backend/, deployment/        # Droplet-era Express API and nginx/PM2 setup (retired Nov 2026)
 ├── distribution/                # App Store, F-Droid, fastlane metadata
 ├── .github/workflows/           # CI/CD (Android release on tag push)
 └── archive/                     # Phase 0 work (preserved for reference)

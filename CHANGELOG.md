@@ -6,6 +6,15 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [13.1.1] - 2026-11-01
+
+### Droplet deleted, its code removed
+
+- Nikhil deleted the DigitalOcean droplet (143.244.186.165) and its project. Rollback to the droplet is gone; rollback is now `wrangler rollback` and D1 Time Travel.
+- Removed `backend/` (the Express API, ported to `web/src/server/api` in 13.0.0) and `deployment/` (nginx, PM2 and the droplet scripts). Git history keeps both.
+
+---
+
 ## [13.1.0] - 2026-11-01
 
 ### Google Analytics on, privacy page rewritten

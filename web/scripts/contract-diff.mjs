@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Compare the API on two deployments: the old droplet and the new Worker.
+// Compare the API on two deployments (it checked the Worker against the droplet
+// before the move).
 //   node scripts/contract-diff.mjs --old https://tourgraph.ai --new http://localhost:8787
 //
 // Deterministic endpoints must return the same status, the same JSON and the

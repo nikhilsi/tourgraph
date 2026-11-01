@@ -1,5 +1,5 @@
-// TourGraph API on Cloudflare: the Express routes from backend/, ported to
-// Hono on D1. Same paths, same JSON. Served by worker.ts for /api/v1/* and
+// TourGraph API on Cloudflare: the droplet's Express routes (backend/, removed
+// Nov 2026, in git history), ported to Hono on D1. Same paths, same JSON. Served by worker.ts for /api/v1/* and
 // /api/ios/*, and called in-process by the website (src/lib/api.ts).
 import { Hono, type Context } from "hono";
 import { cors } from "hono/cors";

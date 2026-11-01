@@ -10,8 +10,8 @@ The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflar
 | # | Task | Who | Notes |
 |---|------|-----|-------|
 | 1 | Look at tourgraph.ai on your phone and laptop | Nikhil | Everything should look as before, only faster |
-| 2 | Delete the droplet and the DigitalOcean project "TourGraph" | Nikhil | Rollback to it only works until Nov 27 anyway (its certificate is not renewing) |
-| 3 | Remove `backend/` and `deployment/` from the repo | Claude | After step 2; git history keeps them |
+| 2 | Delete the droplet and the DigitalOcean project "TourGraph" | Nikhil | **Done** Nov 1 |
+| 3 | Remove `backend/` and `deployment/` from the repo | Claude | **Done** Nov 1; git history keeps them |
 | 4 | Create DKIM keys for tourgraph.ai in Microsoft 365 | Nikhil | security.microsoft.com/authentication?viewid=DKIM, row tourgraph.ai, "Create DKIM keys". Microsoft generates the two CNAME targets (tenant `omspark`); they can't be guessed |
 | 5 | Add the two DKIM CNAMEs, then Nikhil turns signing on | Claude, then Nikhil | After step 4. Then move DMARC from `p=none` to `p=quarantine` |
 

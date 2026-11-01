@@ -403,6 +403,8 @@ Model: Sonnet 4.6 for reasoning quality. All 491 chains pre-generated via two-st
 
 See `CURRENT_STATE.md` for the full architecture tree. Key directories:
 
+> The tree below is from March 2026. `backend/` was ported to `web/src/server/api` (Hono on D1) and removed on Nov 1, 2026.
+
 ```
 backend/src/                           # Express API server (:3001)
 ├── routes/                            # roulette, tours, right-now, superlatives, chains, trivia, health

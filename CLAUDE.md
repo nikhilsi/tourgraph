@@ -185,7 +185,7 @@ Timeframes are estimates, not commitments. This is supposed to be fun.
   data/scripts/ ── pipeline (Viator, Claude), Mac only ── writes here
 ```
 
-Design and decisions: `docs/cloudflare-architecture.md`. How to deploy, check and roll back: `docs/deploy-runbook.md`. `backend/` and `deployment/` are the droplet-era Express API and nginx/PM2 setup, kept until the droplet is deleted.
+Design and decisions: `docs/cloudflare-architecture.md`. How to deploy, check and roll back: `docs/deploy-runbook.md`. The droplet-era Express API (`backend/`) and nginx/PM2 setup (`deployment/`) were removed when the droplet was deleted on Nov 1, 2026; git history keeps them.
 
 User flow: Visit site -> See delightful content -> Share link -> Friend visits -> Repeat
 

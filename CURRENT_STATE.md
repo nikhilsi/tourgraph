@@ -124,11 +124,11 @@ Internet → Cloudflare (TLS, Always Use HTTPS)
 - **Deploy:** `cd web && node scripts/deploy.mjs` (tests, clean build, secret scan, wrangler deploy), then `node scripts/verify.mjs`. Token: `~/.secrets/cloudflare/tourgraph.env`. Never the Mac's default wrangler login.
 - **Logs:** `npx wrangler tail tourgraph`, or Workers Logs in the dashboard. Traffic per day: Workers & Pages > tourgraph > Metrics.
 - **Rollback:** `npx wrangler rollback`; D1 Time Travel for data. Full runbook: `docs/deploy-runbook.md`.
-- **The droplet** (143.244.186.165) no longer receives traffic. It stays up until Nikhil deletes it; `backend/` and `deployment/` go with it.
+- **The droplet** (143.244.186.165) and its DigitalOcean project were deleted on Nov 1, 2026. Its Express API (`backend/`) and nginx/PM2 setup (`deployment/`) were removed from the repo the same day; git history keeps them.
 
 ### Architecture
 
-`web/` is the whole Cloudflare Worker; `data/` holds the pipeline and the source database. (`backend/`, the droplet-era Express API, is kept until the droplet is deleted.)
+`web/` is the whole Cloudflare Worker; `data/` holds the pipeline and the source database.
 
 ```
 web/                                  # Cloudflare Worker: Next.js site + API
