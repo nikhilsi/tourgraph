@@ -13,7 +13,8 @@
     { "pattern": "tourgraph.ai", "custom_domain": true },
     { "pattern": "www.tourgraph.ai", "custom_domain": true }
   ],
-  "workers_dev": true,
+  // tourgraph.ai is the only address (workers.dev turned off after the switchover).
+  "workers_dev": false,
   "preview_urls": false,
   "observability": { "enabled": true },
   "assets": {
