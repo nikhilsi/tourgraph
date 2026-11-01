@@ -4,7 +4,8 @@ import Logo from "@/components/Logo";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "TourGraph does not collect, store, or transmit any personal data.",
+  description:
+    "TourGraph has no accounts and asks you for nothing. The website uses Google Analytics to count visits.",
 };
 
 export default function PrivacyPage() {
@@ -15,24 +16,56 @@ export default function PrivacyPage() {
       <div className="w-full max-w-lg space-y-8">
         <div>
           <h1 className="text-3xl font-bold mb-2">Privacy Policy</h1>
-          <p className="text-sm text-text-dim">Effective: March 1, 2026</p>
+          <p className="text-sm text-text-dim">Effective: November 1, 2026</p>
         </div>
 
         <section>
           <h2 className="text-lg font-semibold mb-2">Overview</h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            TourGraph is built with your privacy as a priority. The app and
-            website do not collect, store, or transmit any personal data. Your
-            browsing experience is entirely private.
+            TourGraph has no accounts and never asks for your name, email, or
+            anything else about you. The website uses Google Analytics to count
+            visits. That is the only data collected.
           </p>
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold mb-2">Data Collection</h2>
+          <h2 className="text-lg font-semibold mb-2">Website Analytics</h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            TourGraph collects no personal information. No analytics, no
-            tracking, no advertising identifiers, no cookies, and no third-party
-            SDKs.
+            The website uses Google Analytics to see how many people visit and
+            which pages they enjoy. Google Analytics sets cookies in your
+            browser and records the pages you view, your approximate location
+            (city or country), your device and browser type, and the site that
+            sent you here. It does not tell us who you are, and we never send
+            it your name, email, or anything that identifies you. Google
+            handles this data under the{" "}
+            <a
+              href="https://policies.google.com/privacy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:underline"
+            >
+              Google Privacy Policy
+            </a>
+            . To opt out, block cookies for this site in your browser, use a
+            content blocker, or install the{" "}
+            <a
+              href="https://tools.google.com/dlpage/gaoptout"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:underline"
+            >
+              Google Analytics opt-out add-on
+            </a>
+            . TourGraph works the same either way.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-lg font-semibold mb-2">What We Don&apos;t Do</h2>
+          <p className="text-sm text-text-muted leading-relaxed">
+            No signup, no login, no ads, and no advertising identifiers. We
+            don&apos;t sell or share data, and we don&apos;t build profiles of
+            visitors.
           </p>
         </section>
 
@@ -61,8 +94,9 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-lg font-semibold mb-2">Children&apos;s Privacy</h2>
           <p className="text-sm text-text-muted leading-relaxed">
-            TourGraph does not collect data from anyone, including children
-            under 13.
+            TourGraph does not knowingly collect personal information from
+            anyone, including children under 13. The visit counts described
+            above do not identify anyone.
           </p>
         </section>
 

@@ -7,7 +7,7 @@ import Logo from "@/components/Logo";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "TourGraph is a zero-friction site that surfaces the world's most surprising tours. No signup, no tracking, just delight.",
+    "TourGraph is a zero-friction site that surfaces the world's most surprising tours. No signup, no login, just delight.",
   openGraph: {
     title: "About TourGraph",
     description:
@@ -30,7 +30,7 @@ export default async function AboutPage() {
             TourGraph is a place you visit because it makes you smile. We
             surface the world&apos;s most surprising, weird, and wonderful tour
             experiences — from fairy hunting in Iceland to midnight street food
-            crawls in Bangkok. No signup. No tracking. No algorithms deciding
+            crawls in Bangkok. No signup. No login. No algorithms deciding
             what you see. Just serendipity.
           </p>
         </section>
@@ -67,8 +67,8 @@ export default async function AboutPage() {
             <div>
               <h3 className="font-semibold">Zero Friction</h3>
               <p className="text-sm text-text-muted">
-                No signup, no login, no cookies beyond essentials. A stranger
-                lands here and is delighted within 5 seconds.
+                No signup, no login, nothing to fill in. A stranger lands here
+                and is delighted within 5 seconds.
               </p>
             </div>
             <div>

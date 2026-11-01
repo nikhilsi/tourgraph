@@ -94,7 +94,7 @@ export default function StoryPage() {
           </h2>
           <p className="text-sm text-text-muted leading-relaxed">
             TourGraph became a consumer site built around four ideas: zero
-            friction (no signup, no tracking), instant smiles (warm and
+            friction (no signup, no login), instant smiles (warm and
             witty, never cynical), effortlessly shareable (every tour has a
             beautiful link preview), and rabbit hole energy (that
             &ldquo;one more click&rdquo; quality through genuine curiosity).

@@ -7,8 +7,8 @@
 //   node web/scripts/walk/walk.mjs --base https://tourgraph.ai [--shots <dir>] [--sizes desktop,phone]
 //
 // Uses the installed Google Chrome. Read-only: it never opens trivia.
-// The Google Analytics tag is blocked by the site's own CSP (unchanged since
-// June 2026); those console messages are counted separately, not as failures.
+// Google Analytics must load and send page views without CSP errors. The walk
+// answers those page views itself (HTTP 204), so its visits never reach GA.
 
 import { chromium } from "playwright-core";
 import fs from "node:fs";
@@ -32,7 +32,8 @@ const VIEWPORTS = {
   desktop: { width: 1280, height: 860 },
   phone: { width: 390, height: 844, isMobile: true, hasTouch: true, deviceScaleFactor: 3 },
 };
-const isGa = (text) => /googletagmanager|google-analytics/i.test(text);
+// GA page views (GA4 sends them to <region>.google-analytics.com/g/collect).
+const isGaHit = (url) => /^https:\/\/[^/]*(google-analytics\.com|analytics\.google\.com)\/g\/collect/.test(url);
 
 let failures = 0;
 let passes = 0;
@@ -77,15 +78,18 @@ for (const size of SIZES) {
   const context = await browser.newContext({ viewport: VIEWPORTS[size], ...VIEWPORTS[size] });
   const page = await context.newPage();
   const problems = [];
-  let gaBlocked = 0;
+  let gaHits = 0;
+  // A request only reaches this handler after the page's CSP allowed it.
+  await context.route(isGaHit, (route) => {
+    gaHits++;
+    return route.fulfill({ status: 204 });
+  });
   page.on("console", (msg) => {
-    if (msg.type() !== "error") return;
-    if (isGa(msg.text())) gaBlocked++;
-    else problems.push(`console: ${msg.text().slice(0, 200)}`);
+    if (msg.type() === "error") problems.push(`console: ${msg.text().slice(0, 200)}`);
   });
   page.on("pageerror", (err) => problems.push(`page error: ${String(err).slice(0, 200)}`));
   page.on("response", (res) => {
-    if (res.status() >= 400 && !isGa(res.url()) && !res.url().includes("/roulette/999999999")) {
+    if (res.status() >= 400 && !res.url().includes("/roulette/999999999")) {
       problems.push(`HTTP ${res.status()} ${res.url().slice(0, 150)}`);
     }
   });
@@ -146,7 +150,7 @@ for (const size of SIZES) {
   const missing = await page.goto(`${BASE}/roulette/999999999`, { waitUntil: "networkidle" });
   check("unknown tour: 404 page renders", missing.status() === 404 && (await page.content()).includes("</html>"));
 
-  console.log(`  (Google Analytics blocked by CSP, as before the move: ${gaBlocked} console messages)`);
+  check(`Google Analytics loads and sends page views (${gaHits} answered by the walk)`, gaHits > 0);
   await context.close();
 }
 

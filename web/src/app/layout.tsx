@@ -4,7 +4,7 @@ import "./globals.css";
 
 const SOCIAL_CARD = "https://tourgraph.ai/social-card.png";
 const SITE_DESCRIPTION =
-  "TourGraph: discover the world's most surprising tours. 136K+ experiences across 3,380 destinations with witty AI-generated captions. No signup, no tracking. By Nikhil Singhal.";
+  "TourGraph: discover the world's most surprising tours. 136K+ experiences across 3,380 destinations with witty AI-generated captions. No signup, no login. By Nikhil Singhal.";
 
 export const metadata: Metadata = {
   title: {

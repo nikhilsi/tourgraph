@@ -30,16 +30,18 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            // Unchanged in the Cloudflare move. It blocks the Google Analytics
-            // tag in layout.tsx, which keeps the privacy page's "no analytics"
-            // promise true. Whether GA stays is the owner's call.
+            // Google Analytics hosts are Google's list for GA without Ads
+            // features (developers.google.com/tag-platform/security/guides/csp).
+            // GA was blocked here from June to Nov 2026; Nikhil chose to keep
+            // it on Nov 1, 2026, and the privacy page says so.
+            // Keep in step with public/_headers.
             value: [
               "default-src 'self'",
-              "img-src 'self' https://*.tripadvisor.com https://*.cloudfront.net https://*.viator.com data:",
+              "img-src 'self' https://*.tripadvisor.com https://*.cloudfront.net https://*.viator.com https://www.googletagmanager.com https://*.google-analytics.com data:",
               "style-src 'self' 'unsafe-inline'",
-              "script-src 'self' 'unsafe-inline'",
+              "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com",
               "font-src 'self'",
-              "connect-src 'self'",
+              "connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com",
             ].join("; "),
           },
         ],
