@@ -13,9 +13,7 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   metadataBase: new URL("https://tourgraph.ai"),
-  alternates: {
-    canonical: "https://tourgraph.ai",
-  },
+  // No site-wide canonical: one set here pointed every page at the homepage.
   authors: [{ name: "Nikhil Singhal", url: "https://nikhilsinghal.com" }],
   keywords: [
     "tour discovery",

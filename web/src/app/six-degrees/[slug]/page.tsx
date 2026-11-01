@@ -90,7 +90,7 @@ export default async function ChainDetailPage({ params }: Props) {
             Show Me Another
           </Link>
           <ShareButton
-            tourId={chain.id}
+            url={`/six-degrees/${chain.slug}`}
             title={`${chain.city_from} to ${chain.city_to}`}
             oneLiner={chain.summary}
           />
