@@ -3,13 +3,13 @@
 **Last Updated**: November 1, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 
-## Active: wrap-up after the move to Cloudflare
+## Done: wrap-up after the move to Cloudflare (Nov 1, 2026)
 
-The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflare (`docs/cloudflare-architecture.md`, `docs/deploy-runbook.md`). Task #399 is closed. Google Analytics was turned on the same day (Nikhil's call). The droplet is deleted. Mail: DKIM signing is on (Defender status Valid) and DMARC is `p=quarantine` for tourgraph.ai, and the same for centereye.ai, recurate.ai, screentrades.ai and screentrades.com (all in the Om Spark Microsoft 365 tenant; details in the domain-registry card). Nothing about mail is open. Only step 1 is left:
+The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflare (`docs/cloudflare-architecture.md`, `docs/deploy-runbook.md`). Task #399 is closed. Google Analytics was turned on the same day (Nikhil's call). The droplet is deleted. Mail: DKIM signing is on (Defender status Valid) and DMARC is `p=quarantine` for tourgraph.ai, and the same for centereye.ai, recurate.ai, screentrades.ai and screentrades.com (all in the Om Spark Microsoft 365 tenant; details in the domain-registry card). Nothing about mail is open. All six steps are done; TourGraph is in maintenance mode.
 
 | # | Task | Who | Notes |
 |---|------|-----|-------|
-| 1 | Look at tourgraph.ai on your phone and laptop | Nikhil | Everything should look as before, only faster |
+| 1 | Look at tourgraph.ai on your phone and laptop | Nikhil | **Done** Nov 1: looks right, feels faster |
 | 2 | Delete the droplet and the DigitalOcean project "TourGraph" | Nikhil | **Done** Nov 1 |
 | 3 | Remove `backend/` and `deployment/` from the repo | Claude | **Done** Nov 1; git history keeps them |
 | 4 | Create DKIM keys for tourgraph.ai in Microsoft 365 | Claude | **Done** Nov 1 (in Nikhil's logged-in Defender session) |
