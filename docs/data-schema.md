@@ -202,7 +202,7 @@ CREATE TABLE trivia_daily (
 
 -- =============================================================
 -- trivia_scores — Anonymous player scores for Daily Challenge.
--- Country derived from nginx GeoIP2 X-Country-Code header.
+-- Country from Cloudflare (request.cf.country) since Nov 2026; nginx GeoIP2 before.
 -- =============================================================
 CREATE TABLE trivia_scores (
     id            INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -231,12 +231,10 @@ npx tsx scripts/5-trivia/generate-pool.ts                    # Generate trivia p
 npx tsx scripts/5-trivia/generate-fakes.ts                   # Generate fake tour titles via Haiku (200 real_or_fake)
 ```
 
-## Deploying to Server
+## Production copy (Cloudflare D1)
 
-```bash
-bash deployment/scripts/deploy-db.sh $SERVER_IP  # WAL checkpoint → SCP → restart PM2
-```
+Since November 2026 the site reads a copy of five tables (`tours`, `six_degrees_chains`, `trivia_pool`, `trivia_daily`, `trivia_scores`) in Cloudflare D1. The schema there is `web/migrations/0001_schema.sql`: the same tables, plus indexes on `duration_minutes`, `review_count` and `(weight_category, status)`, a unique index on `trivia_scores(date, session_hash)`, and planner statistics from `PRAGMA optimize`. `web/scripts/d1-load.mjs` loads it from this file and checks every table's fingerprint. This file stays the source of truth. See `docs/cloudflare-architecture.md` and `docs/deploy-runbook.md`.
 
 ## Concurrent Access
 
-The backend API opens the DB in **read-only** mode for most endpoints. Trivia endpoints (score submission, daily assembly) use a separate read-write connection. Scripts (indexer, backfill) open in read-write mode with `busy_timeout(5000)` to handle contention. PM2 runs in fork mode (single process) to avoid SQLite write conflicts.
+Locally, the pipeline scripts open this file read-write with `busy_timeout(5000)`. In production only trivia writes, through D1 (daily assembly and scores).

@@ -1,13 +1,17 @@
 # Current State
 
 ---
-**Last Updated**: April 24, 2026
+**Last Updated**: November 1, 2026
 **Purpose**: Quick onboarding for new sessions — what's built and how it fits together
 ---
 
 ## Live at https://tourgraph.ai
 
-All four features built and deployed. DigitalOcean droplet ($6/mo) running PM2 + Nginx + Let's Encrypt SSL. Standalone Express API backend + Next.js frontend. 136,256 tours across 2,712 destinations, all verified 200 over HTTPS. Data fully indexed with 100% AI one-liner coverage.
+All four features live. Since November 1, 2026 the site and the API run as one Cloudflare Worker (`tourgraph`) with the data in Cloudflare D1, on the OmSpark Cloudflare account, covered by the Workers Paid plan already in place. Before that: a $6/month DigitalOcean droplet with nginx and PM2 (retired; see "Deployment"). 136,256 active tours across 2,712 destinations, 100% AI one-liner coverage. The data has not been refreshed since March 2026, and no refresh is planned.
+
+### Moved to Cloudflare: 2026-11-01
+
+Straight move: same pages, URLs, API paths and JSON. The Express API was ported to Hono inside the Worker; Next.js (16.4.3) is built with OpenNext; pages call the API in-process. Pages that took 13 to 21 s on the droplet (no planner statistics, full scans of a 454 MB table on 1 GB of RAM) now render in well under a second. Checked before the switch: 55 unit tests, 177/177 API comparisons against the droplet, 39 live checks, a browser walk at desktop and phone size, and 1,600 requests of load testing. Small fixes on the way: the site-wide canonical tag, the Six Degrees share link, Right Now time zones with a `+`, and D1-specific trivia race fixes. Google Analytics is still blocked by the site's own CSP, as since June 2026: the privacy page promises no analytics, so whether to keep GA is an open decision. Design: `docs/cloudflare-architecture.md`. Operations: `docs/deploy-runbook.md`. Reviews: `docs/reviews/`.
 
 ### Infrastructure review: 2026-04-24
 
@@ -107,47 +111,32 @@ Native Android port using Kotlin + Jetpack Compose. Full iOS feature parity. Bui
 ## Deployment
 
 ```
-Internet → Nginx (:443 SSL, :80 → redirect)
-              ├── /api/v1/*  → proxy to :3001 (Express backend)
-              ├── /api/ios/* → rewrite to /api/v1/* → :3001 (mobile compat)
-              └── /*         → proxy to :3000 (Next.js frontend)
-
-           PM2 manages two processes:
-              ├── tourgraph-web (:3000) — next start
-              └── tourgraph-api (:3001) — node dist/index.js
-                       ↓ read-only
-                  /opt/app/data/tourgraph.db (SQLite, WAL mode)
+Internet → Cloudflare (TLS, Always Use HTTPS)
+             └── Worker "tourgraph" (custom domains tourgraph.ai, www.tourgraph.ai)
+                   ├── www.*                → 301 to https://tourgraph.ai
+                   ├── /api/v1/*, /api/ios/* → API (Hono) ──→ D1 "tourgraph-db"
+                   ├── static files          → Cloudflare asset store (public/_headers)
+                   └── everything else       → Next.js (OpenNext) ── in-process ──→ API
 ```
 
-- **Server:** DigitalOcean droplet (Ubuntu 24.04, $6/mo)
-- **Stack:** Node 20 + PM2 6 + Nginx 1.24 + Let's Encrypt
-- **SSL:** Valid through May 30, 2026, auto-renewal enabled
-- **Firewall:** UFW (SSH + Nginx only) + fail2ban
-- **Deploy code:** `ssh root@143.244.186.165 "bash /opt/app/deployment/scripts/deploy.sh"`
-- **Deploy DB:** `bash deployment/scripts/deploy-db.sh $SERVER_IP`
-- **Stream logs:** `bash deployment/scripts/stream-logs.sh $SERVER_IP`
+- **Hosting:** Cloudflare Workers, OmSpark account, Workers Paid. No servers, no secrets in the Worker.
+- **Database:** D1 `tourgraph-db` (493 MB): `tours`, `six_degrees_chains`, `trivia_pool`, `trivia_daily`, `trivia_scores`. `data/tourgraph.db` (Git LFS) stays the source of truth; `web/scripts/d1-load.mjs` loads and fingerprints it.
+- **Deploy:** `cd web && node scripts/deploy.mjs` (tests, clean build, secret scan, wrangler deploy), then `node scripts/verify.mjs`. Token: `~/.secrets/cloudflare/tourgraph.env`. Never the Mac's default wrangler login.
+- **Logs:** `npx wrangler tail tourgraph`, or Workers Logs in the dashboard. Traffic per day: Workers & Pages > tourgraph > Metrics.
+- **Rollback:** `npx wrangler rollback`; D1 Time Travel for data. Full runbook: `docs/deploy-runbook.md`.
+- **The droplet** (143.244.186.165) no longer receives traffic. It stays up until Nikhil deletes it; `backend/` and `deployment/` go with it.
 
 ### Architecture
 
-Three independent directories with clear responsibilities:
+`web/` is the whole Cloudflare Worker; `data/` holds the pipeline and the source database. (`backend/`, the droplet-era Express API, is kept until the droplet is deleted.)
 
 ```
-backend/                              # Express + TypeScript API server
-├── src/
-│   ├── index.ts                      # App entry, mounts /api/v1 router
-│   ├── db.ts                         # Read-only + read-write (trivia) SQLite connections
-│   ├── types.ts                      # Shared types (RouletteTour, TourDetail, etc.)
-│   ├── transform.ts                  # Row-to-API transforms (snake_case → camelCase)
-│   └── routes/
-│       ├── roulette.ts               # GET /roulette/hand (quota sampling, contrast sequencing, rate limiting)
-│       ├── tours.ts                  # GET /tours/:id, /tours/:id/enrichment, /tours/:id/card, POST /tours/batch
-│       ├── right-now.ts              # GET /right-now/tours, /right-now/timezones
-│       ├── superlatives.ts           # GET /superlatives, /superlatives/:type
-│       ├── chains.ts                 # GET /chains, /chains/random, /chains/:slug, /chains/slugs, /chains/count
-│       ├── trivia.ts                 # GET /trivia/daily, /trivia/practice, /trivia/stats, /trivia/results; POST /trivia/answer, /trivia/score
-│       └── health.ts                 # GET /health, /stats
-
-web/                                  # Next.js frontend (pure API consumer)
+web/                                  # Cloudflare Worker: Next.js site + API
+├── worker.ts                         # Worker entry: hands requests to src/server/route.ts
+├── wrangler.jsonc                    # Worker config: custom domains, D1, rate limiter, assets
+├── migrations/                       # D1 schema (0001 tables + indexes, 0002 descending indexes)
+├── scripts/                          # deploy, d1-load, verify, contract-diff, loadtest, walk/
+├── test/                             # 55 API + routing tests in the Workers runtime
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx                  # Homepage — Roulette + Right Now teaser + superlatives
@@ -163,8 +152,12 @@ web/                                  # Next.js frontend (pure API consumer)
 │   │   ├── ChainTimeline.tsx         # Shared Six Degrees timeline
 │   │   ├── ShareButton.tsx           # Web Share / clipboard
 │   │   └── ...                       # Logo, FeatureNav, TourCardSkeleton
+│   ├── server/
+│   │   ├── route.ts                  # www/http redirects, API vs pages
+│   │   └── api/                      # Hono API on D1: app.ts, env.ts, routes/ (roulette, tours,
+│   │                                 #   right-now, superlatives, chains, trivia, health)
 │   └── lib/
-│       ├── api.ts                    # Typed fetch client for all backend endpoints
+│       ├── api.ts                    # Typed client: calls the API in-process
 │       ├── superlatives.ts           # Superlative constants + formatters
 │       ├── timezone.ts               # Timezone helpers (Intl.DateTimeFormat)
 │       ├── format.ts                 # Shared formatting (price, duration)
@@ -189,21 +182,21 @@ See "Data Asset (4 IP Layers)" section above and `docs/data-snapshot.md` for ful
 
 ### Key Technical Choices
 
-- **Express 5 + TypeScript backend** — standalone API server, read-only SQLite, camelCase responses
-- **SQLite** (not Redis/Postgres) — single file, zero cold cache, deploys as-is. 136K tours at 479MB.
+- **One Cloudflare Worker**: Hono API plus Next.js via OpenNext, same API contract as the old Express server, camelCase responses
+- **SQLite everywhere**: D1 in production (493 MB, indexes plus planner statistics), the Git LFS file as source of truth
 - **Viator Basic tier** — free affiliate API, 300K+ experiences, 16 req/10s per endpoint
 - **Claude Haiku 4.5** — fast/cheap one-liners during indexing (~$0.003/1000 tours)
 - **Claude Sonnet 4.6** — City intelligence (Stage 0) + chain generation (Stages 1+2)
-- **Next.js 16 App Router** — server components for SEO, client for interactivity. Pure API consumer.
+- **Next.js 16 App Router**: server components for SEO, client for interactivity; pages call the API in-process
 - **`Intl.DateTimeFormat`** — timezone math with no external library
 - **Dark theme** — photos pop, feels premium
 
 ### Build Status
 
-- `cd web && npm run build` — zero errors
-- `cd backend && npm run build` — zero errors
-- `cd web && npm run lint` — zero errors
-- TypeScript strict mode — clean
+- `cd web && npm test`: 55 tests pass
+- `cd web && node scripts/deploy.mjs --dry-run`: clean build, secret scan passes
+- `cd web && npm run lint`: zero errors (one existing unused-import warning)
+- TypeScript strict mode: clean
 
 ---
 

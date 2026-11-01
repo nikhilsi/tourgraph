@@ -131,7 +131,7 @@ The app is the **daily delight machine**. It's what people open when they're bor
 | Component | Choice | Rationale |
 |-----------|--------|-----------|
 | Frontend | Next.js (React) | SSR for OG previews, fast, familiar |
-| Hosting | DigitalOcean droplet (~$6/mo) | Already have infrastructure there |
+| Hosting | Cloudflare Workers + D1 (since Nov 2026; a $6/mo DigitalOcean droplet before) | Covered by the Workers Paid plan the account already has |
 | Data | Viator Partner API (Basic tier, free) | Already integrated, 300K+ experiences |
 | AI Layer | Claude API | Witty captions, six-degrees chains |
 | Cache | SQLite | Pre-built local index, no API calls at request time |

@@ -37,8 +37,9 @@ npx tsx src/scripts/3-city-intel/build-city-profiles.ts
 # Step 5: Generate Six Degrees chains (~1 hour via Batch API)
 npx tsx src/scripts/4-chains/generate-chains.ts
 
-# Step 6: Deploy database to production
-bash deployment/scripts/deploy-db.sh $SERVER_IP
+# Step 6: Load the API's tables into D1 (production), with a fingerprint check.
+# Empty the five tables first; see docs/deploy-runbook.md "Data".
+cd ../web && node scripts/d1-load.mjs --remote
 ```
 
 **Total time:** ~36 hours | **Total cost:** ~$13

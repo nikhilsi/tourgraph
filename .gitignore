@@ -62,3 +62,4 @@ Thumbs.db
 web/.open-next/
 web/.wrangler/
 web/.dev.vars
+web/AGENTS.md

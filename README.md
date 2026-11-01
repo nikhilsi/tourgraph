@@ -54,8 +54,8 @@ Every travel app wants you to plan, compare, and book. TourGraph wants you to sm
 | Web | [Next.js](https://nextjs.org/) 16 (App Router, TypeScript strict), [Tailwind CSS](https://tailwindcss.com/) v4 |
 | iOS | Swift / [SwiftUI](https://developer.apple.com/xcode/swiftui/) (iOS 17+), [GRDB.swift](https://github.com/groue/GRDB.swift), [WidgetKit](https://developer.apple.com/widgets/) |
 | Android | [Kotlin](https://kotlinlang.org/) 2.1 / [Jetpack Compose](https://developer.android.com/develop/ui/compose) (Material 3), [Glance](https://developer.android.com/develop/ui/compose/glance), [Coil](https://coil-kt.github.io/coil/) 3 |
-| Database | SQLite everywhere — [better-sqlite3](https://github.com/WiseLibs/better-sqlite3) (web), [GRDB](https://github.com/groue/GRDB.swift) (iOS), raw SQLiteDatabase (Android) |
-| Hosting | [DigitalOcean](https://www.digitalocean.com/) ($6/mo droplet), [PM2](https://pm2.keymetrics.io/) + [Nginx](https://nginx.org/) + [Let's Encrypt](https://letsencrypt.org/) |
+| Database | SQLite everywhere: [Cloudflare D1](https://developers.cloudflare.com/d1/) (web), [GRDB](https://github.com/groue/GRDB.swift) (iOS), raw SQLiteDatabase (Android) |
+| Hosting | [Cloudflare Workers](https://workers.cloudflare.com/): one Worker serves the site ([OpenNext](https://opennext.js.org/cloudflare)) and the API ([Hono](https://hono.dev/)) on D1. Moved from a DigitalOcean droplet in November 2026 |
 | Data | [Viator Partner API](https://www.viator.com/partners) (136,000+ experiences, 2,700+ destinations) |
 | AI | [Claude API](https://docs.anthropic.com/) — Haiku 4.5 (captions), Sonnet 4.6 (city intelligence + chains) |
 | CI/CD | [GitHub Actions](https://github.com/features/actions) — automated Android release on tag push |
@@ -78,16 +78,19 @@ TourGraph's value is built in layers, each adding original intelligence on top o
 
 ```text
 tourgraph/
-├── web/                         # Next.js web app + data pipeline
-│   ├── src/app/                 # Pages + API routes
+├── web/                         # The Cloudflare Worker: Next.js site + API
+│   ├── src/app/                 # Pages + OG image routes
 │   ├── src/components/          # React components
-│   ├── src/lib/                 # Database, types, formatting
-│   └── src/scripts/             # Data pipeline (4 stages)
+│   ├── src/lib/                 # API client, types, formatting
+│   ├── src/server/              # API (Hono on D1) + request routing
+│   ├── migrations/              # D1 schema
+│   ├── scripts/                 # Deploy, data load, live checks, browser walk
+│   └── test/                    # API and routing tests (Workers runtime)
 ├── ios/TourGraph/               # SwiftUI iOS app
 ├── android/TourGraph/           # Kotlin + Jetpack Compose Android app
-├── data/                        # SQLite databases (Git LFS, shared)
+├── data/                        # Data pipeline + SQLite databases (Git LFS, source of truth)
 ├── docs/                        # Architecture, design, data docs
-├── deployment/                  # Server deploy scripts + PM2 config
+├── backend/, deployment/        # Droplet-era Express API and nginx/PM2 setup (retired Nov 2026)
 ├── distribution/                # App Store, F-Droid, fastlane metadata
 ├── .github/workflows/           # CI/CD (Android release on tag push)
 └── archive/                     # Phase 0 work (preserved for reference)
@@ -101,8 +104,10 @@ tourgraph/
 cd web
 node --version              # 18+ required
 npm install
-cp .env.example .env.local  # Add VIATOR_API_KEY + ANTHROPIC_API_KEY
-npm run dev                 # http://localhost:3000
+npx wrangler d1 migrations apply tourgraph-db --local
+node scripts/d1-load.mjs --local   # data/tourgraph.db into the local D1
+npm run preview                    # the Worker on http://localhost:8787
+npm test                           # API tests in the Workers runtime
 ```
 
 ### iOS App

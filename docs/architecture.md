@@ -1,7 +1,7 @@
 # TourGraph.ai — Technical Architecture
 
 ---
-**Last Updated**: March 11, 2026
+**Last Updated**: March 11, 2026 (hosting moved to Cloudflare on Nov 1, 2026: see `docs/cloudflare-architecture.md`)
 **Status**: Updated for backend extraction (v10.0.0)
 **Depends on**: `ux_design.md` (UX decisions), `product_brief.md` (product scope)
 ---
@@ -699,6 +699,8 @@ All 6 are queried live via `getSuperlative(type)` / `getAllSuperlatives()` in `d
 ---
 
 ## Deployment
+
+> **Superseded (Nov 2026).** The site now runs on Cloudflare Workers and D1. See `docs/cloudflare-architecture.md` and `docs/deploy-runbook.md`. The section below is the original droplet plan, kept for history.
 
 ### Infrastructure
 

@@ -1,7 +1,7 @@
 # Claude Code Development Guide
 
 ---
-**Last Updated**: March 11, 2026
+**Last Updated**: November 1, 2026
 **Purpose**: Rules and workflow for working with this codebase
 ---
 
@@ -16,6 +16,8 @@
 5. **`git log --oneline -10`** — Recent commits
 
 **Optional** (if relevant to task):
+- **docs/deploy-runbook.md**: Hosting on Cloudflare: deploy, checks, data load, rollback (read before any deploy)
+- **docs/cloudflare-architecture.md**: How the site and API run on one Cloudflare Worker with D1
 - **docs/ios-v2-plan.md** — iOS v2 plan + implementation tracker (3 pillars, progress tables, decisions log)
 - **docs/city-intelligence.md** — City intelligence pipeline (Stage 0): the IP layer that makes TourGraph unique
 - **docs/six-degrees-chains.md** — Chain generation (Stages 1+2): pair selection, quality standards, gallery UX
@@ -142,12 +144,12 @@ Timeframes are estimates, not commitments. This is supposed to be fun.
 ### Website
 | Component | Choice | Rationale |
 |-----------|--------|-----------|
-| Backend API | Express 5 + TypeScript | Standalone API server, clean separation from frontend |
-| Frontend | Next.js 16 (React) | SSR for OG previews, pure API consumer |
-| Hosting | DigitalOcean droplet (~$6/mo) | PM2 runs both processes, nginx routes traffic |
+| API | Hono + TypeScript, in the same Worker as the site (`web/src/server/api`) | Same routes and JSON as the old Express API |
+| Frontend | Next.js 16 (React), built with OpenNext | SSR for OG previews; pages call the API in-process |
+| Hosting | Cloudflare Workers, one Worker `tourgraph` (since Nov 1, 2026; DigitalOcean droplet before) | Covered by the Workers Paid plan the OmSpark account already pays |
 | Data | Viator Partner API (Basic tier, free) | Already integrated, 300K+ experiences |
 | AI Layer | Claude API | Witty captions, Six Degrees chains (pipeline only) |
-| Database | SQLite (read-only from backend) | Pre-built local index, no API calls at request time |
+| Database | Cloudflare D1 (production copy of 5 tables); `data/tourgraph.db` is the source of truth | Pre-built index, no Viator calls at request time |
 | Domain | tourgraph.ai | Already owned and configured |
 
 ### iOS App
@@ -164,28 +166,26 @@ Timeframes are estimates, not commitments. This is supposed to be fun.
 ## Architecture
 
 ```
-                    ┌──────────────────┐
-                    │   tourgraph.ai   │  (DigitalOcean droplet)
-                    └────────┬─────────┘
-                             │ Nginx
-                    ┌────────┴─────────┐
-                    ▼                  ▼
-           ┌──────────────┐   ┌──────────────┐
-           │ backend/     │   │ web/         │
-           │ Express API  │   │ Next.js      │
-           │ :3001        │   │ :3000        │
-           │ /api/v1/*    │   │ /* (pages)   │
-           └──────┬───────┘   └──────────────┘
-                  │ read-only         │ fetch()
-                  ▼                   │
-           ┌──────────────┐           │
-           │ data/        │◄──────────┘
-           │ tourgraph.db │   (web calls backend API,
-           │ (SQLite)     │    never touches DB directly)
-           └──────────────┘
-
-  data/scripts/ ──── pipeline (Viator, Claude) ──── writes to DB
+  tourgraph.ai, www (301 to apex)
+              │
+   ┌──────────┴───────────────────────────────────────┐
+   │ Cloudflare Worker "tourgraph" (web/worker.ts)    │
+   │                                                  │
+   │  /api/v1/*, /api/ios/*  ──>  API (Hono)          │
+   │  everything else        ──>  Next.js (OpenNext)  │
+   │                               │ in-process calls │
+   │                               └──>  API          │
+   └──────────────────────────┬───────────────────────┘
+                              ▼
+                   D1 "tourgraph-db" (5 tables)
+                              ▲
+                              │ scripts/d1-load.mjs (load + fingerprint check)
+                   data/tourgraph.db (SQLite, Git LFS, source of truth)
+                              ▲
+  data/scripts/ ── pipeline (Viator, Claude), Mac only ── writes here
 ```
+
+Design and decisions: `docs/cloudflare-architecture.md`. How to deploy, check and roll back: `docs/deploy-runbook.md`. `backend/` and `deployment/` are the droplet-era Express API and nginx/PM2 setup, kept until the droplet is deleted.
 
 User flow: Visit site -> See delightful content -> Share link -> Friend visits -> Repeat
 
@@ -223,19 +223,17 @@ No user accounts. No databases of personal data. Just cached Viator responses + 
 
 ## Environment Setup
 
-**Backend API:**
-```bash
-cd backend
-npm install
-npm run dev     # Express on :3001
-```
-
-**Web Frontend:**
+**Website and API (one Worker):**
 ```bash
 cd web
 npm install
-npm run dev     # Next.js on :3000 (requires backend running)
+npx wrangler d1 migrations apply tourgraph-db --local
+node scripts/d1-load.mjs --local   # data/tourgraph.db into the local D1
+npm run preview                    # the Worker on :8787 (pages and API)
+npm test                           # API and routing tests in the Workers runtime
+node scripts/deploy.mjs            # deploy (token in ~/.secrets/cloudflare/tourgraph.env)
 ```
+Never use the Mac's default wrangler login (it is another account). Full steps: `docs/deploy-runbook.md`.
 
 **Data Pipeline:**
 ```bash
@@ -244,7 +242,7 @@ npm install
 npx tsx scripts/1-viator/indexer.ts --full   # example
 ```
 
-**API Keys** (in `.env.local` at repo root or in respective directories):
+**API Keys** (pipeline only; `data/lib/env.ts` reads `web/.env.local`). The deployed Worker needs no keys, and `web/scripts/deploy.mjs` refuses a bundle that contains these names:
 - `VIATOR_API_KEY` — https://viator.com/partners (Basic Access, free affiliate signup)
 - `ANTHROPIC_API_KEY` — https://console.anthropic.com
 - `DATABASE_PATH` — path to SQLite DB (defaults to `data/tourgraph.db`)
@@ -254,9 +252,9 @@ npx tsx scripts/1-viator/indexer.ts --full   # example
 ## Development Standards
 
 ### Code Quality
-- **TypeScript** for all code — strict mode, proper types (backend, web, data pipeline)
+- **TypeScript** for all code: strict mode, proper types (web, API, data pipeline)
 - **React Server Components** where possible — minimize client JS
-- **Web never touches DB** — all data access goes through backend API
+- **Pages never query D1 directly**: all data access goes through the API (`src/lib/api.ts` calls it in-process)
 - **OG image generation** — every shareable page needs proper meta tags
 
 ### Git Workflow
@@ -289,7 +287,10 @@ npx tsx scripts/1-viator/indexer.ts --full   # example
 - **docs/six-degrees-chains.md** — Chain generation (Stages 1+2) — pair selection, quality, gallery
 - **docs/data-snapshot.md** — Data baseline (4-layer IP asset, 136K tours)
 - **docs/data-schema.md** — Full SQL schema (7 tables including city_readings)
-- **docs/architecture.md** — Technical architecture, schema, indexer design
+- **docs/architecture.md** — Technical architecture, schema, indexer design (its hosting section is superseded)
+- **docs/cloudflare-architecture.md**: Hosting on Cloudflare (one Worker plus D1): design, API contract, decisions
+- **docs/deploy-runbook.md**: Deploy, live checks, data load, rollback, where everything lives
+- **docs/reviews/**: Inventory, Cloudflare research and independent review behind the Nov 2026 move
 
 **Implementation Docs (`docs/implementation/`):**
 - **docs/implementation/implementation_plan.md** — Phase 1-3 build plan
@@ -329,7 +330,7 @@ npx tsx scripts/1-viator/indexer.ts --full   # example
 |-------|----------|-----------------|
 | Viator API patterns | `archive/scripts/viator_compare.py` | Endpoint URLs, auth headers, response parsing, product search, detail fetching |
 | Working API key | `.env` / `.env.local` | `VIATOR_API_KEY` (production, Basic tier) |
-| Domain | tourgraph.ai | DNS configured, pointing to DigitalOcean droplet |
+| Domain | tourgraph.ai | DNS on Cloudflare (OmSpark account); site served by the `tourgraph` Worker |
 
 ---
 

@@ -1,9 +1,20 @@
 # NOW — What To Work On Next
 
-**Last Updated**: March 17, 2026
+**Last Updated**: November 1, 2026
 **Context**: See CURRENT_STATE.md for what's built, CHANGELOG.md for history
 
-## Active: iOS v2 — Breaking the 4.2.2 Rejection Cycle
+## Active: finish the move to Cloudflare (task #399)
+
+The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflare (`docs/cloudflare-architecture.md`, `docs/deploy-runbook.md`). What is left:
+
+| # | Task | Who | Notes |
+|---|------|-----|-------|
+| 1 | Look at tourgraph.ai on your phone and laptop | Nikhil | Everything should look as before, only faster |
+| 2 | Decide on Google Analytics | Nikhil | GA4 is in the layout but blocked by the site's own CSP since June 2026, and the privacy page promises "No analytics, no tracking". Recommendation: remove the GA tag and use Cloudflare's Worker metrics (requests per day, no script, no cookies). The other way: allow GA in the CSP and rewrite the privacy page |
+| 3 | Delete the droplet and the DigitalOcean project "TourGraph" | Nikhil | Rollback to it only works until Nov 27 anyway (its certificate is not renewing) |
+| 4 | Remove `backend/` and `deployment/` from the repo | Claude | After step 3; git history keeps them |
+
+## Paused: iOS v2 — Breaking the 4.2.2 Rejection Cycle
 
 v1.0 rejected March 5, v1.1 rejected March 11 — both Guideline 4.2.2 (Minimum Functionality). Same boilerplate both times. Native features bolted onto a content viewer don't change Apple's perception. v2 pivots to "travel awareness companion."
 
@@ -23,7 +34,7 @@ MapKit satellite globe with 2,694 destination pins, lazy viewport loading, progr
 
 **Design doc**: `docs/trivia-prototype.md`
 
-**Game structure**: Daily Challenge (5 questions, same for everyone, Wordle model) + Practice Mode (unlimited). 7 question formats rotating across days. Anonymous scoring with regional comparison (IP-derived country via nginx GeoIP2).
+**Game structure**: Daily Challenge (5 questions, same for everyone, Wordle model) + Practice Mode (unlimited). 7 question formats rotating across days. Anonymous scoring with regional comparison (IP-derived country: nginx GeoIP2 until Nov 2026, Cloudflare's request.cf since).
 
 **7 question formats:**
 

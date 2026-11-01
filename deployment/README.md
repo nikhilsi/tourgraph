@@ -1,5 +1,7 @@
 # TourGraph Deployment Guide
 
+> **Retired on November 1, 2026.** tourgraph.ai now runs on Cloudflare Workers and D1. See `docs/deploy-runbook.md` and `docs/cloudflare-architecture.md`. This folder (and `backend/`) describes the old DigitalOcean droplet and will be removed once the droplet is deleted.
+
 **Target:** DigitalOcean Droplet (Ubuntu 24.04, $6/mo)
 **Stack:** Nginx + PM2 + Next.js 16 + SQLite
 **Domain:** tourgraph.ai

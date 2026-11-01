@@ -1,6 +1,6 @@
 # Architecture: TourGraph on Cloudflare
 
-**Status:** built Nov 1, 2026 on branch `cloudflare-move` (task #399, the move off DigitalOcean).
+**Status:** live on tourgraph.ai since Nov 1, 2026, 02:38 ET (task #399, the move off DigitalOcean). Built on branch `cloudflare-move`, merged to `main` at the switchover.
 **Decided by Nikhil, Oct 31 and Nov 1:** move to the OmSpark Cloudflare account to retire the $6 droplet; straight move first (same pages, same URLs, same API); TourGraph gets its own Cloudflare token. The iOS and Android apps were never published and the data is frozen, so nothing outside this repo calls the API.
 **Reviews:** inventory `docs/reviews/2026-11-01-inventory.md`, research `docs/reviews/2026-11-01-research-cloudflare.md`, independent review `docs/reviews/2026-11-01-review.md`.
 **Runbook:** [deploy-runbook.md](deploy-runbook.md).
@@ -119,14 +119,14 @@ D1-specific changes inside the routes:
 
 ## 9. Switchover and rollback
 
-Switchover (Nov 1, 2026, on Nikhil's written OK in chat; revised after review R1):
+Switchover, as done on Nov 1, 2026 at 02:38 ET (Nikhil's written OK in chat):
 
-1. Load test, live checks, contract diff and browser walk pass on `workers.dev`.
-2. Save the zone: JSON of every record and a BIND export.
-3. Add both hostnames to `wrangler.jsonc` as custom domains and run `npx wrangler triggers deploy` (no rebuild). Run without a terminal, wrangler replaces the two DNS-only A records (143.244.186.165) with the Worker's records in the same call, so there is no gap. Cloudflare issues the certificate.
-4. If the attach fails: recreate the two A records at once (`A tourgraph.ai 143.244.186.165`, `A www.tourgraph.ai 143.244.186.165`, DNS only, TTL auto).
-5. Run `verify.mjs` and the browser walk on tourgraph.ai, including the redirects. Check the six mail records are unchanged.
-6. Turn off `workers_dev` so tourgraph.ai is the only address.
+1. Load test, live checks, contract diff and browser walk passed on `workers.dev`.
+2. Saved the zone: JSON of every record and a BIND export.
+3. Tried the no-gap attach from review R1 (`wrangler triggers deploy` with the routes in `wrangler.jsonc`). Cloudflare refused: "Hostname 'tourgraph.ai' already has externally managed DNS records (A, CNAME, etc). Delete them first" (code 100117). Nothing had changed.
+4. Did it per hostname with a small script: delete the A record, attach the custom domain right away through the API, recreate the A record if the attach fails. www: 484 ms. Apex: 451 ms. Cloudflare created proxied `AAAA 100::` records for both and issued a certificate covering `tourgraph.ai` and `*.tourgraph.ai`.
+5. Checked: both Cloudflare nameservers answer with Cloudflare addresses; the six mail records are unchanged; `verify.mjs` and the browser walk pass on tourgraph.ai.
+6. Turned off `workers_dev`, so tourgraph.ai is the only address.
 
 Rollback to the droplet works until its certificate expires on Nov 27, 2026 08:23 GMT (it is not renewing, and cannot once the Worker answers the ACME path; review R2), or until the droplet is deleted, whichever comes first: remove the routes from `wrangler.jsonc`, detach both custom domains, and recreate the two A records at once. After that: `npx wrangler rollback` for code, D1 Time Travel for data.
 

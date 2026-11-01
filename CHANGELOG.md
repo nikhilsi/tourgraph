@@ -6,6 +6,37 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 
 ---
 
+## [13.0.0] - 2026-11-01
+
+### Moved from the DigitalOcean droplet to Cloudflare
+
+Same pages, same URLs, same API paths and JSON. The $6 droplet is no longer used.
+
+**Hosting**
+- One Cloudflare Worker, `tourgraph`, serves tourgraph.ai and www.tourgraph.ai (custom domains, switched Nov 1 at 02:38 ET). www and plain http redirect to `https://tourgraph.ai` as before.
+- Next.js 16.1 → 16.4.3, built with OpenNext 1.20.15. Pages call the API in-process and still render per request (`connection()`).
+- The Express API (`backend/`) is ported to Hono in `web/src/server/api`, served at `/api/v1/*` and the two `/api/ios/*` aliases.
+- Data in D1 `tourgraph-db`: the five tables the API reads, loaded from `data/tourgraph.db` with a per-row fingerprint check. Indexes for the superlatives and roulette, and planner statistics. The droplet's slowness (13 to 21 s pages) came from full scans of the 454 MB tours table on 1 GB of RAM; on D1 the same queries read 10 rows.
+- Images are served straight from TripAdvisor's CDN (no image optimizer, no Cloudflare Images billing).
+- Zone settings: Always Use HTTPS on, Email Obfuscation off, minimum TLS 1.2.
+
+**Fixes on the way**
+- Every page declared the homepage as its canonical URL; removed.
+- The Six Degrees share button shared a random tour; it now shares the chain.
+- Right Now time zones with a `+` (Etc/GMT+7) were never found; the list is now URL-encoded.
+- Superlatives keep the droplet's tie order (216 tours tie for "longest").
+- Trivia on D1: two first requests of a day get the same set; saving a day and marking its questions is one transaction; one score per session per day enforced by a unique index; `/trivia/results` assembles only today and refuses impossible dates.
+- Roulette's exclude list goes to D1 as one JSON parameter (D1 allows 100 bound parameters; the client sends up to 200 ids).
+- `/_next/image` no longer proxies remote images.
+
+**Not changed:** Google Analytics stays blocked by the site's CSP, as it has been since June 2026; the privacy page promises no analytics, so the decision is open (NOW.md).
+
+**Tooling** (`web/scripts/`): `deploy.mjs` (tests, clean build without `.env` files, secret scan, deploy), `d1-load.mjs`, `verify.mjs` (39 live checks), `contract-diff.mjs` (177 API comparisons against another deployment), `loadtest.mjs`, `walk/walk.mjs` (headless Chrome, desktop and phone). 55 tests in the Workers runtime.
+
+**Docs:** `docs/cloudflare-architecture.md`, `docs/deploy-runbook.md`, `docs/reviews/2026-11-01-{inventory,research-cloudflare,review}.md`.
+
+---
+
 ## Infrastructure hardening - 2026-04-24
 
 Production environment file on the deployment host no longer carries live API credentials. Build-time ingestion keys (Viator, Anthropic) moved to local-only storage; the server-side `.env.production.local` now holds placeholder values for those entries. Runtime code paths (Express API backend, Next.js SSR) read exclusively from the pre-built SQLite database, so removing the keys from the server has no impact on the live site. Re-running the data ingestion scripts in `data/scripts/` will require restoring the keys locally for that single session.
