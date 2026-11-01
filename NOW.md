@@ -5,15 +5,16 @@
 
 ## Active: wrap-up after the move to Cloudflare
 
-The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflare (`docs/cloudflare-architecture.md`, `docs/deploy-runbook.md`). Task #399 is closed. Google Analytics was turned on the same day (Nikhil's call), and a DMARC record (`p=none`) was added. What is left:
+The site moved off the DigitalOcean droplet on Nov 1, 2026 and runs on Cloudflare (`docs/cloudflare-architecture.md`, `docs/deploy-runbook.md`). Task #399 is closed. Google Analytics was turned on the same day (Nikhil's call). The droplet is deleted. Mail records got DKIM CNAMEs and DMARC `p=quarantine`, as did centereye.ai, recurate.ai, screentrades.ai and screentrades.com (all in the Om Spark Microsoft 365 tenant; details in the domain-registry card). What is left:
 
 | # | Task | Who | Notes |
 |---|------|-----|-------|
 | 1 | Look at tourgraph.ai on your phone and laptop | Nikhil | Everything should look as before, only faster |
 | 2 | Delete the droplet and the DigitalOcean project "TourGraph" | Nikhil | **Done** Nov 1 |
 | 3 | Remove `backend/` and `deployment/` from the repo | Claude | **Done** Nov 1; git history keeps them |
-| 4 | Create DKIM keys for tourgraph.ai in Microsoft 365 | Nikhil | security.microsoft.com/authentication?viewid=DKIM, row tourgraph.ai, "Create DKIM keys". Microsoft generates the two CNAME targets (tenant `omspark`); they can't be guessed |
-| 5 | Add the two DKIM CNAMEs, then Nikhil turns signing on | Claude, then Nikhil | After step 4. Then move DMARC from `p=none` to `p=quarantine` |
+| 4 | Create DKIM keys for tourgraph.ai in Microsoft 365 | Claude | **Done** Nov 1 (in Nikhil's logged-in Defender session) |
+| 5 | Add the two DKIM CNAMEs, move DMARC to `p=quarantine` | Claude | **Done** Nov 1 |
+| 6 | Turn DKIM signing on for tourgraph.ai | Claude or Nikhil | Microsoft refuses until it publishes its half of the keys ("a few minutes to as many as 4 days"). Then flip the toggle at security.microsoft.com/authentication?viewid=DKIM; the status should read Valid |
 
 ## Paused: iOS v2 — Breaking the 4.2.2 Rejection Cycle
 

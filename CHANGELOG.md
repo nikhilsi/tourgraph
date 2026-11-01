@@ -13,6 +13,11 @@ For Phase 0 history (extraction pipeline, Viator comparison, MkDocs site), see `
 - Nikhil deleted the DigitalOcean droplet (143.244.186.165) and its project. Rollback to the droplet is gone; rollback is now `wrangler rollback` and D1 Time Travel.
 - Removed `backend/` (the Express API, ported to `web/src/server/api` in 13.0.0) and `deployment/` (nginx, PM2 and the droplet scripts). Git history keeps both.
 
+### Mail records
+
+- DKIM keys created for tourgraph.ai in Microsoft 365, and the two `selector1`/`selector2` `_domainkey` CNAMEs added (DNS only). Signing turns on once Microsoft publishes its side of the keys (NOW.md).
+- DMARC moved from `p=none` to `p=quarantine`: nothing sends mail as tourgraph.ai except Microsoft 365, which passes on SPF today and on DKIM once signing is on.
+
 ---
 
 ## [13.1.0] - 2026-11-01
