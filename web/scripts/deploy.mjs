@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Build the site and API into one Worker and deploy it. Run from web/.
 //   node scripts/deploy.mjs              tests, build, checks, wrangler deploy
-//   node scripts/deploy.mjs --dry-run    tests, build, checks, wrangler deploy --dry-run
+//   node scripts/deploy.mjs --dry-run    tests, build, checks (including the dry-run bundle), no upload
 //   node scripts/deploy.mjs --local      build, checks, then serve it on http://localhost:8787
 //                                        against the local D1 (scripts/d1-load.mjs --local)
 //   add --skip-tests to skip vitest
@@ -11,8 +11,8 @@
 // any .env file it finds into the Worker. The build therefore runs in a copy
 // of web/ made from files git tracks or would track (ignored files such as
 // .env, .next and node_modules are left out; node_modules is cloned in).
-// After the build, the bundle is scanned for key names and refused if any
-// show up.
+// After the build, the output and the bundle wrangler would upload are
+// scanned for key names and key values and refused if any show up.
 //
 // Wrangler uses the OmSpark token in ~/.secrets/cloudflare/tourgraph.env.
 // The Mac's default wrangler login belongs to another account and is never used.
@@ -90,27 +90,50 @@ console.log(`\nstaged ${files.length} files in ${stage}`);
 // 3. Build.
 run("npx opennextjs-cloudflare build", stage);
 
-// 4. Refuse a bundle that carries any key name or .env file.
-const built = walk(join(stage, ".open-next"));
+// 4. Refuse a bundle that carries a key: scan every file of the OpenNext
+// output and of the bundle wrangler would upload (a dry run), whatever the
+// extension, for the key names, for the actual key values in web/.env*
+// (held in memory, never printed), and for any .env file (review R10).
+function secretValues() {
+  const values = [];
+  for (const name of readdirSync(webDir)) {
+    if (!name.startsWith(".env") || name === ".env.example") continue;
+    for (const line of readFileSync(join(webDir, name), "utf8").split("\n")) {
+      const m = /^\s*[A-Z0-9_]+\s*=\s*["']?([^"'\s#]+)/.exec(line);
+      if (m && m[1].length >= 16) values.push(m[1]);
+    }
+  }
+  return values;
+}
+const values = secretValues();
+const cf = local ? {} : loadToken();
+if (cf.CLOUDFLARE_API_TOKEN) values.push(cf.CLOUDFLARE_API_TOKEN);
+
+const uploadDir = join(stage, "upload-check");
+if (!local) run(`npx wrangler deploy --dry-run --outdir ${uploadDir}`, stage, cf);
+
+const scanned = [join(stage, ".open-next"), ...(local ? [] : [uploadDir])].flatMap((d) => walk(d));
 const leaks = [];
-for (const file of built) {
+for (const file of scanned) {
   const rel = relative(stage, file);
   if (/(^|\/)\.env(\.|$)/.test(rel)) leaks.push(`${rel} (env file)`);
-  if (!/\.(m?js|json|env|txt|html|map)$/.test(file) && !rel.includes(".env")) continue;
-  const text = readFileSync(file, "utf8");
-  for (const name of SECRET_NAMES) if (text.includes(name)) leaks.push(`${rel} mentions ${name}`);
+  const bytes = readFileSync(file);
+  for (const name of SECRET_NAMES) if (bytes.includes(name)) leaks.push(`${rel} mentions ${name}`);
+  if (values.some((v) => bytes.includes(v))) leaks.push(`${rel} contains a key value`);
 }
 if (leaks.length) {
   console.error("\nbundle check FAILED:\n  " + leaks.join("\n  "));
   process.exit(1);
 }
-console.log(`bundle check: ${built.length} files, no env files, no key names`);
+console.log(
+  `bundle check: ${scanned.length} files (OpenNext output${local ? "" : " and upload bundle"}), ` +
+    `no env files, no key names, none of ${values.length} key values`
+);
 
 // 5. Deploy, dry-run, or serve locally.
 if (local) {
   run(`npx wrangler dev --local --port 8787 --persist-to ${join(webDir, ".wrangler/state")}`, stage);
-} else {
-  const cf = loadToken();
-  run(`npx wrangler deploy${dryRun ? " --dry-run --outdir " + join(stage, "dist") : ""}`, stage, cf);
-  if (!dryRun) console.log("\nDeployed. Next: node scripts/verify.mjs [--base <url>]");
+} else if (!dryRun) {
+  run("npx wrangler deploy", stage, cf);
+  console.log("\nDeployed. Next: node scripts/verify.mjs [--base <url>]");
 }

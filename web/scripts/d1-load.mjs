@@ -11,10 +11,8 @@
 // The tables must exist and be empty: apply migrations first
 // (npx wrangler d1 migrations apply tourgraph-db --local|--remote).
 //
-// Verification runs the same fingerprint query on the source and on D1 for
-// every table: row count, and per column the count of non-nulls, the total
-// length, the sum of numbers, and the code points of the first and last
-// characters. Any difference fails the run.
+// Verification runs the same fingerprint queries on the source and on D1 for
+// every table and requires every value to be equal (see "Fingerprints").
 //
 // Remote runs read the OmSpark token from ~/.secrets/cloudflare/tourgraph.env.
 
@@ -89,34 +87,45 @@ function sqlValue(v) {
 }
 
 // Fingerprints
+//
+// Every value is an exact integer (or NULL) and must match exactly. Per
+// column: non-null count, text count, total text length, the sum of numbers
+// as round(x * 1000), and code points at the start, middle, end and a few
+// fixed positions. Terms weighted by (rowid % 997) tie values to their rows,
+// so values moved between rows, or a changed character inside a string, show
+// up. Review R3 (docs/reviews/2026-11-01-review.md).
 
 // D1 caps the number of columns in a result, so the fingerprint is taken in
-// groups of 8 source columns (one query per group).
+// groups of 4 source columns (one query per group).
 function fingerprintSqls(table) {
   const cols = columns(table);
   const sqls = [];
-  for (let start = 0; start < cols.length; start += 8) {
-    sqls.push(fingerprintSql(table, cols.slice(start, start + 8), start));
+  for (let start = 0; start < cols.length; start += 4) {
+    sqls.push(fingerprintSql(table, cols.slice(start, start + 4), start));
   }
   return sqls;
 }
 
 function fingerprintSql(table, cols, offset) {
   const parts = ["count(*) AS n"];
+  const w = "(rowid % 997)";
   cols.forEach((c, j) => {
     const i = offset + j;
     const q = `"${c}"`;
-    // Lengths and characters are taken from text only: SQLite versions can
-    // print the same REAL differently, so numbers are compared as sums.
-    const text = (expr) => `total(CASE WHEN typeof(${q}) = 'text' THEN ${expr} END)`;
+    const text = (expr) => `sum(CASE WHEN typeof(${q}) = 'text' THEN ${expr} END)`;
+    const num = (expr) => `sum(CASE WHEN typeof(${q}) IN ('integer','real') THEN ${expr} END)`;
+    const at = (pos) => `unicode(substr(${q}, ${pos}, 1))`;
     parts.push(
       `count(${q}) AS c${i}`,
       `sum(typeof(${q}) = 'text') AS t${i}`,
       text(`length(${q})`) + ` AS l${i}`,
-      `total(CASE WHEN typeof(${q}) IN ('integer','real') THEN ${q} END) AS s${i}`,
-      text(`unicode(${q})`) + ` AS f${i}`,
-      text(`unicode(substr(${q}, -1))`) + ` AS e${i}`,
-      text(`unicode(substr(${q}, (length(${q}) + 1) / 2, 1))`) + ` AS m${i}`
+      text(`${w} * length(${q})`) + ` AS wl${i}`,
+      num(`CAST(round(${q} * 1000) AS INTEGER)`) + ` AS s${i}`,
+      num(`${w} * CAST(round(${q} * 100) AS INTEGER)`) + ` AS ws${i}`,
+      text(`${w} * ${at(1)}`) + ` AS f${i}`,
+      text(`${w} * ${at(-1)}`) + ` AS e${i}`,
+      text(`${w} * ${at(`(length(${q}) + 1) / 2`)}`) + ` AS m${i}`,
+      text(`${w} * coalesce(${at(7)}, 0) + ${w} * coalesce(${at(29)}, 0) + ${w} * coalesce(${at(101)}, 0)`) + ` AS p${i}`
     );
   });
   return `SELECT ${parts.join(", ")} FROM "${table}"`;
@@ -131,16 +140,10 @@ function verify() {
       Object.assign(want, src.prepare(sql).get());
       Object.assign(got, d1Query(sql)[0]);
     }
-    const diffs = Object.keys(want).filter((k) => {
-      const a = want[k];
-      const b = got[k];
-      // Sums of REAL values can differ in the last bits with summation order.
-      return typeof a === "number" && typeof b === "number"
-        ? Math.abs(a - b) > 1e-6 * Math.max(1, Math.abs(a))
-        : a !== b;
-    });
+    const keys = Object.keys(want);
+    const diffs = keys.filter((k) => want[k] !== got[k]);
     if (diffs.length === 0) {
-      console.log(`  ok    ${table}: ${want.n} rows, fingerprint matches`);
+      console.log(`  ok    ${table}: ${want.n} rows, all ${keys.length} fingerprint values equal`);
     } else {
       failed++;
       console.log(`  FAIL  ${table}: ${diffs.length} fingerprint values differ (${diffs.slice(0, 6).join(", ")})`);
@@ -158,14 +161,15 @@ function* statements(table, where = "") {
   let size = head.length;
   for (const row of src.prepare(`SELECT * FROM "${table}" ${where} ORDER BY rowid`).iterate()) {
     const tuple = `(${cols.map((c) => sqlValue(row[c])).join(", ")})`;
-    if (head.length + tuple.length + 2 > MAX_STATEMENT) throw new Error(`${table} row too large for one statement`);
-    if (rows.length && size + tuple.length + 2 > MAX_STATEMENT) {
+    const bytes = Buffer.byteLength(tuple); // D1's statement limit is in bytes
+    if (head.length + bytes + 2 > MAX_STATEMENT) throw new Error(`${table} row too large for one statement`);
+    if (rows.length && size + bytes + 2 > MAX_STATEMENT) {
       yield head + rows.join(", ") + ";";
       rows = [];
       size = head.length;
     }
     rows.push(tuple);
-    size += tuple.length + 2;
+    size += bytes + 2;
   }
   if (rows.length) yield head + rows.join(", ") + ";";
 }

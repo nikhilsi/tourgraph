@@ -52,6 +52,7 @@ console.log("API");
 const health = await get("/api/v1/health");
 const healthBody = await health.json().catch(() => ({}));
 check("health is ok with 136,256 active tours", health.status === 200 && healthBody.status === "ok" && healthBody.tours === 136256, JSON.stringify(healthBody));
+check("health uptime is seconds since the isolate's first request", healthBody.uptime >= 0 && healthBody.uptime < 7 * 86400, String(healthBody.uptime));
 check("API responses carry HSTS and nosniff", headersMatch(health, {
   "strict-transport-security": PAGE_HEADERS["strict-transport-security"],
   "x-content-type-options": "nosniff",
@@ -88,6 +89,9 @@ for (const path of ["/", "/right-now", "/worlds-most", "/worlds-most/longest", "
 }
 const home = await (await get("/")).text();
 check("no site-wide canonical tag", !/rel="canonical" href="https:\/\/tourgraph\.ai"/.test(home));
+const support = await (await get("/support")).text();
+check("no scripts injected by Cloudflare (Web Analytics, email obfuscation, Rocket Loader)",
+  ![home, support].some((h) => /cloudflareinsights|email-decode|rocket-loader/.test(h)));
 check("tour photos load straight from the CDN", /src="https:\/\/media-cdn\.tripadvisor\.com/.test(await (await get("/roulette/2")).text()));
 const missingPage = await get("/roulette/999999999");
 check("unknown tour shows the not-found page (404)", missingPage.status === 404);
@@ -111,6 +115,9 @@ if (jsRes) check("static files carry HSTS and nosniff (public/_headers)", header
   "strict-transport-security": PAGE_HEADERS["strict-transport-security"],
   "x-content-type-options": "nosniff",
 }).length === 0);
+if (jsRes) check("Next.js build files are cached for a year", jsRes.headers.get("cache-control") === "public, max-age=31536000, immutable", jsRes.headers.get("cache-control"));
+const proxied = await get(`/_next/image?url=${encodeURIComponent(tourBody.imageUrl)}&w=640&q=75`);
+check("/_next/image does not proxy remote images", proxied.status >= 400, `status ${proxied.status}`);
 const logo = await get("/logo-white.png");
 check("/logo-white.png", logo.status === 200 && logo.headers.get("content-type") === "image/png");
 
@@ -120,6 +127,8 @@ if (host === "tourgraph.ai") {
   check("www goes to the apex", www.status === 301 && www.headers.get("location") === "https://tourgraph.ai/about?x=1", `${www.status} ${www.headers.get("location")}`);
   const http = await get("http://tourgraph.ai/about?x=1");
   check("http goes to https", [301, 308].includes(http.status) && http.headers.get("location") === "https://tourgraph.ai/about?x=1", `${http.status} ${http.headers.get("location")}`);
+  const httpAsset = await get("http://tourgraph.ai/logo-white.png");
+  check("http goes to https for static files too", [301, 308].includes(httpAsset.status), `${httpAsset.status}`);
   check("served by Cloudflare, not the droplet", !!health.headers.get("cf-ray") && !/nginx/i.test(health.headers.get("server") ?? ""));
 }
 

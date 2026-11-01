@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import type { AppEnv } from "../env";
+import { type AppEnv, logError } from "../env";
 import { tourRowToRouletteTour } from "../transform";
 import type { TourRow, WeightCategory } from "../types";
 
@@ -161,7 +161,7 @@ router.get("/roulette/hand", async (c) => {
     c.header("Cache-Control", "private, no-store");
     return c.json({ hand: hand.map(tourRowToRouletteTour) });
   } catch (err) {
-    console.error("Roulette hand error:", err);
+    logError("Roulette hand error", err);
     return c.json({ hand: [], error: "Failed to fetch tours" }, 500);
   }
 });

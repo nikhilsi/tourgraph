@@ -13,7 +13,9 @@ describe("health and stats", () => {
     expect(status).toBe(200);
     expect(body.status).toBe("ok");
     expect(body.tours).toBe(n);
-    expect(typeof body.uptime).toBe("number");
+    // Seconds since this isolate's first request, not since 1970 (review R6).
+    expect(body.uptime).toBeGreaterThanOrEqual(0);
+    expect(body.uptime).toBeLessThan(3600);
   });
 
   it("serves stats with an hour of caching", async () => {
@@ -115,9 +117,18 @@ describe("roulette", () => {
     for (const t of body.hand) expect(excluded).not.toContain(t.id);
   });
 
-  it("caps the exclude list at 200 and ignores junk", async () => {
-    const { status } = await getJson(`/api/v1/roulette/hand?exclude=${Array.from({ length: 500 }, (_, i) => i).join(",")},x,,`);
+  it("uses only the first 200 exclude ids and ignores junk", async () => {
+    const active = (await rows<{ id: number }>("SELECT id FROM tours WHERE status = 'active' ORDER BY id")).map((r) => r.id);
+    // The list names every active tour. Only the ones after position 200 can
+    // be dealt, and only because the cap ignores them: without the cap the
+    // hand would be empty.
+    const beyondCap = active.slice(200);
+    expect(beyondCap.length).toBeGreaterThanOrEqual(20);
+    const list = [...active, "x", ""].join(",");
+    const { status, body } = await getJson<{ hand: Card[] }>(`/api/v1/roulette/hand?exclude=${list}`);
     expect(status).toBe(200);
+    expect(body.hand.length).toBe(20);
+    for (const t of body.hand) expect(beyondCap).toContain(t.id);
   });
 
   it("returns 429 when the rate limiter says no", async () => {
@@ -162,9 +173,22 @@ describe("right now", () => {
     }
   });
 
-  it("caps count at 20 and returns [] for unknown zones", async () => {
-    const { body } = await getJson<{ tours: unknown[] }>("/api/v1/right-now/tours?timezones=Not/AZone&count=99");
+  it("caps count at 20", async () => {
+    const zones = (await rows<{ timezone: string }>(
+      `SELECT DISTINCT timezone FROM tours
+       WHERE status = 'active' AND image_url IS NOT NULL AND rating >= 4.0 AND timezone IS NOT NULL`
+    )).map((r) => r.timezone);
+    expect(zones.length).toBeGreaterThan(20);
+    const { body } = await getJson<{ tours: unknown[] }>(`/api/v1/right-now/tours?timezones=${encodeURIComponent(zones.join(","))}&count=99`);
+    expect(body.tours.length).toBe(20);
+  });
+
+  it("ignores made-up time zones without querying them (review R8)", async () => {
+    const fake = Array.from({ length: 600 }, (_, i) => `Fake/Zone${i}`).join(",");
+    const { status, body, res } = await getJson<{ tours: unknown[] }>(`/api/v1/right-now/tours?timezones=${fake}`);
+    expect(status).toBe(200);
     expect(body.tours).toEqual([]);
+    expect(res.headers.get("cache-control")).toBe("private, no-store");
   });
 });
 
@@ -183,6 +207,19 @@ describe("superlatives", () => {
     expect(body.type).toBe("most-expensive");
     expect(Object.keys(body.tour).sort()).toEqual(DETAIL_KEYS);
     expect(body.tour.description).toBe("");
+  });
+
+  it("draws from the same ten tours as the droplet: ties broken by id (review R7)", async () => {
+    const want = (await rows<{ id: number }>(
+      `SELECT id FROM tours WHERE status = 'active' AND duration_minutes IS NOT NULL
+         AND duration_minutes <= 20160 AND image_url IS NOT NULL
+       ORDER BY duration_minutes DESC, id LIMIT 10`
+    )).map((r) => r.id);
+    const seen = new Set<number>();
+    for (let i = 0; i < 30; i++) {
+      seen.add((await getJson<{ tour: Card }>("/api/v1/superlatives/longest")).body.tour.id);
+    }
+    for (const id of seen) expect(want).toContain(id);
   });
 
   it("refuses an unknown type with the old message", async () => {

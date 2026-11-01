@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { type AppEnv, remember } from "../env";
+import { type AppEnv, remember, logError } from "../env";
 import { tourRowToRouletteTour, tourRowToDetail } from "../transform";
 import type { TourRow, SuperlativeType } from "../types";
 
@@ -11,39 +11,42 @@ const SELECT_COLUMNS = `
   image_url, viator_url, weight_category
 `;
 
+// Ties are broken by id, which is the order the droplet's SQLite returned
+// them in. Without it, D1's indexes pick a different ten among tied tours
+// (216 tours tie for "longest" at 20,160 minutes). Review R7.
 const SUPERLATIVE_QUERIES: Record<SuperlativeType, string> = {
   "most-expensive": `
     SELECT ${SELECT_COLUMNS} FROM tours
     WHERE status = 'active' AND from_price IS NOT NULL
       AND from_price <= 50000 AND image_url IS NOT NULL
-    ORDER BY from_price DESC LIMIT 10`,
+    ORDER BY from_price DESC, id LIMIT 10`,
   "cheapest-5star": `
     SELECT ${SELECT_COLUMNS} FROM tours
     WHERE status = 'active' AND rating >= 4.5
       AND from_price IS NOT NULL AND from_price > 0
       AND review_count >= 10 AND image_url IS NOT NULL
-    ORDER BY from_price ASC LIMIT 10`,
+    ORDER BY from_price ASC, id LIMIT 10`,
   longest: `
     SELECT ${SELECT_COLUMNS} FROM tours
     WHERE status = 'active' AND duration_minutes IS NOT NULL
       AND duration_minutes <= 20160 AND image_url IS NOT NULL
-    ORDER BY duration_minutes DESC LIMIT 10`,
+    ORDER BY duration_minutes DESC, id LIMIT 10`,
   shortest: `
     SELECT ${SELECT_COLUMNS} FROM tours
     WHERE status = 'active' AND duration_minutes IS NOT NULL
       AND duration_minutes >= 30 AND image_url IS NOT NULL
-    ORDER BY duration_minutes ASC LIMIT 10`,
+    ORDER BY duration_minutes ASC, id LIMIT 10`,
   "most-reviewed": `
     SELECT ${SELECT_COLUMNS} FROM tours
     WHERE status = 'active' AND review_count IS NOT NULL
       AND image_url IS NOT NULL
-    ORDER BY review_count DESC LIMIT 10`,
+    ORDER BY review_count DESC, id LIMIT 10`,
   "hidden-gem": `
     SELECT ${SELECT_COLUMNS} FROM tours
     WHERE status = 'active' AND rating >= 4.8
       AND review_count >= 10 AND review_count <= 100
       AND image_url IS NOT NULL
-    ORDER BY rating DESC, review_count ASC LIMIT 10`,
+    ORDER BY rating DESC, review_count ASC, id LIMIT 10`,
 };
 
 const TYPES = Object.keys(SUPERLATIVE_QUERIES) as SuperlativeType[];
@@ -78,7 +81,7 @@ router.get("/superlatives", async (c) => {
     c.header("Cache-Control", "private, no-store");
     return c.json({ superlatives });
   } catch (err) {
-    console.error("Superlatives error:", err);
+    logError("Superlatives error", err);
     return c.json({ error: "Failed to fetch superlatives" }, 500);
   }
 });
@@ -99,7 +102,7 @@ router.get("/superlatives/:type", async (c) => {
     c.header("Cache-Control", "private, no-store");
     return c.json({ type, tour: tourRowToDetail(tour) });
   } catch (err) {
-    console.error("Superlative error:", err);
+    logError("Superlative error", err);
     return c.json({ error: "Failed to fetch superlative" }, 500);
   }
 });

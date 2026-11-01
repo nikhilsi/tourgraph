@@ -1,5 +1,6 @@
 // Trivia: lazy daily assembly, answers, scores and stats, including the two
 // D1 race fixes (inventory 3.3) and the date check on /trivia/results.
+import { env } from "cloudflare:test";
 import { describe, expect, it } from "vitest";
 import { formatSlots, todayUTC } from "../src/server/api/routes/trivia";
 import { getJson, one, rows } from "./helpers";
@@ -26,9 +27,14 @@ describe("daily", () => {
   });
 
   it("gives two simultaneous first requests the same set and burns only five", async () => {
-    const date = "2027-03-03";
+    const date = todayUTC();
+    // Start from a day nobody has assembled yet.
+    await env.DB.batch([
+      env.DB.prepare("DELETE FROM trivia_daily WHERE date = ?").bind(date),
+      env.DB.prepare("UPDATE trivia_pool SET used_date = NULL WHERE used_date = ?").bind(date),
+    ]);
     const [a, b] = await Promise.all([
-      getJson<{ questions: Q[] }>(`/api/v1/trivia/results?date=${date}`),
+      getJson<{ questions: Q[] }>("/api/v1/trivia/daily"),
       getJson<{ questions: Q[] }>(`/api/v1/trivia/results?date=${date}`),
     ]);
     expect(a.body.questions.map((q) => q.id)).toEqual(b.body.questions.map((q) => q.id));
@@ -40,20 +46,38 @@ describe("daily", () => {
 });
 
 describe("results", () => {
-  it("returns answers and reveals for a day", async () => {
-    const { status, body } = await getJson<{ date: string; questions: Q[] }>("/api/v1/trivia/results?date=2027-01-02");
+  it("returns answers and reveals for today, assembling it if needed", async () => {
+    const { status, body } = await getJson<{ date: string; questions: Q[] }>("/api/v1/trivia/results");
     expect(status).toBe(200);
-    expect(body.date).toBe("2027-01-02");
+    expect(body.date).toBe(todayUTC());
+    expect(body.questions.length).toBe(5);
     for (const q of body.questions) {
       expect(Object.keys(q).sort()).toEqual(["correctIndex", "format", "id", "options", "question", "reveal"]);
     }
   });
 
-  it("refuses a malformed date instead of assembling it", async () => {
-    const { status, body } = await getJson("/api/v1/trivia/results?date=garbage");
+  it("returns a saved past day as it was saved", async () => {
+    const ids = (await rows<{ id: number }>("SELECT id FROM trivia_pool ORDER BY id LIMIT 5")).map((r) => r.id);
+    await env.DB.prepare("INSERT INTO trivia_daily (date, question_ids_json) VALUES (?, ?)").bind("2026-02-03", JSON.stringify(ids)).run();
+    const { status, body } = await getJson<{ questions: Q[] }>("/api/v1/trivia/results?date=2026-02-03");
+    expect(status).toBe(200);
+    expect(body.questions.map((q) => q.id)).toEqual(ids);
+  });
+
+  it("does not assemble other days: 404, nothing used up (review R11)", async () => {
+    for (const date of ["2027-01-02", "2026-01-01"]) {
+      const { status, body } = await getJson(`/api/v1/trivia/results?date=${date}`);
+      expect(status).toBe(404);
+      expect(body).toEqual({ error: "No trivia for this date" });
+      expect((await rows("SELECT id FROM trivia_pool WHERE used_date = ?", date)).length).toBe(0);
+    }
+  });
+
+  it.each(["garbage", "2026-13-45", "2026-02-30", "2026-1-5"])("refuses the date %s", async (date) => {
+    const { status, body } = await getJson(`/api/v1/trivia/results?date=${date}`);
     expect(status).toBe(400);
     expect(body).toEqual({ error: "Invalid date" });
-    expect((await rows("SELECT date FROM trivia_daily WHERE date = 'garbage'")).length).toBe(0);
+    expect((await rows("SELECT date FROM trivia_daily WHERE date = ?", date)).length).toBe(0);
   });
 });
 

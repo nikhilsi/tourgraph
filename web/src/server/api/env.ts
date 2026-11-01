@@ -9,9 +9,15 @@ export interface Env {
 
 export type AppEnv = { Bindings: Env };
 
-// Time this isolate started. /health reports uptime from it, the way the
-// Express server reported process uptime.
-export const STARTED_AT = Date.now();
+// Seconds since this isolate served its first request: /health's "uptime"
+// (Express reported process uptime). Taken on the first request, because
+// Workers' clock reads 0 at module load (review R6).
+let startedAt = 0;
+export function uptimeSeconds(): number {
+  const now = Date.now();
+  if (!startedAt) startedAt = now;
+  return (now - startedAt) / 1000;
+}
 
 // Small per-isolate memo for answers that come from frozen data (counts,
 // distinct lists). The tour data is not refreshed, so an hour is safe and it
@@ -29,4 +35,12 @@ export async function remember<T>(key: string, load: () => Promise<T>): Promise<
 
 export function clearMemo(): void {
   memo.clear();
+}
+
+// Log an error with its message and cause. D1 errors logged as plain objects
+// showed only a stack in Workers Logs, without the D1 message.
+export function logError(label: string, err: unknown): void {
+  const e = err as { message?: string; cause?: { message?: string } } | undefined;
+  const cause = e?.cause ? ` | cause: ${e.cause.message ?? String(e.cause)}` : "";
+  console.error(`${label}: ${e?.message ?? String(err)}${cause}`);
 }

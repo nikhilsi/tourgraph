@@ -1,8 +1,12 @@
 import type { MetadataRoute } from "next";
+import { connection } from "next/server";
 import { getChainSlugs } from "@/lib/api";
 import { VALID_SLUGS } from "@/lib/superlatives";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Render per request. Without this the build pre-renders a sitemap with no
+  // chain pages (the try/catch below swallows the build-time bail-out).
+  await connection();
   const base = "https://tourgraph.ai";
 
   // Static pages

@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import type { AppEnv } from "../env";
+import { type AppEnv, logError } from "../env";
 import { tourRowToRouletteTour, tourRowToDetail } from "../transform";
 import type { TourRow } from "../types";
 
@@ -26,7 +26,7 @@ router.get("/tours/:id", async (c) => {
     c.header("Cache-Control", "public, max-age=3600, s-maxage=3600");
     return c.json(tourRowToDetail(row));
   } catch (err) {
-    console.error("Tour detail error:", err);
+    logError("Tour detail error", err);
     return c.json({ error: "Failed to fetch tour" }, 500);
   }
 });
@@ -47,7 +47,7 @@ router.get("/tours/:id/enrichment", async (c) => {
     c.header("Cache-Control", "public, max-age=86400, s-maxage=86400");
     return c.json({ id: row.id, description: row.description, image_urls_json: row.image_urls_json });
   } catch (err) {
-    console.error("Tour enrichment error:", err);
+    logError("Tour enrichment error", err);
     return c.json({ error: "Failed to fetch tour data" }, 500);
   }
 });
@@ -84,7 +84,7 @@ router.post("/tours/batch", async (c) => {
       })),
     });
   } catch (err) {
-    console.error("Batch enrichment error:", err);
+    logError("Batch enrichment error", err);
     return c.json({ error: "Failed to fetch tour data" }, 500);
   }
 });
@@ -103,7 +103,7 @@ router.get("/tours/:id/card", async (c) => {
     c.header("Cache-Control", "public, max-age=3600, s-maxage=3600");
     return c.json(tourRowToRouletteTour(row));
   } catch (err) {
-    console.error("Tour card error:", err);
+    logError("Tour card error", err);
     return c.json({ error: "Failed to fetch tour" }, 500);
   }
 });

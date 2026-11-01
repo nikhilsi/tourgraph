@@ -5,22 +5,10 @@ const nextConfig: NextConfig = {
   images: {
     // On Cloudflare, Next's image optimizer would need Cloudflare Images
     // (billed per transformation). The tour photos are already 720x480 JPEGs
-    // on TripAdvisor's CDN, so they are served as they are.
+    // on TripAdvisor's CDN, so they are served as they are. No remotePatterns:
+    // with them, /_next/image would pass any matching host's images through
+    // this Worker (review R13). The CSP below still limits image hosts.
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "**.tripadvisor.com",
-      },
-      {
-        protocol: "https",
-        hostname: "**.cloudfront.net",
-      },
-      {
-        protocol: "https",
-        hostname: "**.viator.com",
-      },
-    ],
   },
 
   // H1: Security headers

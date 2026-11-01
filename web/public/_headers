@@ -8,3 +8,8 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Content-Security-Policy: default-src 'self'; img-src 'self' https://*.tripadvisor.com https://*.cloudfront.net https://*.viator.com data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'
+
+# Next.js build files have content hashes in their names: cache for a year
+# (nginx and next start sent this; Cloudflare's asset default is max-age=0).
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable

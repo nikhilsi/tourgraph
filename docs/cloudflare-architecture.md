@@ -50,13 +50,17 @@ Deliberate differences (none visible to the site):
 |---|---|---|
 | Unknown `/api/v1` path: Express HTML 404 | `{"error": "Not found"}` 404 | JSON API |
 | POST with a body that is not JSON: 500 | 400 with the route's usual message | inventory O13 |
-| `/trivia/results?date=garbage` assembled a garbage day (and used up questions) | 400 `{"error": "Invalid date"}` | inventory O6 |
+| `/trivia/results?date=<any day>` assembled that day (using up questions and revealing a future day's answers); garbage dates too | Only today is assembled. Another day returns its saved set, or 404 `{"error": "No trivia for this date"}`. Malformed or impossible dates: 400 `{"error": "Invalid date"}` | inventory O6, review R11 |
 | Two first requests of a day could get different trivia sets | Both get the set that was saved; only that set is marked used | D1 runs statements concurrently (inventory 3.3) |
 | Duplicate score check was SELECT then INSERT | Unique index on (date, session_hash), `INSERT OR IGNORE`, 409 when nothing was saved | same |
 | Country from nginx GeoIP2 | `request.cf.country`; `XX` (unknown) and `T1` (Tor) stored as NULL | Cloudflare equivalent |
 | Roulette rate limit: in-process map, 30 per 10 s per IP | Rate Limiting binding, same numbers, approximate and per Cloudflare location | no shared memory on Workers |
 | `X-Powered-By: Express`, Express ETags | Hono weak ETags, no X-Powered-By | nothing depends on them |
-| `/health` `uptime`: process uptime | seconds since this isolate started | no long-lived process |
+| `/health` `uptime`: process uptime | seconds since this isolate's first request; `/health` also runs `SELECT 1` on D1 each call | no long-lived process (review R6) |
+| Express matched API paths case-insensitively (`/api/v1/HEALTH`) | Case-sensitive | the site uses lowercase paths (review R9) |
+| JSON as `application/json; charset=utf-8` | `application/json` | JSON is UTF-8 by definition (review R9) |
+| `/right-now/tours` queried every name it was given | Only names that exist in the data, at most 300 | review R8 |
+| nginx redirected every path on www and http | Pages and API redirect in the Worker; plain http redirects for every path through the zone's Always Use HTTPS; static files (JS, logo, social card) also answer on www | no page content on www (review R5) |
 
 D1-specific changes inside the routes:
 
@@ -64,13 +68,14 @@ D1-specific changes inside the routes:
 - **Roulette.** The random pick runs on a covering index (`weight_category, status`) and reads only the chosen rows; each category's picks are shuffled so the order matches `ORDER BY RANDOM()`. The seven category queries run as one batch (categories are disjoint, so they can't collide).
 - **Right Now.** One random tour per time zone, queried 25 time zones per batch until `count` are found. Same result as the one-at-a-time loop, fewer round trips. Duplicate time zones in the request are dropped.
 - **Per-isolate memo** (`env.ts` `remember`, one hour): `/health` count, `/stats`, the time zone list, chain count and slugs, and the six top-10 superlative candidate lists. The data is frozen. Each superlative request still picks one of the ten at random.
+- **Superlative ties.** Each query ends with `, id`, the order the droplet's SQLite returned ties in, so every type draws from the same ten tours as before (216 tours tie for "longest"). Checked on D1 for all six (review R7).
 
 ## 4. Data
 
 - **D1 `tourgraph-db`** (`8c7d8475-0130-4e69-8f5d-679d2f4305e4`, location WNAM). Tables: `tours` (all 136,303 rows and all 29 columns; the 47 inactive tours are still reachable through `/tours/:id`), `six_degrees_chains`, `trivia_pool`, `trivia_daily`, `trivia_scores`. The pipeline-only tables (`destinations`, `city_profiles`, `city_readings`, `indexer_state`, `superlatives`) stay in `data/tourgraph.db` (Git LFS), which remains the source of truth.
-- **Schema:** `web/migrations/0001_schema.sql`, copied from the source file. Changes: indexes added on `duration_minutes` and `review_count` and `(weight_category, status)`; three unused indexes left out; a unique index for trivia scores.
+- **Schema:** `web/migrations/0001_schema.sql`, copied from the source file. Changes: indexes added on `duration_minutes` and `review_count` (made descending in `0002_duration_desc.sql` for the tie order) and `(weight_category, status)`; three unused indexes left out; a unique index for trivia scores.
 - **Planner statistics.** The source file has none, so SQLite scanned the whole 454 MB `tours` table through the status index for every roulette and superlative query. That is the main reason the droplet took 13 to 21 s per homepage. After the load, `PRAGMA optimize=0x10002` runs ANALYZE. On D1 the longest-tour superlative now reads 10 rows in 0.4 ms.
-- **Load and proof:** `web/scripts/d1-load.mjs` opens the source read-only, writes multi-row INSERTs of at most 90 KB (D1's limit is 100 KB per statement) in 40 MB files, loads them with `wrangler d1 execute --file`, runs the optimize, then compares a fingerprint of every table between the source and D1: row count, and per column the non-null count, text count, total text length, numeric sum, and the code points of the first, middle and last characters. Production load on Nov 1: 9 files, about 2 minutes, every table matches.
+- **Load and proof:** `web/scripts/d1-load.mjs` opens the source read-only, writes multi-row INSERTs of at most 90 KB (D1's limit is 100 KB per statement) in 40 MB files, loads them with `wrangler d1 execute --file`, runs the optimize, then compares a fingerprint of every table between the source and D1. Every value is an exact integer and must be equal: row count, and per column the non-null count, text count, total text length, numbers as `round(x * 1000)`, and code points at several positions, with terms weighted by `rowid % 997` so values moved between rows are caught (review R3; a pure swap of two titles fails it). Production load on Nov 1: 9 files, about 2 minutes; 505 fingerprint values across the five tables, all equal.
 - **Trivia state starts empty.** The droplet's trivia rows (from iOS testing in March, if any) were not copied. Nobody uses trivia.
 - **Refreshing the data** (none planned): run the pipeline on the Mac, empty the five tables, re-run `d1-load.mjs --remote`. D1 Time Travel can restore any minute of the last 30 days.
 
@@ -79,8 +84,10 @@ D1-specific changes inside the routes:
 - **Build:** `opennextjs-cloudflare build` with an empty `open-next.config.ts` (no incremental cache: every data page renders per request). The route table is the same as before: `/story`, `/privacy`, `/support`, `/robots.txt` and the icons are static, everything else dynamic.
 - **Bundle:** 8.3 MB, 2.1 MB gzipped. Workers allow 64 MB.
 - **Images:** `images.unoptimized: true`. Pages point at TripAdvisor's CDN URLs, which the CSP already allows. Avoids Cloudflare Images billing per transformation.
-- **Headers:** `next.config.ts` `headers()` covers pages, OG images and the sitemap, unchanged. API responses get HSTS and `nosniff` in `route.ts`. Static files served straight from the asset store get the same set from `public/_headers`.
-- **Secrets never reach the bundle.** `web/.env` and `web/.env.local` hold the data pipeline's Viator and Anthropic keys (`data/lib/env.ts` reads them there), and OpenNext bakes any `.env` file into the Worker. `web/scripts/deploy.mjs` therefore builds in a copy of `web/` made of files git tracks or would track, then scans the output and refuses to deploy if any key name or `.env` file shows up.
+- **Headers:** `next.config.ts` `headers()` covers pages, OG images and the sitemap, unchanged. API responses get HSTS and `nosniff` in `route.ts`. Static files served straight from the asset store get the same set from `public/_headers`, which also gives `/_next/static/*` a year of immutable caching, as before.
+- **No image proxy:** `next.config.ts` has no `remotePatterns`, so `/_next/image` refuses remote URLs (review R13).
+- **Zone settings** (tourgraph.ai): Always Use HTTPS on, Email Obfuscation off (it rewrites pages and injects a script), Rocket Loader off, minimum TLS 1.2 (as nginx). Set Nov 1, 2026; before: off, on, off, 1.0.
+- **Secrets never reach the bundle.** `web/.env` and `web/.env.local` hold the data pipeline's Viator and Anthropic keys (`data/lib/env.ts` reads them there), and OpenNext bakes any `.env` file into the Worker. `web/scripts/deploy.mjs` therefore builds in a copy of `web/` made of files git tracks or would track, then scans every file of the OpenNext output and of the dry-run bundle wrangler uploads for the key names, the key values and any `.env` file, and refuses to deploy if anything shows up (review R10).
 - **Google Analytics:** unchanged. `layout.tsx` loads GA4, and the CSP blocks it, as it has since June 2026. The privacy page says "No analytics, no tracking", so turning GA on is Nikhil's call (see section 10).
 
 ## 6. Behaviors replaced
@@ -103,22 +110,25 @@ D1-specific changes inside the routes:
 
 ## 8. Testing
 
-- **Unit tests** (`web/test/`, `npm test`): 48 tests run the API and the routing in the Workers runtime against a local D1 seeded from a slice of the real data (`test/fixtures/seed.json`, made by `d1-load.mjs --fixture`). They cover every route's status codes, bodies and headers, the 200-id exclude list, the rate limit path, both race fixes, the redirects and the API vs pages split.
+- **Unit tests** (`web/test/`, `npm test`): 55 tests run the API and the routing in the Workers runtime against a local D1 seeded from a slice of the real data (`test/fixtures/seed.json`, made by `d1-load.mjs --fixture`). They cover every route's status codes, bodies and headers, the 200-id exclude list, the rate limit path, both race fixes, the redirects and the API vs pages split.
 - **Contract diff** (`scripts/contract-diff.mjs --old <url> --new <url>`): 177 read-only comparisons against the droplet.
-- **Live checks** (`scripts/verify.mjs [--base <url>]`): 35 checks after each deploy, plus the redirects on tourgraph.ai.
+- **Live checks** (`scripts/verify.mjs [--base <url>]`): 39 checks after each deploy, plus the redirects on tourgraph.ai.
+- **Browser walk** (`scripts/walk/walk.mjs`): headless Chrome through every page at desktop and phone size.
+- **Independent review:** `docs/reviews/2026-11-01-review.md`, 14 findings (no blockers), each answered in the file.
 - **Load test** (`scripts/loadtest.mjs`): the gate for OpenNext #1381 (pages failing with 1102 after about 120 renders per isolate), run with `wrangler tail` watching each request's outcome. Results are in the runbook.
 
 ## 9. Switchover and rollback
 
-Switchover (Nov 1, 2026, on Nikhil's written OK in chat):
+Switchover (Nov 1, 2026, on Nikhil's written OK in chat; revised after review R1):
 
-1. Load test and live checks pass on `workers.dev`.
-2. Delete the two DNS-only A records (`tourgraph.ai`, `www.tourgraph.ai`, both 143.244.186.165). A non-interactive deploy would otherwise overwrite them without asking.
-3. Attach both hostnames to the Worker as custom domains (Cloudflare creates proxied records and the certificate), and add them to `wrangler.jsonc` so later deploys keep them.
-4. Run `verify.mjs` on tourgraph.ai, including the redirects. Check the six mail records are unchanged.
-5. Turn off `workers_dev` so tourgraph.ai is the only address.
+1. Load test, live checks, contract diff and browser walk pass on `workers.dev`.
+2. Save the zone: JSON of every record and a BIND export.
+3. Add both hostnames to `wrangler.jsonc` as custom domains and run `npx wrangler triggers deploy` (no rebuild). Run without a terminal, wrangler replaces the two DNS-only A records (143.244.186.165) with the Worker's records in the same call, so there is no gap. Cloudflare issues the certificate.
+4. If the attach fails: recreate the two A records at once (`A tourgraph.ai 143.244.186.165`, `A www.tourgraph.ai 143.244.186.165`, DNS only, TTL auto).
+5. Run `verify.mjs` and the browser walk on tourgraph.ai, including the redirects. Check the six mail records are unchanged.
+6. Turn off `workers_dev` so tourgraph.ai is the only address.
 
-Rollback while the droplet exists: remove the custom domain routes from `wrangler.jsonc`, detach the domains, recreate the two A records to 143.244.186.165 (DNS only). After the droplet is deleted: `npx wrangler rollback` for code, D1 Time Travel for data.
+Rollback to the droplet works until its certificate expires on Nov 27, 2026 08:23 GMT (it is not renewing, and cannot once the Worker answers the ACME path; review R2), or until the droplet is deleted, whichever comes first: remove the routes from `wrangler.jsonc`, detach both custom domains, and recreate the two A records at once. After that: `npx wrangler rollback` for code, D1 Time Travel for data.
 
 ## 10. Decisions
 
@@ -135,6 +145,7 @@ Rollback while the droplet exists: remove the custom domain routes from `wrangle
 | 9 | Rate limit | Rate Limiting binding with the old numbers. |
 | 10 | Google Analytics | Not turned on. Nikhil asked for the GA fix before the inventory found that the privacy page promises no analytics and the product's rules say no cookies. Left blocked as it was; Nikhil decides. |
 | 11 | Trivia rows on the droplet | Not copied. |
+| 12 | Independent review | 14 findings: 12 fixed, R2 accepted as a dated rollback limit, R9 documented. |
 
 ## 11. Known and left alone
 

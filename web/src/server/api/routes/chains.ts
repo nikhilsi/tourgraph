@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { type AppEnv, remember } from "../env";
+import { type AppEnv, remember, logError } from "../env";
 import type { ChainData, ChainWithMeta } from "../types";
 
 const router = new Hono<AppEnv>();
@@ -34,7 +34,7 @@ router.get("/chains", async (c) => {
     c.header("Cache-Control", "public, max-age=3600, s-maxage=3600");
     return c.json({ chains: results.map(parseChain) });
   } catch (err) {
-    console.error("Chains error:", err);
+    logError("Chains error", err);
     return c.json({ error: "Failed to fetch chains" }, 500);
   }
 });
@@ -51,7 +51,7 @@ router.get("/chains/slugs", async (c) => {
     c.header("Cache-Control", "public, max-age=86400, s-maxage=86400");
     return c.json({ slugs });
   } catch (err) {
-    console.error("Chain slugs error:", err);
+    logError("Chain slugs error", err);
     return c.json({ error: "Failed to fetch chain slugs" }, 500);
   }
 });
@@ -66,7 +66,7 @@ router.get("/chains/count", async (c) => {
     c.header("Cache-Control", "public, max-age=3600, s-maxage=3600");
     return c.json({ count });
   } catch (err) {
-    console.error("Chain count error:", err);
+    logError("Chain count error", err);
     return c.json({ error: "Failed to fetch chain count" }, 500);
   }
 });
@@ -81,7 +81,7 @@ router.get("/chains/random", async (c) => {
     c.header("Cache-Control", "private, no-store");
     return c.json(parseChain(row));
   } catch (err) {
-    console.error("Random chain error:", err);
+    logError("Random chain error", err);
     return c.json({ error: "Failed to fetch chain" }, 500);
   }
 });
@@ -96,7 +96,7 @@ router.get("/chains/:slug", async (c) => {
     c.header("Cache-Control", "public, max-age=3600, s-maxage=3600");
     return c.json(parseChain(row));
   } catch (err) {
-    console.error("Chain by slug error:", err);
+    logError("Chain by slug error", err);
     return c.json({ error: "Failed to fetch chain" }, 500);
   }
 });

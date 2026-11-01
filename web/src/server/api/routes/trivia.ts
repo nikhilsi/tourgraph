@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import type { AppEnv } from "../env";
+import { type AppEnv, logError } from "../env";
 
 const router = new Hono<AppEnv>();
 
@@ -35,7 +35,12 @@ export function todayUTC(): string {
   return new Date().toISOString().slice(0, 10);
 }
 
-const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+// A real calendar day in YYYY-MM-DD form (2026-13-45 is refused).
+export function isValidDate(date: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return false;
+  const d = new Date(`${date}T00:00:00Z`);
+  return !isNaN(d.getTime()) && d.toISOString().slice(0, 10) === date;
+}
 
 // Daily mix: 5 format slots that rotate across days.
 // Slot 1: warm-up (higher_or_lower or odd_one_out)
@@ -66,8 +71,9 @@ async function readDaily(db: D1Database, date: string): Promise<number[] | null>
 /**
  * Lazy daily assembly: the first request for a date picks 5 questions from
  * the pool (one per format slot), saves them to trivia_daily and marks them
- * used. On Workers two first requests can run at once; INSERT OR IGNORE keeps
- * the first set and both requests return what was saved.
+ * used. Saving and marking run as one batch (a transaction), and the marking
+ * reads the ids back from trivia_daily, so two first requests at once (which
+ * D1 allows) both end up with the saved set, and a retry is harmless.
  */
 async function getOrAssembleDaily(db: D1Database, date: string): Promise<TriviaQuestionWithAnswer[]> {
   const existing = await readDaily(db, date);
@@ -99,19 +105,20 @@ async function getOrAssembleDaily(db: D1Database, date: string): Promise<TriviaQ
 
   if (pickedIds.length === 0) return [];
 
-  const inserted = await db
-    .prepare("INSERT OR IGNORE INTO trivia_daily (date, question_ids_json) VALUES (?, ?)")
-    .bind(date, JSON.stringify(pickedIds))
-    .run();
+  await db.batch([
+    db
+      .prepare("INSERT OR IGNORE INTO trivia_daily (date, question_ids_json) VALUES (?, ?)")
+      .bind(date, JSON.stringify(pickedIds)),
+    db
+      .prepare(
+        `UPDATE trivia_pool SET used_date = ?
+         WHERE id IN (SELECT value FROM json_each(
+           (SELECT question_ids_json FROM trivia_daily WHERE date = ?)))`
+      )
+      .bind(date, date),
+  ]);
 
-  if (inserted.meta.changes > 0) {
-    await db.batch(
-      pickedIds.map((id) => db.prepare("UPDATE trivia_pool SET used_date = ? WHERE id = ?").bind(date, id))
-    );
-    return fetchQuestionsByIds(db, pickedIds);
-  }
-
-  // Another request saved this date first: use its set.
+  // Whichever request saved first, everyone gets the saved set.
   return fetchQuestionsByIds(db, (await readDaily(db, date)) ?? []);
 }
 
@@ -164,7 +171,7 @@ router.get("/trivia/daily", async (c) => {
     c.header("Cache-Control", "public, max-age=60");
     return c.json({ date, questions: stripAnswers(questions), questionCount: questions.length });
   } catch (err) {
-    console.error("Trivia daily error:", err);
+    logError("Trivia daily error", err);
     return c.json({ error: "Failed to fetch daily trivia" }, 500);
   }
 });
@@ -192,7 +199,7 @@ router.post("/trivia/answer", async (c) => {
       reveal: parsed.reveal,
     });
   } catch (err) {
-    console.error("Trivia answer error:", err);
+    logError("Trivia answer error", err);
     return c.json({ error: "Failed to check answer" }, 500);
   }
 });
@@ -204,11 +211,18 @@ router.post("/trivia/answer", async (c) => {
 router.get("/trivia/results", async (c) => {
   try {
     const date = c.req.query("date") || todayUTC();
-    // New in the Cloudflare version: a malformed date is refused instead of
-    // assembling (and using up questions for) a garbage day.
-    if (!DATE_RE.test(date)) return c.json({ error: "Invalid date" }, 400);
-
-    const questions = await getOrAssembleDaily(c.env.DB, date);
+    // New in the Cloudflare version (inventory O6, review R11): only today is
+    // assembled here. Other days return what was saved, or 404, so nobody can
+    // use up the pool or read a future day's answers.
+    if (!isValidDate(date)) return c.json({ error: "Invalid date" }, 400);
+    let questions: TriviaQuestionWithAnswer[];
+    if (date === todayUTC()) {
+      questions = await getOrAssembleDaily(c.env.DB, date);
+    } else {
+      const saved = await readDaily(c.env.DB, date);
+      if (!saved) return c.json({ error: "No trivia for this date" }, 404);
+      questions = await fetchQuestionsByIds(c.env.DB, saved);
+    }
     return c.json({
       date,
       questions: questions.map((q) => ({
@@ -221,7 +235,7 @@ router.get("/trivia/results", async (c) => {
       })),
     });
   } catch (err) {
-    console.error("Trivia results error:", err);
+    logError("Trivia results error", err);
     return c.json({ error: "Failed to fetch results" }, 500);
   }
 });
@@ -256,7 +270,7 @@ router.post("/trivia/score", async (c) => {
 
     return c.json({ saved: true });
   } catch (err) {
-    console.error("Trivia score error:", err);
+    logError("Trivia score error", err);
     return c.json({ error: "Failed to save score" }, 500);
   }
 });
@@ -337,7 +351,7 @@ router.get("/trivia/stats", async (c) => {
       percentile,
     });
   } catch (err) {
-    console.error("Trivia stats error:", err);
+    logError("Trivia stats error", err);
     return c.json({ error: "Failed to fetch stats" }, 500);
   }
 });
@@ -369,7 +383,7 @@ router.get("/trivia/practice", async (c) => {
     // Returned without the answer; the client checks it via POST /trivia/answer
     return c.json({ id: row.id, format: row.format, question: parsed.question, options: parsed.options });
   } catch (err) {
-    console.error("Trivia practice error:", err);
+    logError("Trivia practice error", err);
     return c.json({ error: "Failed to fetch practice question" }, 500);
   }
 });

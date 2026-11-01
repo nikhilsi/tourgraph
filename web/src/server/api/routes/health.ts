@@ -1,19 +1,22 @@
 import { Hono } from "hono";
-import { type AppEnv, STARTED_AT, remember } from "../env";
+import { type AppEnv, remember, uptimeSeconds, logError } from "../env";
 
 const router = new Hono<AppEnv>();
 
 router.get("/health", async (c) => {
   try {
+    // Touch D1 on every call so /health reports an outage; the tour count
+    // itself comes from frozen data and is remembered for an hour.
+    await c.env.DB.prepare("SELECT 1").first();
     const count = await remember("health:tours", async () => {
       const row = await c.env.DB.prepare(
         "SELECT COUNT(*) as count FROM tours WHERE status = 'active'"
       ).first<{ count: number }>();
       return row?.count ?? 0;
     });
-    return c.json({ status: "ok", tours: count, uptime: (Date.now() - STARTED_AT) / 1000 });
+    return c.json({ status: "ok", tours: count, uptime: uptimeSeconds() });
   } catch (err) {
-    console.error("Health error:", err);
+    logError("Health error", err);
     return c.json({ status: "error" }, 503);
   }
 });
@@ -40,7 +43,7 @@ router.get("/stats", async (c) => {
     c.header("Cache-Control", "public, max-age=3600, s-maxage=3600");
     return c.json(stats);
   } catch (err) {
-    console.error("Stats error:", err);
+    logError("Stats error", err);
     return c.json({ error: "Failed to fetch stats" }, 500);
   }
 });

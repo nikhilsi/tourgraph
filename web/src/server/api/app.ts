@@ -5,7 +5,7 @@ import { Hono, type Context } from "hono";
 import { cors } from "hono/cors";
 import { etag } from "hono/etag";
 import { bodyLimit } from "hono/body-limit";
-import type { AppEnv } from "./env";
+import { type AppEnv, logError } from "./env";
 
 import healthRoutes from "./routes/health";
 import rouletteRoutes from "./routes/roulette";
@@ -50,6 +50,6 @@ api.all("/api/ios/tours/batch", (c) => forward(c, "/api/v1/tours/batch"));
 
 api.notFound((c) => c.json({ error: "Not found" }, 404));
 api.onError((err, c) => {
-  console.error("API error:", err);
+  logError("API error", err);
   return c.json({ error: "Internal error" }, 500);
 });
