@@ -20,8 +20,9 @@ const PAGE_HEADERS = {
   "referrer-policy": "strict-origin-when-cross-origin",
   "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
   "permissions-policy": "camera=(), microphone=(), geolocation=()",
+  // Includes Google Analytics' hosts since Nov 1, 2026 (next.config.ts).
   "content-security-policy":
-    "default-src 'self'; img-src 'self' https://*.tripadvisor.com https://*.cloudfront.net https://*.viator.com data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'",
+    "default-src 'self'; img-src 'self' https://*.tripadvisor.com https://*.cloudfront.net https://*.viator.com https://www.googletagmanager.com https://*.google-analytics.com data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; font-src 'self'; connect-src 'self' https://www.googletagmanager.com https://*.google-analytics.com https://*.google.com",
 };
 
 let failures = 0;
@@ -85,7 +86,7 @@ for (const path of ["/", "/right-now", "/worlds-most", "/worlds-most/longest", "
   const res = await get(path);
   const html = await res.text();
   const missing = headersMatch(res, PAGE_HEADERS);
-  check(`${path} 200 with security headers`, res.status === 200 && missing.length === 0 && html.includes("</html>"), `status ${res.status}, missing ${missing.join(", ")}`);
+  check(`${path} 200 with security headers`, res.status === 200 && missing.length === 0 && html.includes("</html>"), `status ${res.status}, missing or different: ${missing.join(", ")}`);
 }
 const home = await (await get("/")).text();
 check("no site-wide canonical tag", !/rel="canonical" href="https:\/\/tourgraph\.ai"/.test(home));
