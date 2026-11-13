@@ -75,7 +75,7 @@ const JSON_LD = {
       givenName: "Nikhil",
       familyName: "Singhal",
       jobTitle:
-        "CTO | VP Engineering | AI Practitioner & Governance Strategist",
+        "Enterprise AI Architect & Builder | Hands-on CTO | Founder, AI Trust Commons",
       url: "https://nikhilsinghal.com",
       image: "https://nikhilsinghal.com/img/nikhil-singhal-portrait-1200.jpg",
       email: "mailto:nikhil@omspark.com",
@@ -97,6 +97,7 @@ const JSON_LD = {
         "https://aitrustcommons.org",
         "https://hipcharter.com",
         "https://omspark.com",
+        "https://www.crunchbase.com/person/nikhil-singhal",
       ],
       knowsAbout: [
         "Artificial Intelligence",
