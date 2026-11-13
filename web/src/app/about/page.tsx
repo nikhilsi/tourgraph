@@ -198,9 +198,9 @@ export default async function AboutPage() {
             >
               Nikhil Singhal
             </a>
-            , a technology executive with 25+ years of experience building
+            , a technology executive with three decades of experience building
             products at Expedia, T-Mobile, Microsoft, and startups. Previously
-            CTO at Tour Guy (AI-powered travel, 400% efficiency gains) and
+            CTO at The Tour Guy (AI-powered travel, 400% efficiency gains) and
             Imperative (scaled $1M to $4M ARR). Based in Seattle.
           </p>
           <p className="text-sm text-text-muted leading-relaxed mt-3">

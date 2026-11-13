@@ -159,7 +159,7 @@ export default function StoryPage() {
             >
               Nikhil Singhal
             </a>{" "}
-            in Seattle. 25+ years building products at Expedia, Microsoft,
+            in Seattle. Three decades building products at Expedia, Microsoft,
             T-Mobile, and startups.{" "}
             <a
               href="https://github.com/nikhilsi/tourgraph"
